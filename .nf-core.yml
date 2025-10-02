@@ -1,0 +1,18 @@
+repository_type: pipeline
+
+nf_core_version: 3.2.1
+
+lint: {}
+
+template:
+  org: nf-core
+  name: postprocessing
+  description: Customizable post-processing and extension layer built on top of Oncoanalyser
+    that adapts its outputs to clinical and operational needs, adds missing analyses,
+    and ensures flexibility for evolving standards while retaining Oncoanalyser robust
+    core
+  author: Clinical Genomics Stockholm
+  version: 1.0.0dev
+  force: true
+  outdir: .
+  is_nfcore: true
