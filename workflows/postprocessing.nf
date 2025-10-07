@@ -3,8 +3,8 @@
     IMPORT MODULES / SUBWORKFLOWS / FUNCTIONS
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
-include { FASTQC                 } from '../modules/nf-core/fastqc/main'
 include { MULTIQC                } from '../modules/nf-core/multiqc/main'
+include { ENSEMBLVEP_VEP as VEP_ANNOTATE_SNV } from '../modules/nf-core/ensemblvep/vep/main'
 include { paramsSummaryMap       } from 'plugin/nf-schema'
 include { paramsSummaryMultiqc   } from '../subworkflows/nf-core/utils_nfcore_pipeline'
 include { softwareVersionsToYAML } from '../subworkflows/nf-core/utils_nfcore_pipeline'
@@ -20,18 +20,32 @@ workflow POSTPROCESSING {
 
     take:
     ch_samplesheet // channel: samplesheet read in from --input
+
     main:
 
     ch_versions = Channel.empty()
     ch_multiqc_files = Channel.empty()
-    //
-    // MODULE: Run FastQC
-    //
-    FASTQC (
-        ch_samplesheet
-    )
-    ch_multiqc_files = ch_multiqc_files.mix(FASTQC.out.zip.collect{it[1]})
-    ch_versions = ch_versions.mix(FASTQC.out.versions.first())
+
+    // Initialize input channels
+    snv_vcf_ch = params.snv_vcf ? Channel.fromPath(params.snv_vcf, checkIfExists: true) : Channel.empty()
+
+    // Reference files
+    reference_ch = params.genome ? Channel.fromPath(params.genome, checkIfExists: true) : Channel.empty()
+    vep_cache_ch = params.vep_cache ? Channel.fromPath(params.vep_cache, checkIfExists: true) : Channel.empty()
+
+    // Process SNV VCF files
+    if (params.snv_vcf) {
+        // Always annotate with VEP
+        VEP_ANNOTATE_SNV (
+            snv_vcf_ch,
+            "GRCh37",
+            "homo_sapiens",
+            val_vep_cache_version,
+            ch_vep_cache,
+            ch_fasta,
+            ch_vep_extra_files
+         )
+    }
 
     //
     // Collate and save software versions
@@ -43,7 +57,6 @@ workflow POSTPROCESSING {
             sort: true,
             newLine: true
         ).set { ch_collated_versions }
-
 
     //
     // MODULE: MultiQC
@@ -85,7 +98,8 @@ workflow POSTPROCESSING {
         []
     )
 
-    emit:multiqc_report = MULTIQC.out.report.toList() // channel: /path/to/multiqc_report.html
+    emit:
+    multiqc_report = MULTIQC.out.report.toList() // channel: /path/to/multiqc_report.html
     versions       = ch_versions                 // channel: [ path(versions.yml) ]
 
 }
