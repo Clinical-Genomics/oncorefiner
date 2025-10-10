@@ -23,6 +23,7 @@ workflow POSTPROCESSING {
 
     main:
 
+        // Initialize input channels
         ch_versions = Channel.empty()
         ch_multiqc_files = Channel.empty()
 
@@ -30,19 +31,35 @@ workflow POSTPROCESSING {
             Channel
                 .fromPath(params.snv_vcf, checkIfExists: true)
                 .map { vcf ->
-                    def meta = [id: vcf.baseName]
+                    def meta = [id: vcf.simpleName]
                     def custom_extra_files = params.custom_extra_files ? file(params.custom_extra_files) : []
                     tuple(meta, vcf, custom_extra_files)
                 } :
             Channel.empty()
 
-        // Initialize input channels
-        // snv_vcf_ch = params.snv_vcf ? Channel.fromPath(params.snv_vcf, checkIfExists: true) : Channel.empty()
-
         // Reference files
+        ch_genome_fasta              = Channel.fromPath(params.fasta).map { it -> [[id:it.simpleName], it] }.collect()
         ch_vep_cache = params.vep_cache ? Channel.fromPath(params.vep_cache, checkIfExists: true) : Channel.empty()
 
-        ch_vep_snv.view { "Got input: $it" }
+
+        //
+        // Read and store paths in the vep_plugin_files file
+        //
+        ch_vep_extra_files_unsplit  = params.vep_plugin_files ? Channel.fromPath(params.vep_plugin_files).collect() : Channel.value([])
+        ch_vep_extra_files = Channel.empty()
+        if (params.vep_plugin_files) {
+            ch_vep_extra_files_unsplit.splitCsv ( header:true )
+                .map { row ->
+                    def f = file(row.vep_files[0])
+                    if(f.isFile() || f.isDirectory()){
+                        return [f]
+                    } else {
+                        error("\nVep database file ${f} does not exist.")
+                    }
+                }
+                .collect()
+                .set {ch_vep_extra_files}
+        }
 
         // Process SNV VCF files
         if (params.snv_vcf) {
@@ -53,8 +70,8 @@ workflow POSTPROCESSING {
                 "homo_sapiens",
                 params.vep_cache_version,
                 ch_vep_cache,
-                Channel.value([[],[]]),
-                Channel.value([])
+                ch_genome_fasta,
+                ch_vep_extra_files
             )
         }
 
