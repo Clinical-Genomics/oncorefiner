@@ -65,6 +65,15 @@
                     "help_text": "This parameter is *mandatory* if `--genome` is not specified. If you don't have a BWA index available this will be generated for you automatically. Combine with `--save_reference` to save BWA index for future runs.",
                     "fa_icon": "far fa-file-code"
                 },
+                "fai": {
+                    "type": "string",
+                    "exists": true,
+                    "format": "file-path",
+                    "help_text": "If none provided, will be generated automatically from the FASTA reference",
+                    "description": "Path to FASTA genome index file.",
+                    "pattern": "^\\S+\\.fn?a(sta)?\\.fai$",
+                    "fa_icon": "fas fa-file"
+                },
                 "igenomes_ignore": {
                     "type": "boolean",
                     "description": "Do not load the iGenomes reference config.",
@@ -79,6 +88,38 @@
                     "fa_icon": "fas fa-ban",
                     "hidden": true,
                     "default": "s3://ngi-igenomes/igenomes/"
+                }
+            }
+        },
+        "annotation_options": {
+            "title": "Annotation options",
+            "type": "object",
+            "fa_icon": "fas fa-toolbox",
+            "description": "Annotation related files and options required for the workflow.",
+            "properties": {
+                "vep_cache_version": {
+                    "type": "integer",
+                    "default": 112,
+                    "description": "Specify the version of the VEP cache provided to the `--vep_cache` option.",
+                    "fa_icon": "fas fa-align-center"
+                },
+                "vep_cache": {
+                    "type": "string",
+                    "exists": true,
+                    "description": "Path to vep's cache directory.",
+                    "help_text": "If no directory path is passed, vcf files will not be annotated by vep.",
+                    "fa_icon": "fas fa-folder-open"
+                },
+                "vep_plugin_files": {
+                    "type": "string",
+                    "exists": true,
+                    "format": "file-path",
+                    "description": "Databases used by both named and custom plugins to annotate variants.",
+                    "fa_icon": "fas fa-file-csv",
+                    "help_text": "Path to a file containing the absolute paths to databases and their indices used by VEP's custom and named plugins resources defined within the vcfanno toml file. One line per resource.",
+                    "pattern": "^\\S+\\.csv$",
+                    "mimetype": "text/csv",
+                    "schema": "assets/vep_plugin_files_schema.json"
                 }
             }
         },
