@@ -31,7 +31,7 @@ workflow POSTPROCESSING {
                 .fromPath(params.snv_vcf, checkIfExists: true)
                 .map { vcf ->
                     def meta = [id: vcf.baseName]
-                    def custom_extra_files = params.custom_extra_files ? file(params.custom_extra_files) : null
+                    def custom_extra_files = params.custom_extra_files ? file(params.custom_extra_files) : []
                     tuple(meta, vcf, custom_extra_files)
                 } :
             Channel.empty()
@@ -42,6 +42,7 @@ workflow POSTPROCESSING {
         // Reference files
         ch_vep_cache = params.vep_cache ? Channel.fromPath(params.vep_cache, checkIfExists: true) : Channel.empty()
 
+        ch_vep_snv.view { "Got input: $it" }
 
         // Process SNV VCF files
         if (params.snv_vcf) {
@@ -52,8 +53,8 @@ workflow POSTPROCESSING {
                 "homo_sapiens",
                 params.vep_cache_version,
                 ch_vep_cache,
-                Channel.empty(),
-                Channel.empty()
+                Channel.value([[],[]]),
+                Channel.value([])
             )
         }
 
