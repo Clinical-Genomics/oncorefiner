@@ -34,6 +34,16 @@
                         "branch": "master",
                         "git_sha": "f0719ae309075ae4a291533883847c3f7c441dad",
                         "installed_by": ["modules"]
+                    },
+                    "tabix/tabix": {
+                        "branch": "master",
+                        "git_sha": "f2cfcf9d3f6a2d123e6c44aefa788aa232204a7a",
+                        "installed_by": ["modules"]
+                    },
+                    "vcfanno": {
+                        "branch": "master",
+                        "git_sha": "15e7f217661be7e332950289735bd790079873fe",
+                        "installed_by": ["modules"]
                     }
                 }
             },
