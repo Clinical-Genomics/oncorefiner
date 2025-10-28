@@ -27,16 +27,10 @@ workflow POSTPROCESSING {
         // Initialize input channels
         ch_versions = Channel.empty()
         ch_multiqc_files = Channel.empty()
+        ch_snv_vcf       = Channel.fromPath(params.snv_vcf).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
+        ch_snv_vcf_tbi       = Channel.fromPath(params.snv_vcf_tbi).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
 
-        ch_vep_snv = params.snv_vcf ?
-            Channel
-                .fromPath(params.snv_vcf, checkIfExists: true)
-                .map { vcf ->
-                    def meta = [id: vcf.simpleName]
-                    def custom_extra_files = params.custom_extra_files ? file(params.custom_extra_files) : []
-                    tuple(meta, vcf, custom_extra_files)
-                } :
-            Channel.empty()
+
 
         // Reference files
         ch_genome_fasta              = Channel.fromPath(params.fasta).map { it -> [[id:it.simpleName], it] }.collect()
@@ -80,7 +74,23 @@ workflow POSTPROCESSING {
 */
         // Process SNV VCF files
         if (params.snv_vcf) {
-            // Always annotate with VEP
+
+            // Vcfanno
+            ch_snv_vcf
+                .join(ch_snv_vcf_tbi)
+                .combine(ch_vcfanno_extra)
+                .set { ch_vcfanno_in }
+            VCFANNO (ch_vcfanno_in, ch_vcfanno_toml, ch_vcfanno_lua, ch_vcfanno_resources)
+
+            // VEP
+            VCFANNO.out.vcf
+                    .map { meta, vcf ->
+                        def custom_extra_files = params.custom_extra_files ? file(params.custom_extra_files) : []
+                        tuple(meta, vcf, custom_extra_files)
+                    }
+                    .set { ch_vep_snv }
+            ch_vep_snv.view { "Got input: $it" }
+
             ENSEMBLVEP_SNV (
                 ch_vep_snv,
                 params.genome,
@@ -90,13 +100,6 @@ workflow POSTPROCESSING {
                 ch_genome_fasta,
                 ch_vep_extra_files
             )
-
-            ENSEMBLVEP_SNV.out.vcf
-                .join(ENSEMBLVEP_SNV.out.tbi)
-                .combine(ch_vcfanno_extra)
-                .set { ch_vcfanno_in }
-
-            VCFANNO (ch_vcfanno_in, ch_vcfanno_toml, ch_vcfanno_lua, ch_vcfanno_resources)
 
         }
 
