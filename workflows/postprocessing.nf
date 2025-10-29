@@ -4,7 +4,8 @@
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 include { MULTIQC                } from '../modules/nf-core/multiqc/main'
-include { ENSEMBLVEP_VEP as VEP_ANNOTATE_SNV } from '../modules/nf-core/ensemblvep/vep/main'
+include { ENSEMBLVEP_VEP as ENSEMBLVEP_SNV } from '../modules/nf-core/ensemblvep/vep/main'
+include { VCFANNO                               } from '../modules/nf-core/vcfanno/main'
 include { paramsSummaryMap       } from 'plugin/nf-schema'
 include { paramsSummaryMultiqc   } from '../subworkflows/nf-core/utils_nfcore_pipeline'
 include { softwareVersionsToYAML } from '../subworkflows/nf-core/utils_nfcore_pipeline'
@@ -26,16 +27,10 @@ workflow POSTPROCESSING {
         // Initialize input channels
         ch_versions = Channel.empty()
         ch_multiqc_files = Channel.empty()
+        ch_snv_vcf       = Channel.fromPath(params.snv_vcf).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
+        ch_snv_vcf_tbi       = Channel.fromPath(params.snv_vcf_tbi).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
 
-        ch_vep_snv = params.snv_vcf ?
-            Channel
-                .fromPath(params.snv_vcf, checkIfExists: true)
-                .map { vcf ->
-                    def meta = [id: vcf.simpleName]
-                    def custom_extra_files = params.custom_extra_files ? file(params.custom_extra_files) : []
-                    tuple(meta, vcf, custom_extra_files)
-                } :
-            Channel.empty()
+
 
         // Reference files
         ch_genome_fasta              = Channel.fromPath(params.fasta).map { it -> [[id:it.simpleName], it] }.collect()
@@ -61,6 +56,17 @@ workflow POSTPROCESSING {
                 .set {ch_vep_extra_files}
         }
 
+        // Vcfanno
+        ch_vcfanno_resources        = params.vcfanno_resources                  ? Channel.fromPath(params.vcfanno_resources).splitText().map{it -> it.trim()}.collect()
+                                                                                : Channel.value([])
+        ch_vcfanno_lua              = params.vcfanno_lua                        ? Channel.fromPath(params.vcfanno_lua).collect()
+                                                                                : Channel.value([])
+        ch_vcfanno_toml             = params.vcfanno_toml                       ? Channel.fromPath(params.vcfanno_toml).collect()
+                                                                                : Channel.value([])
+        ch_vcfanno_extra            = params.vcfanno_extra                      ? Channel.fromPath(params.vcfanno_extra).collect()
+                                                                                : []
+
+
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     ANNOTATE SNVs
@@ -68,8 +74,26 @@ workflow POSTPROCESSING {
 */
         // Process SNV VCF files
         if (params.snv_vcf) {
-            // Always annotate with VEP
-            VEP_ANNOTATE_SNV (
+
+            // Vcfanno
+            ch_snv_vcf
+                .join(ch_snv_vcf_tbi)
+                .map { meta, vcf, tbi ->
+                    def resources = ch_vcfanno_extra
+                    tuple(meta, vcf, tbi, resources)
+                    }
+                .set { ch_vcfanno_in }
+            VCFANNO (ch_vcfanno_in, ch_vcfanno_toml, ch_vcfanno_lua, ch_vcfanno_resources)
+
+            // VEP
+            VCFANNO.out.vcf
+                    .map { meta, vcf ->
+                        def custom_extra_files = params.custom_extra_files ? file(params.custom_extra_files) : []
+                        tuple(meta, vcf, custom_extra_files)
+                    }
+                    .set { ch_vep_snv }
+
+            ENSEMBLVEP_SNV (
                 ch_vep_snv,
                 params.genome,
                 "homo_sapiens",
@@ -78,6 +102,7 @@ workflow POSTPROCESSING {
                 ch_genome_fasta,
                 ch_vep_extra_files
             )
+
         }
 
 /*

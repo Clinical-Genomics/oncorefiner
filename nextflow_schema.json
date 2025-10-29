@@ -120,6 +120,37 @@
                     "pattern": "^\\S+\\.csv$",
                     "mimetype": "text/csv",
                     "schema": "assets/vep_plugin_files_schema.json"
+                },
+                "vcfanno_extra": {
+                    "type": "string",
+                    "exists": true,
+                    "format": "file-path",
+                    "description": "Path to a VCF file containing annotations.",
+                    "help_text": "Can be used to supply case-specific annotations in addition to those provided using --vcfanno_resources",
+                    "fa_icon": "fas fa-file"
+                },
+                "vcfanno_resources": {
+                    "type": "string",
+                    "exists": true,
+                    "description": "Path to a file containing the absolute paths to resources defined within the vcfanno toml file. One line per resource.",
+                    "help_text": "If no file is passed, default configurations will be used according to genome build within the context of the pipeline.",
+                    "fa_icon": "fas fa-file"
+                },
+                "vcfanno_toml": {
+                    "type": "string",
+                    "exists": true,
+                    "description": "Path to the vcfanno toml file.",
+                    "pattern": "^\\S+\\.toml$",
+                    "help_text": "If no toml is passed, default configurations will be used according to genome build within the context of the pipeline.",
+                    "fa_icon": "fas fa-file"
+                },
+                "vcfanno_lua": {
+                    "type": "string",
+                    "exists": true,
+                    "description": "Path to the vcfanno lua file.",
+                    "pattern": "^\\S+\\.lua$",
+                    "help_text": "Custom operations file (lua). For use when the built-in ops don't supply the needed reduction.",
+                    "fa_icon": "fas fa-file"
                 }
             }
         },
