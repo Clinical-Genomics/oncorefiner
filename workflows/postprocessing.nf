@@ -92,7 +92,6 @@ workflow POSTPROCESSING {
                         tuple(meta, vcf, custom_extra_files)
                     }
                     .set { ch_vep_snv }
-            ch_vep_snv.view { "Got input: $it" }
 
             ENSEMBLVEP_SNV (
                 ch_vep_snv,
