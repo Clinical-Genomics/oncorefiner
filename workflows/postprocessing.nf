@@ -64,7 +64,7 @@ workflow POSTPROCESSING {
         ch_vcfanno_toml             = params.vcfanno_toml                       ? Channel.fromPath(params.vcfanno_toml).collect()
                                                                                 : Channel.value([])
         ch_vcfanno_extra            = params.vcfanno_extra                      ? Channel.fromPath(params.vcfanno_extra).collect()
-                                                                                : Channel.value([])
+                                                                                : []
 
 
 /*
@@ -78,7 +78,10 @@ workflow POSTPROCESSING {
             // Vcfanno
             ch_snv_vcf
                 .join(ch_snv_vcf_tbi)
-                .combine(ch_vcfanno_extra)
+                .map { meta, vcf, tbi ->
+                    def resources = ch_vcfanno_extra
+                    tuple(meta, vcf, tbi, resources)
+                    }
                 .set { ch_vcfanno_in }
             VCFANNO (ch_vcfanno_in, ch_vcfanno_toml, ch_vcfanno_lua, ch_vcfanno_resources)
 
