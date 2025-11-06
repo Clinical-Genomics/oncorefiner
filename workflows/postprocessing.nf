@@ -6,6 +6,8 @@
 include { MULTIQC                } from '../modules/nf-core/multiqc/main'
 include { ENSEMBLVEP_VEP as ENSEMBLVEP_SNV } from '../modules/nf-core/ensemblvep/vep/main'
 include { VCFANNO                               } from '../modules/nf-core/vcfanno/main'
+include { BCFTOOLS_VIEW as RESEARCH_FILTERING   } from '../modules/nf-core/bcftools/view/main'
+include { BCFTOOLS_VIEW as CLINICAL_FILTERING   } from '../modules/nf-core/bcftools/view/main'
 include { paramsSummaryMap       } from 'plugin/nf-schema'
 include { paramsSummaryMultiqc   } from '../subworkflows/nf-core/utils_nfcore_pipeline'
 include { softwareVersionsToYAML } from '../subworkflows/nf-core/utils_nfcore_pipeline'
@@ -85,8 +87,19 @@ workflow POSTPROCESSING {
                 .set { ch_vcfanno_in }
             VCFANNO (ch_vcfanno_in, ch_vcfanno_toml, ch_vcfanno_lua, ch_vcfanno_resources)
 
-            // VEP
+
+            // Quality Filtering
             VCFANNO.out.vcf
+                .join(VCFANNO.out.tbi)
+                .map { meta, vcf, tbi ->
+                    tuple(meta, vcf, tbi)
+                    }
+                .set { ch_research_filtering_in }
+            RESEARCH_FILTERING(ch_research_filtering_in, [], [], [])  // filter on frequencies
+
+
+            // VEP
+            RESEARCH_FILTERING.out.vcf
                     .map { meta, vcf ->
                         def custom_extra_files = params.custom_extra_files ? file(params.custom_extra_files) : []
                         tuple(meta, vcf, custom_extra_files)
@@ -102,6 +115,16 @@ workflow POSTPROCESSING {
                 ch_genome_fasta,
                 ch_vep_extra_files
             )
+
+            // Clinical Filtering
+            ENSEMBLVEP_SNV.out.vcf
+                .join(ENSEMBLVEP_SNV.out.tbi)
+                .map { meta, vcf, tbi ->
+                    tuple(meta, vcf, tbi)
+                    }
+                .set { ch_clinical_filtering_in }
+            CLINICAL_FILTERING(ch_clinical_filtering_in, [], [], [])  // filter on frequencies
+
 
         }
 
