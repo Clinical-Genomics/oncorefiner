@@ -9,6 +9,7 @@ include { VCFANNO                               } from '../modules/nf-core/vcfan
 include { BCFTOOLS_VIEW as RESEARCH_FILTERING   } from '../modules/nf-core/bcftools/view/main'
 include { BCFTOOLS_VIEW as CLINICAL_FILTERING   } from '../modules/nf-core/bcftools/view/main'
 include { SVDB_QUERY as SVDB_QUERY_DB     } from '../modules/nf-core/svdb/query/main'
+include { ENSEMBLVEP_VEP as ENSEMBLVEP_SV } from '../modules/nf-core/ensemblvep/vep/main'
 
 include { paramsSummaryMap       } from 'plugin/nf-schema'
 include { paramsSummaryMultiqc   } from '../subworkflows/nf-core/utils_nfcore_pipeline'
@@ -160,6 +161,25 @@ workflow POSTPROCESSING {
             ch_svdb_dbs.vcf_dbs.toList(),
             []
         )
+
+        // VEP
+        SVDB_QUERY_DB.out.vcf
+                    .map { meta, vcf ->
+                        def custom_extra_files = params.custom_extra_files ? file(params.custom_extra_files) : []
+                        tuple(meta, vcf, custom_extra_files)
+                    }
+                    .set { ch_vep_sv }
+
+        ENSEMBLVEP_SV(
+            ch_vep_sv,
+            params.genome,
+            "homo_sapiens",
+            params.vep_cache_version,
+            ch_vep_cache,
+            ch_genome_fasta,
+            ch_vep_extra_files
+        )
+
 
         }
 
