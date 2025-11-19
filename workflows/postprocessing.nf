@@ -8,6 +8,8 @@ include { ENSEMBLVEP_VEP as ENSEMBLVEP_SNV } from '../modules/nf-core/ensemblvep
 include { VCFANNO                               } from '../modules/nf-core/vcfanno/main'
 include { BCFTOOLS_VIEW as RESEARCH_FILTERING   } from '../modules/nf-core/bcftools/view/main'
 include { BCFTOOLS_VIEW as CLINICAL_FILTERING   } from '../modules/nf-core/bcftools/view/main'
+include { SVDB_QUERY as SVDB_QUERY_DB     } from '../modules/nf-core/svdb/query/main'
+
 include { paramsSummaryMap       } from 'plugin/nf-schema'
 include { paramsSummaryMultiqc   } from '../subworkflows/nf-core/utils_nfcore_pipeline'
 include { softwareVersionsToYAML } from '../subworkflows/nf-core/utils_nfcore_pipeline'
@@ -31,7 +33,8 @@ workflow POSTPROCESSING {
         ch_multiqc_files = Channel.empty()
         ch_snv_vcf       = Channel.fromPath(params.snv_vcf).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
         ch_snv_vcf_tbi       = Channel.fromPath(params.snv_vcf_tbi).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
-
+        ch_sv_vcf       = Channel.fromPath(params.sv_vcf).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
+        ch_sv_vcf_tbi       = Channel.fromPath(params.sv_vcf_tbi).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
 
 
         // Reference files
@@ -67,6 +70,11 @@ workflow POSTPROCESSING {
                                                                                 : Channel.value([])
         ch_vcfanno_extra            = params.vcfanno_extra                      ? Channel.fromPath(params.vcfanno_extra).collect()
                                                                                 : []
+
+        // SVDB
+        ch_sv_dbs                   = params.svdb_query_dbs                  ? Channel.fromPath(params.svdb_query_dbs)
+                                                                            : Channel.empty()
+
 
 
 /*
@@ -127,6 +135,34 @@ workflow POSTPROCESSING {
 
 
         }
+
+        // Process SV VCF files
+        if (params.sv_vcf) {
+
+        // SVDB QUERY
+        ch_sv_dbs
+            .splitCsv ( header:true )
+            .multiMap { row ->
+                vcf_dbs:  row.filename
+                in_frqs:  row.in_freq_info_key
+                in_occs:  row.in_allele_count_info_key
+                out_frqs: row.out_freq_info_key
+                out_occs: row.out_allele_count_info_key
+            }
+            .set { ch_svdb_dbs }
+
+        SVDB_QUERY_DB (
+            ch_sv_vcf,
+            ch_svdb_dbs.in_occs.toList(),
+            ch_svdb_dbs.in_frqs.toList(),
+            ch_svdb_dbs.out_occs.toList(),
+            ch_svdb_dbs.out_frqs.toList(),
+            ch_svdb_dbs.vcf_dbs.toList(),
+            []
+        )
+
+        }
+
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
