@@ -10,6 +10,9 @@ include { BCFTOOLS_VIEW as RESEARCH_FILTERING   } from '../modules/nf-core/bcfto
 include { BCFTOOLS_VIEW as CLINICAL_FILTERING   } from '../modules/nf-core/bcftools/view/main'
 include { SVDB_QUERY as SVDB_QUERY_DB     } from '../modules/nf-core/svdb/query/main'
 include { ENSEMBLVEP_VEP as ENSEMBLVEP_SV } from '../modules/nf-core/ensemblvep/vep/main'
+include { BCFTOOLS_VIEW as RESEARCH_FILTERING_SV   } from '../modules/nf-core/bcftools/view/main'
+include { BCFTOOLS_VIEW as CLINICAL_FILTERING_SV   } from '../modules/nf-core/bcftools/view/main'
+
 
 include { paramsSummaryMap       } from 'plugin/nf-schema'
 include { paramsSummaryMultiqc   } from '../subworkflows/nf-core/utils_nfcore_pipeline'
@@ -104,7 +107,7 @@ workflow POSTPROCESSING {
                     tuple(meta, vcf, tbi)
                     }
                 .set { ch_research_filtering_in }
-            RESEARCH_FILTERING(ch_research_filtering_in, [], [], [])  // filter on frequencies
+            RESEARCH_FILTERING(ch_research_filtering_in, [], [], [])
 
 
             // VEP
@@ -132,7 +135,7 @@ workflow POSTPROCESSING {
                     tuple(meta, vcf, tbi)
                     }
                 .set { ch_clinical_filtering_in }
-            CLINICAL_FILTERING(ch_clinical_filtering_in, [], [], [])  // filter on frequencies
+            CLINICAL_FILTERING(ch_clinical_filtering_in, [], [], [])
 
 
         }
@@ -140,45 +143,63 @@ workflow POSTPROCESSING {
         // Process SV VCF files
         if (params.sv_vcf) {
 
-        // SVDB QUERY
-        ch_sv_dbs
-            .splitCsv ( header:true )
-            .multiMap { row ->
-                vcf_dbs:  row.filename
-                in_frqs:  row.in_freq_info_key
-                in_occs:  row.in_allele_count_info_key
-                out_frqs: row.out_freq_info_key
-                out_occs: row.out_allele_count_info_key
-            }
-            .set { ch_svdb_dbs }
+            // SVDB QUERY
+            ch_sv_dbs
+                .splitCsv ( header:true )
+                .multiMap { row ->
+                    vcf_dbs:  row.filename
+                    in_frqs:  row.in_freq_info_key
+                    in_occs:  row.in_allele_count_info_key
+                    out_frqs: row.out_freq_info_key
+                    out_occs: row.out_allele_count_info_key
+                }
+                .set { ch_svdb_dbs }
 
-        SVDB_QUERY_DB (
-            ch_sv_vcf,
-            ch_svdb_dbs.in_occs.toList(),
-            ch_svdb_dbs.in_frqs.toList(),
-            ch_svdb_dbs.out_occs.toList(),
-            ch_svdb_dbs.out_frqs.toList(),
-            ch_svdb_dbs.vcf_dbs.toList(),
-            []
-        )
+            SVDB_QUERY_DB (
+                ch_sv_vcf,
+                ch_svdb_dbs.in_occs.toList(),
+                ch_svdb_dbs.in_frqs.toList(),
+                ch_svdb_dbs.out_occs.toList(),
+                ch_svdb_dbs.out_frqs.toList(),
+                ch_svdb_dbs.vcf_dbs.toList(),
+                []
+            )
 
-        // VEP
-        SVDB_QUERY_DB.out.vcf
-                    .map { meta, vcf ->
-                        def custom_extra_files = params.custom_extra_files ? file(params.custom_extra_files) : []
-                        tuple(meta, vcf, custom_extra_files)
+
+            // Quality Filtering
+            SVDB_QUERY_DB.out.vcf
+                .map { meta, vcf ->
+                    tuple(meta, vcf, []) }
+                .set { ch_research_filtering_sv_in }
+
+            RESEARCH_FILTERING_SV(ch_research_filtering_sv_in, [], [], [])
+
+            // VEP
+            RESEARCH_FILTERING_SV.out.vcf
+                .map { meta, vcf ->
+                            def custom_extra_files = params.custom_extra_files ? file(params.custom_extra_files) : []
+                            tuple(meta, vcf, custom_extra_files) }
+                .set { ch_vep_sv }
+
+
+            ENSEMBLVEP_SV(
+                ch_vep_sv,
+                params.genome,
+                "homo_sapiens",
+                params.vep_cache_version,
+                ch_vep_cache,
+                ch_genome_fasta,
+                ch_vep_extra_files
+            )
+
+            // Clinical Filtering
+            ENSEMBLVEP_SV.out.vcf
+                .join(ENSEMBLVEP_SV.out.tbi)
+                .map { meta, vcf, tbi ->
+                    tuple(meta, vcf, tbi)
                     }
-                    .set { ch_vep_sv }
-
-        ENSEMBLVEP_SV(
-            ch_vep_sv,
-            params.genome,
-            "homo_sapiens",
-            params.vep_cache_version,
-            ch_vep_cache,
-            ch_genome_fasta,
-            ch_vep_extra_files
-        )
+                .set { ch_clinical_filtering_sv_in }
+            CLINICAL_FILTERING_SV(ch_clinical_filtering_sv_in, [], [], [])
 
 
         }
