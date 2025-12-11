@@ -10,6 +10,10 @@ Initial release of nf-core/postprocessing, created with the [nf-core](https://nf
 ### `Added`
 
 - Added Ensembl VEP annotation for SNV vcf file [#1](https://github.com/Clinical-Genomics/nf-core-postprocessing/pull/1)
+- Added VCFANNO annotation for SNV vcf file [#2](https://github.com/Clinical-Genomics/nf-core-postprocessing/pull/2)
+- Added filtering for SNV vcf file [#3](https://github.com/Clinical-Genomics/nf-core-postprocessing/pull/3)
+- Added annotation for SV vcf file [#4](https://github.com/Clinical-Genomics/nf-core-postprocessing/pull/4)
+- Added filtering for SV vcf file [#5](https://github.com/Clinical-Genomics/nf-core-postprocessing/pull/5)
 
 ### `Fixed`
 
