@@ -14,6 +14,7 @@ Initial release of nf-core/postprocessing, created with the [nf-core](https://nf
 - Added filtering for SNV vcf file [#3](https://github.com/Clinical-Genomics/nf-core-postprocessing/pull/3)
 - Added annotation for SV vcf file [#4](https://github.com/Clinical-Genomics/nf-core-postprocessing/pull/4)
 - Added filtering for SV vcf file [#5](https://github.com/Clinical-Genomics/nf-core-postprocessing/pull/5)
+- Added working test profile with following test repo (https://github.com/Clinical-Genomics/nf-core-postprocessing/pull/8)
 
 ### `Fixed`
 
