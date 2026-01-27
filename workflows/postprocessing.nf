@@ -33,24 +33,26 @@ workflow POSTPROCESSING {
     main:
 
         // Initialize input channels
-        ch_versions = Channel.empty()
-        ch_multiqc_files = Channel.empty()
-        ch_snv_vcf       = Channel.fromPath(params.snv_vcf).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
-        ch_snv_vcf_tbi       = Channel.fromPath(params.snv_vcf_tbi).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
-        ch_sv_vcf       = Channel.fromPath(params.sv_vcf).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
-        ch_sv_vcf_tbi       = Channel.fromPath(params.sv_vcf_tbi).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
+        ch_versions = channel.empty()
+        ch_multiqc_files = channel.empty()
+
+        ch_snv_vcf       = channel.fromPath(params.snv_vcf).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
+        ch_snv_vcf_tbi = channel.fromPath(params.snv_vcf + '.tbi', checkIfExists: true).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
+
+        ch_sv_vcf       = channel.fromPath(params.sv_vcf).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
+        ch_sv_vcf_tbi =  channel.fromPath(params.sv_vcf + '.tbi', checkIfExists: true).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
 
 
         // Reference files
-        ch_genome_fasta              = Channel.fromPath(params.fasta).map { it -> [[id:it.simpleName], it] }.collect()
-        ch_vep_cache = params.vep_cache ? Channel.fromPath(params.vep_cache, checkIfExists: true) : Channel.empty()
+        ch_genome_fasta              = channel.fromPath(params.fasta).map { it -> [[id:it.simpleName], it] }.collect()
+        ch_vep_cache = params.vep_cache ? channel.fromPath(params.vep_cache, checkIfExists: true) : channel.empty()
 
 
         //
         // Read and store paths in the vep_plugin_files file
         //
-        ch_vep_extra_files_unsplit  = params.vep_plugin_files ? Channel.fromPath(params.vep_plugin_files).collect() : Channel.value([])
-        ch_vep_extra_files = Channel.empty()
+        ch_vep_extra_files_unsplit  = params.vep_plugin_files ? channel.fromPath(params.vep_plugin_files).collect() : channel.value([])
+        ch_vep_extra_files = channel.empty()
         if (params.vep_plugin_files) {
             ch_vep_extra_files_unsplit.splitCsv ( header:true )
                 .map { row ->
@@ -66,18 +68,18 @@ workflow POSTPROCESSING {
         }
 
         // Vcfanno
-        ch_vcfanno_resources        = params.vcfanno_resources                  ? Channel.fromPath(params.vcfanno_resources).splitText().map{it -> it.trim()}.collect()
-                                                                                : Channel.value([])
-        ch_vcfanno_lua              = params.vcfanno_lua                        ? Channel.fromPath(params.vcfanno_lua).collect()
-                                                                                : Channel.value([])
-        ch_vcfanno_toml             = params.vcfanno_toml                       ? Channel.fromPath(params.vcfanno_toml).collect()
-                                                                                : Channel.value([])
-        ch_vcfanno_extra            = params.vcfanno_extra                      ? Channel.fromPath(params.vcfanno_extra).collect()
+        ch_vcfanno_resources        = params.vcfanno_resources                  ? channel.fromPath(params.vcfanno_resources).splitText().map{it -> it.trim()}.collect()
+                                                                                : channel.value([])
+        ch_vcfanno_lua              = params.vcfanno_lua                        ? channel.fromPath(params.vcfanno_lua).collect()
+                                                                                : channel.value([])
+        ch_vcfanno_toml             = params.vcfanno_toml                       ? channel.fromPath(params.vcfanno_toml).collect()
+                                                                                : channel.value([])
+        ch_vcfanno_extra            = params.vcfanno_extra                      ? channel.fromPath(params.vcfanno_extra).collect()
                                                                                 : []
 
         // SVDB
-        ch_sv_dbs                   = params.svdb_query_dbs                  ? Channel.fromPath(params.svdb_query_dbs)
-                                                                            : Channel.empty()
+        ch_sv_dbs                   = params.svdb_query_dbs                  ? channel.fromPath(params.svdb_query_dbs)
+                                                                            : channel.empty()
 
 
 
@@ -225,24 +227,24 @@ workflow POSTPROCESSING {
         //
         // MODULE: MultiQC
         //
-        ch_multiqc_config        = Channel.fromPath(
+        ch_multiqc_config        = channel.fromPath(
             "$projectDir/assets/multiqc_config.yml", checkIfExists: true)
         ch_multiqc_custom_config = params.multiqc_config ?
-            Channel.fromPath(params.multiqc_config, checkIfExists: true) :
-            Channel.empty()
+            channel.fromPath(params.multiqc_config, checkIfExists: true) :
+            channel.empty()
         ch_multiqc_logo          = params.multiqc_logo ?
-            Channel.fromPath(params.multiqc_logo, checkIfExists: true) :
-            Channel.empty()
+            channel.fromPath(params.multiqc_logo, checkIfExists: true) :
+            channel.empty()
 
         summary_params      = paramsSummaryMap(
             workflow, parameters_schema: "nextflow_schema.json")
-        ch_workflow_summary = Channel.value(paramsSummaryMultiqc(summary_params))
+        ch_workflow_summary = channel.value(paramsSummaryMultiqc(summary_params))
         ch_multiqc_files = ch_multiqc_files.mix(
             ch_workflow_summary.collectFile(name: 'workflow_summary_mqc.yaml'))
         ch_multiqc_custom_methods_description = params.multiqc_methods_description ?
             file(params.multiqc_methods_description, checkIfExists: true) :
             file("$projectDir/assets/methods_description_template.yml", checkIfExists: true)
-        ch_methods_description                = Channel.value(
+        ch_methods_description                = channel.value(
             methodsDescriptionText(ch_multiqc_custom_methods_description))
 
         ch_multiqc_files = ch_multiqc_files.mix(ch_collated_versions)
