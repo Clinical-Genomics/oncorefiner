@@ -17,6 +17,8 @@ Initial release of nf-core/postprocessing, created with the [nf-core](https://nf
 
 ### `Fixed`
 
+- Fixed so VCF indexes are automatically detected [#9](https://github.com/Clinical-Genomics/nf-core-postprocessing/pull/9)
+
 ### `Dependencies`
 
 ### `Deprecated`
