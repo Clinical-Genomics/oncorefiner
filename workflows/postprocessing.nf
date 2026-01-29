@@ -72,7 +72,6 @@ workflow POSTPROCESSING {
         // Gather or get from params
         ch_vep_cache                = ( params.vep_cache && params.vep_cache.endsWith("tar.gz") )  ? ch_references.vep_resources
                                                                             : ( params.vep_cache    ? channel.fromPath(params.vep_cache).collect() : channel.value([]) )
-        //ch_vep_cache                = params.vep_cache ? Channel.fromPath(params.vep_cache, checkIfExists: true) : Channel.empty()
 
 
         //
