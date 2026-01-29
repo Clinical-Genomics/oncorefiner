@@ -48,32 +48,17 @@ workflow POSTPROCESSING {
     main:
 
         // Initialize input channels
-<<<<<<< HEAD
-        ch_versions = channel.empty()
-        ch_multiqc_files = channel.empty()
+        ch_versions             = channel.empty()
+        ch_multiqc_files        = channel.empty()
 
-        ch_snv_vcf       = channel.fromPath(params.snv_vcf).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
-        ch_snv_vcf_tbi = channel.fromPath(params.snv_vcf + '.tbi', checkIfExists: true).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
-
-        ch_sv_vcf       = channel.fromPath(params.sv_vcf).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
-        ch_sv_vcf_tbi =  channel.fromPath(params.sv_vcf + '.tbi', checkIfExists: true).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
+        ch_snv_vcf              = channel.fromPath(params.snv_vcf).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
+        ch_snv_vcf_tbi          = channel.fromPath(params.snv_vcf + '.tbi', checkIfExists: true).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
+        ch_sv_vcf               = channel.fromPath(params.sv_vcf).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
+        ch_sv_vcf_tbi           = channel.fromPath(params.sv_vcf + '.tbi', checkIfExists: true).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
 
 
         // Reference files
-        ch_genome_fasta              = channel.fromPath(params.fasta).map { it -> [[id:it.simpleName], it] }.collect()
-        ch_vep_cache = params.vep_cache ? channel.fromPath(params.vep_cache, checkIfExists: true) : channel.empty()
-=======
-        ch_versions             = Channel.empty()
-        ch_multiqc_files        = Channel.empty()
-
-        ch_snv_vcf              = Channel.fromPath(params.snv_vcf).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
-        ch_snv_vcf_tbi          = Channel.fromPath(params.snv_vcf_tbi).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
-        ch_sv_vcf               = Channel.fromPath(params.sv_vcf).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
-        ch_sv_vcf_tbi           = Channel.fromPath(params.sv_vcf_tbi).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
-
-
-        // Reference files
-        ch_genome_fasta         = Channel.fromPath(params.fasta).map { it -> [[id:it.simpleName], it] }.collect()
+        ch_genome_fasta         = channel.fromPath(params.fasta).map { it -> [[id:it.simpleName], it] }.collect()
 
         // File channels for PREPARE_REFERENCES
         ch_vep_cache_unprocessed     = params.vep_cache           ? channel.fromPath(params.vep_cache).map { it -> [[id:'vep_cache'], it] }.collect()
@@ -87,8 +72,6 @@ workflow POSTPROCESSING {
         // Gather or get from params
         ch_vep_cache                = ( params.vep_cache && params.vep_cache.endsWith("tar.gz") )  ? ch_references.vep_resources
                                                                             : ( params.vep_cache    ? channel.fromPath(params.vep_cache).collect() : channel.value([]) )
->>>>>>> dev
-
 
         //
         // Read and store paths in the vep_plugin_files file
@@ -120,14 +103,8 @@ workflow POSTPROCESSING {
                                                                                 : []
 
         // SVDB
-<<<<<<< HEAD
         ch_sv_dbs                   = params.svdb_query_dbs                  ? channel.fromPath(params.svdb_query_dbs)
                                                                             : channel.empty()
-=======
-        ch_sv_dbs                   = params.svdb_query_dbs                 ? Channel.fromPath(params.svdb_query_dbs)
-                                                                            : Channel.empty()
->>>>>>> dev
-
 
 
 /*
