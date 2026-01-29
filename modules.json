@@ -50,6 +50,11 @@
                         "git_sha": "f2cfcf9d3f6a2d123e6c44aefa788aa232204a7a",
                         "installed_by": ["modules"]
                     },
+                    "untar": {
+                        "branch": "master",
+                        "git_sha": "00ee87ebb541af0008596400ce6d5f66d79d5408",
+                        "installed_by": ["modules"]
+                    },
                     "vcfanno": {
                         "branch": "master",
                         "git_sha": "15e7f217661be7e332950289735bd790079873fe",

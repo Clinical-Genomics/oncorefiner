@@ -3,21 +3,36 @@
     IMPORT MODULES / SUBWORKFLOWS / FUNCTIONS
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
-include { MULTIQC                } from '../modules/nf-core/multiqc/main'
-include { ENSEMBLVEP_VEP as ENSEMBLVEP_SNV } from '../modules/nf-core/ensemblvep/vep/main'
-include { VCFANNO                               } from '../modules/nf-core/vcfanno/main'
-include { BCFTOOLS_VIEW as RESEARCH_FILTERING   } from '../modules/nf-core/bcftools/view/main'
-include { BCFTOOLS_VIEW as CLINICAL_FILTERING   } from '../modules/nf-core/bcftools/view/main'
-include { SVDB_QUERY as SVDB_QUERY_DB     } from '../modules/nf-core/svdb/query/main'
-include { ENSEMBLVEP_VEP as ENSEMBLVEP_SV } from '../modules/nf-core/ensemblvep/vep/main'
+
+include { paramsSummaryMap       } from 'plugin/nf-schema'
+
+//
+// MODULE: Installed directly from nf-core/modules
+//
+
+include { MULTIQC                                  } from '../modules/nf-core/multiqc/main'
+include { ENSEMBLVEP_VEP as ENSEMBLVEP_SNV         } from '../modules/nf-core/ensemblvep/vep/main'
+include { VCFANNO                                  } from '../modules/nf-core/vcfanno/main'
+include { BCFTOOLS_VIEW as RESEARCH_FILTERING      } from '../modules/nf-core/bcftools/view/main'
+include { BCFTOOLS_VIEW as CLINICAL_FILTERING      } from '../modules/nf-core/bcftools/view/main'
+include { SVDB_QUERY as SVDB_QUERY_DB              } from '../modules/nf-core/svdb/query/main'
+include { ENSEMBLVEP_VEP as ENSEMBLVEP_SV          } from '../modules/nf-core/ensemblvep/vep/main'
 include { BCFTOOLS_VIEW as RESEARCH_FILTERING_SV   } from '../modules/nf-core/bcftools/view/main'
 include { BCFTOOLS_VIEW as CLINICAL_FILTERING_SV   } from '../modules/nf-core/bcftools/view/main'
 
+//
+// MODULE: Local modules
+//
 
-include { paramsSummaryMap       } from 'plugin/nf-schema'
+
+//
+// SUBWORKFLOWS
+//
+
 include { paramsSummaryMultiqc   } from '../subworkflows/nf-core/utils_nfcore_pipeline'
 include { softwareVersionsToYAML } from '../subworkflows/nf-core/utils_nfcore_pipeline'
 include { methodsDescriptionText } from '../subworkflows/local/utils_nfcore_postprocessing_pipeline'
+include { PREPARE_REFERENCES     } from '../subworkflows/local/prepare_references'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -33,6 +48,7 @@ workflow POSTPROCESSING {
     main:
 
         // Initialize input channels
+<<<<<<< HEAD
         ch_versions = channel.empty()
         ch_multiqc_files = channel.empty()
 
@@ -46,6 +62,32 @@ workflow POSTPROCESSING {
         // Reference files
         ch_genome_fasta              = channel.fromPath(params.fasta).map { it -> [[id:it.simpleName], it] }.collect()
         ch_vep_cache = params.vep_cache ? channel.fromPath(params.vep_cache, checkIfExists: true) : channel.empty()
+=======
+        ch_versions             = Channel.empty()
+        ch_multiqc_files        = Channel.empty()
+
+        ch_snv_vcf              = Channel.fromPath(params.snv_vcf).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
+        ch_snv_vcf_tbi          = Channel.fromPath(params.snv_vcf_tbi).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
+        ch_sv_vcf               = Channel.fromPath(params.sv_vcf).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
+        ch_sv_vcf_tbi           = Channel.fromPath(params.sv_vcf_tbi).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
+
+
+        // Reference files
+        ch_genome_fasta         = Channel.fromPath(params.fasta).map { it -> [[id:it.simpleName], it] }.collect()
+
+        // File channels for PREPARE_REFERENCES
+        ch_vep_cache_unprocessed     = params.vep_cache           ? channel.fromPath(params.vep_cache).map { it -> [[id:'vep_cache'], it] }.collect()
+                                                                : channel.value([[],[]])
+
+        PREPARE_REFERENCES (
+            ch_vep_cache_unprocessed
+        )
+        .set { ch_references }
+
+        // Gather or get from params
+        ch_vep_cache                = ( params.vep_cache && params.vep_cache.endsWith("tar.gz") )  ? ch_references.vep_resources
+                                                                            : ( params.vep_cache    ? channel.fromPath(params.vep_cache).collect() : channel.value([]) )
+>>>>>>> dev
 
 
         //
@@ -78,8 +120,13 @@ workflow POSTPROCESSING {
                                                                                 : []
 
         // SVDB
+<<<<<<< HEAD
         ch_sv_dbs                   = params.svdb_query_dbs                  ? channel.fromPath(params.svdb_query_dbs)
                                                                             : channel.empty()
+=======
+        ch_sv_dbs                   = params.svdb_query_dbs                 ? Channel.fromPath(params.svdb_query_dbs)
+                                                                            : Channel.empty()
+>>>>>>> dev
 
 
 
