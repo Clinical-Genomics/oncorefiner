@@ -31,7 +31,7 @@ include { BCFTOOLS_VIEW as CLINICAL_FILTERING_SV   } from '../modules/nf-core/bc
 
 include { paramsSummaryMultiqc   } from '../subworkflows/nf-core/utils_nfcore_pipeline'
 include { softwareVersionsToYAML } from '../subworkflows/nf-core/utils_nfcore_pipeline'
-include { methodsDescriptionText } from '../subworkflows/local/utils_nfcore_postprocessing_pipeline'
+include { methodsDescriptionText } from '../subworkflows/local/utils_nfcore_oncorefiner_pipeline'
 include { PREPARE_REFERENCES     } from '../subworkflows/local/prepare_references'
 
 /*
@@ -40,7 +40,7 @@ include { PREPARE_REFERENCES     } from '../subworkflows/local/prepare_reference
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
-workflow POSTPROCESSING {
+workflow ONCOREFINER {
 
     take:
         ch_samplesheet // channel: samplesheet read in from --input
@@ -243,7 +243,7 @@ workflow POSTPROCESSING {
         softwareVersionsToYAML(ch_versions)
             .collectFile(
                 storeDir: "${params.outdir}/pipeline_info",
-                name: 'nf_core_'  +  'postprocessing_software_'  + 'mqc_'  + 'versions.yml',
+                name: 'nf_core_'  +  'oncorefiner_software_'  + 'mqc_'  + 'versions.yml',
                 sort: true,
                 newLine: true
             ).set { ch_collated_versions }
