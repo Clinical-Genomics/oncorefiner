@@ -28,7 +28,7 @@ jobs:
   nf-test-changes:
     name: nf-test-changes
     runs-on: # use self-hosted runners
-      - runs-on=${{ github.run_id }}-nf-test-changes
+      - runs-on= ubuntu-latest  #${{ github.run_id }}-nf-test-changes
       - runner=4cpu-linux-x64
     outputs:
       shard: ${{ steps.set-shards.outputs.shard }}
