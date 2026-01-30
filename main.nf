@@ -1,11 +1,11 @@
 #!/usr/bin/env nextflow
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    nf-core/postprocessing
+    nf-core/oncorefiner
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    Github : https://github.com/nf-core/postprocessing
-    Website: https://nf-co.re/postprocessing
-    Slack  : https://nfcore.slack.com/channels/postprocessing
+    Github : https://github.com/nf-core/oncorefiner
+    Website: https://nf-co.re/oncorefiner
+    Slack  : https://nfcore.slack.com/channels/oncorefiner
 ----------------------------------------------------------------------------------------
 */
 
@@ -15,10 +15,10 @@
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
-include { POSTPROCESSING  } from './workflows/postprocessing'
-include { PIPELINE_INITIALISATION } from './subworkflows/local/utils_nfcore_postprocessing_pipeline'
-include { PIPELINE_COMPLETION     } from './subworkflows/local/utils_nfcore_postprocessing_pipeline'
-include { getGenomeAttribute      } from './subworkflows/local/utils_nfcore_postprocessing_pipeline'
+include { ONCOREFINER  } from './workflows/oncorefiner'
+include { PIPELINE_INITIALISATION } from './subworkflows/local/utils_nfcore_oncorefiner_pipeline'
+include { PIPELINE_COMPLETION     } from './subworkflows/local/utils_nfcore_oncorefiner_pipeline'
+include { getGenomeAttribute      } from './subworkflows/local/utils_nfcore_oncorefiner_pipeline'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -40,7 +40,7 @@ params.fasta = getGenomeAttribute('fasta')
 //
 // WORKFLOW: Run main analysis pipeline depending on type of input
 //
-workflow NFCORE_POSTPROCESSING {
+workflow NFCORE_ONCOREFINER {
 
     take:
     samplesheet // channel: samplesheet read in from --input
@@ -50,11 +50,11 @@ workflow NFCORE_POSTPROCESSING {
     //
     // WORKFLOW: Run pipeline
     //
-    POSTPROCESSING (
+    ONCOREFINER (
         samplesheet
     )
     emit:
-    multiqc_report = POSTPROCESSING.out.multiqc_report // channel: /path/to/multiqc_report.html
+    multiqc_report = ONCOREFINER.out.multiqc_report // channel: /path/to/multiqc_report.html
 }
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -74,13 +74,16 @@ workflow {
         params.monochrome_logs,
         args,
         params.outdir,
-        params.input
+        params.input,
+        params.help,
+        params.help_full,
+        params.show_hidden
     )
 
     //
     // WORKFLOW: Run main workflow
     //
-    NFCORE_POSTPROCESSING (
+    NFCORE_ONCOREFINER (
         PIPELINE_INITIALISATION.out.samplesheet
     )
     //
@@ -93,7 +96,7 @@ workflow {
         params.outdir,
         params.monochrome_logs,
         params.hook_url,
-        NFCORE_POSTPROCESSING.out.multiqc_report
+        NFCORE_ONCOREFINER.out.multiqc_report
     )
 }
 
