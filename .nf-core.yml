@@ -6,7 +6,7 @@ lint: {}
 
 template:
   org: nf-core
-  name: postprocessing
+  name: oncorefiner
   description: Customizable post-processing and extension layer built on top of Oncoanalyser
     that adapts its outputs to clinical and operational needs, adds missing analyses,
     and ensures flexibility for evolving standards while retaining Oncoanalyser robust

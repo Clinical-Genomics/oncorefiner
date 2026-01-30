@@ -1,5 +1,5 @@
 name: Feature request
-description: Suggest an idea for the nf-core/postprocessing pipeline
+description: Suggest an idea for the nf-core/oncorefiner pipeline
 labels: enhancement
 body:
   - type: textarea

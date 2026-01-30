@@ -1,6 +1,6 @@
 {
-    "name": "nf-core/postprocessing",
-    "homePage": "https://github.com/nf-core/postprocessing",
+    "name": "nf-core/oncorefiner",
+    "homePage": "https://github.com/nf-core/oncorefiner",
     "repos": {
         "https://github.com/nf-core/modules.git": {
             "modules": {
