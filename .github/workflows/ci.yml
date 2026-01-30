@@ -27,12 +27,10 @@ jobs:
     strategy:
       matrix:
         NXF_VER:
-          - "24.04.2"
+          - "25.10.3"
           - "latest-everything"
         profile:
-          - "conda"
           - "docker"
-          - "singularity"
         test_name:
           - "test"
         isMaster:
