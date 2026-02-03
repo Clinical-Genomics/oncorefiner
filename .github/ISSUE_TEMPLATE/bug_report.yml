@@ -2,6 +2,13 @@ name: Bug report
 description: Report something that is broken or incorrect
 labels: bug
 body:
+  - type: markdown
+    attributes:
+      value: |
+        Before you post this issue, please check the documentation:
+
+        - [nf-core website: troubleshooting](https://nf-co.re/usage/troubleshooting)
+        - [nf-core/oncorefiner pipeline documentation](https://nf-co.re/oncorefiner/usage)
   - type: textarea
     id: description
     attributes:

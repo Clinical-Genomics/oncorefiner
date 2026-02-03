@@ -8,7 +8,7 @@ template:
     and ensures flexibility for evolving standards while retaining Oncoanalyser robust
     core
   force: false
-  is_nfcore: false
+  is_nfcore: false #change to false
   name: oncorefiner
   org: nf-core #change in future
   outdir: .
