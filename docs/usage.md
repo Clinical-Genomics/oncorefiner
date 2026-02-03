@@ -1,7 +1,5 @@
 # nf-core/oncorefiner: Usage
 
-## :warning: Please read this documentation on the nf-core website: [https://nf-co.re/oncorefiner/usage](https://nf-co.re/oncorefiner/usage)
-
 > _Documentation of pipeline parameters is generated automatically from the pipeline schema and can no longer be found in markdown files._
 
 ## Introduction
