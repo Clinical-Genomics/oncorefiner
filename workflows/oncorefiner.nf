@@ -57,7 +57,7 @@ workflow ONCOREFINER {
         .mix(topic_versions_string)
         .collectFile(
             storeDir: "${params.outdir}/pipeline_info",
-            name: 'nf_core_'  +  'oncorefiner_software_'  + 'mqc_'  + 'versions.yml',
+            name:  'oncorefiner_software_'  + 'mqc_'  + 'versions.yml',
             sort: true,
             newLine: true
         ).set { ch_collated_versions }

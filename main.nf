@@ -4,8 +4,6 @@
     nf-core/oncorefiner
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     Github : https://github.com/nf-core/oncorefiner
-    Website: https://nf-co.re/oncorefiner
-    Slack  : https://nfcore.slack.com/channels/oncorefiner
 ----------------------------------------------------------------------------------------
 */
 
