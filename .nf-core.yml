@@ -1,18 +1,15 @@
-repository_type: pipeline
-
-nf_core_version: 3.2.1
-
 lint: {}
-
+nf_core_version: 3.5.2
+repository_type: pipeline
 template:
-  org: nf-core
-  name: oncorefiner
+  author: Clinical Genomics Stockholm
   description: Customizable post-processing and extension layer built on top of Oncoanalyser
     that adapts its outputs to clinical and operational needs, adds missing analyses,
     and ensures flexibility for evolving standards while retaining Oncoanalyser robust
     core
-  author: Clinical Genomics Stockholm
-  version: 1.0.0dev
-  force: true
+  force: false
+  is_nfcore: false #change to false
+  name: oncorefiner
+  org: nf-core #change in future
   outdir: .
-  is_nfcore: true
+  version: 1.0.0dev
