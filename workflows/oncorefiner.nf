@@ -19,6 +19,7 @@ include { SVDB_QUERY as SVDB_QUERY_DB              } from '../modules/nf-core/sv
 include { ENSEMBLVEP_VEP as ENSEMBLVEP_SV          } from '../modules/nf-core/ensemblvep/vep/main'
 include { BCFTOOLS_VIEW as RESEARCH_FILTERING_SV   } from '../modules/nf-core/bcftools/view/main'
 include { BCFTOOLS_VIEW as CLINICAL_FILTERING_SV   } from '../modules/nf-core/bcftools/view/main'
+include { TABIX_TABIX as TABIX_RESEARCH_FILTERING  } from '../modules/nf-core/tabix/tabix/main'
 
 //
 // MODULE: Local modules
@@ -33,6 +34,7 @@ include { paramsSummaryMultiqc   } from '../subworkflows/nf-core/utils_nfcore_pi
 include { softwareVersionsToYAML } from '../subworkflows/nf-core/utils_nfcore_pipeline'
 include { methodsDescriptionText } from '../subworkflows/local/utils_nfcore_oncorefiner_pipeline'
 include { PREPARE_REFERENCES     } from '../subworkflows/local/prepare_references'
+include { ANNOTATE_CADD          } from '../subworkflows/local/annotate_cadd'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -71,7 +73,13 @@ workflow ONCOREFINER {
 
         // Gather or get from params
         ch_vep_cache                = ( params.vep_cache && params.vep_cache.endsWith("tar.gz") )  ? ch_references.vep_resources
-                                                                            : ( params.vep_cache    ? channel.fromPath(params.vep_cache).collect() : channel.value([]) )
+                                                                                : ( params.vep_cache    ? channel.fromPath(params.vep_cache).collect() : channel.value([]) )
+
+        ch_cadd_header              = Channel.fromPath("$projectDir/assets/cadd_to_vcf_header_-1.0-.txt", checkIfExists: true).collect()
+        ch_cadd_resources           = params.cadd_resources                     ? Channel.fromPath(params.cadd_resources).collect()
+                                                                                : Channel.value([])
+        ch_cadd_prescored_indels     = createReferenceChannelFromPath(params.cadd_prescored_indels) // align with above
+
 
         //
         // Read and store paths in the vep_plugin_files file
@@ -133,16 +141,39 @@ workflow ONCOREFINER {
                     tuple(meta, vcf, tbi)
                     }
                 .set { ch_research_filtering_in }
+
             RESEARCH_FILTERING(ch_research_filtering_in, [], [], [])
 
 
+            /*
             // VEP
             RESEARCH_FILTERING.out.vcf
                     .map { meta, vcf ->
                         def custom_extra_files = params.custom_extra_files ? file(params.custom_extra_files) : []
                         tuple(meta, vcf, custom_extra_files)
                     }
-                    .set { ch_vep_snv }
+                    .set { ch_cadd_snv }
+            */
+
+
+            // ANNOTATE WITH CADD
+            if (params.cadd_resources != null) {
+                TABIX_RESEARCH_FILTERING (RESEARCH_FILTERING.out.vcf)
+
+                RESEARCH_FILTERING.out.vcf
+                    .join(TABIX_RESEARCH_FILTERING.out.tbi, failOnMismatch:true, failOnDuplicate:true)
+                    .set {ch_cadd_snv}
+
+                ANNOTATE_CADD (
+                    ch_cadd_snv,
+                    ch_cadd_header,
+                    ch_cadd_resources,
+                    ch_cadd_prescored_indels
+                )
+                ch_vep_snv = ANNOTATE_CADD.out.vcf
+                ch_versions = ch_versions.mix(ANNOTATE_CADD.out.versions)
+
+            }
 
             ENSEMBLVEP_SNV (
                 ch_vep_snv,
