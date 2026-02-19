@@ -1,4 +1,4 @@
-lint: 
+lint:
   files_exist:
     - assets/nf-core-oncorefiner_logo_light.png
     - docs/images/nf-core-oncorefiner_logo_light.png
