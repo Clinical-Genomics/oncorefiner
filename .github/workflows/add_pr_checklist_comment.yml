@@ -10,6 +10,7 @@ jobs:
     steps:
       - uses: peter-evans/create-or-update-comment@v5
         with:
+          issue-number: ${{ github.event.pull_request.number }}
           #body-path: 'comment-template.md' to get comment body from a file at `.github/comment-template.md` 
           body: |
             ## PR checklist
