@@ -1,8 +1,8 @@
 lint: 
   files_exist:
-    assets/nf-core-oncorefiner_logo_light.png
-    docs/images/nf-core-oncorefiner_logo_light.png
-    docs/images/nf-core-oncorefiner_logo_dark.png
+    assets/nf-core-oncorefiner_logo_light.png: false
+    docs/images/nf-core-oncorefiner_logo_light.png: false
+    docs/images/nf-core-oncorefiner_logo_dark.png: false
 nf_core_version: 3.5.2
 repository_type: pipeline
 template:
