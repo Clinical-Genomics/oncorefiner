@@ -1,8 +1,7 @@
 lint:
   actions_awsfulltest: False
   actions_awstest: False
-  files_exist:
-    .github/workflows/awstest.yml
+  files_exist: .github/workflows/awstest.yml
     .github/workflows/awsfulltest.yml
 nf_core_version: 3.5.2
 repository_type: pipeline

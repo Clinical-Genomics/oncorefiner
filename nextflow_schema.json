@@ -329,7 +329,7 @@
         {
             "$ref": "#/$defs/reference_genome_options"
         },
-                {
+        {
             "$ref": "#/$defs/annotation_options"
         },
         {
