@@ -9,9 +9,6 @@ Please use the pre-filled template to save time.
 However, don't be put off by this template - other more general issues and suggestions are welcome!
 Contributions to the code are even more welcome ;)
 
-> [!NOTE]
-> If you need help using or modifying nf-core/oncorefiner then the best place to ask is on the nf-core Slack [#oncorefiner](https://nfcore.slack.com/channels/oncorefiner) channel ([join our Slack here](https://nf-co.re/join/slack)).
-
 ## Contribution workflow
 
 If you'd like to write some code for nf-core/oncorefiner, the standard workflow is as follows:
