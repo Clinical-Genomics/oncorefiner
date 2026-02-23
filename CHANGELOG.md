@@ -26,4 +26,6 @@ Initial release of nf-core/oncorefiner, created with the [nf-core](https://nf-co
 
 ### `Deprecated`
 
+### `Removed`
+
 - Removed CI checks `awstest` and `awsfulltest` [#18](https://github.com/Clinical-Genomics/oncorefiner/pull/18)
