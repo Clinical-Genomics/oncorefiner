@@ -15,6 +15,8 @@ Initial release of nf-core/oncorefiner, created with the [nf-core](https://nf-co
 - Added annotation for SV vcf file [#4](https://github.com/Clinical-Genomics/oncorefiner/pull/4)
 - Added filtering for SV vcf file [#5](https://github.com/Clinical-Genomics/oncorefiner/pull/5)
 - Added small test profile. The related test dataset have been added as a branch called oncorefiner under [Clinical-Genomics/test-datasets](https://github.com/Clinical-Genomics/test-datasets/tree/oncorefiner) [#8](https://github.com/Clinical-Genomics/oncorefiner/pull/8)
+- Added parameters documentation [#25](https://github.com/Clinical-Genomics/oncorefiner/pull/25)
+- Added pre-commit hook for automatic generation of parameters documentation [#25](https://github.com/Clinical-Genomics/oncorefiner/pull/25)
 
 ### `Fixed`
 
