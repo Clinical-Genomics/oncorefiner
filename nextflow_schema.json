@@ -338,5 +338,16 @@
         {
             "$ref": "#/$defs/generic_options"
         }
-    ]
+    ],
+    "properties": {
+        "snv_vcf": {
+            "type": "string"
+        },
+        "sv_vcf": {
+            "type": "string"
+        },
+        "custom_extra_files": {
+            "type": "string"
+        }
+    }
 }
