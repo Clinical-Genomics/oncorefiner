@@ -4,10 +4,11 @@
 
 -
 
-### Changed
+
+### Fixed
 
 -
 
-### Fixed
+### Deprecated
 
 -
