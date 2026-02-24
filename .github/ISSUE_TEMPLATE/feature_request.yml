@@ -1,79 +1,82 @@
-name: User story
+name: User story with value
 description: Feature request Suggest an idea for the nf-core/oncorefiner pipeline
-title: "[User Story] <title>"
 labels: ["User-Story"]
 body:
   - type: textarea
     attributes:
+      label: Need
       description: Describe the need from the perspective of the user.
-      placeholder: |
-        As a <ROLE>,
-        I want <FUNCTIONALITY>
-        beacause of <REASON>
+      value: |
+        As a <role>,
+        I want <functionality>
+        because of <reason>.
     validations:
       required: true
   - type: textarea
     attributes:
       label: Acceptance criteria
       description: Can be closed when Link the issues/PRs needed to be closed for this to be implemented
-      placeholder: |
-        - [ ] <first acceptance criterium>
-        - [ ] <second acceptance criterium>
-        - [ ] <...>
+      value: |
+        - [ ] <acceptance criterium>
+        - [ ] <acceptance criterium>
     validations:
       required: true
 
+  - type: textarea
+    attributes:
+      label: Addional information
+      description: |
+        Please provide any information that can give us more context about this issue.
+      value: |
+        - Suggested approach 
+        <!-- Any ideas on how this should be implemented? -->
+
+        - Considered alternatives
+        <!-- Were there alternative approaches which have been rejected? -->
+
+        - Deviation
+        <!-- If there is a deviation, add a link to it here. -->
+
+        - Blockers
+        <!-- Anything preventing this from happening?
+
+        - Other notes
+        <!-- Links? References? -->
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: "# Documentation"
 
   - type: textarea
     attributes:
       label: System requirements assessment
       description: |
-        Have you reviewed if the existing system requirements are affected by this change?
-        Link any requirements affected, or motivate why no requirements are affected.
+        Does this feature change the MTP requirement specification?
+        Link to any system requirements added or changed, or motivate why no requirements are affected.
+      value: |
+        - [ ] Requirement(s) should be added: <requirement>
+        - [ ] Requirement(s) should be changed: <requirement and change>
+        - [ ] No requiments are affect because <reason>
     validations:
-      required: false
-## Clarification?
-
+      required: true
   - type: textarea
     attributes:
       label: Risk assessment
       description: If a risk assessment is needed, link to it here. If no, motivate why not.
-      placeholder: 
+      value: |
+        - [ ] A risk assessment is needed: <link to risk assessment>
+        - [ ] No risk assessment is need because <reason> 
     validations:
-      required: false
-      
+      required: true
   - type: textarea
     attributes:
       label: SOUPs
-      description: Does this user story introduce or modify an SOUPs? If so, link to the SOUP(s) here.
-      placeholder: 
+      description: Does this feature involve introduce or modify an SOUP(s)? If so, link to the SOUP(s) here.
+      value: |
+        - [ ] SOUP(s) should be added: <SOUPs>
+        - [ ] SOUP(s) should be changed: <requirement and change>
+        - [ ] No changes in SOUPs.
     validations:
-      required: false
-
-
-  - type: input
-    attributes:
-      label: Deviation
-      description: If there is a deviation, add a link to it here
-      placeholder: Link to deviation
-    validations:
-      required: false
-
-
-  - type: textarea
-    attributes:
-      label: Anything else?
-      description: |
-        Please provide any information that can give us more context about this issue, such as:
-
-        * Suggested approach - Any ideas on how this should be implemented?
-        * Considered alternatives - Were there alternative approaches which have been rejected?
-        * Blockers - Anything preventing this from happening?
-        * Other notes - Links? References?
-
-        Tip: You can attach images or log files by clicking this area to highlight it and then dragging files in.
-    validations:
-      required: false
-
-
-  
+      required: true
