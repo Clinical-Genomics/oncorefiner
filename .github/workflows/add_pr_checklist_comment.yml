@@ -11,4 +11,4 @@ jobs:
       - uses: peter-evans/create-or-update-comment@v5
         with:
           issue-number: ${{ github.event.pull_request.number }}
-          body-path: .github/pr_comment_body.md
+          body-path: .github/pr_checklist_comment_body.md
