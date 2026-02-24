@@ -8,3 +8,12 @@ multiqc/multiqc_data/llms-full.txt
 multiqc/multiqc_plots/{svg,pdf,png}/*.{svg,pdf,png}
 multiqc/multiqc_report.html
 pipeline_info/*.{html,json,txt,yml}
+annotate_sv/*.{vcf.gz,tbi,html}
+vep/*.{vcf.gz,tbi}
+vep/*.vcf.gz_summary.html
+clinical/*.{vcf,vcf.gz,tbi}
+clinical_filtering/*.{vcf.gz,tbi}
+svdb/*.{vcf,vcf.gz,tbi}
+vcfanno/*.{vcf.gz,tbi}
+research/*.{vcf,vcf.gz,tbi}
+research_filtering/*.{vcf,vcf.gz,tbi}

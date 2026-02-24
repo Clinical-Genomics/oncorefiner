@@ -1,0 +1,60 @@
+{
+    "-profile test": {
+        "content": [
+            {
+                "Workflow": {
+                    "nf-core/oncorefiner": "v1.0.0dev"
+                }
+            },
+            [
+                "annotate_sv",
+                "annotate_sv/SV_svdbquery_vep.vcf.gz",
+                "annotate_sv/SV_svdbquery_vep.vcf.gz.tbi",
+                "annotate_sv/SV_svdbquery_vep.vcf.gz_summary.html",
+                "clinical",
+                "clinical/SV_clinical.vcf",
+                "clinical_filtering",
+                "clinical_filtering/SNV_clinical.vcf.gz",
+                "multiqc",
+                "multiqc/multiqc_data",
+                "multiqc/multiqc_data/llms-full.txt",
+                "multiqc/multiqc_data/multiqc.log",
+                "multiqc/multiqc_data/multiqc.parquet",
+                "multiqc/multiqc_data/multiqc_citations.txt",
+                "multiqc/multiqc_data/multiqc_data.json",
+                "multiqc/multiqc_data/multiqc_software_versions.txt",
+                "multiqc/multiqc_data/multiqc_sources.txt",
+                "multiqc/multiqc_report.html",
+                "pipeline_info",
+                "pipeline_info/nf_core_oncorefiner_software_mqc_versions.yml",
+                "research",
+                "research/SV_research.vcf",
+                "research_filtering",
+                "research_filtering/SNV_research.vcf.gz",
+                "svdb",
+                "svdb/SV_vcfdb_query.vcf",
+                "vcfanno",
+                "vcfanno/SNV_vcfanno.vcf.gz",
+                "vcfanno/SNV_vcfanno.vcf.gz.tbi",
+                "vep",
+                "vep/SNV_vep.vcf.gz",
+                "vep/SNV_vep.vcf.gz.tbi",
+                "vep/SNV_vep.vcf.gz_summary.html"
+            ],
+            [
+                "multiqc_citations.txt:md5,4c806e63a283ec1b7e78cdae3a923d4f"
+            ],
+            [
+                [
+                    "SNV_research.vcf.gz",
+                    "d7453d6080983d2c812113003f5e5ae8"
+                ]
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.3"
+        },
+        "timestamp": "2026-02-24T14:05:17.443599"
+    }
+}
