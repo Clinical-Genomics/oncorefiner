@@ -82,6 +82,7 @@ nf-core/oncorefiner was originally written by Clinical Genomics Stockholm.
 
 We thank the following people for their extensive assistance in the development of this pipeline: [Eva Caceres](https://github.com/fevac), [Kristine Bilgrav Sæther](https://github.com/kristinebilgrav)
 
+
 ## Contributions and Support
 
 If you would like to contribute to this pipeline, please see the [contributing guidelines](.github/CONTRIBUTING.md).
