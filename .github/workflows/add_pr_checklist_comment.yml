@@ -1,0 +1,20 @@
+name: Add PR checklist comment
+on:
+  pull_request:
+    types:
+      - opened
+
+jobs:
+  add_pr_checklist_comment:
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout the branch to test
+      - uses: actions/checkout@v6
+        with:
+          repository: ${{ steps.vars.outputs.repository }}
+          ref: ${{ steps.vars.outputs.branch }}
+      # Add PR comment from file
+      - uses: peter-evans/create-or-update-comment@v5
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          body-path: .github/pr_checklist_comment_body.md
