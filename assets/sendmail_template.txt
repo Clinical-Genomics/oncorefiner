@@ -15,7 +15,7 @@ Content-ID: <nfcorepipelinelogo>
 Content-Disposition: inline; filename="nf-core-oncorefiner_logo_light.png"
 
 <% out << new File("$projectDir/assets/nf-core-oncorefiner_logo_light.png").
-     bytes.
+    bytes.
     encodeBase64().
     toString().
     tokenize( '\n' )*.
