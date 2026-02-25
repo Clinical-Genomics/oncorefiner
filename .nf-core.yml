@@ -1,6 +1,15 @@
 lint:
+  actions_awsfulltest: False
+  actions_awstest: False
+  files_exist:
+    - .github/workflows/awstest.yml
+    - .github/workflows/awsfulltest.yml
   files_unchanged:
+    - .github/CONTRIBUTING.md
     - .github/workflows/linting.yml
+    - assets/nf-core-oncorefiner_logo_light.png
+    - docs/images/nf-core-oncorefiner_logo_light.png
+    - docs/images/nf-core-oncorefiner_logo_dark.png
     - docs/README.md
 nf_core_version: 3.5.2
 repository_type: pipeline
