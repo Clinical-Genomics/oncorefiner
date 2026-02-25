@@ -10,7 +10,7 @@ jobs:
     steps:
       # Checkout the default branch
       - uses: actions/checkout@v6
-        
+
       # Add PR comment from file
       - uses: peter-evans/create-or-update-comment@v5
         with:
