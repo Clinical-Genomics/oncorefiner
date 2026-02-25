@@ -28,7 +28,7 @@ body:
       description: |
         Please provide any information that can give us more context about this issue.
       value: |
-        - Suggested approach 
+        - Suggested approach
         <!-- Any ideas on how this should be implemented? -->
 
         - Considered alternatives
@@ -67,7 +67,7 @@ body:
       description: If a risk assessment is needed, link to it here. If no, motivate why not.
       value: |
         - [ ] A risk assessment is needed: <link to risk assessment>
-        - [ ] No risk assessment is need because <reason> 
+        - [ ] No risk assessment is need because <reason>
     validations:
       required: true
   - type: textarea
