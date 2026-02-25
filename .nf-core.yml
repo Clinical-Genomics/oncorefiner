@@ -1,4 +1,9 @@
 lint:
+  actions_awsfulltest: False
+  actions_awstest: False
+  files_exist:
+    - .github/workflows/awstest.yml
+    - .github/workflows/awsfulltest.yml
   files_unchanged:
     - .github/CONTRIBUTING.md
     - assets/nf-core-oncorefiner_logo_light.png
