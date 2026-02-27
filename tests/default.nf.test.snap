@@ -46,8 +46,24 @@
             ],
             [
                 [
+                    "SV_svdbquery_vep.vcf.gz",
+                    "d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                [
+                    "SNV_clinical.vcf.gz",
+                    "dd792f7ceac820af3fe366985474805"
+                ],
+                [
                     "SNV_research.vcf.gz",
                     "d7453d6080983d2c812113003f5e5ae8"
+                ],
+                [
+                    "SNV_vcfanno.vcf.gz",
+                    "746d273c13550ab044af7eb5e62a941a"
+                ],
+                [
+                    "SNV_vep.vcf.gz",
+                    "dd792f7ceac820af3fe366985474805"
                 ]
             ]
         ],
@@ -55,6 +71,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.3"
         },
-        "timestamp": "2026-02-24T14:05:17.443599"
+        "timestamp": "2026-02-27T16:55:01.29392"
     }
 }

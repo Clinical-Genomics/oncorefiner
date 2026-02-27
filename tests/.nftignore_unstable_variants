@@ -1,6 +1,2 @@
-vep/*.vcf.gz
-annotate_sv/*.vcf.gz
 clinical/*.vcf.gz
-clinical_filtering/*.vcf.gz
 svdb/*.vcf.gz
-vcfanno/*.vcf.gz
