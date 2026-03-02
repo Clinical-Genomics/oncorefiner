@@ -1,5 +1,5 @@
-name: User story
-description: Feature request
+name: Feature request
+description: User story
 labels: ["User-Story"]
 body:
   - type: textarea
