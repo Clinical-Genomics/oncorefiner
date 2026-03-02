@@ -30,7 +30,7 @@ body:
       description: |
         Please provide any information that can give us more context about this issue.
       value: |
-        - Suggested approach 
+        - Suggested approach
         <!-- Any ideas on how this should be implemented? -->
 
         - Considered alternatives
