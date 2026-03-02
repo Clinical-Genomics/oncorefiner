@@ -19,8 +19,8 @@ body:
         List the requirements needed for this feature to be implemented.
         If you are unsure, fill in with "Refinement needed".
       value: |
-        - [ ] <acceptance criterium>
-        - [ ] <acceptance criterium>
+        - [ ] <acceptance criterion>
+        - [ ] <acceptance criterion>
     validations:
       required: true
 
