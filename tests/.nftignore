@@ -10,8 +10,7 @@ multiqc/multiqc_report.html
 multiqc/multiqc_data/multiqc_citations.txt
 pipeline_info/*.{html,json,txt,yml}
 annotate_sv/*.{vcf.gz,tbi,html}
-vep/*.{vcf.gz,tbi}
-vep/*.vcf.gz_summary.html
+vep/*.{vcf.gz,tbi,html}
 clinical/*.{vcf,vcf.gz,tbi}
 clinical_filtering/*.{vcf.gz,tbi}
 svdb/*.{vcf,vcf.gz,tbi}
