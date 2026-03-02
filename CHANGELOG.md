@@ -15,12 +15,18 @@ Initial release of nf-core/oncorefiner, created with the [nf-core](https://nf-co
 - Added annotation for SV vcf file [#4](https://github.com/Clinical-Genomics/oncorefiner/pull/4)
 - Added filtering for SV vcf file [#5](https://github.com/Clinical-Genomics/oncorefiner/pull/5)
 - Added small test profile. The related test dataset have been added as a branch called oncorefiner under [Clinical-Genomics/test-datasets](https://github.com/Clinical-Genomics/test-datasets/tree/oncorefiner) [#8](https://github.com/Clinical-Genomics/oncorefiner/pull/8)
+- Added CI checks for `Conventional PR title`, `Updated changelog` and `Add PR checklist comment` [#18](https://github.com/Clinical-Genomics/oncorefiner/pull/18)
 
 ### `Fixed`
 
 - Removed snv_vcf_tbi and sv_vcf_tbi parameter. VCF indexes are now automatically detected [#9](https://github.com/Clinical-Genomics/oncorefiner/pull/9)
 - Renamed pipeline from postprocessing to oncorefiner []()
+- Fixed linting issues [#20](https://github.com/Clinical-Genomics/oncorefiner/pull/20)
 
 ### `Dependencies`
 
 ### `Deprecated`
+
+### `Removed`
+
+- Removed CI checks `awstest` and `awsfulltest` [#18](https://github.com/Clinical-Genomics/oncorefiner/pull/18)

@@ -329,7 +329,7 @@
         {
             "$ref": "#/$defs/reference_genome_options"
         },
-                {
+        {
             "$ref": "#/$defs/annotation_options"
         },
         {
@@ -338,5 +338,16 @@
         {
             "$ref": "#/$defs/generic_options"
         }
-    ]
+    ],
+    "properties": {
+        "snv_vcf": {
+            "type": "string"
+        },
+        "sv_vcf": {
+            "type": "string"
+        },
+        "custom_extra_files": {
+            "type": "string"
+        }
+    }
 }
