@@ -42,7 +42,7 @@
                 "vep/SNV_vep.vcf.gz_summary.html"
             ],
             [
-                "multiqc_citations.txt:md5,4c806e63a283ec1b7e78cdae3a923d4f"
+                
             ],
             [
                 [
@@ -71,6 +71,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.3"
         },
-        "timestamp": "2026-02-27T16:55:01.29392"
+        "timestamp": "2026-03-02T14:44:44.404448"
     }
 }
