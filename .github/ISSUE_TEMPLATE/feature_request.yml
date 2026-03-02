@@ -1,6 +1,7 @@
 name: Feature request
 description: User story
 labels: ["User-Story"]
+projects: ["Clinical-Genomics/108"]
 body:
   - type: textarea
     attributes:
