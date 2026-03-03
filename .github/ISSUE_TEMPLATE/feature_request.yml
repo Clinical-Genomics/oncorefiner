@@ -43,4 +43,4 @@ body:
         - Other notes
         <!-- Links? References? -->
     validations:
-      required: true
+      required: false
