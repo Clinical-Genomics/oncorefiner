@@ -12,12 +12,7 @@ body:
   - type: textarea
     attributes:
       label: How to reproduce
-      description: Steps to reproduce the behaviour. Please paste the command you used to launch the pipeline and the output from your terminal.
-      render: console
-      placeholder: |
-        $ nextflow run ...
-
-        Some output where something broke
+      description: Steps to reproduce the behaviour. If relevant, please paste the command you used to launch the pipeline and the output from your terminal.
     validations:
       required: true
 
