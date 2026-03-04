@@ -19,7 +19,7 @@ Initial release of nf-core/oncorefiner, created with the [nf-core](https://nf-co
 
 ### Changed
 
-- Updated PR template, PR checklist, Feature request template, Bug report template and issue template chooser [#24](https://github.com/Clinical-Genomics/oncorefiner/pull/24)
+- Updated PR template, PR checklist, feature request template, bug report template and issue template chooser [#24](https://github.com/Clinical-Genomics/oncorefiner/pull/24)
 
 ### `Fixed`
 
