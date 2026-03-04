@@ -18,7 +18,7 @@ body:
       label: Acceptance criteria
       description: |
         List the requirements needed for this feature to be implemented.
-        If you are unsure, apply label "Needs Refinement" to the issue.
+        If you are unsure, apply label the "Needs Refinement" to the issue.
       value: |
         - [ ] <acceptance criterion>
         - [ ] <acceptance criterion>
