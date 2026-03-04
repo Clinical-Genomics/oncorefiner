@@ -1,11 +1,46 @@
 name: Feature request
-description: Suggest an idea for the nf-core/oncorefiner pipeline
-labels: enhancement
+description: User story
+labels: ["User-Story"]
+projects: ["Clinical-Genomics/108"]
 body:
   - type: textarea
-    id: description
     attributes:
-      label: Description of feature
-      description: Please describe your suggestion for a new feature. It might help to describe a problem or use case, plus any alternatives that you have considered.
+      label: Need
+      description: Describe the need from the perspective of the user.
+      value: |
+        As a <role>,
+        I want <functionality>
+        because of <reason>.
     validations:
       required: true
+  - type: textarea
+    attributes:
+      label: Acceptance criteria
+      description: |
+        List the requirements needed for this feature to be implemented.
+        If you are unsure, apply label the "Needs Refinement" to the issue.
+      value: |
+        - [ ] <acceptance criterion>
+        - [ ] <acceptance criterion>
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Additional information
+      description: |
+        Please provide any information that can give us more context about this issue.
+      value: |
+        - Suggested approach
+        <!-- Any ideas on how this should be implemented? -->
+
+        - Considered alternatives
+        <!-- Were there alternative approaches which have been rejected? -->
+
+        - Blockers
+        <!-- Anything preventing this from happening?
+
+        - Other notes
+        <!-- Links? References? -->
+    validations:
+      required: false
