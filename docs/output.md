@@ -1,4 +1,4 @@
-# nf-core/postprocessing: Output
+# nf-core/oncorefiner: Output
 
 ## Introduction
 
