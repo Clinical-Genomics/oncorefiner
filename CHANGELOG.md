@@ -17,11 +17,11 @@ Initial release of nf-core/oncorefiner, created with the [nf-core](https://nf-co
 - Added small test profile. The related test dataset have been added as a branch called oncorefiner under [Clinical-Genomics/test-datasets](https://github.com/Clinical-Genomics/test-datasets/tree/oncorefiner) [#8](https://github.com/Clinical-Genomics/oncorefiner/pull/8)
 - Added CI checks for `Conventional PR title`, `Updated changelog` and `Add PR checklist comment` [#18](https://github.com/Clinical-Genomics/oncorefiner/pull/18)
 - Added Nextflow strict syntax compatibility [#30](https://github.com/Clinical-Genomics/oncorefiner/pull/30)
-- Updated nf-schema to 2.6.1 [#30](https://github.com/Clinical-Genomics/oncorefiner/pull/30)
 
 ### Changed
 
 - Updated PR template, PR checklist, feature request template, bug report template and issue template chooser [#24](https://github.com/Clinical-Genomics/oncorefiner/pull/24)
+- Updated nf-schema to 2.6.1 [#30](https://github.com/Clinical-Genomics/oncorefiner/pull/30)
 
 ### `Fixed`
 
