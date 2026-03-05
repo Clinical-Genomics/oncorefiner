@@ -24,6 +24,9 @@ template:
   force: false
   is_nfcore: false
   name: oncorefiner
-  org: nf-core
+  org: Clinical-Genomics
   outdir: .
+  skip_features:
+    - igenomes
+    - fastqc
   version: 1.0.0dev

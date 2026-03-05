@@ -1,9 +1,9 @@
 #!/usr/bin/env nextflow
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    nf-core/oncorefiner
+    Clinical-Genomics/oncorefiner
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    Github : https://github.com/nf-core/oncorefiner
+    Github : https://github.com/Clinical-Genomics/oncorefiner
 ----------------------------------------------------------------------------------------
 */
 
@@ -16,19 +16,6 @@
 include { ONCOREFINER  } from './workflows/oncorefiner'
 include { PIPELINE_INITIALISATION } from './subworkflows/local/utils_nfcore_oncorefiner_pipeline'
 include { PIPELINE_COMPLETION     } from './subworkflows/local/utils_nfcore_oncorefiner_pipeline'
-include { getGenomeAttribute      } from './subworkflows/local/utils_nfcore_oncorefiner_pipeline'
-
-/*
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    GENOME PARAMETER VALUES
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-*/
-
-// TODO nf-core: Remove this line if you don't need a FASTA file
-//   This is an example of how to use getGenomeAttribute() to fetch parameters
-//   from igenomes.config using `--genome`
-params.fasta = getGenomeAttribute('fasta')
-
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     NAMED WORKFLOWS FOR PIPELINE
@@ -38,7 +25,7 @@ params.fasta = getGenomeAttribute('fasta')
 //
 // WORKFLOW: Run main analysis pipeline depending on type of input
 //
-workflow NFCORE_ONCOREFINER {
+workflow CLINICALGENOMICS_ONCOREFINER {
 
     take:
     samplesheet // channel: samplesheet read in from --input
@@ -81,7 +68,7 @@ workflow {
     //
     // WORKFLOW: Run main workflow
     //
-    NFCORE_ONCOREFINER (
+    CLINICALGENOMICS_ONCOREFINER (
         PIPELINE_INITIALISATION.out.samplesheet
     )
     //
@@ -94,7 +81,7 @@ workflow {
         params.outdir,
         params.monochrome_logs,
         params.hook_url,
-        NFCORE_ONCOREFINER.out.multiqc_report
+        CLINICALGENOMICS_ONCOREFINER.out.multiqc_report
     )
 }
 
