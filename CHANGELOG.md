@@ -27,6 +27,7 @@ Initial release of nf-core/oncorefiner, created with the [nf-core](https://nf-co
 - Renamed pipeline from postprocessing to oncorefiner []()
 - Fixed linting issues [#20](https://github.com/Clinical-Genomics/oncorefiner/pull/20)
 - Added missing description to bug_report.yml [32](https://github.com/Clinical-Genomics/oncorefiner/pull/32)
+- Fixed prepare_references config that was defined but not used [36](https://github.com/Clinical-Genomics/oncorefiner/pull/36)
 
 ### `Dependencies`
 
