@@ -19,11 +19,16 @@ Initial release of nf-core/oncorefiner, created with the [nf-core](https://nf-co
 - Added Nextflow strict syntax compatibility [#30](https://github.com/Clinical-Genomics/oncorefiner/pull/30)
 - Updated nf-schema to 2.6.1 [#30](https://github.com/Clinical-Genomics/oncorefiner/pull/30)
 
+### Changed
+
+- Updated PR template, PR checklist, feature request template, bug report template and issue template chooser [#24](https://github.com/Clinical-Genomics/oncorefiner/pull/24)
+
 ### `Fixed`
 
 - Removed snv_vcf_tbi and sv_vcf_tbi parameter. VCF indexes are now automatically detected [#9](https://github.com/Clinical-Genomics/oncorefiner/pull/9)
 - Renamed pipeline from postprocessing to oncorefiner []()
 - Fixed linting issues [#20](https://github.com/Clinical-Genomics/oncorefiner/pull/20)
+- Added missing description to bug_report.yml [32](https://github.com/Clinical-Genomics/oncorefiner/pull/32)
 
 ### `Dependencies`
 
