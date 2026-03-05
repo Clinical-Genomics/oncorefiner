@@ -22,8 +22,11 @@ template:
     and ensures flexibility for evolving standards while retaining Oncoanalyser robust
     core
   force: false
-  is_nfcore: false #change to false
+  is_nfcore: false
   name: oncorefiner
-  org: nf-core #change in future
+  org: Clinical-Genomics
   outdir: .
+  skip_features:
+    - igenomes
+    - fastqc
   version: 1.0.0dev
