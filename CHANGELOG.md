@@ -35,7 +35,6 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - Updated linting ignore list to remove checks for nf-core file structures that are no longer expected and ignore checks for config files for `igenomes` [#35](https://github.com/Clinical-Genomics/oncorefiner/pull/35)
 - Updated template for nf-core/tools version 3.5.2 to apply updated settings and changes missed in previous template update ([14](https://github.com/Clinical-Genomics/oncorefiner/pull/14)) [#35](https://github.com/Clinical-Genomics/oncorefiner/pull/35)
 
-
 - Fixed prepare_references config that was defined but not used [36](https://github.com/Clinical-Genomics/oncorefiner/pull/36)
 
 ### `Dependencies`
