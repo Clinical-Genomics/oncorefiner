@@ -1,6 +1,6 @@
 {
-    "name": "nf-core/oncorefiner",
-    "homePage": "https://github.com/nf-core/oncorefiner",
+    "name": "Clinical-Genomics/oncorefiner",
+    "homePage": "https://github.com/Clinical-Genomics/oncorefiner",
     "repos": {
         "https://github.com/nf-core/modules.git": {
             "modules": {

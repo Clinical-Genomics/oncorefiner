@@ -1,6 +1,6 @@
 lint:
-  actions_awsfulltest: False
-  actions_awstest: False
+  actions_awsfulltest: false
+  actions_awstest: false
   files_exist:
     - .github/workflows/awstest.yml
     - .github/workflows/awsfulltest.yml
