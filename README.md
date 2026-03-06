@@ -63,7 +63,7 @@ nextflow run Clinical-Genomics/oncorefiner \
 
 ## Pipeline output
 
-For more details about the output files and reports, please refer to the [output documentation](.github/docs/output.md).Collapse comment
+For more details about the output files and reports, please refer to the [output documentation](.github/docs/output.md).
 
 ## Credits
 
