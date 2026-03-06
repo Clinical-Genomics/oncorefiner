@@ -61,6 +61,10 @@ nextflow run Clinical-Genomics/oncorefiner \
 > [!WARNING]
 > Please provide pipeline parameters via the CLI or Nextflow `-params-file` option. Custom config files including those provided by the `-c` Nextflow option can be used to provide any configuration _**except for parameters**_; see [docs](https://nf-co.re/docs/usage/getting_started/configuration#custom-configuration-files).
 
+## Pipeline output
+
+For more details about the output files and reports, please refer to the [output documentation](.github/docs/output.md).Collapse comment
+
 ## Credits
 
 Clinical-Genomics/oncorefiner was originally written by Clinical Genomics Stockholm.
