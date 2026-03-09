@@ -55,7 +55,7 @@
                     "fa_icon": "fas fa-book",
                     "help_text": "Use this parameter to specify the ID for the reference genome used. This is then used to annotate the SV and SNV files e.g. `--genome GRCh38`.",
                     "default": "GRCh38",
-                    "enum": ["GRCh38"]
+                    "enum": ["GRCh38", "GRCh37"]
                 },
                 "fasta": {
                     "type": "string",
