@@ -58,7 +58,6 @@ workflow ONCOREFINER {
         ch_sv_vcf               = channel.fromPath(params.sv_vcf).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
         ch_sv_vcf_tbi           = channel.fromPath(params.sv_vcf + '.tbi', checkIfExists: true).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
 
-
         // Reference files
         ch_genome_fasta         = channel.fromPath(params.fasta).map { it -> [[id:it.simpleName], it] }.collect()
 
