@@ -9,7 +9,6 @@ workflow PREPARE_REFERENCES {
     take:
         ch_vep_cache                 // channel: [mandatory for annotation] [ path(cache) ]
 
-
     main:
 
         // Untar
