@@ -24,7 +24,6 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - Updated nf-schema to 2.6.1 [#30](https://github.com/Clinical-Genomics/oncorefiner/pull/30)
 - Updated minimum Nextflow version to 25.10.0 [#30](https://github.com/Clinical-Genomics/oncorefiner/pull/30)
 - Added wgs-cancer-pipeline projects list in the issue templates [#37](https://github.com/Clinical-Genomics/oncorefiner/pull/37)
-- Updated all modules [#34](https://github.com/Clinical-Genomics/oncorefiner/pull/34)
 
 ### `Fixed`
 
@@ -38,6 +37,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - Updated template for nf-core/tools version 3.5.2 to apply updated settings and changes missed in previous template update ([14](https://github.com/Clinical-Genomics/oncorefiner/pull/14)) [#35](https://github.com/Clinical-Genomics/oncorefiner/pull/35)
 - Fixed prepare_references config that was defined but not used [36](https://github.com/Clinical-Genomics/oncorefiner/pull/36)
 - Fixed bug and formatting in feature request template [#39](https://github.com/Clinical-Genomics/oncorefiner/pull/39)
+- Updated all modules and removed deprecated `ch_versions` to implement latest changes that use the `versions` topic channel to collect software versions [#34](https://github.com/Clinical-Genomics/oncorefiner/pull/34)
 
 ### `Dependencies`
 
