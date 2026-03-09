@@ -269,7 +269,7 @@ workflow ONCOREFINER {
         // MODULE: MultiQC
         //
         ch_multiqc_config        =  params.multiqc_config ?
-            channel.fromPath(params.multiqc_config, checkIfExists: true) : 
+            channel.fromPath(params.multiqc_config, checkIfExists: true) :
             channel.fromPath("$projectDir/assets/multiqc_config.yml", checkIfExists: true)
 
         ch_multiqc_logo          = params.multiqc_logo ?
