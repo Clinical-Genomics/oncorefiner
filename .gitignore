@@ -1,5 +1,5 @@
 .nextflow*
-.nf-test/
+.nf-test*
 work/
 data/
 results/
