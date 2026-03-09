@@ -11,7 +11,7 @@ lint:
     - .github/ISSUE_TEMPLATE/feature_request.yml
     - .github/PULL_REQUEST_TEMPLATE.md
     - assets/sendmail_template.txt
-  multiqc_config: False
+  multiqc_config: false
 nf_core_version: 3.5.2
 repository_type: pipeline
 template:
