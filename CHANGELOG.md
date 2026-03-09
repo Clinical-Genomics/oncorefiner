@@ -32,7 +32,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - Fixed linting issues [#20](https://github.com/Clinical-Genomics/oncorefiner/pull/20)
 - Added missing description to bug_report.yml [32](https://github.com/Clinical-Genomics/oncorefiner/pull/32)
 - Updated template settings to set organisation to `Clinical-Genomics` and skip unused features `igenomes` and `fastqc` [#35](https://github.com/Clinical-Genomics/oncorefiner/pull/35)
-- Refactored `genome` parameter to no longer refer to igenomes [#35](https://github.com/Clinical-Genomics/oncorefiner/pull/35)
+- Refactored `genome` parameter to have default value 'GRCh38' and no longer refer to igenomes [#35](https://github.com/Clinical-Genomics/oncorefiner/pull/35)
 - Updated linting config to fix linting issues and add/remove checks for nf-core file structure that are no longer required [#35](https://github.com/Clinical-Genomics/oncorefiner/pull/35)
 - Updated template for nf-core/tools version 3.5.2 to apply updated settings and changes missed in previous template update ([14](https://github.com/Clinical-Genomics/oncorefiner/pull/14)) [#35](https://github.com/Clinical-Genomics/oncorefiner/pull/35)
 - Fixed prepare_references config that was defined but not used [36](https://github.com/Clinical-Genomics/oncorefiner/pull/36)
