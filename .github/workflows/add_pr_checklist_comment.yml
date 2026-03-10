@@ -1,11 +1,8 @@
 name: Add PR checklist comment
 on:
-  pull_request:
+  pull_request_target:
     types:
       - opened
-
-permissions:
-  pull-requests: write
 
 jobs:
   add_pr_checklist_comment:
