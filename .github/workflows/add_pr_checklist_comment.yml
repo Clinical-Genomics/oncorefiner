@@ -4,6 +4,9 @@ on:
     types:
       - opened
 
+permissions:
+  pull-requests: write
+
 jobs:
   add_pr_checklist_comment:
     runs-on: ubuntu-latest
