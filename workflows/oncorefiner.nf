@@ -268,11 +268,10 @@ workflow ONCOREFINER {
         //
         // MODULE: MultiQC
         //
-        ch_multiqc_config        = channel.fromPath(
-            "$projectDir/assets/multiqc_config.yml", checkIfExists: true)
-        ch_multiqc_custom_config = params.multiqc_config ?
+        ch_multiqc_config        =  params.multiqc_config ?
             channel.fromPath(params.multiqc_config, checkIfExists: true) :
-            channel.empty()
+            channel.fromPath("$projectDir/assets/multiqc_config.yml", checkIfExists: true)
+
         ch_multiqc_logo          = params.multiqc_logo ?
             channel.fromPath(params.multiqc_logo, checkIfExists: true) :
             channel.empty()
@@ -296,14 +295,15 @@ workflow ONCOREFINER {
             )
         )
 
+        ch_multiqc_input = channel.of([id: ""])
+            .combine(ch_multiqc_files.collect())
+            .combine(ch_multiqc_config.toList())
+            .combine(ch_multiqc_logo.toList())
+            .combine([])
+            .combine([])
 
         MULTIQC (
-            ch_multiqc_files.collect(),
-            ch_multiqc_config.toList(),
-            ch_multiqc_custom_config.toList(),
-            ch_multiqc_logo.toList(),
-            [],
-            []
+            ch_multiqc_input
         )
 
     emit:
