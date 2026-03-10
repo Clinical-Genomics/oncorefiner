@@ -40,6 +40,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - Fixed prepare_references config that was defined but not used [36](https://github.com/Clinical-Genomics/oncorefiner/pull/36)
 - Fixed bug and formatting in feature request template [#39](https://github.com/Clinical-Genomics/oncorefiner/pull/39)
 - Fixed merge mistake introduced in [#25](https://github.com/Clinical-Genomics/oncorefiner/pull/25) [#41](https://github.com/Clinical-Genomics/oncorefiner/pull/41)
+- Added necessary GITHUB_TOKEN permissions for action add_pr_checklist_comment [#42](https://github.com/Clinical-Genomics/oncorefiner/pull/42)
 
 ### `Dependencies`
 
