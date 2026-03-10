@@ -1,9 +1,11 @@
 #!/usr/bin/env nextflow
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    Clinical-Genomics/oncorefiner
+    nf-core/postprocessing
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    Github : https://github.com/Clinical-Genomics/oncorefiner
+    Github : https://github.com/nf-core/postprocessing
+    Website: https://nf-co.re/postprocessing
+    Slack  : https://nfcore.slack.com/channels/postprocessing
 ----------------------------------------------------------------------------------------
 */
 
@@ -13,9 +15,22 @@
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
-include { ONCOREFINER  } from './workflows/oncorefiner'
-include { PIPELINE_INITIALISATION } from './subworkflows/local/utils_nfcore_oncorefiner_pipeline'
-include { PIPELINE_COMPLETION     } from './subworkflows/local/utils_nfcore_oncorefiner_pipeline'
+include { POSTPROCESSING  } from './workflows/postprocessing'
+include { PIPELINE_INITIALISATION } from './subworkflows/local/utils_nfcore_postprocessing_pipeline'
+include { PIPELINE_COMPLETION     } from './subworkflows/local/utils_nfcore_postprocessing_pipeline'
+include { getGenomeAttribute      } from './subworkflows/local/utils_nfcore_postprocessing_pipeline'
+
+/*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    GENOME PARAMETER VALUES
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+
+// TODO nf-core: Remove this line if you don't need a FASTA file
+//   This is an example of how to use getGenomeAttribute() to fetch parameters
+//   from igenomes.config using `--genome`
+params.fasta = getGenomeAttribute('fasta')
+
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     NAMED WORKFLOWS FOR PIPELINE
@@ -25,7 +40,7 @@ include { PIPELINE_COMPLETION     } from './subworkflows/local/utils_nfcore_onco
 //
 // WORKFLOW: Run main analysis pipeline depending on type of input
 //
-workflow CLINICALGENOMICS_ONCOREFINER {
+workflow NFCORE_POSTPROCESSING {
 
     take:
     samplesheet // channel: samplesheet read in from --input
@@ -35,11 +50,11 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     //
     // WORKFLOW: Run pipeline
     //
-    ONCOREFINER (
+    POSTPROCESSING (
         samplesheet
     )
     emit:
-    multiqc_report = ONCOREFINER.out.multiqc_report // channel: /path/to/multiqc_report.html
+    multiqc_report = POSTPROCESSING.out.multiqc_report // channel: /path/to/multiqc_report.html
 }
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -59,16 +74,13 @@ workflow {
         params.monochrome_logs,
         args,
         params.outdir,
-        params.input,
-        params.help,
-        params.help_full,
-        params.show_hidden
+        params.input
     )
 
     //
     // WORKFLOW: Run main workflow
     //
-    CLINICALGENOMICS_ONCOREFINER (
+    NFCORE_POSTPROCESSING (
         PIPELINE_INITIALISATION.out.samplesheet
     )
     //
@@ -81,7 +93,7 @@ workflow {
         params.outdir,
         params.monochrome_logs,
         params.hook_url,
-        CLINICALGENOMICS_ONCOREFINER.out.multiqc_report
+        NFCORE_POSTPROCESSING.out.multiqc_report
     )
 }
 
