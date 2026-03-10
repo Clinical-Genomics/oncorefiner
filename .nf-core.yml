@@ -7,14 +7,15 @@ lint:
     - conf/igenomes.config
     - conf/igenomes_ignored.config
   files_unchanged:
+    - .github/CONTRIBUTING.md
+    - assets/nf-core-oncorefiner_logo_light.png
+    - docs/images/nf-core-oncorefiner_logo_light.png
+    - docs/images/nf-core-oncorefiner_logo_dark.png
+    - .gitignore
+    - .github/ISSUE_TEMPLATE/config.yml
     - .github/ISSUE_TEMPLATE/bug_report.yml
     - .github/ISSUE_TEMPLATE/feature_request.yml
     - .github/PULL_REQUEST_TEMPLATE.md
-    - .github/workflows/linting.yml
-    - .prettierignore
-    - assets/sendmail_template.txt
-    - docs/README.md
-  multiqc_config: false
 nf_core_version: 3.5.2
 repository_type: pipeline
 template:
