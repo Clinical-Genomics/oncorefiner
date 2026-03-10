@@ -42,6 +42,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - Fixed merge mistake introduced in [#25](https://github.com/Clinical-Genomics/oncorefiner/pull/25) [#41](https://github.com/Clinical-Genomics/oncorefiner/pull/41)
 - Added necessary GITHUB_TOKEN permissions for action add_pr_checklist_comment [#42](https://github.com/Clinical-Genomics/oncorefiner/pull/42)
 - Updated all modules and removed deprecated `ch_versions` to implement latest nf-core changes that use the `versions` topic channel to collect software versions [#34](https://github.com/Clinical-Genomics/oncorefiner/pull/34)
+- Fixed settings for `add_pr_checklist_comment` to allow action to run on a PR originated from a fork [#45](https://github.com/Clinical-Genomics/oncorefiner/pull/45)
 
 ### `Dependencies`
 
