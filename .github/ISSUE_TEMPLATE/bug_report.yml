@@ -1,40 +1,39 @@
 name: Bug report
 description: Report something that is broken or incorrect
-labels: bug
+labels: ["Bug"]
+projects: ["Clinical-Genomics/108", "Clinical-Genomics/109"]
 body:
-  - type: markdown
-    attributes:
-      value: |
-        Before you post this issue, please check the documentation:
-
-        - [nf-core website: troubleshooting](https://nf-co.re/usage/troubleshooting)
-        - [nf-core/oncorefiner pipeline documentation](https://nf-co.re/oncorefiner/usage)
   - type: textarea
-    id: description
     attributes:
-      label: Description of the bug
+      label: Description
       description: A clear and concise description of what the bug is.
     validations:
       required: true
 
   - type: textarea
-    id: command_used
     attributes:
-      label: Command used and terminal output
-      description: Steps to reproduce the behaviour. Please paste the command you used to launch the pipeline and the output from your terminal.
-      render: console
-      placeholder: |
-        $ nextflow run ...
-
-        Some output where something broke
+      label: How to reproduce
+      description: Steps to reproduce the behaviour. If relevant, please paste the command you used to launch the pipeline and the output from your terminal.
+    validations:
+      required: true
 
   - type: textarea
-    id: files
     attributes:
-      label: Relevant files
+      label: Expected behaviour
+      description: A clear and concise description of what you expected to happen.
+    validations:
+      required: false
+
+  - type: textarea
+    attributes:
+      label: Anything else?
       description: |
+        Links? Screenshots? Anything that will give us more context about the issue you are encountering!
+
         Please drag and drop the relevant files here. Create a `.zip` archive if the extension is not allowed.
         Your verbose log file `.nextflow.log` is often useful _(this is a hidden file in the directory where you launched the pipeline)_ as well as custom Nextflow configuration files.
+    validations:
+      required: false
 
   - type: textarea
     id: system
@@ -46,4 +45,5 @@ body:
         * Executor _(eg. slurm, local, awsbatch)_
         * Container engine: _(e.g. Docker, Singularity, Conda, Podman, Shifter, Charliecloud, or Apptainer)_
         * OS _(eg. CentOS Linux, macOS, Linux Mint)_
-        * Version of nf-core/oncorefiner _(eg. 1.1, 1.5, 1.8.2)_
+        * Version of Clinical-Genomics/oncorefiner _(eg. 1.1, 1.5, 1.8.2)_
+        * Version of nf-core/oncoanalyser _(eg. 1.1, 1.5, 1.8.2)_

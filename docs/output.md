@@ -1,4 +1,4 @@
-# nf-core/oncorefiner: Output
+# Clinical-Genomics/oncorefiner: Output
 
 ## Introduction
 
