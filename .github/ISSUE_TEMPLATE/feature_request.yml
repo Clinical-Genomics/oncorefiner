@@ -31,16 +31,16 @@ body:
       description: |
         Please provide any information that can give us more context about this issue.
       value: |
-        - Suggested approach
+        #### Suggested approach
         <!-- Any ideas on how this should be implemented? -->
 
-        - Considered alternatives
+        #### Considered alternatives
         <!-- Were there alternative approaches which have been rejected? -->
 
-        - Blockers
-        <!-- Anything preventing this from happening?
+        #### Blockers
+        <!-- Anything preventing this from happening? -->
 
-        - Other notes
+        #### Other notes
         <!-- Links? References? -->
     validations:
       required: false
