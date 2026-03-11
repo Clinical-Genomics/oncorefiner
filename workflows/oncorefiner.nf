@@ -19,7 +19,7 @@ include { SVDB_QUERY as SVDB_QUERY_DB              } from '../modules/nf-core/sv
 include { ENSEMBLVEP_VEP as ENSEMBLVEP_SV          } from '../modules/nf-core/ensemblvep/vep/main'
 include { BCFTOOLS_VIEW as RESEARCH_FILTERING_SV   } from '../modules/nf-core/bcftools/view/main'
 include { BCFTOOLS_VIEW as CLINICAL_FILTERING_SV   } from '../modules/nf-core/bcftools/view/main'
-include { TABIX_TABIX as TABIX_ENSEMBLVEP_SV       } from '../modules/nf-core/tabix/tabix/main'
+include { TABIX_TABIX as TABIX_SVDB_SV       } from '../modules/nf-core/tabix/tabix/main'
 
 //
 // MODULE: Local modules
@@ -202,11 +202,11 @@ workflow ONCOREFINER {
                     []
                 )
 
-                TABIX_ENSEMBLVEP_SV (
+                TABIX_SVDB_SV (
                     SVDB_QUERY_DB.out.vcf
                 )
                 ch_current_sv_vcf = SVDB_QUERY_DB.out.vcf
-                    .join(TABIX_ENSEMBLVEP_SV.out.index)
+                    .join(SVDB_QUERY_DB.out.index)
 
             }
 
