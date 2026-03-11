@@ -1,6 +1,6 @@
 nextflow_pipeline {
 
-    name "Test pipeline"
+    name "Test pipeline ONCOREFINER"
     script "../main.nf"
     tag "pipeline"
 
@@ -17,15 +17,23 @@ nextflow_pipeline {
             def stable_name = getAllFilesFromDir(params.outdir, relative: true, includeDir: true, ignore: ['pipeline_info/*.{html,json,txt}'])
             // stable_path: All files in ${params.outdir}/ with stable content
             def stable_path = getAllFilesFromDir(params.outdir, ignoreFile: 'tests/.nftignore')
+            // all_vcf_files: All vcf files - can have unstable variants and/or unstable headers
+            def all_vcf_files    = getAllFilesFromDir(params.outdir, include: ['**/*.vcf.gz'])
+            // vcfs_with_stable_variants: Vcf files with stable variants - can be snapshot using variantsMD5
+            def vcfs_with_stable_variants = getAllFilesFromDir(params.outdir, include: ['**/*.vcf.gz'])
             assertAll(
                 { assert workflow.success},
                 { assert snapshot(
                     // pipeline versions.yml file for multiqc from which Nextflow version is removed because we test pipelines on multiple Nextflow versions
-                    removeNextflowVersion("$outputDir/pipeline_info/nf_core_oncorefiner_software_mqc_versions.yml"),
+                    removeNextflowVersion("$outputDir/pipeline_info/oncorefiner_software_mqc_versions.yml"),
                     // All stable path name, with a relative path
                     stable_name,
                     // All files with stable contents
-                    stable_path
+                    stable_path,
+                    // All VCFs
+                    all_vcf_files.collect{ file -> [ file.getName(), path(file.toString()).vcf.summary ] },
+                    // VCFs with stable variants
+                    vcfs_with_stable_variants.collect{ file -> [ file.getName(), path(file.toString()).vcf.variantsMD5 ] }
                 ).match() }
             )
         }

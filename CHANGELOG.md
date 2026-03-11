@@ -1,11 +1,11 @@
-# nf-core/oncorefiner: Changelog
+# Clinical-Genomics/oncorefiner: Changelog
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## v1.0.0dev - [date]
 
-Initial release of nf-core/oncorefiner, created with the [nf-core](https://nf-co.re/) template.
+Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](https://nf-co.re/) template.
 
 ### `Added`
 
@@ -16,6 +16,8 @@ Initial release of nf-core/oncorefiner, created with the [nf-core](https://nf-co
 - Added filtering for SV vcf file [#5](https://github.com/Clinical-Genomics/oncorefiner/pull/5)
 - Added small test profile. The related test dataset have been added as a branch called oncorefiner under [Clinical-Genomics/test-datasets](https://github.com/Clinical-Genomics/test-datasets/tree/oncorefiner) [#8](https://github.com/Clinical-Genomics/oncorefiner/pull/8)
 - Added CI checks for `Conventional PR title`, `Updated changelog` and `Add PR checklist comment` [#18](https://github.com/Clinical-Genomics/oncorefiner/pull/18)
+- Added parameters documentation [#25](https://github.com/Clinical-Genomics/oncorefiner/pull/25)
+- Added pre-commit hook for automatic generation of parameters documentation [#25](https://github.com/Clinical-Genomics/oncorefiner/pull/25)
 - Added Nextflow strict syntax compatibility [#30](https://github.com/Clinical-Genomics/oncorefiner/pull/30)
 
 ### Changed
@@ -30,8 +32,18 @@ Initial release of nf-core/oncorefiner, created with the [nf-core](https://nf-co
 - Removed snv_vcf_tbi and sv_vcf_tbi parameter. VCF indexes are now automatically detected [#9](https://github.com/Clinical-Genomics/oncorefiner/pull/9)
 - Renamed pipeline from postprocessing to oncorefiner []()
 - Fixed linting issues [#20](https://github.com/Clinical-Genomics/oncorefiner/pull/20)
+- Fixed nf-test to run a functional default test, and generated a snapshot [#26](https://github.com/Clinical-Genomics/oncorefiner/pull/26)
 - Added missing description to bug_report.yml [32](https://github.com/Clinical-Genomics/oncorefiner/pull/32)
+- Updated template settings to set organisation to `Clinical-Genomics` and skip unused features `igenomes` and `fastqc` [#35](https://github.com/Clinical-Genomics/oncorefiner/pull/35)
+- Refactored `genome` parameter to have default value 'GRCh38' and no longer refer to igenomes [#35](https://github.com/Clinical-Genomics/oncorefiner/pull/35)
+- Updated linting config to fix linting issues and re-added/removed checks for files where nf-core file structure is no longer required [#35](https://github.com/Clinical-Genomics/oncorefiner/pull/35)
+- Updated template for nf-core/tools version 3.5.2 to apply updated settings and changes missed in previous template update ([14](https://github.com/Clinical-Genomics/oncorefiner/pull/14)) [#35](https://github.com/Clinical-Genomics/oncorefiner/pull/35)
 - Fixed prepare_references config that was defined but not used [36](https://github.com/Clinical-Genomics/oncorefiner/pull/36)
+- Fixed bug and formatting in feature request template [#39](https://github.com/Clinical-Genomics/oncorefiner/pull/39)
+- Fixed merge mistake introduced in [#25](https://github.com/Clinical-Genomics/oncorefiner/pull/25) [#41](https://github.com/Clinical-Genomics/oncorefiner/pull/41)
+- Added necessary GITHUB_TOKEN permissions for action add_pr_checklist_comment [#42](https://github.com/Clinical-Genomics/oncorefiner/pull/42)
+- Updated all modules and removed deprecated `ch_versions` to implement latest nf-core changes that use the `versions` topic channel to collect software versions [#34](https://github.com/Clinical-Genomics/oncorefiner/pull/34)
+- Fixed settings for `add_pr_checklist_comment` to allow action to run on a PR originated from a fork [#45](https://github.com/Clinical-Genomics/oncorefiner/pull/45)
 
 ### `Dependencies`
 

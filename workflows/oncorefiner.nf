@@ -270,10 +270,28 @@ workflow ONCOREFINER {
         //
         // Collate and save software versions
         //
-        softwareVersionsToYAML(ch_versions)
+        def topic_versions = channel.topic("versions")
+        .distinct()
+        .branch { entry ->
+            versions_file: entry instanceof Path
+            versions_tuple: true
+        }
+
+        def topic_versions_string = topic_versions.versions_tuple
+            .map { process, tool, version ->
+                [ process[process.lastIndexOf(':')+1..-1], "  ${tool}: ${version}" ]
+            }
+            .groupTuple(by:0)
+            .map { process, tool_versions ->
+                tool_versions.unique().sort()
+                "${process}:\n${tool_versions.join('\n')}"
+            }
+
+        softwareVersionsToYAML(ch_versions.mix(topic_versions.versions_file))
+            .mix(topic_versions_string)
             .collectFile(
                 storeDir: "${params.outdir}/pipeline_info",
-                name: 'nf_core_'  +  'oncorefiner_software_'  + 'mqc_'  + 'versions.yml',
+                name:  'oncorefiner_software_'  + 'mqc_'  + 'versions.yml',
                 sort: true,
                 newLine: true
             ).set { ch_collated_versions }
@@ -281,11 +299,10 @@ workflow ONCOREFINER {
         //
         // MODULE: MultiQC
         //
-        ch_multiqc_config        = channel.fromPath(
-            "$projectDir/assets/multiqc_config.yml", checkIfExists: true)
-        ch_multiqc_custom_config = params.multiqc_config ?
+        ch_multiqc_config        =  params.multiqc_config ?
             channel.fromPath(params.multiqc_config, checkIfExists: true) :
-            channel.empty()
+            channel.fromPath("$projectDir/assets/multiqc_config.yml", checkIfExists: true)
+
         ch_multiqc_logo          = params.multiqc_logo ?
             channel.fromPath(params.multiqc_logo, checkIfExists: true) :
             channel.empty()
@@ -309,14 +326,15 @@ workflow ONCOREFINER {
             )
         )
 
+        ch_multiqc_input = channel.of([id: ""])
+            .combine(ch_multiqc_files.collect())
+            .combine(ch_multiqc_config.toList())
+            .combine(ch_multiqc_logo.toList())
+            .combine([])
+            .combine([])
 
         MULTIQC (
-            ch_multiqc_files.collect(),
-            ch_multiqc_config.toList(),
-            ch_multiqc_custom_config.toList(),
-            ch_multiqc_logo.toList(),
-            [],
-            []
+            ch_multiqc_input
         )
 
     emit:
