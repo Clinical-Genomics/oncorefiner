@@ -19,6 +19,7 @@ include { SVDB_QUERY as SVDB_QUERY_DB              } from '../modules/nf-core/sv
 include { ENSEMBLVEP_VEP as ENSEMBLVEP_SV          } from '../modules/nf-core/ensemblvep/vep/main'
 include { BCFTOOLS_VIEW as RESEARCH_FILTERING_SV   } from '../modules/nf-core/bcftools/view/main'
 include { BCFTOOLS_VIEW as CLINICAL_FILTERING_SV   } from '../modules/nf-core/bcftools/view/main'
+include { TABIX_TABIX as TABIX_SVDB_SV       } from '../modules/nf-core/tabix/tabix/main'
 
 //
 // MODULE: Local modules
@@ -72,6 +73,8 @@ workflow ONCOREFINER {
         ch_vep_cache                = ( params.vep_cache && params.vep_cache.endsWith("tar.gz") )  ? ch_references.vep_resources
                                                                             : ( params.vep_cache    ? channel.fromPath(params.vep_cache).collect() : channel.value([]) )
 
+        def include_process = params.include_process ? params.include_process.split(',')*.trim() : []
+
         //
         // Read and store paths in the vep_plugin_files file
         //
@@ -100,6 +103,7 @@ workflow ONCOREFINER {
                                                                                 : channel.value([])
         ch_vcfanno_extra            = params.vcfanno_extra                      ? channel.fromPath(params.vcfanno_extra).collect()
                                                                                 : []
+        def resources = ch_vcfanno_extra
 
         // SVDB
         ch_sv_dbs                   = params.svdb_query_dbs                  ? channel.fromPath(params.svdb_query_dbs)
@@ -108,125 +112,139 @@ workflow ONCOREFINER {
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    ANNOTATE SNVs
+    PROCESS SNVs
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
         // Process SNV VCF files
         if (params.snv_vcf) {
 
-            // Vcfanno
-            ch_snv_vcf
-                .join(ch_snv_vcf_tbi)
-                .map { meta, vcf, tbi ->
-                    def resources = ch_vcfanno_extra
-                    tuple(meta, vcf, tbi, resources)
-                    }
-                .set { ch_vcfanno_in }
-            VCFANNO (ch_vcfanno_in, ch_vcfanno_toml, ch_vcfanno_lua, ch_vcfanno_resources)
+            ch_current_snv_vcf = ch_snv_vcf.join(ch_snv_vcf_tbi)
 
+            // Vcfanno
+            if (include_process.contains('snv_local_annotation')) {
+
+                VCFANNO (
+                    ch_current_snv_vcf.map { meta, vcf, tbi -> [ meta, vcf, tbi, resources ] },
+                    ch_vcfanno_toml, 
+                    ch_vcfanno_lua, 
+                    ch_vcfanno_resources
+                    )
+                ch_current_snv_vcf = VCFANNO.out.vcf
+                    .join(VCFANNO.out.tbi)
+            }
 
             // Quality Filtering
-            VCFANNO.out.vcf
-                .join(VCFANNO.out.tbi)
-                .map { meta, vcf, tbi ->
-                    tuple(meta, vcf, tbi)
-                    }
-                .set { ch_research_filtering_in }
-            RESEARCH_FILTERING(ch_research_filtering_in, [], [], [])
+            if (include_process.contains('snv_filtering')) {
 
+                RESEARCH_FILTERING(ch_current_snv_vcf, [], [], [])
+
+                ch_current_snv_vcf = RESEARCH_FILTERING.out.vcf
+                    .join(RESEARCH_FILTERING.out.tbi)
+            }
 
             // VEP
-            RESEARCH_FILTERING.out.vcf
-                    .map { meta, vcf ->
-                        def custom_extra_files = params.custom_extra_files ? file(params.custom_extra_files) : []
-                        tuple(meta, vcf, custom_extra_files)
-                    }
-                    .set { ch_vep_snv }
+            if (include_process.contains('snv_ensemblvep')) {
 
-            ENSEMBLVEP_SNV (
-                ch_vep_snv,
-                params.genome,
-                "homo_sapiens",
-                params.vep_cache_version,
-                ch_vep_cache,
-                ch_genome_fasta,
-                ch_vep_extra_files
-            )
+                ENSEMBLVEP_SNV (
+                    ch_current_snv_vcf.map { meta, vcf, tbi -> [ meta, vcf, [] ] },
+                    params.genome,
+                    "homo_sapiens",
+                    params.vep_cache_version,
+                    ch_vep_cache,
+                    ch_genome_fasta,
+                    ch_vep_extra_files
+                )
+                ch_current_snv_vcf = ENSEMBLVEP_SNV.out.vcf
+                    .join(ENSEMBLVEP_SNV.out.tbi)
+            }
 
             // Clinical Filtering
-            ENSEMBLVEP_SNV.out.vcf
-                .join(ENSEMBLVEP_SNV.out.tbi)
-                .map { meta, vcf, tbi ->
-                    tuple(meta, vcf, tbi)
-                    }
-                .set { ch_clinical_filtering_in }
-            CLINICAL_FILTERING(ch_clinical_filtering_in, [], [], [])
+            if (include_process.contains('snv_clinical_filtering')) {
 
+                CLINICAL_FILTERING(ch_current_snv_vcf, [], [], [])
+                
+                ch_current_snv_vcf = CLINICAL_FILTERING.out.vcf
+                    .join(CLINICAL_FILTERING.out.tbi)
+            }
 
         }
 
-        // Process SV VCF files
+/*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    PROCESS SVs
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
         if (params.sv_vcf) {
 
+            ch_current_sv_vcf = ch_sv_vcf.join(ch_sv_vcf_tbi)
+
             // SVDB QUERY
-            ch_sv_dbs
-                .splitCsv ( header:true )
-                .multiMap { row ->
-                    vcf_dbs:  row.filename
-                    in_frqs:  row.in_freq_info_key
-                    in_occs:  row.in_allele_count_info_key
-                    out_frqs: row.out_freq_info_key
-                    out_occs: row.out_allele_count_info_key
-                }
-                .set { ch_svdb_dbs }
+            if (include_process.contains('sv_local_annotation')) {
 
-            SVDB_QUERY_DB (
-                ch_sv_vcf,
-                ch_svdb_dbs.in_occs.toList(),
-                ch_svdb_dbs.in_frqs.toList(),
-                ch_svdb_dbs.out_occs.toList(),
-                ch_svdb_dbs.out_frqs.toList(),
-                ch_svdb_dbs.vcf_dbs.toList(),
-                []
-            )
+                ch_sv_dbs
+                    .splitCsv ( header:true )
+                    .multiMap { row ->
+                        vcf_dbs:  row.filename
+                        in_frqs:  row.in_freq_info_key
+                        in_occs:  row.in_allele_count_info_key
+                        out_frqs: row.out_freq_info_key
+                        out_occs: row.out_allele_count_info_key
+                    }
+                    .set { ch_svdb_dbs }
 
+                SVDB_QUERY_DB (
+                    ch_current_sv_vcf,
+                    ch_svdb_dbs.in_occs.toList(),
+                    ch_svdb_dbs.in_frqs.toList(),
+                    ch_svdb_dbs.out_occs.toList(),
+                    ch_svdb_dbs.out_frqs.toList(),
+                    ch_svdb_dbs.vcf_dbs.toList(),
+                    []
+                )
+
+                TABIX_SVDB_SV (
+                    SVDB_QUERY_DB.out.vcf
+                )
+                ch_current_sv_vcf = SVDB_QUERY_DB.out.vcf
+                    .join(SVDB_QUERY_DB.out.index)
+
+            }
 
             // Quality Filtering
-            SVDB_QUERY_DB.out.vcf
-                .map { meta, vcf ->
-                    tuple(meta, vcf, []) }
-                .set { ch_research_filtering_sv_in }
+            if (include_process.contains('sv_filtering')) {
 
-            RESEARCH_FILTERING_SV(ch_research_filtering_sv_in, [], [], [])
+                RESEARCH_FILTERING_SV(ch_current_sv_vcf, [], [], [])
+
+                ch_current_sv_vcf = RESEARCH_FILTERING_SV.out.vcf
+                    .join(RESEARCH_FILTERING_SV.out.tbi)
+                
+            }
 
             // VEP
-            RESEARCH_FILTERING_SV.out.vcf
-                .map { meta, vcf ->
-                            def custom_extra_files = params.custom_extra_files ? file(params.custom_extra_files) : []
-                            tuple(meta, vcf, custom_extra_files) }
-                .set { ch_vep_sv }
+            if (include_process.contains('sv_ensemblvep')) {
 
+                ENSEMBLVEP_SV(
+                    ch_current_sv_vcf.map { meta, vcf, tbi -> [ meta, vcf, [] ] },
+                    params.genome,
+                    "homo_sapiens",
+                    params.vep_cache_version,
+                    ch_vep_cache,
+                    ch_genome_fasta,
+                    ch_vep_extra_files
+                )
 
-            ENSEMBLVEP_SV(
-                ch_vep_sv,
-                params.genome,
-                "homo_sapiens",
-                params.vep_cache_version,
-                ch_vep_cache,
-                ch_genome_fasta,
-                ch_vep_extra_files
-            )
+                ch_current_sv_vcf = ENSEMBLVEP_SV.out.vcf
+                    .join(ENSEMBLVEP_SV.out.tbi)
+            }
 
             // Clinical Filtering
-            ENSEMBLVEP_SV.out.vcf
-                .join(ENSEMBLVEP_SV.out.tbi)
-                .map { meta, vcf, tbi ->
-                    tuple(meta, vcf, tbi)
-                    }
-                .set { ch_clinical_filtering_sv_in }
-            CLINICAL_FILTERING_SV(ch_clinical_filtering_sv_in, [], [], [])
+            if (include_process.contains('sv_clinical_filtering')) {
 
+                CLINICAL_FILTERING_SV(ch_current_sv_vcf, [], [], [])
 
+                ch_current_sv_vcf = CLINICAL_FILTERING_SV.out.vcf
+                    .join(CLINICAL_FILTERING_SV.out.tbi)
+            }
         }
 
 
