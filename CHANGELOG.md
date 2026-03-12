@@ -32,6 +32,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - Removed snv_vcf_tbi and sv_vcf_tbi parameter. VCF indexes are now automatically detected [#9](https://github.com/Clinical-Genomics/oncorefiner/pull/9)
 - Renamed pipeline from postprocessing to oncorefiner []()
 - Fixed linting issues [#20](https://github.com/Clinical-Genomics/oncorefiner/pull/20)
+- Fixed nf-test to run a functional default test, and generated a snapshot [#26](https://github.com/Clinical-Genomics/oncorefiner/pull/26)
 - Added missing description to bug_report.yml [32](https://github.com/Clinical-Genomics/oncorefiner/pull/32)
 - Updated template settings to set organisation to `Clinical-Genomics` and skip unused features `igenomes` and `fastqc` [#35](https://github.com/Clinical-Genomics/oncorefiner/pull/35)
 - Refactored `genome` parameter to have default value 'GRCh38' and no longer refer to igenomes [#35](https://github.com/Clinical-Genomics/oncorefiner/pull/35)
