@@ -20,7 +20,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - Added pre-commit hook for automatic generation of parameters documentation [#25](https://github.com/Clinical-Genomics/oncorefiner/pull/25)
 - Added Nextflow strict syntax compatibility [#30](https://github.com/Clinical-Genomics/oncorefiner/pull/30)
 
-### Changed
+### `Changed`
 
 - Updated PR template, PR checklist, feature request template, bug report template and issue template chooser [#24](https://github.com/Clinical-Genomics/oncorefiner/pull/24)
 - Updated nf-schema to 2.6.1 [#30](https://github.com/Clinical-Genomics/oncorefiner/pull/30)
@@ -30,10 +30,10 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 ### `Fixed`
 
 - Removed snv_vcf_tbi and sv_vcf_tbi parameter. VCF indexes are now automatically detected [#9](https://github.com/Clinical-Genomics/oncorefiner/pull/9)
-- Renamed pipeline from postprocessing to oncorefiner []()
+- Renamed pipeline from postprocessing to oncorefiner [#10](https://github.com/Clinical-Genomics/oncorefiner/pull/10)
 - Fixed linting issues [#20](https://github.com/Clinical-Genomics/oncorefiner/pull/20)
 - Fixed nf-test to run a functional default test, and generated a snapshot [#26](https://github.com/Clinical-Genomics/oncorefiner/pull/26)
-- Added missing description to bug_report.yml [32](https://github.com/Clinical-Genomics/oncorefiner/pull/32)
+- Added missing description in bug report template [32](https://github.com/Clinical-Genomics/oncorefiner/pull/32)
 - Updated template settings to set organisation to `Clinical-Genomics` and skip unused features `igenomes` and `fastqc` [#35](https://github.com/Clinical-Genomics/oncorefiner/pull/35)
 - Refactored `genome` parameter to have default value 'GRCh38' and no longer refer to igenomes [#35](https://github.com/Clinical-Genomics/oncorefiner/pull/35)
 - Updated linting config to fix linting issues and re-added/removed checks for files where nf-core file structure is no longer required [#35](https://github.com/Clinical-Genomics/oncorefiner/pull/35)
