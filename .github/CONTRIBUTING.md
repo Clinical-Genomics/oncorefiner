@@ -28,6 +28,8 @@ In order to run the pipeline, develop and test your changes locally, we recommen
 - A conda environment with `nextflow` and `nf-core` tools. - For this, follow the instructions from the [nf-core documentation](https://nf-co.re/docs/nf-core-tools/installation). Additional information about [Installation of nf-core dependencies](https://nf-co.re/docs/usage/getting_started/installation/) is also available, if needed.
 - Install Docker (https://docs.docker.com/engine/install/) and make sure the daemon is running when you want to run the tests locally.
 
+Make sure to [test your setup](https://nf-co.re/docs/usage/introduction#how-to-run-a-pipeline) with `-profile test` before running the workflow on actual data.
+
 ## Tests
 
 You have the option to test your changes locally by running the pipeline. For receiving warnings about process selectors and other `debug` information, it is recommended to use the debug profile. Execute all the tests with the following command:
