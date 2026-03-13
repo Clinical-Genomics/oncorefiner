@@ -21,6 +21,37 @@ If you'd like to write some code for Clinical-Genomics/oncorefiner, the standard
 
 If you're not used to this workflow with git, you can start with some [docs from GitHub](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests) or even their [excellent `git` resources](https://try.github.io/).
 
+### Pull Requests
+
+When opening a pull request to suggest changes to the code, please make sure to follow the [Pipeline contribution conventions](#pipeline-contribution-conventions) for the code and to fill in the necessary information in the pull request template as well as address all points in the `PR checklist`.
+
+#### PR title conventions
+
+We have implemented a standardised PR title format to make it easier to understand the type of change being proposed at a glance.
+Addionally, there is an automated check for every PR that will only allow mergere if the title follow one of the following formats:
+
+ - feat: A new feature
+ - fix: A bug fix
+ - docs: Documentation only changes
+ - style: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
+ - refactor: A code change that neither fixes a bug nor adds a feature
+ - perf: A code change that improves performance
+ - test: Adding missing tests or correcting existing tests
+ - build: Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)
+ - ci: Changes to our CI configuration files and scripts (example scopes: Travis, Circle, BrowserStack, SauceLabs)
+ - chore: Other changes that don't modify src or test files
+ - revert: Reverts a previous commit
+
+#### Review
+
+When reviewing a PR, make sure to check that:
+
+- The code follows the [Pipeline contribution conventions](#pipeline-contribution-conventions).
+- The information in the PR (and related issue) is clear and sufficient to understand the change and the motivation for it - title, description and entry in `CHANGELOG.md`, if applicable.
+- All the items in the `PR checklist` have been addressed, the changes are well documented and the tests are passing.
+
+Be positive and constructive in your review, and whenever possible offer suggestions for improvement rather than just pointing out issues.
+
 ## Installation and dependencies for development
 
 In order to run the pipeline, develop and test your changes locally, we recommend that you set up:
