@@ -26,6 +26,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - Updated nf-schema to 2.6.1 [#30](https://github.com/Clinical-Genomics/oncorefiner/pull/30)
 - Updated minimum Nextflow version to 25.10.0 [#30](https://github.com/Clinical-Genomics/oncorefiner/pull/30)
 - Added wgs-cancer-pipeline projects list in the issue templates [#37](https://github.com/Clinical-Genomics/oncorefiner/pull/37)
+- Updated documentation [#48](https://github.com/Clinical-Genomics/oncorefiner/pull/48)
 
 ### `Fixed`
 
