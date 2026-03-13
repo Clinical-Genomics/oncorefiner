@@ -107,17 +107,16 @@ Please use the following naming schemes, to make it easy to understand what is g
 
 If you are using a new feature from core Nextflow, you may bump the minimum required version of nextflow in the pipeline with: `nf-core pipelines bump-version --nextflow . [min-nf-version]`
 
-### Images and figures
+### Update nf-core template
 
-For overview images and other documents we follow the nf-core [style guidelines and examples](https://nf-co.re/developers/design_guidelines).
-
-## Update template
-
-Since this is not an nf-core pipeline, the nf-core tools template is not automatically updated in the `TEMPLATE` branch. Follow these step to update the template:
+Since this is not an nf-core pipeline, the nf-core template is not automatically updated in the `TEMPLATE` branch. Follow these step to update the template:
 
 1. Update the `TEMPLATE` branch by running `nf-core pipelines sync`. Fix any merge conflicts and open a PR to then merge the changes.
 1. Open a PR to merge the `TEMPLATE` branch into `dev` to update the template files in the main codebase.
 
+### Images and figures
+
+For overview images and other documents we follow the nf-core [style guidelines and examples](https://nf-co.re/developers/design_guidelines).
 
 ## GitHub Codespaces
 
