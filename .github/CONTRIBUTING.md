@@ -104,7 +104,7 @@ For overview images and other documents we follow the nf-core [style guidelines 
 
 ## Update template
 
-Since this is not an nf-core pipeline, the template is not automatically updated with the nf-core tools. Follow these step to update the template:
+Since this is not an nf-core pipeline, the nf-core tools template is not automatically updated in the `TEMPLATE` branch. Follow these step to update the template:
 
 1. Update the `TEMPLATE` branch by running `nf-core pipelines sync`. Fix any merge conflicts and open a PR to then merge the changes.
 1. Open a PR to merge the `TEMPLATE` branch into `dev` to update the template files in the main codebase.
