@@ -21,6 +21,13 @@ If you'd like to write some code for Clinical-Genomics/oncorefiner, the standard
 
 If you're not used to this workflow with git, you can start with some [docs from GitHub](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests) or even their [excellent `git` resources](https://try.github.io/).
 
+## Installation and dependencies for development
+
+In order to run the pipeline, develop and test your changes locally, we recommend that you set up:
+
+- A conda environment with `nextflow` and `nf-core` tools. - For this, follow the instructions from the [nf-core documentation](https://nf-co.re/docs/nf-core-tools/installation). Additional information about [Installation of nf-core dependencies](https://nf-co.re/docs/usage/getting_started/installation/) is also available, if needed.
+- Install Docker (https://docs.docker.com/engine/install/) and make sure the daemon is running when you want to run the tests locally.
+
 ## Tests
 
 You have the option to test your changes locally by running the pipeline. For receiving warnings about process selectors and other `debug` information, it is recommended to use the debug profile. Execute all the tests with the following command:
