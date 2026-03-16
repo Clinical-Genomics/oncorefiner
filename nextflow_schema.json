@@ -32,7 +32,6 @@
                 "snv_vcf": {
                     "type": "string",
                     "fa_icon": "fas fa-file",
-                    "help_text": "Path to somatic SNV/INDEL VCF file.",
                     "description": "Path to somatic SNV/INDEL VCF file.",
                     "pattern": "^\\S+\\.vcf(\\.gz)?$",
                     "format": "file-path",
