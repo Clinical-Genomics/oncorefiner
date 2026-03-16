@@ -134,7 +134,8 @@
                 "vep_custom_extra_files": {
                     "type": "string",
                     "description": "Path to extra sample-specific files to be used by VEP for custom annotation.",
-                    "fa_icon": "fas fa-copy"
+                    "fa_icon": "fas fa-copy",
+                    "exist": true
                 },
                 "vcfanno_extra": {
                     "type": "string",
