@@ -26,11 +26,44 @@
    to nf-core here, in 15-20 seconds. For an example, see https://github.com/nf-core/rnaseq/blob/master/README.md#introduction
 -->
 
+### Workflow diagram
+
 <!-- TODO nf-core: Include a figure that guides the user through the major workflow steps. Many nf-core
      workflows use the "tube map" design for that. See https://nf-co.re/docs/guidelines/graphic_design/workflow_diagrams#examples for examples.   -->
-<!-- TODO nf-core: Fill in short bullet-pointed list of the default steps in the pipeline -->
 
-2. Present QC for raw reads ([`MultiQC`](http://multiqc.info/))
+1. Process SNV VCF files
+   1. Annotate with [`Vcfanno`](https://github.com/brentp/vcfanno)
+   1. Filter according to call quality with [`bcftools`](https://github.com/samtools/bcftools)
+   1. Filter according to user provided list of research relevant variant with [`bcftools`](https://github.com/samtools/bcftools)
+   1. Annotate with [`VEP`](https://www.ensembl.org/info/docs/tools/vep/index.html)
+   1. Filter according to user provided list of clinically relevant variants with [`bcftools`](https://github.com/samtools/bcftools)
+
+1. Process SV VCF files
+   1. SVDB QUERY ???
+   1. Filter according to call quality with ???
+   1. Filter according to user provided list of research relevant variant with [`bcftools`](https://github.com/samtools/bcftools)
+   1. Annotate with [`VEP`](https://www.ensembl.org/info/docs/tools/vep/index.html)
+   1. Filter according to user provided list of clinically relevant variants with [`bcftools`](https://github.com/samtools/bcftools)
+
+1. Present QC for raw reads ([`MultiQC`](http://multiqc.info/))
+
+### Summary of tools and version used in the pipeline
+
+| Step                  | Tool          | Version |
+| --------------------- | ------------- | ------- |
+| Clinical Filtering    | bcftools      | 1.22    |
+| Clinical Filtering SV | bcftools      | 1.22    |
+| EnsemblVEP SNV        | ensemblvep    | 115.2   |
+| EnsemblVEP SNV        | perl-math-cdf | 0.1     |
+| EnsemblVEP SNV        | tabix         | 1.21    |
+| EnsemblVEP SV         | ensemblvep    | 115.2   |
+| EnsemblVEP SV         | perl-math-cdf | 0.1     |
+| EnsemblVEP SV         | tabix         | 1.21    |
+| Research Filtering    | bcftools      | 1.22    |
+| Research Filtering SV | bcftools      | 1.22    |
+| SVDB Query DB         | svdb          | 2.8.4   |
+| Untar VEP Cache       | untar         | 1.34    |
+| Vcfanno               | vcfanno       | 0.3.7   |
 
 ## Usage
 
