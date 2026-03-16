@@ -146,7 +146,7 @@ workflow ONCOREFINER {
             ENSEMBLVEP_SNV (
                 ch_vep_snv,
                 params.genome,
-                "homo_sapiens",
+                params.species,
                 params.vep_cache_version,
                 ch_vep_cache,
                 ch_genome_fasta,
@@ -210,7 +210,7 @@ workflow ONCOREFINER {
             ENSEMBLVEP_SV(
                 ch_vep_sv,
                 params.genome,
-                "homo_sapiens",
+                params.species,
                 params.vep_cache_version,
                 ch_vep_cache,
                 ch_genome_fasta,
