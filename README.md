@@ -1,8 +1,11 @@
 # Clinical-Genomics/oncorefiner
 
-<!-- TODO:
-   Add logo here.
--->
+<h1>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/images/nf-core-oncorefiner_logo_dark.png">
+    <img alt="nf-core/oncorefiner" src="docs/images/nf-core-oncorefiner_logo_light.png">
+  </picture>
+</h1>
 
 [![Open in GitHub Codespaces](https://img.shields.io/badge/Open_In_GitHub_Codespaces-black?labelColor=grey&logo=github)](https://github.com/codespaces/new/Clinical-Genomics/oncorefiner)
 [![GitHub Actions CI Status](https://github.com/Clinical-Genomics/oncorefiner/actions/workflows/nf-test.yml/badge.svg)](https://github.com/Clinical-Genomics/oncorefiner/actions/workflows/nf-test.yml)
