@@ -19,9 +19,9 @@ Reference genome related files and options required for the workflow.
 
 | Parameter | Description | Type | Default | Required | Hidden |
 |-----------|-----------|-----------|-----------|-----------|-----------|
+| `genome` | Name of the genome reference. (accepted: `GRCh38`\|`GRCh37`) <details><summary>Help</summary><small>Use this parameter to specify the ID for the reference genome used. This is then used to annotate the SV and SNV files e.g. `--genome GRCh38`.</small></details>| `string` | GRCh38 |  |  |
 | `fasta` | Path to FASTA genome file. <details><summary>Help</summary><small>If you don't have a BWA index available this will be generated for you automatically. Combine with `--save_reference` to save BWA index for future runs.</small></details>| `string` |  |  |  |
 | `fai` | Path to FASTA genome index file. <details><summary>Help</summary><small>If none provided, will be generated automatically from the FASTA reference</small></details>| `string` |  |  |  |
-| `genome` | Name of the genome reference. (accepted: `GRCh38`\|`GRCh37`) <details><summary>Help</summary><small>Use this parameter to specify the ID for the reference genome used. This is then used to annotate the SV and SNV files e.g. `--genome GRCh38`.</small></details>| `string` | GRCh38 |  |  |
 | `species` | Species of the reference genome. E.g. `--species homo_sapiens`. (accepted: `homo_sapiens`) | `string` | homo_sapiens |  |  |
 
 ## Annotation options
