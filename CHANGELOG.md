@@ -19,6 +19,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - Added parameters documentation [#25](https://github.com/Clinical-Genomics/oncorefiner/pull/25)
 - Added pre-commit hook for automatic generation of parameters documentation [#25](https://github.com/Clinical-Genomics/oncorefiner/pull/25)
 - Added Nextflow strict syntax compatibility [#30](https://github.com/Clinical-Genomics/oncorefiner/pull/30)
+- Added `species` parameter [#49](https://github.com/Clinical-Genomics/oncorefiner/pull/49)
 
 ### Changed
 
