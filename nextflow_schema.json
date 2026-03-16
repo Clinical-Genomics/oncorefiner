@@ -80,8 +80,7 @@
                     "type": "string",
                     "default": "homo_sapiens",
                     "enum": ["homo_sapiens"],
-                    "description": "Species of the reference genome. E.g. `--species homo_sapiens`.",
-                    "help_text": ""
+                    "description": "Species of the reference genome. E.g. `--species homo_sapiens`."
                 }
             }
         },
@@ -114,6 +113,11 @@
                     "pattern": "^\\S+\\.csv$",
                     "mimetype": "text/csv",
                     "schema": "assets/vep_plugin_files_schema.json"
+                },
+                "vep_custom_extra_files": {
+                    "type": "string",
+                    "description": "Path to extra sample-specific files to be used by VEP for custom annotation (optional).",
+                    "fa_icon": "fas fa-copy"
                 },
                 "vcfanno_extra": {
                     "type": "string",
@@ -338,9 +342,6 @@
             "type": "string"
         },
         "sv_vcf": {
-            "type": "string"
-        },
-        "custom_extra_files": {
             "type": "string"
         }
     }
