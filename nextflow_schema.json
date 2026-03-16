@@ -29,6 +29,23 @@
                     "description": "The output directory where the results will be saved. You have to use absolute paths to storage on Cloud infrastructure.",
                     "fa_icon": "fas fa-folder-open"
                 },
+                "snv_vcf": {
+                    "type": "string",
+                    "fa_icon": "fas fa-file",
+                    "help_text": "Path to somatic SNV/INDEL VCF file.",
+                    "description": "Path to somatic SNV/INDEL VCF file.",
+                    "pattern": "^\\S+\\.vcf(\\.gz)?$",
+                    "format": "file-path",
+                    "exists": true
+                },
+                "sv_vcf": {
+                    "type": "string",
+                    "fa_icon": "fas fa-file",
+                    "description": "Path to somatic SV VCF file.",
+                    "pattern": "^\\S+\\.vcf(\\.gz)?$",
+                    "format": "file-path",
+                    "exists": true
+                },
                 "email": {
                     "type": "string",
                     "description": "Email address for completion summary.",
@@ -116,7 +133,7 @@
                 },
                 "vep_custom_extra_files": {
                     "type": "string",
-                    "description": "Path to extra sample-specific files to be used by VEP for custom annotation (optional).",
+                    "description": "Path to extra sample-specific files to be used by VEP for custom annotation.",
                     "fa_icon": "fas fa-copy"
                 },
                 "vcfanno_extra": {
@@ -336,13 +353,5 @@
         {
             "$ref": "#/$defs/generic_options"
         }
-    ],
-    "properties": {
-        "snv_vcf": {
-            "type": "string"
-        },
-        "sv_vcf": {
-            "type": "string"
-        }
-    }
+    ]
 }
