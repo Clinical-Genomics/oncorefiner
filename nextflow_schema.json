@@ -96,7 +96,8 @@
                     "type": "string",
                     "default": "homo_sapiens",
                     "enum": ["homo_sapiens"],
-                    "description": "Species of the reference genome. E.g. `--species homo_sapiens`."
+                    "description": "Species of the reference genome. E.g. `--species homo_sapiens`.",
+                    "help_text": ""
                 }
             }
         },
