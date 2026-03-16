@@ -75,6 +75,13 @@
                     "description": "Path to FASTA genome index file.",
                     "pattern": "^\\S+\\.fn?a(sta)?\\.fai$",
                     "fa_icon": "fas fa-file"
+                },
+                "species": {
+                    "type": "string",
+                    "default": "homo_sapiens",
+                    "enum": ["homo_sapiens"],
+                    "description": "Species of the reference genome. E.g. `--species homo_sapiens`.",
+                    "help_text": ""
                 }
             }
         },
