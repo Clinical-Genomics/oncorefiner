@@ -53,3 +53,4 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 ### `Removed`
 
 - Removed CI checks `awstest` and `awsfulltest` [#18](https://github.com/Clinical-Genomics/oncorefiner/pull/18)
+- Removed unused `custom_extra_files` [#51](https://github.com/Clinical-Genomics/oncorefiner/pull/51)
