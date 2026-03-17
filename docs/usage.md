@@ -56,6 +56,8 @@ work                # Directory containing the nextflow working files
 # Other nextflow hidden files, eg. history of pipeline runs and old logs.
 ```
 
+Additionally, there are several parameters that can be used to customize the pipeline run. See [parameters documentation](../docs/parameters.md) for a full list of available parameters, their descriptions and formats.
+
 If you wish to repeatedly use the same parameters for multiple runs, rather than specifying each flag in the command, you can specify these in a params file.
 
 Pipeline settings can be provided in a `yaml` or `json` file via `-params-file <file>`.
