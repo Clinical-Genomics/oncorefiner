@@ -10,7 +10,17 @@
 
 ## Pipeline tools
 
-<!-- TODO: Add bibliography of tools -->
+- [`Vcfanno`](https://github.com/brentp/vcfanno)
+
+> Pedersen BS, Layer RM, Quinlan AR. Vcfanno: fast, flexible annotation of genetic variants. Genome Biol. 2016 Jun 1;17(1):118. doi: 10.1186/s13059-016-0973-5. PMID: 27250555; PMCID: PMC4888505.
+
+- [`bcftools`](https://github.com/samtools/bcftools)
+
+> Danecek P, Bonfield JK, Liddle J, Marshall J, Ohan V, Pollard MO, Whitwham A, Keane T, McCarthy SA, Davies RM, Li H. Twelve years of SAMtools and BCFtools. Gigascience. 2021 Jan 29;10(2):giab008. doi: 10.1093/gigascience/giab008. PubMed PMID: 33590861; PubMed Central PMCID: PMC7931819.
+
+- [`Ensembl VEP`](https://www.ensembl.org/info/docs/tools/vep/index.html)
+
+> McLaren W, Gil L, Hunt SE, Riat HS, Ritchie GR, Thormann A, Flicek P, Cunningham F. The Ensembl Variant Effect Predictor. Genome Biology. Jun 6;17(1):122. doi:10.1186/s13059-016-0974-4. PubMed PMID: 27268795; PMCID: PMC4893825.
 
 - [MultiQC](https://pubmed.ncbi.nlm.nih.gov/27312411/)
 

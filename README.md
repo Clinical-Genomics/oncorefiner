@@ -32,14 +32,14 @@
    1. Annotate with [`Vcfanno`](https://github.com/brentp/vcfanno)
    1. Filter according to call quality with [`bcftools`](https://github.com/samtools/bcftools)
    1. Filter according to user provided list of research relevant variant with [`bcftools`](https://github.com/samtools/bcftools)
-   1. Annotate with [`VEP`](https://www.ensembl.org/info/docs/tools/vep/index.html)
+   1. Annotate with [`Ensembl VEP`](https://www.ensembl.org/info/docs/tools/vep/index.html)
    1. Filter according to user provided list of clinically relevant variants with [`bcftools`](https://github.com/samtools/bcftools)
 
 1. Process SV VCF files
    1. SVDB QUERY ???
    1. Filter according to call quality with ???
    1. Filter according to user provided list of research relevant variant with [`bcftools`](https://github.com/samtools/bcftools)
-   1. Annotate with [`VEP`](https://www.ensembl.org/info/docs/tools/vep/index.html)
+   1. Annotate with [`Ensembl VEP`](https://www.ensembl.org/info/docs/tools/vep/index.html)
    1. Filter according to user provided list of clinically relevant variants with [`bcftools`](https://github.com/samtools/bcftools)
 
 1. Present QC for raw reads ([`MultiQC`](http://multiqc.info/))
