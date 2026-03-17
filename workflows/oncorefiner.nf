@@ -138,8 +138,7 @@ workflow ONCOREFINER {
             // VEP
             RESEARCH_FILTERING.out.vcf
                     .map { meta, vcf ->
-                        def custom_extra_files = params.custom_extra_files ? file(params.custom_extra_files) : []
-                        tuple(meta, vcf, custom_extra_files)
+                        tuple(meta, vcf, [])
                     }
                     .set { ch_vep_snv }
 
@@ -202,8 +201,7 @@ workflow ONCOREFINER {
             // VEP
             RESEARCH_FILTERING_SV.out.vcf
                 .map { meta, vcf ->
-                            def custom_extra_files = params.custom_extra_files ? file(params.custom_extra_files) : []
-                            tuple(meta, vcf, custom_extra_files) }
+                            tuple(meta, vcf, []) }
                 .set { ch_vep_sv }
 
 

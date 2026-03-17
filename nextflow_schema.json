@@ -339,9 +339,6 @@
         },
         "sv_vcf": {
             "type": "string"
-        },
-        "custom_extra_files": {
-            "type": "string"
         }
     }
 }
