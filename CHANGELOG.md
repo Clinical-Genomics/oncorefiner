@@ -46,6 +46,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#34](https://github.com/Clinical-Genomics/oncorefiner/pull/34) Updated all modules and removed deprecated `ch_versions` to implement latest nf-core changes that use the `versions` topic channel to collect software versions.
 - [#45](https://github.com/Clinical-Genomics/oncorefiner/pull/45) Fixed settings for `add_pr_checklist_comment` to allow action to run on a PR originated from a fork.
 - [#49](https://github.com/Clinical-Genomics/oncorefiner/pull/49) Added `species` parameter to provide information for annotation which was previously hardcoded.
+- [#50](https://github.com/Clinical-Genomics/oncorefiner/pull/50)Added settings and moved ungrouped parameters to relevant groups.
 - [#48](https://github.com/Clinical-Genomics/oncorefiner/pull/48) Updated documentation.
 
 ### `Dependencies`
@@ -55,3 +56,4 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 ### `Removed`
 
 - [#18](https://github.com/Clinical-Genomics/oncorefiner/pull/18) Removed CI checks `awstest` and `awsfulltest`.
+- [#51](https://github.com/Clinical-Genomics/oncorefiner/pull/51) Removed unused parameter `custom_extra_files`.
