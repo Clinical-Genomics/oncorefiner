@@ -33,7 +33,7 @@
                     "type": "string",
                     "fa_icon": "fas fa-file",
                     "description": "Path to a VCF file containing somatic SNV/INDEL variants to be processed by the pipeline. The VCF may include one or multiple samples. Typically, this is a single tumor sample for tumor-only analyses, or both tumor and matched normal samples for tumor\u2013normal analyses.",
-                    "pattern": "^\\S+\\.vcf(\\.gz)?$",
+                    "pattern": "^\\S+\\.vcf\\.gz$",
                     "format": "file-path",
                     "exists": true
                 },
