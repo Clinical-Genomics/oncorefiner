@@ -1,1 +1,5 @@
 blank_issues_enabled: true
+contact_links:
+  - name: Contributing Guidelines
+    url: https://github.com/Clinical-Genomics/oncorefiner?tab=contributing-ov-file#readme
+    about: If you would like to contribute to this pipeline, please follow the contributing guidelines.
