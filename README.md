@@ -63,6 +63,9 @@ SAMPLE_ID,SAMPLE_ID_S1_L002_R1_001.fastq.gz,SAMPLE_ID_S1_L002_R2_001.fastq.gz
 
 Each row represents a fastq file (single-end with only `fastq_1`) or a pair of fastq files (paired end with `fastq_1` and `fastq_2`).
 
+> [!NOTE]
+> The information from the samplesheet is not currently used in the pipeline, but it is required to be able to run the pipeline and will be used in future developments.
+
 Now, you can run the pipeline using:
 
 ```bash
