@@ -9,7 +9,33 @@ Please use the pre-filled template to save time.
 However, don't be put off by this template - other more general issues and suggestions are welcome!
 Contributions to the code are even more welcome ;)
 
-## Contribution workflow
+## Table of contents
+
+- [General](#general)
+  - [Contribution workflow](#contribution-workflow)
+  - [Installation and dependencies for development](#installation-and-dependencies-for-development)
+  - [Running tests](#running-tests)
+  - [Patch](#patch)
+  - [Nextflow version bumping](#nextflow-version-bumping)
+  - [Update nf-core template](#update-nf-core-template)
+  - [GitHub Codespaces](#github-codespaces)
+- [Pipeline contribution conventions](#pipeline-contribution-conventions)
+  - [Architecture & structure](#architecture--structure)
+  - [Adding a new step](#adding-a-new-step)
+  - [Channel](#channel)
+  - [Parameters](#parameters)
+
+  - [Publishing](#publishing)
+  - [Configuration](#configuration)
+  - [Writing tests](#writing-tests)
+  - [Style](#style)
+  - [Adding citations](#adding-citations)
+
+  - [Images and figures](#images-and-figures)
+
+## General
+
+### Contribution workflow
 
 If you'd like to write some code for Clinical-Genomics/oncorefiner, the standard workflow is as follows:
 
@@ -21,11 +47,11 @@ If you'd like to write some code for Clinical-Genomics/oncorefiner, the standard
 
 If you're not used to this workflow with git, you can start with some [docs from GitHub](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests) or even their [excellent `git` resources](https://try.github.io/).
 
-### Pull Requests
+#### Pull Requests
 
 When opening a pull request to suggest changes to the code, please make sure to follow the [Pipeline contribution conventions](#pipeline-contribution-conventions) for the code and to fill in the necessary information in the pull request template as well as address all points in the `PR checklist`.
 
-#### PR title conventions
+##### PR title conventions
 
 We have implemented a standardised PR title format to make it easier to understand the type of change being proposed at a glance.
 Addionally, there is an automated check for every PR that will only allow mergere if the title adheres to one of the following formats:
@@ -42,7 +68,7 @@ Addionally, there is an automated check for every PR that will only allow merger
 - chore: Other changes that don't modify src or test files
 - revert: Reverts a previous commit
 
-#### Review
+##### Review
 
 When reviewing a PR, make sure to check that:
 
@@ -52,7 +78,7 @@ When reviewing a PR, make sure to check that:
 
 Be positive and constructive in your review, and whenever possible offer suggestions for improvement rather than just pointing out issues.
 
-## Installation and dependencies for development
+### Installation and dependencies for development
 
 In order to run the pipeline, develop and test your changes locally, we recommend that you set up:
 
@@ -61,7 +87,7 @@ In order to run the pipeline, develop and test your changes locally, we recommen
 
 Make sure to [test your setup](https://nf-co.re/docs/usage/introduction#how-to-run-a-pipeline) with `-profile test` before running the workflow on actual data.
 
-## Tests
+### Running tests
 
 You have the option to test your changes locally by running the pipeline. For receiving warnings about process selectors and other `debug` information, it is recommended to use the debug profile. Execute all the tests with the following command:
 
@@ -74,21 +100,21 @@ Typically, pull-requests are only fully reviewed when these tests are passing, t
 
 There are typically two types of tests that run:
 
-### Lint tests
+#### Lint tests
 
 `nf-core` has a [set of guidelines](https://nf-co.re/developers/guidelines) which all pipelines must adhere to.
 To enforce these and ensure that all pipelines stay in sync, we have developed a helper tool which runs checks on the pipeline code. This is in the [nf-core/tools repository](https://github.com/nf-core/tools) and once installed can be run locally with the `nf-core pipelines lint <pipeline-directory>` command.
 
 If any failures or warnings are encountered, please follow the listed URL for more documentation.
 
-### Pipeline tests
+#### Pipeline tests
 
 Each `nf-core` pipeline should be set up with a minimal set of test-data.
 `GitHub Actions` then runs the pipeline on this data to ensure that it exits successfully.
 If there are any failures then the automated tests fail.
 These tests are run both with the latest available version of `Nextflow` and also the minimum required version that is stated in the pipeline code.
 
-## Patch
+### Patch
 
 :warning: Only in the unlikely and regretful event of a release happening with a bug.
 
@@ -96,9 +122,41 @@ These tests are run both with the latest available version of `Nextflow` and als
 - Fix the bug, and bump version (X.Y.Z+1).
 - Open a pull-request from `patch` to `main`/`master` with the changes.
 
+### Nextflow version bumping
+
+If you are using a new feature from core Nextflow, you may bump the minimum required version of nextflow in the pipeline with: `nf-core pipelines bump-version --nextflow . [min-nf-version]`
+
+### Update nf-core template
+
+Since this is not an nf-core pipeline, the nf-core template is not automatically updated in the `TEMPLATE` branch. Follow these step to update the template:
+
+1. Update the `TEMPLATE` branch by running `nf-core pipelines sync`. Fix any merge conflicts and open a PR to then merge the changes.
+1. Open a PR to merge the `TEMPLATE` branch into `dev` to update the template files in the main codebase.
+
+## GitHub Codespaces
+
+This repo includes a devcontainer configuration which will create a GitHub Codespaces for Nextflow development! This is an online developer environment that runs in your browser, complete with VSCode and a terminal.
+
+To get started:
+
+- Open the repo in [Codespaces](https://github.com/Clinical-Genomics/oncorefiner/codespaces)
+- Tools installed
+  - nf-core
+  - Nextflow
+
+Devcontainer specs:
+
+- [DevContainer config](.devcontainer/devcontainer.json)
+
 ## Pipeline contribution conventions
 
 To make the `Clinical-Genomics/oncorefiner` code and processing logic more understandable for new contributors and to ensure quality, we semi-standardise the way the code and other contributions are written.
+
+### Architecture & structure
+
+- **One subworkflow per biological task** — alignment, QC, variant calling, annotation, and ranking are each their own subworkflow under subworkflows/local/. Don't add logic to workflows/raredisease.nf that belongs in a subworkflow.
+- **Reuse over duplication** — `ENSEMBLVEP_VEP` and `BCFTOOLS_VIEW` are intentionally included multiple times under different aliases. Follow this pattern before creating a near-identical subworkflow.
+- **nf-core modules take precedence** — prefer a module from modules/nf-core/ over writing a local one. Only add to modules/local/ when no nf-core module exists or the use case is too pipeline-specific.
 
 ### Adding a new step
 
@@ -115,11 +173,18 @@ If you wish to contribute a new step, please use the following coding standards:
 9. Update MultiQC config `assets/multiqc_config.yml` so relevant suffixes, file name clean up and module plots are in the appropriate order. If applicable, add a [MultiQC](https://https://multiqc.info/) module.
 10. Add a description of the output files and if relevant any appropriate images from the MultiQC report to `docs/output.md`.
 
-### Default values
+### Channel
 
-Parameters should be initialised / defined with default values within the `params` scope in `nextflow.config`.
+- **Conditional channels**: always initialize to `channel.empty()` before any `if` block that may or may not assign them. Never leave a channel potentially undefined.
 
-Once there, use `nf-core pipelines schema build` to add to `nextflow_schema.json`.
+### Parameters
+
+- `params` must only be accessed in the main unnamed workflow (`workflow` in `main.nf`). Subworkflows and named workflows receive all values as explicit `val_*` arguments. Never reference `params` directly inside a subworkflow.
+- Parameters should be initialised/defined with default values within the `params` scope in `nextflow.config`. Don't hardcode values that a user might reasonably want to change. Once added, run nf-core pipelines schema build to register them in nextflow_schema.json.
+
+<!-- TODO: Add information about parameters for skipping tools when that logic is decided. -->
+
+// Continue here. From "Publishing" in raredisease guidelines.
 
 ### Default processes resource requirements
 
@@ -134,32 +199,6 @@ Please use the following naming schemes, to make it easy to understand what is g
 - initial process channel: `ch_output_from_<process>`
 - intermediate and terminal channels: `ch_<previousprocess>_for_<nextprocess>`
 
-### Nextflow version bumping
-
-If you are using a new feature from core Nextflow, you may bump the minimum required version of nextflow in the pipeline with: `nf-core pipelines bump-version --nextflow . [min-nf-version]`
-
-### Update nf-core template
-
-Since this is not an nf-core pipeline, the nf-core template is not automatically updated in the `TEMPLATE` branch. Follow these step to update the template:
-
-1. Update the `TEMPLATE` branch by running `nf-core pipelines sync`. Fix any merge conflicts and open a PR to then merge the changes.
-1. Open a PR to merge the `TEMPLATE` branch into `dev` to update the template files in the main codebase.
-
 ### Images and figures
 
 For overview images and other documents we follow the nf-core [style guidelines and examples](https://nf-co.re/developers/design_guidelines).
-
-## GitHub Codespaces
-
-This repo includes a devcontainer configuration which will create a GitHub Codespaces for Nextflow development! This is an online developer environment that runs in your browser, complete with VSCode and a terminal.
-
-To get started:
-
-- Open the repo in [Codespaces](https://github.com/Clinical-Genomics/oncorefiner/codespaces)
-- Tools installed
-  - nf-core
-  - Nextflow
-
-Devcontainer specs:
-
-- [DevContainer config](.devcontainer/devcontainer.json)
