@@ -36,7 +36,7 @@
    1. Filter according to user provided list of clinically relevant variants with [`bcftools`](https://github.com/samtools/bcftools)
 
 1. Process SV VCF files
-   1. SVDB QUERY ???
+   1. Annotate VCF with external database (params) using [`SVDB`](https://github.com/J35P312/SVDB)
    1. Filter according to call quality with ???
    1. Filter according to user provided list of research relevant variant with [`bcftools`](https://github.com/samtools/bcftools)
    1. Annotate with [`Ensembl VEP`](https://www.ensembl.org/info/docs/tools/vep/index.html)
