@@ -47,24 +47,6 @@
 
 For further information about the each step and output files, please refer to the [output documentation](.github/docs/output.md).
 
-### Summary of tools and version used in the pipeline
-
-| Step                  | Tool          | Version |
-| --------------------- | ------------- | ------- |
-| Clinical Filtering    | bcftools      | 1.22    |
-| Clinical Filtering SV | bcftools      | 1.22    |
-| EnsemblVEP SNV        | ensemblvep    | 115.2   |
-| EnsemblVEP SNV        | perl-math-cdf | 0.1     |
-| EnsemblVEP SNV        | tabix         | 1.21    |
-| EnsemblVEP SV         | ensemblvep    | 115.2   |
-| EnsemblVEP SV         | perl-math-cdf | 0.1     |
-| EnsemblVEP SV         | tabix         | 1.21    |
-| Research Filtering    | bcftools      | 1.22    |
-| Research Filtering SV | bcftools      | 1.22    |
-| SVDB Query DB         | svdb          | 2.8.4   |
-| Untar VEP Cache       | untar         | 1.34    |
-| Vcfanno               | vcfanno       | 0.3.7   |
-
 ## Usage
 
 > [!NOTE]
