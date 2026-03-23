@@ -148,8 +148,7 @@ workflow ONCOREFINER {
             // VEP
             RESEARCH_FILTERING.out.vcf
                     .map { meta, vcf ->
-                        def custom_extra_files = params.custom_extra_files ? file(params.custom_extra_files) : []
-                        tuple(meta, vcf, custom_extra_files)
+                        tuple(meta, vcf, [])
                     }
                     //.set { ch_cadd_snv }
                     .set {ch_vep_snv}
@@ -174,7 +173,7 @@ workflow ONCOREFINER {
             ENSEMBLVEP_SNV (
                 ch_vep_snv,
                 params.genome,
-                "homo_sapiens",
+                params.species,
                 params.vep_cache_version,
                 ch_vep_cache,
                 ch_genome_fasta,
@@ -230,15 +229,14 @@ workflow ONCOREFINER {
             // VEP
             RESEARCH_FILTERING_SV.out.vcf
                 .map { meta, vcf ->
-                            def custom_extra_files = params.custom_extra_files ? file(params.custom_extra_files) : []
-                            tuple(meta, vcf, custom_extra_files) }
+                            tuple(meta, vcf, []) }
                 .set { ch_vep_sv }
 
 
             ENSEMBLVEP_SV(
                 ch_vep_sv,
                 params.genome,
-                "homo_sapiens",
+                params.species,
                 params.vep_cache_version,
                 ch_vep_cache,
                 ch_genome_fasta,
