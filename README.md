@@ -23,6 +23,9 @@
 
 **Clinical-Genomics/oncorefiner** is a customizable post-processing and extension layer for Oncoanalyser that adapts its outputs according to clinical and operational needs, adds missing analyses, and ensures flexibility for evolving standards while retaining Oncoanalyser's robust core.
 
+<!-- TODO: Add information about the processes and the output when the architecture of the pipeline is decided and the information is clear.
+
+
 ### Workflow diagram
 
 <!-- TODO nf-core: Include a figure that guides the user through the major workflow steps. Many nf-core
@@ -43,6 +46,8 @@
    1. Filter according to user provided list of clinically relevant variants with [`bcftools`](https://github.com/samtools/bcftools)
 
 1. Present QC for raw reads ([`MultiQC`](http://multiqc.info/))
+
+For further information about the each step and output files, please refer to the [output documentation](.github/docs/output.md).
 
 ### Summary of tools and version used in the pipeline
 
