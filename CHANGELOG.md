@@ -48,6 +48,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#49](https://github.com/Clinical-Genomics/oncorefiner/pull/49) Added `species` parameter to provide information for annotation which was previously hardcoded.
 - [#50](https://github.com/Clinical-Genomics/oncorefiner/pull/50) Added settings and moved ungrouped parameters to relevant groups.
 - [#48](https://github.com/Clinical-Genomics/oncorefiner/pull/48) Updated documentation.
+- [#54](https://github.com/Clinical-Genomics/oncorefiner/pull/54) Fixed bug in `MULTIQC` input channel that prevented the step from running.
 
 ### `Dependencies`
 
