@@ -144,27 +144,24 @@ workflow ONCOREFINER {
             RESEARCH_FILTERING(ch_research_filtering_in, [], [], [])
 
 
-            /*
+
             // VEP
             RESEARCH_FILTERING.out.vcf
                     .map { meta, vcf ->
                         def custom_extra_files = params.custom_extra_files ? file(params.custom_extra_files) : []
                         tuple(meta, vcf, custom_extra_files)
                     }
-                    .set { ch_cadd_snv }
-            */
+                    //.set { ch_cadd_snv }
+                    .set {ch_vep_snv}
+
 
 
             // ANNOTATE WITH CADD
             if (params.cadd_resources != null) {
-                TABIX_RESEARCH_FILTERING (RESEARCH_FILTERING.out.vcf)
-
-                RESEARCH_FILTERING.out.vcf
-                    .join(TABIX_RESEARCH_FILTERING.out.tbi, failOnMismatch:true, failOnDuplicate:true)
-                    .set {ch_cadd_snv}
 
                 ANNOTATE_CADD (
-                    ch_cadd_snv,
+                    ch_vep_snv,
+                    //ch_cadd_snv,
                     ch_cadd_header,
                     ch_cadd_resources,
                     ch_cadd_prescored_indels
