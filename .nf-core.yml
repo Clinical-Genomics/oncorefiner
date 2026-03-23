@@ -6,6 +6,7 @@ lint:
     - .github/workflows/awsfulltest.yml
     - conf/igenomes.config
     - conf/igenomes_ignored.config
+    - .github/CONTRIBUTING.md
   files_unchanged:
     - .github/ISSUE_TEMPLATE/bug_report.yml
     - .github/ISSUE_TEMPLATE/feature_request.yml
@@ -14,7 +15,6 @@ lint:
     - .prettierignore
     - assets/sendmail_template.txt
     - docs/README.md
-    - .github/CONTRIBUTING.md
   multiqc_config: false
 nf_core_version: 3.5.2
 repository_type: pipeline
