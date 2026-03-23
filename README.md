@@ -32,12 +32,10 @@
      workflows use the "tube map" design for that. See https://nf-co.re/docs/guidelines/graphic_design/workflow_diagrams#examples for examples.   -->
 
 1. Process SNV VCF files
-   1. Annotate with [`Vcfanno`](https://github.com/brentp/vcfanno)
-   1. Filter according to call quality with [`bcftools`](https://github.com/samtools/bcftools)
-   1. Filter according to user provided list of research relevant variant with [`bcftools`](https://github.com/samtools/bcftools)
+   1. Annotate with [`Vcfanno`](https://github.com/brentp/vcfanno). Intended for local/custom annotation.
+   1. Filter with [`bcftools`](https://github.com/samtools/bcftools). This step aims to apply quality, population-level filtering and/or other general criteria as defined in the configuration settings. 
    1. Annotate with [`Ensembl VEP`](https://www.ensembl.org/info/docs/tools/vep/index.html)
-   1. Filter according to user provided list of clinically relevant variants with [`bcftools`](https://github.com/samtools/bcftools)
-
+   1. Filter with [`bcftools`](https://github.com/samtools/bcftools). This step applies clinically relevant filters as defined in the configuration settings. For example, it may involve subsetting variants based on a a list of clinically relevant genes. 
 1. Process SV VCF files
    1. Annotate VCF with external database (params) using [`SVDB`](https://github.com/J35P312/SVDB)
    1. Filter according to call quality with ???
