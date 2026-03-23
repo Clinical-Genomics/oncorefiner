@@ -266,13 +266,7 @@ workflow ONCOREFINER {
         //
         // MODULE: MultiQC
         //
-        ch_multiqc_config        =  params.multiqc_config ?
-            channel.fromPath(params.multiqc_config, checkIfExists: true) :
-            channel.fromPath("$projectDir/assets/multiqc_config.yml", checkIfExists: true)
-
-        ch_multiqc_logo          = params.multiqc_logo ?
-            channel.fromPath(params.multiqc_logo, checkIfExists: true) :
-            channel.empty()
+        ch_multiqc_files = ch_multiqc_files.mix(ch_collated_versions)
 
         summary_params      = paramsSummaryMap(
             workflow, parameters_schema: "nextflow_schema.json")
@@ -285,7 +279,6 @@ workflow ONCOREFINER {
         ch_methods_description                = channel.value(
             methodsDescriptionText(ch_multiqc_custom_methods_description))
 
-        ch_multiqc_files = ch_multiqc_files.mix(ch_collated_versions)
         ch_multiqc_files = ch_multiqc_files.mix(
             ch_methods_description.collectFile(
                 name: 'methods_description_mqc.yaml',
@@ -293,15 +286,19 @@ workflow ONCOREFINER {
             )
         )
 
-        ch_multiqc_input = channel.of([id: ""])
-            .combine(ch_multiqc_files.collect())
-            .combine(ch_multiqc_config.toList())
-            .combine(ch_multiqc_logo.toList())
-            .combine([])
-            .combine([])
-
-        MULTIQC (
-            ch_multiqc_input
+        MULTIQC(
+            ch_multiqc_files.flatten().collect().map { files ->
+                [
+                    [id: ''],
+                    files,
+                    params.multiqc_config
+                    ? file(params.multiqc_config, checkIfExists: true)
+                    : file("${projectDir}/assets/multiqc_config.yml", checkIfExists: true),
+                    params.multiqc_logo ? file(params.multiqc_logo, checkIfExists: true) : [],
+                    [],
+                    [],
+                ]
+            }
         )
 
     emit:
