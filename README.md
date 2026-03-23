@@ -100,13 +100,13 @@ For more details about the output files and reports, please refer to the [output
 
 Clinical-Genomics/oncorefiner was originally written by Clinical Genomics Stockholm.
 
-We thank the following people for their extensive assistance in the development of this pipeline:
+We thank the following people, in order of [contribution](https://github.com/Clinical-Genomics/oncorefiner/graphs/contributors), for their extensive assistance in the development of this pipeline:
 
+- [Beatriz Sá Vinhas](https://github.com/beatrizsavinhas)
 - [Eva Caceres](https://github.com/fevac)
 - [Kristine Bilgrav Sæther](https://github.com/kristinebilgrav)
-- [Beatriz Sá Vinhas](https://github.com/beatrizsavinhas)
-- [Mathias Johansson](https://github.com/mathiasbio)
 - [Felix Lenner](https://github.com/fellen31)
+- [Mathias Johansson](https://github.com/mathiasbio)
 
 ## Contributions and Support
 
