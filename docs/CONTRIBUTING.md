@@ -184,7 +184,93 @@ If you wish to contribute a new step, please use the following coding standards:
 
 <!-- TODO: Add information about parameters for skipping tools when that logic is decided. -->
 
-// Continue here. From "Publishing" in raredisease guidelines.
+### Publishing
+
+- Build a single `ch_publish` channel inside each subworkflow by mixing all publishable outputs into `[destination, value]` tuples.
+- The emit name must always be `publish = ch_publish` — never the bare shorthand.
+- Group channels that share a destination with `mix` first, then apply **one** `.map` per destination group — never one map per channel.
+- If your subworkflow calls inner subworkflows, always mix their `.out.publish` into the outer `ch_publish`. Never discard it.
+- Remove the corresponding `publishDir` entry from `conf/modules/` when adding a process to `ch_publish`.
+
+// Continue here
+
+### Configuration
+
+- Process-level options go in `conf/modules/<subworkflow_name>.config`, not inline in the subworkflow `.nf` file.
+- Only `ext.args`, `ext.args2`, and `ext.prefix` belong in module configs. Don't add business logic there.
+- Conditional behavior (e.g. save as CRAM vs BAM) is handled in the subworkflow via `channel.empty()` gating — not via config-level flags.
+- Process resource requirements (CPUs / memory / time) go in `conf/base.config` using `withLabel:` selectors so they can be shared across processes. Use `${task.cpus}` and `${task.memory}` in `script:` blocks to apply them dynamically.
+
+### Writing tests
+
+- Every subworkflow should have a test at `subworkflows/local/<name>/tests/main.nf.test`.
+- Use `-stub` in the `when:` block only when real test data is difficult to generate. Prefer running with real data where it is reasonably available.
+- Snapshot files (`*.nf.test.snap`) are committed alongside tests — update them when outputs change.
+- Pipeline-level tests live in `tests/` and cover `default`, `test_bam`, and `test_singleton` profiles.
+- Run `nf-test test <path>` for a single test, `nf-test test` for all.
+
+### Style
+
+- Both `take:` and `emit:` block entries require an inline type comment. Use `name // type: [mandatory|optional] description` for `take:` and `name = value // channel: [type description]` for `emit:`. Always include the comment — never leave an entry uncommented.
+
+  ```groovy
+  take:
+      ch_vcf                // channel: [mandatory] [ val(meta), path(vcf) ]
+      ch_reduced_penetrance // channel: [optional]  [ path(penetrance) ]
+      val_aligner           // string:  [mandatory] aligner name (bwa/bwamem2/bwameme)
+      process_with_sort     // Boolean
+
+  emit:
+      vcf     = ch_vcf      // channel: [ val(meta), path(vcf) ]
+      publish = ch_publish  // channel: [ val(destination), val(value) ]
+  ```
+
+- Intermediate publish channels in `workflows/raredisease.nf` follow the `ch_<subworkflow_name>_publish` naming convention and are assigned immediately after the subworkflow call, not inline in the emit block.
+- Initialize all `ch_*_publish` variables at the top of the `main:` block alongside `ch_multiqc_files`.
+
+### Adding citations
+
+When adding a new tool to the pipeline, update the following three locations:
+
+#### 1. `CITATIONS.md`
+
+Add an entry for the tool in alphabetical order under `## Pipeline tools`. If the tool has a publication, include a `>` citation block:
+
+```markdown
+- [ToolName](https://link-to-paper-or-repo)
+
+  > Author A, Author B. Title. Journal. Year;vol(issue):pages. doi:...
+```
+
+If the tool has no publication, list only the link:
+
+```markdown
+- [ToolName](https://github.com/org/toolname)
+```
+
+#### 2. `subworkflows/local/utils_nfcore_raredisease_pipeline/main.nf`
+
+Add citation text and bibliography entries inside `toolCitationText()` and `toolBibliographyText()`. Both functions are structured identically — group the tool's entry under the relevant category variable (e.g. `align_text`, `qc_bam_text`, `preprocessing_text`, `snv_annotation_text`). Mirror any conditional logic that gates the tool's execution (e.g. skip params, analysis type, or input content) so the citation only appears when the tool actually runs:
+
+```groovy
+// toolCitationText()
+qc_bam_text = [
+    ...,
+    (condition) ? "ToolName (Author et al., Year)," : ""
+]
+
+// toolBibliographyText()
+qc_bam_text = [
+    ...,
+    (condition) ? "<li>Author A, Author B. Title. Journal. Year. doi:...</li>" : ""
+]
+```
+
+For tools that run only when the input samplesheet contains a particular file type, use a helper function rather than a param check — see `hasSpringInput()` as an example.
+
+#### 3. `README.md`
+
+Add the tool to the relevant numbered section in the **Pipeline summary**. If the tool belongs to a new category not yet represented, add a new numbered section in the appropriate position.
 
 ### Default processes resource requirements
 
