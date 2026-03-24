@@ -19,19 +19,17 @@ Contributions to the code are even more welcome ;)
   - [Nextflow version bumping](#nextflow-version-bumping)
   - [Update nf-core template](#update-nf-core-template)
   - [GitHub Codespaces](#github-codespaces)
-- [Pipeline contribution conventions](#pipeline-contribution-conventions)
+  - [Adding citations](#adding-citations)
+  - [Images and figures](#images-and-figures)
+- [Coding conventions](#coding-conventions)
   - [Architecture & structure](#architecture--structure)
   - [Adding a new step](#adding-a-new-step)
   - [Channel](#channel)
   - [Parameters](#parameters)
-
   - [Publishing](#publishing)
   - [Configuration](#configuration)
   - [Writing tests](#writing-tests)
   - [Style](#style)
-  - [Adding citations](#adding-citations)
-
-  - [Images and figures](#images-and-figures)
 
 ## General
 
@@ -150,7 +148,49 @@ Devcontainer specs:
 
 - [DevContainer config](.devcontainer/devcontainer.json)
 
-## Pipeline contribution conventions
+### Adding citations
+
+When adding a new tool to the pipeline, update the following three locations:
+
+#### 1. `CITATIONS.md`
+
+Add an entry for the tool in alphabetical order under `## Pipeline tools`. If the tool has a publication, include a `>` citation block:
+
+```markdown
+- [ToolName](https://link-to-paper-or-repo)
+
+  > Author A, Author B. Title. Journal. Year;vol(issue):pages. doi:...
+```
+
+#### 2. `subworkflows/local/utils_nfcore_raredisease_pipeline/main.nf`
+
+Add citation text and bibliography entries inside `toolCitationText()` and `toolBibliographyText()`. Both functions are structured identically — group the tool's entry under the relevant category variable (e.g. `align_text`, `qc_bam_text`, `preprocessing_text`, `snv_annotation_text`). Mirror any conditional logic that gates the tool's execution (e.g. skip params, analysis type, or input content) so the citation only appears when the tool actually runs:
+
+```groovy
+// toolCitationText()
+qc_bam_text = [
+    ...,
+    (condition) ? "ToolName (Author et al., Year)," : ""
+]
+
+// toolBibliographyText()
+qc_bam_text = [
+    ...,
+    (condition) ? "<li>Author A, Author B. Title. Journal. Year. doi:...</li>" : ""
+]
+```
+
+For tools that run only when the input samplesheet contains a particular file type, use a helper function rather than a param check — see `hasSpringInput()` as an example.
+
+#### 3. `README.md`
+
+Add the tool to the relevant numbered section in the **Pipeline summary**. If the tool belongs to a new category not yet represented, add a new numbered section in the appropriate position.
+
+### Images and figures
+
+For overview images and other documents we follow the nf-core [style guidelines and examples](https://nf-co.re/developers/design_guidelines).
+
+## Coding conventions
 
 To make the `Clinical-Genomics/oncorefiner` code and processing logic more understandable for new contributors and to ensure quality, we semi-standardise the way the code and other contributions are written.
 
@@ -227,57 +267,9 @@ If you wish to contribute a new step, please use the following coding standards:
 - Intermediate publish channels in `workflows/oncorefiner.nf` follow the `ch_<subworkflow_name>_publish` naming convention and are assigned immediately after the subworkflow call, not inline in the emit block.
 - Initialize all `ch_*_publish` variables at the top of the `main:` block alongside `ch_multiqc_files`.
 
-### Adding citations
-
-When adding a new tool to the pipeline, update the following three locations:
-
-#### 1. `CITATIONS.md`
-
-Add an entry for the tool in alphabetical order under `## Pipeline tools`. If the tool has a publication, include a `>` citation block:
-
-```markdown
-- [ToolName](https://link-to-paper-or-repo)
-
-  > Author A, Author B. Title. Journal. Year;vol(issue):pages. doi:...
-```
-
-#### 2. `subworkflows/local/utils_nfcore_raredisease_pipeline/main.nf`
-
-Add citation text and bibliography entries inside `toolCitationText()` and `toolBibliographyText()`. Both functions are structured identically — group the tool's entry under the relevant category variable (e.g. `align_text`, `qc_bam_text`, `preprocessing_text`, `snv_annotation_text`). Mirror any conditional logic that gates the tool's execution (e.g. skip params, analysis type, or input content) so the citation only appears when the tool actually runs:
-
-```groovy
-// toolCitationText()
-qc_bam_text = [
-    ...,
-    (condition) ? "ToolName (Author et al., Year)," : ""
-]
-
-// toolBibliographyText()
-qc_bam_text = [
-    ...,
-    (condition) ? "<li>Author A, Author B. Title. Journal. Year. doi:...</li>" : ""
-]
-```
-
-For tools that run only when the input samplesheet contains a particular file type, use a helper function rather than a param check — see `hasSpringInput()` as an example.
-
-#### 3. `README.md`
-
-Add the tool to the relevant numbered section in the **Pipeline summary**. If the tool belongs to a new category not yet represented, add a new numbered section in the appropriate position.
-
-### Default processes resource requirements
-
-Sensible defaults for process resource requirements (CPUs / memory / time) for a process should be defined in `conf/base.config`. These should generally be specified generic with `withLabel:` selectors so they can be shared across multiple processes/steps of the pipeline. A nf-core standard set of labels that should be followed where possible can be seen in the [nf-core pipeline template](https://github.com/nf-core/tools/blob/main/nf_core/pipeline-template/conf/base.config), which has the default process as a single core-process, and then different levels of multi-core configurations for increasingly large memory requirements defined with standardised labels.
-
-The process resources can be passed on to the tool dynamically within the process with the `${task.cpus}` and `${task.memory}` variables in the `script:` block.
-
-### Naming schemes
+#### Naming schemes
 
 Please use the following naming schemes, to make it easy to understand what is going where.
 
 - initial process channel: `ch_output_from_<process>`
 - intermediate and terminal channels: `ch_<previousprocess>_for_<nextprocess>`
-
-### Images and figures
-
-For overview images and other documents we follow the nf-core [style guidelines and examples](https://nf-co.re/developers/design_guidelines).
