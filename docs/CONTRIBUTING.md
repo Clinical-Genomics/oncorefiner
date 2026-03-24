@@ -95,6 +95,8 @@ You have the option to test your changes locally by running the pipeline. For re
 nf-test test --profile debug,test,docker --verbose
 ```
 
+You can also run `nf-test test <path>` for a single given test.
+
 When you create a pull request with changes, [GitHub Actions](https://github.com/features/actions) will run automatic tests.
 Typically, pull-requests are only fully reviewed when these tests are passing, though of course we can help out before then.
 
@@ -111,7 +113,7 @@ If any failures or warnings are encountered, please follow the listed URL for mo
 
 Each `nf-core` pipeline should be set up with a minimal set of test-data.
 `GitHub Actions` then runs the pipeline on this data to ensure that it exits successfully.
-If there are any failures then the automated tests fail.
+If there are any test failures then the automated check has status set to fail.
 These tests are run both with the latest available version of `Nextflow` and also the minimum required version that is stated in the pipeline code.
 
 ### Patch
@@ -192,8 +194,6 @@ If you wish to contribute a new step, please use the following coding standards:
 - If your subworkflow calls inner subworkflows, always mix their `.out.publish` into the outer `ch_publish`. Never discard it.
 - Remove the corresponding `publishDir` entry from `conf/modules/` when adding a process to `ch_publish`.
 
-// Continue here
-
 ### Configuration
 
 - Process-level options go in `conf/modules/<subworkflow_name>.config`, not inline in the subworkflow `.nf` file.
@@ -206,8 +206,7 @@ If you wish to contribute a new step, please use the following coding standards:
 - Every subworkflow should have a test at `subworkflows/local/<name>/tests/main.nf.test`.
 - Use `-stub` in the `when:` block only when real test data is difficult to generate. Prefer running with real data where it is reasonably available.
 - Snapshot files (`*.nf.test.snap`) are committed alongside tests — update them when outputs change.
-- Pipeline-level tests live in `tests/` and cover `default`, `test_bam`, and `test_singleton` profiles.
-- Run `nf-test test <path>` for a single test, `nf-test test` for all.
+- Pipeline-level tests live in `tests/` and cover the default and `test` profiles.
 
 ### Style
 
@@ -225,7 +224,7 @@ If you wish to contribute a new step, please use the following coding standards:
       publish = ch_publish  // channel: [ val(destination), val(value) ]
   ```
 
-- Intermediate publish channels in `workflows/raredisease.nf` follow the `ch_<subworkflow_name>_publish` naming convention and are assigned immediately after the subworkflow call, not inline in the emit block.
+- Intermediate publish channels in `workflows/oncorefiner.nf` follow the `ch_<subworkflow_name>_publish` naming convention and are assigned immediately after the subworkflow call, not inline in the emit block.
 - Initialize all `ch_*_publish` variables at the top of the `main:` block alongside `ch_multiqc_files`.
 
 ### Adding citations
@@ -240,12 +239,6 @@ Add an entry for the tool in alphabetical order under `## Pipeline tools`. If th
 - [ToolName](https://link-to-paper-or-repo)
 
   > Author A, Author B. Title. Journal. Year;vol(issue):pages. doi:...
-```
-
-If the tool has no publication, list only the link:
-
-```markdown
-- [ToolName](https://github.com/org/toolname)
 ```
 
 #### 2. `subworkflows/local/utils_nfcore_raredisease_pipeline/main.nf`
