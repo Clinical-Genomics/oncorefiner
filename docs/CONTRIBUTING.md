@@ -13,18 +13,27 @@ Contributions to the code are even more welcome ;)
 
 - [General](#general)
   - [Contribution workflow](#contribution-workflow)
+    - [Pull Requests](#pull-requests)
+      - [PR title conventions](#pr-title-conventions)
+      - [Review](#review)
   - [Installation and dependencies for development](#installation-and-dependencies-for-development)
   - [Running tests](#running-tests)
+    - [Lint tests](#lint-tests)
+    - [Pipeline tests](#pipeline-tests)
   - [Patch](#patch)
   - [Nextflow version bumping](#nextflow-version-bumping)
   - [Update nf-core template](#update-nf-core-template)
   - [GitHub Codespaces](#github-codespaces)
   - [Adding citations](#adding-citations)
+    - [1. `CITATIONS.md`](#1-citationsmd)
+    - [2. `subworkflows/local/utils_nfcore_oncorefiner_pipeline/main.nf`](#2-subworkflowslocalutils_nfcore_oncorefiner_pipelinemainnf)
+    - [3. `README.md`](#3-readmemd)
   - [Images and figures](#images-and-figures)
 - [Coding conventions](#coding-conventions)
   - [Architecture & structure](#architecture--structure)
   - [Adding a new step](#adding-a-new-step)
-  - [Channel](#channel)
+  - [Channels](#channels)
+    - [Naming schemes](#naming-schemes)
   - [Parameters](#parameters)
   - [Publishing](#publishing)
   - [Configuration](#configuration)
@@ -133,7 +142,7 @@ Since this is not an nf-core pipeline, the nf-core template is not automatically
 1. Update the `TEMPLATE` branch by running `nf-core pipelines sync`. Fix any merge conflicts and open a PR to then merge the changes.
 1. Open a PR to merge the `TEMPLATE` branch into `dev` to update the template files in the main codebase.
 
-## GitHub Codespaces
+### GitHub Codespaces
 
 This repo includes a devcontainer configuration which will create a GitHub Codespaces for Nextflow development! This is an online developer environment that runs in your browser, complete with VSCode and a terminal.
 
@@ -162,7 +171,7 @@ Add an entry for the tool in alphabetical order under `## Pipeline tools`. If th
   > Author A, Author B. Title. Journal. Year;vol(issue):pages. doi:...
 ```
 
-#### 2. `subworkflows/local/utils_nfcore_raredisease_pipeline/main.nf`
+#### 2. `subworkflows/local/utils_nfcore_oncorefiner_pipeline/main.nf`
 
 Add citation text and bibliography entries inside `toolCitationText()` and `toolBibliographyText()`. Both functions are structured identically — group the tool's entry under the relevant category variable (e.g. `align_text`, `qc_bam_text`, `preprocessing_text`, `snv_annotation_text`). Mirror any conditional logic that gates the tool's execution (e.g. skip params, analysis type, or input content) so the citation only appears when the tool actually runs:
 
@@ -215,9 +224,16 @@ If you wish to contribute a new step, please use the following coding standards:
 9. Update MultiQC config `assets/multiqc_config.yml` so relevant suffixes, file name clean up and module plots are in the appropriate order. If applicable, add a [MultiQC](https://https://multiqc.info/) module.
 10. Add a description of the output files and if relevant any appropriate images from the MultiQC report to `docs/output.md`.
 
-### Channel
+### Channels
 
 - **Conditional channels**: always initialize to `channel.empty()` before any `if` block that may or may not assign them. Never leave a channel potentially undefined.
+
+#### Naming conversions
+
+Please use the following naming schemes, to make it easy to understand what is going where.
+
+- initial process channel: `ch_output_from_<process>`
+- intermediate and terminal channels: `ch_<previousprocess>_for_<nextprocess>`
 
 ### Parameters
 
@@ -266,10 +282,3 @@ If you wish to contribute a new step, please use the following coding standards:
 
 - Intermediate publish channels in `workflows/oncorefiner.nf` follow the `ch_<subworkflow_name>_publish` naming convention and are assigned immediately after the subworkflow call, not inline in the emit block.
 - Initialize all `ch_*_publish` variables at the top of the `main:` block alongside `ch_multiqc_files`.
-
-#### Naming schemes
-
-Please use the following naming schemes, to make it easy to understand what is going where.
-
-- initial process channel: `ch_output_from_<process>`
-- intermediate and terminal channels: `ch_<previousprocess>_for_<nextprocess>`
