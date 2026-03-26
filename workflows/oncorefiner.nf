@@ -43,7 +43,7 @@ workflow ONCOREFINER {
 
     take:
         ch_samplesheet // channel: samplesheet read in from --input
-        ch_vep_cache   // channel: [mandatory] [ path(vep_cache) ]
+        vep_cache      // string: [mandatory] path(vep_cache)
 
     main:
 
@@ -134,7 +134,7 @@ workflow ONCOREFINER {
                 params.genome,
                 params.species,
                 params.vep_cache_version,
-                ch_vep_cache,
+                vep_cache,
                 ch_genome_fasta,
                 ch_vep_extra_files
             )
@@ -197,7 +197,7 @@ workflow ONCOREFINER {
                 params.genome,
                 params.species,
                 params.vep_cache_version,
-                ch_vep_cache,
+                vep_cache,
                 ch_genome_fasta,
                 ch_vep_extra_files
             )
