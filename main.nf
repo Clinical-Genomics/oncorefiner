@@ -38,6 +38,7 @@ workflow CLINICALGENOMICS_ONCOREFINER {
 
     // Initialize input channels
     ch_snv_vcf              = channel.fromPath(val_snv_vcf).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
+    ch_snv_vcf_tbi          = channel.fromPath(val_snv_vcf + '.tbi', checkIfExists: true).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
 
 
 
@@ -46,7 +47,8 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     //
     ONCOREFINER (
         samplesheet,
-        ch_snv_vcf
+        ch_snv_vcf,
+        ch_snv_vcf_tbi
     )
     emit:
     multiqc_report = ONCOREFINER.out.multiqc_report // channel: /path/to/multiqc_report.html

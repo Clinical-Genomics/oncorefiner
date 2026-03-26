@@ -45,6 +45,7 @@ workflow ONCOREFINER {
     take:
         ch_samplesheet // channel: samplesheet read in from --input
         ch_snv_vcf     // channel: [optional]  path to input SNV vcf
+        ch_snv_vcf_tbi // channel: [optional]  path to input SNV vcf tbi file
 
     main:
 
@@ -53,7 +54,7 @@ workflow ONCOREFINER {
         ch_multiqc_files        = channel.empty()
 
 
-        ch_snv_vcf_tbi          = channel.fromPath(params.snv_vcf + '.tbi', checkIfExists: true).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
+
         ch_sv_vcf               = channel.fromPath(params.sv_vcf).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
         ch_sv_vcf_tbi           = channel.fromPath(params.sv_vcf + '.tbi', checkIfExists: true).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
 
