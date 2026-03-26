@@ -44,6 +44,7 @@ workflow ONCOREFINER {
 
     take:
         ch_samplesheet // channel: samplesheet read in from --input
+        ch_snv_vcf     // channel: [optional]  path to input SNV vcf
 
     main:
 
@@ -112,7 +113,7 @@ workflow ONCOREFINER {
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
         // Process SNV VCF files
-        if (params.snv_vcf) {
+        if (ch_snv_vcf) {
 
             // Vcfanno
             ch_snv_vcf

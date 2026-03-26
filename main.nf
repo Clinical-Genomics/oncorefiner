@@ -40,11 +40,13 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     ch_snv_vcf              = channel.fromPath(val_snv_vcf).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
 
 
+
     //
     // WORKFLOW: Run pipeline
     //
     ONCOREFINER (
-        samplesheet
+        samplesheet,
+        ch_snv_vcf
     )
     emit:
     multiqc_report = ONCOREFINER.out.multiqc_report // channel: /path/to/multiqc_report.html
@@ -77,7 +79,7 @@ workflow {
     // WORKFLOW: Run main workflow
     //
     CLINICALGENOMICS_ONCOREFINER (
-        PIPELINE_INITIALISATION.out.samplesheet
+        PIPELINE_INITIALISATION.out.samplesheet,
         params.snv_vcf
     )
     //
