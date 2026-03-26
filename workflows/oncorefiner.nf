@@ -19,6 +19,7 @@ include { SVDB_QUERY as SVDB_QUERY_DB              } from '../modules/nf-core/sv
 include { ENSEMBLVEP_VEP as ENSEMBLVEP_SV          } from '../modules/nf-core/ensemblvep/vep/main'
 include { BCFTOOLS_VIEW as RESEARCH_FILTERING_SV   } from '../modules/nf-core/bcftools/view/main'
 include { BCFTOOLS_VIEW as CLINICAL_FILTERING_SV   } from '../modules/nf-core/bcftools/view/main'
+include { VCF2CYTOSURE                             } from '../modules/nf-core/vcf2cytosure/main'
 
 //
 // MODULE: Local modules
@@ -92,12 +93,12 @@ workflow ONCOREFINER {
         ch_sv_dbs                   = params.svdb_query_dbs                  ? channel.fromPath(params.svdb_query_dbs)
                                                                             : channel.empty()
 
-
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     ANNOTATE SNVs
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
+
         // Process SNV VCF files
         if (params.snv_vcf) {
 
@@ -153,6 +154,15 @@ workflow ONCOREFINER {
 
         // Process SV VCF files
         if (params.sv_vcf) {
+
+            // vcf2cytosure
+            VCF2CYTOSURE (
+                ch_sv_vcf.dump(tag: "ch_sv_vcf"),
+                [[:],[]],
+                [[:],[]],
+                ch_snv_vcf ? ch_snv_vcf : [[:],[]],
+                []
+            )
 
             // SVDB QUERY
             ch_sv_dbs
