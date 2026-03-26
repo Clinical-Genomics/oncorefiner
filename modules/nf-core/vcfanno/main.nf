@@ -11,7 +11,7 @@ process VCFANNO {
     tuple val(meta), path(vcf), path(tbi), path(specific_resources)
     path toml
     path lua
-    path resources 
+    path resources
 
     output:
     tuple val(meta), path("*.vcf.gz")       , emit: vcf
