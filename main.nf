@@ -29,8 +29,9 @@ workflow CLINICALGENOMICS_ONCOREFINER {
 
     take:
     samplesheet                 // channel: [mandatory] samplesheet read in from --input
-    val_snv_vcf                 // string:  [optional]  path to input SNV vcf
-    val_sv_vcf                  // string:  [optional]  path to input SV vcf
+    val_snv_vcf                 // string:  [optional]  path to input SNV vcf file
+    val_sv_vcf                  // string:  [optional]  path to input SV vcf file
+    val_genome_fasta            // string:  [optional]  path to genome fasta file
 
 
 
@@ -43,6 +44,9 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     ch_sv_vcf               = channel.fromPath(val_sv_vcf).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
     ch_sv_vcf_tbi           = channel.fromPath(val_sv_vcf + '.tbi', checkIfExists: true).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
 
+    // Reference files
+    ch_genome_fasta         = channel.fromPath(val_genome_fasta).map { it -> [[id:it.simpleName], it] }.collect()
+
 
 
     //
@@ -53,7 +57,8 @@ workflow CLINICALGENOMICS_ONCOREFINER {
         ch_snv_vcf,
         ch_snv_vcf_tbi,
         ch_sv_vcf,
-        ch_sv_vcf_tbi
+        ch_sv_vcf_tbi,
+        ch_genome_fasta
     )
     emit:
     multiqc_report = ONCOREFINER.out.multiqc_report // channel: /path/to/multiqc_report.html
@@ -88,7 +93,8 @@ workflow {
     CLINICALGENOMICS_ONCOREFINER (
         PIPELINE_INITIALISATION.out.samplesheet,
         params.snv_vcf,
-        params.sv_vcf
+        params.sv_vcf,
+        params.fasta
     )
     //
     // SUBWORKFLOW: Run completion tasks

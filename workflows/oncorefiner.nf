@@ -43,11 +43,12 @@ include { PREPARE_REFERENCES     } from '../subworkflows/local/prepare_reference
 workflow ONCOREFINER {
 
     take:
-        ch_samplesheet // channel: samplesheet read in from --input
-        ch_snv_vcf     // channel: [optional]  path to input SNV vcf
-        ch_snv_vcf_tbi // channel: [optional]  path to input SNV vcf tbi file
-        ch_sv_vcf      // channel: [optional]  path to input SV vcf
-        ch_sv_vcf_tbi  // channel: [optional]  path to input SV vcf tbi file
+        ch_samplesheet  // channel: [mandatory] samplesheet read in from --input
+        ch_snv_vcf      // channel: [optional]  path to input SNV vcf file
+        ch_snv_vcf_tbi  // channel: [optional]  path to input SNV vcf tbi file
+        ch_sv_vcf       // channel: [optional]  path to input SV vcf file
+        ch_sv_vcf_tbi   // channel: [optional]  path to input SV vcf tbi file
+        ch_genome_fasta // channel: [optional]  path to genome fasta file
 
     main:
 
@@ -55,8 +56,8 @@ workflow ONCOREFINER {
         ch_versions             = channel.empty()
         ch_multiqc_files        = channel.empty()
 
-        // Reference files
-        ch_genome_fasta         = channel.fromPath(params.fasta).map { it -> [[id:it.simpleName], it] }.collect()
+
+
 
         // File channels for PREPARE_REFERENCES
         ch_vep_cache_unprocessed     = params.vep_cache           ? channel.fromPath(params.vep_cache).map { it -> [[id:'vep_cache'], it] }.collect()
