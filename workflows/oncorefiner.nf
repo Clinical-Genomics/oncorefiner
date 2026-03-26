@@ -32,7 +32,6 @@ include { BCFTOOLS_VIEW as CLINICAL_FILTERING_SV   } from '../modules/nf-core/bc
 include { paramsSummaryMultiqc   } from '../subworkflows/nf-core/utils_nfcore_pipeline'
 include { softwareVersionsToYAML } from '../subworkflows/nf-core/utils_nfcore_pipeline'
 include { methodsDescriptionText } from '../subworkflows/local/utils_nfcore_oncorefiner_pipeline'
-include { PREPARE_REFERENCES     } from '../subworkflows/local/prepare_references'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -44,6 +43,7 @@ workflow ONCOREFINER {
 
     take:
         ch_samplesheet // channel: samplesheet read in from --input
+        ch_vep_cache   // channel: [mandatory] [ path(vep_cache) ]
 
     main:
 
@@ -59,20 +59,7 @@ workflow ONCOREFINER {
         // Reference files
         ch_genome_fasta         = channel.fromPath(params.fasta).map { it -> [[id:it.simpleName], it] }.collect()
 
-        // File channels for PREPARE_REFERENCES
-        ch_vep_cache_unprocessed     = params.vep_cache           ? channel.fromPath(params.vep_cache).map { it -> [[id:'vep_cache'], it] }.collect()
-                                                                : channel.value([[],[]])
-
-        PREPARE_REFERENCES (
-            ch_vep_cache_unprocessed
-        )
-        .set { ch_references }
-
-        // Gather or get from params
-        ch_vep_cache                = ( params.vep_cache && params.vep_cache.endsWith("tar.gz") )  ? ch_references.vep_resources
-                                                                            : ( params.vep_cache    ? channel.fromPath(params.vep_cache).collect() : channel.value([]) )
-
-        //
+                //
         // Read and store paths in the vep_plugin_files file
         //
         ch_vep_extra_files_unsplit  = params.vep_plugin_files ? channel.fromPath(params.vep_plugin_files).collect() : channel.value([])
