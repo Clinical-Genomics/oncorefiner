@@ -46,17 +46,14 @@ workflow ONCOREFINER {
         ch_samplesheet // channel: samplesheet read in from --input
         ch_snv_vcf     // channel: [optional]  path to input SNV vcf
         ch_snv_vcf_tbi // channel: [optional]  path to input SNV vcf tbi file
+        ch_sv_vcf      // channel: [optional]  path to input SV vcf
+        ch_sv_vcf_tbi  // channel: [optional]  path to input SV vcf tbi file
 
     main:
 
         // Initialize input channels
         ch_versions             = channel.empty()
         ch_multiqc_files        = channel.empty()
-
-
-
-        ch_sv_vcf               = channel.fromPath(params.sv_vcf).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
-        ch_sv_vcf_tbi           = channel.fromPath(params.sv_vcf + '.tbi', checkIfExists: true).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
 
         // Reference files
         ch_genome_fasta         = channel.fromPath(params.fasta).map { it -> [[id:it.simpleName], it] }.collect()
@@ -167,7 +164,7 @@ workflow ONCOREFINER {
         }
 
         // Process SV VCF files
-        if (params.sv_vcf) {
+        if (ch_sv_vcf) {
 
             // SVDB QUERY
             ch_sv_dbs
