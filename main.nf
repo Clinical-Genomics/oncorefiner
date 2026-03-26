@@ -28,9 +28,17 @@ include { PIPELINE_COMPLETION     } from './subworkflows/local/utils_nfcore_onco
 workflow CLINICALGENOMICS_ONCOREFINER {
 
     take:
-    samplesheet // channel: samplesheet read in from --input
+    samplesheet                 // channel: [mandatory] samplesheet read in from --input
+    val_snv_vcf                 // string:  [optional]  path to input SNV vcf
+
+
+
 
     main:
+
+    // Initialize input channels
+    ch_snv_vcf              = channel.fromPath(val_snv_vcf).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
+
 
     //
     // WORKFLOW: Run pipeline
@@ -70,6 +78,7 @@ workflow {
     //
     CLINICALGENOMICS_ONCOREFINER (
         PIPELINE_INITIALISATION.out.samplesheet
+        params.snv_vcf
     )
     //
     // SUBWORKFLOW: Run completion tasks

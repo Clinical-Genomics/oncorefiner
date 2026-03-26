@@ -51,7 +51,7 @@ workflow ONCOREFINER {
         ch_versions             = channel.empty()
         ch_multiqc_files        = channel.empty()
 
-        ch_snv_vcf              = channel.fromPath(params.snv_vcf).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
+
         ch_snv_vcf_tbi          = channel.fromPath(params.snv_vcf + '.tbi', checkIfExists: true).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
         ch_sv_vcf               = channel.fromPath(params.sv_vcf).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
         ch_sv_vcf_tbi           = channel.fromPath(params.sv_vcf + '.tbi', checkIfExists: true).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
