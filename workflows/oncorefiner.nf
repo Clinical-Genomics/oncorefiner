@@ -49,6 +49,7 @@ workflow ONCOREFINER {
         ch_sv_vcf       // channel: [optional]  path to input SV vcf file
         ch_sv_vcf_tbi   // channel: [optional]  path to input SV vcf tbi file
         ch_genome_fasta // channel: [optional]  path to genome fasta file
+        ch_vep_cache_unprocessed //channel: [optional] path to vep cache tar gzip file
 
     main:
 
@@ -58,10 +59,6 @@ workflow ONCOREFINER {
 
 
 
-
-        // File channels for PREPARE_REFERENCES
-        ch_vep_cache_unprocessed     = params.vep_cache           ? channel.fromPath(params.vep_cache).map { it -> [[id:'vep_cache'], it] }.collect()
-                                                                : channel.value([[],[]])
 
         PREPARE_REFERENCES (
             ch_vep_cache_unprocessed

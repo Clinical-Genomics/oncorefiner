@@ -32,6 +32,7 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     val_snv_vcf                 // string:  [optional]  path to input SNV vcf file
     val_sv_vcf                  // string:  [optional]  path to input SV vcf file
     val_genome_fasta            // string:  [optional]  path to genome fasta file
+    val_vep_cache               // string:  [optional] path to vep cache tar gzip file
 
 
 
@@ -47,6 +48,10 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     // Reference files
     ch_genome_fasta         = channel.fromPath(val_genome_fasta).map { it -> [[id:it.simpleName], it] }.collect()
 
+    // File channels for PREPARE_REFERENCES
+    ch_vep_cache_unprocessed     = val_vep_cache           ? channel.fromPath(val_vep_cache).map { it -> [[id:'vep_cache'], it] }.collect()
+                                                           : channel.value([[],[]])
+
 
 
     //
@@ -58,7 +63,8 @@ workflow CLINICALGENOMICS_ONCOREFINER {
         ch_snv_vcf_tbi,
         ch_sv_vcf,
         ch_sv_vcf_tbi,
-        ch_genome_fasta
+        ch_genome_fasta,
+        ch_vep_cache_unprocessed
     )
     emit:
     multiqc_report = ONCOREFINER.out.multiqc_report // channel: /path/to/multiqc_report.html
@@ -94,7 +100,8 @@ workflow {
         PIPELINE_INITIALISATION.out.samplesheet,
         params.snv_vcf,
         params.sv_vcf,
-        params.fasta
+        params.fasta,
+        params.vep_cache
     )
     //
     // SUBWORKFLOW: Run completion tasks
