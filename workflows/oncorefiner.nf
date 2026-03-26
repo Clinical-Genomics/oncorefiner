@@ -59,7 +59,7 @@ workflow ONCOREFINER {
         // Reference files
         ch_genome_fasta         = channel.fromPath(params.fasta).map { it -> [[id:it.simpleName], it] }.collect()
 
-                //
+        //
         // Read and store paths in the vep_plugin_files file
         //
         ch_vep_extra_files_unsplit  = params.vep_plugin_files ? channel.fromPath(params.vep_plugin_files).collect() : channel.value([])
