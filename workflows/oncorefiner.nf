@@ -60,6 +60,7 @@ workflow ONCOREFINER {
 
         // Reference files
         ch_genome_fasta         = channel.fromPath(params.fasta).map { it -> [[id:it.simpleName], it] }.collect()
+        ch_genome_fai           = channel.fromPath(params.fai).map {it -> [[id:it.simpleName], it]  }.collect()
 
         // File channels for PREPARE_REFERENCES
         ch_vep_cache_unprocessed     = params.vep_cache           ? channel.fromPath(params.vep_cache).map { it -> [[id:'vep_cache'], it] }.collect()
@@ -71,14 +72,14 @@ workflow ONCOREFINER {
         .set { ch_references }
 
         // Gather or get from params
-        ch_vep_cache                = ( params.vep_cache && params.vep_cache.endsWith("tar.gz") )  ? ch_references.vep_resources
+        ch_vep_cache                 = ( params.vep_cache && params.vep_cache.endsWith("tar.gz") )  ? ch_references.vep_resources
                                                                                 : ( params.vep_cache    ? channel.fromPath(params.vep_cache).collect() : channel.value([]) )
 
-        ch_cadd_header              = Channel.fromPath("$projectDir/assets/cadd_to_vcf_header_-1.0-.txt", checkIfExists: true).collect()
-        ch_cadd_resources           = params.cadd_resources                     ? Channel.fromPath(params.cadd_resources).collect()
-                                                                                : Channel.value([])
-        ch_cadd_prescored_indels     = createReferenceChannelFromPath(params.cadd_prescored_indels) // align with above
-
+        ch_cadd_header               = channel.fromPath("$projectDir/assets/cadd_to_vcf_header.txt", checkIfExists: true).collect()
+        ch_cadd_resources            = params.cadd_resources                     ? channel.fromPath(params.cadd_resources).map { it -> [[id:'cadd_resources'], it] }.collect()
+                                                                                 : channel.value([])
+        ch_cadd_prescored_indels     = params.cadd_prescored_indels              ? channel.fromPath(params.cadd_prescored_indels).map { it -> [[id:'cadd_prescored_indels'], it] }.collect()
+                                                                                 : channel.value([])
 
         //
         // Read and store paths in the vep_plugin_files file
@@ -143,9 +144,7 @@ workflow ONCOREFINER {
 
             RESEARCH_FILTERING(ch_research_filtering_in, [], [], [])
 
-
-
-            // VEP
+            // TODO remove or move down - not used if cadd output is input to vep
             RESEARCH_FILTERING.out.vcf
                     .map { meta, vcf ->
                         tuple(meta, vcf, [])
@@ -153,23 +152,28 @@ workflow ONCOREFINER {
                     //.set { ch_cadd_snv }
                     .set {ch_vep_snv}
 
-
-
-            // ANNOTATE WITH CADD
+            // ANNOTATE WITH CADD - currently depends on resources - could be variable instead (ref optional wf refinement)?
             if (params.cadd_resources != null) {
 
+                TABIX_RESEARCH_FILTERING(RESEARCH_FILTERING.out.vcf)
+
+                RESEARCH_FILTERING.out.vcf
+                    .join(TABIX_RESEARCH_FILTERING.out.index, failOnMismatch:true, failOnDuplicate:true)
+                    .set{ ch_cadd_in }
+
                 ANNOTATE_CADD (
-                    ch_vep_snv,
-                    //ch_cadd_snv,
+                    ch_cadd_in,
+                    params.genome,
+                    ch_genome_fai,
                     ch_cadd_header,
                     ch_cadd_resources,
                     ch_cadd_prescored_indels
                 )
-                ch_vep_snv = ANNOTATE_CADD.out.vcf
-                ch_versions = ch_versions.mix(ANNOTATE_CADD.out.versions)
+                //ch_vep_snv = ANNOTATE_CADD.out.vcf
 
             }
 
+            // VEP
             ENSEMBLVEP_SNV (
                 ch_vep_snv,
                 params.genome,
