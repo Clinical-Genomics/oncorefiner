@@ -50,6 +50,10 @@ workflow ONCOREFINER {
         ch_genome_fasta    // channel: [optional]  [val(meta), path(fasta)]
         ch_vep_cache       // channel: [optional]  [vep_cache_files]
         ch_vep_extra_files // channel: [optional]  [path(plugin_file1), path(plugin_file2), ...]
+        ch_vcfanno_resources // channel: [optional]  [path(resource_file1), path(resource_file2), ...]
+        ch_vcfanno_lua     // channel: [optional]  [path(lua_file)]
+        ch_vcfanno_toml    // channel: [optional]  [path(toml_file)]
+        ch_vcfanno_extra   // channel: [optional]  [path(extra_file1), path(extra_file2), ...]
 
     main:
 
