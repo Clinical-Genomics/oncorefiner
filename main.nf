@@ -78,14 +78,15 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     }
 
     // Vcfanno: Initialize channels for vcfanno resources, lua and toml files, and extra files
-    ch_vcfanno_resources = val_vcfanno_resources ? channel.fromPath(val_vcfanno_resources).splitText().map{it -> it.trim()}.collect()
-                                                 : channel.value([])
+    ch_vcfanno_extra     = val_vcfanno_extra     ? channel.fromPath(val_vcfanno_extra).collect()
+                                                 : []
     ch_vcfanno_lua       = val_vcfanno_lua       ? channel.fromPath(val_vcfanno_lua).collect()
+                                                 : channel.value([])
+    ch_vcfanno_resources = val_vcfanno_resources ? channel.fromPath(val_vcfanno_resources).splitText().map{it -> it.trim()}.collect()
                                                  : channel.value([])
     ch_vcfanno_toml      = val_vcfanno_toml      ? channel.fromPath(val_vcfanno_toml).collect()
                                                  : channel.value([])
-    ch_vcfanno_extra     = val_vcfanno_extra     ? channel.fromPath(val_vcfanno_extra).collect()
-                                                 : []
+
 
     // SVDB: Initialize channel for SVDB query csv file
     ch_sv_dbs            = val_svdb_query_dbs    ? channel.fromPath(val_svdb_query_dbs)
