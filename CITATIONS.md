@@ -18,11 +18,13 @@
 
 - [`Ensembl VEP`](https://www.ensembl.org/info/docs/tools/vep/index.html)
 
-  > McLaren W, Gil L, Hunt SE, Riat HS, Ritchie GR, Thormann A, Flicek P, Cunningham F. The Ensembl Variant Effect Predictor. Genome Biology. Jun 6;17(1):122. doi:10.1186/s13059-016-0974-4. PubMed PMID: 27268795; PMCID: PMC4893825.
+  > McLaren W, Gil L, Hunt SE, Riat HS, Ritchie GR, Thormann A, Flicek P, Cunningham F. The Ensembl Variant Effect Predictor. Genome Biology. 2016 Jun 6;17(1):122. doi:10.1186/s13059-016-0974-4. PubMed PMID: 27268795; PMCID: PMC4893825.
 
 - [MultiQC](https://pubmed.ncbi.nlm.nih.gov/27312411/)
 
   > Ewels P, Magnusson M, Lundin S, Käller M. MultiQC: summarize analysis results for multiple tools and samples in a single report. Bioinformatics. 2016 Oct 1;32(19):3047-8. doi: 10.1093/bioinformatics/btw354. Epub 2016 Jun 16. PubMed PMID: 27312411; PubMed Central PMCID: PMC5039924.
+
+- [`SVDB`](https://github.com/J35P312/svdb)
 
 - [`Vcfanno`](https://github.com/brentp/vcfanno)
 
