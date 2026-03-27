@@ -32,6 +32,7 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     samplesheet                 // channel: [mandatory] samplesheet read in from --input
     val_snv_vcf                 // string:  [optional]  path to input SNV vcf file
     val_sv_vcf                  // string:  [optional]  path to input SV vcf file
+    val_genome                  // string:  [optional]  genome assembly (e.g. "GRCh38")
     val_genome_fasta            // string:  [optional]  path to genome fasta file
     val_vep_cache               // string:  [optional]  path to vep cache tar gzip file
     val_vep_plugin_files        // string:  [optional]  path to file containing paths to vep plugin files (one per line)
@@ -113,7 +114,8 @@ workflow CLINICALGENOMICS_ONCOREFINER {
         ch_vcfanno_lua,
         ch_vcfanno_toml,
         ch_vcfanno_extra,
-        ch_sv_dbs
+        ch_sv_dbs,
+        val_genome
     )
     emit:
     multiqc_report = ONCOREFINER.out.multiqc_report // channel: /path/to/multiqc_report.html
@@ -156,7 +158,8 @@ workflow {
         params.vcfanno_lua,
         params.vcfanno_toml,
         params.vcfanno_extra,
-        params.svdb_query_dbs
+        params.svdb_query_dbs,
+        params.genome
     )
     //
     // SUBWORKFLOW: Run completion tasks

@@ -55,6 +55,7 @@ workflow ONCOREFINER {
         ch_vcfanno_toml      // channel: [optional]  [path(toml_file)]
         ch_vcfanno_extra     // channel: [optional]  [path(extra_file1), path(extra_file2), ...]
         ch_sv_dbs            // channel: [optional]  [path(csv)]
+        val_genome           // string:  [optional]  genome assembly (e.g. "GRCh38")
 
     main:
 
@@ -100,7 +101,7 @@ workflow ONCOREFINER {
 
             ENSEMBLVEP_SNV (
                 ch_vep_snv,
-                params.genome,
+                val_genome,
                 params.species,
                 params.vep_cache_version,
                 ch_vep_cache,
@@ -162,7 +163,7 @@ workflow ONCOREFINER {
 
             ENSEMBLVEP_SV(
                 ch_vep_sv,
-                params.genome,
+                val_genome,
                 params.species,
                 params.vep_cache_version,
                 ch_vep_cache,
