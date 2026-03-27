@@ -144,12 +144,10 @@ workflow ONCOREFINER {
 
             RESEARCH_FILTERING(ch_research_filtering_in, [], [], [])
 
-            // TODO remove or move down - not used if cadd output is input to vep
             RESEARCH_FILTERING.out.vcf
                     .map { meta, vcf ->
                         tuple(meta, vcf, [])
                     }
-                    //.set { ch_cadd_snv }
                     .set {ch_vep_snv}
 
             // ANNOTATE WITH CADD - currently depends on resources - could be variable instead (ref optional wf refinement)?
@@ -163,15 +161,20 @@ workflow ONCOREFINER {
 
                 ANNOTATE_CADD (
                     ch_cadd_in,
-                    params.genome,
+                    params.genome, //TODO pull dev and change to val_genome
                     ch_genome_fai,
                     ch_cadd_header,
                     ch_cadd_resources,
                     ch_cadd_prescored_indels
                 )
-                //ch_vep_snv = ANNOTATE_CADD.out.vcf
+                ch_cadd_snv = ANNOTATE_CADD.out.vcf
 
             }
+
+            ch_cadd_snv // Q: is it better to make this channel in the annotate cadd subwf?
+                .join(ANNOTATE_CADD.out.tbi)
+                .map { meta, vcf, tbi -> tuple(meta, vcf, tbi) }
+                .set { ch_vep_snv }
 
             // VEP
             ENSEMBLVEP_SNV (

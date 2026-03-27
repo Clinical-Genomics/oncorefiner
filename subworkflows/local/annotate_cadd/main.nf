@@ -3,7 +3,7 @@
 //
 
 include { BCFTOOLS_ANNOTATE as RENAME_CHR_CADD     } from '../../../modules/nf-core/bcftools/annotate/main'
-include { BCFTOOLS_ANNOTATE as ANNOTATE_INDELS      } from '../../../modules/nf-core/bcftools/annotate/main'
+include { BCFTOOLS_ANNOTATE as ANNOTATE_INDELS     } from '../../../modules/nf-core/bcftools/annotate/main'
 include { BCFTOOLS_VIEW                            } from '../../../modules/nf-core/bcftools/view/main'
 include { CADD                                     } from '../../../modules/nf-core/cadd/main'
 include { GAWK as REFERENCE_TO_CADD_CHRNAMES       } from '../../../modules/nf-core/gawk/main'
@@ -24,10 +24,10 @@ workflow ANNOTATE_CADD {
 
     main:
 
-        ch_rename_chrs_ref    = []
+        ch_rename_chrs_ref    = channel.value([[]])
 
         // Create files and rename chromosomes if reference is GRCh38
-        if (val_genome.equals('GRCh38')) { // TODO change to 38
+        if (val_genome.equals('GRCh38')) {
 
             // Create txt files for changing of chromosomes
             REFERENCE_TO_CADD_CHRNAMES ( ch_fai , [], false )
@@ -73,8 +73,6 @@ workflow ANNOTATE_CADD {
 
 
         ANNOTATE_INDELS( ch_annotate )
-
-        ANNOTATE_INDELS.out.vcf.view() //TODO fix
 
     emit:
         vcf = ANNOTATE_INDELS.out.vcf // channel: [ val(meta), path(vcf) ]
