@@ -42,29 +42,25 @@ include { methodsDescriptionText } from '../subworkflows/local/utils_nfcore_onco
 workflow ONCOREFINER {
 
     take:
-        ch_samplesheet     // channel: [mandatory] samplesheet read in from --input
-        ch_snv_vcf         // channel: [optional]  [val(meta), path(vcf)]
-        ch_snv_vcf_tbi     // channel: [optional]  [val(meta), path(vcf.tbi)]
-        ch_sv_vcf          // channel: [optional]  [val(meta), path(vcf)]
-        ch_sv_vcf_tbi      // channel: [optional]  [val(meta), path(vcf.tbi)]
-        ch_genome_fasta    // channel: [optional]  [val(meta), path(fasta)]
-        ch_vep_cache       // channel: [optional]  [vep_cache_files]
-        ch_vep_extra_files // channel: [optional]  [path(plugin_file1), path(plugin_file2), ...]
+        ch_samplesheet       // channel: [mandatory] samplesheet read in from --input
+        ch_snv_vcf           // channel: [optional]  [val(meta), path(vcf)]
+        ch_snv_vcf_tbi       // channel: [optional]  [val(meta), path(vcf.tbi)]
+        ch_sv_vcf            // channel: [optional]  [val(meta), path(vcf)]
+        ch_sv_vcf_tbi        // channel: [optional]  [val(meta), path(vcf.tbi)]
+        ch_genome_fasta      // channel: [optional]  [val(meta), path(fasta)]
+        ch_vep_cache         // channel: [optional]  [vep_cache_files]
+        ch_vep_extra_files   // channel: [optional]  [path(plugin_file1), path(plugin_file2), ...]
         ch_vcfanno_resources // channel: [optional]  [path(resource_file1), path(resource_file2), ...]
-        ch_vcfanno_lua     // channel: [optional]  [path(lua_file)]
-        ch_vcfanno_toml    // channel: [optional]  [path(toml_file)]
-        ch_vcfanno_extra   // channel: [optional]  [path(extra_file1), path(extra_file2), ...]
+        ch_vcfanno_lua       // channel: [optional]  [path(lua_file)]
+        ch_vcfanno_toml      // channel: [optional]  [path(toml_file)]
+        ch_vcfanno_extra     // channel: [optional]  [path(extra_file1), path(extra_file2), ...]
+        ch_sv_dbs            // channel: [optional]  [path(svdb_query_db1), path(svdb_query_db2), ...]
 
     main:
 
         // Initialize input channels
         ch_versions             = channel.empty()
         ch_multiqc_files        = channel.empty()
-
-        // SVDB
-        ch_sv_dbs                   = params.svdb_query_dbs                  ? channel.fromPath(params.svdb_query_dbs)
-                                                                            : channel.empty()
-
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -128,16 +124,7 @@ workflow ONCOREFINER {
         if (ch_sv_vcf) {
 
             // SVDB QUERY
-            ch_sv_dbs
-                .splitCsv ( header:true )
-                .multiMap { row ->
-                    vcf_dbs:  row.filename
-                    in_frqs:  row.in_freq_info_key
-                    in_occs:  row.in_allele_count_info_key
-                    out_frqs: row.out_freq_info_key
-                    out_occs: row.out_allele_count_info_key
-                }
-                .set { ch_svdb_dbs }
+
 
             SVDB_QUERY_DB (
                 ch_sv_vcf,

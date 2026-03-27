@@ -39,8 +39,7 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     val_vcfanno_lua             // string:  [optional]  path to vcfanno lua file
     val_vcfanno_toml            // string:  [optional]  path to vcfanno toml file
     val_vcfanno_extra           // string:  [optional]  path to file containing paths to extra files for vcfanno (one per line)
-
-
+    val_svdb_query_dbs          // string:  [optional]  path to file containing paths to SVDB query databases and additional information (one per line)
 
 
     main:
@@ -59,7 +58,7 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     ch_vep_cache_unprocessed     = val_vep_cache           ? channel.fromPath(val_vep_cache).map { it -> [[id:'vep_cache'], it] }.collect()
                                                            : channel.value([[],[]])
 
-    // Parse paths in the file 'vep_plugin_files' to create ch_vep_extra_files
+    // VEP: Parse paths in the file 'vep_plugin_files' to create ch_vep_extra_files
     ch_vep_extra_files_unsplit  = val_vep_plugin_files ? channel.fromPath(val_vep_plugin_files).collect() : channel.value([])
     if (val_vep_plugin_files) {
         ch_vep_extra_files_unsplit.splitCsv ( header:true )
@@ -76,7 +75,7 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     }
 
 
-    // Vcfanno
+    // Vcfanno: Initialize channels for vcfanno resources, lua and toml files, and extra files
     ch_vcfanno_resources = val_vcfanno_resources ? channel.fromPath(val_vcfanno_resources).splitText().map{it -> it.trim()}.collect()
                                                  : channel.value([])
     ch_vcfanno_lua       = val_vcfanno_lua       ? channel.fromPath(val_vcfanno_lua).collect()
@@ -86,7 +85,21 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     ch_vcfanno_extra     = val_vcfanno_extra     ? channel.fromPath(val_vcfanno_extra).collect()
                                                  : []
 
+    // SVDB: Initialize channel for SVDB query databases
+    ch_sv_dbs            = val_svdb_query_dbs    ? channel.fromPath(val_svdb_query_dbs)
+                                                 : channel.empty()
+    ch_sv_dbs.splitCsv ( header:true )
+            .multiMap { row ->
+                vcf_dbs:  row.filename
+                in_frqs:  row.in_freq_info_key
+                in_occs:  row.in_allele_count_info_key
+                out_frqs: row.out_freq_info_key
+                out_occs: row.out_allele_count_info_key
+            }
+            .set { ch_svdb_dbs }
 
+
+    ch_sv_dbs.dump(tag: 'ch_sv_dbs')
 
     //
     // Subworkflow: Prepare reference files
@@ -112,6 +125,7 @@ workflow CLINICALGENOMICS_ONCOREFINER {
         ch_vcfanno_lua,
         ch_vcfanno_toml,
         ch_vcfanno_extra,
+        ch_sv_dbs
     )
     emit:
     multiqc_report = ONCOREFINER.out.multiqc_report // channel: /path/to/multiqc_report.html
@@ -154,6 +168,7 @@ workflow {
         params.vcfanno_lua,
         params.vcfanno_toml,
         params.vcfanno_extra,
+        params.svdb_query_dbs
     )
     //
     // SUBWORKFLOW: Run completion tasks
