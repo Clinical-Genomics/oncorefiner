@@ -31,21 +31,19 @@ workflow CLINICALGENOMICS_ONCOREFINER {
 
     take:
     samplesheet                 // channel: [mandatory] samplesheet read in from --input
-    val_snv_vcf                 // string:  [optional]  path to input SNV vcf file
-    val_sv_vcf                  // string:  [optional]  path to input SV vcf file
     val_genome                  // string:  [optional]  genome assembly (e.g. "GRCh38")
     val_genome_fasta            // string:  [optional]  path to genome fasta file
-    val_vep_cache               // string:  [optional]  path to vep cache tar gzip file
-    val_vep_plugin_files        // string:  [optional]  path to file containing paths to vep plugin files (one per line)
-    val_vep_cache_version       // string:  [optional]  version of vep cache to use (e.g. "107")
-    val_vcfanno_resources       // string:  [optional]  path to file containing paths to vcfanno resources (one per line)
-    val_vcfanno_lua             // string:  [optional]  path to vcfanno lua file
-    val_vcfanno_toml            // string:  [optional]  path to vcfanno toml file
-    val_vcfanno_extra           // string:  [optional]  path to file containing paths to extra files for vcfanno (one per line)
+    val_snv_vcf                 // string:  [optional]  path to input SNV vcf file
     val_species                 // string:  [optional]  species (e.g. "homo_sapiens")
+    val_sv_vcf                  // string:  [optional]  path to input SV vcf file
     val_svdb_query_dbs          // string:  [optional]  path to file containing paths to SVDB query databases and additional information (one per line)
-
-
+    val_vcfanno_extra           // string:  [optional]  path to file containing paths to extra files for vcfanno (one per line)
+    val_vcfanno_lua             // string:  [optional]  path to vcfanno lua file
+    val_vcfanno_resources       // string:  [optional]  path to file containing paths to vcfanno resources (one per line)
+    val_vcfanno_toml            // string:  [optional]  path to vcfanno toml file
+    val_vep_cache               // string:  [optional]  path to vep cache tar gzip file
+    val_vep_cache_version       // string:  [optional]  version of vep cache to use (e.g. "107")
+    val_vep_plugin_files        // string:  [optional]  path to file containing paths to vep plugin files (one per line)
 
     main:
 
@@ -107,22 +105,21 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     //
     ONCOREFINER (
         samplesheet,
+        ch_genome_fasta,
         ch_snv_vcf,
         ch_snv_vcf_tbi,
+        ch_sv_dbs,
         ch_sv_vcf,
         ch_sv_vcf_tbi,
-        ch_genome_fasta,
+        ch_vcfanno_extra,
+        ch_vcfanno_lua,
+        ch_vcfanno_resources,
+        ch_vcfanno_toml,
         PREPARE_REFERENCES.out.vep_resources,
         ch_vep_extra_files,
-        ch_vcfanno_resources,
-        ch_vcfanno_lua,
-        ch_vcfanno_toml,
-        ch_vcfanno_extra,
-        ch_sv_dbs,
         val_genome,
         val_species,
         val_vep_cache_version
-
     )
     emit:
     multiqc_report = ONCOREFINER.out.multiqc_report // channel: /path/to/multiqc_report.html
@@ -156,19 +153,19 @@ workflow {
     //
     CLINICALGENOMICS_ONCOREFINER (
         PIPELINE_INITIALISATION.out.samplesheet,
-        params.snv_vcf,
-        params.sv_vcf,
-        params.fasta,
-        params.vep_cache,
-        params.vep_plugin_files,
-        params.vcfanno_resources,
-        params.vcfanno_lua,
-        params.vcfanno_toml,
-        params.vcfanno_extra,
-        params.svdb_query_dbs,
         params.genome,
+        params.fasta,
+        params.snv_vcf,
         params.species,
-        params.vep_cache_version
+        params.sv_vcf,
+        params.svdb_query_dbs,
+        params.vcfanno_extra,
+        params.vcfanno_lua,
+        params.vcfanno_resources,
+        params.vcfanno_toml,
+        params.vep_cache,
+        params.vep_cache_version,
+        params.vep_plugin_files
     )
     //
     // SUBWORKFLOW: Run completion tasks
