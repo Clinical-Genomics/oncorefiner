@@ -33,18 +33,20 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     val_snv_vcf                 // string:  [optional]  path to input SNV vcf file
     val_sv_vcf                  // string:  [optional]  path to input SV vcf file
     val_genome_fasta            // string:  [optional]  path to genome fasta file
-    val_vep_cache               // string:  [optional] path to vep cache tar gzip file
+    val_vep_cache               // string:  [optional]  path to vep cache tar gzip file
+    val_vep_plugin_files        // string:  [optional]  path to file containing paths to vep plugin files (one per line)
 
 
 
 
     main:
 
-    // Initialize input channels
+    // Initialize input channels for oncorefiner
     ch_snv_vcf              = channel.fromPath(val_snv_vcf).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
     ch_snv_vcf_tbi          = channel.fromPath(val_snv_vcf + '.tbi', checkIfExists: true).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
     ch_sv_vcf               = channel.fromPath(val_sv_vcf).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
     ch_sv_vcf_tbi           = channel.fromPath(val_sv_vcf + '.tbi', checkIfExists: true).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
+    ch_vep_extra_files      = channel.empty()
 
     // Reference files
     ch_genome_fasta         = channel.fromPath(val_genome_fasta).map { it -> [[id:it.simpleName], it] }.collect()
@@ -52,6 +54,22 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     // File channels for PREPARE_REFERENCES
     ch_vep_cache_unprocessed     = val_vep_cache           ? channel.fromPath(val_vep_cache).map { it -> [[id:'vep_cache'], it] }.collect()
                                                            : channel.value([[],[]])
+
+    // Parse paths in the file 'vep_plugin_files' to create ch_vep_extra_files
+    ch_vep_extra_files_unsplit  = val_vep_plugin_files ? channel.fromPath(val_vep_plugin_files).collect() : channel.value([])
+    if (val_vep_plugin_files) {
+        ch_vep_extra_files_unsplit.splitCsv ( header:true )
+            .map { row ->
+                def f = file(row.vep_files[0])
+                if(f.isFile() || f.isDirectory()){
+                    return [f]
+                } else {
+                    error("\nVep database file ${f} does not exist.")
+                }
+            }
+            .collect()
+            .set {ch_vep_extra_files}
+    }
 
 
 
@@ -73,7 +91,8 @@ workflow CLINICALGENOMICS_ONCOREFINER {
         ch_sv_vcf,
         ch_sv_vcf_tbi,
         ch_genome_fasta,
-        PREPARE_REFERENCES.out.vep_resources
+        PREPARE_REFERENCES.out.vep_resources,
+        ch_vep_extra_files
     )
     emit:
     multiqc_report = ONCOREFINER.out.multiqc_report // channel: /path/to/multiqc_report.html
@@ -110,7 +129,8 @@ workflow {
         params.snv_vcf,
         params.sv_vcf,
         params.fasta,
-        params.vep_cache
+        params.vep_cache,
+        params.vep_plugin_files
     )
     //
     // SUBWORKFLOW: Run completion tasks

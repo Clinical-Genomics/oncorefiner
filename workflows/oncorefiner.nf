@@ -42,13 +42,14 @@ include { methodsDescriptionText } from '../subworkflows/local/utils_nfcore_onco
 workflow ONCOREFINER {
 
     take:
-        ch_samplesheet  // channel: [mandatory] samplesheet read in from --input
-        ch_snv_vcf      // channel: [optional]  [val(meta), path(vcf)]
-        ch_snv_vcf_tbi  // channel: [optional]  [val(meta), path(vcf.tbi)]
-        ch_sv_vcf       // channel: [optional]  [val(meta), path(vcf)]
-        ch_sv_vcf_tbi   // channel: [optional]  [val(meta), path(vcf.tbi)]
-        ch_genome_fasta // channel: [optional]  [val(meta), path(fasta)]
-        ch_vep_cache    // channel: [optional]  [vep_cache_files]
+        ch_samplesheet     // channel: [mandatory] samplesheet read in from --input
+        ch_snv_vcf         // channel: [optional]  [val(meta), path(vcf)]
+        ch_snv_vcf_tbi     // channel: [optional]  [val(meta), path(vcf.tbi)]
+        ch_sv_vcf          // channel: [optional]  [val(meta), path(vcf)]
+        ch_sv_vcf_tbi      // channel: [optional]  [val(meta), path(vcf.tbi)]
+        ch_genome_fasta    // channel: [optional]  [val(meta), path(fasta)]
+        ch_vep_cache       // channel: [optional]  [vep_cache_files]
+        ch_vep_extra_files // channel: [optional]  [path(plugin_file1), path(plugin_file2), ...]
 
     main:
 
@@ -58,24 +59,6 @@ workflow ONCOREFINER {
 
 
 
-        //
-        // Read and store paths in the vep_plugin_files file
-        //
-        ch_vep_extra_files_unsplit  = params.vep_plugin_files ? channel.fromPath(params.vep_plugin_files).collect() : channel.value([])
-        ch_vep_extra_files = channel.empty()
-        if (params.vep_plugin_files) {
-            ch_vep_extra_files_unsplit.splitCsv ( header:true )
-                .map { row ->
-                    def f = file(row.vep_files[0])
-                    if(f.isFile() || f.isDirectory()){
-                        return [f]
-                    } else {
-                        error("\nVep database file ${f} does not exist.")
-                    }
-                }
-                .collect()
-                .set {ch_vep_extra_files}
-        }
 
         // Vcfanno
         ch_vcfanno_resources        = params.vcfanno_resources                  ? channel.fromPath(params.vcfanno_resources).splitText().map{it -> it.trim()}.collect()
