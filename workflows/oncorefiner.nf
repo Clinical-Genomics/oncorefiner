@@ -63,6 +63,13 @@ workflow ONCOREFINER {
         ch_genome_fasta         = channel.fromPath(params.fasta).map { it -> [[id:it.simpleName], it] }.collect()
         ch_genome_fai           = channel.fromPath(params.fai).map {it -> [[id:it.simpleName], it]  }.collect()
 
+        ch_cadd_header               = channel.fromPath("$projectDir/assets/cadd_to_vcf_header.txt", checkIfExists: true).collect()
+        ch_cadd_resources            = params.cadd_resources                     ? channel.fromPath(params.cadd_resources).map { it -> [[id:'cadd_resources'], it] }.collect()
+                                                                                 : channel.value([])
+        ch_cadd_prescored_indels     = params.cadd_prescored_indels              ? channel.fromPath(params.cadd_prescored_indels).map { it -> [[id:'cadd_prescored_indels'], it] }.collect()
+                                                                                 : channel.value([])
+
+
         //
         // Read and store paths in the vep_plugin_files file
         //
