@@ -46,6 +46,7 @@ workflow ONCOREFINER {
 
     take:
         ch_samplesheet // channel: samplesheet read in from --input
+        vep_cache      // string: [mandatory] path(vep_cache)
 
     main:
 
@@ -61,25 +62,6 @@ workflow ONCOREFINER {
         // Reference files
         ch_genome_fasta         = channel.fromPath(params.fasta).map { it -> [[id:it.simpleName], it] }.collect()
         ch_genome_fai           = channel.fromPath(params.fai).map {it -> [[id:it.simpleName], it]  }.collect()
-
-        // File channels for PREPARE_REFERENCES
-        ch_vep_cache_unprocessed     = params.vep_cache           ? channel.fromPath(params.vep_cache).map { it -> [[id:'vep_cache'], it] }.collect()
-                                                                : channel.value([[],[]])
-
-        PREPARE_REFERENCES (
-            ch_vep_cache_unprocessed
-        )
-        .set { ch_references }
-
-        // Gather or get from params
-        ch_vep_cache                 = ( params.vep_cache && params.vep_cache.endsWith("tar.gz") )  ? ch_references.vep_resources
-                                                                                : ( params.vep_cache    ? channel.fromPath(params.vep_cache).collect() : channel.value([]) )
-
-        ch_cadd_header               = channel.fromPath("$projectDir/assets/cadd_to_vcf_header.txt", checkIfExists: true).collect()
-        ch_cadd_resources            = params.cadd_resources                     ? channel.fromPath(params.cadd_resources).map { it -> [[id:'cadd_resources'], it] }.collect()
-                                                                                 : channel.value([])
-        ch_cadd_prescored_indels     = params.cadd_prescored_indels              ? channel.fromPath(params.cadd_prescored_indels).map { it -> [[id:'cadd_prescored_indels'], it] }.collect()
-                                                                                 : channel.value([])
 
         //
         // Read and store paths in the vep_plugin_files file
@@ -182,7 +164,7 @@ workflow ONCOREFINER {
                 params.genome,
                 params.species,
                 params.vep_cache_version,
-                ch_vep_cache,
+                vep_cache,
                 ch_genome_fasta,
                 ch_vep_extra_files
             )
@@ -245,7 +227,7 @@ workflow ONCOREFINER {
                 params.genome,
                 params.species,
                 params.vep_cache_version,
-                ch_vep_cache,
+                vep_cache,
                 ch_genome_fasta,
                 ch_vep_extra_files
             )
@@ -301,13 +283,7 @@ workflow ONCOREFINER {
         //
         // MODULE: MultiQC
         //
-        ch_multiqc_config        =  params.multiqc_config ?
-            channel.fromPath(params.multiqc_config, checkIfExists: true) :
-            channel.fromPath("$projectDir/assets/multiqc_config.yml", checkIfExists: true)
-
-        ch_multiqc_logo          = params.multiqc_logo ?
-            channel.fromPath(params.multiqc_logo, checkIfExists: true) :
-            channel.empty()
+        ch_multiqc_files = ch_multiqc_files.mix(ch_collated_versions)
 
         summary_params      = paramsSummaryMap(
             workflow, parameters_schema: "nextflow_schema.json")
@@ -320,7 +296,6 @@ workflow ONCOREFINER {
         ch_methods_description                = channel.value(
             methodsDescriptionText(ch_multiqc_custom_methods_description))
 
-        ch_multiqc_files = ch_multiqc_files.mix(ch_collated_versions)
         ch_multiqc_files = ch_multiqc_files.mix(
             ch_methods_description.collectFile(
                 name: 'methods_description_mqc.yaml',
@@ -328,15 +303,19 @@ workflow ONCOREFINER {
             )
         )
 
-        ch_multiqc_input = channel.of([id: ""])
-            .combine(ch_multiqc_files.collect())
-            .combine(ch_multiqc_config.toList())
-            .combine(ch_multiqc_logo.toList())
-            .combine([])
-            .combine([])
-
-        MULTIQC (
-            ch_multiqc_input
+        MULTIQC(
+            ch_multiqc_files.flatten().collect().map { files ->
+                [
+                    [id: ''],
+                    files,
+                    params.multiqc_config
+                    ? file(params.multiqc_config, checkIfExists: true)
+                    : file("${projectDir}/assets/multiqc_config.yml", checkIfExists: true),
+                    params.multiqc_logo ? file(params.multiqc_logo, checkIfExists: true) : [],
+                    [],
+                    [],
+                ]
+            }
         )
 
     emit:
