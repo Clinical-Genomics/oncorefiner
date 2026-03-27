@@ -56,6 +56,7 @@ workflow ONCOREFINER {
         ch_vcfanno_extra     // channel: [optional]  [path(extra_file1), path(extra_file2), ...]
         ch_sv_dbs            // channel: [optional]  [path(csv)]
         val_genome           // string:  [optional]  genome assembly (e.g. "GRCh38")
+        val_species          // string:  [optional]  species (e.g. "homo_sapiens")
 
     main:
 
@@ -102,7 +103,7 @@ workflow ONCOREFINER {
             ENSEMBLVEP_SNV (
                 ch_vep_snv,
                 val_genome,
-                params.species,
+                val_species,
                 params.vep_cache_version,
                 ch_vep_cache,
                 ch_genome_fasta,
@@ -164,7 +165,7 @@ workflow ONCOREFINER {
             ENSEMBLVEP_SV(
                 ch_vep_sv,
                 val_genome,
-                params.species,
+                val_species,
                 params.vep_cache_version,
                 ch_vep_cache,
                 ch_genome_fasta,

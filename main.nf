@@ -17,6 +17,7 @@ include { ONCOREFINER             } from './workflows/oncorefiner'
 include { PIPELINE_INITIALISATION } from './subworkflows/local/utils_nfcore_oncorefiner_pipeline'
 include { PIPELINE_COMPLETION     } from './subworkflows/local/utils_nfcore_oncorefiner_pipeline'
 include { PREPARE_REFERENCES      } from './subworkflows/local/prepare_references'
+include { validateInputSamplesheet } from './subworkflows/local/utils_nfcore_oncorefiner_pipeline/main.nf'
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     NAMED WORKFLOWS FOR PIPELINE
@@ -40,6 +41,7 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     val_vcfanno_lua             // string:  [optional]  path to vcfanno lua file
     val_vcfanno_toml            // string:  [optional]  path to vcfanno toml file
     val_vcfanno_extra           // string:  [optional]  path to file containing paths to extra files for vcfanno (one per line)
+    val_species                 // string:  [optional]  species (e.g. "homo_sapiens")
     val_svdb_query_dbs          // string:  [optional]  path to file containing paths to SVDB query databases and additional information (one per line)
 
 
@@ -115,7 +117,8 @@ workflow CLINICALGENOMICS_ONCOREFINER {
         ch_vcfanno_toml,
         ch_vcfanno_extra,
         ch_sv_dbs,
-        val_genome
+        val_genome,
+        val_species
     )
     emit:
     multiqc_report = ONCOREFINER.out.multiqc_report // channel: /path/to/multiqc_report.html
@@ -159,7 +162,8 @@ workflow {
         params.vcfanno_toml,
         params.vcfanno_extra,
         params.svdb_query_dbs,
-        params.genome
+        params.genome,
+        params.species
     )
     //
     // SUBWORKFLOW: Run completion tasks
