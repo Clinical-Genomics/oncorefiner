@@ -37,12 +37,14 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     val_genome_fasta            // string:  [optional]  path to genome fasta file
     val_vep_cache               // string:  [optional]  path to vep cache tar gzip file
     val_vep_plugin_files        // string:  [optional]  path to file containing paths to vep plugin files (one per line)
+    val_vep_cache_version       // string:  [optional]  version of vep cache to use (e.g. "107")
     val_vcfanno_resources       // string:  [optional]  path to file containing paths to vcfanno resources (one per line)
     val_vcfanno_lua             // string:  [optional]  path to vcfanno lua file
     val_vcfanno_toml            // string:  [optional]  path to vcfanno toml file
     val_vcfanno_extra           // string:  [optional]  path to file containing paths to extra files for vcfanno (one per line)
     val_species                 // string:  [optional]  species (e.g. "homo_sapiens")
     val_svdb_query_dbs          // string:  [optional]  path to file containing paths to SVDB query databases and additional information (one per line)
+
 
 
     main:
@@ -118,7 +120,9 @@ workflow CLINICALGENOMICS_ONCOREFINER {
         ch_vcfanno_extra,
         ch_sv_dbs,
         val_genome,
-        val_species
+        val_species,
+        val_vep_cache_version
+
     )
     emit:
     multiqc_report = ONCOREFINER.out.multiqc_report // channel: /path/to/multiqc_report.html
@@ -163,7 +167,8 @@ workflow {
         params.vcfanno_extra,
         params.svdb_query_dbs,
         params.genome,
-        params.species
+        params.species,
+        params.vep_cache_version
     )
     //
     // SUBWORKFLOW: Run completion tasks

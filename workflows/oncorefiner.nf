@@ -42,21 +42,23 @@ include { methodsDescriptionText } from '../subworkflows/local/utils_nfcore_onco
 workflow ONCOREFINER {
 
     take:
-        ch_samplesheet       // channel: [mandatory] samplesheet read in from --input
-        ch_snv_vcf           // channel: [optional]  [val(meta), path(vcf)]
-        ch_snv_vcf_tbi       // channel: [optional]  [val(meta), path(vcf.tbi)]
-        ch_sv_vcf            // channel: [optional]  [val(meta), path(vcf)]
-        ch_sv_vcf_tbi        // channel: [optional]  [val(meta), path(vcf.tbi)]
-        ch_genome_fasta      // channel: [optional]  [val(meta), path(fasta)]
-        ch_vep_cache         // channel: [optional]  [vep_cache_files]
-        ch_vep_extra_files   // channel: [optional]  [path(plugin_file1), path(plugin_file2), ...]
-        ch_vcfanno_resources // channel: [optional]  [path(resource_file1), path(resource_file2), ...]
-        ch_vcfanno_lua       // channel: [optional]  [path(lua_file)]
-        ch_vcfanno_toml      // channel: [optional]  [path(toml_file)]
-        ch_vcfanno_extra     // channel: [optional]  [path(extra_file1), path(extra_file2), ...]
-        ch_sv_dbs            // channel: [optional]  [path(csv)]
-        val_genome           // string:  [optional]  genome assembly (e.g. "GRCh38")
-        val_species          // string:  [optional]  species (e.g. "homo_sapiens")
+        ch_samplesheet        // channel: [mandatory] samplesheet read in from --input
+        ch_snv_vcf            // channel: [optional]  [val(meta), path(vcf)]
+        ch_snv_vcf_tbi        // channel: [optional]  [val(meta), path(vcf.tbi)]
+        ch_sv_vcf             // channel: [optional]  [val(meta), path(vcf)]
+        ch_sv_vcf_tbi         // channel: [optional]  [val(meta), path(vcf.tbi)]
+        ch_genome_fasta       // channel: [optional]  [val(meta), path(fasta)]
+        ch_vep_cache          // channel: [optional]  [vep_cache_files]
+        ch_vep_extra_files    // channel: [optional]  [path(plugin_file1), path(plugin_file2), ...]
+        ch_vcfanno_resources  // channel: [optional]  [path(resource_file1), path(resource_file2), ...]
+        ch_vcfanno_lua        // channel: [optional]  [path(lua_file)]
+        ch_vcfanno_toml       // channel: [optional]  [path(toml_file)]
+        ch_vcfanno_extra      // channel: [optional]  [path(extra_file1), path(extra_file2), ...]
+        ch_sv_dbs             // channel: [optional]  [path(csv)]
+        val_genome            // string:  [optional]  genome assembly (e.g. "GRCh38")
+        val_species           // string:  [optional]  species (e.g. "homo_sapiens")
+        val_vep_cache_version // string:  [optional]  version of vep cache to use (e.g. "107")
+
 
     main:
 
@@ -104,7 +106,7 @@ workflow ONCOREFINER {
                 ch_vep_snv,
                 val_genome,
                 val_species,
-                params.vep_cache_version,
+                val_vep_cache_version,
                 ch_vep_cache,
                 ch_genome_fasta,
                 ch_vep_extra_files
@@ -166,7 +168,7 @@ workflow ONCOREFINER {
                 ch_vep_sv,
                 val_genome,
                 val_species,
-                params.vep_cache_version,
+                val_vep_cache_version,
                 ch_vep_cache,
                 ch_genome_fasta,
                 ch_vep_extra_files
