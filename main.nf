@@ -46,7 +46,20 @@ workflow CLINICALGENOMICS_ONCOREFINER {
 
     main:
 
-    // Initialize input channels for oncorefiner
+    //
+    // Subworkflow: Prepare reference files
+    //
+    ch_vep_cache_unprocessed = val_vep_cache ? channel.fromPath(val_vep_cache).map { it -> [[id:'vep_cache'], it] }.collect()
+                                             : channel.value([[],[]])
+
+    PREPARE_REFERENCES (
+        params.vep_cache
+        )
+
+    //
+    // WORKFLOW: Run pipeline
+    //
+    // Input channels
     ch_snv_vcf              = channel.fromPath(val_snv_vcf).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
     ch_snv_vcf_tbi          = channel.fromPath(val_snv_vcf + '.tbi', checkIfExists: true).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
     ch_sv_vcf               = channel.fromPath(val_sv_vcf).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
@@ -57,11 +70,7 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     // Reference files
     ch_genome_fasta         = channel.fromPath(val_genome_fasta).map { it -> [[id:it.simpleName], it] }.collect()
 
-    // File channels for PREPARE_REFERENCES
-    ch_vep_cache_unprocessed     = val_vep_cache           ? channel.fromPath(val_vep_cache).map { it -> [[id:'vep_cache'], it] }.collect()
-                                                           : channel.value([[],[]])
-
-    // VEP: Parse paths in the file 'vep_plugin_files' to create ch_vep_extra_files
+    // Input for VEP
     ch_vep_extra_files_unsplit  = val_vep_plugin_files ? channel.fromPath(val_vep_plugin_files).collect() : channel.value([])
     if (val_vep_plugin_files) {
         ch_vep_extra_files_unsplit.splitCsv ( header:true )
@@ -77,7 +86,7 @@ workflow CLINICALGENOMICS_ONCOREFINER {
             .set {ch_vep_extra_files}
     }
 
-    // Vcfanno: Initialize channels for vcfanno resources, lua and toml files, and extra files
+    // Input for Vcfanno
     ch_vcfanno_extra     = val_vcfanno_extra     ? channel.fromPath(val_vcfanno_extra).collect()
                                                  : []
     ch_vcfanno_lua       = val_vcfanno_lua       ? channel.fromPath(val_vcfanno_lua).collect()
@@ -88,21 +97,11 @@ workflow CLINICALGENOMICS_ONCOREFINER {
                                                  : channel.value([])
 
 
-    // SVDB: Initialize channel for SVDB query csv file
+    // Input for SVDB
     ch_sv_dbs            = val_svdb_query_dbs    ? channel.fromPath(val_svdb_query_dbs)
                                                  : channel.empty()
 
-    //
-    // Subworkflow: Prepare reference files
-    //
 
-    PREPARE_REFERENCES (
-        params.vep_cache
-        )
-
-    //
-    // WORKFLOW: Run pipeline
-    //
     ONCOREFINER (
         samplesheet,
         ch_genome_fasta,
