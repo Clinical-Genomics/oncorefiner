@@ -57,19 +57,6 @@ workflow ONCOREFINER {
         ch_versions             = channel.empty()
         ch_multiqc_files        = channel.empty()
 
-
-
-
-        // Vcfanno
-        ch_vcfanno_resources        = params.vcfanno_resources                  ? channel.fromPath(params.vcfanno_resources).splitText().map{it -> it.trim()}.collect()
-                                                                                : channel.value([])
-        ch_vcfanno_lua              = params.vcfanno_lua                        ? channel.fromPath(params.vcfanno_lua).collect()
-                                                                                : channel.value([])
-        ch_vcfanno_toml             = params.vcfanno_toml                       ? channel.fromPath(params.vcfanno_toml).collect()
-                                                                                : channel.value([])
-        ch_vcfanno_extra            = params.vcfanno_extra                      ? channel.fromPath(params.vcfanno_extra).collect()
-                                                                                : []
-
         // SVDB
         ch_sv_dbs                   = params.svdb_query_dbs                  ? channel.fromPath(params.svdb_query_dbs)
                                                                             : channel.empty()

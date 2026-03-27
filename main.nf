@@ -35,6 +35,10 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     val_genome_fasta            // string:  [optional]  path to genome fasta file
     val_vep_cache               // string:  [optional]  path to vep cache tar gzip file
     val_vep_plugin_files        // string:  [optional]  path to file containing paths to vep plugin files (one per line)
+    val_vcfanno_resources       // string:  [optional]  path to file containing paths to vcfanno resources (one per line)
+    val_vcfanno_lua             // string:  [optional]  path to vcfanno lua file
+    val_vcfanno_toml            // string:  [optional]  path to vcfanno toml file
+    val_vcfanno_extra           // string:  [optional]  path to file containing paths to extra files for vcfanno (one per line)
 
 
 
@@ -72,6 +76,17 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     }
 
 
+    // Vcfanno
+    ch_vcfanno_resources = val_vcfanno_resources ? channel.fromPath(val_vcfanno_resources).splitText().map{it -> it.trim()}.collect()
+                                                 : channel.value([])
+    ch_vcfanno_lua       = val_vcfanno_lua       ? channel.fromPath(val_vcfanno_lua).collect()
+                                                 : channel.value([])
+    ch_vcfanno_toml      = val_vcfanno_toml      ? channel.fromPath(val_vcfanno_toml).collect()
+                                                 : channel.value([])
+    ch_vcfanno_extra     = val_vcfanno_extra     ? channel.fromPath(val_vcfanno_extra).collect()
+                                                 : []
+
+
 
     //
     // Subworkflow: Prepare reference files
@@ -92,7 +107,11 @@ workflow CLINICALGENOMICS_ONCOREFINER {
         ch_sv_vcf_tbi,
         ch_genome_fasta,
         PREPARE_REFERENCES.out.vep_resources,
-        ch_vep_extra_files
+        ch_vep_extra_files,
+        ch_vcfanno_resources,
+        ch_vcfanno_lua,
+        ch_vcfanno_toml,
+        ch_vcfanno_extra,
     )
     emit:
     multiqc_report = ONCOREFINER.out.multiqc_report // channel: /path/to/multiqc_report.html
@@ -130,7 +149,11 @@ workflow {
         params.sv_vcf,
         params.fasta,
         params.vep_cache,
-        params.vep_plugin_files
+        params.vep_plugin_files,
+        params.vcfanno_resources,
+        params.vcfanno_lua,
+        params.vcfanno_toml,
+        params.vcfanno_extra,
     )
     //
     // SUBWORKFLOW: Run completion tasks
