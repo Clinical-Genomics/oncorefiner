@@ -127,15 +127,16 @@ workflow ONCOREFINER {
         if (ch_sv_vcf) {
 
             // SVDB QUERY
-            ch_sv_dbs.splitCsv ( header:true )
-                        .multiMap { row ->
-                            vcf_dbs:  row.filename
-                            in_frqs:  row.in_freq_info_key
-                            in_occs:  row.in_allele_count_info_key
-                            out_frqs: row.out_freq_info_key
-                            out_occs: row.out_allele_count_info_key
-                        }
-                        .set { ch_svdb_dbs }
+            ch_sv_dbs
+                .splitCsv ( header:true )
+                .multiMap { row ->
+                    vcf_dbs:  row.filename
+                    in_frqs:  row.in_freq_info_key
+                    in_occs:  row.in_allele_count_info_key
+                    out_frqs: row.out_freq_info_key
+                    out_occs: row.out_allele_count_info_key
+                }
+                .set { ch_svdb_dbs }
 
             SVDB_QUERY_DB (
                 ch_sv_vcf,
