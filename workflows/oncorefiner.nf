@@ -43,12 +43,12 @@ workflow ONCOREFINER {
 
     take:
         ch_samplesheet  // channel: [mandatory] samplesheet read in from --input
-        ch_snv_vcf      // channel: [optional]  path to input SNV vcf file
-        ch_snv_vcf_tbi  // channel: [optional]  path to input SNV vcf tbi file
-        ch_sv_vcf       // channel: [optional]  path to input SV vcf file
-        ch_sv_vcf_tbi   // channel: [optional]  path to input SV vcf tbi file
-        ch_genome_fasta // channel: [optional]  path to genome fasta file
-        ch_vep_cache    // channel: [mandatory] [vep_cache_files]
+        ch_snv_vcf      // channel: [optional]  [val(meta), path(vcf)]
+        ch_snv_vcf_tbi  // channel: [optional]  [val(meta), path(vcf.tbi)]
+        ch_sv_vcf       // channel: [optional]  [val(meta), path(vcf)]
+        ch_sv_vcf_tbi   // channel: [optional]  [val(meta), path(vcf.tbi)]
+        ch_genome_fasta // channel: [optional]  [val(meta), path(fasta)]
+        ch_vep_cache    // channel: [optional]  [vep_cache_files]
 
     main:
 
