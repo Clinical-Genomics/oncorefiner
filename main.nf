@@ -50,6 +50,7 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     ch_sv_vcf               = channel.fromPath(val_sv_vcf).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
     ch_sv_vcf_tbi           = channel.fromPath(val_sv_vcf + '.tbi', checkIfExists: true).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
     ch_vep_extra_files      = channel.empty()
+    ch_svdb_dbs             = channel.empty()
 
     // Reference files
     ch_genome_fasta         = channel.fromPath(val_genome_fasta).map { it -> [[id:it.simpleName], it] }.collect()
@@ -74,7 +75,6 @@ workflow CLINICALGENOMICS_ONCOREFINER {
             .set {ch_vep_extra_files}
     }
 
-
     // Vcfanno: Initialize channels for vcfanno resources, lua and toml files, and extra files
     ch_vcfanno_resources = val_vcfanno_resources ? channel.fromPath(val_vcfanno_resources).splitText().map{it -> it.trim()}.collect()
                                                  : channel.value([])
@@ -85,21 +85,9 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     ch_vcfanno_extra     = val_vcfanno_extra     ? channel.fromPath(val_vcfanno_extra).collect()
                                                  : []
 
-    // SVDB: Initialize channel for SVDB query databases
+    // SVDB: Initialize channel for SVDB query csv file
     ch_sv_dbs            = val_svdb_query_dbs    ? channel.fromPath(val_svdb_query_dbs)
                                                  : channel.empty()
-    ch_sv_dbs.splitCsv ( header:true )
-            .multiMap { row ->
-                vcf_dbs:  row.filename
-                in_frqs:  row.in_freq_info_key
-                in_occs:  row.in_allele_count_info_key
-                out_frqs: row.out_freq_info_key
-                out_occs: row.out_allele_count_info_key
-            }
-            .set { ch_svdb_dbs }
-
-
-    ch_sv_dbs.dump(tag: 'ch_sv_dbs')
 
     //
     // Subworkflow: Prepare reference files

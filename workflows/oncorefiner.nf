@@ -54,7 +54,7 @@ workflow ONCOREFINER {
         ch_vcfanno_lua       // channel: [optional]  [path(lua_file)]
         ch_vcfanno_toml      // channel: [optional]  [path(toml_file)]
         ch_vcfanno_extra     // channel: [optional]  [path(extra_file1), path(extra_file2), ...]
-        ch_sv_dbs            // channel: [optional]  [path(svdb_query_db1), path(svdb_query_db2), ...]
+        ch_sv_dbs            // channel: [optional]  [path(csv)]
 
     main:
 
@@ -124,7 +124,15 @@ workflow ONCOREFINER {
         if (ch_sv_vcf) {
 
             // SVDB QUERY
-
+            ch_sv_dbs.splitCsv ( header:true )
+                        .multiMap { row ->
+                            vcf_dbs:  row.filename
+                            in_frqs:  row.in_freq_info_key
+                            in_occs:  row.in_allele_count_info_key
+                            out_frqs: row.out_freq_info_key
+                            out_occs: row.out_allele_count_info_key
+                        }
+                        .set { ch_svdb_dbs }
 
             SVDB_QUERY_DB (
                 ch_sv_vcf,
