@@ -11,11 +11,13 @@ workflow PREPARE_REFERENCES {
 
     main:
 
-        ch_vep_resources = channel.empty()
+        ch_vep_resources = channel.value([[]])
 
         //
         // Prepare vep cache files
         //
+
+        test = channel.fromPath(val_vep_cache).collect().view()
 
         if (val_vep_cache) {
             if (val_vep_cache.endsWith("tar.gz")) {
@@ -23,12 +25,13 @@ workflow PREPARE_REFERENCES {
                                     channel.fromPath(val_vep_cache).map { it -> [[id:'vep_cache'], it] }.collect()
                                     )
                                     .untar.map{ _meta, files -> [files]}
-                                    .collect()
+                                    .collect().view()
             } else {
                 ch_vep_resources = channel.fromPath(val_vep_cache).collect()
             }
         }
 
     emit:
-        ch_vep_resources
+
+        vep_resources = ch_vep_resources // channel: [vep_cache_files]
 }

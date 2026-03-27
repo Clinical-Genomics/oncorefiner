@@ -48,7 +48,7 @@ workflow ONCOREFINER {
         ch_sv_vcf       // channel: [optional]  path to input SV vcf file
         ch_sv_vcf_tbi   // channel: [optional]  path to input SV vcf tbi file
         ch_genome_fasta // channel: [optional]  path to genome fasta file
-        vep_cache       // string: [mandatory] path(vep_cache)
+        ch_vep_cache    // channel: [mandatory] [vep_cache_files]
 
     main:
 
@@ -133,7 +133,7 @@ workflow ONCOREFINER {
                 params.genome,
                 params.species,
                 params.vep_cache_version,
-                vep_cache,
+                ch_vep_cache,
                 ch_genome_fasta,
                 ch_vep_extra_files
             )
@@ -196,7 +196,7 @@ workflow ONCOREFINER {
                 params.genome,
                 params.species,
                 params.vep_cache_version,
-                vep_cache,
+                ch_vep_cache,
                 ch_genome_fasta,
                 ch_vep_extra_files
             )
