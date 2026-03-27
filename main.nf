@@ -17,7 +17,7 @@ include { ONCOREFINER             } from './workflows/oncorefiner'
 include { PIPELINE_INITIALISATION } from './subworkflows/local/utils_nfcore_oncorefiner_pipeline'
 include { PIPELINE_COMPLETION     } from './subworkflows/local/utils_nfcore_oncorefiner_pipeline'
 include { PREPARE_REFERENCES      } from './subworkflows/local/prepare_references'
-include { validateInputSamplesheet } from './subworkflows/local/utils_nfcore_oncorefiner_pipeline/main.nf'
+
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     NAMED WORKFLOWS FOR PIPELINE
