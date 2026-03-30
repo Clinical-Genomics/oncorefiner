@@ -2,7 +2,7 @@ nextflow_workflow {
 
     name "Test Workflow PREPARE_REFERENCES"
     script "../main.nf"
-    config "./nextflow.config"
+    config "./nextflow.config" // Needed?
     workflow "PREPARE_REFERENCES"
     tag 'subworkflows'
     tag 'subworkflows/prepare_references'
