@@ -25,6 +25,7 @@ include { VCF2CYTOSURE                             } from '../modules/nf-core/vc
 // MODULE: Local modules
 //
 
+include { GENERATE_CYTOSURE_FILES } from '../subworkflows/local/generate_cytosure_files/main'
 
 //
 // SUBWORKFLOWS
@@ -128,13 +129,10 @@ workflow ONCOREFINER {
         // Process SV VCF files
         if (ch_sv_vcf) {
 
-            // vcf2cytosure
-            VCF2CYTOSURE (
-                ch_sv_vcf.dump(tag: "ch_sv_vcf"),
-                [[:],[]],
-                [[:],[]],
-                ch_snv_vcf ? ch_snv_vcf : [[:],[]],
-                []
+            // VCF2CYTOSURE
+            GENERATE_CYTOSURE_FILES (
+                ch_sv_vcf,
+                ch_sv_vcf_tbi
             )
 
             // SVDB QUERY
