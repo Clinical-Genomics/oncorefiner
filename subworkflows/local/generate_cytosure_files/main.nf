@@ -13,10 +13,10 @@ workflow GENERATE_CYTOSURE_FILES {
     take:
         ch_vcf        // channel: [mandatory] [val(meta), path(vcf)]
         ch_tbi        // channel: [mandatory] [val(meta), path(tbi)]
-        ch_tumor_bam  // channel: [mandatory] [val(meta), path(bam)]
-        ch_tumor_bai  // channel: [mandatory] [val(meta), path(bai)]
-        ch_normal_bam // channel: [optional]  [val(meta), path(bam)]
-        ch_normal_bai // channel: [optional]  [val(meta), path(bai)]
+        ch_bam_tumor  // channel: [mandatory] [val(meta), path(bam)]
+        ch_bai_tumor  // channel: [mandatory] [val(meta), path(bai)]
+        ch_bam_normal // channel: [optional]  [val(meta), path(bam)]
+        ch_bai_normal // channel: [optional]  [val(meta), path(bai)]
 
     main:
 
@@ -30,9 +30,9 @@ workflow GENERATE_CYTOSURE_FILES {
         )
 
         // Generate tumor coverage bed file
-        ch_tumor_bam_bai = ch_tumor_bam.join(ch_tumor_bai, failOnMismatch: true)
+        ch_bam_bai_tumor = ch_bam_tumor.join(ch_bai_tumor, failOnMismatch: true)
         TIDDIT_COV_TUMOR (
-            ch_tumor_bam_bai,
+            ch_bam_bai_tumor,
              [[],[]]
         )
 
@@ -45,17 +45,17 @@ workflow GENERATE_CYTOSURE_FILES {
             []
         )
 
-        if (ch_normal_bam && ch_normal_bai) {
+        if (ch_bam_normal && ch_bai_normal) {
 
             // Generate normal coverage bed file
-            ch_normal_bam_bai = ch_normal_bam.join(ch_normal_bai, failOnMismatch: true)
+            ch_bam_bai_normal = ch_bam_normal.join(ch_bai_normal, failOnMismatch: true)
             TIDDIT_COV_NORMAL (
-                ch_normal_bam_bai,
+                ch_bam_bai_normal,
                 [[],[]]
             )
 
             // Run vcf2cytosure for normal sample
-            ch_normal_bam_bai = ch_normal_bam.join(ch_normal_bai, failOnMismatch: true)
+            ch_bam_bai_normal = ch_bam_normal.join(ch_bai_normal, failOnMismatch: true)
             VCF2CYTOSURE_NORMAL (
                 FILTER_VCF.out.vcf,
                 TIDDIT_COV_NORMAL.out.cov,
@@ -66,7 +66,7 @@ workflow GENERATE_CYTOSURE_FILES {
         }
 
     emit:
-        ch_tumor_cgh  = VCF2CYTOSURE_TUMOR.out.cgh  // channel: [val(meta), path(cgh)]
-        ch_normal_cgh = VCF2CYTOSURE_NORMAL.out.cgh // channel: [val(meta), path(cgh)]
+        ch_cgh_tumor  = VCF2CYTOSURE_TUMOR.out.cgh  // channel: [val(meta), path(cgh)]
+        ch_cgh_normal = VCF2CYTOSURE_NORMAL.out.cgh // channel: [val(meta), path(cgh)]
 
 }
