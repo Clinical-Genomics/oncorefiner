@@ -9,7 +9,6 @@ nextflow_pipeline {
         when {
             params {
                 outdir = "$outputDir"
-                //skip_tools = ".*:ANNOTATE_CADD:.*"
             }
         }
 

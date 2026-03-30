@@ -62,7 +62,7 @@ workflow ONCOREFINER {
         ch_vcfanno_toml          // channel: [optional]  [path(toml_file)]
         ch_vep_cache             // channel: [optional]  [vep_cache_files]
         ch_vep_extra_files       // channel: [optional]  [path(plugin_file1), path(plugin_file2), ...]
-        val_cadd_resources        // string:  [optional]  path to CADD resources directory
+        val_cadd_resources       // string:  [optional]  path to CADD resources directory
         val_genome               // string:  [optional]  genome assembly (e.g. "GRCh38")
         val_species              // string:  [optional]  species (e.g. "homo_sapiens")
         val_vep_cache_version    // string:  [optional]  version of vep cache to use (e.g. "107")
@@ -99,14 +99,13 @@ workflow ONCOREFINER {
                     tuple(meta, vcf, tbi)
                     }
                 .set { ch_research_filtering_in }
-
             RESEARCH_FILTERING(ch_research_filtering_in, [], [], [])
 
             RESEARCH_FILTERING.out.vcf
                     .map { meta, vcf ->
                         tuple(meta, vcf, [])
                     }
-                    .set {ch_vep_snv}
+                    .set { ch_vep_snv }
 
             // ANNOTATE WITH CADD - currently depends on val_cadd_resources - could be improved?
             if (val_cadd_resources) {
@@ -129,6 +128,7 @@ workflow ONCOREFINER {
                 ANNOTATE_CADD.out.vcf
                     .join(ANNOTATE_CADD.out.tbi)
                     .set { ch_vep_snv }
+
             }
 
             // VEP
