@@ -62,6 +62,7 @@ workflow ONCOREFINER {
         ch_vcfanno_toml          // channel: [optional]  [path(toml_file)]
         ch_vep_cache             // channel: [optional]  [vep_cache_files]
         ch_vep_extra_files       // channel: [optional]  [path(plugin_file1), path(plugin_file2), ...]
+        val_cadd_resources        // string:  [optional]  path to CADD resources directory
         val_genome               // string:  [optional]  genome assembly (e.g. "GRCh38")
         val_species              // string:  [optional]  species (e.g. "homo_sapiens")
         val_vep_cache_version    // string:  [optional]  version of vep cache to use (e.g. "107")
@@ -107,13 +108,14 @@ workflow ONCOREFINER {
                     }
                     .set {ch_vep_snv}
 
-            // ANNOTATE WITH CADD - currently depends on resources - could be variable instead (ref optional wf refinement)?
-            if (params.cadd_resources != null) {
+            // ANNOTATE WITH CADD - currently depends on val_cadd_resources - could be improved?
+            if (val_cadd_resources) {
 
-                TABIX_RESEARCH_FILTERING(RESEARCH_FILTERING.out.vcf)
+                TABIX_RESEARCH_FILTERING(RESEARCH_FILTERING.out.vcf) //CADD needs tabix index
 
                 RESEARCH_FILTERING.out.vcf
                     .join(TABIX_RESEARCH_FILTERING.out.index, failOnMismatch:true, failOnDuplicate:true)
+                    .view()
                     .set{ ch_cadd_in }
 
                 ANNOTATE_CADD (
@@ -124,14 +126,10 @@ workflow ONCOREFINER {
                     ch_cadd_resources,
                     ch_cadd_prescored_indels
                 )
-                ch_cadd_snv = ANNOTATE_CADD.out.vcf
-
+                ANNOTATE_CADD.out.vcf
+                    .join(ANNOTATE_CADD.out.tbi)
+                    .set { ch_vep_snv }
             }
-
-            ch_cadd_snv // Q: is it better to make this channel in the annotate cadd subwf?
-                .join(ANNOTATE_CADD.out.tbi)
-                .map { meta, vcf, tbi -> tuple(meta, vcf, tbi) }
-                .set { ch_vep_snv }
 
             // VEP
             ENSEMBLVEP_SNV (

@@ -78,9 +78,9 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     ch_cadd_header           = channel.fromPath("$projectDir/assets/cadd_to_vcf_header.txt", checkIfExists: true).collect()
     ch_cadd_resources        = val_cadd_resources        ? channel.fromPath(val_cadd_resources).map { it -> [[id:'cadd_resources'], it] }.collect()
                                                          : channel.value([])
+
     ch_cadd_prescored_indels = val_cadd_prescored_indels ? channel.fromPath(val_cadd_prescored_indels).map { it -> [[id:'cadd_prescored_indels'], it] }.collect()
                                                          : channel.value([])
-
 
     // Input for VEP
     ch_vep_extra_files_unsplit  = val_vep_plugin_files ? channel.fromPath(val_vep_plugin_files).collect() : channel.value([])
@@ -132,6 +132,7 @@ workflow CLINICALGENOMICS_ONCOREFINER {
         ch_vcfanno_toml,
         PREPARE_REFERENCES.out.vep_resources,
         ch_vep_extra_files,
+        val_cadd_resources,
         val_genome,
         val_species,
         val_vep_cache_version
