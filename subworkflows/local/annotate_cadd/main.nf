@@ -9,7 +9,6 @@ include { CADD                                     } from '../../../modules/nf-c
 include { GAWK as REFERENCE_TO_CADD_CHRNAMES       } from '../../../modules/nf-core/gawk/main'
 include { GAWK as CADD_TO_REFERENCE_CHRNAMES       } from '../../../modules/nf-core/gawk/main'
 include { TABIX_TABIX as TABIX_CADD                } from '../../../modules/nf-core/tabix/tabix/main'
-include { TABIX_TABIX as TABIX_ANNOTATE            } from '../../../modules/nf-core/tabix/tabix/main'
 
 
 workflow ANNOTATE_CADD {

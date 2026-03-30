@@ -1,7 +1,7 @@
 nextflow_workflow {
 
-    name "Test Workflow ANNOTATE_CADD"
-    script "subworkflows/local/annotate_cadd/main.nf"
+    name "Test Subworkflow ANNOTATE_CADD"
+    script "../main.nf"
     workflow "ANNOTATE_CADD"
     tag "subworkflows"
     tag "annotate_cadd"
@@ -17,7 +17,11 @@ nextflow_workflow {
             }
             workflow {
                 """
-                input[0] = channel.of([ [id:'test'], file(params.pipelines_testdata_base_path + 'testdata/SNV.tumor.pave.somatic.37.vcf.gz'), file(params.pipelines_testdata_base_path + 'testdata/SNV.tumor.pave.somatic.37.vcf.gz.tbi') ]).collect()
+                input[0] = channel.of([
+                    [id:'test'],
+                    file(params.pipelines_testdata_base_path + 'testdata/SNV.tumor.pave.somatic.37.vcf.gz', checkIfExists: true),
+                    file(params.pipelines_testdata_base_path + 'testdata/SNV.tumor.pave.somatic.37.vcf.gz.tbi', checkIfExists: true)
+                    ])
                 input[1] = 'GRCh37'
                 input[2] = channel.of([ [id:'genome'], file(params.pipelines_testdata_base_path + 'reference/reference.fasta.fai', checkIfExists: true)]).collect()
                 input[3] = channel.fromPath("$projectDir/assets/cadd_to_vcf_header.txt", checkIfExists: true).collect()
@@ -45,9 +49,13 @@ nextflow_workflow {
             }
             workflow {
                 """
-                input[0] = channel.of([ [id:'test'], file(params.pipelines_testdata_base_path + 'testdata/SNV.tumor.pave.somatic.37.vcf.gz'), file(params.pipelines_testdata_base_path + 'testdata/SNV.tumor.pave.somatic.37.vcf.gz.tbi') ]).collect()
+                input[0] = channel.of([
+                    [id:'test'],
+                    file(params.pipelines_testdata_base_path + 'testdata/SNV.tumor.pave.somatic.37.vcf.gz', checkIfExists: true),
+                    file(params.pipelines_testdata_base_path + 'testdata/SNV.tumor.pave.somatic.37.vcf.gz.tbi', checkIfExists: true)
+                    ])
                 input[1] = 'GRCh38'
-                input[2] = channel.fromPath( params.pipelines_testdata_base_path + 'reference/reference.fasta.fai' ).map { it -> [[id:it.simpleName], it] }.collect()
+                input[2] = channel.fromPath(params.pipelines_testdata_base_path + 'reference/reference.fasta.fai', checkIfExists: true).map {it -> [[id:it.simpleName], it]  }.collect()
                 input[3] = channel.fromPath("$projectDir/assets/cadd_to_vcf_header.txt", checkIfExists: true).collect()
                 input[4] = channel.from("\$PWD").map { dir -> [ [ id: 'cadd_resources' ], dir ] }
                 input[5] = channel.from("\$PWD").map { dir -> [ [ id: 'cadd_prescored_indels' ], dir ] }
