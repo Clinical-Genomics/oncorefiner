@@ -29,13 +29,28 @@ include { PREPARE_REFERENCES      } from './subworkflows/local/prepare_reference
 workflow CLINICALGENOMICS_ONCOREFINER {
 
     take:
-    samplesheet // channel: samplesheet read in from --input
+    samplesheet                 // channel: [mandatory] samplesheet read in from --input
+    val_genome                  // string:  [optional]  genome assembly (e.g. "GRCh38")
+    val_genome_fasta            // string:  [optional]  path to genome fasta file
+    val_snv_vcf                 // string:  [optional]  path to input SNV vcf file
+    val_species                 // string:  [optional]  species (e.g. "homo_sapiens")
+    val_sv_vcf                  // string:  [optional]  path to input SV vcf file
+    val_svdb_query_dbs          // string:  [optional]  path to file containing paths to SVDB query databases and additional information (one per line)
+    val_vcfanno_extra           // string:  [optional]  path to file containing paths to extra files for vcfanno (one per line)
+    val_vcfanno_lua             // string:  [optional]  path to vcfanno lua file
+    val_vcfanno_resources       // string:  [optional]  path to file containing paths to vcfanno resources (one per line)
+    val_vcfanno_toml            // string:  [optional]  path to vcfanno toml file
+    val_vep_cache               // string:  [optional]  path to vep cache tar gzip file
+    val_vep_cache_version       // string:  [optional]  version of vep cache to use (e.g. "107")
+    val_vep_plugin_files        // string:  [optional]  path to file containing paths to vep plugin files (one per line)
 
     main:
 
     //
     // Subworkflow: Prepare reference files
     //
+    ch_vep_cache_unprocessed = val_vep_cache ? channel.fromPath(val_vep_cache).map { it -> [[id:'vep_cache'], it] }.collect()
+                                             : channel.value([[],[]])
 
     PREPARE_REFERENCES (
         params.vep_cache
@@ -44,9 +59,66 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     //
     // WORKFLOW: Run pipeline
     //
+    // Input channels
+    ch_snv_vcf              = channel.fromPath(val_snv_vcf).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
+    ch_snv_vcf_tbi          = channel.fromPath(val_snv_vcf + '.tbi', checkIfExists: true).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
+    ch_sv_vcf               = channel.fromPath(val_sv_vcf).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
+    ch_sv_vcf_tbi           = channel.fromPath(val_sv_vcf + '.tbi', checkIfExists: true).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
+    ch_vep_extra_files      = channel.empty()
+    ch_svdb_dbs             = channel.empty()
+
+    // Reference files
+    ch_genome_fasta         = channel.fromPath(val_genome_fasta).map { it -> [[id:it.simpleName], it] }.collect()
+
+    // Input for VEP
+    ch_vep_extra_files_unsplit  = val_vep_plugin_files ? channel.fromPath(val_vep_plugin_files).collect() : channel.value([])
+    if (val_vep_plugin_files) {
+        ch_vep_extra_files_unsplit.splitCsv ( header:true )
+            .map { row ->
+                def f = file(row.vep_files[0])
+                if(f.isFile() || f.isDirectory()){
+                    return [f]
+                } else {
+                    error("\nVep database file ${f} does not exist.")
+                }
+            }
+            .collect()
+            .set {ch_vep_extra_files}
+    }
+
+    // Input for Vcfanno
+    ch_vcfanno_extra     = val_vcfanno_extra     ? channel.fromPath(val_vcfanno_extra).collect()
+                                                 : []
+    ch_vcfanno_lua       = val_vcfanno_lua       ? channel.fromPath(val_vcfanno_lua).collect()
+                                                 : channel.value([])
+    ch_vcfanno_resources = val_vcfanno_resources ? channel.fromPath(val_vcfanno_resources).splitText().map{it -> it.trim()}.collect()
+                                                 : channel.value([])
+    ch_vcfanno_toml      = val_vcfanno_toml      ? channel.fromPath(val_vcfanno_toml).collect()
+                                                 : channel.value([])
+
+
+    // Input for SVDB
+    ch_sv_dbs            = val_svdb_query_dbs    ? channel.fromPath(val_svdb_query_dbs)
+                                                 : channel.empty()
+
+
     ONCOREFINER (
         samplesheet,
-        PREPARE_REFERENCES.out.vep_resources
+        ch_genome_fasta,
+        ch_snv_vcf,
+        ch_snv_vcf_tbi,
+        ch_sv_dbs,
+        ch_sv_vcf,
+        ch_sv_vcf_tbi,
+        ch_vcfanno_extra,
+        ch_vcfanno_lua,
+        ch_vcfanno_resources,
+        ch_vcfanno_toml,
+        PREPARE_REFERENCES.out.vep_resources,
+        ch_vep_extra_files,
+        val_genome,
+        val_species,
+        val_vep_cache_version
     )
     emit:
     multiqc_report = ONCOREFINER.out.multiqc_report // channel: /path/to/multiqc_report.html
@@ -79,7 +151,20 @@ workflow {
     // WORKFLOW: Run main workflow
     //
     CLINICALGENOMICS_ONCOREFINER (
-        PIPELINE_INITIALISATION.out.samplesheet
+        PIPELINE_INITIALISATION.out.samplesheet,
+        params.genome,
+        params.fasta,
+        params.snv_vcf,
+        params.species,
+        params.sv_vcf,
+        params.svdb_query_dbs,
+        params.vcfanno_extra,
+        params.vcfanno_lua,
+        params.vcfanno_resources,
+        params.vcfanno_toml,
+        params.vep_cache,
+        params.vep_cache_version,
+        params.vep_plugin_files
     )
     //
     // SUBWORKFLOW: Run completion tasks

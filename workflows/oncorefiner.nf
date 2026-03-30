@@ -43,55 +43,28 @@ include { methodsDescriptionText } from '../subworkflows/local/utils_nfcore_onco
 workflow ONCOREFINER {
 
     take:
-        ch_samplesheet // channel: samplesheet read in from --input
-        vep_cache      // string: [mandatory] path(vep_cache)
+        ch_samplesheet        // channel: [mandatory] samplesheet read in from --input
+        ch_genome_fasta       // channel: [optional]  [val(meta), path(fasta)]
+        ch_snv_vcf            // channel: [optional]  [val(meta), path(vcf)]
+        ch_snv_vcf_tbi        // channel: [optional]  [val(meta), path(vcf.tbi)]
+        ch_sv_dbs             // channel: [optional]  [path(csv)]
+        ch_sv_vcf             // channel: [optional]  [val(meta), path(vcf)]
+        ch_sv_vcf_tbi         // channel: [optional]  [val(meta), path(vcf.tbi)]
+        ch_vcfanno_extra      // channel: [optional]  [path(extra_file1), path(extra_file2), ...]
+        ch_vcfanno_lua        // channel: [optional]  [path(lua_file)]
+        ch_vcfanno_resources  // channel: [optional]  [path(resource_file1), path(resource_file2), ...]
+        ch_vcfanno_toml       // channel: [optional]  [path(toml_file)]
+        ch_vep_cache          // channel: [optional]  [vep_cache_files]
+        ch_vep_extra_files    // channel: [optional]  [path(plugin_file1), path(plugin_file2), ...]
+        val_genome            // string:  [optional]  genome assembly (e.g. "GRCh38")
+        val_species           // string:  [optional]  species (e.g. "homo_sapiens")
+        val_vep_cache_version // string:  [optional]  version of vep cache to use (e.g. "107")
 
     main:
 
         // Initialize input channels
         ch_versions             = channel.empty()
         ch_multiqc_files        = channel.empty()
-
-        ch_snv_vcf              = channel.fromPath(params.snv_vcf).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
-        ch_snv_vcf_tbi          = channel.fromPath(params.snv_vcf + '.tbi', checkIfExists: true).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
-        ch_sv_vcf               = channel.fromPath(params.sv_vcf).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
-        ch_sv_vcf_tbi           = channel.fromPath(params.sv_vcf + '.tbi', checkIfExists: true).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
-
-        // Reference files
-        ch_genome_fasta         = channel.fromPath(params.fasta).map { it -> [[id:it.simpleName], it] }.collect()
-
-        //
-        // Read and store paths in the vep_plugin_files file
-        //
-        ch_vep_extra_files_unsplit  = params.vep_plugin_files ? channel.fromPath(params.vep_plugin_files).collect() : channel.value([])
-        ch_vep_extra_files = channel.empty()
-        if (params.vep_plugin_files) {
-            ch_vep_extra_files_unsplit.splitCsv ( header:true )
-                .map { row ->
-                    def f = file(row.vep_files[0])
-                    if(f.isFile() || f.isDirectory()){
-                        return [f]
-                    } else {
-                        error("\nVep database file ${f} does not exist.")
-                    }
-                }
-                .collect()
-                .set {ch_vep_extra_files}
-        }
-
-        // Vcfanno
-        ch_vcfanno_resources        = params.vcfanno_resources                  ? channel.fromPath(params.vcfanno_resources).splitText().map{it -> it.trim()}.collect()
-                                                                                : channel.value([])
-        ch_vcfanno_lua              = params.vcfanno_lua                        ? channel.fromPath(params.vcfanno_lua).collect()
-                                                                                : channel.value([])
-        ch_vcfanno_toml             = params.vcfanno_toml                       ? channel.fromPath(params.vcfanno_toml).collect()
-                                                                                : channel.value([])
-        ch_vcfanno_extra            = params.vcfanno_extra                      ? channel.fromPath(params.vcfanno_extra).collect()
-                                                                                : []
-
-        // SVDB
-        ch_sv_dbs                   = params.svdb_query_dbs                  ? channel.fromPath(params.svdb_query_dbs)
-                                                                            : channel.empty()
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -100,7 +73,7 @@ workflow ONCOREFINER {
 */
 
         // Process SNV VCF files
-        if (params.snv_vcf) {
+        if (ch_snv_vcf) {
 
             // Vcfanno
             ch_snv_vcf
@@ -132,10 +105,10 @@ workflow ONCOREFINER {
 
             ENSEMBLVEP_SNV (
                 ch_vep_snv,
-                params.genome,
-                params.species,
-                params.vep_cache_version,
-                vep_cache,
+                val_genome,
+                val_species,
+                val_vep_cache_version,
+                ch_vep_cache,
                 ch_genome_fasta,
                 ch_vep_extra_files
             )
@@ -153,7 +126,7 @@ workflow ONCOREFINER {
         }
 
         // Process SV VCF files
-        if (params.sv_vcf) {
+        if (ch_sv_vcf) {
 
             // vcf2cytosure
             VCF2CYTOSURE (
@@ -204,10 +177,10 @@ workflow ONCOREFINER {
 
             ENSEMBLVEP_SV(
                 ch_vep_sv,
-                params.genome,
-                params.species,
-                params.vep_cache_version,
-                vep_cache,
+                val_genome,
+                val_species,
+                val_vep_cache_version,
+                ch_vep_cache,
                 ch_genome_fasta,
                 ch_vep_extra_files
             )
