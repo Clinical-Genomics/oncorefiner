@@ -11,12 +11,10 @@ include { VCF2CYTOSURE as VCF2CYTOSURE_NORMAL } from '../../../modules/nf-core/v
 
 workflow GENERATE_CYTOSURE_FILES {
     take:
-        ch_vcf        // channel: [mandatory] [val(meta), path(vcf)]
-        ch_tbi        // channel: [mandatory] [val(meta), path(tbi)]
-        ch_bam_tumor  // channel: [mandatory] [val(meta), path(bam)]
-        ch_bai_tumor  // channel: [mandatory] [val(meta), path(bai)]
-        ch_bam_normal // channel: [optional]  [val(meta), path(bam)]
-        ch_bai_normal // channel: [optional]  [val(meta), path(bai)]
+        ch_vcf            // channel: [mandatory] [val(meta), path(vcf)]
+        ch_tbi            // channel: [mandatory] [val(meta), path(tbi)]
+        ch_bam_bai_tumor  // channel: [mandatory] [val(meta), path(bam), path(bai)]
+        ch_bam_bai_normal // channel: [optional]  [val(meta), path(bam), path(bai)]
 
     main:
 
@@ -32,7 +30,6 @@ workflow GENERATE_CYTOSURE_FILES {
         // Workflow for tumor sample
 
         // Generate tumor coverage bed file
-        ch_bam_bai_tumor = ch_bam_tumor.join(ch_bai_tumor, failOnMismatch: true)
         TIDDIT_COV_TUMOR (
             ch_bam_bai_tumor,
              [[],[]]
@@ -50,10 +47,9 @@ workflow GENERATE_CYTOSURE_FILES {
         // Worflow for normal sample, if BAM and BAI files for the normal sample are provided
         ch_bam_bai_normal = channel.empty()
 
-        if (ch_bam_normal && ch_bai_normal) {
+        if (ch_bam_bai_normal) {
 
             // Generate normal coverage bed file
-            ch_bam_bai_normal = ch_bam_normal.join(ch_bai_normal, failOnMismatch: true)
             TIDDIT_COV_NORMAL (
                 ch_bam_bai_normal,
                 [[],[]]
