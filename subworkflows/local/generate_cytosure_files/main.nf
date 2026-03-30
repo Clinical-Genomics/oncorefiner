@@ -2,8 +2,8 @@
 // Convert VCF with structural variations to the “.CGH” format used by the CytoSure Interpret Software
 //
 
-include { BCFTOOLS_VIEW as FILTER_SV_VCF      } from '../../../modules/nf-core/bcftools/view/main'
-include { VCF2CYTOSURE                        } from '../../../modules/nf-core/vcf2cytosure/main'
+include { BCFTOOLS_VIEW as FILTER_VCF      } from '../../../modules/nf-core/bcftools/view/main'
+include { VCF2CYTOSURE                     } from '../../../modules/nf-core/vcf2cytosure/main'
 
 
 workflow GENERATE_CYTOSURE_FILES {
@@ -15,7 +15,7 @@ workflow GENERATE_CYTOSURE_FILES {
 
         // Filter out SNG variants, if present
         ch_vcf_tbi = ch_vcf.join(ch_tbi, failOnMismatch: true)
-        FILTER_SV_VCF(
+        FILTER_VCF(
             ch_vcf_tbi,
             [],
             [],
@@ -24,7 +24,7 @@ workflow GENERATE_CYTOSURE_FILES {
 
         // vcf2cytosure
         VCF2CYTOSURE (
-            FILTER_SV_VCF.out.vcf,
+            FILTER_VCF.out.vcf,
             [[],[]],
             [[],[]],
             [[],[]],
