@@ -29,6 +29,8 @@ workflow GENERATE_CYTOSURE_FILES {
             []
         )
 
+        // Workflow for tumor sample
+
         // Generate tumor coverage bed file
         ch_bam_bai_tumor = ch_bam_tumor.join(ch_bai_tumor, failOnMismatch: true)
         TIDDIT_COV_TUMOR (
@@ -45,6 +47,9 @@ workflow GENERATE_CYTOSURE_FILES {
             []
         )
 
+        // Worflow for normal sample, if BAM and BAI files for the normal sample are provided
+        ch_bam_bai_normal = channel.empty()
+
         if (ch_bam_normal && ch_bai_normal) {
 
             // Generate normal coverage bed file
@@ -55,7 +60,6 @@ workflow GENERATE_CYTOSURE_FILES {
             )
 
             // Run vcf2cytosure for normal sample
-            ch_bam_bai_normal = ch_bam_normal.join(ch_bai_normal, failOnMismatch: true)
             VCF2CYTOSURE_NORMAL (
                 FILTER_VCF.out.vcf,
                 TIDDIT_COV_NORMAL.out.cov,
