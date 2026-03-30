@@ -1,0 +1,69 @@
+nextflow_workflow {
+
+    name "Test Workflow PREPARE_REFERENCES"
+    script "../main.nf"
+    config "./nextflow.config"
+    workflow "PREPARE_REFERENCES"
+    tag 'subworkflows'
+    tag 'subworkflows/prepare_references'
+
+    test("Tumor only, zipped vep cache") {
+
+        when {
+            params{
+                outdir     = "$outputDir"
+            }
+            workflow {
+                """
+                input[0] = ''
+                input[1] = ''
+                input[2] = params.pipelines_testdata_base_path + 'tumor.bam'
+                input[3] = params.pipelines_testdata_base_path + 'tumor.bai'
+                input[4] = params.pipelines_testdata_base_path + 'reference/vep_cache_and_plugins.tar.gz'
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert workflow.success }
+                { assert snapshot(
+                        workflow.out.bam_bai_tumor,
+                        workflow.out.bam_bai_normal,
+                        workflow.out.vep_resources
+                    ).match()
+                }
+            )
+        }
+    }
+
+    test("Tumor Normal, zipped vep cache") {
+
+        when {
+            params{
+                outdir     = "$outputDir"
+            }
+            workflow {
+                """
+                input[0] = params.pipelines_testdata_base_path + 'normal.bam'
+                input[1] = params.pipelines_testdata_base_path + 'normal.bai'
+                input[2] = params.pipelines_testdata_base_path + 'tumor.bam'
+                input[3] = params.pipelines_testdata_base_path + 'tumor.bai'
+                input[4] = params.pipelines_testdata_base_path + 'reference/vep_cache_and_plugins.tar.gz'
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert workflow.success }
+                { assert snapshot(
+                        workflow.out.bam_bai_tumor,
+                        workflow.out.bam_bai_normal,
+                        workflow.out.vep_resources
+                    ).match()
+                }
+            )
+        }
+    }
+}
