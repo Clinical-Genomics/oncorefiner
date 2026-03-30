@@ -30,6 +30,10 @@ workflow CLINICALGENOMICS_ONCOREFINER {
 
     take:
     samplesheet                 // channel: [mandatory] samplesheet read in from --input
+    val_bam_normal              // string:  [optional]  path to BAM file for the normal sample
+    val_bai_normal              // string:  [optional]  path to BAI file for the normal sample
+    val_bam_tumor               // string:  [optional]  path to BAM file for the tumor sample
+    val_bai_tumor               // string:  [optional]  path to BAI file for the tumor sample
     val_genome                  // string:  [optional]  genome assembly (e.g. "GRCh38")
     val_genome_fasta            // string:  [optional]  path to genome fasta file
     val_snv_vcf                 // string:  [optional]  path to input SNV vcf file
@@ -53,6 +57,10 @@ workflow CLINICALGENOMICS_ONCOREFINER {
                                              : channel.value([[],[]])
 
     PREPARE_REFERENCES (
+        val_bam_normal,
+        val_bai_normal,
+        val_bam_tumor,
+        val_bai_tumor,
         params.vep_cache
         )
 
@@ -152,6 +160,10 @@ workflow {
     //
     CLINICALGENOMICS_ONCOREFINER (
         PIPELINE_INITIALISATION.out.samplesheet,
+        params.bam_normal,
+        params.bai_normal,
+        params.bam_tumor,
+        params.bai_tumor,
         params.genome,
         params.fasta,
         params.snv_vcf,
@@ -166,6 +178,7 @@ workflow {
         params.vep_cache_version,
         params.vep_plugin_files
     )
+
     //
     // SUBWORKFLOW: Run completion tasks
     //
