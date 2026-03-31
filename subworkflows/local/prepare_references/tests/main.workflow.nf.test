@@ -18,7 +18,7 @@ nextflow_workflow {
                 input[0] = ''
                 input[1] = ''
                 input[2] = params.pipelines_testdata_base_path + 'testdata/subject_a.tumor.redux.bam'
-                input[3] = params.pipelines_testdata_base_path + 'testdata/subject_a.tumor.redux.bai'
+                input[3] = params.pipelines_testdata_base_path + 'testdata/subject_a.tumor.redux.bam.bai'
                 input[4] = params.pipelines_testdata_base_path + 'reference/vep_cache_and_plugins.tar.gz'
                 """
             }
@@ -46,9 +46,9 @@ nextflow_workflow {
             workflow {
                 """
                 input[0] = params.pipelines_testdata_base_path + 'testdata/subject_a.normal.redux.bam'
-                input[1] = params.pipelines_testdata_base_path + 'testdata/subject_a.normal.redux.bai'
+                input[1] = params.pipelines_testdata_base_path + 'testdata/subject_a.normal.redux.bam.bai'
                 input[2] = params.pipelines_testdata_base_path + 'testdata/subject_a.tumor.redux.bam'
-                input[3] = params.pipelines_testdata_base_path + 'testdata/subject_a.tumor.redux.bai'
+                input[3] = params.pipelines_testdata_base_path + 'testdata/subject_a.tumor.redux.bam.bai'
                 input[4] = params.pipelines_testdata_base_path + 'reference/vep_cache_and_plugins.tar.gz'
                 """
             }
