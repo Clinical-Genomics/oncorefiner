@@ -65,18 +65,18 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     //
 
     // Input channels
-    ch_bam_bai_tumor = channel.empty()
-    if (val_bam_tumor && val_bai_tumor) {
-        ch_bam_bai_tumor = channel.fromPath(val_bam_tumor)
-                            .combine(channel.fromPath(val_bai_tumor))
-                            .map { it -> [[id:'tumor'], it] }
-    }
-
     ch_bam_bai_normal = channel.empty()
     if (val_bam_normal && val_bai_normal) {
         ch_bam_bai_normal = channel.fromPath(val_bam_normal)
                             .combine(channel.fromPath(val_bai_normal))
                             .map { it -> [[id:'normal'], it] }
+    }
+
+    ch_bam_bai_tumor = channel.empty()
+    if (val_bam_tumor && val_bai_tumor) {
+        ch_bam_bai_tumor = channel.fromPath(val_bam_tumor)
+                            .combine(channel.fromPath(val_bai_tumor))
+                            .map { it -> [[id:'tumor'], it] }
     }
 
     ch_snv_vcf              = channel.fromPath(val_snv_vcf).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
