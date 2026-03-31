@@ -45,6 +45,11 @@
                     "format": "file-path",
                     "exists": true
                 },
+                "sex": {
+                    "type": "string",
+                    "enum": ["male", "female", "unknown"],
+                    "description": "Sex of the patient. Information provided by the customer in the order."
+                },
                 "email": {
                     "type": "string",
                     "description": "Email address for completion summary.",
@@ -96,8 +101,7 @@
                     "type": "string",
                     "default": "homo_sapiens",
                     "enum": ["homo_sapiens"],
-                    "description": "Species of the reference genome. E.g. `--species homo_sapiens`.",
-                    "help_text": ""
+                    "description": "Species of the reference genome. E.g. `--species homo_sapiens`."
                 }
             }
         },
@@ -348,6 +352,5 @@
         {
             "$ref": "#/$defs/generic_options"
         }
-    ],
-    "properties": {}
+    ]
 }
