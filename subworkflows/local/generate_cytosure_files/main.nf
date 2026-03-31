@@ -43,8 +43,6 @@ workflow GENERATE_CYTOSURE_FILES {
         )
 
         // Worflow for normal sample, if BAM and BAI files for the normal sample are provided
-        ch_bam_bai_normal = channel.empty()
-
         if (ch_bam_bai_normal) {
 
             // Generate normal coverage bed file
