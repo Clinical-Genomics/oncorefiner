@@ -126,6 +126,8 @@ workflow CLINICALGENOMICS_ONCOREFINER {
 
     ONCOREFINER (
         samplesheet,
+        ch_bam_bai_normal,
+        ch_bam_bai_tumor,
         ch_genome_fasta,
         ch_snv_vcf,
         ch_snv_vcf_tbi,

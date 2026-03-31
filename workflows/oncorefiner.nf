@@ -45,6 +45,8 @@ workflow ONCOREFINER {
 
     take:
         ch_samplesheet        // channel: [mandatory] samplesheet read in from --input
+        ch_bam_bai_normal     // channel: [optional]  [val(meta), path(bam), path(bai)]
+        ch_bam_bai_tumor      // channel: [mandatory]  [val(meta), path(bam), path(bai)]
         ch_genome_fasta       // channel: [optional]  [val(meta), path(fasta)]
         ch_snv_vcf            // channel: [optional]  [val(meta), path(vcf)]
         ch_snv_vcf_tbi        // channel: [optional]  [val(meta), path(vcf.tbi)]
@@ -132,7 +134,9 @@ workflow ONCOREFINER {
             // VCF2CYTOSURE
             GENERATE_CYTOSURE_FILES (
                 ch_sv_vcf,
-                ch_sv_vcf_tbi
+                ch_sv_vcf_tbi,
+                ch_bam_bai_normal,
+                ch_bam_bai_tumor
             )
 
             // SVDB QUERY

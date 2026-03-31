@@ -13,8 +13,8 @@ workflow GENERATE_CYTOSURE_FILES {
     take:
         ch_vcf            // channel: [mandatory] [val(meta), path(vcf)]
         ch_tbi            // channel: [mandatory] [val(meta), path(tbi)]
-        ch_bam_bai_tumor  // channel: [mandatory] [val(meta), path(bam), path(bai)]
         ch_bam_bai_normal // channel: [optional]  [val(meta), path(bam), path(bai)]
+        ch_bam_bai_tumor  // channel: [mandatory] [val(meta), path(bam), path(bai)]
 
     main:
 
