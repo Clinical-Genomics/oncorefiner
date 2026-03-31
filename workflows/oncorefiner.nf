@@ -56,7 +56,6 @@ workflow ONCOREFINER {
         ch_vep_cache          // channel: [optional]  [vep_cache_files]
         ch_vep_extra_files    // channel: [optional]  [path(plugin_file1), path(plugin_file2), ...]
         val_genome            // string:  [optional]  genome assembly (e.g. "GRCh38")
-        val_sex               // string:  [optional]  sex (e.g. "male" or "female")
         val_species           // string:  [optional]  species (e.g. "homo_sapiens")
         val_vep_cache_version // string:  [optional]  version of vep cache to use (e.g. "107")
 
