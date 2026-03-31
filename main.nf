@@ -86,7 +86,7 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     if (val_bam_tumor && val_bai_tumor) {
         ch_bam_bai_tumor = channel.fromPath(val_bam_tumor)
                             .combine(channel.fromPath(val_bai_tumor))
-                            .map { bam, bai -> [[id:'normal'], bam, bai] }
+                            .map { bam, bai -> [[id:'tumor'], bam, bai] }
     }
 
     // Reference files
