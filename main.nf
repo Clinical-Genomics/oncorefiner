@@ -118,6 +118,7 @@ workflow CLINICALGENOMICS_ONCOREFINER {
         PREPARE_REFERENCES.out.vep_resources,
         ch_vep_extra_files,
         val_genome,
+        val_sex,
         val_species,
         val_vep_cache_version
     )
