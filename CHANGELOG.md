@@ -20,6 +20,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - Added pre-commit hook for automatic generation of parameters documentation [#25](https://github.com/Clinical-Genomics/oncorefiner/pull/25)
 - Added Nextflow strict syntax compatibility [#30](https://github.com/Clinical-Genomics/oncorefiner/pull/30)
 - Added bam and bai parameters for tumor and normal samples, and logic to create joint bam_bai channels [#61](https://github.com/Clinical-Genomics/oncorefiner/pull/61)
+- Added `sex` parameter [#62](https://github.com/Clinical-Genomics/oncorefiner/pull/62)
 
 ### Changed
 
