@@ -74,6 +74,7 @@ workflow CLINICALGENOMICS_ONCOREFINER {
 
     // Input for GENERATE_CYTOSURE_FILES
     ch_bam_bai_normal = channel.empty()
+
     if (val_bam_normal && val_bai_normal) {
         ch_bam_bai_normal = channel.fromPath(val_bam_normal)
                             .combine(channel.fromPath(val_bai_normal))
@@ -81,6 +82,7 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     }
 
     ch_bam_bai_tumor = channel.empty()
+
     if (val_bam_tumor && val_bai_tumor) {
         ch_bam_bai_tumor = channel.fromPath(val_bam_tumor)
                             .combine(channel.fromPath(val_bai_tumor))
