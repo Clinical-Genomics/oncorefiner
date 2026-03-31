@@ -65,6 +65,14 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     //
 
     // Input channels
+    ch_snv_vcf              = channel.fromPath(val_snv_vcf).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
+    ch_snv_vcf_tbi          = channel.fromPath(val_snv_vcf + '.tbi', checkIfExists: true).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
+    ch_sv_vcf               = channel.fromPath(val_sv_vcf).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
+    ch_sv_vcf_tbi           = channel.fromPath(val_sv_vcf + '.tbi', checkIfExists: true).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
+    ch_vep_extra_files      = channel.empty()
+    ch_svdb_dbs             = channel.empty()
+
+    // Input for GENERATE_CYTOSURE_FILES
     ch_bam_bai_normal = channel.empty()
     if (val_bam_normal && val_bai_normal) {
         ch_bam_bai_normal = channel.fromPath(val_bam_normal)
@@ -78,13 +86,6 @@ workflow CLINICALGENOMICS_ONCOREFINER {
                             .combine(channel.fromPath(val_bai_tumor))
                             .map { it -> [[id:'tumor'], it] }
     }
-
-    ch_snv_vcf              = channel.fromPath(val_snv_vcf).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
-    ch_snv_vcf_tbi          = channel.fromPath(val_snv_vcf + '.tbi', checkIfExists: true).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
-    ch_sv_vcf               = channel.fromPath(val_sv_vcf).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
-    ch_sv_vcf_tbi           = channel.fromPath(val_sv_vcf + '.tbi', checkIfExists: true).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
-    ch_vep_extra_files      = channel.empty()
-    ch_svdb_dbs             = channel.empty()
 
     // Reference files
     ch_genome_fasta         = channel.fromPath(val_genome_fasta).map { it -> [[id:it.simpleName], it] }.collect()
