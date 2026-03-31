@@ -27,8 +27,6 @@ workflow GENERATE_CYTOSURE_FILES {
             []
         )
 
-        // Workflow for tumor sample
-
         // Generate tumor coverage bed file
         TIDDIT_COV_TUMOR (
             ch_bam_bai_tumor,
