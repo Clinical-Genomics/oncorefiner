@@ -77,6 +77,11 @@
                     "format": "file-path",
                     "exists": true
                 },
+                "sex": {
+                    "type": "string",
+                    "enum": ["female", "male", "unknown"],
+                    "description": "Sex of the patient. Information provided by the customer in the order."
+                },
                 "email": {
                     "type": "string",
                     "description": "Email address for completion summary.",

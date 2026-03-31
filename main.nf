@@ -32,6 +32,7 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     samplesheet                 // channel: [mandatory] samplesheet read in from --input
     val_genome                  // string:  [optional]  genome assembly (e.g. "GRCh38")
     val_genome_fasta            // string:  [optional]  path to genome fasta file
+    val_sex                     // string:  [optional] sex (e.g. "male" or "female")
     val_snv_vcf                 // string:  [optional]  path to input SNV vcf file
     val_species                 // string:  [optional]  species (e.g. "homo_sapiens")
     val_sv_vcf                  // string:  [optional]  path to input SV vcf file
@@ -117,6 +118,7 @@ workflow CLINICALGENOMICS_ONCOREFINER {
         PREPARE_REFERENCES.out.vep_resources,
         ch_vep_extra_files,
         val_genome,
+        val_sex,
         val_species,
         val_vep_cache_version
     )
@@ -154,6 +156,7 @@ workflow {
         PIPELINE_INITIALISATION.out.samplesheet,
         params.genome,
         params.fasta,
+        params.sex,
         params.snv_vcf,
         params.species,
         params.sv_vcf,
