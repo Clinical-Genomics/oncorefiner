@@ -18,7 +18,7 @@ workflow GENERATE_CYTOSURE_FILES {
 
     main:
 
-        // Filter out SNG variants, if present
+        // Filter out SGL variants, if present
         ch_vcf_tbi = ch_vcf.join(ch_tbi, failOnMismatch: true)
         FILTER_VCF(
             ch_vcf_tbi,
