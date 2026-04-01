@@ -45,6 +45,38 @@
                     "format": "file-path",
                     "exists": true
                 },
+                "bam_tumor": {
+                    "type": "string",
+                    "description": "Path to alignment BAM file for the tumor sample.",
+                    "fa_icon": "fas fa-file",
+                    "pattern": "^\\S+\\.bam$",
+                    "format": "file-path",
+                    "exists": true
+                },
+                "bai_tumor": {
+                    "type": "string",
+                    "description": "Path to BAM index file for the tumor sample.",
+                    "fa_icon": "fas fa-file",
+                    "pattern": "^\\S+\\.bai$",
+                    "format": "file-path",
+                    "exists": true
+                },
+                "bam_normal": {
+                    "type": "string",
+                    "description": "Path to alignment BAM file for the normal sample.",
+                    "fa_icon": "fas fa-file",
+                    "pattern": "^\\S+\\.bam$",
+                    "format": "file-path",
+                    "exists": true
+                },
+                "bai_normal": {
+                    "type": "string",
+                    "description": "Path to BAM index file for the normal sample.",
+                    "fa_icon": "fas fa-file",
+                    "pattern": "^\\S+\\.bai$",
+                    "format": "file-path",
+                    "exists": true
+                },
                 "sex": {
                     "type": "string",
                     "enum": ["female", "male", "unknown"],

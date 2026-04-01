@@ -12,6 +12,10 @@ Define where the pipeline should find input data and save output data.
 | `outdir` | The output directory where the results will be saved. You have to use absolute paths to storage on Cloud infrastructure. | `string` |  | True |  |
 | `snv_vcf` | Path to a VCF file containing somatic SNV/INDEL variants to be processed by the pipeline. The VCF may include one or multiple samples. Typically, this is a single tumor sample for tumor-only analyses, or both tumor and matched normal samples for tumor-normal analyses. | `string` |  |  |  |
 | `sv_vcf` | Path to a VCF file containing somatic structural variants (SVs) to be processed by the pipeline. The VCF may include one or multiple samples. Typically, this is a single tumor sample for tumor-only analyses, or both tumor and matched normal samples for tumor-normal analyses. | `string` |  |  |  |
+| `bam_tumor` | Path to alignment BAM file for the tumor sample. | `string` |  |  |  |
+| `bai_tumor` | Path to BAM index file for the tumor sample. | `string` |  |  |  |
+| `bam_normal` | Path to alignment BAM file for the normal sample. | `string` |  |  |  |
+| `bai_normal` | Path to BAM index file for the normal sample. | `string` |  |  |  |
 | `sex` | Sex of the patient. (accepted: `female`\|`male`\|`unknown`) | `string` |  |  |  |
 | `email` | Email address for completion summary. <details><summary>Help</summary><small>Set this parameter to your e-mail address to get a summary e-mail with details of the run sent to you when the workflow exits. If set in your user config file (`~/.nextflow/config`) then you don't need to specify this on the command line for every run.</small></details>| `string` |  |  |  |
 | `multiqc_title` | MultiQC report title. Printed as page header, used for filename if not otherwise specified. | `string` |  |  |  |
