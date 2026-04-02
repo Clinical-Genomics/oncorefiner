@@ -35,13 +35,7 @@ workflow PROCESS_SNVS {
 
     main:
 
-        /*
-        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-            ANNOTATE SNVs
-        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        */
-
-        // Vcfanno
+        // Annotate with custom databases
         ch_snv_vcf
             .join(ch_snv_vcf_tbi)
             .map { meta, vcf, tbi ->
@@ -52,7 +46,7 @@ workflow PROCESS_SNVS {
 
         VCFANNO (ch_vcfanno_in, ch_vcfanno_toml, ch_vcfanno_lua, ch_vcfanno_resources)
 
-        // Quality Filtering
+        // Research filtering
         VCFANNO.out.vcf
             .join(VCFANNO.out.tbi)
             .map { meta, vcf, tbi ->
@@ -62,7 +56,7 @@ workflow PROCESS_SNVS {
 
         RESEARCH_FILTERING(ch_research_filtering_in, [], [], [])
 
-        // VEP
+        // Annotate with VEP
         RESEARCH_FILTERING.out.vcf
                 .map { meta, vcf ->
                     tuple(meta, vcf, [])
@@ -86,7 +80,7 @@ workflow PROCESS_SNVS {
                 tuple(meta, vcf, tbi)
                 }
             .set { ch_clinical_filtering_in }
-            
+
         CLINICAL_FILTERING(ch_clinical_filtering_in, [], [], [])
     }
 }
