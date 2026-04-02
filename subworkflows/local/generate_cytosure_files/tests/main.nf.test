@@ -1,0 +1,39 @@
+nextflow_workflow {
+
+    name "Test Workflow GENERATE_CYTOSURE_FILES"
+    script "../main.nf"
+    workflow "GENERATE_CYTOSURE_FILES"
+
+    test("Tumor sample") {
+
+        when {
+            workflow {
+                """
+                input[0] = [
+                    [ id : 'SV'],
+                    file(params.modules_testdata_base_path + 'SV.tumor.esvee.somatic.37.vcf.gz', checkIfExists: true)
+                ]
+                input[1] = [
+                    [ id : 'SV'],
+                    file(params.modules_testdata_base_path + 'SV.tumor.esvee.somatic.37.vcf.gz.tbi', checkIfExists: true)
+                ]
+                input[2] = [
+                    ['type':'tumor'],
+                    file(params.modules_testdata_base_path + 'subject_a.tumor.redux.bam', checkIfExists: true),
+                    file(params.modules_testdata_base_path + 'subject_a.tumor.redux.bam.bai', checkIfExists: true)
+                ]
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(
+                    workflow.out.versions,
+                    file(workflow.out.cgh).name
+                ).match() }
+            )
+        }
+    }
+}
