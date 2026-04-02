@@ -143,9 +143,9 @@ workflow ONCOREFINER {
                 }
 
             GENERATE_CYTOSURE_FILES (
-                ch_vcf2cytosure_in.vcf,
+                ch_vcf2cytosure_in.bam_bai,
                 ch_vcf2cytosure_in.tbi,
-                ch_vcf2cytosure_in.bam_bai
+                ch_vcf2cytosure_in.vcf
             )
 
             // SVDB QUERY
