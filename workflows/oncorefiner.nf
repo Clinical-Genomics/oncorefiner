@@ -132,11 +132,20 @@ workflow ONCOREFINER {
         if (ch_sv_vcf) {
 
             // VCF2CYTOSURE
+            ch_bam_bai = ch_bam_bai_normal ? ch_bam_bai_tumor.concat(ch_bam_bai_normal) : ch_bam_bai_tumor
+            ch_vcf2cytosure_in = ch_bam_bai.combine(
+                ch_sv_vcf.join(ch_sv_vcf_tbi, failOnMismatch: true),
+                )
+                .multiMap { meta_bam_bai, bam, bai, meta_vcf, vcf, tbi ->
+                    vcf: tuple(meta_vcf, vcf)
+                    tbi: tuple(meta_vcf, tbi)
+                    bam_bai: tuple(meta_bam_bai, bam, bai)
+                }
+
             GENERATE_CYTOSURE_FILES (
-                ch_sv_vcf,
-                ch_sv_vcf_tbi,
-                ch_bam_bai_normal,
-                ch_bam_bai_tumor
+                ch_vcf2cytosure_in.vcf,
+                ch_vcf2cytosure_in.tbi,
+                ch_vcf2cytosure_in.bam_bai
             )
 
             // SVDB QUERY
