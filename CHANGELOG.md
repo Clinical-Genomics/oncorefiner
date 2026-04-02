@@ -19,6 +19,8 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - Added parameters documentation [#25](https://github.com/Clinical-Genomics/oncorefiner/pull/25)
 - Added pre-commit hook for automatic generation of parameters documentation [#25](https://github.com/Clinical-Genomics/oncorefiner/pull/25)
 - Added Nextflow strict syntax compatibility [#30](https://github.com/Clinical-Genomics/oncorefiner/pull/30)
+- Added bam and bai parameters for tumor and normal samples, and logic to create joint bam_bai channels [#61](https://github.com/Clinical-Genomics/oncorefiner/pull/61)
+- Added `sex` parameter [#62](https://github.com/Clinical-Genomics/oncorefiner/pull/62)
 
 ### Changed
 
@@ -48,6 +50,9 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - Added `species` parameter to provide information for annotation which was previously hardcoded [#49](https://github.com/Clinical-Genomics/oncorefiner/pull/49)
 - Added settings and moved ungrouped parameters to relevant groups [#50](https://github.com/Clinical-Genomics/oncorefiner/pull/50)
 - Fixed bug in `MULTIQC` input channel that prevented the step from running [#54](https://github.com/Clinical-Genomics/oncorefiner/pull/54)
+- Refactored subworkflow `PREPARE_REFERENCES` to include logic for untarring vep cache and be called in the main workflow, before `ONCOREFINER` [#57](https://github.com/Clinical-Genomics/oncorefiner/pull/57)
+- Fixed so that parameters are only accessed in `main.nf` and provided to subsequent workflows as `val_*` [#58](https://github.com/Clinical-Genomics/oncorefiner/pull/58)
+- Generalised description of `sex` parameter [#64](https://github.com/Clinical-Genomics/oncorefiner/pull/64)
 
 ### `Dependencies`
 
