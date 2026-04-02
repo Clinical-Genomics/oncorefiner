@@ -1,5 +1,5 @@
 //
-// Convert VCF with structural variations to the “.CGH” format used by the CytoSure Interpret Software
+// Convert VCF with structural variations to the .cgh format used by the CytoSure Interpret Software
 //
 
 include { BCFTOOLS_VIEW as FILTER_VCF } from '../../../modules/nf-core/bcftools/view/main'
