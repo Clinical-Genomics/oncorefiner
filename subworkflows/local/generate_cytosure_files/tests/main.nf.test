@@ -3,25 +3,27 @@ nextflow_workflow {
     name "Test Workflow GENERATE_CYTOSURE_FILES"
     script "../main.nf"
     workflow "GENERATE_CYTOSURE_FILES"
+    tag "subworkflows"
+    tag "generate_cytosure_files"
 
     test("Tumor sample") {
 
         when {
             workflow {
                 """
-                input[0] = [
-                    [ id : 'SV'],
-                    file(params.pipelines_testdata_base_path + 'testdata/SV.tumor.esvee.somatic.37.vcf.gz', checkIfExists: true)
-                ]
-                input[1] = [
-                    [ id : 'SV'],
-                    file(params.pipelines_testdata_base_path + 'testdata/SV.tumor.esvee.somatic.37.vcf.gz.tbi', checkIfExists: true)
-                ]
-                input[2] = [
+                input[0] = channel.of([
                     ['type':'tumor'],
                     file(params.pipelines_testdata_base_path + 'testdata/subject_a.tumor.redux.bam', checkIfExists: true),
                     file(params.pipelines_testdata_base_path + 'testdata/subject_a.tumor.redux.bam.bai', checkIfExists: true)
-                ]
+                ])
+                input[1] = channel.of([
+                    [id:'SV'],
+                    file(params.pipelines_testdata_base_path + 'testdata/SV.tumor.esvee.somatic.37.vcf.gz.tbi', checkIfExists: true)
+                ])
+                input[2] = channel.of([
+                    [id:'SV'],
+                    file(params.pipelines_testdata_base_path + 'testdata/SV.tumor.esvee.somatic.37.vcf.gz', checkIfExists: true)
+                ])
                 """
             }
         }
