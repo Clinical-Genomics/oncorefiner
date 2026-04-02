@@ -1,11 +1,9 @@
 #!/usr/bin/env nextflow
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    nf-core/postprocessing
+    Clinical-Genomics/oncorefiner
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    Github : https://github.com/nf-core/postprocessing
-    Website: https://nf-co.re/postprocessing
-    Slack  : https://nfcore.slack.com/channels/postprocessing
+    Github : https://github.com/Clinical-Genomics/oncorefiner
 ----------------------------------------------------------------------------------------
 */
 
@@ -15,22 +13,10 @@
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
-include { POSTPROCESSING  } from './workflows/postprocessing'
-include { PIPELINE_INITIALISATION } from './subworkflows/local/utils_nfcore_postprocessing_pipeline'
-include { PIPELINE_COMPLETION     } from './subworkflows/local/utils_nfcore_postprocessing_pipeline'
-include { getGenomeAttribute      } from './subworkflows/local/utils_nfcore_postprocessing_pipeline'
-
-/*
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    GENOME PARAMETER VALUES
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-*/
-
-// TODO nf-core: Remove this line if you don't need a FASTA file
-//   This is an example of how to use getGenomeAttribute() to fetch parameters
-//   from igenomes.config using `--genome`
-params.fasta = getGenomeAttribute('fasta')
-
+include { ONCOREFINER             } from './workflows/oncorefiner'
+include { PIPELINE_INITIALISATION } from './subworkflows/local/utils_nfcore_oncorefiner_pipeline'
+include { PIPELINE_COMPLETION     } from './subworkflows/local/utils_nfcore_oncorefiner_pipeline'
+include { PREPARE_REFERENCES      } from './subworkflows/local/prepare_references'
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     NAMED WORKFLOWS FOR PIPELINE
@@ -40,21 +26,124 @@ params.fasta = getGenomeAttribute('fasta')
 //
 // WORKFLOW: Run main analysis pipeline depending on type of input
 //
-workflow NFCORE_POSTPROCESSING {
+workflow CLINICALGENOMICS_ONCOREFINER {
 
     take:
-    samplesheet // channel: samplesheet read in from --input
+    samplesheet                 // channel: [mandatory] samplesheet read in from --input
+    val_bam_normal              // string:  [optional]  path to BAM file for the normal sample
+    val_bai_normal              // string:  [optional]  path to BAI file for the normal sample
+    val_bam_tumor               // string:  [optional]  path to BAM file for the tumor sample
+    val_bai_tumor               // string:  [optional]  path to BAI file for the tumor sample
+    val_genome                  // string:  [optional]  genome assembly (e.g. "GRCh38")
+    val_genome_fasta            // string:  [optional]  path to genome fasta file
+    val_snv_vcf                 // string:  [optional]  path to input SNV vcf file
+    val_species                 // string:  [optional]  species (e.g. "homo_sapiens")
+    val_sv_vcf                  // string:  [optional]  path to input SV vcf file
+    val_svdb_query_dbs          // string:  [optional]  path to file containing paths to SVDB query databases and additional information (one per line)
+    val_vcfanno_extra           // string:  [optional]  path to file containing paths to extra files for vcfanno (one per line)
+    val_vcfanno_lua             // string:  [optional]  path to vcfanno lua file
+    val_vcfanno_resources       // string:  [optional]  path to file containing paths to vcfanno resources (one per line)
+    val_vcfanno_toml            // string:  [optional]  path to vcfanno toml file
+    val_vep_cache               // string:  [optional]  path to vep cache tar gzip file
+    val_vep_cache_version       // string:  [optional]  version of vep cache to use (e.g. "107")
+    val_vep_plugin_files        // string:  [optional]  path to file containing paths to vep plugin files (one per line)
 
     main:
 
     //
+    // Subworkflow: Prepare reference files
+    //
+    ch_vep_cache_unprocessed = val_vep_cache ? channel.fromPath(val_vep_cache).map { it -> [[id:'vep_cache'], it] }.collect()
+                                             : channel.value([[],[]])
+
+    PREPARE_REFERENCES (
+        params.vep_cache
+        )
+
+    //
     // WORKFLOW: Run pipeline
     //
-    POSTPROCESSING (
-        samplesheet
+
+    // Input channels
+    ch_snv_vcf              = channel.fromPath(val_snv_vcf).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
+    ch_snv_vcf_tbi          = channel.fromPath(val_snv_vcf + '.tbi', checkIfExists: true).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
+    ch_sv_vcf               = channel.fromPath(val_sv_vcf).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
+    ch_sv_vcf_tbi           = channel.fromPath(val_sv_vcf + '.tbi', checkIfExists: true).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
+    ch_vep_extra_files      = channel.empty()
+    ch_svdb_dbs             = channel.empty()
+
+    // Input for GENERATE_CYTOSURE_FILES
+    ch_bam_bai_normal = channel.empty()
+
+    if (val_bam_normal && val_bai_normal) {
+        ch_bam_bai_normal = channel.fromPath(val_bam_normal)
+                            .combine(channel.fromPath(val_bai_normal))
+                            .map { bam, bai -> [[type:'normal'], bam, bai] }
+    }
+
+    ch_bam_bai_tumor = channel.empty()
+
+    if (val_bam_tumor && val_bai_tumor) {
+        ch_bam_bai_tumor = channel.fromPath(val_bam_tumor)
+                            .combine(channel.fromPath(val_bai_tumor))
+                            .map { bam, bai -> [[type:'tumor'], bam, bai] }
+    }
+
+    // Reference files
+    ch_genome_fasta         = channel.fromPath(val_genome_fasta).map { it -> [[id:it.simpleName], it] }.collect()
+
+    // Input for VEP
+    ch_vep_extra_files_unsplit  = val_vep_plugin_files ? channel.fromPath(val_vep_plugin_files).collect() : channel.value([])
+    if (val_vep_plugin_files) {
+        ch_vep_extra_files_unsplit.splitCsv ( header:true )
+            .map { row ->
+                def f = file(row.vep_files[0])
+                if(f.isFile() || f.isDirectory()){
+                    return [f]
+                } else {
+                    error("\nVep database file ${f} does not exist.")
+                }
+            }
+            .collect()
+            .set {ch_vep_extra_files}
+    }
+
+    // Input for Vcfanno
+    ch_vcfanno_extra     = val_vcfanno_extra     ? channel.fromPath(val_vcfanno_extra).collect()
+                                                 : []
+    ch_vcfanno_lua       = val_vcfanno_lua       ? channel.fromPath(val_vcfanno_lua).collect()
+                                                 : channel.value([])
+    ch_vcfanno_resources = val_vcfanno_resources ? channel.fromPath(val_vcfanno_resources).splitText().map{it -> it.trim()}.collect()
+                                                 : channel.value([])
+    ch_vcfanno_toml      = val_vcfanno_toml      ? channel.fromPath(val_vcfanno_toml).collect()
+                                                 : channel.value([])
+
+
+    // Input for SVDB
+    ch_sv_dbs            = val_svdb_query_dbs    ? channel.fromPath(val_svdb_query_dbs)
+                                                 : channel.empty()
+
+
+    ONCOREFINER (
+        samplesheet,
+        ch_genome_fasta,
+        ch_snv_vcf,
+        ch_snv_vcf_tbi,
+        ch_sv_dbs,
+        ch_sv_vcf,
+        ch_sv_vcf_tbi,
+        ch_vcfanno_extra,
+        ch_vcfanno_lua,
+        ch_vcfanno_resources,
+        ch_vcfanno_toml,
+        PREPARE_REFERENCES.out.vep_resources,
+        ch_vep_extra_files,
+        val_genome,
+        val_species,
+        val_vep_cache_version
     )
     emit:
-    multiqc_report = POSTPROCESSING.out.multiqc_report // channel: /path/to/multiqc_report.html
+    multiqc_report = ONCOREFINER.out.multiqc_report // channel: /path/to/multiqc_report.html
 }
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -74,15 +163,36 @@ workflow {
         params.monochrome_logs,
         args,
         params.outdir,
-        params.input
+        params.input,
+        params.help,
+        params.help_full,
+        params.show_hidden
     )
 
     //
     // WORKFLOW: Run main workflow
     //
-    NFCORE_POSTPROCESSING (
-        PIPELINE_INITIALISATION.out.samplesheet
+    CLINICALGENOMICS_ONCOREFINER (
+        PIPELINE_INITIALISATION.out.samplesheet,
+        params.bam_normal,
+        params.bai_normal,
+        params.bam_tumor,
+        params.bai_tumor,
+        params.genome,
+        params.fasta,
+        params.snv_vcf,
+        params.species,
+        params.sv_vcf,
+        params.svdb_query_dbs,
+        params.vcfanno_extra,
+        params.vcfanno_lua,
+        params.vcfanno_resources,
+        params.vcfanno_toml,
+        params.vep_cache,
+        params.vep_cache_version,
+        params.vep_plugin_files
     )
+
     //
     // SUBWORKFLOW: Run completion tasks
     //
@@ -93,7 +203,7 @@ workflow {
         params.outdir,
         params.monochrome_logs,
         params.hook_url,
-        NFCORE_POSTPROCESSING.out.multiqc_report
+        CLINICALGENOMICS_ONCOREFINER.out.multiqc_report
     )
 }
 
