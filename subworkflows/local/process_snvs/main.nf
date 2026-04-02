@@ -1,6 +1,3 @@
-
-
-
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     IMPORT MODULES / SUBWORKFLOWS / FUNCTIONS
@@ -11,11 +8,16 @@
 // MODULE: Installed directly from nf-core/modules
 //
 
-include { ENSEMBLVEP_VEP as ENSEMBLVEP_SNV         } from '../../../modules/nf-core/ensemblvep/vep/main'
-include { VCFANNO                                  } from '../../../modules/nf-core/vcfanno/main'
-include { BCFTOOLS_VIEW as RESEARCH_FILTERING      } from '../../../modules/nf-core/bcftools/view/main'
-include { BCFTOOLS_VIEW as CLINICAL_FILTERING      } from '../../../modules/nf-core/bcftools/view/main'
+include { ENSEMBLVEP_VEP                          } from '../../../modules/nf-core/ensemblvep/vep/main'
+include { VCFANNO                                 } from '../../../modules/nf-core/vcfanno/main'
+include { BCFTOOLS_VIEW as BCFTOOLS_VIEW_RESEARCH } from '../../../modules/nf-core/bcftools/view/main'
+include { BCFTOOLS_VIEW as BCFTOOLS_VIEW_CLINICAL } from '../../../modules/nf-core/bcftools/view/main'
 
+/*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    RUN PROCESS_SNVS WORKFLOW
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
 
 workflow PROCESS_SNVS {
 
@@ -54,16 +56,16 @@ workflow PROCESS_SNVS {
                 }
             .set { ch_research_filtering_in }
 
-        RESEARCH_FILTERING(ch_research_filtering_in, [], [], [])
+        BCFTOOLS_VIEW_RESEARCH(ch_research_filtering_in, [], [], [])
 
         // Annotate with VEP
-        RESEARCH_FILTERING.out.vcf
+        BCFTOOLS_VIEW_RESEARCH.out.vcf
                 .map { meta, vcf ->
                     tuple(meta, vcf, [])
                 }
                 .set { ch_vep_snv }
 
-        ENSEMBLVEP_SNV (
+        ENSEMBLVEP_VEP (
             ch_vep_snv,
             val_genome,
             val_species,
@@ -74,13 +76,13 @@ workflow PROCESS_SNVS {
         )
 
         // Clinical Filtering
-        ENSEMBLVEP_SNV.out.vcf
-            .join(ENSEMBLVEP_SNV.out.tbi)
+        ENSEMBLVEP_VEP.out.vcf
+            .join(ENSEMBLVEP_VEP.out.tbi)
             .map { meta, vcf, tbi ->
                 tuple(meta, vcf, tbi)
                 }
             .set { ch_clinical_filtering_in }
 
-        CLINICAL_FILTERING(ch_clinical_filtering_in, [], [], [])
+        BCFTOOLS_VIEW_CLINICAL(ch_clinical_filtering_in, [], [], [])
     }
 }
