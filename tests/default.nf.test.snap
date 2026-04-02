@@ -30,19 +30,13 @@
                 "SVDB_QUERY_DB": {
                     "svdb": "2.8.4"
                 },
-                "TIDDIT_COV_NORMAL": {
-                    "tiddit": "3.9.5"
-                },
-                "TIDDIT_COV_TUMOR": {
+                "TIDDIT_COV": {
                     "tiddit": "3.9.5"
                 },
                 "UNTAR_VEP_CACHE": {
                     "untar": 1.34
                 },
-                "VCF2CYTOSURE_NORMAL": {
-                    "vcf2cytosure": "0.9.3"
-                },
-                "VCF2CYTOSURE_TUMOR": {
+                "VCF2CYTOSURE": {
                     "vcf2cytosure": "0.9.3"
                 },
                 "VCFANNO": {
@@ -91,8 +85,8 @@
                 "vep/SNV_vep.vcf.gz_summary.html"
             ],
             [
-                "normal.cgh:md5,d84d0671944b4eecde4d6a7647e9a289",
-                "tumor.cgh:md5,47a044f1fa58a7f43fb020ecd66bb0a2"
+                "normal.cgh:md5,df9f0942e27e9c8f576c3d58a2e4ce29",
+                "tumor.cgh:md5,6982664c6f78b094fd4a26afc25e153e"
             ],
             [
                 [
@@ -139,7 +133,7 @@
                 ]
             ]
         ],
-        "timestamp": "2026-03-31T13:35:21.171937",
+        "timestamp": "2026-04-02T17:47:43.971861",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "25.10.4"
