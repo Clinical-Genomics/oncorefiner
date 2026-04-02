@@ -15,6 +15,10 @@ workflow GENERATE_CYTOSURE_FILES {
 
     main:
 
+        ch_vcf.dump(tag: 'ch_vcf')     // channel: [mandatory] [val(meta), path(vcf)]
+        ch_tbi.dump(tag: 'ch_tbi')     // channel: [mandatory] [val(meta), path(tbi)]
+        ch_bam_bai.dump(tag: 'ch_bam_bai') // c
+
         // Filter out SGL variants, if present
         ch_vcf_tbi = ch_vcf.join(ch_tbi, failOnMismatch: true)
         FILTER_VCF(
@@ -40,6 +44,6 @@ workflow GENERATE_CYTOSURE_FILES {
         )
 
     emit:
-        ch_cgh  = VCF2CYTOSURE.out.cgh  // channel: [val(meta), path(cgh)]
+        cgh  = VCF2CYTOSURE.out.cgh  // channel: [val(meta), path(cgh)]
 
 }
