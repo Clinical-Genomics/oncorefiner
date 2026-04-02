@@ -36,7 +36,6 @@ workflow PROCESS_SNVS {
         val_vep_cache_version // string:  [optional]  version of vep cache to use (e.g. "107")
 
     main:
-
         // Annotate with custom databases
         ch_snv_vcf
             .join(ch_snv_vcf_tbi)
@@ -84,5 +83,4 @@ workflow PROCESS_SNVS {
             .set { ch_clinical_filtering_in }
 
         BCFTOOLS_VIEW_CLINICAL(ch_clinical_filtering_in, [], [], [])
-    }
 }

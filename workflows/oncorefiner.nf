@@ -70,8 +70,8 @@ workflow ONCOREFINER {
         // Process SNV VCF files
         if (ch_snv_vcf) {
             PROCESS_SNVS (
-                ch_snv_vcf,
-                ch_snv_vcf_tbi,
+                ch_snv_vcf.view(),
+                ch_snv_vcf_tbi.view(),
                 ch_vcfanno_extra,
                 ch_vcfanno_lua,
                 ch_vcfanno_resources,
