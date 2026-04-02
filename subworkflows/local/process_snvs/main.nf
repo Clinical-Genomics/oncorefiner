@@ -20,13 +20,9 @@ include { BCFTOOLS_VIEW as CLINICAL_FILTERING      } from '../../../modules/nf-c
 workflow PROCESS_SNVS {
 
     take:
-        ch_samplesheet        // channel: [mandatory] samplesheet read in from --input
         ch_genome_fasta       // channel: [optional]  [val(meta), path(fasta)]
         ch_snv_vcf            // channel: [optional]  [val(meta), path(vcf)]
         ch_snv_vcf_tbi        // channel: [optional]  [val(meta), path(vcf.tbi)]
-        ch_sv_dbs             // channel: [optional]  [path(csv)]
-        ch_sv_vcf             // channel: [optional]  [val(meta), path(vcf)]
-        ch_sv_vcf_tbi         // channel: [optional]  [val(meta), path(vcf.tbi)]
         ch_vcfanno_extra      // channel: [optional]  [path(extra_file1), path(extra_file2), ...]
         ch_vcfanno_lua        // channel: [optional]  [path(lua_file)]
         ch_vcfanno_resources  // channel: [optional]  [path(resource_file1), path(resource_file2), ...]
@@ -53,6 +49,7 @@ workflow PROCESS_SNVS {
                 tuple(meta, vcf, tbi, resources)
                 }
             .set { ch_vcfanno_in }
+
         VCFANNO (ch_vcfanno_in, ch_vcfanno_toml, ch_vcfanno_lua, ch_vcfanno_resources)
 
         // Quality Filtering
@@ -62,6 +59,7 @@ workflow PROCESS_SNVS {
                 tuple(meta, vcf, tbi)
                 }
             .set { ch_research_filtering_in }
+
         RESEARCH_FILTERING(ch_research_filtering_in, [], [], [])
 
         // VEP
@@ -88,6 +86,7 @@ workflow PROCESS_SNVS {
                 tuple(meta, vcf, tbi)
                 }
             .set { ch_clinical_filtering_in }
+            
         CLINICAL_FILTERING(ch_clinical_filtering_in, [], [], [])
     }
 }
