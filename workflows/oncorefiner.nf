@@ -11,10 +11,6 @@ include { paramsSummaryMap       } from 'plugin/nf-schema'
 //
 
 include { MULTIQC                                  } from '../modules/nf-core/multiqc/main'
-include { ENSEMBLVEP_VEP as ENSEMBLVEP_SNV         } from '../modules/nf-core/ensemblvep/vep/main'
-include { VCFANNO                                  } from '../modules/nf-core/vcfanno/main'
-include { BCFTOOLS_VIEW as RESEARCH_FILTERING      } from '../modules/nf-core/bcftools/view/main'
-include { BCFTOOLS_VIEW as CLINICAL_FILTERING      } from '../modules/nf-core/bcftools/view/main'
 include { SVDB_QUERY as SVDB_QUERY_DB              } from '../modules/nf-core/svdb/query/main'
 include { ENSEMBLVEP_VEP as ENSEMBLVEP_SV          } from '../modules/nf-core/ensemblvep/vep/main'
 include { BCFTOOLS_VIEW as RESEARCH_FILTERING_SV   } from '../modules/nf-core/bcftools/view/main'
@@ -32,6 +28,12 @@ include { BCFTOOLS_VIEW as CLINICAL_FILTERING_SV   } from '../modules/nf-core/bc
 include { paramsSummaryMultiqc   } from '../subworkflows/nf-core/utils_nfcore_pipeline'
 include { softwareVersionsToYAML } from '../subworkflows/nf-core/utils_nfcore_pipeline'
 include { methodsDescriptionText } from '../subworkflows/local/utils_nfcore_oncorefiner_pipeline'
+
+//
+// LOCAL SUBWORKFLOWS
+//
+
+include { PROCESS_SNVS } from '../subworkflows/local/process_snvs/main.nf'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -65,7 +67,23 @@ workflow ONCOREFINER {
         ch_versions             = channel.empty()
         ch_multiqc_files        = channel.empty()
 
-        // Process SNVs
+        // Process SNV VCF files
+        if (ch_snv_vcf) {
+            PROCESS_SNVS (
+                ch_snv_vcf,
+                ch_snv_vcf_tbi,
+                ch_vcfanno_extra,
+                ch_vcfanno_lua,
+                ch_vcfanno_resources,
+                ch_vcfanno_toml,
+                ch_vep_cache,
+                ch_genome_fasta,
+                ch_vep_extra_files,
+                val_genome,
+                val_species,
+                val_vep_cache_version
+            )
+        }
 
         // Process SV VCF files
         if (ch_sv_vcf) {
