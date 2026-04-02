@@ -1,0 +1,15 @@
+{
+    "Tumor sample": {
+        "content": [
+            [
+                "vcf2cytosure",
+                "vcf2cytosure/tumor.cgh"
+            ]
+        ],
+        "timestamp": "2026-04-02T17:27:38.972531",
+        "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "25.10.4"
+        }
+    }
+}

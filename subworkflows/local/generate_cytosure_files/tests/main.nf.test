@@ -9,6 +9,10 @@ nextflow_workflow {
     test("Tumor sample") {
 
         when {
+            params {
+                outdir = "$outputDir"
+            }
+
             workflow {
                 """
                 input[0] = channel.of([
@@ -29,11 +33,13 @@ nextflow_workflow {
         }
 
         then {
+            // All files and directories in the output directory
+            def output_files = getAllFilesFromDir(params.outdir, relative: true, includeDir: true)
+
             assertAll(
                 { assert workflow.success },
                 { assert snapshot(
-                    workflow.out.versions,
-                    file(workflow.out.cgh).name
+                    output_files
                 ).match() }
             )
         }
