@@ -4,7 +4,7 @@ nextflow_pipeline {
     script "../main.nf"
     tag "pipeline"
 
-    test("-profile test") {
+    test("Tumor Normal analysis with '-profile test'") {
 
         when {
             params {
