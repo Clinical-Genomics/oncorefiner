@@ -36,6 +36,7 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     val_bai_tumor               // string:  [optional]  path to BAI file for the tumor sample
     val_genome                  // string:  [optional]  genome assembly (e.g. "GRCh38")
     val_genome_fasta            // string:  [optional]  path to genome fasta file
+    val_genome_fai              // string:  [optional]  path to genome fasta index file
     val_snv_vcf                 // string:  [optional]  path to input SNV vcf file
     val_species                 // string:  [optional]  species (e.g. "homo_sapiens")
     val_sv_vcf                  // string:  [optional]  path to input SV vcf file
@@ -56,23 +57,12 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     ch_vep_cache_unprocessed = val_vep_cache ? channel.fromPath(val_vep_cache).map { it -> [[id:'vep_cache'], it] }.collect()
                                              : channel.value([[],[]])
 
-    PREPARE_REFERENCES (
-        params.vep_cache
-        )
+    // Reference files
+    ch_genome_fasta         = channel.fromPath(val_genome_fasta).map { it -> [[id:it.simpleName], it] }.collect()
+    ch_genome_fai           = channel.fromPath(val_genome_fai).map { it -> [[id:it.simpleName], it] }.collect()
+    ch_genome_fasta_fai     = ch_genome_fasta.join(ch_genome_fai, failOnMismatch: true, failOnDuplicate: true)
 
-    //
-    // WORKFLOW: Run pipeline
-    //
-
-    // Input channels
-    ch_snv_vcf              = channel.fromPath(val_snv_vcf).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
-    ch_snv_vcf_tbi          = channel.fromPath(val_snv_vcf + '.tbi', checkIfExists: true).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
-    ch_sv_vcf               = channel.fromPath(val_sv_vcf).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
-    ch_sv_vcf_tbi           = channel.fromPath(val_sv_vcf + '.tbi', checkIfExists: true).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
-    ch_vep_extra_files      = channel.empty()
-    ch_svdb_dbs             = channel.empty()
-
-    // Input for GENERATE_CYTOSURE_FILES
+    // BAM files, input for bam-to-cram and GENERATE_CYTOSURE_FILES
     ch_bam_bai_normal = channel.empty()
 
     if (val_bam_normal && val_bai_normal) {
@@ -89,8 +79,24 @@ workflow CLINICALGENOMICS_ONCOREFINER {
                             .map { bam, bai -> [[type:'tumor'], bam, bai] }
     }
 
-    // Reference files
-    ch_genome_fasta         = channel.fromPath(val_genome_fasta).map { it -> [[id:it.simpleName], it] }.collect()
+    PREPARE_REFERENCES (
+        ch_bam_bai_normal,
+        ch_bam_bai_tumor,
+        ch_genome_fasta_fai,
+        params.vep_cache,
+        )
+
+    //
+    // WORKFLOW: Run pipeline
+    //
+
+    // Input channels
+    ch_snv_vcf              = channel.fromPath(val_snv_vcf).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
+    ch_snv_vcf_tbi          = channel.fromPath(val_snv_vcf + '.tbi', checkIfExists: true).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
+    ch_sv_vcf               = channel.fromPath(val_sv_vcf).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
+    ch_sv_vcf_tbi           = channel.fromPath(val_sv_vcf + '.tbi', checkIfExists: true).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
+    ch_vep_extra_files      = channel.empty()
+    ch_svdb_dbs             = channel.empty()
 
     // Input for VEP
     ch_vep_extra_files_unsplit  = val_vep_plugin_files ? channel.fromPath(val_vep_plugin_files).collect() : channel.value([])
@@ -180,6 +186,7 @@ workflow {
         params.bai_tumor,
         params.genome,
         params.fasta,
+        params.fai,
         params.snv_vcf,
         params.species,
         params.sv_vcf,
