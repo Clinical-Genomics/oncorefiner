@@ -7,13 +7,27 @@ include { UNTAR as UNTAR_VEP_CACHE                           } from '../../modul
 
 workflow PREPARE_REFERENCES {
     take:
-        ch_vep_cache                 // channel: [mandatory for annotation] [ path(cache) ]
+        val_vep_cache // string: [mandatory] path(cache)
 
     main:
+        ch_vep_resources = channel.value([[]])
 
-        // Untar
-        UNTAR_VEP_CACHE (ch_vep_cache)
+        //
+        // Prepare vep cache files
+        //
+
+        if (val_vep_cache) {
+            if (val_vep_cache.endsWith("tar.gz")) {
+                ch_vep_resources = UNTAR_VEP_CACHE(
+                                    channel.fromPath(val_vep_cache).map { it -> [[id:'vep_cache'], it] }.collect()
+                                    )
+                                    .untar.map{ _meta, files -> [files]}
+                                    .collect()
+            } else {
+                ch_vep_resources = channel.fromPath(val_vep_cache).collect()
+            }
+        }
 
     emit:
-        vep_resources         = UNTAR_VEP_CACHE.out.untar.map{meta, files -> [files]}.collect()
+        vep_resources = ch_vep_resources // channel: [vep_cache_files]
 }

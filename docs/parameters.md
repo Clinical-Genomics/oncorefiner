@@ -12,6 +12,11 @@ Define where the pipeline should find input data and save output data.
 | `outdir` | The output directory where the results will be saved. You have to use absolute paths to storage on Cloud infrastructure. | `string` |  | True |  |
 | `snv_vcf` | Path to a VCF file containing somatic SNV/INDEL variants to be processed by the pipeline. The VCF may include one or multiple samples. Typically, this is a single tumor sample for tumor-only analyses, or both tumor and matched normal samples for tumor-normal analyses. | `string` |  |  |  |
 | `sv_vcf` | Path to a VCF file containing somatic structural variants (SVs) to be processed by the pipeline. The VCF may include one or multiple samples. Typically, this is a single tumor sample for tumor-only analyses, or both tumor and matched normal samples for tumor-normal analyses. | `string` |  |  |  |
+| `bam_tumor` | Path to alignment BAM file for the tumor sample. | `string` |  |  |  |
+| `bai_tumor` | Path to BAM index file for the tumor sample. | `string` |  |  |  |
+| `bam_normal` | Path to alignment BAM file for the normal sample. | `string` |  |  |  |
+| `bai_normal` | Path to BAM index file for the normal sample. | `string` |  |  |  |
+| `sex` | Sex of the patient. (accepted: `female`\|`male`\|`unknown`) | `string` |  |  |  |
 | `email` | Email address for completion summary. <details><summary>Help</summary><small>Set this parameter to your e-mail address to get a summary e-mail with details of the run sent to you when the workflow exits. If set in your user config file (`~/.nextflow/config`) then you don't need to specify this on the command line for every run.</small></details>| `string` |  |  |  |
 | `multiqc_title` | MultiQC report title. Printed as page header, used for filename if not otherwise specified. | `string` |  |  |  |
 
@@ -71,7 +76,7 @@ Less common options for the pipeline, typically set in a config file.
 | `multiqc_logo` | Custom logo file to supply to MultiQC. File name must also be set in the MultiQC config file | `string` |  |  | True |
 | `multiqc_methods_description` | Custom MultiQC yaml file containing HTML including a methods description. | `string` |  |  |  |
 | `validate_params` | Boolean whether to validate parameters against the schema at runtime | `boolean` | True |  | True |
-| `pipelines_testdata_base_path` | Base URL or local path to location of pipeline test dataset files | `string` | https://raw.githubusercontent.com/Clinical-Genomics/test-datasets/refs/heads/oncorefiner/ |  | True |
+| `pipelines_testdata_base_path` | Base URL or local path to location of pipeline test dataset files | `string` | https://raw.githubusercontent.com/Clinical-Genomics/test-datasets/bc94db3a30d6194f4cebcb9480bf24b0600b4d23/ |  | True |
 | `trace_report_suffix` | Suffix to add to the trace report filename. Default is the date and time in the format yyyy-MM-dd_HH-mm-ss. | `string` |  |  | True |
 | `help` | Display the help message. | `['boolean', 'string']` |  |  |  |
 | `help_full` | Display the full detailed help message. | `boolean` |  |  |  |
