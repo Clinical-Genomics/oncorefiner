@@ -114,7 +114,6 @@ workflow ONCOREFINER {
 
                 RESEARCH_FILTERING.out.vcf
                     .join(TABIX_RESEARCH_FILTERING.out.index, failOnMismatch:true, failOnDuplicate:true)
-                    .view()
                     .set{ ch_cadd_in }
 
                 ANNOTATE_CADD (
