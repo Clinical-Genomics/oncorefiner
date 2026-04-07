@@ -53,7 +53,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - Refactored subworkflow `PREPARE_REFERENCES` to include logic for untarring vep cache and be called in the main workflow, before `ONCOREFINER` [#57](https://github.com/Clinical-Genomics/oncorefiner/pull/57)
 - Fixed so that parameters are only accessed in `main.nf` and provided to subsequent workflows as `val_*` [#58](https://github.com/Clinical-Genomics/oncorefiner/pull/58)
 - Generalised description of `sex` parameter [#64](https://github.com/Clinical-Genomics/oncorefiner/pull/64)
-- Update `pipelines_testdata_base_path` to reflect the latest commit to `Clinical-Genomics/test-datasets/` [#68](https://github.com/Clinical-Genomics/oncorefiner/pull/68)
+- Added `pipelines_testdata_base_path_latest_commit` parameter to update `pipelines_testdata_base_path` to reflect the latest commit to `Clinical-Genomics/test-datasets/` [#68](https://github.com/Clinical-Genomics/oncorefiner/pull/68)
 
 ### `Dependencies`
 
