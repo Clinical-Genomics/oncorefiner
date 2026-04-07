@@ -340,6 +340,13 @@
                     "fa_icon": "fas fa-check-square",
                     "hidden": true
                 },
+                "pipelines_testdata_base_path_latest_commit": {
+                    "type": "string",
+                    "default": "bc94db3a30d6194f4cebcb9480bf24b0600b4d23",
+                    "fa_icon": "far fa-check-circle",
+                    "description": "Hash to latest commit in testdata repository.",
+                    "hidden": true
+                },
                 "pipelines_testdata_base_path": {
                     "type": "string",
                     "fa_icon": "far fa-check-circle",
