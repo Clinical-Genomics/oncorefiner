@@ -279,6 +279,7 @@ Please use the following naming schemes, to make it easy to understand what is g
       vcf     = ch_vcf      // channel: [ val(meta), path(vcf) ]
       publish = ch_publish  // channel: [ val(destination), val(value) ]
   ```
+
 - Avoid using the `.set {ch_*}` operator to create new channels. Use `ch_* = <...>` whenever possible.
 - Intermediate publish channels in `workflows/oncorefiner.nf` follow the `ch_<subworkflow_name>_publish` naming convention and are assigned immediately after the subworkflow call, not inline in the emit block.
 - Initialize all `ch_*_publish` variables at the top of the `main:` block alongside `ch_multiqc_files`.
