@@ -21,7 +21,7 @@
 
 ## Introduction
 
-**Clinical-Genomics/oncorefiner** is a customizable post-processing and extension layer for Oncoanalyser that adapts its outputs according to clinical and operational needs, adds missing analyses, and ensures flexibility for evolving standards while retaining Oncoanalyser's robust core.
+**Clinical-Genomics/oncorefiner** is a customizable post-processing and extension layer for [nf-core/Oncoanalyser](https://github.com/nf-core/oncoanalyser) that adapts its outputs according to clinical and operational needs, adds missing analyses, and ensures flexibility for evolving standards while retaining Oncoanalyser's robust core.
 
 <!-- TODO: Add information about the processes and the output when the architecture of the pipeline is decided and the information is clear.
 
