@@ -38,12 +38,12 @@
    1. Filter with [`bcftools`](https://github.com/samtools/bcftools). This step applies clinically relevant filters as defined in the configuration settings. For example, it may involve subsetting variants based on a a list of clinically relevant genes.
 
 1. Process SV VCF files
-   1. Annotate VCF with external database (params) using [`SVDB`](https://github.com/J35P312/SVDB)
+   1. Annotate VCF with external database (params) using [`SVDB`](https://github.com/J35P312/SVDB).
    1. Filter with [`bcftools`](https://github.com/samtools/bcftools). This step aims to apply quality, population-level filtering and/or other general criteria as defined in the configuration settings.
-   1. Annotate with [`Ensembl VEP`](https://www.ensembl.org/info/docs/tools/vep/index.html)
+   1. Annotate with [`Ensembl VEP`](https://www.ensembl.org/info/docs/tools/vep/index.html).
    1. Filter with [`bcftools`](https://github.com/samtools/bcftools). This step applies clinically relevant filters as defined in the configuration settings. For example, it may involve subsetting variants based on a a list of clinically relevant genes. 
 
-1. Present QC for raw reads ([`MultiQC`](http://multiqc.info/))
+1. Present QC for raw reads ([`MultiQC`](http://multiqc.info/)).
 
 For further information about the each step and output files, please refer to the [output documentation](.github/docs/output.md).
 
