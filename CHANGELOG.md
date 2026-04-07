@@ -21,6 +21,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - Added Nextflow strict syntax compatibility [#30](https://github.com/Clinical-Genomics/oncorefiner/pull/30)
 - Added bam and bai parameters for tumor and normal samples, and logic to create joint bam_bai channels [#61](https://github.com/Clinical-Genomics/oncorefiner/pull/61)
 - Added `sex` parameter [#62](https://github.com/Clinical-Genomics/oncorefiner/pull/62)
+- Add `tumor_only` test and snapshot [#69](https://github.com/Clinical-Genomics/oncorefiner/pull/69)
 
 ### Changed
 
@@ -29,6 +30,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - Updated minimum Nextflow version to 25.10.0 [#30](https://github.com/Clinical-Genomics/oncorefiner/pull/30)
 - Added wgs-cancer-pipeline projects list in the issue templates [#37](https://github.com/Clinical-Genomics/oncorefiner/pull/37)
 - Updated link to Contributing Guidelines in the PR checklist to point to the rendered version of the document in `dev` [#56](https://github.com/Clinical-Genomics/oncorefiner/pull/56)
+- Renamed default test to `tumor_normal` test and updated snapshot [#69](https://github.com/Clinical-Genomics/oncorefiner/pull/69)
 
 ### `Fixed`
 
