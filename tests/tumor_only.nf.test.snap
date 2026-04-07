@@ -1,0 +1,129 @@
+{
+    "Tumor only analysis with '-profile test'": {
+        "content": [
+            {
+                "CLINICAL_FILTERING": {
+                    "bcftools": 1.22
+                },
+                "CLINICAL_FILTERING_SV": {
+                    "bcftools": 1.22
+                },
+                "ENSEMBLVEP_SNV": {
+                    "ensemblvep": 115.2,
+                    "perl-math-cdf": 0.1,
+                    "tabix": 1.21
+                },
+                "ENSEMBLVEP_SV": {
+                    "ensemblvep": 115.2,
+                    "perl-math-cdf": 0.1,
+                    "tabix": 1.21
+                },
+                "RESEARCH_FILTERING": {
+                    "bcftools": 1.22
+                },
+                "RESEARCH_FILTERING_SV": {
+                    "bcftools": 1.22
+                },
+                "SVDB_QUERY_DB": {
+                    "svdb": "2.8.4"
+                },
+                "UNTAR_VEP_CACHE": {
+                    "untar": 1.34
+                },
+                "VCFANNO": {
+                    "vcfanno": "0.3.7"
+                },
+                "Workflow": {
+                    "Clinical-Genomics/oncorefiner": "v1.0.0dev"
+                }
+            },
+            [
+                "annotate_sv",
+                "annotate_sv/SV_svdbquery_vep.vcf.gz",
+                "annotate_sv/SV_svdbquery_vep.vcf.gz.tbi",
+                "annotate_sv/SV_svdbquery_vep.vcf.gz_summary.html",
+                "clinical",
+                "clinical/SV_clinical.vcf",
+                "clinical_filtering",
+                "clinical_filtering/SNV_clinical.vcf.gz",
+                "multiqc",
+                "multiqc/multiqc_data",
+                "multiqc/multiqc_data/llms-full.txt",
+                "multiqc/multiqc_data/multiqc.log",
+                "multiqc/multiqc_data/multiqc.parquet",
+                "multiqc/multiqc_data/multiqc_citations.txt",
+                "multiqc/multiqc_data/multiqc_data.json",
+                "multiqc/multiqc_data/multiqc_software_versions.txt",
+                "multiqc/multiqc_data/multiqc_sources.txt",
+                "multiqc/multiqc_report.html",
+                "pipeline_info",
+                "pipeline_info/oncorefiner_software_mqc_versions.yml",
+                "research",
+                "research/SV_research.vcf",
+                "research_filtering",
+                "research_filtering/SNV_research.vcf.gz",
+                "svdb",
+                "svdb/SV_vcfdb_query.vcf",
+                "vcfanno",
+                "vcfanno/SNV_vcfanno.vcf.gz",
+                "vcfanno/SNV_vcfanno.vcf.gz.tbi",
+                "vep",
+                "vep/SNV_vep.vcf.gz",
+                "vep/SNV_vep.vcf.gz.tbi",
+                "vep/SNV_vep.vcf.gz_summary.html"
+            ],
+            [
+                
+            ],
+            [
+                [
+                    "SV_svdbquery_vep.vcf.gz",
+                    "VcfFile [chromosomes=[], sampleCount=2, variantCount=0, phased=true, phasedAutodetect=true]"
+                ],
+                [
+                    "SNV_clinical.vcf.gz",
+                    "VcfFile [chromosomes=[11, 22, 12, 13, 15, 16, 17, 18, 19, 1, 2, 3, 4, 5, 6, 7, 8, X, 9, 20, 21], sampleCount=2, variantCount=102, phased=false, phasedAutodetect=false]"
+                ],
+                [
+                    "SNV_research.vcf.gz",
+                    "VcfFile [chromosomes=[11, 22, 12, 13, 15, 16, 17, 18, 19, 1, 2, 3, 4, 5, 6, 7, 8, X, 9, 20, 21], sampleCount=2, variantCount=102, phased=false, phasedAutodetect=false]"
+                ],
+                [
+                    "SNV_vcfanno.vcf.gz",
+                    "VcfFile [chromosomes=[11, 22, 12, 13, 15, 16, 17, 18, 19, 1, 2, 3, 4, 5, 6, 7, 8, X, 9, 20, 21], sampleCount=2, variantCount=102, phased=false, phasedAutodetect=false]"
+                ],
+                [
+                    "SNV_vep.vcf.gz",
+                    "VcfFile [chromosomes=[11, 22, 12, 13, 15, 16, 17, 18, 19, 1, 2, 3, 4, 5, 6, 7, 8, X, 9, 20, 21], sampleCount=2, variantCount=102, phased=false, phasedAutodetect=false]"
+                ]
+            ],
+            [
+                [
+                    "SV_svdbquery_vep.vcf.gz",
+                    "d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                [
+                    "SNV_clinical.vcf.gz",
+                    "dd792f7ceac820af3fe366985474805"
+                ],
+                [
+                    "SNV_research.vcf.gz",
+                    "d7453d6080983d2c812113003f5e5ae8"
+                ],
+                [
+                    "SNV_vcfanno.vcf.gz",
+                    "746d273c13550ab044af7eb5e62a941a"
+                ],
+                [
+                    "SNV_vep.vcf.gz",
+                    "dd792f7ceac820af3fe366985474805"
+                ]
+            ]
+        ],
+        "timestamp": "2026-04-07T10:51:53.981417",
+        "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "25.10.4"
+        }
+    }
+}
