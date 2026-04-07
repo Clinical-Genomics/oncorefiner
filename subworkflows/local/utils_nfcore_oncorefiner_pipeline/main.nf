@@ -177,70 +177,77 @@ def validateInputSamplesheet(input) {
 //
 def toolCitationText() {
 
-    def citations      = ""
-    def vcfanno        = "vcfanno (Pedersen et al. 2016),"
-    def bcftools_view  = "bcftools (Danecek et al. 2021),"
-    def ensemblvep_vep = "Ensembl VEP (McLaren et al. 2016),"
-    def svdb           = "svdb,"
+    def citations_list = []
+    def vcfanno        = "vcfanno (Pedersen et al. 2016)"
+    def bcftools_view  = "bcftools (Danecek et al. 2021)"
+    def ensemblvep_vep = "Ensembl VEP (McLaren et al. 2016)"
+    def svdb           = "svdb"
+    def multiqc        = "MultiQC (Ewels et al. 2016)"
 
     if (params.snv_vcf) {
-        citations = citations      +
-                    vcfanno        +
-                    bcftools_view  +
-                    ensemblvep_vep
+        citations_list =
+            citations_list +
+            vcfanno        +
+            bcftools_view  +
+            ensemblvep_vep
     }
 
     if (params.sv_vcf) {
-        citations = citations      +
-                    svdb           +
-                    bcftools_view  +
-                    ensemblvep_vep
+        citations_list =
+            citations_list +
+            svdb           +
+            bcftools_view  +
+            ensemblvep_vep
     }
 
-    def always_run = [
-            "MultiQC (Ewels et al. 2016)",
+    // always run
+    citations_list =
+        citations_list +
+        multiqc
+
+    def citations_text = citations_list.unique().join(', ').trim()
+
+    def concat_text =
+            "Tools used in the workflow included: " +
+            citations_text                          +
             "."
-        ].join(' ').trim()
 
-    def concat_text =  citations +
-                       always_run
-
-    def citation_text = [ "Tools used in the workflow included:" ] + concat_text.unique(false) { a, b -> a <=> b } - ""
-    return citation_text.join(' ').trim()
+    return concat_text
 }
 
 def toolBibliographyText() {
 
-    def bibliography   = ""
-    def vcfanno        = "<li>Pedersen BS, Layer RM, Quinlan AR. Vcfanno: fast, flexible annotation of genetic variants. Genome Biol. 2016 Jun 1;17(1):118. doi: 10.1186/s13059-016-0973-5. PMID: 27250555; PMCID: PMC4888505.</li>"
-    def bcftools_view  = "<li>Danecek P, Bonfield JK, Liddle J, Marshall J, Ohan V, Pollard MO, Whitwham A, Keane T, McCarthy SA, Davies RM, Li H. Twelve years of SAMtools and BCFtools. Gigascience. 2021 Feb 16;10(2):giab008. doi: 10.1093/gigascience/giab008. PMID: 33590845; PMCID: PMC7898596.</li>"
-    def ensemblvep_vep = "<li>McLaren W, Gil L, Hunt SE, Riat HS, Ritchie GR, Thormann A, Flicek P, Cunningham F. The Ensembl Variant Effect Predictor. Genome Biol. 2016 Jun 6;17(1):122. doi: 10.1186/s13059-016-0974-4. PMID: 27268795; PMCID: PMC4893825.</li>"
-    def svdb           = "<li>svdb. https://github.com/J35P312/svdb.</li>"
+    def bibliography_list   = []
+    def vcfanno             = "<li>Pedersen BS, Layer RM, Quinlan AR. Vcfanno: fast, flexible annotation of genetic variants. Genome Biol. 2016 Jun 1;17(1):118. doi: 10.1186/s13059-016-0973-5. PMID: 27250555; PMCID: PMC4888505.</li>"
+    def bcftools_view       = "<li>Danecek P, Bonfield JK, Liddle J, Marshall J, Ohan V, Pollard MO, Whitwham A, Keane T, McCarthy SA, Davies RM, Li H. Twelve years of SAMtools and BCFtools. Gigascience. 2021 Feb 16;10(2):giab008. doi: 10.1093/gigascience/giab008. PMID: 33590845; PMCID: PMC7898596.</li>"
+    def ensemblvep_vep      = "<li>McLaren W, Gil L, Hunt SE, Riat HS, Ritchie GR, Thormann A, Flicek P, Cunningham F. The Ensembl Variant Effect Predictor. Genome Biol. 2016 Jun 6;17(1):122. doi: 10.1186/s13059-016-0974-4. PMID: 27268795; PMCID: PMC4893825.</li>"
+    def svdb                = "<li>svdb. https://github.com/J35P312/svdb.</li>"
+    def multiqc             = "<li>Ewels, P., Magnusson, M., Lundin, S., & Käller, M. (2016). MultiQC: summarize analysis results for multiple tools and samples in a single report. Bioinformatics , 32(19), 3047–3048. doi: /10.1093/bioinformatics/btw354</li>"
 
     if (params.snv_vcf) {
-        bibliography = bibliography   +
-                       vcfanno        +
-                       bcftools_view  +
-                       ensemblvep_vep
+        bibliography_list =
+            bibliography_list +
+            vcfanno        +
+            bcftools_view  +
+            ensemblvep_vep
     }
 
     if (params.sv_vcf) {
-        bibliography = bibliography   +
-                       svdb           +
-                       bcftools_view  +
-                       ensemblvep_vep
+        bibliography_list =
+            bibliography_list +
+            svdb           +
+            bcftools_view  +
+            ensemblvep_vep
     }
 
-    def always_run = [
-            "<li>Ewels, P., Magnusson, M., Lundin, S., & Käller, M. (2016). MultiQC: summarize analysis results for multiple tools and samples in a single report. Bioinformatics , 32(19), 3047–3048. doi: /10.1093/bioinformatics/btw354</li>",
-            "."
-        ].join(' ').trim()
+    // always run
+    bibliography_list =
+        bibliography_list +
+        multiqc
 
-    def concat_text =  bibliography +
-                       always_run
+    def bibliography_text = bibliography_list.unique().join(' ').trim()
 
-    def reference_text = concat_text.unique(false) { a, b -> a <=> b } - ""
-    return reference_text.join(' ').trim()
+    return bibliography_text
 }
 
 def methodsDescriptionText(mqc_methods_yaml) {
