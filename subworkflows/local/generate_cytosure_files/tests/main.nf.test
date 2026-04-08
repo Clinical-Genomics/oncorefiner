@@ -6,7 +6,7 @@ nextflow_workflow {
     tag "subworkflows"
     tag "generate_cytosure_files"
 
-    test("Tumor sample") {
+    test("Tumor sample using TN data - tumor alignment files and somatic SV vcf files") {
 
         when {
             params {

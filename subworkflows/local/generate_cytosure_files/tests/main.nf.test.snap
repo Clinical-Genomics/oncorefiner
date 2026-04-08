@@ -1,12 +1,12 @@
 {
-    "Tumor sample": {
+    "Tumor sample using TN data - tumor alignment files and somatic SV vcf files": {
         "content": [
             [
                 "vcf2cytosure",
                 "vcf2cytosure/tumor.cgh"
             ]
         ],
-        "timestamp": "2026-04-02T17:27:38.972531",
+        "timestamp": "2026-04-08T15:36:01.002935",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "25.10.4"
