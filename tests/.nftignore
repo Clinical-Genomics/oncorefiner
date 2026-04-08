@@ -17,4 +17,4 @@ svdb/*.{vcf,vcf.gz,tbi}
 vcfanno/*.{vcf.gz,tbi}
 research/*.{vcf,vcf.gz,tbi}
 research_filtering/*.{vcf,vcf.gz,tbi}
-alignments/*.{cram,crai}
+alignment/*.{cram,crai}

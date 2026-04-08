@@ -24,10 +24,7 @@
                 "RESEARCH_FILTERING_SV": {
                     "bcftools": 1.22
                 },
-                "SAMTOOLS_VIEW_NML": {
-                    "samtools": "1.23.1"
-                },
-                "SAMTOOLS_VIEW_TMR": {
+                "SAMTOOLS_VIEW": {
                     "samtools": "1.23.1"
                 },
                 "SVDB_QUERY_DB": {
@@ -44,11 +41,9 @@
                 }
             },
             [
-                "alignments",
-                "alignments/subject_a_normal.cram",
-                "alignments/subject_a_normal.cram.crai",
-                "alignments/subject_a_tumor.cram",
-                "alignments/subject_a_tumor.cram.crai",
+                "alignment",
+                "alignment/subject_a_tumor.cram",
+                "alignment/subject_a_tumor.cram.crai",
                 "annotate_sv",
                 "annotate_sv/SV_svdbquery_vep.vcf.gz",
                 "annotate_sv/SV_svdbquery_vep.vcf.gz.tbi",
@@ -135,6 +130,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.4"
         },
-        "timestamp": "2026-04-07T16:48:08.627279"
+        "timestamp": "2026-04-08T17:35:01.10779"
     }
 }
