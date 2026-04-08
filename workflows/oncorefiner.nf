@@ -73,7 +73,6 @@ workflow ONCOREFINER {
     ANNOTATE SNVs
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
-
         // Process SNV VCF files
         if (ch_snv_vcf) {
 
