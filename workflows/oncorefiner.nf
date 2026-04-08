@@ -135,9 +135,9 @@ workflow ONCOREFINER {
                 ch_sv_vcf.join(ch_sv_vcf_tbi, failOnMismatch: true),
                 )
                 .multiMap { meta_bam_bai, bam, bai, meta_vcf, vcf, tbi ->
+                    bam_bai: tuple(meta_bam_bai, bam, bai)
                     vcf: tuple(meta_vcf, vcf)
                     tbi: tuple(meta_vcf, tbi)
-                    bam_bai: tuple(meta_bam_bai, bam, bai)
                 }
 
             GENERATE_CYTOSURE_FILES (
