@@ -21,7 +21,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - Added Nextflow strict syntax compatibility [#30](https://github.com/Clinical-Genomics/oncorefiner/pull/30)
 - Added bam and bai parameters for tumor and normal samples, and logic to create joint bam_bai channels [#61](https://github.com/Clinical-Genomics/oncorefiner/pull/61)
 - Added `sex` parameter [#62](https://github.com/Clinical-Genomics/oncorefiner/pull/62)
-- Added samtools/view for bam to cram conversion [#70](https://github.com/Clinical-Genomics/oncorefiner/pull/70)
+- Added samtools/view for bam to cram conversion in the main.nf [#70](https://github.com/Clinical-Genomics/oncorefiner/pull/70)
 
 ### Changed
 

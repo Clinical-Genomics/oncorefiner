@@ -2,11 +2,11 @@
 // Prepare reference files
 //
 
-include { UNTAR as UNTAR_VEP_CACHE           } from '../../modules/nf-core/untar/main'
+include { UNTAR as UNTAR_VEP_CACHE } from '../../modules/nf-core/untar/main'
 
 workflow PREPARE_REFERENCES {
     take:
-        val_vep_cache         // string:  [mandatory] path(cache)
+        val_vep_cache // string:  [mandatory] path(cache)
 
     main:
         ch_vep_resources = channel.value([[]])
@@ -28,5 +28,5 @@ workflow PREPARE_REFERENCES {
         }
 
     emit:
-        vep_resources = ch_vep_resources    // channel: [vep_cache_files]
+        vep_resources = ch_vep_resources // channel: [vep_cache_files]
 }
