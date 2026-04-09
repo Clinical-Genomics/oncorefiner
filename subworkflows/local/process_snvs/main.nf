@@ -36,6 +36,16 @@ workflow PROCESS_SNVS {
         val_vep_cache_version // string:  [optional]  version of vep cache to use (e.g. "107")
 
     main:
+        ch_genome_fasta.view()
+        //ch_snv_vcf.view()
+        //ch_snv_vcf_tbi.view()
+        //ch_vcfanno_extra.view()
+        //ch_vcfanno_lua.view()
+        //ch_vcfanno_resources.view()
+        //ch_vcfanno_toml.view()
+        //ch_vep_cache.view()
+        //ch_vep_extra_files.view()
+        // println("${val_genome}, ${val_species}, ${val_vep_cache_version}")
         // Annotate with custom databases
         ch_snv_vcf
             .join(ch_snv_vcf_tbi)

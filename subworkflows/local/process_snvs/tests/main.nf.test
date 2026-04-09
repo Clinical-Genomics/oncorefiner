@@ -11,6 +11,14 @@ nextflow_pipeline {
             params {
                 outdir = "$outputDir"
             }
+            workflow {
+                """
+                input[0] = channel.of([
+                    [id:'reference'], 
+                    file(params.pipelines_testdata_base_path + 'testdata/reference.fasta', checkIfExists: true)],
+                ])
+                """
+            }
         }
 
         then {
