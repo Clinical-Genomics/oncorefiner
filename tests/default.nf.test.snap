@@ -41,9 +41,11 @@
                 }
             },
             [
-                "alignment",
-                "alignment/subject_a_tumor.cram",
-                "alignment/subject_a_tumor.cram.crai",
+                "alignments",
+                "alignments/subject_a_normal.cram",
+                "alignments/subject_a_normal.cram.crai",
+                "alignments/subject_a_tumor.cram",
+                "alignments/subject_a_tumor.cram.crai",
                 "annotate_sv",
                 "annotate_sv/SV_svdbquery_vep.vcf.gz",
                 "annotate_sv/SV_svdbquery_vep.vcf.gz.tbi",
@@ -130,6 +132,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.4"
         },
-        "timestamp": "2026-04-08T17:35:01.10779"
+        "timestamp": "2026-04-09T17:36:09.024504"
     }
 }
