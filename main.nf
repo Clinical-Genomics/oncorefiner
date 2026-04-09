@@ -150,9 +150,15 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     //
     // Convert BAM to CRAM
     //
-    ch_bam_bai = ch_bam_bai_normal ? ch_bam_bai_tumor.concat(ch_bam_bai_normal) : ch_bam_bai_tumor //Only running once?
+    ch_bam_bai = ch_bam_bai_normal ? ch_bam_bai_tumor.mix(ch_bam_bai_normal) : ch_bam_bai_tumor //Only running once?
 
-    ch_bam_bai.view()
+    ch_samtools_in = ch_bam_bai.combine(ch_genome_fasta_fai).view()
+    /*
+            .multiMap { meta_bam_bai, bam, bai, meta_fasta_fai, fasta, fai ->
+            bam_bai: tuple(meta_bam_bai, bam, bai)
+            fasta_fai: tuple(meta_fasta_fai, fasta, fai)}
+    ch_samtools_in.view()*/
+
 
     SAMTOOLS_VIEW ( ch_bam_bai, ch_genome_fasta_fai, [[], []], [[],[]], 'crai' )
 
