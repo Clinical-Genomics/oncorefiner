@@ -1,5 +1,5 @@
 {
-    "Tumor sample using TN data - tumor alignment files and somatic SV vcf files": {
+    "Alignment files from Tumor sample and somatic SV vcf files from TN test data": {
         "content": [
             [
                 "vcf2cytosure",
@@ -12,7 +12,7 @@
                 ]
             ]
         ],
-        "timestamp": "2026-04-10T09:51:23.975897",
+        "timestamp": "2026-04-10T12:23:50.121024",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "25.10.4"
