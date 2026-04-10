@@ -33,13 +33,18 @@ nextflow_workflow {
         }
 
         then {
-            // All files and directories in the output directory
-            def output_files = getAllFilesFromDir(params.outdir, relative: true, includeDir: true)
+            // All directories and files in the output directory
+            def output_directories_and_files = getAllFilesFromDir(params.outdir, relative: true, includeDir: true)
+            // All files in the output directory
+            def output_files = getAllFilesFromDir(params.outdir)
 
             assertAll(
                 { assert workflow.success },
                 { assert snapshot(
-                    output_files
+                    // All directories and files in the output directory
+                    output_directories_and_files,
+                    // All files in the output directory with their md5 checksum
+                    output_files.collect { file -> [ file.getName(), path(file.toString()).md5 ] }
                 ).match() }
             )
         }
