@@ -130,7 +130,7 @@ workflow ONCOREFINER {
         if (ch_sv_vcf) {
 
             // VCF2CYTOSURE
-            ch_bam_bai = ch_bam_bai_normal ? ch_bam_bai_tumor.concat(ch_bam_bai_normal) : ch_bam_bai_tumor
+            ch_bam_bai = channel.empty().mix(ch_bam_bai_tumor, ch_bam_bai_normal)
             ch_vcf2cytosure_in = ch_bam_bai.combine(
                 ch_sv_vcf.join(ch_sv_vcf_tbi, failOnMismatch: true),
                 )
