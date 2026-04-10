@@ -160,7 +160,7 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     SAMTOOLS_VIEW ( ch_samtools_in.bam_bai, ch_samtools_in.fasta_fai, [[], []], [[],[]], 'crai' )
 
     emit:
-    multiqc_report = ONCOREFINER.out.multiqc_report // channel: /path/to/multiqc_report.htmlk
+    multiqc_report = ONCOREFINER.out.multiqc_report // channel: /path/to/multiqc_report.html
 }
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
