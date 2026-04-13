@@ -58,10 +58,10 @@ First, prepare a samplesheet with your input data that looks as follows:
 
 ```csv
 sample,fastq_1,fastq_2
-SAMPLE_ID,SAMPLE_ID_S1_L002_R1_001.fastq.gz,SAMPLE_ID_S1_L002_R2_001.fastq.gz
+CONTROL_REP1,AEG588A1_S1_L002_R1_001.fastq.gz,AEG588A1_S1_L002_R2_001.fastq.gz
 ```
 
-Each row represents a fastq file (single-end with only `fastq_1`) or a pair of fastq files (paired end with `fastq_1` and `fastq_2`).
+Each row represents a fastq file (single-end) or a pair of fastq files (paired end).
 
 > [!NOTE]
 > The information from the samplesheet is not currently used in the pipeline, but it is required to be able to run the pipeline and will be used in future developments.
