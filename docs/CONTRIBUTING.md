@@ -252,7 +252,7 @@ Please use the following naming schemes, to make it easy to understand what is g
 
 ### Configuration
 
-- Process-level options go in `conf/modules/<subworkflow_name>.config`, not inline in the subworkflow `.nf` file.
+- Process-level options go in `conf/subworkflows/<subworkflow_name>.config`, not inline in the subworkflow `.nf` file.
 - Only `ext.args`, `ext.args2`, and `ext.prefix` belong in module configs. Don't add business logic there.
 - Conditional behavior (e.g. save as CRAM vs BAM) is handled in the subworkflow via `channel.empty()` gating — not via config-level flags.
 - Process resource requirements (CPUs / memory / time) go in `conf/base.config` using `withLabel:` selectors so they can be shared across processes. Use `${task.cpus}` and `${task.memory}` in `script:` blocks to apply them dynamically.
