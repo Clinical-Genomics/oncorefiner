@@ -205,14 +205,12 @@ def toolCitationText() {
         citations_list +
         multiqc
 
-    def citations_text = citations_list.unique().join(', ').trim()
-
-    def concat_text =
-            "Tools used in the workflow included: " +
-            citations_text                          +
+    def citations_text =
+            "Tools used in the workflow included: "   +
+            citations_list.unique().join(', ').trim() +
             "."
 
-    return concat_text
+    return citations_text
 }
 
 def toolBibliographyText() {
