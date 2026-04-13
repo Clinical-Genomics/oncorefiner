@@ -22,6 +22,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#61](https://github.com/Clinical-Genomics/oncorefiner/pull/61) Added bam and bai parameters for tumor and normal samples, and logic to create joint bam_bai channels.
 - [#62](https://github.com/Clinical-Genomics/oncorefiner/pull/62) Added `sex` parameter.
 - [#60](https://github.com/Clinical-Genomics/oncorefiner/pull/60) Added `GENERATE_CYTOSURE_FILES` subworkflow and necessary nf-core modules `TIDDIT_COV` and `VCF2CYTOSURE`.
+- [#70](https://github.com/Clinical-Genomics/oncorefiner/pull/70) Added `SAMTOOLS/VIEW` for bam to cram conversion in the `main.nf`.
 
 ### `Changed`
 
