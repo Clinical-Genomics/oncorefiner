@@ -18,6 +18,9 @@
                     "perl-math-cdf": 0.1,
                     "tabix": 1.21
                 },
+                "FILTER_VCF": {
+                    "bcftools": 1.22
+                },
                 "RESEARCH_FILTERING": {
                     "bcftools": 1.22
                 },
@@ -30,8 +33,14 @@
                 "SVDB_QUERY_DB": {
                     "svdb": "2.8.4"
                 },
+                "TIDDIT_COV": {
+                    "tiddit": "3.9.5"
+                },
                 "UNTAR_VEP_CACHE": {
                     "untar": 1.34
+                },
+                "VCF2CYTOSURE": {
+                    "vcf2cytosure": "0.9.3"
                 },
                 "VCFANNO": {
                     "vcfanno": "0.3.7"
@@ -72,6 +81,9 @@
                 "research_filtering/SNV_research.vcf.gz",
                 "svdb",
                 "svdb/SV_vcfdb_query.vcf",
+                "vcf2cytosure",
+                "vcf2cytosure/normal.cgh",
+                "vcf2cytosure/tumor.cgh",
                 "vcfanno",
                 "vcfanno/SNV_vcfanno.vcf.gz",
                 "vcfanno/SNV_vcfanno.vcf.gz.tbi",
@@ -81,7 +93,8 @@
                 "vep/SNV_vep.vcf.gz_summary.html"
             ],
             [
-                
+                "normal.cgh:md5,df9f0942e27e9c8f576c3d58a2e4ce29",
+                "tumor.cgh:md5,6982664c6f78b094fd4a26afc25e153e"
             ],
             [
                 [
