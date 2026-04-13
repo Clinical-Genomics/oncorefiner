@@ -42,7 +42,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#35](https://github.com/Clinical-Genomics/oncorefiner/pull/35) Refactored `genome` parameter to have default value 'GRCh38' and no longer refer to igenomes.
 - [#35](https://github.com/Clinical-Genomics/oncorefiner/pull/35) Updated linting config to fix linting issues and re-added/removed checks for files where nf-core file structure is no longer required.
 - [#35](https://github.com/Clinical-Genomics/oncorefiner/pull/35) Updated template for nf-core/tools version 3.5.2 to apply updated settings and changes missed in previous template update ([#14](https://github.com/Clinical-Genomics/oncorefiner/pull/14)).
-- [36](https://github.com/Clinical-Genomics/oncorefiner/pull/36) Fixed prepare_references config that was defined but not used.
+- [#36](https://github.com/Clinical-Genomics/oncorefiner/pull/36) Fixed prepare_references config that was defined but not used.
 - [#39](https://github.com/Clinical-Genomics/oncorefiner/pull/39) Fixed bug and formatting in feature request template.
 - [#41](https://github.com/Clinical-Genomics/oncorefiner/pull/41) Fixed merge mistake in `.nf-core.yml` introduced in previous PR ([#25](https://github.com/Clinical-Genomics/oncorefiner/pull/25)).
 - [#42](https://github.com/Clinical-Genomics/oncorefiner/pull/42) Added necessary GITHUB_TOKEN permissions for action add_pr_checklist_comment.
