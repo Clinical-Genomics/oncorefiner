@@ -17,6 +17,7 @@ include { ONCOREFINER             } from './workflows/oncorefiner'
 include { PIPELINE_INITIALISATION } from './subworkflows/local/utils_nfcore_oncorefiner_pipeline'
 include { PIPELINE_COMPLETION     } from './subworkflows/local/utils_nfcore_oncorefiner_pipeline'
 include { PREPARE_REFERENCES      } from './subworkflows/local/prepare_references'
+include { SAMTOOLS_VIEW           } from './modules/nf-core/samtools/view/main'
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     NAMED WORKFLOWS FOR PIPELINE
@@ -36,6 +37,7 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     val_bai_tumor               // string:  [optional]  path to BAI file for the tumor sample
     val_genome                  // string:  [optional]  genome assembly (e.g. "GRCh38")
     val_genome_fasta            // string:  [optional]  path to genome fasta file
+    val_genome_fai              // string:  [optional]  path to genome fasta index file
     val_snv_vcf                 // string:  [optional]  path to input SNV vcf file
     val_species                 // string:  [optional]  species (e.g. "homo_sapiens")
     val_sv_vcf                  // string:  [optional]  path to input SV vcf file
@@ -72,7 +74,7 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     ch_vep_extra_files      = channel.empty()
     ch_svdb_dbs             = channel.empty()
 
-    // Input for GENERATE_CYTOSURE_FILES
+    // Alignment files
     ch_bam_bai_normal = channel.empty()
 
     if (val_bam_normal && val_bai_normal) {
@@ -91,6 +93,8 @@ workflow CLINICALGENOMICS_ONCOREFINER {
 
     // Reference files
     ch_genome_fasta         = channel.fromPath(val_genome_fasta).map { it -> [[id:it.simpleName], it] }.collect()
+    ch_genome_fai           = channel.fromPath(val_genome_fai).map { it -> [[id:it.simpleName], it] }.collect()
+    ch_genome_fasta_fai     = ch_genome_fasta.join(ch_genome_fai, failOnMismatch: true, failOnDuplicate: true)
 
     // Input for VEP
     ch_vep_extra_files_unsplit  = val_vep_plugin_files ? channel.fromPath(val_vep_plugin_files).collect() : channel.value([])
@@ -144,6 +148,19 @@ workflow CLINICALGENOMICS_ONCOREFINER {
         val_species,
         val_vep_cache_version
     )
+
+    //
+    // Convert BAM to CRAM
+    //
+    ch_bam_bai = ch_bam_bai_tumor.mix(ch_bam_bai_normal)
+
+    ch_samtools_in = ch_bam_bai.combine(ch_genome_fasta_fai)
+            .multiMap { meta_bam_bai, bam, bai, meta_fasta_fai, fasta, fai ->
+                bam_bai: tuple(meta_bam_bai, bam, bai)
+                fasta_fai: tuple(meta_fasta_fai, fasta, fai)}
+
+    SAMTOOLS_VIEW ( ch_samtools_in.bam_bai, ch_samtools_in.fasta_fai, [[], []], [[],[]], 'crai' )
+
     emit:
     multiqc_report = ONCOREFINER.out.multiqc_report // channel: /path/to/multiqc_report.html
 }
@@ -182,6 +199,7 @@ workflow {
         params.bai_tumor,
         params.genome,
         params.fasta,
+        params.fai,
         params.snv_vcf,
         params.species,
         params.sv_vcf,
