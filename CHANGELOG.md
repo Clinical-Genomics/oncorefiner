@@ -19,6 +19,10 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - Added parameters documentation [#25](https://github.com/Clinical-Genomics/oncorefiner/pull/25)
 - Added pre-commit hook for automatic generation of parameters documentation [#25](https://github.com/Clinical-Genomics/oncorefiner/pull/25)
 - Added Nextflow strict syntax compatibility [#30](https://github.com/Clinical-Genomics/oncorefiner/pull/30)
+- Added bam and bai parameters for tumor and normal samples, and logic to create joint bam_bai channels [#61](https://github.com/Clinical-Genomics/oncorefiner/pull/61)
+- Added `sex` parameter [#62](https://github.com/Clinical-Genomics/oncorefiner/pull/62)
+- Added `SAMTOOLS/VIEW` for bam to cram conversion in the main.nf [#70](https://github.com/Clinical-Genomics/oncorefiner/pull/70)
+- Added `GENERATE_CYTOSURE_FILES` subworkflow and necessary nf-core modules `TIDDIT_COV` and `VCF2CYTOSURE` [#60](https://github.com/Clinical-Genomics/oncorefiner/pull/60)
 - Added CADD scoring for InDels, and a test for the subworkflow [#59](https://github.com/Clinical-Genomics/oncorefiner/pull/59)
 
 ### Changed
@@ -27,6 +31,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - Updated nf-schema to 2.6.1 [#30](https://github.com/Clinical-Genomics/oncorefiner/pull/30)
 - Updated minimum Nextflow version to 25.10.0 [#30](https://github.com/Clinical-Genomics/oncorefiner/pull/30)
 - Added wgs-cancer-pipeline projects list in the issue templates [#37](https://github.com/Clinical-Genomics/oncorefiner/pull/37)
+- Updated link to Contributing Guidelines in the PR checklist to point to the rendered version of the document in `dev` [#56](https://github.com/Clinical-Genomics/oncorefiner/pull/56)
 
 ### `Fixed`
 
@@ -50,6 +55,8 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - Fixed bug in `MULTIQC` input channel that prevented the step from running [#54](https://github.com/Clinical-Genomics/oncorefiner/pull/54)
 - Refactored subworkflow `PREPARE_REFERENCES` to include logic for untarring vep cache and be called in the main workflow, before `ONCOREFINER` [#57](https://github.com/Clinical-Genomics/oncorefiner/pull/57)
 - Fixed so that parameters are only accessed in `main.nf` and provided to subsequent workflows as `val_*` [#58](https://github.com/Clinical-Genomics/oncorefiner/pull/58)
+- Generalised description of `sex` parameter [#64](https://github.com/Clinical-Genomics/oncorefiner/pull/64)
+- Update `pipelines_testdata_base_path` to reflect the latest commit to `Clinical-Genomics/test-datasets/` [#68](https://github.com/Clinical-Genomics/oncorefiner/pull/68)
 
 ### `Dependencies`
 

@@ -45,6 +45,43 @@
                     "format": "file-path",
                     "exists": true
                 },
+                "bam_tumor": {
+                    "type": "string",
+                    "description": "Path to alignment BAM file for the tumor sample.",
+                    "fa_icon": "fas fa-file",
+                    "pattern": "^\\S+\\.bam$",
+                    "format": "file-path",
+                    "exists": true
+                },
+                "bai_tumor": {
+                    "type": "string",
+                    "description": "Path to BAM index file for the tumor sample.",
+                    "fa_icon": "fas fa-file",
+                    "pattern": "^\\S+\\.bai$",
+                    "format": "file-path",
+                    "exists": true
+                },
+                "bam_normal": {
+                    "type": "string",
+                    "description": "Path to alignment BAM file for the normal sample.",
+                    "fa_icon": "fas fa-file",
+                    "pattern": "^\\S+\\.bam$",
+                    "format": "file-path",
+                    "exists": true
+                },
+                "bai_normal": {
+                    "type": "string",
+                    "description": "Path to BAM index file for the normal sample.",
+                    "fa_icon": "fas fa-file",
+                    "pattern": "^\\S+\\.bai$",
+                    "format": "file-path",
+                    "exists": true
+                },
+                "sex": {
+                    "type": "string",
+                    "enum": ["female", "male", "unknown"],
+                    "description": "Sex of the patient."
+                },
                 "email": {
                     "type": "string",
                     "description": "Email address for completion summary.",
@@ -112,8 +149,7 @@
                     "type": "string",
                     "default": "homo_sapiens",
                     "enum": ["homo_sapiens"],
-                    "description": "Species of the reference genome. E.g. `--species homo_sapiens`.",
-                    "help_text": ""
+                    "description": "Species of the reference genome. E.g. `--species homo_sapiens`."
                 }
             }
         },
@@ -324,7 +360,7 @@
                     "type": "string",
                     "fa_icon": "far fa-check-circle",
                     "description": "Base URL or local path to location of pipeline test dataset files",
-                    "default": "https://raw.githubusercontent.com/Clinical-Genomics/test-datasets/refs/heads/oncorefiner/",
+                    "default": "https://raw.githubusercontent.com/Clinical-Genomics/test-datasets/bc94db3a30d6194f4cebcb9480bf24b0600b4d23/",
                     "hidden": true
                 },
                 "trace_report_suffix": {
@@ -364,6 +400,5 @@
         {
             "$ref": "#/$defs/generic_options"
         }
-    ],
-    "properties": {}
+    ]
 }
