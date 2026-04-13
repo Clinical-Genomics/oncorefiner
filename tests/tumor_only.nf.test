@@ -8,7 +8,9 @@ nextflow_pipeline {
 
         when {
             params {
-                outdir    = "$outputDir"
+                outdir     = "$outputDir"
+                snv_vcf    = params.pipelines_testdata_base_path + 'testdata/tumor_only/subject_a.tumor.purple.somatic.vcf.gz'
+                sv_vcf     = params.pipelines_testdata_base_path + 'testdata/tumor_only/subject_a.tumor.purple.sv.vcf.gz'
                 bam_normal = null
                 bai_normal = null
             }
@@ -20,7 +22,7 @@ nextflow_pipeline {
             // stable_path: All files in ${params.outdir}/ with stable content
             def stable_path = getAllFilesFromDir(params.outdir, ignoreFile: 'tests/.nftignore')
             // all_vcf_files: All vcf files - can have unstable variants and/or unstable headers
-            def all_vcf_files    = getAllFilesFromDir(params.outdir, include: ['**/*.vcf.gz'])
+            def all_vcf_files = getAllFilesFromDir(params.outdir, include: ['**/*.vcf.gz'])
             // vcfs_with_stable_variants: Vcf files with stable variants - can be snapshot using variantsMD5
             def vcfs_with_stable_variants = getAllFilesFromDir(params.outdir, include: ['**/*.vcf.gz'])
             assertAll(
