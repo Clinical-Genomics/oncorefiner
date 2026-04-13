@@ -56,7 +56,7 @@ workflow CLINICALGENOMICS_ONCOREFINER {
                                              : channel.value([[],[]])
 
     PREPARE_REFERENCES (
-        val_vep_cache
+        params.vep_cache
         )
 
     //
