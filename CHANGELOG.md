@@ -23,7 +23,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - Added `sex` parameter [#62](https://github.com/Clinical-Genomics/oncorefiner/pull/62)
 - Added `SAMTOOLS/VIEW` for bam to cram conversion in the main.nf [#70](https://github.com/Clinical-Genomics/oncorefiner/pull/70)
 - Added `GENERATE_CYTOSURE_FILES` subworkflow and necessary nf-core modules `TIDDIT_COV` and `VCF2CYTOSURE` [#60](https://github.com/Clinical-Genomics/oncorefiner/pull/60)
-- Added CADD scoring for InDels, and a test for the subworkflow [#59](https://github.com/Clinical-Genomics/oncorefiner/pull/59)
+- Added CADD scoring for InDels in the subworkflow `ANNOTATE_CADD`, with a subworkflow test (stub only) [#59](https://github.com/Clinical-Genomics/oncorefiner/pull/59)
 
 ### Changed
 
