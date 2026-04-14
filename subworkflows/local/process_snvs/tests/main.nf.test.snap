@@ -13,12 +13,42 @@
                 "vep/SNV_vep.vcf.gz",
                 "vep/SNV_vep.vcf.gz.tbi",
                 "vep/SNV_vep.vcf.gz_summary.html"
+            ],
+            [
+                [
+                    "SNV_clinical.vcf.gz",
+                    "b061da0fe422929aeee586f571df224d"
+                ],
+                [
+                    "SNV_research.vcf.gz",
+                    "720edc32c840cfe93b6305d5feb0dfad"
+                ],
+                [
+                    "SNV_vcfanno.vcf.gz",
+                    "e7990d42c034cb91cd42eaaada6c2fb9"
+                ],
+                [
+                    "SNV_vcfanno.vcf.gz.tbi",
+                    "ad80989b948e5b742c6f5da04fcb7ce3"
+                ],
+                [
+                    "SNV_vep.vcf.gz",
+                    "6351f62da36a257e7d8094a75036134c"
+                ],
+                [
+                    "SNV_vep.vcf.gz.tbi",
+                    "862ba37f8be8edd6fb78f4fdf0b66ff7"
+                ],
+                [
+                    "SNV_vep.vcf.gz_summary.html",
+                    "b8b60f935ea552ae1815bfca4279097f"
+                ]
             ]
         ],
+        "timestamp": "2026-04-14T12:04:34.104382",
         "meta": {
-            "nf-test": "0.9.3",
+            "nf-test": "0.9.5",
             "nextflow": "25.10.4"
-        },
-        "timestamp": "2026-04-14T11:40:10.643049"
+        }
     }
 }
