@@ -16,22 +16,23 @@ include { BCFTOOLS_VIEW as CLINICAL_FILTERING_SV   } from '../../../modules/nf-c
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    RUN PROCESS_SNVS WORKFLOW
+    RUN PROCESS_SVS WORKFLOW
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
 workflow PROCESS_SVS {
 
     take:
-        ch_genome_fasta       // channel: [optional]  [val(meta), path(fasta)]
-        ch_vep_cache          // channel: [optional]  [val(meta), path(vep_cache)]
-        ch_vep_extra_files    // channel: [optional]  [val(meta), path(vep_extra_files)]
         ch_sv_vcf             // channel: [required]  [val(meta), path(vcf)]
+        ch_sv_vcf_tbi         // channel: [required]  [val(meta), path(vcf.tbi)]
         ch_sv_dbs             // channel: [required]  [val(meta), path(svdb_dbs_csv)]
         val_genome            // value:   [required]  Genome build (e.g. GRCh38)
         val_species           // value:   [required]  Species
-        val_vep_cache_version // value:   [required]  VEP cache version (e.g. 104)
-
+        val_vep_cache_version // value:   [required]  VEP cache
+        ch_vep_cache          // channel: [optional]  [val(meta), path(vep_cache)]
+        ch_genome_fasta       // channel: [optional]  [val(meta), path(fasta)]
+        ch_vep_extra_files    // channel: [optional]  [val(meta), path(vep_extra_files)]
+    
     main:
         // SVDB QUERY
         ch_sv_dbs
