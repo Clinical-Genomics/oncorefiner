@@ -56,6 +56,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - Fixed so that parameters are only accessed in `main.nf` and provided to subsequent workflows as `val_*` [#58](https://github.com/Clinical-Genomics/oncorefiner/pull/58)
 - Generalised description of `sex` parameter [#64](https://github.com/Clinical-Genomics/oncorefiner/pull/64)
 - Update `pipelines_testdata_base_path` to reflect the latest commit to `Clinical-Genomics/test-datasets/` [#68](https://github.com/Clinical-Genomics/oncorefiner/pull/68)
+- Added subworkflow test to `PREPARE_REFERENCES` [#72](https://github.com/Clinical-Genomics/oncorefiner/pull/72)
 
 ### `Dependencies`
 
