@@ -31,8 +31,6 @@ workflow PROCESS_SVS {
         val_genome            // value:   [required]  Genome build (e.g. GRCh38)
         val_species           // value:   [required]  Species
         val_vep_cache_version // value:   [required]  VEP cache version (e.g. 104)
-        val_svdb_dbs          // value:   [required]  SVDB databases (e.g. svdb1, svdb2)
-        val_sv_vcf            // value:   [required]  SV VCF file (e.g. sv.vcf)
 
     main:
         // SVDB QUERY
