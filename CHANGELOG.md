@@ -23,6 +23,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - Added `sex` parameter [#62](https://github.com/Clinical-Genomics/oncorefiner/pull/62)
 - Added `SAMTOOLS/VIEW` for bam to cram conversion in the main.nf [#70](https://github.com/Clinical-Genomics/oncorefiner/pull/70)
 - Added `GENERATE_CYTOSURE_FILES` subworkflow and necessary nf-core modules `TIDDIT_COV` and `VCF2CYTOSURE` [#60](https://github.com/Clinical-Genomics/oncorefiner/pull/60)
+- Added `PROCESS_SNVS` subworkflow [#66](https://github.com/Clinical-Genomics/oncorefiner/pull/66)
 
 ### Changed
 
