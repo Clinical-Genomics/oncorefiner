@@ -89,7 +89,4 @@ workflow PROCESS_SVS {
                 }
             .set { ch_clinical_filtering_sv_in }
         CLINICAL_FILTERING_SV(ch_clinical_filtering_sv_in, [], [], [])
-
-
-    }
 }
