@@ -1,0 +1,81 @@
+nextflow_workflow {
+
+    name "Test subworkflow Process Structural Variants (PROCESS_SVS)"
+    script "../main.nf"
+    workflow "PROCESS_SVS"
+    tag "subworkflows"
+    tag "process_svs"
+
+    setup {
+        run("UNTAR", alias: "UNTAR_VEP_CACHE") {
+            script "modules/nf-core/untar/main.nf"
+            process {
+                """
+                input[0] = channel.of([
+                    [id:'vep_cache'],
+                    file(params.vep_cache, checkIfExists: true)
+                ])
+                """
+            }
+        }
+    }
+
+    test("with tumor-normal data") {
+
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+
+            workflow {
+                """
+                input[0] = channel.of([
+                    [id:'SV'],
+                    file(params.sv_vcf, checkIfExists: true)
+                ])
+                input[1] = channel.of([
+                    [id:'SV'],
+                    file(params.sv_vcf + '.tbi', checkIfExists: true)
+                ])
+                input[2] = channel.of(
+                    file(params.svdb_query_dbs, checkIfExists: true)
+                )
+                input[3] = channel.value(params.genome)
+                input[4] = channel.value('homo_sapiens')
+                input[5] = channel.value(params.vep_cache_version)
+                input[6] = UNTAR_VEP_CACHE.out.untar.map{ _meta, files -> [files]}.collect()
+                input[7] = channel.of([
+                    [id:'reference'],
+                    file(params.fasta, checkIfExists: true)
+                ])
+                input[8] = channel.fromPath(params.vep_plugin_files)
+                .splitCsv(header: true)
+                .map { row ->
+                    def f = file(row.vep_files)
+                    return [f]
+                }
+                .collect()
+                """
+            }
+        }
+
+        then {
+            // All files and directories in the output directory, excluding the untar directories and files
+            def output_directories_and_files = getAllFilesFromDir(params.outdir, relative: true, includeDir: true, ignore: ['untar**'])
+            // vcfs_with_stable_variants: Vcf files with stable variants - can be snapshot using variantsMD5, excluding the untar directories and files
+            def gz_vcfs_with_stable_variants = getAllFilesFromDir(params.outdir, include: ['**/*.vcf.gz'], ignore: ['untar**'])
+            def vcfs_with_stable_variants = getAllFilesFromDir(params.outdir, include: ['**/*.vcf'], ignore: ['untar**'])
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(
+                    // All directories and files in the output directory
+                    output_directories_and_files,
+                    // Gzipped VCFs with stable variants
+                    gz_vcfs_with_stable_variants.collect{ file -> [ file.getName(), path(file.toString()).vcf.variantsMD5 ] },
+                    // VCFs with stable variants
+                    vcfs_with_stable_variants.collect{ file -> [ file.getName(), path(file.toString()).vcf.variantsMD5 ] }
+                ).match() }
+            )
+        }
+    }
+}

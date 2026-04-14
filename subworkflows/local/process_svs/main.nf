@@ -25,7 +25,7 @@ workflow PROCESS_SVS {
     take:
         ch_sv_vcf             // channel: [required]  [val(meta), path(vcf)]
         ch_sv_vcf_tbi         // channel: [required]  [val(meta), path(vcf.tbi)]
-        ch_sv_dbs             // channel: [required]  [val(meta), path(svdb_dbs_csv)]
+        ch_sv_dbs             // channel: [required]  path(svdb_dbs_csv)
         val_genome            // value:   [required]  Genome build (e.g. GRCh38)
         val_species           // value:   [required]  Species
         val_vep_cache_version // value:   [required]  VEP cache
