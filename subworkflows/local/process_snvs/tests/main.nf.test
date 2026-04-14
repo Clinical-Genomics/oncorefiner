@@ -6,6 +6,7 @@ nextflow_workflow {
     tag "subworkflows"
     tag "process_snvs"
 
+
     test("with tumor-normal data") {
 
         when {
@@ -27,7 +28,7 @@ nextflow_workflow {
                     [id:'SNV'],
                     file(params.pipelines_testdata_base_path + 'testdata/SNV.tumor.pave.somatic.37.vcf.gz.tbi', checkIfExists: true)
                 ])
-                input[3] = channel.of([])
+                input[3] = []
                 input[4] = channel.of([
                     file(params.pipelines_testdata_base_path + 'reference/vcfanno_functions.lua', checkIfExists: true)
                 ])
@@ -39,7 +40,7 @@ nextflow_workflow {
                     file(params.pipelines_testdata_base_path + 'reference/vcfanno.toml', checkIfExists: true)
                 ])
                 input[7] = channel.of([
-                    file(params.pipelines_testdata_base_path + 'reference/vep_cache_and_plugins.tar.gz', checkIfExists: true)
+                    file(params.pipelines_testdata_base_path + 'reference/vep_cache_and_plugins', checkIfExists: true)
                 ])
                 input[8] = channel.of([
                     file(params.pipelines_testdata_base_path + 'reference/LoFtool_scores.txt', checkIfExists: true),
