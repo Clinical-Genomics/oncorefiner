@@ -71,22 +71,20 @@ workflow ONCOREFINER {
         ch_multiqc_files        = channel.empty()
 
         // Process SNV VCF files
-        if (ch_snv_vcf) {
-            PROCESS_SNVS (
-                ch_genome_fasta,
-                ch_snv_vcf,
-                ch_snv_vcf_tbi,
-                ch_vcfanno_extra,
-                ch_vcfanno_lua,
-                ch_vcfanno_resources,
-                ch_vcfanno_toml,
-                ch_vep_cache,
-                ch_vep_extra_files,
-                val_genome,
-                val_species,
-                val_vep_cache_version
-            )
-        }
+        PROCESS_SNVS (
+            ch_genome_fasta,
+            ch_snv_vcf,
+            ch_snv_vcf_tbi,
+            ch_vcfanno_extra,
+            ch_vcfanno_lua,
+            ch_vcfanno_resources,
+            ch_vcfanno_toml,
+            ch_vep_cache,
+            ch_vep_extra_files,
+            val_genome,
+            val_species,
+            val_vep_cache_version
+        )
 
         // Process SV VCF files
         if (ch_sv_vcf) {
