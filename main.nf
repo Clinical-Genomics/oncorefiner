@@ -55,13 +55,13 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     //
     // Subworkflow: Prepare reference files
     //
-    ch_vep_cache_unprocessed = val_vep_cache ? channel.fromPath(val_vep_cache).map { it -> [[id:'vep_cache'], it] }.collect()
-                                             : channel.value([[],[]])
+   // ch_vep_cache_unprocessed = val_vep_cache ? channel.fromPath(val_vep_cache).map { it -> [[id:'vep_cache'], it] }.collect()
+   //                                          : channel.value([[],[]])
 
     PREPARE_REFERENCES (
-        params.vep_cache
+        val_vep_cache
         )
-
+    PREPARE_REFERENCES.out.view()
     //
     // WORKFLOW: Run pipeline
     //

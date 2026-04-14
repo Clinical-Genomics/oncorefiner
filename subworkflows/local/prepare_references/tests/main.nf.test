@@ -1,0 +1,53 @@
+nextflow_workflow {
+
+    name "Test Subworkflow PREPARE_REFERENCES"
+    script "../main.nf"
+    workflow "PREPARE_REFERENCES"
+    tag "subworkflows"
+    tag "prepare_references"
+    config "./nextflow.config"
+
+    test("Test preparing VEP cache: no untarring needed") {
+
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            workflow {
+                """
+                input[0] = params.pipelines_testdata_base_path + 'reference/vep_cache_and_plugins/'
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(workflow.out).match() }
+            )
+        }
+    }
+
+    test("Test preparing VEP cache: untarring needed") {
+
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            workflow {
+                """
+                input[0] = params.pipelines_testdata_base_path + 'reference/vep_cache_and_plugins.tar.gz'
+                """
+            }
+        }
+
+        then {
+
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot( workflow.out ).match() }
+            )
+        }
+    }
+
+}

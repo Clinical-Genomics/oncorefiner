@@ -1,0 +1,44 @@
+{
+    "Test preparing VEP cache: no untarring needed": {
+        "content": [
+            {
+                "0": [
+                    [
+                        "/Clinical-Genomics/test-datasets/bc94db3a30d6194f4cebcb9480bf24b0600b4d23/reference/vep_cache_and_plugins"
+                    ]
+                ],
+                "vep_resources": [
+                    [
+                        "/Clinical-Genomics/test-datasets/bc94db3a30d6194f4cebcb9480bf24b0600b4d23/reference/vep_cache_and_plugins"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.4"
+        },
+        "timestamp": "2026-04-13T15:57:27.130425"
+    },
+    "Test preparing VEP cache: untarring needed": {
+        "content": [
+            {
+                "0": [
+                    [
+                        "/Users/kristinebilgrav/Development/oncorefiner/.nf-test/tests/92937f3010d7eff7cf2488569a1667b8/work/1c/febeefb87165023b7c8a45839155f3/vep_cache"
+                    ]
+                ],
+                "vep_resources": [
+                    [
+                        "/Users/kristinebilgrav/Development/oncorefiner/.nf-test/tests/92937f3010d7eff7cf2488569a1667b8/work/1c/febeefb87165023b7c8a45839155f3/vep_cache"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.4"
+        },
+        "timestamp": "2026-04-13T15:57:36.610532"
+    }
+}
