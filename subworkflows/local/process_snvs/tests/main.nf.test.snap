@@ -1,0 +1,24 @@
+{
+    "with tumor-normal data": {
+        "content": [
+            [
+                "clinical_filtering",
+                "clinical_filtering/SNV_clinical.vcf.gz",
+                "research_filtering",
+                "research_filtering/SNV_research.vcf.gz",
+                "vcfanno",
+                "vcfanno/SNV_vcfanno.vcf.gz",
+                "vcfanno/SNV_vcfanno.vcf.gz.tbi",
+                "vep",
+                "vep/SNV_vep.vcf.gz",
+                "vep/SNV_vep.vcf.gz.tbi",
+                "vep/SNV_vep.vcf.gz_summary.html"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.4"
+        },
+        "timestamp": "2026-04-14T11:40:10.643049"
+    }
+}
