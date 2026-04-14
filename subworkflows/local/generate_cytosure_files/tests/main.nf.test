@@ -1,0 +1,52 @@
+nextflow_workflow {
+
+    name "Test Workflow GENERATE_CYTOSURE_FILES"
+    script "../main.nf"
+    workflow "GENERATE_CYTOSURE_FILES"
+    tag "subworkflows"
+    tag "generate_cytosure_files"
+
+    test("Alignment files from Tumor sample and somatic SV vcf files from TN test data") {
+
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+
+            workflow {
+                """
+                input[0] = channel.of([
+                    ['type':'tumor'],
+                    file(params.pipelines_testdata_base_path + 'testdata/subject_a.tumor.redux.bam', checkIfExists: true),
+                    file(params.pipelines_testdata_base_path + 'testdata/subject_a.tumor.redux.bam.bai', checkIfExists: true)
+                ])
+                input[1] = channel.of([
+                    [id:'SV'],
+                    file(params.pipelines_testdata_base_path + 'testdata/SV.tumor.esvee.somatic.37.vcf.gz.tbi', checkIfExists: true)
+                ])
+                input[2] = channel.of([
+                    [id:'SV'],
+                    file(params.pipelines_testdata_base_path + 'testdata/SV.tumor.esvee.somatic.37.vcf.gz', checkIfExists: true)
+                ])
+                """
+            }
+        }
+
+        then {
+            // All directories and files in the output directory
+            def output_directories_and_files = getAllFilesFromDir(params.outdir, relative: true, includeDir: true)
+            // All files in the output directory
+            def output_files = getAllFilesFromDir(params.outdir)
+
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(
+                    // All directories and files in the output directory
+                    output_directories_and_files,
+                    // All files in the output directory with their md5 checksum
+                    output_files.collect { file -> [ file.getName(), path(file.toString()).md5 ] }
+                ).match() }
+            )
+        }
+    }
+}
