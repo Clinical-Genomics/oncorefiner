@@ -6,6 +6,18 @@ nextflow_workflow {
     tag "subworkflows"
     tag "process_snvs"
 
+    setup {
+        run("UNTAR") {
+            script "modules/nf-core/untar/main.nf"
+            process {
+                """
+                input[0] = channel.of([
+                    [id:'vep_cache'],
+                    file('https://raw.githubusercontent.com/nf-core/test-datasets/raredisease/reference/reference_mt.fa', checkIfExists: true)
+                ])
+                """
+            }
+        }
 
     test("with tumor-normal data") {
 
