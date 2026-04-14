@@ -10,7 +10,6 @@ workflow PREPARE_REFERENCES {
         val_vep_cache // string: [mandatory] path(cache)
 
     main:
-
         ch_vep_resources = channel.value([[]])
 
         //
