@@ -22,23 +22,15 @@
     },
     "Test preparing VEP cache: untarring needed": {
         "content": [
-            {
-                "0": [
-                    [
-                        "/Users/kristinebilgrav/Development/oncorefiner/.nf-test/tests/92937f3010d7eff7cf2488569a1667b8/work/1c/febeefb87165023b7c8a45839155f3/vep_cache"
-                    ]
-                ],
-                "vep_resources": [
-                    [
-                        "/Users/kristinebilgrav/Development/oncorefiner/.nf-test/tests/92937f3010d7eff7cf2488569a1667b8/work/1c/febeefb87165023b7c8a45839155f3/vep_cache"
-                    ]
-                ]
-            }
+            [
+                "untar",
+                "untar/vep_cache"
+            ]
         ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "25.10.4"
         },
-        "timestamp": "2026-04-13T15:57:36.610532"
+        "timestamp": "2026-04-14T13:17:57.544364"
     }
 }

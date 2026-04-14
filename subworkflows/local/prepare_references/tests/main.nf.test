@@ -42,10 +42,14 @@ nextflow_workflow {
         }
 
         then {
+            // Check untarred directory
+            def output_directories = getAllFilesFromDir(params.outdir, relative: true, includeDir: true, ignore: ['untar/vep_cache/**'])
 
             assertAll(
                 { assert workflow.success },
-                { assert snapshot( workflow.out ).match() }
+                { assert snapshot(
+                    // Check untarred directory
+                    output_directories ).match() }
             )
         }
     }
