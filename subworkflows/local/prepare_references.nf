@@ -2,7 +2,7 @@
 // Prepare reference files
 //
 
-include { UNTAR as UNTAR_VEP_CACHE                           } from '../../modules/nf-core/untar/main'
+include { UNTAR as UNTAR_VEP_CACHE } from '../../modules/nf-core/untar/main'
 
 
 workflow PREPARE_REFERENCES {

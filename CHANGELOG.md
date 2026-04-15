@@ -21,6 +21,8 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - Added Nextflow strict syntax compatibility [#30](https://github.com/Clinical-Genomics/oncorefiner/pull/30)
 - Added bam and bai parameters for tumor and normal samples, and logic to create joint bam_bai channels [#61](https://github.com/Clinical-Genomics/oncorefiner/pull/61)
 - Added `sex` parameter [#62](https://github.com/Clinical-Genomics/oncorefiner/pull/62)
+- Added `SAMTOOLS/VIEW` for bam to cram conversion in the main.nf [#70](https://github.com/Clinical-Genomics/oncorefiner/pull/70)
+- Added `GENERATE_CYTOSURE_FILES` subworkflow and necessary nf-core modules `TIDDIT_COV` and `VCF2CYTOSURE` [#60](https://github.com/Clinical-Genomics/oncorefiner/pull/60)
 
 ### Changed
 
@@ -30,6 +32,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - Added wgs-cancer-pipeline projects list in the issue templates [#37](https://github.com/Clinical-Genomics/oncorefiner/pull/37)
 - Updated link to Contributing Guidelines in the PR checklist to point to the rendered version of the document in `dev` [#56](https://github.com/Clinical-Genomics/oncorefiner/pull/56)
 - Updated nf-core subworkflow `utils_nfschema_plugin` [#67](https://github.com/Clinical-Genomics/oncorefiner/pull/67)
+- Updated `pipelines_testdata_base_path` and paths to test vcf files [#71](https://github.com/Clinical-Genomics/oncorefiner/pull/71)
 
 ### `Fixed`
 
@@ -55,6 +58,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - Fixed so that parameters are only accessed in `main.nf` and provided to subsequent workflows as `val_*` [#58](https://github.com/Clinical-Genomics/oncorefiner/pull/58)
 - Generalised description of `sex` parameter [#64](https://github.com/Clinical-Genomics/oncorefiner/pull/64)
 - `--help` parameter not working [#67](https://github.com/Clinical-Genomics/oncorefiner/pull/67)
+- Update `pipelines_testdata_base_path` to reflect the latest commit to `Clinical-Genomics/test-datasets/` [#68](https://github.com/Clinical-Genomics/oncorefiner/pull/68)
 
 ### `Dependencies`
 

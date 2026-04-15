@@ -24,6 +24,7 @@ include { BCFTOOLS_VIEW as CLINICAL_FILTERING_SV   } from '../modules/nf-core/bc
 // MODULE: Local modules
 //
 
+include { GENERATE_CYTOSURE_FILES } from '../subworkflows/local/generate_cytosure_files/main'
 
 //
 // SUBWORKFLOWS
@@ -43,6 +44,8 @@ workflow ONCOREFINER {
 
     take:
         ch_samplesheet        // channel: [mandatory] samplesheet read in from --input
+        ch_bam_bai_normal     // channel: [optional]  [val(meta), path(bam), path(bai)]
+        ch_bam_bai_tumor      // channel: [mandatory]  [val(meta), path(bam), path(bai)]
         ch_genome_fasta       // channel: [optional]  [val(meta), path(fasta)]
         ch_snv_vcf            // channel: [optional]  [val(meta), path(vcf)]
         ch_snv_vcf_tbi        // channel: [optional]  [val(meta), path(vcf.tbi)]
@@ -125,6 +128,23 @@ workflow ONCOREFINER {
 
         // Process SV VCF files
         if (ch_sv_vcf) {
+
+            // VCF2CYTOSURE
+            ch_bam_bai = channel.empty().mix(ch_bam_bai_tumor, ch_bam_bai_normal)
+            ch_vcf2cytosure_in = ch_bam_bai.combine(
+                ch_sv_vcf.join(ch_sv_vcf_tbi, failOnMismatch: true),
+                )
+                .multiMap { meta_bam_bai, bam, bai, meta_vcf, vcf, tbi ->
+                    bam_bai: tuple(meta_bam_bai, bam, bai)
+                    vcf: tuple(meta_vcf, vcf)
+                    tbi: tuple(meta_vcf, tbi)
+                }
+
+            GENERATE_CYTOSURE_FILES (
+                ch_vcf2cytosure_in.bam_bai,
+                ch_vcf2cytosure_in.tbi,
+                ch_vcf2cytosure_in.vcf
+            )
 
             // SVDB QUERY
             ch_sv_dbs
