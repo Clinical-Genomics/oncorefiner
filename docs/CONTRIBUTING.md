@@ -221,6 +221,7 @@ To make the `Clinical-Genomics/oncorefiner` code and processing logic more under
 - **Use subworkflows** — Don't add logic to `workflows/oncorefiner.nf` that is specific to a subworkflow. Create new subworkflows as needed under `subworkflows/` and import them into `workflows/oncorefiner.nf`.
 - **Reuse over duplication** — `ENSEMBLVEP_VEP` and `BCFTOOLS_VIEW` are intentionally included multiple times under different aliases. Follow this pattern before creating a near-identical subworkflow.
 - **nf-core modules take precedence** — prefer a module from modules/nf-core/ over writing a local one. Only add to modules/local/ when no nf-core module exists or the use case is too pipeline-specific.
+- **Use and share subworkflows with the GMS community** — subworkflows from [genomic-medicine-sweden/nf-core-modules](https://github.com/genomic-medicine-sweden/nf-core-modules) are intended for use across pipelines within the Genomic Medicine Sweden group. Prefer using and contributing to these rather than writing pipeline-specific code in `modules/local/`. If you think a subworkflow could be useful for other pipelines, consider adding it there instead of `subworkflows/local/`.
 
 ### Adding a new step
 
