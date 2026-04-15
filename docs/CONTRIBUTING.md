@@ -86,6 +86,31 @@ When reviewing a PR, make sure to check that:
 
 Be positive and constructive in your review, and whenever possible offer suggestions for improvement rather than just pointing out issues.
 
+### Software versioning, changelog and updates
+
+#### Semantic versioning and changelog
+
+Release versioning is maintained according to [Semantic Versioning](https://semver.org/spec/v2.0.0.html) and a changelog is maintained according to the [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) format.
+
+##### Patch
+
+:warning: Only in the unlikely and regretful event of a release happening with a bug.
+
+- On your own fork, make a new branch `patch` based on `upstream/main` or `upstream/master`.
+- Fix the bug, and bump version (X.Y.Z+1).
+- Open a pull-request from `patch` to `main`/`master` with the changes.
+
+#### Nextflow version bumping
+
+If you are using a new feature from core Nextflow, you may bump the minimum required version of nextflow in the pipeline with: `nf-core pipelines bump-version --nextflow . [min-nf-version]`
+
+#### Update nf-core template
+
+Since this is not an nf-core pipeline, the nf-core template is not automatically updated in the `TEMPLATE` branch. Follow these step to update the template:
+
+1. Update the `TEMPLATE` branch by running `nf-core pipelines sync`. Fix any merge conflicts and open a PR to then merge the changes.
+1. Open a PR to merge the `TEMPLATE` branch into `dev` to update the template files in the main codebase.
+
 ### Developer setup
 
 #### Installation and dependencies for development
@@ -142,25 +167,6 @@ Each `nf-core` pipeline should be set up with a minimal set of test-data.
 `GitHub Actions` then runs the pipeline on this data to ensure that it exits successfully.
 If there are any test failures then the automated check has status set to fail.
 These tests are run both with the latest available version of `Nextflow` and also the minimum required version that is stated in the pipeline code.
-
-### Patch
-
-:warning: Only in the unlikely and regretful event of a release happening with a bug.
-
-- On your own fork, make a new branch `patch` based on `upstream/main` or `upstream/master`.
-- Fix the bug, and bump version (X.Y.Z+1).
-- Open a pull-request from `patch` to `main`/`master` with the changes.
-
-### Nextflow version bumping
-
-If you are using a new feature from core Nextflow, you may bump the minimum required version of nextflow in the pipeline with: `nf-core pipelines bump-version --nextflow . [min-nf-version]`
-
-### Update nf-core template
-
-Since this is not an nf-core pipeline, the nf-core template is not automatically updated in the `TEMPLATE` branch. Follow these step to update the template:
-
-1. Update the `TEMPLATE` branch by running `nf-core pipelines sync`. Fix any merge conflicts and open a PR to then merge the changes.
-1. Open a PR to merge the `TEMPLATE` branch into `dev` to update the template files in the main codebase.
 
 ### Adding citations
 
