@@ -31,6 +31,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#30](https://github.com/Clinical-Genomics/oncorefiner/pull/30) Updated minimum Nextflow version to 25.10.0.
 - [#37](https://github.com/Clinical-Genomics/oncorefiner/pull/37) Added wgs-cancer-pipeline projects list in the issue templates.
 - [#56](https://github.com/Clinical-Genomics/oncorefiner/pull/56) Updated link to Contributing Guidelines in the PR checklist to point to the rendered version of the document in `dev`.
+- [#71](https://github.com/Clinical-Genomics/oncorefiner/pull/71) Updated `pipelines_testdata_base_path` and paths to test vcf files.
 
 ### `Fixed`
 

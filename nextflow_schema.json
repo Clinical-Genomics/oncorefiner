@@ -344,7 +344,7 @@
                     "type": "string",
                     "fa_icon": "far fa-check-circle",
                     "description": "Base URL or local path to location of pipeline test dataset files",
-                    "default": "https://raw.githubusercontent.com/Clinical-Genomics/test-datasets/bc94db3a30d6194f4cebcb9480bf24b0600b4d23/",
+                    "default": "https://raw.githubusercontent.com/Clinical-Genomics/test-datasets/a0b1a0c806be5823377671bba35eb22f2e28956d/",
                     "hidden": true
                 },
                 "trace_report_suffix": {
