@@ -1,20 +1,20 @@
 {
     "Test preparing VEP cache: no untarring needed": {
         "content": [
+            "vep_cache_and_plugins",
             [
-                [
-                    "/Clinical-Genomics/test-datasets/a0b1a0c806be5823377671bba35eb22f2e28956d/reference/vep_cache_and_plugins"
-                ]
+                
             ]
         ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "25.10.4"
         },
-        "timestamp": "2026-04-15T15:53:42.542548"
+        "timestamp": "2026-04-15T16:37:28.423202"
     },
     "Test preparing VEP cache: untarring needed": {
         "content": [
+            "vep_cache",
             [
                 "untar",
                 "untar/vep_cache",
@@ -446,6 +446,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.4"
         },
-        "timestamp": "2026-04-14T14:35:51.809188"
+        "timestamp": "2026-04-15T16:37:39.832081"
     }
 }
