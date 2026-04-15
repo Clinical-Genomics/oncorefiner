@@ -16,14 +16,15 @@ Contributions to the code are even more welcome ;)
     - [Pull Requests](#pull-requests)
       - [PR title conventions](#pr-title-conventions)
       - [Review](#review)
-  - [Installation and dependencies for development](#installation-and-dependencies-for-development)
+  - [Developer setup](#developer-setup)
+    - [Installation and dependencies for development](#installation-and-dependencies-for-development)
+    - [GitHub Codespaces](#github-codespaces)
   - [Running tests](#running-tests)
     - [Lint tests](#lint-tests)
     - [Pipeline tests](#pipeline-tests)
   - [Patch](#patch)
   - [Nextflow version bumping](#nextflow-version-bumping)
   - [Update nf-core template](#update-nf-core-template)
-  - [GitHub Codespaces](#github-codespaces)
   - [Adding citations](#adding-citations)
     - [1. `CITATIONS.md`](#1-citationsmd)
     - [2. `subworkflows/local/utils_nfcore_oncorefiner_pipeline/main.nf`](#2-subworkflowslocalutils_nfcore_oncorefiner_pipelinemainnf)
@@ -85,7 +86,9 @@ When reviewing a PR, make sure to check that:
 
 Be positive and constructive in your review, and whenever possible offer suggestions for improvement rather than just pointing out issues.
 
-### Installation and dependencies for development
+### Developer setup
+
+#### Installation and dependencies for development
 
 In order to run the pipeline, develop and test your changes locally, we recommend that you set up:
 
@@ -93,6 +96,23 @@ In order to run the pipeline, develop and test your changes locally, we recommen
 - Install Docker (https://www.docker.com/products/docker-desktop/) and make sure the daemon is running when you want to run the tests locally.
 
 Make sure to [test your setup](https://nf-co.re/docs/usage/introduction#how-to-run-a-pipeline) with `-profile test` before running the workflow on actual data.
+
+Additionally, pre-commit hooks are set up to automatically check the code and generate parameters documentation when committing. To install the pre-commit hooks, run `pre-commit install` in the root of the repository. Note that, other than the default pre-commit hooks from the nf-core template, there is an additional hook - [`nf-core pipelines schema docs` pre-commit hook](https://github.com/genomic-medicine-sweden/nf-core-schema-docs) - set up in this codebase for automatically generating parameters documentation if there are any changes to parameters in your commit.
+
+#### GitHub Codespaces
+
+This repo includes a devcontainer configuration which will create a GitHub Codespaces for Nextflow development! This is an online developer environment that runs in your browser, complete with VSCode and a terminal.
+
+To get started:
+
+- Open the repo in [Codespaces](https://github.com/Clinical-Genomics/oncorefiner/codespaces)
+- Tools installed
+  - nf-core
+  - Nextflow
+
+Devcontainer specs:
+
+- [DevContainer config](.devcontainer/devcontainer.json)
 
 ### Running tests
 
@@ -141,21 +161,6 @@ Since this is not an nf-core pipeline, the nf-core template is not automatically
 
 1. Update the `TEMPLATE` branch by running `nf-core pipelines sync`. Fix any merge conflicts and open a PR to then merge the changes.
 1. Open a PR to merge the `TEMPLATE` branch into `dev` to update the template files in the main codebase.
-
-### GitHub Codespaces
-
-This repo includes a devcontainer configuration which will create a GitHub Codespaces for Nextflow development! This is an online developer environment that runs in your browser, complete with VSCode and a terminal.
-
-To get started:
-
-- Open the repo in [Codespaces](https://github.com/Clinical-Genomics/oncorefiner/codespaces)
-- Tools installed
-  - nf-core
-  - Nextflow
-
-Devcontainer specs:
-
-- [DevContainer config](.devcontainer/devcontainer.json)
 
 ### Adding citations
 
