@@ -23,6 +23,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - Added `sex` parameter [#62](https://github.com/Clinical-Genomics/oncorefiner/pull/62)
 - Added `SAMTOOLS/VIEW` for bam to cram conversion in the main.nf [#70](https://github.com/Clinical-Genomics/oncorefiner/pull/70)
 - Added `GENERATE_CYTOSURE_FILES` subworkflow and necessary nf-core modules `TIDDIT_COV` and `VCF2CYTOSURE` [#60](https://github.com/Clinical-Genomics/oncorefiner/pull/60)
+- Added `PROCESS_SNVS` subworkflow [#66](https://github.com/Clinical-Genomics/oncorefiner/pull/66)
 - Add `tumor_only` test and snapshot [#69](https://github.com/Clinical-Genomics/oncorefiner/pull/69)
 
 ### Changed
@@ -32,6 +33,8 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - Updated minimum Nextflow version to 25.10.0 [#30](https://github.com/Clinical-Genomics/oncorefiner/pull/30)
 - Added wgs-cancer-pipeline projects list in the issue templates [#37](https://github.com/Clinical-Genomics/oncorefiner/pull/37)
 - Updated link to Contributing Guidelines in the PR checklist to point to the rendered version of the document in `dev` [#56](https://github.com/Clinical-Genomics/oncorefiner/pull/56)
+- Updated `pipelines_testdata_base_path` and paths to test vcf files [#71](https://github.com/Clinical-Genomics/oncorefiner/pull/71)
+- Moved logic for processing SNV VCF files, previously in `workflows/oncorefiner.nf`, to `PROCESS_SNVS` subworkflow [#66](https://github.com/Clinical-Genomics/oncorefiner/pull/66)
 - Renamed default test to `tumor_normal` test and updated snapshot. Added default test to lint ignore. [#69](https://github.com/Clinical-Genomics/oncorefiner/pull/69)
 
 ### `Fixed`
