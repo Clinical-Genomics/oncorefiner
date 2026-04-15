@@ -21,10 +21,16 @@ nextflow_workflow {
         }
 
         then {
+            // Check untarred directory and files
+            def output_directories_files = getAllFilesFromDir(params.outdir, relative: true, includeDir: true)
+
             assertAll(
                 { assert workflow.success },
                 { assert snapshot(
-                		workflow.out.vep_resources
+                    // Check the name of the output directory
+                    workflow.out.vep_resources[0][0].tokenize('/').last(),
+                    // Check that no ouput files or directories are produced
+                    output_directories_files
                 ).match() }
             )
         }
