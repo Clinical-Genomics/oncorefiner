@@ -17,23 +17,23 @@
             [
                 [
                     "SNV_clinical.vcf.gz",
-                    "dd792f7ceac820af3fe366985474805"
+                    "3ae83e0821730d9d187338e3828106fa"
                 ],
                 [
                     "SNV_research.vcf.gz",
-                    "d7453d6080983d2c812113003f5e5ae8"
+                    "e28954aa6ba6eda7add58297db6806c0"
                 ],
                 [
                     "SNV_vcfanno.vcf.gz",
-                    "746d273c13550ab044af7eb5e62a941a"
+                    "80f7be09a6f5e95e7d54072420a1074"
                 ],
                 [
                     "SNV_vep.vcf.gz",
-                    "dd792f7ceac820af3fe366985474805"
+                    "3ae83e0821730d9d187338e3828106fa"
                 ]
             ]
         ],
-        "timestamp": "2026-04-14T12:11:59.260426",
+        "timestamp": "2026-04-15T15:34:40.081652",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "25.10.4"
