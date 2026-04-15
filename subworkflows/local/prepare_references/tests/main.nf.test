@@ -51,8 +51,8 @@ nextflow_workflow {
                 { assert workflow.success },
                 { assert snapshot(
                     // Check untarred directory and files
-                    output_directories_files ).match()
-                }
+                    output_directories_files
+                ).match() }
             )
         }
     }
