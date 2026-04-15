@@ -56,13 +56,13 @@
                 "alignments/subject_a_tumor.cram",
                 "alignments/subject_a_tumor.cram.crai",
                 "annotate_sv",
-                "annotate_sv/SV_svdbquery_vep.vcf.gz",
-                "annotate_sv/SV_svdbquery_vep.vcf.gz.tbi",
-                "annotate_sv/SV_svdbquery_vep.vcf.gz_summary.html",
+                "annotate_sv/subject_a_svdbquery_vep.vcf.gz",
+                "annotate_sv/subject_a_svdbquery_vep.vcf.gz.tbi",
+                "annotate_sv/subject_a_svdbquery_vep.vcf.gz_summary.html",
                 "clinical",
-                "clinical/SV_clinical.vcf",
+                "clinical/subject_a_clinical.vcf",
                 "clinical_filtering",
-                "clinical_filtering/SNV_clinical.vcf.gz",
+                "clinical_filtering/subject_a_clinical.vcf.gz",
                 "multiqc",
                 "multiqc/multiqc_data",
                 "multiqc/multiqc_data/llms-full.txt",
@@ -76,71 +76,72 @@
                 "pipeline_info",
                 "pipeline_info/oncorefiner_software_mqc_versions.yml",
                 "research",
-                "research/SV_research.vcf",
+                "research/subject_a_research.vcf",
                 "research_filtering",
-                "research_filtering/SNV_research.vcf.gz",
+                "research_filtering/subject_a_research.vcf.gz",
                 "svdb",
-                "svdb/SV_vcfdb_query.vcf",
+                "svdb/subject_a_vcfdb_query.vcf",
                 "vcf2cytosure",
                 "vcf2cytosure/normal.cgh",
                 "vcf2cytosure/tumor.cgh",
                 "vcfanno",
-                "vcfanno/SNV_vcfanno.vcf.gz",
-                "vcfanno/SNV_vcfanno.vcf.gz.tbi",
+                "vcfanno/subject_a_vcfanno.vcf.gz",
+                "vcfanno/subject_a_vcfanno.vcf.gz.tbi",
                 "vep",
-                "vep/SNV_vep.vcf.gz",
-                "vep/SNV_vep.vcf.gz.tbi",
-                "vep/SNV_vep.vcf.gz_summary.html"
+                "vep/subject_a_vep.vcf.gz",
+                "vep/subject_a_vep.vcf.gz.tbi",
+                "vep/subject_a_vep.vcf.gz_summary.html"
             ],
             [
-                "normal.cgh:md5,df9f0942e27e9c8f576c3d58a2e4ce29",
-                "tumor.cgh:md5,6982664c6f78b094fd4a26afc25e153e"
+                "normal.cgh:md5,7faf36d797590e61bb64688acf6417df",
+                "tumor.cgh:md5,3de27f40e256ee1861731cd6c6b27b6a"
             ],
             [
                 [
-                    "SV_svdbquery_vep.vcf.gz",
+                    "subject_a_svdbquery_vep.vcf.gz",
                     "VcfFile [chromosomes=[], sampleCount=2, variantCount=0, phased=true, phasedAutodetect=true]"
                 ],
                 [
-                    "SNV_clinical.vcf.gz",
+                    "subject_a_clinical.vcf.gz",
                     "VcfFile [chromosomes=[11, 22, 12, 13, 15, 16, 17, 18, 19, 1, 2, 3, 4, 5, 6, 7, 8, X, 9, 20, 21], sampleCount=2, variantCount=102, phased=false, phasedAutodetect=false]"
                 ],
                 [
-                    "SNV_research.vcf.gz",
+                    "subject_a_research.vcf.gz",
                     "VcfFile [chromosomes=[11, 22, 12, 13, 15, 16, 17, 18, 19, 1, 2, 3, 4, 5, 6, 7, 8, X, 9, 20, 21], sampleCount=2, variantCount=102, phased=false, phasedAutodetect=false]"
                 ],
                 [
-                    "SNV_vcfanno.vcf.gz",
+                    "subject_a_vcfanno.vcf.gz",
                     "VcfFile [chromosomes=[11, 22, 12, 13, 15, 16, 17, 18, 19, 1, 2, 3, 4, 5, 6, 7, 8, X, 9, 20, 21], sampleCount=2, variantCount=102, phased=false, phasedAutodetect=false]"
                 ],
                 [
-                    "SNV_vep.vcf.gz",
+                    "subject_a_vep.vcf.gz",
                     "VcfFile [chromosomes=[11, 22, 12, 13, 15, 16, 17, 18, 19, 1, 2, 3, 4, 5, 6, 7, 8, X, 9, 20, 21], sampleCount=2, variantCount=102, phased=false, phasedAutodetect=false]"
                 ]
             ],
             [
                 [
-                    "SV_svdbquery_vep.vcf.gz",
+                    "subject_a_svdbquery_vep.vcf.gz",
                     "d41d8cd98f00b204e9800998ecf8427e"
                 ],
                 [
-                    "SNV_clinical.vcf.gz",
-                    "dd792f7ceac820af3fe366985474805"
+                    "subject_a_clinical.vcf.gz",
+                    "3ae83e0821730d9d187338e3828106fa"
                 ],
                 [
-                    "SNV_research.vcf.gz",
-                    "d7453d6080983d2c812113003f5e5ae8"
+                    "subject_a_research.vcf.gz",
+                    "e28954aa6ba6eda7add58297db6806c0"
                 ],
                 [
-                    "SNV_vcfanno.vcf.gz",
-                    "746d273c13550ab044af7eb5e62a941a"
+                    "subject_a_vcfanno.vcf.gz",
+                    "80f7be09a6f5e95e7d54072420a1074"
                 ],
                 [
-                    "SNV_vep.vcf.gz",
-                    "dd792f7ceac820af3fe366985474805"
+                    "subject_a_vep.vcf.gz",
+                    "3ae83e0821730d9d187338e3828106fa"
                 ]
             ]
         ],
+        "timestamp": "2026-04-13T14:03:48.423042",
         "timestamp": "2026-04-14T12:26:37.699154",
         "meta": {
             "nf-test": "0.9.5",
