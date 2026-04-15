@@ -13,7 +13,7 @@ nextflow_workflow {
                 """
                 input[0] = channel.of([
                     [id:'vep_cache'],
-                    file(params.vep_cache, checkIfExists: true)
+                    file(params.pipelines_testdata_base_path + 'reference/vep_cache_and_plugins.tar.gz', checkIfExists: true)
                 ])
                 """
             }
@@ -31,24 +31,24 @@ nextflow_workflow {
                 """
                 input[0] = channel.of([
                     [id:'SV'],
-                    file(params.sv_vcf, checkIfExists: true)
+                    file(params.pipelines_testdata_base_path + 'testdata/SV.tumor.esvee.somatic.37.vcf.gz', checkIfExists: true)
                 ])
                 input[1] = channel.of([
                     [id:'SV'],
-                    file(params.sv_vcf + '.tbi', checkIfExists: true)
+                    file(params.pipelines_testdata_base_path + 'testdata/SV.tumor.esvee.somatic.37.vcf.gz.tbi', checkIfExists: true)
                 ])
                 input[2] = channel.of(
-                    file(params.svdb_query_dbs, checkIfExists: true)
+                    file(params.pipelines_testdata_base_path + 'reference/svdb_querydb_files.csv', checkIfExists: true)
                 )
-                input[3] = channel.value(params.genome)
-                input[4] = channel.value('homo_sapiens')
-                input[5] = channel.value(params.vep_cache_version)
+                input[3] = "GRCh37"
+                input[4] = "homo_sapiens"
+                input[5] = 107
                 input[6] = UNTAR_VEP_CACHE.out.untar.map{ _meta, files -> [files]}.collect()
                 input[7] = channel.of([
                     [id:'reference'],
-                    file(params.fasta, checkIfExists: true)
+                    file(params.pipelines_testdata_base_path + 'reference/reference.fasta', checkIfExists: true)
                 ])
-                input[8] = channel.fromPath(params.vep_plugin_files)
+                input[8] = channel.fromPath(params.pipelines_testdata_base_path + 'reference/vep_files.csv')
                 .splitCsv(header: true)
                 .map { row ->
                     def f = file(row.vep_files)
