@@ -32,7 +32,7 @@ workflow PROCESS_SVS {
         ch_vep_cache          // channel: [optional]  [val(meta), path(vep_cache)]
         ch_genome_fasta       // channel: [optional]  [val(meta), path(fasta)]
         ch_vep_extra_files    // channel: [optional]  [val(meta), path(vep_extra_files)]
-    
+
     main:
         // SVDB QUERY
         ch_sv_dbs
