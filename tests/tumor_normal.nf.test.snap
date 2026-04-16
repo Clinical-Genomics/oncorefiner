@@ -27,11 +27,20 @@
                 "RESEARCH_FILTERING_SV": {
                     "bcftools": 1.22
                 },
+                "SAMTOOLS_VIEW": {
+                    "samtools": "1.23.1"
+                },
                 "SVDB_QUERY_DB": {
                     "svdb": "2.8.4"
                 },
+                "TIDDIT_COV": {
+                    "tiddit": "3.9.5"
+                },
                 "UNTAR_VEP_CACHE": {
                     "untar": 1.34
+                },
+                "VCF2CYTOSURE": {
+                    "vcf2cytosure": "0.9.3"
                 },
                 "VCFANNO": {
                     "vcfanno": "0.3.7"
@@ -41,6 +50,11 @@
                 }
             },
             [
+                "alignments",
+                "alignments/subject_a_normal.cram",
+                "alignments/subject_a_normal.cram.crai",
+                "alignments/subject_a_tumor.cram",
+                "alignments/subject_a_tumor.cram.crai",
                 "annotate_sv",
                 "annotate_sv/subject_a_svdbquery_vep.vcf.gz",
                 "annotate_sv/subject_a_svdbquery_vep.vcf.gz.tbi",
@@ -127,7 +141,7 @@
                 ]
             ]
         ],
-        "timestamp": "2026-04-15T15:30:53.996251",
+        "timestamp": "2026-04-16T10:11:08.906457",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "25.10.4"
