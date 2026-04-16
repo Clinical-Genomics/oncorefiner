@@ -2,11 +2,11 @@ nextflow_pipeline {
 
     name "Test pipeline ONCOREFINER"
     script "../main.nf"
-    config "../conf/test_tumor_only.config"
     tag "pipeline"
     tag "tumor_only"
+    profile "test_tumor_only"
 
-    test("Tumor only analysis with '-profile test' and `test_tumor_only.config`") {
+    test("Tumor only analysis with '-profile test_tumor_only'") {
 
         when {
             params {
