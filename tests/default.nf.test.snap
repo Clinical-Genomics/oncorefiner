@@ -2,26 +2,26 @@
     "-profile test": {
         "content": [
             {
-                "CLINICAL_FILTERING": {
+                "BCFTOOLS_VIEW_CLINICAL": {
+                    "bcftools": 1.22
+                },
+                "BCFTOOLS_VIEW_RESEARCH": {
                     "bcftools": 1.22
                 },
                 "CLINICAL_FILTERING_SV": {
                     "bcftools": 1.22
-                },
-                "ENSEMBLVEP_SNV": {
-                    "ensemblvep": 115.2,
-                    "perl-math-cdf": 0.1,
-                    "tabix": 1.21
                 },
                 "ENSEMBLVEP_SV": {
                     "ensemblvep": 115.2,
                     "perl-math-cdf": 0.1,
                     "tabix": 1.21
                 },
-                "FILTER_VCF": {
-                    "bcftools": 1.22
+                "ENSEMBLVEP_VEP": {
+                    "ensemblvep": 115.2,
+                    "perl-math-cdf": 0.1,
+                    "tabix": 1.21
                 },
-                "RESEARCH_FILTERING": {
+                "FILTER_VCF": {
                     "bcftools": 1.22
                 },
                 "RESEARCH_FILTERING_SV": {
@@ -141,7 +141,7 @@
                 ]
             ]
         ],
-        "timestamp": "2026-04-13T14:03:48.423042",
+        "timestamp": "2026-04-15T15:30:53.996251",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "25.10.4"
