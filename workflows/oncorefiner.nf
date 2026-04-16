@@ -83,20 +83,6 @@ workflow ONCOREFINER {
             val_vep_cache_version
         )
 
-        // Process SV VCF files
-        PROCESS_SVS(
-            ch_sv_vcf,
-            ch_sv_vcf_tbi,
-            ch_sv_dbs,
-            val_genome,
-            val_species,
-            val_vep_cache_version,
-            ch_vep_cache,
-            ch_genome_fasta,
-            ch_vep_extra_files
-        )
-
-
         // VCF2CYTOSURE
         ch_bam_bai = channel.empty().mix(ch_bam_bai_tumor, ch_bam_bai_normal)
         ch_vcf2cytosure_in = ch_bam_bai.combine(
@@ -112,6 +98,19 @@ workflow ONCOREFINER {
             ch_vcf2cytosure_in.bam_bai,
             ch_vcf2cytosure_in.tbi,
             ch_vcf2cytosure_in.vcf
+        )
+
+        // Process SV VCF files
+        PROCESS_SVS(
+            ch_sv_vcf,
+            ch_sv_vcf_tbi,
+            ch_sv_dbs,
+            val_genome,
+            val_species,
+            val_vep_cache_version,
+            ch_vep_cache,
+            ch_genome_fasta,
+            ch_vep_extra_files
         )
 
 
