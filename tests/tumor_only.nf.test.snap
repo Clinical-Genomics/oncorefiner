@@ -1,5 +1,5 @@
 {
-    "Tumor only analysis with '-profile test' and `test_tumor_only.config`": {
+    "Tumor only analysis with '-profile test_tumor_only'": {
         "content": [
             {
                 "BCFTOOLS_VIEW_CLINICAL": {
@@ -137,7 +137,7 @@
                 ]
             ]
         ],
-        "timestamp": "2026-04-16T10:24:41.099173",
+        "timestamp": "2026-04-16T11:05:35.341285",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "25.10.4"
