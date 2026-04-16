@@ -176,27 +176,76 @@ def validateInputSamplesheet(input) {
 // Generate methods description for MultiQC
 //
 def toolCitationText() {
-    // TODO nf-core: Optionally add in-text citation tools to this list.
-    // Can use ternary operators to dynamically construct based conditions, e.g. params["run_xyz"] ? "Tool (Foo et al. 2023)" : "",
-    // Uncomment function in methodsDescriptionText to render in MultiQC report
-    def citation_text = [
-            "Tools used in the workflow included:",
-            "MultiQC (Ewels et al. 2016)",
-            "."
-        ].join(' ').trim()
 
-    return citation_text
+    def citations_list = []
+    def vcfanno        = "vcfanno (Pedersen et al. 2016)"
+    def bcftools_view  = "bcftools (Danecek et al. 2021)"
+    def ensemblvep_vep = "Ensembl VEP (McLaren et al. 2016)"
+    def svdb           = "svdb"
+    def multiqc        = "MultiQC (Ewels et al. 2016)"
+
+    if (params.snv_vcf) {
+        citations_list =
+            citations_list +
+            vcfanno        +
+            bcftools_view  +
+            ensemblvep_vep
+    }
+
+    if (params.sv_vcf) {
+        citations_list =
+            citations_list +
+            svdb           +
+            bcftools_view  +
+            ensemblvep_vep
+    }
+
+    // always run
+    citations_list =
+        citations_list +
+        multiqc
+
+    def citations_text =
+            "Tools used in the workflow included: "   +
+            citations_list.unique().join(', ').trim() +
+            "."
+
+    return citations_text
 }
 
 def toolBibliographyText() {
-    // TODO nf-core: Optionally add bibliographic entries to this list.
-    // Can use ternary operators to dynamically construct based conditions, e.g. params["run_xyz"] ? "<li>Author (2023) Pub name, Journal, DOI</li>" : "",
-    // Uncomment function in methodsDescriptionText to render in MultiQC report
-    def reference_text = [
-            "<li>Ewels, P., Magnusson, M., Lundin, S., & Käller, M. (2016). MultiQC: summarize analysis results for multiple tools and samples in a single report. Bioinformatics , 32(19), 3047–3048. doi: /10.1093/bioinformatics/btw354</li>"
-        ].join(' ').trim()
 
-    return reference_text
+    def bibliography_list   = []
+    def vcfanno             = "<li>Pedersen BS, Layer RM, Quinlan AR. Vcfanno: fast, flexible annotation of genetic variants. Genome Biol. 2016 Jun 1;17(1):118. doi: 10.1186/s13059-016-0973-5. PMID: 27250555; PMCID: PMC4888505.</li>"
+    def bcftools_view       = "<li>Danecek P, Bonfield JK, Liddle J, Marshall J, Ohan V, Pollard MO, Whitwham A, Keane T, McCarthy SA, Davies RM, Li H. Twelve years of SAMtools and BCFtools. Gigascience. 2021 Feb 16;10(2):giab008. doi: 10.1093/gigascience/giab008. PMID: 33590845; PMCID: PMC7898596.</li>"
+    def ensemblvep_vep      = "<li>McLaren W, Gil L, Hunt SE, Riat HS, Ritchie GR, Thormann A, Flicek P, Cunningham F. The Ensembl Variant Effect Predictor. Genome Biol. 2016 Jun 6;17(1):122. doi: 10.1186/s13059-016-0974-4. PMID: 27268795; PMCID: PMC4893825.</li>"
+    def svdb                = "<li>svdb. https://github.com/J35P312/svdb.</li>"
+    def multiqc             = "<li>Ewels, P., Magnusson, M., Lundin, S., & Käller, M. (2016). MultiQC: summarize analysis results for multiple tools and samples in a single report. Bioinformatics , 32(19), 3047–3048. doi: /10.1093/bioinformatics/btw354</li>"
+
+    if (params.snv_vcf) {
+        bibliography_list =
+            bibliography_list +
+            vcfanno        +
+            bcftools_view  +
+            ensemblvep_vep
+    }
+
+    if (params.sv_vcf) {
+        bibliography_list =
+            bibliography_list +
+            svdb           +
+            bcftools_view  +
+            ensemblvep_vep
+    }
+
+    // always run
+    bibliography_list =
+        bibliography_list +
+        multiqc
+
+    def bibliography_text = bibliography_list.unique().join(' ').trim()
+
+    return bibliography_text
 }
 
 def methodsDescriptionText(mqc_methods_yaml) {
@@ -220,12 +269,8 @@ def methodsDescriptionText(mqc_methods_yaml) {
     meta["nodoi_text"] = meta.manifest_map.doi ? "" : "<li>If available, make sure to update the text to include the Zenodo DOI of version of the pipeline used. </li>"
 
     // Tool references
-    meta["tool_citations"] = ""
-    meta["tool_bibliography"] = ""
-
-    // TODO nf-core: Only uncomment below if logic in toolCitationText/toolBibliographyText has been filled!
-    // meta["tool_citations"] = toolCitationText().replaceAll(", \\.", ".").replaceAll("\\. \\.", ".").replaceAll(", \\.", ".")
-    // meta["tool_bibliography"] = toolBibliographyText()
+    meta["tool_citations"] = toolCitationText().replaceAll(", \\.", ".").replaceAll("\\. \\.", ".").replaceAll(", \\.", ".")
+    meta["tool_bibliography"] = toolBibliographyText()
 
 
     def methods_text = mqc_methods_yaml.text
