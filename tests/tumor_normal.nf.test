@@ -3,6 +3,7 @@ nextflow_pipeline {
     name "Test pipeline ONCOREFINER"
     script "../main.nf"
     tag "pipeline"
+    tag "tumor_normal"
 
     test("Tumor Normal analysis with '-profile test'") {
 

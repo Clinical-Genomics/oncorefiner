@@ -4,6 +4,7 @@ nextflow_pipeline {
     script "../main.nf"
     configFile "../conf/test_tumor_only.config"
     tag "pipeline"
+    tag "tumor_only"
 
     test("Tumor only analysis with '-profile test' and `test_tumor_only.config`") {
 
