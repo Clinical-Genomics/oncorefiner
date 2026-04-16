@@ -7,6 +7,7 @@ lint:
     - conf/igenomes.config
     - conf/igenomes_ignored.config
     - .github/CONTRIBUTING.md
+    - conf/test.config
     - tests/default.config
     - tests/default.nf.test
   files_unchanged:
