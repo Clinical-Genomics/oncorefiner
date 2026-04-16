@@ -6,6 +6,7 @@ lint:
     - .github/workflows/awsfulltest.yml
     - conf/igenomes.config
     - conf/igenomes_ignored.config
+    - .github/CONTRIBUTING.md
     - tests/default.config
     - tests/default.nf.test
   files_unchanged:
@@ -21,10 +22,9 @@ nf_core_version: 3.5.2
 repository_type: pipeline
 template:
   author: Clinical Genomics Stockholm
-  description: Customizable post-processing and extension layer built on top of Oncoanalyser
-    that adapts its outputs to clinical and operational needs, adds missing analyses,
-    and ensures flexibility for evolving standards while retaining Oncoanalyser robust
-    core
+  description: Customizable post-processing and extension layer for Oncoanalyser that adapts
+    its outputs according to clinical and operational needs, adds missing analyses, and
+    ensures flexibility for evolving standards while retaining Oncoanalyser's robust core.
   force: false
   is_nfcore: false
   name: oncorefiner
