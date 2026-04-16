@@ -2,17 +2,14 @@ nextflow_pipeline {
 
     name "Test pipeline ONCOREFINER"
     script "../main.nf"
+    configFile "../conf/test_tumor_only.config"
     tag "pipeline"
 
-    test("Tumor only analysis with '-profile test'") {
+    test("Tumor only analysis with '-profile test' and `test_tumor_only.config`") {
 
         when {
             params {
                 outdir     = "$outputDir"
-                snv_vcf    = params.pipelines_testdata_base_path + 'testdata/tumor_only/subject_a.tumor.purple.somatic.vcf.gz'
-                sv_vcf     = params.pipelines_testdata_base_path + 'testdata/tumor_only/subject_a.tumor.purple.sv.vcf.gz'
-                bam_normal = null
-                bai_normal = null
             }
         }
 
