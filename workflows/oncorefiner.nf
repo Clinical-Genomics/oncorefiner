@@ -11,10 +11,6 @@ include { paramsSummaryMap       } from 'plugin/nf-schema'
 //
 
 include { MULTIQC                                  } from '../modules/nf-core/multiqc/main'
-include { ENSEMBLVEP_VEP as ENSEMBLVEP_SNV         } from '../modules/nf-core/ensemblvep/vep/main'
-include { VCFANNO                                  } from '../modules/nf-core/vcfanno/main'
-include { BCFTOOLS_VIEW as RESEARCH_FILTERING      } from '../modules/nf-core/bcftools/view/main'
-include { BCFTOOLS_VIEW as CLINICAL_FILTERING      } from '../modules/nf-core/bcftools/view/main'
 
 //
 // MODULE: Local modules
