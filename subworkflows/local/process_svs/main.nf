@@ -12,7 +12,6 @@ include { BCFTOOLS_VIEW as RESEARCH_FILTERING_SV   } from '../../../modules/nf-c
 include { BCFTOOLS_VIEW as CLINICAL_FILTERING_SV   } from '../../../modules/nf-core/bcftools/view/main'
 include { ENSEMBLVEP_VEP                           } from '../../../modules/nf-core/ensemblvep/vep/main'
 include { SVDB_QUERY                               } from '../../../modules/nf-core/svdb/query/main'
-include { TABIX_BGZIP                              } from '../../../modules/nf-core/tabix/bgzip/main'
 
 //
 // LOCAL SUBWORKFLOWS
@@ -64,21 +63,13 @@ workflow PROCESS_SVS {
             []
         )
 
+
         // Quality Filtering
         SVDB_QUERY.out.vcf
             .map { meta, vcf ->
                 tuple(meta, vcf, []) }
             .set { ch_research_filtering_sv_in }
 
-
-        // Compress SVDB output
-        TABIX_BGZIP(SVDB_QUERY.out.vcf)
-
-        // Quality Filtering
-        TABIX_BGZIP.out.output
-                .map { meta, vcf ->
-                    tuple(meta, vcf, []) }
-        .set { ch_research_filtering_sv_in }
 
         RESEARCH_FILTERING_SV(ch_research_filtering_sv_in, [], [], [])
 
