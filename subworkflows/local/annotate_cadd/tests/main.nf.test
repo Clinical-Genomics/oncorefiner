@@ -19,8 +19,7 @@ nextflow_workflow {
                 """
                 input[0] = channel.of([
                     [id:'test'],
-                    file(params.pipelines_testdata_base_path + 'testdata/SNV.tumor.pave.somatic.37.vcf.gz', checkIfExists: true),
-                    file(params.pipelines_testdata_base_path + 'testdata/SNV.tumor.pave.somatic.37.vcf.gz.tbi', checkIfExists: true)
+                    file(params.pipelines_testdata_base_path + 'testdata/tumor_normal/subject_a.tumor.purple.somatic.vcf.gz', checkIfExists: true)
                     ])
                 input[1] = 'GRCh37'
                 input[2] = channel.fromPath(params.pipelines_testdata_base_path + 'reference/reference.fasta.fai', checkIfExists: true).map {it -> [[id:it.simpleName], it]  }.collect()
@@ -34,13 +33,13 @@ nextflow_workflow {
         then {
             assertAll(
                 { assert workflow.success },
-                { assert snapshot(workflow.out).match() }
+                { assert snapshot(workflow.out.vcf, workflow.out.tbi).match() }
             )
         }
     }
 
     test("ANNOTATE_CADD - GRCh38, stub") {
-
+    // TODO update test data to GRCh38
         options "-stub"
 
         when {
@@ -51,8 +50,7 @@ nextflow_workflow {
                 """
                 input[0] = channel.of([
                     [id:'test'],
-                    file(params.pipelines_testdata_base_path + 'testdata/SNV.tumor.pave.somatic.37.vcf.gz', checkIfExists: true),
-                    file(params.pipelines_testdata_base_path + 'testdata/SNV.tumor.pave.somatic.37.vcf.gz.tbi', checkIfExists: true)
+                    file(params.pipelines_testdata_base_path + 'testdata/tumor_normal/subject_a.tumor.purple.somatic.vcf.gz', checkIfExists: true)
                     ])
                 input[1] = 'GRCh38'
                 input[2] = channel.fromPath(params.pipelines_testdata_base_path + 'reference/reference.fasta.fai', checkIfExists: true).map {it -> [[id:it.simpleName], it]  }.collect()
@@ -66,8 +64,7 @@ nextflow_workflow {
         then {
             assertAll(
                 { assert workflow.success },
-                { assert snapshot(
-                    workflow.out).match() }
+                { assert snapshot(workflow.out.vcf, workflow.out.tbi).match() }
             )
         }
     }

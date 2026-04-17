@@ -74,7 +74,7 @@ workflow ANNOTATE_CADD {
             .join(TABIX_CADD.out.index, failOnMismatch: true, failOnDuplicate: true)
             .combine( ch_header )
             .combine( ch_rename_chrs_ref )
-            .map { meta, vcf, tbi, annotations, annotations_index, header, txt -> tuple( meta, vcf, [], annotations, annotations_index, [], header, txt )  } //THERE IS A TBI?
+            .map { meta, vcf, tbi, annotations, annotations_index, header, txt -> tuple( meta, vcf, tbi, annotations, annotations_index, [], header, txt )  } //THERE IS A TBI?
             .set { ch_annotate }
 
 

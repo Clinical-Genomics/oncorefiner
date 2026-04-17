@@ -1,88 +1,52 @@
 {
     "ANNOTATE_CADD - GRCh37, stub": {
         "content": [
-            {
-                "0": [
-                    [
-                        {
-                            "id": "test"
-                        },
-                        "SNV_ann.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
-                    ]
-                ],
-                "1": [
-                    [
-                        {
-                            "id": "test"
-                        },
-                        "SNV_ann.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ]
-                ],
-                "tbi": [
-                    [
-                        {
-                            "id": "test"
-                        },
-                        "SNV_ann.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ]
-                ],
-                "vcf": [
-                    [
-                        {
-                            "id": "test"
-                        },
-                        "SNV_ann.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
-                    ]
+            [
+                [
+                    {
+                        "id": "test"
+                    },
+                    "subject_a_ann.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
                 ]
-            }
+            ],
+            [
+                [
+                    {
+                        "id": "test"
+                    },
+                    "subject_a_ann.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ]
+            ]
         ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "25.10.4"
         },
-        "timestamp": "2026-03-27T16:04:52.225642"
+        "timestamp": "2026-04-17T13:12:12.741306"
     },
     "ANNOTATE_CADD - GRCh38, stub": {
         "content": [
-            {
-                "0": [
-                    [
-                        {
-                            "id": "test"
-                        },
-                        "SNV_indels_ann.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
-                    ]
-                ],
-                "1": [
-                    [
-                        {
-                            "id": "test"
-                        },
-                        "SNV_indels_ann.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ]
-                ],
-                "tbi": [
-                    [
-                        {
-                            "id": "test"
-                        },
-                        "SNV_indels_ann.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ]
-                ],
-                "vcf": [
-                    [
-                        {
-                            "id": "test"
-                        },
-                        "SNV_indels_ann.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
-                    ]
+            [
+                [
+                    {
+                        "id": "test"
+                    },
+                    "subject_a_indels_ann.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
                 ]
-            }
+            ],
+            [
+                [
+                    {
+                        "id": "test"
+                    },
+                    "subject_a_indels_ann.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ]
+            ]
         ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "25.10.4"
         },
-        "timestamp": "2026-03-30T13:58:31.285282"
+        "timestamp": "2026-04-17T13:12:21.913504"
     }
 }
