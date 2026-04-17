@@ -12,11 +12,6 @@ include { paramsSummaryMap       } from 'plugin/nf-schema'
 
 include { MULTIQC                                  } from '../modules/nf-core/multiqc/main'
 
-//
-// MODULE: Local modules
-//
-
-include { GENERATE_CYTOSURE_FILES } from '../subworkflows/local/generate_cytosure_files/main'
 
 //
 // SUBWORKFLOWS
@@ -30,8 +25,8 @@ include { methodsDescriptionText } from '../subworkflows/local/utils_nfcore_onco
 // LOCAL SUBWORKFLOWS
 //
 
-include { PROCESS_SVS } from '../subworkflows/local/process_svs/main.nf'
 include { PROCESS_SNVS } from '../subworkflows/local/process_snvs/main.nf'
+include { PROCESS_SVS } from '../subworkflows/local/process_svs/main.nf'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -81,23 +76,6 @@ workflow ONCOREFINER {
             val_genome,
             val_species,
             val_vep_cache_version
-        )
-
-        // VCF2CYTOSURE
-        ch_bam_bai = channel.empty().mix(ch_bam_bai_tumor, ch_bam_bai_normal)
-        ch_vcf2cytosure_in = ch_bam_bai.combine(
-            ch_sv_vcf.join(ch_sv_vcf_tbi, failOnMismatch: true),
-            )
-            .multiMap { meta_bam_bai, bam, bai, meta_vcf, vcf, tbi ->
-                bam_bai: tuple(meta_bam_bai, bam, bai)
-                vcf: tuple(meta_vcf, vcf)
-                tbi: tuple(meta_vcf, tbi)
-            }
-
-        GENERATE_CYTOSURE_FILES (
-            ch_vcf2cytosure_in.bam_bai,
-            ch_vcf2cytosure_in.tbi,
-            ch_vcf2cytosure_in.vcf
         )
 
         // Process SV VCF files
