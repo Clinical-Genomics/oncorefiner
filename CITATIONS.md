@@ -1,12 +1,14 @@
 # Clinical-Genomics/oncorefiner: Citations
 
-## [nf-core](https://pubmed.ncbi.nlm.nih.gov/32055031/)
+## Nextflow & nf-core
 
-> Ewels PA, Peltzer A, Fillinger S, Patel H, Alneberg J, Wilm A, Garcia MU, Di Tommaso P, Nahnsen S. The nf-core framework for community-curated bioinformatics pipelines. Nat Biotechnol. 2020 Mar;38(3):276-278. doi: 10.1038/s41587-020-0439-x. PubMed PMID: 32055031.
+- [Nextflow](https://pubmed.ncbi.nlm.nih.gov/28398311/)
 
-## [Nextflow](https://pubmed.ncbi.nlm.nih.gov/28398311/)
+  > Di Tommaso P, Chatzou M, Floden EW, Barja PP, Palumbo E, Notredame C. Nextflow enables reproducible computational workflows. Nat Biotechnol. 2017 Apr 11;35(4):316-319. doi: 10.1038/nbt.3820. PubMed PMID: 28398311.
 
-> Di Tommaso P, Chatzou M, Floden EW, Barja PP, Palumbo E, Notredame C. Nextflow enables reproducible computational workflows. Nat Biotechnol. 2017 Apr 11;35(4):316-319. doi: 10.1038/nbt.3820. PubMed PMID: 28398311.
+- [nf-core](https://pubmed.ncbi.nlm.nih.gov/32055031/)
+
+  > Ewels PA, Peltzer A, Fillinger S, Patel H, Alneberg J, Wilm A, Garcia MU, Di Tommaso P, Nahnsen S. The nf-core framework for community-curated bioinformatics pipelines. Nat Biotechnol. 2020 Mar;38(3):276-278. doi: 10.1038/s41587-020-0439-x. PubMed PMID: 32055031.
 
 ## Pipeline tools
 
@@ -16,9 +18,23 @@
 
   > Rentzsch P, Witten D, Cooper GM, Shendure J, Kircher M. CADD: predicting the deleteriousness of variants throughout the human genome. Nucleic Acids Research. 2019;47(D1):D886-D894. doi:10.1093/nar/gky1016
 
+- [`bcftools`](https://github.com/samtools/bcftools)
+
+  > Danecek P, Bonfield JK, Liddle J, Marshall J, Ohan V, Pollard MO, Whitwham A, Keane T, McCarthy SA, Davies RM, Li H. Twelve years of SAMtools and BCFtools. Gigascience. 2021 Jan 29;10(2):giab008. doi: 10.1093/gigascience/giab008. PubMed PMID: 33590861; PubMed Central PMCID: PMC7931819.
+
+- [`Ensembl VEP`](https://www.ensembl.org/info/docs/tools/vep/index.html)
+
+  > McLaren W, Gil L, Hunt SE, Riat HS, Ritchie GR, Thormann A, Flicek P, Cunningham F. The Ensembl Variant Effect Predictor. Genome Biology. 2016 Jun 6;17(1):122. doi:10.1186/s13059-016-0974-4. PubMed PMID: 27268795; PMCID: PMC4893825.
+
 - [MultiQC](https://pubmed.ncbi.nlm.nih.gov/27312411/)
 
-> Ewels P, Magnusson M, Lundin S, Käller M. MultiQC: summarize analysis results for multiple tools and samples in a single report. Bioinformatics. 2016 Oct 1;32(19):3047-8. doi: 10.1093/bioinformatics/btw354. Epub 2016 Jun 16. PubMed PMID: 27312411; PubMed Central PMCID: PMC5039924.
+  > Ewels P, Magnusson M, Lundin S, Käller M. MultiQC: summarize analysis results for multiple tools and samples in a single report. Bioinformatics. 2016 Oct 1;32(19):3047-8. doi: 10.1093/bioinformatics/btw354. Epub 2016 Jun 16. PubMed PMID: 27312411; PubMed Central PMCID: PMC5039924.
+
+- [`SVDB`](https://github.com/J35P312/svdb)
+
+- [`Vcfanno`](https://github.com/brentp/vcfanno)
+
+  > Pedersen BS, Layer RM, Quinlan AR. Vcfanno: fast, flexible annotation of genetic variants. Genome Biol. 2016 Jun 1;17(1):118. doi: 10.1186/s13059-016-0973-5. PMID: 27250555; PMCID: PMC4888505.
 
 ## Software packaging/containerisation tools
 

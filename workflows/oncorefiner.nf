@@ -11,15 +11,10 @@ include { paramsSummaryMap       } from 'plugin/nf-schema'
 //
 
 include { MULTIQC                                  } from '../modules/nf-core/multiqc/main'
-include { ENSEMBLVEP_VEP as ENSEMBLVEP_SNV         } from '../modules/nf-core/ensemblvep/vep/main'
-include { VCFANNO                                  } from '../modules/nf-core/vcfanno/main'
-include { BCFTOOLS_VIEW as RESEARCH_FILTERING      } from '../modules/nf-core/bcftools/view/main'
-include { BCFTOOLS_VIEW as CLINICAL_FILTERING      } from '../modules/nf-core/bcftools/view/main'
 include { SVDB_QUERY as SVDB_QUERY_DB              } from '../modules/nf-core/svdb/query/main'
 include { ENSEMBLVEP_VEP as ENSEMBLVEP_SV          } from '../modules/nf-core/ensemblvep/vep/main'
 include { BCFTOOLS_VIEW as RESEARCH_FILTERING_SV   } from '../modules/nf-core/bcftools/view/main'
 include { BCFTOOLS_VIEW as CLINICAL_FILTERING_SV   } from '../modules/nf-core/bcftools/view/main'
-include { TABIX_TABIX as TABIX_RESEARCH_FILTERING  } from '../modules/nf-core/tabix/tabix/main'
 
 //
 // MODULE: Local modules
@@ -34,8 +29,12 @@ include { GENERATE_CYTOSURE_FILES } from '../subworkflows/local/generate_cytosur
 include { paramsSummaryMultiqc   } from '../subworkflows/nf-core/utils_nfcore_pipeline'
 include { softwareVersionsToYAML } from '../subworkflows/nf-core/utils_nfcore_pipeline'
 include { methodsDescriptionText } from '../subworkflows/local/utils_nfcore_oncorefiner_pipeline'
-include { PREPARE_REFERENCES     } from '../subworkflows/local/prepare_references'
-include { ANNOTATE_CADD          } from '../subworkflows/local/annotate_cadd'
+
+//
+// LOCAL SUBWORKFLOWS
+//
+
+include { PROCESS_SNVS } from '../subworkflows/local/process_snvs/main.nf'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -46,29 +45,29 @@ include { ANNOTATE_CADD          } from '../subworkflows/local/annotate_cadd'
 workflow ONCOREFINER {
 
     take:
-        ch_samplesheet        // channel: [mandatory] samplesheet read in from --input
-        ch_bam_bai_normal     // channel: [optional]  [val(meta), path(bam), path(bai)]
-        ch_bam_bai_tumor      // channel: [mandatory]  [val(meta), path(bam), path(bai)]
-        ch_cadd_header           // channel: [mandatory] [ path(txt) ]
-        ch_cadd_prescored_indels // channel: [optional] [ val(meta), path(dir) ]
-        ch_cadd_resources        // channel: [optional] [ val(meta), path(dir) ]
-        ch_genome_fasta       // channel: [optional]  [val(meta), path(fasta)]
+        ch_samplesheet           // channel: [mandatory] samplesheet read in from --input
+        ch_bam_bai_normal        // channel: [optional]  [val(meta), path(bam), path(bai)]
+        ch_bam_bai_tumor         // channel: [mandatory] [val(meta), path(bam), path(bai)]
+        ch_cadd_header           // channel: [mandatory] [path(txt)]
+        ch_cadd_prescored_indels // channel: [optional]  [val(meta), path(dir)]
+        ch_cadd_resources        // channel: [optional]  [val(meta), path(dir)]
+        ch_genome_fasta          // channel: [optional]  [val(meta), path(fasta)]
         ch_genome_fai            // channel: [optional]  [val(meta), path(fai)]
-        ch_snv_vcf            // channel: [optional]  [val(meta), path(vcf)]
-        ch_snv_vcf_tbi        // channel: [optional]  [val(meta), path(vcf.tbi)]
-        ch_sv_dbs             // channel: [optional]  [path(csv)]
-        ch_sv_vcf             // channel: [optional]  [val(meta), path(vcf)]
-        ch_sv_vcf_tbi         // channel: [optional]  [val(meta), path(vcf.tbi)]
-        ch_vcfanno_extra      // channel: [optional]  [path(extra_file1), path(extra_file2), ...]
-        ch_vcfanno_lua        // channel: [optional]  [path(lua_file)]
-        ch_vcfanno_resources  // channel: [optional]  [path(resource_file1), path(resource_file2), ...]
-        ch_vcfanno_toml       // channel: [optional]  [path(toml_file)]
-        ch_vep_cache          // channel: [optional]  [vep_cache_files]
-        ch_vep_extra_files    // channel: [optional]  [path(plugin_file1), path(plugin_file2), ...]
+        ch_snv_vcf               // channel: [optional]  [val(meta), path(vcf)]
+        ch_snv_vcf_tbi           // channel: [optional]  [val(meta), path(vcf.tbi)]
+        ch_sv_dbs                // channel: [optional]  [path(csv)]
+        ch_sv_vcf                // channel: [optional]  [val(meta), path(vcf)]
+        ch_sv_vcf_tbi            // channel: [optional]  [val(meta), path(vcf.tbi)]
+        ch_vcfanno_extra         // channel: [optional]  [path(extra_file1), path(extra_file2), ...]
+        ch_vcfanno_lua           // channel: [optional]  [path(lua_file)]
+        ch_vcfanno_resources     // channel: [optional]  [path(resource_file1), path(resource_file2), ...]
+        ch_vcfanno_toml          // channel: [optional]  [path(toml_file)]
+        ch_vep_cache             // channel: [optional]  [vep_cache_files]
+        ch_vep_extra_files       // channel: [optional]  [path(plugin_file1), path(plugin_file2), ...]
         val_cadd_resources       // string:  [optional]  path to CADD resources directory
-        val_genome            // string:  [optional]  genome assembly (e.g. "GRCh38")
-        val_species           // string:  [optional]  species (e.g. "homo_sapiens")
-        val_vep_cache_version // string:  [optional]  version of vep cache to use (e.g. "107")
+        val_genome               // string:  [optional]  genome assembly (e.g. "GRCh38")
+        val_species              // string:  [optional]  species (e.g. "homo_sapiens")
+        val_vep_cache_version    // string:  [optional]  version of vep cache to use (e.g. "107")
 
     main:
 
@@ -76,85 +75,26 @@ workflow ONCOREFINER {
         ch_versions             = channel.empty()
         ch_multiqc_files        = channel.empty()
 
-/*
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    ANNOTATE SNVs
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-*/
         // Process SNV VCF files
-        if (ch_snv_vcf) {
-
-            // Vcfanno
-            ch_snv_vcf
-                .join(ch_snv_vcf_tbi)
-                .map { meta, vcf, tbi ->
-                    def resources = ch_vcfanno_extra
-                    tuple(meta, vcf, tbi, resources)
-                    }
-                .set { ch_vcfanno_in }
-            VCFANNO (ch_vcfanno_in, ch_vcfanno_toml, ch_vcfanno_lua, ch_vcfanno_resources)
-
-
-            // Quality Filtering
-            VCFANNO.out.vcf
-                .join(VCFANNO.out.tbi)
-                .map { meta, vcf, tbi ->
-                    tuple(meta, vcf, tbi)
-                    }
-                .set { ch_research_filtering_in }
-            RESEARCH_FILTERING(ch_research_filtering_in, [], [], [])
-
-            RESEARCH_FILTERING.out.vcf
-                    .map { meta, vcf ->
-                        tuple(meta, vcf, [])
-                    }
-                    .set { ch_vep_snv }
-
-            // ANNOTATE WITH CADD - currently depends on val_cadd_resources - could be improved?
-            if (val_cadd_resources) {
-
-                TABIX_RESEARCH_FILTERING(RESEARCH_FILTERING.out.vcf) //Subworkflow needs tabix index
-
-                RESEARCH_FILTERING.out.vcf
-                    .join(TABIX_RESEARCH_FILTERING.out.index, failOnMismatch:true, failOnDuplicate:true)
-                    .set{ ch_cadd_in }
-
-                ANNOTATE_CADD (
-                    ch_cadd_in,
-                    val_genome,
-                    ch_genome_fai,
-                    ch_cadd_header,
-                    ch_cadd_resources,
-                    ch_cadd_prescored_indels
-                )
-                ANNOTATE_CADD.out.vcf
-                    .join(ANNOTATE_CADD.out.tbi)
-                    .set { ch_vep_snv }
-
-            }
-
-            // VEP
-            ENSEMBLVEP_SNV (
-                ch_vep_snv,
-                val_genome,
-                val_species,
-                val_vep_cache_version,
-                ch_vep_cache,
-                ch_genome_fasta,
-                ch_vep_extra_files
-            )
-
-            // Clinical Filtering
-            ENSEMBLVEP_SNV.out.vcf
-                .join(ENSEMBLVEP_SNV.out.tbi)
-                .map { meta, vcf, tbi ->
-                    tuple(meta, vcf, tbi)
-                    }
-                .set { ch_clinical_filtering_in }
-            CLINICAL_FILTERING(ch_clinical_filtering_in, [], [], [])
-
-
-        }
+        PROCESS_SNVS (
+            ch_genome_fasta,
+            ch_genome_fai,
+            ch_cadd_header,
+            ch_cadd_prescored_indels,
+            ch_cadd_resources,
+            ch_snv_vcf,
+            ch_snv_vcf_tbi,
+            ch_vcfanno_extra,
+            ch_vcfanno_lua,
+            ch_vcfanno_resources,
+            ch_vcfanno_toml,
+            ch_vep_cache,
+            ch_vep_extra_files,
+            val_cadd_resources,
+            val_genome,
+            val_species,
+            val_vep_cache_version
+        )
 
         // Process SV VCF files
         if (ch_sv_vcf) {

@@ -2,13 +2,13 @@
 // A subworkflow to annotate cadd
 //
 
-include { BCFTOOLS_ANNOTATE as RENAME_CHR_CADD     } from '../../../modules/nf-core/bcftools/annotate/main'
-include { BCFTOOLS_ANNOTATE as ANNOTATE_INDELS     } from '../../../modules/nf-core/bcftools/annotate/main'
-include { BCFTOOLS_VIEW                            } from '../../../modules/nf-core/bcftools/view/main'
-include { CADD                                     } from '../../../modules/nf-core/cadd/main'
-include { GAWK as REFERENCE_TO_CADD_CHRNAMES       } from '../../../modules/nf-core/gawk/main'
-include { GAWK as CADD_TO_REFERENCE_CHRNAMES       } from '../../../modules/nf-core/gawk/main'
-include { TABIX_TABIX as TABIX_CADD                } from '../../../modules/nf-core/tabix/tabix/main'
+include { BCFTOOLS_ANNOTATE as BCFTOOLS_RENAME_CHR_CADD } from '../../../modules/nf-core/bcftools/annotate/main'
+include { BCFTOOLS_ANNOTATE as BCFTOOLS_ANNOTATE_INDELS } from '../../../modules/nf-core/bcftools/annotate/main'
+include { BCFTOOLS_VIEW                                 } from '../../../modules/nf-core/bcftools/view/main'
+include { CADD                                          } from '../../../modules/nf-core/cadd/main'
+include { GAWK as GAWK_REF_TO_CADD_CHRNAMES             } from '../../../modules/nf-core/gawk/main'
+include { GAWK as GAWK_CADD_TO_REF_CHRNAMES             } from '../../../modules/nf-core/gawk/main'
+include { TABIX_TABIX as TABIX_CADD                     } from '../../../modules/nf-core/tabix/tabix/main'
 
 
 workflow ANNOTATE_CADD {
@@ -29,14 +29,14 @@ workflow ANNOTATE_CADD {
         if (val_genome.equals('GRCh38')) {
 
             // Create txt files for changing of chromosomes
-            REFERENCE_TO_CADD_CHRNAMES ( ch_fai , [], false )
+            GAWK_REF_TO_CADD_CHRNAMES ( ch_fai , [], false )
 
-            REFERENCE_TO_CADD_CHRNAMES.out.output.map { _meta, txt -> txt }
+            GAWK_REF_TO_CADD_CHRNAMES.out.output.map { _meta, txt -> txt }
                 .set {ch_chrnames_cadd}
 
-            CADD_TO_REFERENCE_CHRNAMES ( ch_fai , [], false )
+            GAWK_CADD_TO_REF_CHRNAMES ( ch_fai , [], false )
 
-            CADD_TO_REFERENCE_CHRNAMES.out.output.map { _meta, txt -> txt }
+            GAWK_CADD_TO_REF_CHRNAMES.out.output.map { _meta, txt -> txt }
                 .set { ch_rename_chrs_ref }
 
             ch_vcf
@@ -45,9 +45,9 @@ workflow ANNOTATE_CADD {
                 .set {rename_chrnames_in}
 
             // Change chr names to CADD compatible names
-            RENAME_CHR_CADD( rename_chrnames_in )
+            BCFTOOLS_RENAME_CHR_CADD( rename_chrnames_in )
 
-            RENAME_CHR_CADD.out.vcf
+            BCFTOOLS_RENAME_CHR_CADD.out.vcf
                 .map {meta, vcf -> tuple( meta , vcf, [] )}
                 .set { ch_vcf }
         }
@@ -71,9 +71,9 @@ workflow ANNOTATE_CADD {
             .set { ch_annotate }
 
 
-        ANNOTATE_INDELS( ch_annotate )
+        BCFTOOLS_ANNOTATE_INDELS( ch_annotate )
 
     emit:
-        vcf = ANNOTATE_INDELS.out.vcf // channel: [ val(meta), path(vcf) ]
-        tbi = ANNOTATE_INDELS.out.tbi // channel: [ val(meta), path(tbi) ]
+        vcf = BCFTOOLS_ANNOTATE_INDELS.out.vcf // channel: [ val(meta), path(vcf) ]
+        tbi = BCFTOOLS_ANNOTATE_INDELS.out.tbi // channel: [ val(meta), path(tbi) ]
 }
