@@ -33,27 +33,31 @@ nextflow_workflow {
                     [id:'reference'],
                     file(params.pipelines_testdata_base_path + 'reference/reference.fasta', checkIfExists: true)
                 ])
-                input[1] = channel.of([
+                input[1] = channel.fromPath(params.pipelines_testdata_base_path + 'reference/reference.fasta.fai', checkIfExists: true).map {it -> [[id:it.simpleName], it]  }.collect()
+                input[2] = channel.fromPath("$projectDir/assets/cadd_to_vcf_header.txt", checkIfExists: true).collect()
+                input[3] = null
+                input[4] = null
+                input[5] = channel.of([
                     [id:'SNV'],
                     file(params.pipelines_testdata_base_path + 'testdata/tumor_normal/subject_a.tumor.purple.somatic.vcf.gz', checkIfExists: true)
                 ])
-                input[2] = channel.of([
+                input[6] = channel.of([
                     [id:'SNV'],
                     file(params.pipelines_testdata_base_path + 'testdata/tumor_normal/subject_a.tumor.purple.sv.vcf.gz', checkIfExists: true)
                 ])
-                input[3] = []
-                input[4] = channel.of([
+                input[7] = []
+                input[8] = channel.of([
                     file(params.pipelines_testdata_base_path + 'reference/vcfanno_functions.lua', checkIfExists: true)
                 ])
-                input[5] = channel.of([
+                input[9] = channel.of([
                     file(params.pipelines_testdata_base_path + 'reference/grch37_gnomad_-r2.1.1-.vcf.gz', checkIfExists: true),
                     file(params.pipelines_testdata_base_path + 'reference/grch37_gnomad_-r2.1.1-.vcf.gz.tbi', checkIfExists: true)
                 ])
-                input[6] = channel.of([
+                input[10] = channel.of([
                     file(params.pipelines_testdata_base_path + 'reference/vcfanno.toml', checkIfExists: true)
                 ])
-                input[7] = UNTAR_VEP_CACHE.out.untar.map{ _meta, files -> [files]}.collect()
-                input[8] = channel.of([
+                input[11] = UNTAR_VEP_CACHE.out.untar.map{ _meta, files -> [files]}.collect()
+                input[12] = channel.of([
                     file(params.pipelines_testdata_base_path + 'reference/LoFtool_scores.txt', checkIfExists: true),
                     file(params.pipelines_testdata_base_path + 'reference/spliceai_21_scores_raw_indel_-v1.3-.vcf.gz', checkIfExists: true),
                     file(params.pipelines_testdata_base_path + 'reference/spliceai_21_scores_raw_snv_-v1.3-.vcf.gz', checkIfExists: true),
@@ -61,9 +65,10 @@ nextflow_workflow {
                     file(params.pipelines_testdata_base_path + 'reference/spliceai_21_scores_raw_indel_-v1.3-.vcf.gz.tbi', checkIfExists: true),
                     file(params.pipelines_testdata_base_path + 'reference/spliceai_21_scores_raw_snv_-v1.3-.vcf.gz.tbi', checkIfExists: true)
                 ])
-                input[9] = 'GRCh37'
-                input[10] = 'homo_sapiens'
-                input[11] = '107'
+                input[13] = null
+                input[14] = 'GRCh37'
+                input[15] = 'homo_sapiens'
+                input[16] = '107'
                 """
             }
         }
