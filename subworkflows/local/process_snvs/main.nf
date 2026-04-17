@@ -12,7 +12,6 @@ include { ENSEMBLVEP_VEP                          } from '../../../modules/nf-co
 include { VCFANNO                                 } from '../../../modules/nf-core/vcfanno/main'
 include { BCFTOOLS_VIEW as BCFTOOLS_VIEW_RESEARCH } from '../../../modules/nf-core/bcftools/view/main'
 include { BCFTOOLS_VIEW as BCFTOOLS_VIEW_CLINICAL } from '../../../modules/nf-core/bcftools/view/main'
-include { TABIX_TABIX as TABIX_RESEARCH_FILTERING } from '../../../modules/nf-core/tabix/tabix/main'
 include { ANNOTATE_CADD                           } from '../../../subworkflows/local/annotate_cadd'
 
 /*
@@ -74,10 +73,7 @@ workflow PROCESS_SNVS {
         // ANNOTATE WITH CADD - currently depends on val_cadd_resources - could be improved?
         if (val_cadd_resources) {
 
-            TABIX_RESEARCH_FILTERING(BCFTOOLS_VIEW_RESEARCH.out.vcf) //Subworkflow needs tabix index
-
             BCFTOOLS_VIEW_RESEARCH.out.vcf
-                .join(TABIX_RESEARCH_FILTERING.out.index, failOnMismatch:true, failOnDuplicate:true)
                 .set{ ch_cadd_in }
 
             ANNOTATE_CADD (
@@ -88,6 +84,7 @@ workflow PROCESS_SNVS {
                 ch_cadd_resources,
                 ch_cadd_prescored_indels
             )
+
             ANNOTATE_CADD.out.vcf
                 .join(ANNOTATE_CADD.out.tbi)
                 .set { ch_vep_snv }
