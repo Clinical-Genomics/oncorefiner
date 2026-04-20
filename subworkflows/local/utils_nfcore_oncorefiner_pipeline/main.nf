@@ -190,8 +190,10 @@ def toolCitationText() {
             citations_list +
             vcfanno        +
             bcftools_view  +
-            cadd           +
             ensemblvep_vep
+            if (params.cadd_resources) {
+                citations_list = citations_list + cadd
+            }
     }
 
     if (params.sv_vcf) {
@@ -230,8 +232,10 @@ def toolBibliographyText() {
             bibliography_list +
             vcfanno        +
             bcftools_view  +
-            cadd           +
             ensemblvep_vep
+            if (params.cadd_resources) {
+                bibliography_list = bibliography_list + cadd
+            }
     }
 
     if (params.sv_vcf) {
