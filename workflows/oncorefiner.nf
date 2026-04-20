@@ -80,6 +80,8 @@ workflow ONCOREFINER {
 
         // Process SV VCF files
         PROCESS_SVS(
+            ch_bam_bai_normal,
+            ch_bam_bai_tumor,
             ch_sv_vcf,
             ch_sv_vcf_tbi,
             ch_sv_dbs,

@@ -3,37 +3,37 @@
         "content": [
             [
                 "annotate_sv",
-                "annotate_sv/SV_svdbquery_vep.vcf.gz",
-                "annotate_sv/SV_svdbquery_vep.vcf.gz.tbi",
-                "annotate_sv/SV_svdbquery_vep.vcf.gz_summary.html",
-                "clinical",
-                "clinical/SV_clinical.vcf.gz",
-                "clinical/SV_clinical.vcf.gz.tbi",
-                "research",
-                "research/SV_research.vcf.gz",
-                "research/SV_research.vcf.gz.tbi",
+                "annotate_sv/subject_a_SV_svdbquery_vep.vcf.gz",
+                "annotate_sv/subject_a_SV_svdbquery_vep.vcf.gz.tbi",
+                "annotate_sv/subject_a_SV_svdbquery_vep.vcf.gz_summary.html",
+                "clinical_filtering",
+                "clinical_filtering/subject_a_SV_clinical.vcf.gz",
+                "clinical_filtering/subject_a_SV_clinical.vcf.gz.tbi",
+                "research_filtering",
+                "research_filtering/subject_a_SV_research.vcf.gz",
+                "research_filtering/subject_a_SV_research.vcf.gz.tbi",
                 "svdb",
-                "svdb/SV_vcfdb_query.vcf",
+                "svdb/subject_a_SV_vcfdb_query.vcf",
                 "vcf2cytosure",
                 "vcf2cytosure/tumor.cgh"
             ],
             [
                 [
-                    "SV_svdbquery_vep.vcf.gz",
+                    "subject_a_SV_svdbquery_vep.vcf.gz",
                     "d41d8cd98f00b204e9800998ecf8427e"
                 ],
                 [
-                    "SV_clinical.vcf.gz",
+                    "subject_a_SV_clinical.vcf.gz",
                     "d41d8cd98f00b204e9800998ecf8427e"
                 ],
                 [
-                    "SV_research.vcf.gz",
+                    "subject_a_SV_research.vcf.gz",
                     "5586f18ef999bffe0b0b9cc1831f7ff3"
                 ]
             ],
             [
                 [
-                    "SV_vcfdb_query.vcf",
+                    "subject_a_SV_vcfdb_query.vcf",
                     "18444b35d848a5ac45a1576967bd928d"
                 ]
             ]
@@ -42,6 +42,6 @@
             "nf-test": "0.9.2",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2026-04-17T14:49:21.551012"
+        "timestamp": "2026-04-20T13:59:03.793098"
     }
 }
