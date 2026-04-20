@@ -2,10 +2,6 @@
     "with tumor-normal data": {
         "content": [
             [
-                "annotate_sv",
-                "annotate_sv/subject_a_SV_svdbquery_vep.vcf.gz",
-                "annotate_sv/subject_a_SV_svdbquery_vep.vcf.gz.tbi",
-                "annotate_sv/subject_a_SV_svdbquery_vep.vcf.gz_summary.html",
                 "clinical_filtering",
                 "clinical_filtering/subject_a_SV_clinical.vcf.gz",
                 "clinical_filtering/subject_a_SV_clinical.vcf.gz.tbi",
@@ -15,13 +11,13 @@
                 "svdb",
                 "svdb/subject_a_SV_vcfdb_query.vcf",
                 "vcf2cytosure",
-                "vcf2cytosure/tumor.cgh"
+                "vcf2cytosure/tumor.cgh",
+                "vep",
+                "vep/subject_a_SV_svdbquery_vep.vcf.gz",
+                "vep/subject_a_SV_svdbquery_vep.vcf.gz.tbi",
+                "vep/subject_a_SV_svdbquery_vep.vcf.gz_summary.html"
             ],
             [
-                [
-                    "subject_a_SV_svdbquery_vep.vcf.gz",
-                    "d41d8cd98f00b204e9800998ecf8427e"
-                ],
                 [
                     "subject_a_SV_clinical.vcf.gz",
                     "d41d8cd98f00b204e9800998ecf8427e"
@@ -29,6 +25,10 @@
                 [
                     "subject_a_SV_research.vcf.gz",
                     "5586f18ef999bffe0b0b9cc1831f7ff3"
+                ],
+                [
+                    "subject_a_SV_svdbquery_vep.vcf.gz",
+                    "d41d8cd98f00b204e9800998ecf8427e"
                 ]
             ],
             [
@@ -42,6 +42,6 @@
             "nf-test": "0.9.2",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2026-04-20T13:59:03.793098"
+        "timestamp": "2026-04-20T15:32:29.729003"
     }
 }
