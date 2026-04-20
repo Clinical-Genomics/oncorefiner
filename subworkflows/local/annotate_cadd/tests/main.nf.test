@@ -14,6 +14,7 @@ nextflow_workflow {
         when {
             params {
                 genome = "GRCh37"
+                outdir = "$outputDir"
             }
             workflow {
                 """
@@ -31,9 +32,15 @@ nextflow_workflow {
         }
 
         then {
+            // All directories and files
+            def output_directories_and_files = getAllFilesFromDir(params.outdir, relative: true, includeDir: true)
+
             assertAll(
                 { assert workflow.success },
-                { assert snapshot(workflow.out.vcf, workflow.out.tbi).match() }
+                { assert snapshot(
+                    // All directories and files
+                    output_directories_and_files
+                    ).match() }
             )
         }
     }
@@ -45,6 +52,7 @@ nextflow_workflow {
         when {
             params {
                 genome = "GRCh38"
+                outdir = "$outputDir"
             }
             workflow {
                 """
@@ -62,9 +70,15 @@ nextflow_workflow {
         }
 
         then {
+            // All directories and files
+            def output_directories_and_files = getAllFilesFromDir(params.outdir, relative: true, includeDir: true)
+
             assertAll(
                 { assert workflow.success },
-                { assert snapshot(workflow.out.vcf, workflow.out.tbi).match() }
+                { assert snapshot(
+                    // All directories and files
+                    output_directories_and_files
+                    ).match() }
             )
         }
     }

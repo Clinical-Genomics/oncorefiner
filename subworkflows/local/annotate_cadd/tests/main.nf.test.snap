@@ -2,51 +2,45 @@
     "ANNOTATE_CADD - GRCh37, stub": {
         "content": [
             [
-                [
-                    {
-                        "id": "test"
-                    },
-                    "subject_a_ann.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
-                ]
-            ],
-            [
-                [
-                    {
-                        "id": "test"
-                    },
-                    "subject_a_ann.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
-                ]
+                "bcftools",
+                "bcftools/subject_a_ann.vcf.gz",
+                "bcftools/subject_a_ann.vcf.gz.tbi",
+                "bcftools/subject_a_indels.vcf.gz",
+                "cadd",
+                "cadd/subject_a_indels_cadd.tsv.gz",
+                "tabix",
+                "tabix/subject_a.tumor.purple.somatic.vcf.gz.tbi",
+                "tabix/subject_a_indels_cadd.tsv.gz.tbi"
             ]
         ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "25.10.4"
         },
-        "timestamp": "2026-04-17T13:12:12.741306"
+        "timestamp": "2026-04-20T13:35:58.691949"
     },
     "ANNOTATE_CADD - GRCh38, stub": {
         "content": [
             [
-                [
-                    {
-                        "id": "test"
-                    },
-                    "subject_a_indels_ann.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
-                ]
-            ],
-            [
-                [
-                    {
-                        "id": "test"
-                    },
-                    "subject_a_indels_ann.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
-                ]
+                "bcftools",
+                "bcftools/subject_a_renamed.vcf.gz",
+                "bcftools/subject_a_renamed_ann.vcf.gz",
+                "bcftools/subject_a_renamed_ann.vcf.gz.tbi",
+                "bcftools/subject_a_renamed_indels.vcf.gz",
+                "cadd",
+                "cadd/subject_a_renamed_indels_cadd.tsv.gz",
+                "gawk",
+                "gawk/cadd_to_reference.txt",
+                "gawk/reference_to_cadd.txt",
+                "tabix",
+                "tabix/subject_a.tumor.purple.somatic.vcf.gz.tbi",
+                "tabix/subject_a_renamed_indels_cadd.tsv.gz.tbi"
             ]
         ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "25.10.4"
         },
-        "timestamp": "2026-04-17T13:12:21.913504"
+        "timestamp": "2026-04-20T13:36:09.683491"
     }
 }
