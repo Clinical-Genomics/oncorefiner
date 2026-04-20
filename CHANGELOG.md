@@ -24,7 +24,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#60](https://github.com/Clinical-Genomics/oncorefiner/pull/60) Added `GENERATE_CYTOSURE_FILES` subworkflow and necessary nf-core modules `TIDDIT_COV` and `VCF2CYTOSURE`.
 - [#70](https://github.com/Clinical-Genomics/oncorefiner/pull/70) Added `SAMTOOLS/VIEW` for bam to cram conversion in the `main.nf`.
 - [#66](https://github.com/Clinical-Genomics/oncorefiner/pull/66) Added `PROCESS_SNVS` subworkflow.
-- [#59](https://github.com/Clinical-Genomics/oncorefiner/pull/59) Added CADD scoring for InDels in the subworkflow `ANNOTATE_CADD`, with a subworkflow test (stub only)
+- [#59](https://github.com/Clinical-Genomics/oncorefiner/pull/59) Added `ANNOTATE_CADD` subworkflow with following test (stub only), for CADD scoring of InDels, used in `PROCESS_SNVS`.
 
 ### `Changed`
 

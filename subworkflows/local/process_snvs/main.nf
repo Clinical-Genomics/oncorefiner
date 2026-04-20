@@ -73,8 +73,7 @@ workflow PROCESS_SNVS {
         // ANNOTATE WITH CADD - currently depends on val_cadd_resources - could be improved?
         if (val_cadd_resources) {
 
-            BCFTOOLS_VIEW_RESEARCH.out.vcf
-                .set{ ch_cadd_in }
+            ch_cadd_in = BCFTOOLS_VIEW_RESEARCH.out.vcf
 
             ANNOTATE_CADD (
                 ch_cadd_in,
@@ -88,7 +87,6 @@ workflow PROCESS_SNVS {
             ANNOTATE_CADD.out.vcf
                 .join(ANNOTATE_CADD.out.tbi)
                 .set { ch_vep_snv }
-
         }
 
         ENSEMBLVEP_VEP (

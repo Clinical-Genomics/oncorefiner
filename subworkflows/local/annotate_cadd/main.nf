@@ -28,9 +28,8 @@ workflow ANNOTATE_CADD {
 
         TABIX_INPUT(ch_vcf) //Subworkflow needs tabix index
 
-        ch_vcf
+        ch_vcf_tbi = ch_vcf
             .join(TABIX_INPUT.out.index, failOnMismatch:true, failOnDuplicate:true)
-            .set { ch_vcf_tbi }
 
         // Create files and rename chromosomes if reference is GRCh38
         if (val_genome.equals('GRCh38')) {
@@ -46,17 +45,15 @@ workflow ANNOTATE_CADD {
             GAWK_CADD_TO_REF_CHRNAMES.out.output.map { _meta, txt -> txt }
                 .set { ch_rename_chrs_ref }
 
-            ch_vcf_tbi
+            rename_chrnames_in = ch_vcf_tbi
                 .combine(ch_chrnames_cadd)
                 .map { meta, vcf, tbi, txt -> tuple( meta, vcf, tbi, [], [], [], [], txt ) }
-                .set {rename_chrnames_in}
 
             // Change chr names to CADD compatible names
             BCFTOOLS_RENAME_CHR_CADD( rename_chrnames_in )
 
-            BCFTOOLS_RENAME_CHR_CADD.out.vcf
+            ch_vcf_tbi = BCFTOOLS_RENAME_CHR_CADD.out.vcf
                 .map {meta, vcf -> tuple( meta , vcf, [] )}
-                .set { ch_vcf_tbi }
         }
 
         // Filter to extract indels
@@ -69,18 +66,17 @@ workflow ANNOTATE_CADD {
         TABIX_CADD(CADD.out.tsv)
 
         // Change chr names back to desired naming and annotate original vcf with cadd results
-        ch_vcf_tbi
+        ch_annotate = ch_vcf_tbi
             .join(CADD.out.tsv, failOnMismatch: true, failOnDuplicate: true)
             .join(TABIX_CADD.out.index, failOnMismatch: true, failOnDuplicate: true)
             .combine( ch_header )
             .combine( ch_rename_chrs_ref )
             .map { meta, vcf, tbi, annotations, annotations_index, header, txt -> tuple( meta, vcf, tbi, annotations, annotations_index, [], header, txt )  } //THERE IS A TBI?
-            .set { ch_annotate }
 
 
         BCFTOOLS_ANNOTATE_INDELS( ch_annotate )
 
     emit:
-        vcf = BCFTOOLS_ANNOTATE_INDELS.out.vcf // channel: [ val(meta), path(vcf) ]
-        tbi = BCFTOOLS_ANNOTATE_INDELS.out.tbi // channel: [ val(meta), path(tbi) ]
+        vcf = BCFTOOLS_ANNOTATE_INDELS.out.vcf // channel: [val(meta), path(vcf)]
+        tbi = BCFTOOLS_ANNOTATE_INDELS.out.tbi // channel: [val(meta), path(tbi)]
 }
