@@ -1,5 +1,12 @@
 # Clinical-Genomics/oncorefiner
 
+<h1>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/images/nf-core-oncorefiner_logo_dark.png">
+    <img alt="nf-core/oncorefiner" src="docs/images/nf-core-oncorefiner_logo_light.png">
+  </picture>
+</h1>
+
 [![Open in GitHub Codespaces](https://img.shields.io/badge/Open_In_GitHub_Codespaces-black?labelColor=grey&logo=github)](https://github.com/codespaces/new/Clinical-Genomics/oncorefiner)
 [![GitHub Actions CI Status](https://github.com/Clinical-Genomics/oncorefiner/actions/workflows/nf-test.yml/badge.svg)](https://github.com/Clinical-Genomics/oncorefiner/actions/workflows/nf-test.yml)
 [![GitHub Actions Linting Status](https://github.com/Clinical-Genomics/oncorefiner/actions/workflows/linting.yml/badge.svg)](https://github.com/Clinical-Genomics/oncorefiner/actions/workflows/linting.yml)[![Cite with Zenodo](http://img.shields.io/badge/DOI-10.5281/zenodo.XXXXXXX-1073c8?labelColor=000000)](https://doi.org/10.5281/zenodo.XXXXXXX)
@@ -14,25 +21,36 @@
 
 ## Introduction
 
-**Clinical-Genomics/oncorefiner** is a bioinformatics pipeline that ...
+**Clinical-Genomics/oncorefiner** is a customizable post-processing and extension layer for [nf-core/Oncoanalyser](https://github.com/nf-core/oncoanalyser) that adapts its outputs according to clinical and operational needs, adds missing analyses, and ensures flexibility for evolving standards while retaining Oncoanalyser's robust core.
 
-<!-- TODO nf-core:
-   Complete this sentence with a 2-3 sentence summary of what types of data the pipeline ingests, a brief overview of the
-   major pipeline sections and the types of output it produces. You're giving an overview to someone new
-   to nf-core here, in 15-20 seconds. For an example, see https://github.com/nf-core/rnaseq/blob/master/README.md#introduction
--->
+<!-- TODO: Add information about the processes and the output when the architecture of the pipeline is decided and the information is clear.
+
+
+### Workflow diagram
 
 <!-- TODO nf-core: Include a figure that guides the user through the major workflow steps. Many nf-core
      workflows use the "tube map" design for that. See https://nf-co.re/docs/guidelines/graphic_design/workflow_diagrams#examples for examples.   -->
-<!-- TODO nf-core: Fill in short bullet-pointed list of the default steps in the pipeline -->2. Present QC for raw reads ([`MultiQC`](http://multiqc.info/))
+
+1. Process SNV VCF files
+   1. Annotate with [`Vcfanno`](https://github.com/brentp/vcfanno). Intended for local/custom annotation.
+   1. Filter with [`bcftools`](https://github.com/samtools/bcftools). This step aims to apply quality, population-level filtering and/or other general criteria as defined in the configuration settings.
+   1. Annotate with [`Ensembl VEP`](https://www.ensembl.org/info/docs/tools/vep/index.html)
+   1. Filter with [`bcftools`](https://github.com/samtools/bcftools). This step applies clinically relevant filters as defined in the configuration settings. For example, it may involve subsetting variants based on a a list of clinically relevant genes.
+
+1. Process SV VCF files
+   1. Annotate VCF with external database (params) using [`SVDB`](https://github.com/J35P312/SVDB).
+   1. Filter with [`bcftools`](https://github.com/samtools/bcftools). This step aims to apply quality, population-level filtering and/or other general criteria as defined in the configuration settings.
+   1. Annotate with [`Ensembl VEP`](https://www.ensembl.org/info/docs/tools/vep/index.html).
+   1. Filter with [`bcftools`](https://github.com/samtools/bcftools). This step applies clinically relevant filters as defined in the configuration settings. For example, it may involve subsetting variants based on a a list of clinically relevant genes.
+
+1. Present QC for raw reads ([`MultiQC`](http://multiqc.info/)).
+
+For further information about the each step and output files, please refer to the [output documentation](.github/docs/output.md).
 
 ## Usage
 
 > [!NOTE]
 > If you are new to Nextflow and nf-core, please refer to [this page](https://nf-co.re/docs/usage/installation) on how to set-up Nextflow. Make sure to [test your setup](https://nf-co.re/docs/usage/introduction#how-to-run-a-pipeline) with `-profile test` before running the workflow on actual data.
-
-<!-- TODO nf-core: Describe the minimum required steps to execute the pipeline, e.g. how to prepare samplesheets.
-     Explain what rows and columns represent. For instance (please edit as appropriate):
 
 First, prepare a samplesheet with your input data that looks as follows:
 
@@ -45,11 +63,10 @@ CONTROL_REP1,AEG588A1_S1_L002_R1_001.fastq.gz,AEG588A1_S1_L002_R2_001.fastq.gz
 
 Each row represents a fastq file (single-end) or a pair of fastq files (paired end).
 
--->
+> [!NOTE]
+> The information from the samplesheet is not currently used in the pipeline, but it is required to be able to run the pipeline and will be used in future developments.
 
 Now, you can run the pipeline using:
-
-<!-- TODO nf-core: update the following command to include all required parameters for a minimal example -->
 
 ```bash
 nextflow run Clinical-Genomics/oncorefiner \
@@ -61,6 +78,8 @@ nextflow run Clinical-Genomics/oncorefiner \
 > [!WARNING]
 > Please provide pipeline parameters via the CLI or Nextflow `-params-file` option. Custom config files including those provided by the `-c` Nextflow option can be used to provide any configuration _**except for parameters**_; see [docs](https://nf-co.re/docs/usage/getting_started/configuration#custom-configuration-files).
 
+For more details and further functionality, please refer to the [usage documentation](./docs/usage.md) and the [parameter documentation](./docs/parameters.md).
+
 ## Pipeline output
 
 For more details about the output files and reports, please refer to the [output documentation](.github/docs/output.md).
@@ -69,7 +88,13 @@ For more details about the output files and reports, please refer to the [output
 
 Clinical-Genomics/oncorefiner was originally written by Clinical Genomics Stockholm.
 
-We thank the following people for their extensive assistance in the development of this pipeline: [Eva Caceres](https://github.com/fevac), [Kristine Bilgrav Sæther](https://github.com/kristinebilgrav)
+We thank the following people for their extensive assistance in the development of this pipeline:
+
+- [Beatriz Sá Vinhas](https://github.com/beatrizsavinhas)
+- [Eva Caceres](https://github.com/fevac)
+- [Kristine Bilgrav Sæther](https://github.com/kristinebilgrav)
+- [Felix Lenner](https://github.com/fellen31)
+- [Mathias Johansson](https://github.com/mathiasbio)
 
 ## Contributions and Support
 
@@ -79,8 +104,6 @@ If you would like to contribute to this pipeline, please see the [contributing g
 
 <!-- TODO nf-core: Add citation for pipeline after first release. Uncomment lines below and update Zenodo doi and badge at the top of this file. -->
 <!-- If you use Clinical-Genomics/oncorefiner for your analysis, please cite it using the following doi: [10.5281/zenodo.XXXXXX](https://doi.org/10.5281/zenodo.XXXXXX) -->
-
-<!-- TODO nf-core: Add bibliography of tools and data used in your pipeline -->
 
 An extensive list of references for the tools used by the pipeline can be found in the [`CITATIONS.md`](CITATIONS.md) file.
 

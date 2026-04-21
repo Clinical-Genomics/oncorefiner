@@ -6,14 +6,29 @@ This document describes the output produced by the pipeline. Most of the plots a
 
 The directories listed below will be created in the results directory after the pipeline has finished. All paths are relative to the top-level results directory.
 
-<!-- TODO nf-core: Write this documentation describing your workflow's output -->
-
 ## Pipeline overview
 
 The pipeline is built using [Nextflow](https://www.nextflow.io/) and processes data using the following steps:
 
+<!-- TODO: Add step description here similarly to what was added in `README.md`. -->
+
 - [MultiQC](#multiqc) - Aggregate report describing results and QC from the whole pipeline
 - [Pipeline information](#pipeline-information) - Report metrics generated during the workflow execution
+
+<!-- TODO: Add information for each step. Added "Vcfanno" as an example. -->
+
+### Vcfanno
+
+<details markdown="1">
+<summary>Output files</summary>
+
+- `vcfanno/`
+  - `SNV_vcfanno.vcf.gz`: a gzipped VCF file containing annotated SNVs.
+  - `SNV_vcfanno.vcf.gz.tbi`: index file for the gzipped VCF file.
+
+</details>
+
+[`Vcfanno`](https://github.com/brentp/vcfanno) annotates VCF files with a number of INFO fields from the VCFs or BED files provided.
 
 ### MultiQC
 
