@@ -24,7 +24,8 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#60](https://github.com/Clinical-Genomics/oncorefiner/pull/60) Added `GENERATE_CYTOSURE_FILES` subworkflow and necessary nf-core modules `TIDDIT_COV` and `VCF2CYTOSURE`.
 - [#70](https://github.com/Clinical-Genomics/oncorefiner/pull/70) Added `SAMTOOLS/VIEW` for bam to cram conversion in the `main.nf`.
 - [#66](https://github.com/Clinical-Genomics/oncorefiner/pull/66) Added `PROCESS_SNVS` subworkflow.
-- [#69](https://github.com/Clinical-Genomics/oncorefiner/pull/69) Added `tumor_only` test, config and snapshot.
+- [#69](https://github.com/Clinical-Genomics/oncorefiner/pull/69) Added `tumor_normal` config file, used by the default test profile.
+- [#69](https://github.com/Clinical-Genomics/oncorefiner/pull/69) Added `tumor_only` config file, profile and pipeline test and snapshot.
 
 ### `Changed`
 
@@ -35,7 +36,8 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#56](https://github.com/Clinical-Genomics/oncorefiner/pull/56) Updated link to Contributing Guidelines in the PR checklist to point to the rendered version of the document in `dev`.
 - [#71](https://github.com/Clinical-Genomics/oncorefiner/pull/71) Updated `pipelines_testdata_base_path` and paths to test vcf files.
 - [#66](https://github.com/Clinical-Genomics/oncorefiner/pull/66) Moved logic for processing SNV VCF files, previously in `workflows/oncorefiner.nf`, to `PROCESS_SNVS` subworkflow.
-- [#69](https://github.com/Clinical-Genomics/oncorefiner/pull/69) Renamed and refactored default test and config to run a `tumor_normal` default test and updated snapshot.
+- [#69](https://github.com/Clinical-Genomics/oncorefiner/pull/69) Renamed and refactored test config to `test_base.config` to include common parameters and files used for all tests.
+- [#69](https://github.com/Clinical-Genomics/oncorefiner/pull/69) Refactored default pipeline test and test profile to run a `tumor_normal` default test and updated snapshot.
 
 ### `Fixed`
 
