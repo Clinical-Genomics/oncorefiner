@@ -1,28 +1,20 @@
-// TODO nf-core: If in doubt look at other nf-core/subworkflows to see how we are doing things! :)
-//               https://github.com/nf-core/modules/tree/master/subworkflows
-//               You can also ask for help via your pull request or on the #subworkflows channel on the nf-core Slack workspace:
-//               https://nf-co.re/join
-// TODO nf-core: A subworkflow SHOULD import at least two modules
-
-include { SAMTOOLS_SORT      } from '../../../modules/nf-core/samtools/sort/main'
-include { SAMTOOLS_INDEX     } from '../../../modules/nf-core/samtools/index/main'
+include { GENMOD_SCORE } from '../../../modules/nf-core/genmod/score/main'
 
 workflow RANK_VARIANTS {
 
     take:
-    // TODO nf-core: edit input (take) channels
-    ch_bam // channel: [ val(meta), [ bam ] ]
+    ch_vcf           // channel: [mandatory] [ val(meta), [ path(vcf) ] ]
+    ch_pedigree_file // channel: [optional]  [ path(ped) ]
+    ch_score_config  // channel: [mandatory] [ path(ini) ]
+
 
     main:
-    // TODO nf-core: substitute modules here for the modules of your subworkflow
 
-    SAMTOOLS_SORT ( ch_bam )
+    ch_genmod_score_in = ch_vcf
+        .combine(ch_pedigree_file.collect(), ch_score_config.collect())
 
-    SAMTOOLS_INDEX ( SAMTOOLS_SORT.out.bam )
+    GENMOD_SCORE(ch_genmod_score_in)
 
     emit:
-    // TODO nf-core: edit emitted channels
-    bam      = SAMTOOLS_SORT.out.bam           // channel: [ val(meta), [ bam ] ]
-    bai      = SAMTOOLS_INDEX.out.bai          // channel: [ val(meta), [ bai ] ]
-    csi      = SAMTOOLS_INDEX.out.csi          // channel: [ val(meta), [ csi ] ]
+    ranked_vcf = GENMOD_SCORE.out.vcf // channel: [ val(meta), [ path(vcf) ] ]
 }
