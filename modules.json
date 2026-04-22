@@ -30,6 +30,11 @@
                         "git_sha": "34505e1fc5e9f4fd641210ca440acff6bd33b842",
                         "installed_by": ["modules"]
                     },
+                    "genmod/score": {
+                        "branch": "master",
+                        "git_sha": "fed68e7b4b193b36c1abc552586694d43a88f6fb",
+                        "installed_by": ["modules"]
+                    },
                     "multiqc": {
                         "branch": "master",
                         "git_sha": "2c73cc8fa92cf48de3da0b643fdf357a8a290b36",
