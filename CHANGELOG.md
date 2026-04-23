@@ -33,6 +33,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#30](https://github.com/Clinical-Genomics/oncorefiner/pull/30) Updated minimum Nextflow version to 25.10.0.
 - [#37](https://github.com/Clinical-Genomics/oncorefiner/pull/37) Added wgs-cancer-pipeline projects list in the issue templates.
 - [#56](https://github.com/Clinical-Genomics/oncorefiner/pull/56) Updated link to Contributing Guidelines in the PR checklist to point to the rendered version of the document in `dev`.
+- [#67](https://github.com/Clinical-Genomics/oncorefiner/pull/67) Updated nf-core subworkflow `utils_nfschema_plugin`
 - [#71](https://github.com/Clinical-Genomics/oncorefiner/pull/71) Updated `pipelines_testdata_base_path` and paths to test vcf files.
 - [#66](https://github.com/Clinical-Genomics/oncorefiner/pull/66) Moved logic for processing SNV VCF files, previously in `workflows/oncorefiner.nf`, to `PROCESS_SNVS` subworkflow.
 
@@ -61,6 +62,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#64](https://github.com/Clinical-Genomics/oncorefiner/pull/64) Generalised description of `sex` parameter.
 - [#68](https://github.com/Clinical-Genomics/oncorefiner/pull/68) Update `pipelines_testdata_base_path` to reflect the latest commit to `Clinical-Genomics/test-datasets/`.
 - [#48](https://github.com/Clinical-Genomics/oncorefiner/pull/48) Updated documentation.
+- [#67](https://github.com/Clinical-Genomics/oncorefiner/pull/67) `--help` parameter not working
 - [#72](https://github.com/Clinical-Genomics/oncorefiner/pull/72) Added subworkflow test to `PREPARE_REFERENCES`
 
 ### `Dependencies`
