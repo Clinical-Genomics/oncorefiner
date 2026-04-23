@@ -45,24 +45,29 @@ include { PROCESS_SNVS } from '../subworkflows/local/process_snvs/main.nf'
 workflow ONCOREFINER {
 
     take:
-        ch_samplesheet        // channel: [mandatory] samplesheet read in from --input
-        ch_bam_bai_normal     // channel: [optional]  [val(meta), path(bam), path(bai)]
-        ch_bam_bai_tumor      // channel: [mandatory]  [val(meta), path(bam), path(bai)]
-        ch_genome_fasta       // channel: [optional]  [val(meta), path(fasta)]
-        ch_snv_vcf            // channel: [optional]  [val(meta), path(vcf)]
-        ch_snv_vcf_tbi        // channel: [optional]  [val(meta), path(vcf.tbi)]
-        ch_sv_dbs             // channel: [optional]  [path(csv)]
-        ch_sv_vcf             // channel: [optional]  [val(meta), path(vcf)]
-        ch_sv_vcf_tbi         // channel: [optional]  [val(meta), path(vcf.tbi)]
-        ch_vcfanno_extra      // channel: [optional]  [path(extra_file1), path(extra_file2), ...]
-        ch_vcfanno_lua        // channel: [optional]  [path(lua_file)]
-        ch_vcfanno_resources  // channel: [optional]  [path(resource_file1), path(resource_file2), ...]
-        ch_vcfanno_toml       // channel: [optional]  [path(toml_file)]
-        ch_vep_cache          // channel: [optional]  [vep_cache_files]
-        ch_vep_extra_files    // channel: [optional]  [path(plugin_file1), path(plugin_file2), ...]
-        val_genome            // string:  [optional]  genome assembly (e.g. "GRCh38")
-        val_species           // string:  [optional]  species (e.g. "homo_sapiens")
-        val_vep_cache_version // string:  [optional]  version of vep cache to use (e.g. "107")
+        ch_samplesheet           // channel: [mandatory] samplesheet read in from --input
+        ch_bam_bai_normal        // channel: [optional]  [val(meta), path(bam), path(bai)]
+        ch_bam_bai_tumor         // channel: [mandatory] [val(meta), path(bam), path(bai)]
+        ch_cadd_header           // channel: [mandatory] [path(txt)]
+        ch_cadd_prescored_indels // channel: [optional]  [val(meta), path(dir)]
+        ch_cadd_resources        // channel: [optional]  [val(meta), path(dir)]
+        ch_genome_fasta          // channel: [optional]  [val(meta), path(fasta)]
+        ch_genome_fai            // channel: [optional]  [val(meta), path(fai)]
+        ch_snv_vcf               // channel: [optional]  [val(meta), path(vcf)]
+        ch_snv_vcf_tbi           // channel: [optional]  [val(meta), path(vcf.tbi)]
+        ch_sv_dbs                // channel: [optional]  [path(csv)]
+        ch_sv_vcf                // channel: [optional]  [val(meta), path(vcf)]
+        ch_sv_vcf_tbi            // channel: [optional]  [val(meta), path(vcf.tbi)]
+        ch_vcfanno_extra         // channel: [optional]  [path(extra_file1), path(extra_file2), ...]
+        ch_vcfanno_lua           // channel: [optional]  [path(lua_file)]
+        ch_vcfanno_resources     // channel: [optional]  [path(resource_file1), path(resource_file2), ...]
+        ch_vcfanno_toml          // channel: [optional]  [path(toml_file)]
+        ch_vep_cache             // channel: [optional]  [vep_cache_files]
+        ch_vep_extra_files       // channel: [optional]  [path(plugin_file1), path(plugin_file2), ...]
+        val_cadd_resources       // string:  [optional]  path to CADD resources directory
+        val_genome               // string:  [optional]  genome assembly (e.g. "GRCh38")
+        val_species              // string:  [optional]  species (e.g. "homo_sapiens")
+        val_vep_cache_version    // string:  [optional]  version of vep cache to use (e.g. "107")
 
     main:
 
@@ -73,6 +78,10 @@ workflow ONCOREFINER {
         // Process SNV VCF files
         PROCESS_SNVS (
             ch_genome_fasta,
+            ch_genome_fai,
+            ch_cadd_header,
+            ch_cadd_prescored_indels,
+            ch_cadd_resources,
             ch_snv_vcf,
             ch_snv_vcf_tbi,
             ch_vcfanno_extra,
@@ -81,6 +90,7 @@ workflow ONCOREFINER {
             ch_vcfanno_toml,
             ch_vep_cache,
             ch_vep_extra_files,
+            val_cadd_resources,
             val_genome,
             val_species,
             val_vep_cache_version
