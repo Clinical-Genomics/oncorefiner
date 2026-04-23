@@ -27,7 +27,6 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#73](https://github.com/Clinical-Genomics/oncorefiner/pull/73) Added `PROCESS_SVS` subworkflow.
 - [#59](https://github.com/Clinical-Genomics/oncorefiner/pull/59) Added `ANNOTATE_CADD` subworkflow with following test (stub only), for CADD scoring of InDels, used in `PROCESS_SNVS`.
 
-
 ### `Changed`
 
 - [#24](https://github.com/Clinical-Genomics/oncorefiner/pull/24) Updated PR template, PR checklist, feature request template, bug report template and issue template chooser.
