@@ -2,14 +2,12 @@
     "with tumor-normal data": {
         "content": [
             [
-                "clinical",
-                "clinical/subject_a_clinical.vcf.gz",
-                "clinical/subject_a_clinical.vcf.gz.tbi",
-                "research",
-                "research/subject_a_research.vcf.gz",
-                "research/subject_a_research.vcf.gz.tbi",
-                "svdb",
-                "svdb/subject_a_vcfdb_query.vcf",
+                "process_svs",
+                "process_svs/subject_a_clinical.vcf.gz",
+                "process_svs/subject_a_clinical.vcf.gz.tbi",
+                "process_svs/subject_a_research.vcf.gz",
+                "process_svs/subject_a_research.vcf.gz.tbi",
+                "process_svs/subject_a_vcfdb_query.vcf",
                 "vcf2cytosure",
                 "vcf2cytosure/tumor.cgh",
                 "vep",
@@ -42,6 +40,6 @@
             "nf-test": "0.9.2",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2026-04-22T16:45:23.281737"
+        "timestamp": "2026-04-23T09:50:04.660976"
     }
 }

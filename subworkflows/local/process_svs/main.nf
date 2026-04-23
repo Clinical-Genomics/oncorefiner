@@ -8,8 +8,8 @@
 // MODULE: Installed directly from nf-core/modules
 //
 
-include { BCFTOOLS_VIEW as RESEARCH_FILTERING_SV   } from '../../../modules/nf-core/bcftools/view/main'
-include { BCFTOOLS_VIEW as CLINICAL_FILTERING_SV   } from '../../../modules/nf-core/bcftools/view/main'
+include { BCFTOOLS_VIEW as BCFTOOLS_VIEW_RESEARCH   } from '../../../modules/nf-core/bcftools/view/main'
+include { BCFTOOLS_VIEW as BCFTOOLS_VIEW_CLINICAL   } from '../../../modules/nf-core/bcftools/view/main'
 include { ENSEMBLVEP_VEP                           } from '../../../modules/nf-core/ensemblvep/vep/main'
 include { SVDB_QUERY                               } from '../../../modules/nf-core/svdb/query/main'
 
@@ -71,10 +71,10 @@ workflow PROCESS_SVS {
             .set { ch_research_filtering_sv_in }
 
 
-        RESEARCH_FILTERING_SV(ch_research_filtering_sv_in, [], [], [])
+        BCFTOOLS_VIEW_RESEARCH(ch_research_filtering_sv_in, [], [], [])
 
         // VEP
-        RESEARCH_FILTERING_SV.out.vcf
+        BCFTOOLS_VIEW_RESEARCH.out.vcf
             .map { meta, vcf ->
                         tuple(meta, vcf, []) }
             .set { ch_vep_sv }
@@ -97,7 +97,7 @@ workflow PROCESS_SVS {
                 tuple(meta, vcf, tbi)
                 }
             .set { ch_clinical_filtering_sv_in }
-        CLINICAL_FILTERING_SV(ch_clinical_filtering_sv_in, [], [], [])
+        BCFTOOLS_VIEW_CLINICAL(ch_clinical_filtering_sv_in, [], [], [])
 
         // VCF2CYTOSURE
         ch_bam_bai = channel.empty().mix(ch_bam_bai_tumor, ch_bam_bai_normal)
