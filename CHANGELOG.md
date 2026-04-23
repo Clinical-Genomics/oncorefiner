@@ -25,6 +25,8 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#70](https://github.com/Clinical-Genomics/oncorefiner/pull/70) Added `SAMTOOLS/VIEW` for bam to cram conversion in the `main.nf`.
 - [#66](https://github.com/Clinical-Genomics/oncorefiner/pull/66) Added `PROCESS_SNVS` subworkflow.
 - [#73](https://github.com/Clinical-Genomics/oncorefiner/pull/73) Added `PROCESS_SVS` subworkflow.
+- [#59](https://github.com/Clinical-Genomics/oncorefiner/pull/59) Added `ANNOTATE_CADD` subworkflow with following test (stub only), for CADD scoring of InDels, used in `PROCESS_SNVS`.
+
 
 ### `Changed`
 

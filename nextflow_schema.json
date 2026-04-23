@@ -129,6 +129,22 @@
                     "pattern": "^\\S+\\.fn?a(sta)?\\.fai$",
                     "fa_icon": "fas fa-file"
                 },
+                "cadd_prescored_indels": {
+                    "type": "string",
+                    "exists": true,
+                    "format": "directory-path",
+                    "fa_icon": "fas fa-file",
+                    "description": "Path to a directory containing prescored indels for CADD.",
+                    "help_text": "This folder contains the compressed files and indexes that would otherwise be in data/prescored folder as described in https://github.com/kircherlab/CADD-scripts/#manual-installation."
+                },
+                "cadd_resources": {
+                    "type": "string",
+                    "exists": true,
+                    "format": "directory-path",
+                    "fa_icon": "fas fa-file",
+                    "description": "Path to the directory containing cadd annotations.",
+                    "help_text": "This folder contains the uncompressed files that would otherwise be in data/annotation folder as described in https://github.com/kircherlab/CADD-scripts/#manual-installation."
+                },
                 "species": {
                     "type": "string",
                     "default": "homo_sapiens",
