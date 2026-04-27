@@ -1,0 +1,45 @@
+{
+    "with tumor-normal data": {
+        "content": [
+            [
+                "process_svs",
+                "process_svs/subject_a_clinical.vcf.gz",
+                "process_svs/subject_a_clinical.vcf.gz.tbi",
+                "process_svs/subject_a_research.vcf.gz",
+                "process_svs/subject_a_research.vcf.gz.tbi",
+                "process_svs/subject_a_vcfdb_query.vcf",
+                "vcf2cytosure",
+                "vcf2cytosure/tumor.cgh",
+                "vep",
+                "vep/subject_a_svdbquery_vep.vcf.gz",
+                "vep/subject_a_svdbquery_vep.vcf.gz.tbi",
+                "vep/subject_a_svdbquery_vep.vcf.gz_summary.html"
+            ],
+            [
+                [
+                    "subject_a_clinical.vcf.gz",
+                    "5586f18ef999bffe0b0b9cc1831f7ff3"
+                ],
+                [
+                    "subject_a_research.vcf.gz",
+                    "5586f18ef999bffe0b0b9cc1831f7ff3"
+                ],
+                [
+                    "subject_a_svdbquery_vep.vcf.gz",
+                    "5586f18ef999bffe0b0b9cc1831f7ff3"
+                ]
+            ],
+            [
+                [
+                    "subject_a_vcfdb_query.vcf",
+                    "18444b35d848a5ac45a1576967bd928d"
+                ]
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.2",
+            "nextflow": "25.10.0"
+        },
+        "timestamp": "2026-04-27T16:40:57.480451"
+    }
+}
