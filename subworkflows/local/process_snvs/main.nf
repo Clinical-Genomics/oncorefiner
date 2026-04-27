@@ -108,4 +108,10 @@ workflow PROCESS_SNVS {
             .set { ch_clinical_filtering_in }
 
         BCFTOOLS_VIEW_CLINICAL(ch_clinical_filtering_in, [], [], [])
+
+    emit:
+        vcfanno_vcf = VCFANNO.out.vcf                          // channel: [val(meta), path(vcf)]
+        vcfanno_tbi = VCFANNO.out.tbi                          // channel: [val(meta), path(vcf.tbi)]
+        research_filtered_vcf = BCFTOOLS_VIEW_RESEARCH.out.vcf // channel: [val(meta), path(vcf)]
+        research_filtered_tbi = BCFTOOLS_VIEW_RESEARCH.out.tbi // channel: [val(meta), path(vcf.tbi)]
 }
