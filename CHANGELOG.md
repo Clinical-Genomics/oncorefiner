@@ -26,6 +26,8 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#66](https://github.com/Clinical-Genomics/oncorefiner/pull/66) Added `PROCESS_SNVS` subworkflow.
 - [#73](https://github.com/Clinical-Genomics/oncorefiner/pull/73) Added `PROCESS_SVS` subworkflow.
 - [#59](https://github.com/Clinical-Genomics/oncorefiner/pull/59) Added `ANNOTATE_CADD` subworkflow with following test (stub only), for CADD scoring of InDels, used in `PROCESS_SNVS`.
+- [#69](https://github.com/Clinical-Genomics/oncorefiner/pull/69) Added `tumor_normal` config file, used by the default test profile.
+- [#69](https://github.com/Clinical-Genomics/oncorefiner/pull/69) Added `tumor_only` config file, profile and pipeline test and snapshot.
 
 ### `Changed`
 
@@ -38,6 +40,8 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#71](https://github.com/Clinical-Genomics/oncorefiner/pull/71) Updated `pipelines_testdata_base_path` and paths to test vcf files.
 - [#66](https://github.com/Clinical-Genomics/oncorefiner/pull/66) Moved logic for processing SNV VCF files, previously in `workflows/oncorefiner.nf`, to `PROCESS_SNVS` subworkflow.
 - [#73](https://github.com/Clinical-Genomics/oncorefiner/pull/73) Moved logic for processing SV VCF files, previously in `workflows/oncorefiner.nf`, to `PROCESS_SVS` subworkflow.
+- [#69](https://github.com/Clinical-Genomics/oncorefiner/pull/69) Renamed and refactored test config to `test_base.config` to include common parameters and files used for all tests.
+- [#69](https://github.com/Clinical-Genomics/oncorefiner/pull/69) Refactored default pipeline test and test profile to run a `tumor_normal` default test and updated snapshot.
 
 ### `Fixed`
 
