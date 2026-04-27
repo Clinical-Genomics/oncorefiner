@@ -12,6 +12,12 @@
 
 ## Pipeline tools
 
+- [CADD<sup>1</sup>](https://genomemedicine.biomedcentral.com/articles/10.1186/s13073-021-00835-9)<sup>,</sup> [<sup>2</sup>](https://academic.oup.com/nar/article/47/D1/D886/5146191)
+
+  > Rentzsch P, Schubach M, Shendure J, Kircher M. CADD-Splice—improving genome-wide variant effect prediction using deep learning-derived splice scores. Genome Med. 2021;13(1):31. doi:10.1186/s13073-021-00835-9
+
+  > Rentzsch P, Witten D, Cooper GM, Shendure J, Kircher M. CADD: predicting the deleteriousness of variants throughout the human genome. Nucleic Acids Research. 2019;47(D1):D886-D894. doi:10.1093/nar/gky1016
+
 - [`bcftools`](https://github.com/samtools/bcftools)
 
   > Danecek P, Bonfield JK, Liddle J, Marshall J, Ohan V, Pollard MO, Whitwham A, Keane T, McCarthy SA, Davies RM, Li H. Twelve years of SAMtools and BCFtools. Gigascience. 2021 Jan 29;10(2):giab008. doi: 10.1093/gigascience/giab008. PubMed PMID: 33590861; PubMed Central PMCID: PMC7931819.

@@ -4,8 +4,10 @@
             [
                 "clinical_filtering",
                 "clinical_filtering/SNV_clinical.vcf.gz",
+                "clinical_filtering/SNV_clinical.vcf.gz.tbi",
                 "research_filtering",
                 "research_filtering/SNV_research.vcf.gz",
+                "research_filtering/SNV_research.vcf.gz.tbi",
                 "vcfanno",
                 "vcfanno/SNV_vcfanno.vcf.gz",
                 "vcfanno/SNV_vcfanno.vcf.gz.tbi",
@@ -33,10 +35,10 @@
                 ]
             ]
         ],
-        "timestamp": "2026-04-15T15:34:40.081652",
         "meta": {
-            "nf-test": "0.9.5",
-            "nextflow": "25.10.4"
-        }
+            "nf-test": "0.9.2",
+            "nextflow": "25.10.0"
+        },
+        "timestamp": "2026-04-27T14:15:15.370423"
     }
 }

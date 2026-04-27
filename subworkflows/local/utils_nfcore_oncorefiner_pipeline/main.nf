@@ -180,6 +180,7 @@ def toolCitationText() {
     def citations_list = []
     def vcfanno        = "vcfanno (Pedersen et al. 2016)"
     def bcftools_view  = "bcftools (Danecek et al. 2021)"
+    def cadd           = "CADD (Rentzsch et al. 2019)"
     def ensemblvep_vep = "Ensembl VEP (McLaren et al. 2016)"
     def svdb           = "svdb"
     def multiqc        = "MultiQC (Ewels et al. 2016)"
@@ -190,6 +191,9 @@ def toolCitationText() {
             vcfanno        +
             bcftools_view  +
             ensemblvep_vep
+            if (params.cadd_resources) {
+                citations_list = citations_list + cadd
+            }
     }
 
     if (params.sv_vcf) {
@@ -218,6 +222,7 @@ def toolBibliographyText() {
     def bibliography_list   = []
     def vcfanno             = "<li>Pedersen BS, Layer RM, Quinlan AR. Vcfanno: fast, flexible annotation of genetic variants. Genome Biol. 2016 Jun 1;17(1):118. doi: 10.1186/s13059-016-0973-5. PMID: 27250555; PMCID: PMC4888505.</li>"
     def bcftools_view       = "<li>Danecek P, Bonfield JK, Liddle J, Marshall J, Ohan V, Pollard MO, Whitwham A, Keane T, McCarthy SA, Davies RM, Li H. Twelve years of SAMtools and BCFtools. Gigascience. 2021 Feb 16;10(2):giab008. doi: 10.1093/gigascience/giab008. PMID: 33590845; PMCID: PMC7898596.</li>"
+    def cadd                = "<li>Rentzsch P, Witten D, Cooper GM, Shendure J, Kircher M. CADD: predicting the deleteriousness of variants throughout the human genome. Nucleic Acids Res. 2019 Jan 8;47(D1):D886-D894. doi: 10.1093/nar/gky1016. PMID: 30371827; PMCID: PMC6323892.</li>"
     def ensemblvep_vep      = "<li>McLaren W, Gil L, Hunt SE, Riat HS, Ritchie GR, Thormann A, Flicek P, Cunningham F. The Ensembl Variant Effect Predictor. Genome Biol. 2016 Jun 6;17(1):122. doi: 10.1186/s13059-016-0974-4. PMID: 27268795; PMCID: PMC4893825.</li>"
     def svdb                = "<li>svdb. https://github.com/J35P312/svdb.</li>"
     def multiqc             = "<li>Ewels, P., Magnusson, M., Lundin, S., & Käller, M. (2016). MultiQC: summarize analysis results for multiple tools and samples in a single report. Bioinformatics , 32(19), 3047–3048. doi: /10.1093/bioinformatics/btw354</li>"
@@ -228,6 +233,9 @@ def toolBibliographyText() {
             vcfanno        +
             bcftools_view  +
             ensemblvep_vep
+            if (params.cadd_resources) {
+                bibliography_list = bibliography_list + cadd
+            }
     }
 
     if (params.sv_vcf) {
