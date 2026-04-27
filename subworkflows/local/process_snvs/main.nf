@@ -1,5 +1,5 @@
-/*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/*
     IMPORT MODULES / SUBWORKFLOWS / FUNCTIONS
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
@@ -115,15 +115,15 @@ workflow PROCESS_SNVS {
         BCFTOOLS_VIEW_CLINICAL(ch_clinical_filtering_in, [], [], [])
 
     emit:
-        vcfanno_vcf           = VCFANNO.out.vcf                // channel: [val(meta), path(vcf)]
-        vcfanno_tbi           = VCFANNO.out.tbi                // channel: [val(meta), path(tbi)]
-        research_filtered_vcf = BCFTOOLS_VIEW_RESEARCH.out.vcf // channel: [val(meta), path(vcf)]
-        research_filtered_tbi = BCFTOOLS_VIEW_RESEARCH.out.tbi // channel: [val(meta), path(tbi)]
         cadd_annotated_vcf    = ch_cadd_vcf                    // channel: [val(meta), path(vcf)]
         cadd_annotated_tbi    = ch_cadd_tbi                    // channel: [val(meta), path(tbi)]
+        clinical_filtered_vcf = BCFTOOLS_VIEW_CLINICAL.out.vcf // channel: [val(meta), path(vcf)]
+        clinical_filtered_tbi = BCFTOOLS_VIEW_CLINICAL.out.tbi // channel: [val(meta), path(tbi)]
+        vcfanno_vcf           = VCFANNO.out.vcf                // channel: [val(meta), path(vcf)]
+        vcfanno_tbi           = VCFANNO.out.tbi                // channel: [val(meta), path(tbi)]
         vep_annotated_vcf     = ENSEMBLVEP_VEP.out.vcf         // channel: [val(meta), path(vcf)]
         vep_annotated_tbi     = ENSEMBLVEP_VEP.out.tbi         // channel: [val(meta), path(tbi)]
         vep_report            = ENSEMBLVEP_VEP.out.report      // channel: [val(meta), val(process), val(tool), path(html)]
-        clinical_filtered_vcf = BCFTOOLS_VIEW_CLINICAL.out.vcf  // channel: [val(meta), path(vcf)]
-        clinical_filtered_tbi = BCFTOOLS_VIEW_CLINICAL.out.tbi  // channel: [val(meta), path(tbi)]
+        research_filtered_vcf = BCFTOOLS_VIEW_RESEARCH.out.vcf // channel: [val(meta), path(vcf)]
+        research_filtered_tbi = BCFTOOLS_VIEW_RESEARCH.out.tbi // channel: [val(meta), path(tbi)]
 }
