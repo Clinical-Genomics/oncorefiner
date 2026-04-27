@@ -178,8 +178,19 @@ workflow ONCOREFINER {
         )
 
     emit:
-    multiqc_report = MULTIQC.out.report.toList() // channel: /path/to/multiqc_report.html
-    versions       = ch_versions                 // channel: [ path(versions.yml) ]
+        cadd_annotated_vcf    = PROCESS_SNVS.cadd_annotated_vcf    // channel: [val(meta), path(vcf)]
+        cadd_annotated_tbi    = PROCESS_SNVS.cadd_annotated_tbi    // channel: [val(meta), path(tbi)]
+        clinical_filtered_vcf = PROCESS_SNVS.clinical_filtered_vcf // channel: [val(meta), path(vcf)]
+        clinical_filtered_tbi = PROCESS_SNVS.clinical_filtered_tbi // channel: [
+        vcfanno_vcf           = PROCESS_SNVS.vcfanno_vcf           // channel: [val(meta), path(vcf)]
+        vcfanno_tbi           = PROCESS_SNVS.vcfanno_tbi           // channel: [val(meta), path(tbi)]
+        vep_annotated_vcf     = PROCESS_SNVS.vep_annotated_vcf     // channel: [val(meta), path(vcf)]
+        vep_annotated_tbi     = PROCESS_SNVS.vep_annotated_tbi     // channel: [val(meta), path(tbi)]
+        vep_report            = PROCESS_SNVS.vep_report            // channel: [val(meta), val(process), val(tool), path(html)]
+        research_filtered_vcf = PROCESS_SNVS.research_filtered_vcf // channel: [val(meta), path(vcf)]
+        research_filtered_tbi = PROCESS_SNVS.research_filtered_tbi // channel: [val(meta), path(tbi)]
+        multiqc_report        = MULTIQC.out.report.toList()        // channel: /path/to/multiqc_report.html
+        versions              = ch_versions                       // channel: [ path(versions.yml) ]
 
 }
 
