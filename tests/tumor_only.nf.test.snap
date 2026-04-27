@@ -8,14 +8,6 @@
                 "BCFTOOLS_VIEW_RESEARCH": {
                     "bcftools": 1.22
                 },
-                "CLINICAL_FILTERING_SV": {
-                    "bcftools": 1.22
-                },
-                "ENSEMBLVEP_SV": {
-                    "ensemblvep": 115.2,
-                    "perl-math-cdf": 0.1,
-                    "tabix": 1.21
-                },
                 "ENSEMBLVEP_VEP": {
                     "ensemblvep": 115.2,
                     "perl-math-cdf": 0.1,
@@ -24,13 +16,10 @@
                 "FILTER_VCF": {
                     "bcftools": 1.22
                 },
-                "RESEARCH_FILTERING_SV": {
-                    "bcftools": 1.22
-                },
                 "SAMTOOLS_VIEW": {
                     "samtools": "1.23.1"
                 },
-                "SVDB_QUERY_DB": {
+                "SVDB_QUERY": {
                     "svdb": "2.8.4"
                 },
                 "TIDDIT_COV": {
@@ -53,14 +42,9 @@
                 "alignments",
                 "alignments/subject_a_tumor.cram",
                 "alignments/subject_a_tumor.cram.crai",
-                "annotate_sv",
-                "annotate_sv/subject_a_svdbquery_vep.vcf.gz",
-                "annotate_sv/subject_a_svdbquery_vep.vcf.gz.tbi",
-                "annotate_sv/subject_a_svdbquery_vep.vcf.gz_summary.html",
-                "clinical",
-                "clinical/subject_a_clinical.vcf",
                 "clinical_filtering",
                 "clinical_filtering/subject_a_clinical.vcf.gz",
+                "clinical_filtering/subject_a_clinical.vcf.gz.tbi",
                 "multiqc",
                 "multiqc/multiqc_data",
                 "multiqc/multiqc_data/llms-full.txt",
@@ -73,18 +57,24 @@
                 "multiqc/multiqc_report.html",
                 "pipeline_info",
                 "pipeline_info/oncorefiner_software_mqc_versions.yml",
-                "research",
-                "research/subject_a_research.vcf",
+                "process_svs",
+                "process_svs/subject_a_clinical.vcf.gz",
+                "process_svs/subject_a_clinical.vcf.gz.tbi",
+                "process_svs/subject_a_research.vcf.gz",
+                "process_svs/subject_a_research.vcf.gz.tbi",
+                "process_svs/subject_a_vcfdb_query.vcf",
                 "research_filtering",
                 "research_filtering/subject_a_research.vcf.gz",
-                "svdb",
-                "svdb/subject_a_vcfdb_query.vcf",
+                "research_filtering/subject_a_research.vcf.gz.tbi",
                 "vcf2cytosure",
                 "vcf2cytosure/tumor.cgh",
                 "vcfanno",
                 "vcfanno/subject_a_vcfanno.vcf.gz",
                 "vcfanno/subject_a_vcfanno.vcf.gz.tbi",
                 "vep",
+                "vep/subject_a_svdbquery_vep.vcf.gz",
+                "vep/subject_a_svdbquery_vep.vcf.gz.tbi",
+                "vep/subject_a_svdbquery_vep.vcf.gz_summary.html",
                 "vep/subject_a_vep.vcf.gz",
                 "vep/subject_a_vep.vcf.gz.tbi",
                 "vep/subject_a_vep.vcf.gz_summary.html"
@@ -94,12 +84,16 @@
             ],
             [
                 [
-                    "subject_a_svdbquery_vep.vcf.gz",
-                    "VcfFile [chromosomes=[], sampleCount=1, variantCount=0, phased=true, phasedAutodetect=true]"
+                    "subject_a_clinical.vcf.gz",
+                    "VcfFile [chromosomes=[11, 22, 12, 13, 15, 16, 17, 18, 19, 1, 2, 3, 4, 5, 6, 7, 8, X, 9, 20, 21], sampleCount=1, variantCount=101, phased=false, phasedAutodetect=false]"
                 ],
                 [
                     "subject_a_clinical.vcf.gz",
-                    "VcfFile [chromosomes=[11, 22, 12, 13, 15, 16, 17, 18, 19, 1, 2, 3, 4, 5, 6, 7, 8, X, 9, 20, 21], sampleCount=1, variantCount=101, phased=false, phasedAutodetect=false]"
+                    "VcfFile [chromosomes=[], sampleCount=1, variantCount=0, phased=true, phasedAutodetect=true]"
+                ],
+                [
+                    "subject_a_research.vcf.gz",
+                    "VcfFile [chromosomes=[11, 19, 9], sampleCount=1, variantCount=6, phased=false, phasedAutodetect=false]"
                 ],
                 [
                     "subject_a_research.vcf.gz",
@@ -110,18 +104,26 @@
                     "VcfFile [chromosomes=[11, 22, 12, 13, 15, 16, 17, 18, 19, 1, 2, 3, 4, 5, 6, 7, 8, X, 9, 20, 21], sampleCount=1, variantCount=101, phased=false, phasedAutodetect=false]"
                 ],
                 [
+                    "subject_a_svdbquery_vep.vcf.gz",
+                    "VcfFile [chromosomes=[], sampleCount=1, variantCount=0, phased=true, phasedAutodetect=true]"
+                ],
+                [
                     "subject_a_vep.vcf.gz",
                     "VcfFile [chromosomes=[11, 22, 12, 13, 15, 16, 17, 18, 19, 1, 2, 3, 4, 5, 6, 7, 8, X, 9, 20, 21], sampleCount=1, variantCount=101, phased=false, phasedAutodetect=false]"
                 ]
             ],
             [
                 [
-                    "subject_a_svdbquery_vep.vcf.gz",
-                    "d41d8cd98f00b204e9800998ecf8427e"
+                    "subject_a_clinical.vcf.gz",
+                    "24bfaeee4f1be380cbc363632edca79e"
                 ],
                 [
                     "subject_a_clinical.vcf.gz",
-                    "24bfaeee4f1be380cbc363632edca79e"
+                    "d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                [
+                    "subject_a_research.vcf.gz",
+                    "d3307d22f15869cd315274398fa0ad1"
                 ],
                 [
                     "subject_a_research.vcf.gz",
@@ -132,12 +134,16 @@
                     "e6b12552eccb4417b32f23e0dd5dc79c"
                 ],
                 [
+                    "subject_a_svdbquery_vep.vcf.gz",
+                    "d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                [
                     "subject_a_vep.vcf.gz",
                     "24bfaeee4f1be380cbc363632edca79e"
                 ]
             ]
         ],
-        "timestamp": "2026-04-16T11:05:35.341285",
+        "timestamp": "2026-04-27T17:07:17.523129",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "25.10.4"
