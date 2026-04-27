@@ -15,7 +15,7 @@ nextflow_workflow {
             }
             workflow {
                 """
-                input[0] = params.pipelines_testdata_base_path + 'reference/vep_cache_and_plugins/'
+                input[0] = params.pipelines_testdata_base_path + 'reference/GRCh38/vep_cache/'
                 """
             }
         }
@@ -44,7 +44,7 @@ nextflow_workflow {
             }
             workflow {
                 """
-                input[0] = params.pipelines_testdata_base_path + 'reference/vep_cache_and_plugins.tar.gz'
+                input[0] = params.pipelines_testdata_base_path + 'reference/GRCh38/vep_cache.tar.gz'
                 """
             }
         }
