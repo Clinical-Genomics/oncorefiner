@@ -190,7 +190,7 @@ workflow ONCOREFINER {
         research_filtered_vcf = PROCESS_SNVS.research_filtered_vcf // channel: [val(meta), path(vcf)]
         research_filtered_tbi = PROCESS_SNVS.research_filtered_tbi // channel: [val(meta), path(tbi)]
         multiqc_report        = MULTIQC.out.report.toList()        // channel: /path/to/multiqc_report.html
-        versions              = ch_versions                       // channel: [ path(versions.yml) ]
+        versions              = ch_versions                        // channel: [ path(versions.yml) ]
 
 }
 
