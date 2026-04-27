@@ -66,6 +66,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#48](https://github.com/Clinical-Genomics/oncorefiner/pull/48) Updated documentation.
 - [#67](https://github.com/Clinical-Genomics/oncorefiner/pull/67) `--help` parameter not working
 - [#72](https://github.com/Clinical-Genomics/oncorefiner/pull/72) Added subworkflow test to `PREPARE_REFERENCES`
+- [#82](https://github.com/Clinical-Genomics/oncorefiner/pull/82) Add index files for SNV clinical and research filtered vcfs
 
 ### `Dependencies`
 
