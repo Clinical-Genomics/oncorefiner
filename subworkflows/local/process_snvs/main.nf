@@ -71,6 +71,8 @@ workflow PROCESS_SNVS {
                 .set { ch_vep_snv }
 
         // ANNOTATE WITH CADD - currently depends on val_cadd_resources - could be improved?
+        ch_cadd_vcf = channel.empty()
+        ch_cadd_tbi = channel.empty()
         if (val_cadd_resources) {
 
             ch_cadd_in = BCFTOOLS_VIEW_RESEARCH.out.vcf
@@ -87,6 +89,9 @@ workflow PROCESS_SNVS {
             ANNOTATE_CADD.out.vcf
                 .join(ANNOTATE_CADD.out.tbi)
                 .set { ch_vep_snv }
+            
+            ch_cadd_vcf = ANNOTATE_CADD.out.vcf
+            ch_cadd_tbi = ANNOTATE_CADD.out.tbi
         }
 
         ENSEMBLVEP_VEP (
@@ -114,4 +119,7 @@ workflow PROCESS_SNVS {
         vcfanno_tbi = VCFANNO.out.tbi                          // channel: [val(meta), path(vcf.tbi)]
         research_filtered_vcf = BCFTOOLS_VIEW_RESEARCH.out.vcf // channel: [val(meta), path(vcf)]
         research_filtered_tbi = BCFTOOLS_VIEW_RESEARCH.out.tbi // channel: [val(meta), path(vcf.tbi)]
+        cadd_annotated_vcf = ch_cadd_vcf                       // channel: [val(meta), path(vcf)]
+        cadd_annotated_tbi = ch_cadd_tbi                       // channel: [val(meta), path(vcf.tbi)]
+
 }
