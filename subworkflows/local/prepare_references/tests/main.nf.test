@@ -10,12 +10,26 @@ nextflow_workflow {
     test("Test preparing VEP cache: no untarring needed") {
 
         when {
+            setup {
+            run("UNTAR", alias: "UNTAR_VEP_CACHE") {
+                script "modules/nf-core/untar/main.nf"
+                process {
+                   """
+                   input[0] = channel.of([
+                        [id:'vep_cache'],
+                        file(params.pipelines_testdata_base_path + 'reference/GRCh38/vep_cache.tar.gz', checkIfExists: true)
+                    ])
+                    """
+                    }
+                }
+            }
+
             params {
                 outdir = "$outputDir"
             }
             workflow {
                 """
-                input[0] = params.pipelines_testdata_base_path + 'reference/GRCh38/vep_cache/'
+                input[0] = UNTAR_VEP_CACHE.out.untar.map{ _meta, files -> [files]}.collect()
                 """
             }
         }

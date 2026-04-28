@@ -13,7 +13,7 @@ nextflow_workflow {
                 """
                 input[0] = channel.of([
                     [id:'vep_cache'],
-                    file(params.pipelines_testdata_base_path + 'reference/vep_cache_and_plugins.tar.gz', checkIfExists: true)
+                    file(params.pipelines_testdata_base_path + 'reference/GRCh37/vep_cache_and_plugins.tar.gz', checkIfExists: true)
                 ])
                 """
             }
@@ -32,19 +32,19 @@ nextflow_workflow {
                 input[0] = channel.empty()
                 input[1] = channel.of([
                     ['type':'tumor'],
-                    file(params.pipelines_testdata_base_path + 'testdata/subject_a.tumor.redux.bam', checkIfExists: true),
-                    file(params.pipelines_testdata_base_path + 'testdata/subject_a.tumor.redux.bam.bai', checkIfExists: true)
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh37/subject_a.tumor.redux.bam', checkIfExists: true),
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh37/subject_a.tumor.redux.bam.bai', checkIfExists: true)
                 ])
                 input[2] = channel.of([
                     [id:'subject_a'],
-                    file(params.pipelines_testdata_base_path + 'testdata/tumor_normal/subject_a.tumor.purple.sv.vcf.gz', checkIfExists: true)
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh37/tumor_normal/subject_a.tumor.purple.sv.vcf.gz', checkIfExists: true)
                 ])
                 input[3] = channel.of([
                     [id:'subject_a'],
-                    file(params.pipelines_testdata_base_path + 'testdata/tumor_normal/subject_a.tumor.purple.sv.vcf.gz.tbi', checkIfExists: true)
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh37/tumor_normal/subject_a.tumor.purple.sv.vcf.gz.tbi', checkIfExists: true)
                 ])
                 input[4] = channel.of(
-                    file(params.pipelines_testdata_base_path + 'reference/svdb_querydb_files.csv', checkIfExists: true)
+                    file(params.pipelines_testdata_base_path + 'reference/GRCh37/svdb_querydb_files.csv', checkIfExists: true)
                 )
                 input[5] = "GRCh37"
                 input[6] = "homo_sapiens"
@@ -52,15 +52,15 @@ nextflow_workflow {
                 input[8] = UNTAR_VEP_CACHE.out.untar.map{ _meta, files -> [files]}.collect()
                 input[9] = channel.of([
                     [id:'reference'],
-                    file(params.pipelines_testdata_base_path + 'reference/reference.fasta', checkIfExists: true)
+                    file(params.pipelines_testdata_base_path + 'reference/GRCh37/reference.fasta', checkIfExists: true)
                 ])
                 input[10] = channel.of([
-                    file(params.pipelines_testdata_base_path + 'reference/LoFtool_scores.txt', checkIfExists: true),
-                    file(params.pipelines_testdata_base_path + 'reference/spliceai_21_scores_raw_indel_-v1.3-.vcf.gz', checkIfExists: true),
-                    file(params.pipelines_testdata_base_path + 'reference/spliceai_21_scores_raw_snv_-v1.3-.vcf.gz', checkIfExists: true),
-                    file(params.pipelines_testdata_base_path + 'reference/pLI_values.txt', checkIfExists: true),
-                    file(params.pipelines_testdata_base_path + 'reference/spliceai_21_scores_raw_indel_-v1.3-.vcf.gz.tbi', checkIfExists: true),
-                    file(params.pipelines_testdata_base_path + 'reference/spliceai_21_scores_raw_snv_-v1.3-.vcf.gz.tbi', checkIfExists: true)
+                    file(params.pipelines_testdata_base_path + 'reference/GRCh37/LoFtool_scores.txt', checkIfExists: true),
+                    file(params.pipelines_testdata_base_path + 'reference/GRCh37/spliceai_21_scores_raw_indel_-v1.3-.vcf.gz', checkIfExists: true),
+                    file(params.pipelines_testdata_base_path + 'reference/GRCh37/spliceai_21_scores_raw_snv_-v1.3-.vcf.gz', checkIfExists: true),
+                    file(params.pipelines_testdata_base_path + 'reference/GRCh37/pLI_values.txt', checkIfExists: true),
+                    file(params.pipelines_testdata_base_path + 'reference/GRCh37/spliceai_21_scores_raw_indel_-v1.3-.vcf.gz.tbi', checkIfExists: true),
+                    file(params.pipelines_testdata_base_path + 'reference/GRCh37/spliceai_21_scores_raw_snv_-v1.3-.vcf.gz.tbi', checkIfExists: true)
                 ])
                 """
             }

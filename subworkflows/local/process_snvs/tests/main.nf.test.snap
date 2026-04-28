@@ -1,4 +1,64 @@
 {
+    "with tumor-normal GRCh38 data": {
+        "content": [
+            [
+                "clinical_filtering",
+                "clinical_filtering/SNV_clinical.vcf.gz",
+                "research_filtering",
+                "research_filtering/SNV_research.vcf.gz",
+                "vcfanno",
+                "vcfanno/SNV_vcfanno.vcf.gz",
+                "vcfanno/SNV_vcfanno.vcf.gz.tbi",
+                "vep",
+                "vep/SNV_vep.vcf.gz",
+                "vep/SNV_vep.vcf.gz.tbi",
+                "vep/SNV_vep.vcf.gz_summary.html"
+            ],
+            [
+                [
+                    "SNV_clinical.vcf.gz",
+                    "c7dae0b238f6b5f4bf91c0682824f474"
+                ],
+                [
+                    "SNV_research.vcf.gz",
+                    "4cdfadaf39f5ed1c1d854226e6099c0d"
+                ],
+                [
+                    "SNV_vcfanno.vcf.gz",
+                    "f79b3dd00e3a53231a4bbd52ebcc6d1d"
+                ],
+                [
+                    "SNV_vep.vcf.gz",
+                    "c7dae0b238f6b5f4bf91c0682824f474"
+                ]
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.4"
+        },
+        "timestamp": "2026-04-28T15:41:23.421829"
+    },
+    "with tumor-normal GRCh37 data": {
+        "content": [
+            [
+                "vcfanno",
+                "vcfanno/subject_a_vcfanno.vcf.gz",
+                "vcfanno/subject_a_vcfanno.vcf.gz.tbi"
+            ],
+            [
+                [
+                    "subject_a_vcfanno.vcf.gz",
+                    "80f7be09a6f5e95e7d54072420a1074"
+                ]
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.4"
+        },
+        "timestamp": "2026-04-28T14:37:33.608094"
+    },
     "with tumor-normal data": {
         "content": [
             [

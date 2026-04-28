@@ -138,10 +138,15 @@ nextflow_workflow {
                 ])
                 input[9] = channel.of([
                     file(params.pipelines_testdata_base_path + 'reference/GRCh38/grch38_gnomad_reformatted_merged_v4.1_subset.vcf.gz', checkIfExists: true),
-                    file(params.pipelines_testdata_base_path + 'reference/GRCh38/grch38_gnomad_reformatted_merged_v4.1_subset.vcf.gz.tbi', checkIfExists: true)
+                    file(params.pipelines_testdata_base_path + 'reference/GRCh38/grch38_gnomad_reformatted_merged_v4.1_subset.vcf.gz.tbi', checkIfExists: true),
+                    file(params.pipelines_testdata_base_path + 'reference/GRCh38/grch38_swegen_frequencies_fixploidy_-20190204_subset.vcf.gz', checkIfExists: true),
+                    file(params.pipelines_testdata_base_path + 'reference/GRCh38/grch38_swegen_frequencies_fixploidy_-20190204_subset.vcf.gz.tbi', checkIfExists: true),
+                    file(params.pipelines_testdata_base_path + 'reference/GRCh38/whole_genome_SNVs_chr_subset.tsv.gz', checkIfExists: true),
+                    file(params.pipelines_testdata_base_path + 'reference/GRCh38/whole_genome_SNVs_chr_subset.tsv.gz.tbi', checkIfExists: true)
+
                 ])
                 input[10] = channel.of([
-                    file(params.pipelines_testdata_base_path + 'reference/GRCh38/vcfanno.toml', checkIfExists: true)
+                    file(params.pipelines_testdata_base_path + 'reference/GRCh38/grch38_vcfanno_config.toml', checkIfExists: true)
                 ])
                 input[11] = UNTAR_VEP_CACHE.out.untar.map{ _meta, files -> [files]}.collect()
                 input[12] = channel.of([
