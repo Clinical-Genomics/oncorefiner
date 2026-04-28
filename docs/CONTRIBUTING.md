@@ -210,7 +210,7 @@ Add the tool to the relevant numbered section in the **Pipeline summary**. If th
 
 ### Images and figures
 
-For overview images and other documents we follow the nf-core [style guidelines and examples](https://nf-co.re/developers/design_guidelines).
+For overview images and other documents we follow the nf-core [style guide](https://nf-co.re/docs/developing/documentation/style-guide).
 
 ## Coding conventions
 
