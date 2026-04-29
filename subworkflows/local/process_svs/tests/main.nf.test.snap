@@ -2,20 +2,23 @@
     "with tumor-normal data": {
         "content": [
             [
-                "vcf2cytosure",
-                "vcf2cytosure/tumor.cgh"
+                "process_svs",
+                "process_svs/subject_a_vcfdb_query.vcf"
             ],
             [
                 
             ],
             [
-                
+                [
+                    "subject_a_vcfdb_query.vcf",
+                    "6b6fb1f2dd36cff835d37336c7d902b6"
+                ]
             ]
         ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "25.10.4"
         },
-        "timestamp": "2026-04-28T15:41:53.168389"
+        "timestamp": "2026-04-29T15:19:35.318251"
     }
 }

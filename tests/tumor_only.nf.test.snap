@@ -40,6 +40,8 @@
             },
             [
                 "alignments",
+                "alignments/subject_a_normal.cram",
+                "alignments/subject_a_normal.cram.crai",
                 "alignments/subject_a_tumor.cram",
                 "alignments/subject_a_tumor.cram.crai",
                 "clinical_filtering",
@@ -67,6 +69,7 @@
                 "research_filtering/subject_a_research.vcf.gz",
                 "research_filtering/subject_a_research.vcf.gz.tbi",
                 "vcf2cytosure",
+                "vcf2cytosure/normal.cgh",
                 "vcf2cytosure/tumor.cgh",
                 "vcfanno",
                 "vcfanno/subject_a_vcfanno.vcf.gz",
@@ -80,73 +83,74 @@
                 "vep/subject_a_vep.vcf.gz_summary.html"
             ],
             [
-                "tumor.cgh:md5,01e7139513de1e40737917b3fd54d001"
+                "normal.cgh:md5,fb34d0b292e8cbac8d8aa91aef6b31f7",
+                "tumor.cgh:md5,ec06e9c9371636aba5e9717857e39e6b"
             ],
             [
                 [
                     "subject_a_clinical.vcf.gz",
-                    "VcfFile [chromosomes=[11, 22, 12, 13, 15, 16, 17, 18, 19, 1, 2, 3, 4, 5, 6, 7, 8, X, 9, 20, 21], sampleCount=1, variantCount=101, phased=false, phasedAutodetect=false]"
+                    "VcfFile [chromosomes=[chr9, chr7, chr8, chrX, chr5, chr6, chr3, chr21, chr4, chr11, chr22, chr1, chr12, chr2, chr13, chr20, chr18, chr19, chr15, chr16, chr17], sampleCount=1, variantCount=104, phased=false, phasedAutodetect=false]"
                 ],
                 [
                     "subject_a_clinical.vcf.gz",
-                    "VcfFile [chromosomes=[], sampleCount=1, variantCount=0, phased=true, phasedAutodetect=true]"
+                    "VcfFile [chromosomes=[chr19, chr9, chr11], sampleCount=1, variantCount=6, phased=false, phasedAutodetect=false]"
                 ],
                 [
                     "subject_a_research.vcf.gz",
-                    "VcfFile [chromosomes=[11, 19, 9], sampleCount=1, variantCount=6, phased=false, phasedAutodetect=false]"
+                    "VcfFile [chromosomes=[chr19, chr9, chr11], sampleCount=1, variantCount=6, phased=false, phasedAutodetect=false]"
                 ],
                 [
                     "subject_a_research.vcf.gz",
-                    "VcfFile [chromosomes=[11, 22, 12, 13, 15, 16, 17, 18, 19, 1, 2, 3, 4, 5, 6, 7, 8, X, 9, 20, 21], sampleCount=1, variantCount=101, phased=false, phasedAutodetect=false]"
+                    "VcfFile [chromosomes=[chr9, chr7, chr8, chrX, chr5, chr6, chr3, chr21, chr4, chr11, chr22, chr1, chr12, chr2, chr13, chr20, chr18, chr19, chr15, chr16, chr17], sampleCount=1, variantCount=104, phased=false, phasedAutodetect=false]"
                 ],
                 [
                     "subject_a_vcfanno.vcf.gz",
-                    "VcfFile [chromosomes=[11, 22, 12, 13, 15, 16, 17, 18, 19, 1, 2, 3, 4, 5, 6, 7, 8, X, 9, 20, 21], sampleCount=1, variantCount=101, phased=false, phasedAutodetect=false]"
+                    "VcfFile [chromosomes=[chr9, chr7, chr8, chrX, chr5, chr6, chr3, chr21, chr4, chr11, chr22, chr1, chr12, chr2, chr13, chr20, chr18, chr19, chr15, chr16, chr17], sampleCount=1, variantCount=104, phased=false, phasedAutodetect=false]"
                 ],
                 [
                     "subject_a_svdbquery_vep.vcf.gz",
-                    "VcfFile [chromosomes=[], sampleCount=1, variantCount=0, phased=true, phasedAutodetect=true]"
+                    "VcfFile [chromosomes=[chr19, chr9, chr11], sampleCount=1, variantCount=6, phased=false, phasedAutodetect=false]"
                 ],
                 [
                     "subject_a_vep.vcf.gz",
-                    "VcfFile [chromosomes=[11, 22, 12, 13, 15, 16, 17, 18, 19, 1, 2, 3, 4, 5, 6, 7, 8, X, 9, 20, 21], sampleCount=1, variantCount=101, phased=false, phasedAutodetect=false]"
+                    "VcfFile [chromosomes=[chr9, chr7, chr8, chrX, chr5, chr6, chr3, chr21, chr4, chr11, chr22, chr1, chr12, chr2, chr13, chr20, chr18, chr19, chr15, chr16, chr17], sampleCount=1, variantCount=104, phased=false, phasedAutodetect=false]"
                 ]
             ],
             [
                 [
                     "subject_a_clinical.vcf.gz",
-                    "24bfaeee4f1be380cbc363632edca79e"
+                    "96afd20d30255284c06a3fd505a1d466"
                 ],
                 [
                     "subject_a_clinical.vcf.gz",
-                    "d41d8cd98f00b204e9800998ecf8427e"
+                    "5c00a380b90f03f24f874fe508d740cb"
                 ],
                 [
                     "subject_a_research.vcf.gz",
-                    "d3307d22f15869cd315274398fa0ad1"
+                    "b9cb38b8cd9294ba4aa110592c5133e"
                 ],
                 [
                     "subject_a_research.vcf.gz",
-                    "343a371a553b3ab582a42664c4524441"
+                    "27194adc2bdd7b36168516d5c8e6e293"
                 ],
                 [
                     "subject_a_vcfanno.vcf.gz",
-                    "e6b12552eccb4417b32f23e0dd5dc79c"
+                    "e99aee3237070db74efee69d7a5d4be2"
                 ],
                 [
                     "subject_a_svdbquery_vep.vcf.gz",
-                    "d41d8cd98f00b204e9800998ecf8427e"
+                    "5c00a380b90f03f24f874fe508d740cb"
                 ],
                 [
                     "subject_a_vep.vcf.gz",
-                    "24bfaeee4f1be380cbc363632edca79e"
+                    "96afd20d30255284c06a3fd505a1d466"
                 ]
             ]
         ],
-        "timestamp": "2026-04-27T17:07:17.523129",
         "meta": {
-            "nf-test": "0.9.5",
+            "nf-test": "0.9.3",
             "nextflow": "25.10.4"
-        }
+        },
+        "timestamp": "2026-04-29T17:14:40.653635"
     }
 }

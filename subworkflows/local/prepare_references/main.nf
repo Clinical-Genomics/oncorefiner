@@ -23,7 +23,8 @@ workflow PREPARE_REFERENCES {
                                     )
                                     .untar.map{ _meta, files -> [files]}
                                     .collect()
-            } else {
+            }
+            else {
                 ch_vep_resources = channel.fromPath(val_vep_cache).collect()
             }
         }

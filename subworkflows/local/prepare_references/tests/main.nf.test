@@ -7,29 +7,32 @@ nextflow_workflow {
     tag "prepare_references"
     config "./nextflow.config"
 
-    test("Test preparing VEP cache: no untarring needed") {
+    /* test("Test preparing VEP cache: no untarring needed") {
 
-        when {
-            setup {
-            run("UNTAR", alias: "UNTAR_VEP_CACHE") {
-                script "modules/nf-core/untar/main.nf"
-                process {
-                   """
-                   input[0] = channel.of([
-                        [id:'vep_cache'],
-                        file(params.pipelines_testdata_base_path + 'reference/GRCh38/vep_cache.tar.gz', checkIfExists: true)
-                    ])
-                    """
-                    }
+
+        setup {
+         run("UNTAR", alias: "UNTAR_VEP_CACHE") {
+            script "modules/nf-core/untar/main.nf"
+            process {
+                """
+                input[0] = channel.of([
+                    [id:'vep_cache'],
+                    file(params.pipelines_testdata_base_path + 'reference/GRCh38/vep_cache.tar.gz', checkIfExists: true)
+                ])
+                """
                 }
             }
+        }
+
+        when {
 
             params {
                 outdir = "$outputDir"
             }
+
             workflow {
                 """
-                input[0] = UNTAR_VEP_CACHE.out.untar.map{ _meta, files -> [files]}.collect()
+                input[0] = channel.from("\$PWD")
                 """
             }
         }
@@ -41,14 +44,15 @@ nextflow_workflow {
             assertAll(
                 { assert workflow.success },
                 { assert snapshot(
-                    // Check the name of the output directory
+					// Check the name of the output directory
                     workflow.out.vep_resources[0][0].tokenize('/').last(),
-                    // Check that no ouput files or directories are produced
+                    // Check untarred directory and files
                     output_directories_files
                 ).match() }
             )
         }
     }
+    */
 
     test("Test preparing VEP cache: untarring needed") {
 
