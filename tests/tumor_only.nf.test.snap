@@ -40,8 +40,6 @@
             },
             [
                 "alignments",
-                "alignments/subject_a_normal.cram",
-                "alignments/subject_a_normal.cram.crai",
                 "alignments/subject_a_tumor.cram",
                 "alignments/subject_a_tumor.cram.crai",
                 "clinical_filtering",
@@ -69,7 +67,6 @@
                 "research_filtering/subject_a_research.vcf.gz",
                 "research_filtering/subject_a_research.vcf.gz.tbi",
                 "vcf2cytosure",
-                "vcf2cytosure/normal.cgh",
                 "vcf2cytosure/tumor.cgh",
                 "vcfanno",
                 "vcfanno/subject_a_vcfanno.vcf.gz",
@@ -83,7 +80,6 @@
                 "vep/subject_a_vep.vcf.gz_summary.html"
             ],
             [
-                "normal.cgh:md5,fb34d0b292e8cbac8d8aa91aef6b31f7",
                 "tumor.cgh:md5,ec06e9c9371636aba5e9717857e39e6b"
             ],
             [
@@ -139,6 +135,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.4"
         },
-        "timestamp": "2026-05-04T14:10:40.82735"
+        "timestamp": "2026-05-04T14:39:07.144405"
     }
 }
