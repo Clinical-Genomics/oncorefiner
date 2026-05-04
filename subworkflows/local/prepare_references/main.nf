@@ -17,7 +17,7 @@ workflow PREPARE_REFERENCES {
         //
 
         if (val_vep_cache) {
-            if (val_vep_cache.endsWith("tar.gz")) {
+            if (val_vep_cache.toString().endsWith("tar.gz")) {
                 ch_vep_resources = UNTAR_VEP_CACHE(
                                     channel.fromPath(val_vep_cache).map { it -> [[id:'vep_cache'], it] }.collect()
                                     )

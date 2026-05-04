@@ -38,7 +38,7 @@ nextflow_workflow {
                 ])
                 input[2] = channel.of([
                     [id:'subject_a'],
-                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.somatic.vcf.gz', checkIfExists: true)
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.sv.vcf.gz', checkIfExists: true)
                 ])
                 input[3] = channel.of([
                     [id:'subject_a'],

@@ -42,6 +42,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#73](https://github.com/Clinical-Genomics/oncorefiner/pull/73) Moved logic for processing SV VCF files, previously in `workflows/oncorefiner.nf`, to `PROCESS_SVS` subworkflow.
 - [#69](https://github.com/Clinical-Genomics/oncorefiner/pull/69) Renamed and refactored test config to `test_base.config` to include common parameters and files used for all tests.
 - [#69](https://github.com/Clinical-Genomics/oncorefiner/pull/69) Refactored default pipeline test and test profile to run a `tumor_normal` default test and updated snapshot.
+- [#87](https://github.com/Clinical-Genomics/oncorefiner/pull/87) Updated all testdata and file paths to GRCh38 files, updated snapshot.
 
 ### `Fixed`
 

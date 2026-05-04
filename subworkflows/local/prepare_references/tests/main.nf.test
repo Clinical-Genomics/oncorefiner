@@ -7,9 +7,8 @@ nextflow_workflow {
     tag "prepare_references"
     config "./nextflow.config"
 
-    /* test("Test preparing VEP cache: no untarring needed") {
-
-
+    test("Test preparing VEP cache: no untarring needed") {
+        /*
         setup {
          run("UNTAR", alias: "UNTAR_VEP_CACHE") {
             script "modules/nf-core/untar/main.nf"
@@ -23,6 +22,7 @@ nextflow_workflow {
                 }
             }
         }
+        */
 
         when {
 
@@ -32,7 +32,7 @@ nextflow_workflow {
 
             workflow {
                 """
-                input[0] = channel.from("\$PWD")
+                input[0] = params.pipelines_testdata_base_path + 'reference/GRCh37/vep_cache_and_plugins'
                 """
             }
         }
@@ -52,7 +52,6 @@ nextflow_workflow {
             )
         }
     }
-    */
 
     test("Test preparing VEP cache: untarring needed") {
 
