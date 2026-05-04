@@ -122,10 +122,6 @@
                     "c7dae0b238f6b5f4bf91c0682824f474"
                 ],
                 [
-                    "subject_a_clinical.vcf.gz",
-                    "9292541cc6f98c99aff34ed58aabe882"
-                ],
-                [
                     "subject_a_research.vcf.gz",
                     "5555fa260ad068c6b0c1704ac6ac933"
                 ],
@@ -136,14 +132,6 @@
                 [
                     "subject_a_vcfanno.vcf.gz",
                     "f79b3dd00e3a53231a4bbd52ebcc6d1d"
-                ],
-                [
-                    "subject_a_svdbquery_vep.vcf.gz",
-                    "9292541cc6f98c99aff34ed58aabe882"
-                ],
-                [
-                    "subject_a_vep.vcf.gz",
-                    "c7dae0b238f6b5f4bf91c0682824f474"
                 ]
             ]
         ],
@@ -151,6 +139,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.4"
         },
-        "timestamp": "2026-05-04T11:53:07.39034"
+        "timestamp": "2026-05-04T14:09:34.848951"
     }
 }
