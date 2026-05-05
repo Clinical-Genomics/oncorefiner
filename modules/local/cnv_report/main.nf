@@ -29,7 +29,7 @@ process CNV_REPORT {
             cnv_segment = "${cnv_segment}" \\
         ), \\
         output_file = "${prefix}.html" \\
-    )' 
+    )'
     """
 
     stub:

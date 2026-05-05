@@ -16,6 +16,8 @@ Define where the pipeline should find input data and save output data.
 | `bai_tumor` | Path to BAM index file for the tumor sample. | `string` |  |  |  |
 | `bam_normal` | Path to alignment BAM file for the normal sample. | `string` |  |  |  |
 | `bai_normal` | Path to BAM index file for the normal sample. | `string` |  |  |  |
+| `cnv_gene` | Path to a file containing gene-level CNV calls. | `string` |  |  |  |
+| `cnv_segment` | Path to a file containing segment-level CNV calls. | `string` |  |  |  |
 | `sex` | Sex of the patient. (accepted: `female`\|`male`\|`unknown`) | `string` |  |  |  |
 | `email` | Email address for completion summary. <details><summary>Help</summary><small>Set this parameter to your e-mail address to get a summary e-mail with details of the run sent to you when the workflow exits. If set in your user config file (`~/.nextflow/config`) then you don't need to specify this on the command line for every run.</small></details>| `string` |  |  |  |
 | `multiqc_title` | MultiQC report title. Printed as page header, used for filename if not otherwise specified. | `string` |  |  |  |
