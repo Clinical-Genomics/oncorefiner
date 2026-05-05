@@ -12,7 +12,9 @@ process CNV_REPORT {
     tuple val(meta), path(rmd_template), path(cnv_gene), path(cnv_segment)
 
     output:
-    tuple val(meta), path("*.html"), emit: report
+    tuple val(meta), path("*.html")             , emit: report
+    path  "versions.yml"                        , emit: versions
+    tuple val("${task.process}"), val('rmarkdown'), eval("Rscript -e 'cat(paste(packageVersion('rmarkdown'), collapse='.'))'"), topic: versions, emit: versions_rmarkdown
 
     when:
     task.ext.when == null || task.ext.when
@@ -27,13 +29,12 @@ process CNV_REPORT {
             cnv_segment = "${cnv_segment}" \\
         ), \\
         output_file = "${prefix}.html" \\
-    )' \\
+    )' 
     """
 
     stub:
     def prefix = task.ext.prefix ?: "${meta.id}_cnv_report"
     """
     touch ${prefix}.html
-    """
 
 }
