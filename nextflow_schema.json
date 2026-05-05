@@ -77,6 +77,22 @@
                     "format": "file-path",
                     "exists": true
                 },
+                "cnv_gene": {
+                    "type": "string",
+                    "description": "Path to a file containing gene-level CNV calls.",
+                    "fa_icon": "fas fa-file",
+                    "pattern": "^\\S+\\.tsv$",
+                    "format": "file-path",
+                    "exists": true
+                },
+                "cnv_segment": {
+                    "type": "string",
+                    "description": "Path to a file containing segment-level CNV calls.",
+                    "fa_icon": "fas fa-file",
+                    "pattern": "^\\S+\\.tsv$",
+                    "format": "file-path",
+                    "exists": true
+                },
                 "sex": {
                     "type": "string",
                     "enum": ["female", "male", "unknown"],
