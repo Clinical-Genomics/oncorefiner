@@ -8,31 +8,16 @@ nextflow_workflow {
     config "./nextflow.config"
 
     test("Test preparing VEP cache: no untarring needed") {
-        /*
-        setup {
-         run("UNTAR", alias: "UNTAR_VEP_CACHE") {
-            script "modules/nf-core/untar/main.nf"
-            process {
-                """
-                input[0] = channel.of([
-                    [id:'vep_cache'],
-                    file(params.pipelines_testdata_base_path + 'reference/GRCh38/vep_cache.tar.gz', checkIfExists: true)
-                ])
-                """
-                }
-            }
-        }
-        */
 
         when {
 
             params {
                 outdir = "$outputDir"
             }
-
+            // Provided path to mock input (subworkflow wants value with path to directory) - should be improved in the future
             workflow {
                 """
-                input[0] = params.pipelines_testdata_base_path + 'reference/GRCh37/vep_cache_and_plugins'
+                input[0] =  'path/to/vep_cache_untarred'
                 """
             }
         }

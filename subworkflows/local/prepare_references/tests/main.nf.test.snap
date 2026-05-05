@@ -1,7 +1,7 @@
 {
     "Test preparing VEP cache: no untarring needed": {
         "content": [
-            "vep_cache_and_plugins",
+            "vep_cache_untarred",
             [
                 
             ]
@@ -10,7 +10,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.4"
         },
-        "timestamp": "2026-05-04T11:11:37.275726"
+        "timestamp": "2026-05-05T09:34:53.861164"
     },
     "Test preparing VEP cache: untarring needed": {
         "content": [
