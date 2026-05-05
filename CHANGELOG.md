@@ -71,7 +71,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#67](https://github.com/Clinical-Genomics/oncorefiner/pull/67) `--help` parameter not working
 - [#72](https://github.com/Clinical-Genomics/oncorefiner/pull/72) Added subworkflow test to `PREPARE_REFERENCES`
 - [#82](https://github.com/Clinical-Genomics/oncorefiner/pull/82) Add index files for SNV clinical and research filtered vcfs
-- [#90](https://github.com/Clinical-Genomics/oncorefiner/pull/90) Updated `GENERATE_CYTOSURE` test meta to be `subject_a` and input to contain tbi.
+- [#90](https://github.com/Clinical-Genomics/oncorefiner/pull/90) Fixed bug in `GENERATE_CYTOSURE` and `PROCESS_SNVs`: updated test meta to be `subject_a` and input to contain tbi.
 
 ### `Dependencies`
 

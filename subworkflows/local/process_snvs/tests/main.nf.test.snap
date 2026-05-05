@@ -3,42 +3,42 @@
         "content": [
             [
                 "clinical_filtering",
-                "clinical_filtering/SNV_clinical.vcf.gz",
-                "clinical_filtering/SNV_clinical.vcf.gz.tbi",
+                "clinical_filtering/subject_a_clinical.vcf.gz",
+                "clinical_filtering/subject_a_clinical.vcf.gz.tbi",
                 "research_filtering",
-                "research_filtering/SNV_research.vcf.gz",
-                "research_filtering/SNV_research.vcf.gz.tbi",
+                "research_filtering/subject_a_research.vcf.gz",
+                "research_filtering/subject_a_research.vcf.gz.tbi",
                 "vcfanno",
-                "vcfanno/SNV_vcfanno.vcf.gz",
-                "vcfanno/SNV_vcfanno.vcf.gz.tbi",
+                "vcfanno/subject_a_vcfanno.vcf.gz",
+                "vcfanno/subject_a_vcfanno.vcf.gz.tbi",
                 "vep",
-                "vep/SNV_vep.vcf.gz",
-                "vep/SNV_vep.vcf.gz.tbi",
-                "vep/SNV_vep.vcf.gz_summary.html"
+                "vep/subject_a_vep.vcf.gz",
+                "vep/subject_a_vep.vcf.gz.tbi",
+                "vep/subject_a_vep.vcf.gz_summary.html"
             ],
             [
                 [
-                    "SNV_clinical.vcf.gz",
+                    "subject_a_clinical.vcf.gz",
                     "3ae83e0821730d9d187338e3828106fa"
                 ],
                 [
-                    "SNV_research.vcf.gz",
+                    "subject_a_research.vcf.gz",
                     "e28954aa6ba6eda7add58297db6806c0"
                 ],
                 [
-                    "SNV_vcfanno.vcf.gz",
+                    "subject_a_vcfanno.vcf.gz",
                     "80f7be09a6f5e95e7d54072420a1074"
                 ],
                 [
-                    "SNV_vep.vcf.gz",
+                    "subject_a_vep.vcf.gz",
                     "3ae83e0821730d9d187338e3828106fa"
                 ]
             ]
         ],
         "meta": {
-            "nf-test": "0.9.2",
-            "nextflow": "25.10.0"
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.4"
         },
-        "timestamp": "2026-04-27T14:15:15.370423"
+        "timestamp": "2026-05-05T14:50:14.122274"
     }
 }
