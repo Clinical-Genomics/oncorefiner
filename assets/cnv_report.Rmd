@@ -1,0 +1,91 @@
+---
+title: "CNV Report"
+date: "`r format(Sys.time(), '%Y-%m-%d %H:%M %Z')`"
+output:
+  html_document:
+    theme: cosmo
+    highlight: tango
+    code_folding: hide
+    toc: false
+params:
+  cnv_gene: ""
+  cnv_segment: ""
+---
+
+```{r setup, include=FALSE}
+library(readr)
+library(DT)
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+```
+
+
+This report provides an interactive view of Copy Number Variation (CNV) results at both the gene and segment level. 
+
+---
+
+<details>
+<summary><strong>Input data (click to expand)</strong></summary>
+
+- **Gene-level CNV file:** `r params$cnv_gene`
+- **Segment-level CNV file:** `r params$cnv_segment`
+
+</details>
+
+
+<details>
+<summary><strong>How to use the yables (click to expand)</strong></summary>
+
+The tables below allow sorting and filtering.
+
+**Sorting** - Click any column header to sort ascending or descending.
+
+**Filtering** - Use the boxes at the top of each column to filter results. The tables support **regular expression (regex)** search:
+
+  - Exact match (recommended for genes): `^TP53$` → matches only TP53
+  - Starts with: `^BRCA`
+  - Ends with: `TP53$`
+
+</details>
+
+---
+
+
+```{r load-data}
+cnv_gene <- read_tsv(params$cnv_gene)
+cnv_segment <- read_tsv(params$cnv_segment)
+```
+
+## Gene-level CNV results
+
+This table summarizes CNV calls at the gene level.
+
+```{r gene-table}
+datatable(
+  cnv_gene,
+  filter = "top",
+  options = list(
+    pageLength = 10,
+    autoWidth = TRUE,
+    search = list(regex = TRUE)
+  ),
+  rownames = FALSE
+) 
+```
+
+
+## Segment-level CNV results
+
+This table summarizes CNV calls at the genomic segment level.
+
+```{r segment-table}
+datatable(
+  cnv_segment,
+  filter = "top",
+  options = list(
+    pageLength = 10,
+    autoWidth = TRUE,
+    search = list(regex = TRUE)
+  ),
+  rownames = FALSE
+)
+```
