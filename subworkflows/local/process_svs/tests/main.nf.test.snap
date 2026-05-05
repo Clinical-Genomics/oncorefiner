@@ -17,8 +17,16 @@
             ],
             [
                 [
+                    "subject_a_clinical.vcf.gz",
+                    "aca08367cdefe343d4d2a8c10a8633be"
+                ],
+                [
                     "subject_a_research.vcf.gz",
                     "5555fa260ad068c6b0c1704ac6ac933"
+                ],
+                [
+                    "subject_a_svdbquery_vep.vcf.gz",
+                    "aca08367cdefe343d4d2a8c10a8633be"
                 ]
             ],
             [
@@ -32,6 +40,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.4"
         },
-        "timestamp": "2026-05-04T14:19:50.809003"
+        "timestamp": "2026-05-05T17:37:19.784712"
     }
 }
