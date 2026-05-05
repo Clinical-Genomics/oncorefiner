@@ -29,7 +29,7 @@ nextflow_workflow {
             assertAll(
                 { assert workflow.success },
                 { assert snapshot(
-					// Check the name of the output directory
+                    // Check the name of the output directory
                     workflow.out.vep_resources[0][0].tokenize('/').last(),
                     // Check that no ouput files or directories are produced
                     output_directories_files

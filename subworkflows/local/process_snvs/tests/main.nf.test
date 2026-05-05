@@ -10,17 +10,17 @@ nextflow_workflow {
     test("with tumor-normal GRCh38 data") {
 
         setup {
-        run("UNTAR", alias: "UNTAR_VEP_CACHE") {
-            script "modules/nf-core/untar/main.nf"
-            process {
-                """
-                input[0] = channel.of([
-                    [id:'vep_cache'],
-                    file(params.pipelines_testdata_base_path + 'reference/GRCh38/vep_cache.tar.gz', checkIfExists: true)
-                ])
-                """
+            run("UNTAR", alias: "UNTAR_VEP_CACHE") {
+                script "modules/nf-core/untar/main.nf"
+                process {
+                    """
+                    input[0] = channel.of([
+                        [id:'vep_cache'],
+                        file(params.pipelines_testdata_base_path + 'reference/GRCh38/vep_cache.tar.gz', checkIfExists: true)
+                    ])
+                    """
+                    }
                 }
-            }
         }
 
         when {
