@@ -7,7 +7,7 @@ nextflow_workflow {
     tag "process_snvs"
 
 
-    test("with tumor-normal GRCh38 data") {
+    test("with tumor-normal data") {
 
         setup {
             run("UNTAR", alias: "UNTAR_VEP_CACHE") {
