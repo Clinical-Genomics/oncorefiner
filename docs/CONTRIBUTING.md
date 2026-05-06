@@ -143,13 +143,21 @@ Devcontainer specs:
 
 ### Running tests
 
-You have the option to test your changes locally by running the pipeline. For receiving warnings about process selectors and other `debug` information, it is recommended to use the debug profile. Execute all the tests with the following command:
+You have the option to test your changes locally by running the pipeline test suite. For receiving warnings about process selectors and other `debug` information, it is recommended to use the debug profile. Execute all the tests with the following command:
 
 ```bash
 nf-test test --profile debug,test,docker --verbose
 ```
 
-You can also run `nf-test test <path>` for a single given test.
+You can also run `nf-test test <path> (...)` or `nf-test test --tag <tag> (...)` for a single given test or groups of tests.
+
+> [!NOTE]  
+> It is also possible to test run the pipeline using test profiles, without running nf-test. There are currently two test profiles available and you can run:
+>
+> - `nextflow run . -profile test` for a default test run of a Tumor Normal analysis.
+> - `nextflow run . -profile test_tumor_only` for a test run of a Tumor only analysis.
+>
+> When running nf-test with the command mentioned above, the correct test profile will be automatically applied for each test.
 
 When you create a pull request with changes, [GitHub Actions](https://github.com/features/actions) will run automatic tests.
 Typically, pull-requests are only fully reviewed when these tests are passing, though of course we can help out before then.

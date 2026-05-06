@@ -1,5 +1,5 @@
 {
-    "-profile test": {
+    "Tumor Normal analysis with '-profile test'": {
         "content": [
             {
                 "BCFTOOLS_VIEW_CLINICAL": {
