@@ -2,6 +2,7 @@ nextflow_workflow {
 
     name "Test subworkflow Process Structural Variants (PROCESS_SVS)"
     script "../main.nf"
+    config "./nextflow.config"
     workflow "PROCESS_SVS"
     tag "subworkflows"
     tag "process_svs"
@@ -76,6 +77,7 @@ nextflow_workflow {
                     output_directories_and_files,
                     // Gzipped VCFs with stable variants
                     gz_vcfs_with_stable_variants.collect{ file -> [ file.getName(), path(file.toString()).vcf.variantsMD5 ] },
+
                     // VCFs with stable variants
                     vcfs_with_stable_variants.collect{ file -> [ file.getName(), path(file.toString()).vcf.variantsMD5 ] }
                 ).match() }
