@@ -3,18 +3,18 @@
         "content": [
             [
                 "clinical_filtering",
-                "clinical_filtering/SNV_clinical.vcf.gz",
-                "clinical_filtering/SNV_clinical.vcf.gz.tbi",
+                "clinical_filtering/subject_a_clinical.vcf.gz",
+                "clinical_filtering/subject_a_clinical.vcf.gz.tbi",
                 "research_filtering",
-                "research_filtering/SNV_research.vcf.gz",
-                "research_filtering/SNV_research.vcf.gz.tbi",
+                "research_filtering/subject_a_research.vcf.gz",
+                "research_filtering/subject_a_research.vcf.gz.tbi",
                 "vcfanno",
-                "vcfanno/SNV_vcfanno.vcf.gz",
-                "vcfanno/SNV_vcfanno.vcf.gz.tbi",
+                "vcfanno/subject_a_vcfanno.vcf.gz",
+                "vcfanno/subject_a_vcfanno.vcf.gz.tbi",
                 "vep",
-                "vep/SNV_vep.vcf.gz",
-                "vep/SNV_vep.vcf.gz.tbi",
-                "vep/SNV_vep.vcf.gz_summary.html"
+                "vep/subject_a_vep.vcf.gz",
+                "vep/subject_a_vep.vcf.gz.tbi",
+                "vep/subject_a_vep.vcf.gz_summary.html"
             ],
             [
                 [
