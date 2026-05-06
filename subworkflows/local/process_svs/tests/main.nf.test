@@ -77,7 +77,6 @@ nextflow_workflow {
                     output_directories_and_files,
                     // Gzipped VCFs with stable variants
                     gz_vcfs_with_stable_variants.collect{ file -> [ file.getName(), path(file.toString()).vcf.variantsMD5 ] },
-
                     // VCFs with stable variants
                     vcfs_with_stable_variants.collect{ file -> [ file.getName(), path(file.toString()).vcf.variantsMD5 ] }
                 ).match() }
