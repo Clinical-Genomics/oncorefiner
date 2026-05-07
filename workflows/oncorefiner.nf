@@ -178,8 +178,12 @@ workflow ONCOREFINER {
         )
 
     emit:
-    multiqc_report = MULTIQC.out.report.toList() // channel: /path/to/multiqc_report.html
-    versions       = ch_versions                 // channel: [ path(versions.yml) ]
+    multiqc_report            = MULTIQC.out.report.toList()            // channel: /path/to/multiqc_report.html
+    snv_vcfanno_vcf           = PROCESS_SNVS.out.vcfanno_vcf           // channel: [val(meta), path(vcf)]
+    snv_vcfanno_tbi           = PROCESS_SNVS.out.vcfanno_tbi           // channel: [val(meta), path(vcf.tbi)]
+    snv_research_filtered_vcf = PROCESS_SNVS.out.research_filtered_vcf // channel: [val(meta), path(vcf)]
+    snv_research_filtered_tbi = PROCESS_SNVS.out.research_filtered_tbi // channel: [val(meta), path(vcf.tbi)]
+    versions                  = ch_versions                            // channel: [ path(versions.yml) ]
 
 }
 
