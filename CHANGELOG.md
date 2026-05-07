@@ -72,7 +72,8 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#72](https://github.com/Clinical-Genomics/oncorefiner/pull/72) Added subworkflow test to `PREPARE_REFERENCES`
 - [#82](https://github.com/Clinical-Genomics/oncorefiner/pull/82) Add index files for SNV clinical and research filtered vcfs
 - [#90](https://github.com/Clinical-Genomics/oncorefiner/pull/90) Fixed bug in `GENERATE_CYTOSURE` and `PROCESS_SNVs`: updated test meta to be `subject_a` and input to contain tbi.
-- [#96](https://github.com/Clinical-Genomics/oncorefiner/pull/96) Moved custom settings for `PROCESS_SNVS:BCFTOOLS_VIEW_*` to test config.
+- [#95](https://github.com/Clinical-Genomics/oncorefiner/pull/95) Fixed so VEP annotates in the same order for tests in `PROCESS_SVs`.
+- [#96](https://github.com/Clinical-Genomics/oncorefiner/pull/96) Moved custom test settings for `PROCESS_SNVS:BCFTOOLS_VIEW_*` to test configs.
 
 ### `Dependencies`
 
