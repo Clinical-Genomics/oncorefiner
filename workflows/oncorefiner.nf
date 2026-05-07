@@ -200,7 +200,6 @@ workflow ONCOREFINER {
         sv_research_filtered_tbi  = PROCESS_SVS.out.research_filtered_tbi  // channel: [val(meta), path(tbi)]
         versions                  = ch_versions                            // channel: [ path(versions.yml) ]
 
-
 }
 
 /*
