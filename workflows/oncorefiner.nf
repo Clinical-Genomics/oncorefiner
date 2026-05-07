@@ -178,27 +178,26 @@ workflow ONCOREFINER {
         )
 
     emit:
-        cadd_annotated_vcf        = PROCESS_SNVS.out.cadd_annotated_vcf        // channel: [val(meta), path(vcf)]
-        cadd_annotated_tbi        = PROCESS_SNVS.out.cadd_annotated_tbi        // channel: [val(meta), path(tbi)]
+        cadd_annotated_vcf        = PROCESS_SNVS.out.cadd_annotated_vcf    // channel: [val(meta), path(vcf)]
+        cadd_annotated_tbi        = PROCESS_SNVS.out.cadd_annotated_tbi    // channel: [val(meta), path(tbi)]
         multiqc_report            = MULTIQC.out.report.toList()            // channel: /path/to/multiqc_report.html
-        snv_clinical_filtered_vcf = PROCESS_SNVS.out.clinical_filtered_vcf     // channel: [val(meta), path(vcf)]
-        snv_clinical_filtered_tbi = PROCESS_SNVS.out.clinical_filtered_tbi     // channel: [val(meta), path(tbi)]
+        snv_clinical_filtered_vcf = PROCESS_SNVS.out.clinical_filtered_vcf // channel: [val(meta), path(vcf)]
+        snv_clinical_filtered_tbi = PROCESS_SNVS.out.clinical_filtered_tbi // channel: [val(meta), path(tbi)]
         snv_vcfanno_vcf           = PROCESS_SNVS.out.vcfanno_vcf           // channel: [val(meta), path(vcf)]
         snv_vcfanno_tbi           = PROCESS_SNVS.out.vcfanno_tbi           // channel: [val(meta), path(vcf.tbi)]
-        snv_vep_annotated_vcf     = PROCESS_SNVS.out.vep_annotated_vcf         // channel: [val(meta), path(vcf)]
-        snv_vep_annotated_tbi     = PROCESS_SNVS.out.vep_annotated_tbi         // channel: [val(meta), path(tbi)]
-        snv_vep_report            = PROCESS_SNVS.out.vep_report                // channel: [val(meta), val(process), val(tool), path(html)]
+        snv_vep_annotated_vcf     = PROCESS_SNVS.out.vep_annotated_vcf     // channel: [val(meta), path(vcf)]
+        snv_vep_annotated_tbi     = PROCESS_SNVS.out.vep_annotated_tbi     // channel: [val(meta), path(tbi)]
+        snv_vep_report            = PROCESS_SNVS.out.vep_report            // channel: [val(meta), val(process), val(tool), path(html)]
         snv_research_filtered_vcf = PROCESS_SNVS.out.research_filtered_vcf // channel: [val(meta), path(vcf)]
         snv_research_filtered_tbi = PROCESS_SNVS.out.research_filtered_tbi // channel: [val(meta), path(vcf.tbi)]
-        sv_clinical_filtered_vcf  = PROCESS_SVS.out.clinical_filtered_vcf     // channel: [val(meta), path(vcf)]
-        sv_clinical_filtered_tbi  = PROCESS_SVS.out.clinical_filtered_tbi     // channel: [val(meta), path(tbi)]
-        sv_vep_annotated_vcf      = PROCESS_SVS.out.vep_annotated_vcf         // channel: [val(meta), path(vcf)]
-        sv_vep_annotated_tbi      = PROCESS_SVS.out.vep_annotated_tbi         // channel: [val(meta), path(tbi)]
-        sv_vep_report             = PROCESS_SVS.out.vep_report                // channel: [val(meta), val(process), val(tool), path(html)]
-        sv_svdb_vcf               = PROCESS_SVS.out.svdb_vcf                  // channel: [val(meta), path(vcf)]
-        sv_research_filtered_vcf  = PROCESS_SVS.out.research_filtered_vcf     // channel: [val(meta), path(vcf)]
-        sv_research_filtered_tbi  = PROCESS_SVS.out.research_filtered_tbi     // channel: [val(meta), path(tbi)]
-
+        sv_clinical_filtered_vcf  = PROCESS_SVS.out.clinical_filtered_vcf  // channel: [val(meta), path(vcf)]
+        sv_clinical_filtered_tbi  = PROCESS_SVS.out.clinical_filtered_tbi  // channel: [val(meta), path(tbi)]
+        sv_vep_annotated_vcf      = PROCESS_SVS.out.vep_annotated_vcf      // channel: [val(meta), path(vcf)]
+        sv_vep_annotated_tbi      = PROCESS_SVS.out.vep_annotated_tbi      // channel: [val(meta), path(tbi)]
+        sv_vep_report             = PROCESS_SVS.out.vep_report             // channel: [val(meta), val(process), val(tool), path(html)]
+        sv_svdb_vcf               = PROCESS_SVS.out.svdb_vcf               // channel: [val(meta), path(vcf)]
+        sv_research_filtered_vcf  = PROCESS_SVS.out.research_filtered_vcf  // channel: [val(meta), path(vcf)]
+        sv_research_filtered_tbi  = PROCESS_SVS.out.research_filtered_tbi  // channel: [val(meta), path(tbi)]
         versions                  = ch_versions                            // channel: [ path(versions.yml) ]
 
 

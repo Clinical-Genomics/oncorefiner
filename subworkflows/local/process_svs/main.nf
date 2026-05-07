@@ -125,5 +125,5 @@ workflow PROCESS_SVS {
         vcf2cytosure_cgh      = GENERATE_CYTOSURE_FILES.out.cgh // channel: [val(meta), path(cgh)]
         vep_annotated_vcf     = ENSEMBLVEP_VEP.out.vcf          // channel: [val(meta), path(vcf)]
         vep_annotated_tbi     = ENSEMBLVEP_VEP.out.tbi          // channel: [val(meta), path(tbi)]
-        vep_report            = ENSEMBLVEP_VEP.out.report       // channel: [val(meta), path(html)]
+        vep_report            = ENSEMBLVEP_VEP.out.report       // channel: [val(meta), val(process), val(tool), path(html)]
 }
