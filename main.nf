@@ -174,7 +174,11 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     SAMTOOLS_VIEW ( ch_samtools_in.bam_bai, ch_samtools_in.fasta_fai, [[], []], [[],[]], 'crai' )
 
     emit:
-    multiqc_report = ONCOREFINER.out.multiqc_report // channel: /path/to/multiqc_report.html
+    multiqc_report            = ONCOREFINER.out.multiqc_report            // channel: /path/to/multiqc_report.html
+    snv_vcfanno_vcf           = ONCOREFINER.out.snv_vcfanno_vcf           // channel: [val(meta), path(vcf)]
+    snv_vcfanno_tbi           = ONCOREFINER.out.snv_vcfanno_tbi           // channel: [val(meta), path(vcf.tbi)]
+    snv_research_filtered_vcf = ONCOREFINER.out.snv_research_filtered_vcf // channel: [val(meta), path(vcf)]
+    snv_research_filtered_tbi = ONCOREFINER.out.snv_research_filtered_tbi // channel: [val(meta), path(vcf.tbi)]
 }
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -239,6 +243,21 @@ workflow {
         params.hook_url,
         CLINICALGENOMICS_ONCOREFINER.out.multiqc_report
     )
+
+    //
+    // WORKFLOW OUTPUTS: Group files by publish directory
+    //
+
+    ch_snv_publish = CLINICALGENOMICS_ONCOREFINER.out.snv_vcfanno_vcf
+                    .mix(CLINICALGENOMICS_ONCOREFINER.out.snv_vcfanno_tbi)
+                    .mix(CLINICALGENOMICS_ONCOREFINER.out.snv_research_filtered_vcf)
+                    .mix(CLINICALGENOMICS_ONCOREFINER.out.snv_research_filtered_tbi)
+
+    // Publish
+
+
+
+    // Output block
 }
 
 /*
