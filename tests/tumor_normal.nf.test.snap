@@ -1,5 +1,5 @@
 {
-    "-profile test": {
+    "Tumor Normal analysis with '-profile test'": {
         "content": [
             {
                 "BCFTOOLS_VIEW_CLINICAL": {
@@ -46,6 +46,7 @@
                 "alignments/subject_a_tumor.cram.crai",
                 "clinical_filtering",
                 "clinical_filtering/subject_a_clinical.vcf.gz",
+                "clinical_filtering/subject_a_clinical.vcf.gz.tbi",
                 "multiqc",
                 "multiqc/multiqc_data",
                 "multiqc/multiqc_data/llms-full.txt",
@@ -66,6 +67,7 @@
                 "process_svs/subject_a_vcfdb_query.vcf",
                 "research_filtering",
                 "research_filtering/subject_a_research.vcf.gz",
+                "research_filtering/subject_a_research.vcf.gz.tbi",
                 "vcf2cytosure",
                 "vcf2cytosure/normal.cgh",
                 "vcf2cytosure/tumor.cgh",
@@ -149,6 +151,6 @@
             "nf-test": "0.9.2",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2026-04-23T17:04:52.433507"
+        "timestamp": "2026-04-27T14:28:49.640751"
     }
 }
