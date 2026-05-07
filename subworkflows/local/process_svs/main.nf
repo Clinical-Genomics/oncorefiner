@@ -115,4 +115,15 @@ workflow PROCESS_SVS {
             ch_vcf2cytosure_in.tbi,
             ch_vcf2cytosure_in.vcf
         )
+
+    emit:
+        svdb_vcf = SVDB_QUERY.out.vcf
+        research_filtered_vcf = BCFTOOLS_VIEW_RESEARCH.out.vcf
+        research_filtered_tbi = BCFTOOLS_VIEW_RESEARCH.out.tbi
+        vep_annotated_vcf = ENSEMBLVEP_VEP.out.vcf
+        vep_annotated_tbi = ENSEMBLVEP_VEP.out.tbi
+        vep_report = ENSEMBLVEP_VEP.out.report
+        clinical_filtered_vcf = BCFTOOLS_VIEW_CLINICAL.out.vcf
+        clinical_filtered_tbi = BCFTOOLS_VIEW_CLINICAL.out.tbi
+        cgh = GENERATE_CYTOSURE_FILES.out.cgh
 }
