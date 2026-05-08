@@ -2,25 +2,27 @@ nextflow_workflow {
 
     name "Test subworkflow PROCESS_SNVS"
     script "../main.nf"
+    config './nextflow.config'
     workflow "PROCESS_SNVS"
     tag "subworkflows"
     tag "process_snvs"
 
-    setup {
-        run("UNTAR", alias: "UNTAR_VEP_CACHE") {
-            script "modules/nf-core/untar/main.nf"
-            process {
-                """
-                input[0] = channel.of([
-                    [id:'vep_cache'],
-                    file(params.pipelines_testdata_base_path + 'reference/vep_cache_and_plugins.tar.gz', checkIfExists: true)
-                ])
-                """
-            }
-        }
-    }
 
     test("with tumor-normal data") {
+
+        setup {
+            run("UNTAR", alias: "UNTAR_VEP_CACHE") {
+                script "modules/nf-core/untar/main.nf"
+                process {
+                    """
+                    input[0] = channel.of([
+                        [id:'vep_cache'],
+                        file(params.pipelines_testdata_base_path + 'reference/GRCh38/vep_cache.tar.gz', checkIfExists: true)
+                    ])
+                    """
+                    }
+                }
+        }
 
         when {
             params {
@@ -31,44 +33,45 @@ nextflow_workflow {
                 """
                 input[0] = channel.of([
                     [id:'reference'],
-                    file(params.pipelines_testdata_base_path + 'reference/reference.fasta', checkIfExists: true)
+                    file(params.pipelines_testdata_base_path + 'reference/GRCh38/GRCh38_masked_exclusions_alts_hlas_subset.fasta', checkIfExists: true)
                 ])
-                input[1] = channel.fromPath(params.pipelines_testdata_base_path + 'reference/reference.fasta.fai', checkIfExists: true).map {it -> [[id:it.simpleName], it]  }.collect()
+                input[1] = channel.fromPath(params.pipelines_testdata_base_path + 'reference/GRCh38/GRCh38_masked_exclusions_alts_hlas_subset.fasta.fai', checkIfExists: true).map {it -> [[id:it.simpleName], it]  }.collect()
                 input[2] = channel.fromPath("$projectDir/assets/cadd_to_vcf_header.txt", checkIfExists: true).collect()
                 input[3] = null
                 input[4] = null
                 input[5] = channel.of([
                     [id:'subject_a'],
-                    file(params.pipelines_testdata_base_path + 'testdata/tumor_normal/subject_a.tumor.purple.somatic.vcf.gz', checkIfExists: true)
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.somatic.vcf.gz', checkIfExists: true)
                 ])
                 input[6] = channel.of([
                     [id:'subject_a'],
-                    file(params.pipelines_testdata_base_path + 'testdata/tumor_normal/subject_a.tumor.purple.somatic.vcf.gz.tbi', checkIfExists: true)
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.somatic.vcf.gz.tbi', checkIfExists: true)
                 ])
                 input[7] = []
                 input[8] = channel.of([
-                    file(params.pipelines_testdata_base_path + 'reference/vcfanno_functions.lua', checkIfExists: true)
+                    file(params.pipelines_testdata_base_path + 'reference/GRCh38/vcfanno_functions.lua', checkIfExists: true)
                 ])
                 input[9] = channel.of([
-                    file(params.pipelines_testdata_base_path + 'reference/grch37_gnomad_-r2.1.1-.vcf.gz', checkIfExists: true),
-                    file(params.pipelines_testdata_base_path + 'reference/grch37_gnomad_-r2.1.1-.vcf.gz.tbi', checkIfExists: true)
+                    file(params.pipelines_testdata_base_path + 'reference/GRCh38/grch38_gnomad_reformatted_merged_v4.1_subset.vcf.gz', checkIfExists: true),
+                    file(params.pipelines_testdata_base_path + 'reference/GRCh38/grch38_gnomad_reformatted_merged_v4.1_subset.vcf.gz.tbi', checkIfExists: true),
+                    file(params.pipelines_testdata_base_path + 'reference/GRCh38/grch38_swegen_frequencies_fixploidy_-20190204_subset.vcf.gz', checkIfExists: true),
+                    file(params.pipelines_testdata_base_path + 'reference/GRCh38/grch38_swegen_frequencies_fixploidy_-20190204_subset.vcf.gz.tbi', checkIfExists: true),
+                    file(params.pipelines_testdata_base_path + 'reference/GRCh38/whole_genome_SNVs_chr_subset.tsv.gz', checkIfExists: true),
+                    file(params.pipelines_testdata_base_path + 'reference/GRCh38/whole_genome_SNVs_chr_subset.tsv.gz.tbi', checkIfExists: true)
+
                 ])
                 input[10] = channel.of([
-                    file(params.pipelines_testdata_base_path + 'reference/vcfanno.toml', checkIfExists: true)
+                    file(params.pipelines_testdata_base_path + 'reference/GRCh38/grch38_vcfanno_config.toml', checkIfExists: true)
                 ])
                 input[11] = UNTAR_VEP_CACHE.out.untar.map{ _meta, files -> [files]}.collect()
                 input[12] = channel.of([
-                    file(params.pipelines_testdata_base_path + 'reference/LoFtool_scores.txt', checkIfExists: true),
-                    file(params.pipelines_testdata_base_path + 'reference/spliceai_21_scores_raw_indel_-v1.3-.vcf.gz', checkIfExists: true),
-                    file(params.pipelines_testdata_base_path + 'reference/spliceai_21_scores_raw_snv_-v1.3-.vcf.gz', checkIfExists: true),
-                    file(params.pipelines_testdata_base_path + 'reference/pLI_values.txt', checkIfExists: true),
-                    file(params.pipelines_testdata_base_path + 'reference/spliceai_21_scores_raw_indel_-v1.3-.vcf.gz.tbi', checkIfExists: true),
-                    file(params.pipelines_testdata_base_path + 'reference/spliceai_21_scores_raw_snv_-v1.3-.vcf.gz.tbi', checkIfExists: true)
+                    file(params.pipelines_testdata_base_path + 'reference/GRCh38/LoFtool_scores.txt', checkIfExists: true),
+                    file(params.pipelines_testdata_base_path + 'reference/GRCh38/pLI_values.txt', checkIfExists: true)
                 ])
                 input[13] = null
-                input[14] = 'GRCh37'
+                input[14] = 'GRCh38'
                 input[15] = 'homo_sapiens'
-                input[16] = '107'
+                input[16] = '115'
                 """
             }
         }
