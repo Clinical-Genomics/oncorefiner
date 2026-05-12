@@ -28,6 +28,7 @@ workflow PROCESS_SNVS {
         ch_cadd_header           // channel: [optional]  [val(meta), path(header_file)]
         ch_cadd_prescored_indels // channel: [optional]  [val(meta), path(dir)]
         ch_cadd_resources        // channel: [optional]  [val(meta), path(dir)]
+        ch_genmod_score_config   // channel: [optional]  [val(meta), path(ini)]
         ch_snv_vcf               // channel: [optional]  [val(meta), path(vcf)]
         ch_snv_vcf_tbi           // channel: [optional]  [val(meta), path(vcf.tbi)]
         ch_vcfanno_extra         // channel: [optional]  [path(extra_file1), path(extra_file2), ...]
