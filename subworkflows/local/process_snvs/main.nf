@@ -14,6 +14,12 @@ include { BCFTOOLS_VIEW as BCFTOOLS_VIEW_RESEARCH } from '../../../modules/nf-co
 include { BCFTOOLS_VIEW as BCFTOOLS_VIEW_CLINICAL } from '../../../modules/nf-core/bcftools/view/main'
 include { ANNOTATE_CADD                           } from '../../../subworkflows/local/annotate_cadd'
 
+//
+// SUBWORKFLOW: Installed directly from genomic-medicine-sweden/subworkflows
+//
+
+include { VCF_ANNOTATE_SCORE_GENMOD } from '../../../subworkflows/genomic-medicine-sweden/vcf_annotate_score_genmod/main'
+
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     RUN PROCESS_SNVS WORKFLOW
@@ -100,13 +106,17 @@ workflow PROCESS_SNVS {
             ch_vep_extra_files
         )
 
+        VCF_ANNOTATE_SCORE_GENMOD (
+            ENSEMBLVEP_VEP.out.vcf,
+            channel.empty(),
+            channel.empty(),
+            ch_genmod_score_config,
+            true
+        )
+
         // Clinical Filtering
-        ENSEMBLVEP_VEP.out.vcf
-            .join(ENSEMBLVEP_VEP.out.tbi)
-            .map { meta, vcf, tbi ->
-                tuple(meta, vcf, tbi)
-                }
-            .set { ch_clinical_filtering_in }
+        ch_clinical_filtering_in = VCF_ANNOTATE_SCORE_GENMOD.out.vcf
+            .join(VCF_ANNOTATE_SCORE_GENMOD.out.index)
 
         BCFTOOLS_VIEW_CLINICAL(ch_clinical_filtering_in, [], [], [])
 }
