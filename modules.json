@@ -7,7 +7,7 @@
                 "genomic-medicine-sweden": {
                     "vcf_annotate_score_genmod": {
                         "branch": "main",
-                        "git_sha": "bad5cb80fa9961ead59fb6c1854f5c2103739f08",
+                        "git_sha": "3c5af8320da99f3124669335fad913e62051d61c",
                         "installed_by": ["subworkflows"]
                     }
                 }
@@ -34,7 +34,7 @@
                     "bcftools/view": {
                         "branch": "master",
                         "git_sha": "6383d8fe58f9498eecd5aa303e71a4a932d1e9f6",
-                        "installed_by": ["modules"]
+                        "installed_by": ["modules", "vcf_annotate_score_genmod"]
                     },
                     "cadd": {
                         "branch": "master",
@@ -50,6 +50,26 @@
                         "branch": "master",
                         "git_sha": "c0da8f3a26835d663873001382a708f75766fec6",
                         "installed_by": ["modules"]
+                    },
+                    "genmod/annotate": {
+                        "branch": "master",
+                        "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+                        "installed_by": ["vcf_annotate_score_genmod"]
+                    },
+                    "genmod/compound": {
+                        "branch": "master",
+                        "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+                        "installed_by": ["vcf_annotate_score_genmod"]
+                    },
+                    "genmod/models": {
+                        "branch": "master",
+                        "git_sha": "c754e45856699489382b0a7457fd63e26bae99a3",
+                        "installed_by": ["vcf_annotate_score_genmod"]
+                    },
+                    "genmod/score": {
+                        "branch": "master",
+                        "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
+                        "installed_by": ["vcf_annotate_score_genmod"]
                     },
                     "multiqc": {
                         "branch": "master",
