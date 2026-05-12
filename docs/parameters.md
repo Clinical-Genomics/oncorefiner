@@ -47,6 +47,7 @@ Annotation related files and options required for the workflow.
 | `vcfanno_toml` | Path to the vcfanno toml file. <details><summary>Help</summary><small>If no toml is passed, default configurations will be used according to genome build within the context of the pipeline.</small></details>| `string` |  |  |  |
 | `vcfanno_lua` | Path to the vcfanno lua file. <details><summary>Help</summary><small>Custom operations file (lua). For use when the built-in ops don't supply the needed reduction.</small></details>| `string` |  |  |  |
 | `svdb_query_dbs` | Databases used for structural variant annotation in vcf format. <details><summary>Help</summary><small>Path to comma-separated file containing information about the databases used for structural variant annotation.</small></details>| `string` |  |  |  |
+| `genmod_score_config` | Path to genmod score configuration file (rank model). | `string` |  |  |  |
 
 ## Institutional config options
 
