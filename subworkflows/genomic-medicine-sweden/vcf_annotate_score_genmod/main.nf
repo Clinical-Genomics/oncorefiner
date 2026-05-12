@@ -8,7 +8,7 @@ workflow VCF_ANNOTATE_SCORE_GENMOD {
     take:
     ch_vcf                       // channel: [mandatory] [ val(meta), path(vcf) ]
     ch_ped                       // channel: [optional]  [ val(meta), path(ped) ]
-    ch_genmod_reduced_penetrance // channel: [optional]  [ val(meta), path(penetrance) ]
+    ch_reduced_penetrance        // channel: [optional]  [ val(meta), path(penetrance) ]
     ch_score_config              // channel: [mandatory] [ val(meta), path(ini) ]
     val_run_score_only           // Boolean: If true, only run the scoring step
 
@@ -25,7 +25,7 @@ workflow VCF_ANNOTATE_SCORE_GENMOD {
 
         GENMOD_MODELS(
             ch_genmod_models_in,
-            ch_genmod_reduced_penetrance.map { _meta, file -> file },
+            ch_reduced_penetrance.map { _meta, file -> file },
         )
 
         ch_vcf_for_genmod_score = GENMOD_MODELS.out.vcf
