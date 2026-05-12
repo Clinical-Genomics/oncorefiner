@@ -43,7 +43,7 @@ input:
             type: file
             description: PED file
             pattern: "*.ped"
-  - ch_genmod_reduced_penetrance:
+  - ch_reduced_penetrance:
       description: |
         Channel with (optional) reduced penetrance file for genmod models
       structure:
