@@ -43,10 +43,10 @@ workflow ONCOREFINER {
         val_genome               // string:  [optional]  genome assembly (e.g. "GRCh38")
         val_species              // string:  [optional]  species (e.g. "homo_sapiens")
         val_vep_cache_version    // string:  [optional]  version of vep cache to use (e.g. "107")
-        multiqc_config
-        multiqc_logo
-        multiqc_methods_description
-        outdir
+    multiqc_config
+    multiqc_logo
+    multiqc_methods_description
+    outdir
 
     main:
 
