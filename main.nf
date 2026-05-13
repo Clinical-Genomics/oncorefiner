@@ -162,12 +162,12 @@ workflow CLINICALGENOMICS_ONCOREFINER {
         ch_vep_extra_files,
         val_cadd_resources,
         val_genome,
-        val_species,
-        val_vep_cache_version,
         val_multiqc_config,
         val_multiqc_logo,
         val_multiqc_methods_description,
-        val_outdir
+        val_outdir,
+        val_species,
+        val_vep_cache_version,
     )
 
     //

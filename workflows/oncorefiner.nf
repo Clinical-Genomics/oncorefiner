@@ -20,33 +20,33 @@ include { PROCESS_SVS            } from '../subworkflows/local/process_svs/main.
 workflow ONCOREFINER {
 
     take:
-        ch_samplesheet           // channel: [mandatory] samplesheet read in from --input
-        ch_bam_bai_normal        // channel: [optional]  [val(meta), path(bam), path(bai)]
-        ch_bam_bai_tumor         // channel: [mandatory] [val(meta), path(bam), path(bai)]
-        ch_cadd_header           // channel: [mandatory] [path(txt)]
-        ch_cadd_prescored_indels // channel: [optional]  [val(meta), path(dir)]
-        ch_cadd_resources        // channel: [optional]  [val(meta), path(dir)]
-        ch_genome_fasta          // channel: [optional]  [val(meta), path(fasta)]
-        ch_genome_fai            // channel: [optional]  [val(meta), path(fai)]
-        ch_snv_vcf               // channel: [optional]  [val(meta), path(vcf)]
-        ch_snv_vcf_tbi           // channel: [optional]  [val(meta), path(vcf.tbi)]
-        ch_sv_dbs                // channel: [optional]  [path(csv)]
-        ch_sv_vcf                // channel: [optional]  [val(meta), path(vcf)]
-        ch_sv_vcf_tbi            // channel: [optional]  [val(meta), path(vcf.tbi)]
-        ch_vcfanno_extra         // channel: [optional]  [path(extra_file1), path(extra_file2), ...]
-        ch_vcfanno_lua           // channel: [optional]  [path(lua_file)]
-        ch_vcfanno_resources     // channel: [optional]  [path(resource_file1), path(resource_file2), ...]
-        ch_vcfanno_toml          // channel: [optional]  [path(toml_file)]
-        ch_vep_cache             // channel: [optional]  [vep_cache_files]
-        ch_vep_extra_files       // channel: [optional]  [path(plugin_file1), path(plugin_file2), ...]
-        val_cadd_resources       // string:  [optional]  path to CADD resources directory
-        val_genome               // string:  [optional]  genome assembly (e.g. "GRCh38")
-        val_species              // string:  [optional]  species (e.g. "homo_sapiens")
-        val_vep_cache_version    // string:  [optional]  version of vep cache to use (e.g. "107")
-    multiqc_config
-    multiqc_logo
-    multiqc_methods_description
-    outdir
+        ch_samplesheet                  // channel: [mandatory] samplesheet read in from --input
+        ch_bam_bai_normal               // channel: [optional]  [val(meta), path(bam), path(bai)]
+        ch_bam_bai_tumor                // channel: [mandatory] [val(meta), path(bam), path(bai)]
+        ch_cadd_header                  // channel: [mandatory] [path(txt)]
+        ch_cadd_prescored_indels        // channel: [optional]  [val(meta), path(dir)]
+        ch_cadd_resources               // channel: [optional]  [val(meta), path(dir)]
+        ch_genome_fasta                 // channel: [optional]  [val(meta), path(fasta)]
+        ch_genome_fai                   // channel: [optional]  [val(meta), path(fai)]
+        ch_snv_vcf                      // channel: [optional]  [val(meta), path(vcf)]
+        ch_snv_vcf_tbi                  // channel: [optional]  [val(meta), path(vcf.tbi)]
+        ch_sv_dbs                       // channel: [optional]  [path(csv)]
+        ch_sv_vcf                       // channel: [optional]  [val(meta), path(vcf)]
+        ch_sv_vcf_tbi                   // channel: [optional]  [val(meta), path(vcf.tbi)]
+        ch_vcfanno_extra                // channel: [optional]  [path(extra_file1), path(extra_file2), ...]
+        ch_vcfanno_lua                  // channel: [optional]  [path(lua_file)]
+        ch_vcfanno_resources            // channel: [optional]  [path(resource_file1), path(resource_file2), ...]
+        ch_vcfanno_toml                 // channel: [optional]  [path(toml_file)]
+        ch_vep_cache                    // channel: [optional]  [vep_cache_files]
+        ch_vep_extra_files              // channel: [optional]  [path(plugin_file1), path(plugin_file2), ...]
+        val_cadd_resources              // string:  [optional]  path to CADD resources directory
+        val_genome                      // string:  [optional]  genome assembly (e.g. "GRCh38")
+        val_multiqc_config              // string:  [optional]  path to multiqc config file
+        val_multiqc_logo                // string:  [optional]  path to image file to be used as logo in multiqc report
+        val_multiqc_methods_description // string:  [optional]  path to text file containing methods description to be included in multiqc report
+        val_outdir                      // string:  [mandatory] path to output directory (default: ./results)
+        val_species                     // string:  [optional]  species (e.g. "homo_sapiens")
+        val_vep_cache_version           // string:  [optional]  version of vep cache to use (e.g. "107")
 
     main:
 
@@ -112,7 +112,7 @@ workflow ONCOREFINER {
     def ch_collated_versions = softwareVersionsToYAML(ch_versions.mix(topic_versions.versions_file))
         .mix(topic_versions_string)
         .collectFile(
-            storeDir: "${outdir}/pipeline_info",
+            storeDir: "${val_outdir}/pipeline_info",
             name:  'oncorefiner_software_'  + 'mqc_'  + 'versions.yml',
             sort: true,
             newLine: true
@@ -125,8 +125,8 @@ workflow ONCOREFINER {
     def ch_summary_params = paramsSummaryMap(workflow, parameters_schema: "nextflow_schema.json")
     def ch_workflow_summary = channel.value(paramsSummaryMultiqc(ch_summary_params))
     ch_multiqc_files = ch_multiqc_files.mix(ch_workflow_summary.collectFile(name: 'workflow_summary_mqc.yaml'))
-    def ch_multiqc_custom_methods_description = multiqc_methods_description
-        ? file(multiqc_methods_description, checkIfExists: true)
+    def ch_multiqc_custom_methods_description =     val_multiqc_methods_description
+        ? file(val_multiqc_methods_description, checkIfExists: true)
         : file("${projectDir}/assets/methods_description_template.yml", checkIfExists: true)
     def ch_methods_description = channel.value(methodsDescriptionText(ch_multiqc_custom_methods_description))
     ch_multiqc_files = ch_multiqc_files.mix(ch_methods_description.collectFile(name: 'methods_description_mqc.yaml', sort: true))
@@ -135,10 +135,10 @@ workflow ONCOREFINER {
             [
                 [id: 'oncorefiner'],
                 files,
-                multiqc_config
-                    ? file(multiqc_config, checkIfExists: true)
+                val_multiqc_config
+                    ? file(val_multiqc_config, checkIfExists: true)
                     : file("${projectDir}/assets/multiqc_config.yml", checkIfExists: true),
-                multiqc_logo ? file(multiqc_logo, checkIfExists: true) : [],
+                val_multiqc_logo ? file(val_multiqc_logo, checkIfExists: true) : [],
                 [],
                 [],
             ]
