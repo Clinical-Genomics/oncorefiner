@@ -27,7 +27,7 @@ include { SAMTOOLS_VIEW           } from './modules/nf-core/samtools/view/main'
 //
 // WORKFLOW: Run main analysis pipeline depending on type of input
 //
-workflow CLINICALGENOMICS_ONCOREFINER {
+
 workflow CLINICALGENOMICS_ONCOREFINER {
 
     take:
