@@ -400,5 +400,23 @@
         {
             "$ref": "#/$defs/generic_options"
         }
-    ]
+    ],
+    "properties": {
+        "extra_snv_clinical_filter_args": {
+            "type": "string",
+            "description": "extra filtering arguments for `PROCESS_SNVS:BCFTOOLS_VIEW_CLINICAL`"
+        },
+        "extra_snv_research_filter_args": {
+            "type": "string",
+            "description": "extra filtering arguments for `PROCESS_SNVS:BCFTOOLS_VIEW_RESEARCH`"
+        },
+        "extra_vep_snv_args": {
+            "type": "string",
+            "description": "extra arguments for `PROCESS_SNVS:ENSEMBLVEP_VEP`"
+        },
+        "extra_sv_vep_args": {
+            "type": "string",
+            "description": "extra arguments for `PROCESS_SVS:ENSEMBLVEP_VEP`"
+        }
+    }
 }

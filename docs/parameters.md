@@ -83,3 +83,12 @@ Less common options for the pipeline, typically set in a config file.
 | `help` | Display the help message. | `['boolean', 'string']` |  |  |  |
 | `help_full` | Display the full detailed help message. | `boolean` |  |  |  |
 | `show_hidden` | Display hidden parameters in the help message (only works when --help or --help_full are provided). | `boolean` |  |  |  |
+
+## Other parameters
+
+| Parameter | Description | Type | Default | Required | Hidden |
+|-----------|-----------|-----------|-----------|-----------|-----------|
+| `extra_snv_clinical_filter_args` | extra filtering arguments for `PROCESS_SNVS:BCFTOOLS_VIEW_CLINICAL` | `string` |  |  |  |
+| `extra_snv_research_filter_args` | extra filtering arguments for `PROCESS_SNVS:BCFTOOLS_VIEW_RESEARCH` | `string` |  |  |  |
+| `extra_vep_snv_args` | extra arguments for `PROCESS_SNVS:ENSEMBLVEP_VEP` | `string` |  |  |  |
+| `extra_sv_vep_args` | extra arguments for `PROCESS_SVS:ENSEMBLVEP_VEP` | `string` |  |  |  |
