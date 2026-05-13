@@ -42,6 +42,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#73](https://github.com/Clinical-Genomics/oncorefiner/pull/73) Moved logic for processing SV VCF files, previously in `workflows/oncorefiner.nf`, to `PROCESS_SVS` subworkflow.
 - [#69](https://github.com/Clinical-Genomics/oncorefiner/pull/69) Renamed and refactored test config to `test_base.config` to include common parameters and files used for all tests.
 - [#69](https://github.com/Clinical-Genomics/oncorefiner/pull/69) Refactored default pipeline test and test profile to run a `tumor_normal` default test and updated snapshot.
+- [#87](https://github.com/Clinical-Genomics/oncorefiner/pull/87) Updated all testdata file paths to GRCh38 files, updated snapshot.
 
 ### `Fixed`
 
@@ -71,6 +72,9 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#67](https://github.com/Clinical-Genomics/oncorefiner/pull/67) `--help` parameter not working
 - [#72](https://github.com/Clinical-Genomics/oncorefiner/pull/72) Added subworkflow test to `PREPARE_REFERENCES`
 - [#82](https://github.com/Clinical-Genomics/oncorefiner/pull/82) Add index files for SNV clinical and research filtered vcfs
+- [#90](https://github.com/Clinical-Genomics/oncorefiner/pull/90) Fixed bug in `GENERATE_CYTOSURE` and `PROCESS_SNVs`: updated test meta to be `subject_a` and input to contain tbi.
+- [#95](https://github.com/Clinical-Genomics/oncorefiner/pull/95) Fixed so VEP annotates in the same order for tests in `PROCESS_SVs`.
+- [#96](https://github.com/Clinical-Genomics/oncorefiner/pull/96) Moved custom test settings for `PROCESS_SNVS:BCFTOOLS_VIEW_*` to test configs.
 
 ### `Dependencies`
 

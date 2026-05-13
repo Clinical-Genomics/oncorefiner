@@ -10,12 +10,14 @@ nextflow_workflow {
     test("Test preparing VEP cache: no untarring needed") {
 
         when {
+
             params {
                 outdir = "$outputDir"
             }
+            // Provided path to mock input (subworkflow wants value with path to directory) - should be improved in the future
             workflow {
                 """
-                input[0] = params.pipelines_testdata_base_path + 'reference/vep_cache_and_plugins/'
+                input[0] =  'path/to/vep_cache_untarred'
                 """
             }
         }
@@ -44,7 +46,7 @@ nextflow_workflow {
             }
             workflow {
                 """
-                input[0] = params.pipelines_testdata_base_path + 'reference/vep_cache_and_plugins.tar.gz'
+                input[0] = params.pipelines_testdata_base_path + 'reference/GRCh38/vep_cache.tar.gz'
                 """
             }
         }
