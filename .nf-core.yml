@@ -12,6 +12,7 @@ lint:
     - tests/default.nf.test
     - CODE_OF_CONDUCT.md
   files_unchanged:
+    - .github/ISSUE_TEMPLATE/config.yml
     - .github/ISSUE_TEMPLATE/bug_report.yml
     - .github/ISSUE_TEMPLATE/feature_request.yml
     - .github/PULL_REQUEST_TEMPLATE.md
