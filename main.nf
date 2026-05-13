@@ -41,6 +41,10 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     val_genome                  // string:  [optional]  genome assembly (e.g. "GRCh38")
     val_genome_fasta            // string:  [optional]  path to genome fasta file
     val_genome_fai              // string:  [optional]  path to genome fasta index file
+    val_multiqc_config
+    val_multiqc_logo
+    val_multiqc_methods_description
+    val_outdir                  // string:  [mandatory] path to output directory (default: ./results)
     val_snv_vcf                 // string:  [optional]  path to input SNV vcf file
     val_species                 // string:  [optional]  species (e.g. "homo_sapiens")
     val_sv_vcf                  // string:  [optional]  path to input SV vcf file
@@ -159,7 +163,11 @@ workflow CLINICALGENOMICS_ONCOREFINER {
         val_cadd_resources,
         val_genome,
         val_species,
-        val_vep_cache_version
+        val_vep_cache_version,
+        val_multiqc_config,
+        val_multiqc_logo,
+        val_multiqc_methods_description,
+        val_outdir
     )
 
     //
@@ -215,6 +223,10 @@ workflow {
         params.genome,
         params.fasta,
         params.fai,
+        params.multiqc_config,
+        params.multiqc_logo,
+        params.multiqc_methods_description,
+        params.outdir,
         params.snv_vcf,
         params.species,
         params.sv_vcf,
