@@ -28,6 +28,7 @@ include { SAMTOOLS_VIEW           } from './modules/nf-core/samtools/view/main'
 // WORKFLOW: Run main analysis pipeline depending on type of input
 //
 workflow CLINICALGENOMICS_ONCOREFINER {
+workflow CLINICALGENOMICS_ONCOREFINER {
 
     take:
     samplesheet                 // channel: [mandatory] samplesheet read in from --input
@@ -236,7 +237,6 @@ workflow {
         params.plaintext_email,
         params.outdir,
         params.monochrome_logs,
-        params.hook_url,
         CLINICALGENOMICS_ONCOREFINER.out.multiqc_report
     )
 }
