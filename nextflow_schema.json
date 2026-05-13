@@ -223,6 +223,13 @@
                     "help_text": "Path to comma-separated file containing information about the databases used for structural variant annotation.",
                     "pattern": "^\\S+\\.(csv|tsv|json|yaml|yml)$",
                     "schema": "assets/svdb_query_vcf_schema.json"
+                },
+                "genmod_score_config": {
+                    "type": "string",
+                    "description": "Path to genmod score configuration file (rank model).",
+                    "format": "file-path",
+                    "pattern": "^\\S+\\.(ini)$",
+                    "exists": true
                 }
             }
         },
