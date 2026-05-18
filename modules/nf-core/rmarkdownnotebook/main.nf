@@ -7,8 +7,8 @@ process RMARKDOWNNOTEBOOK {
     //yaml and rmarkdown R packages.
     conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine in ['singularity', 'apptainer'] && !task.ext.singularity_pull_docker_container ?
-        'https://depot.galaxyproject.org/singularity/mulled-v2-31ad840d814d356e5f98030a4ee308a16db64ec5:0e852a1e4063fdcbe3f254ac2c7469747a60e361-0' :
-        'quay.io/biocontainers/mulled-v2-31ad840d814d356e5f98030a4ee308a16db64ec5:0e852a1e4063fdcbe3f254ac2c7469747a60e361-0' }"
+        'oras://community.wave.seqera.io/library/r-base_r-dt_r-readr_r-rmarkdown:8612e5aa5384f180' :
+        'community.wave.seqera.io/library/r-base_r-dt_r-readr_r-rmarkdown:5c3b8868d1024810' }"
 
     input:
     tuple val(meta), path(notebook)
