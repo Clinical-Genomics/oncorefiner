@@ -44,6 +44,8 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#69](https://github.com/Clinical-Genomics/oncorefiner/pull/69) Renamed and refactored test config to `test_base.config` to include common parameters and files used for all tests.
 - [#69](https://github.com/Clinical-Genomics/oncorefiner/pull/69) Refactored default pipeline test and test profile to run a `tumor_normal` default test and updated snapshot.
 - [#87](https://github.com/Clinical-Genomics/oncorefiner/pull/87) Updated all testdata file paths to GRCh38 files, updated snapshot.
+- [#100](https://github.com/Clinical-Genomics/oncorefiner/pull/100) Template update for nf-core tools 4.0.2.
+- [#100](https://github.com/Clinical-Genomics/oncorefiner/pull/100) Changed minimum required nextflow version to 25.10.4.
 
 ### `Fixed`
 
