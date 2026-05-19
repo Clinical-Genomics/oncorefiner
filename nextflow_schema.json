@@ -224,6 +224,14 @@
                     "pattern": "^\\S+\\.(csv|tsv|json|yaml|yml)$",
                     "schema": "assets/svdb_query_vcf_schema.json"
                 },
+                "extra_cadd_annotate_args": {
+                    "type": "string",
+                    "description": "extra filtering arguments for `ANNOTATE_CADD:BCFTOOLS_ANNOTATE_INDELS`"
+                },
+                "extra_cytosure_filter_args": {
+                    "type": "string",
+                    "description": "extra filtering arguments for `GENERATE_CYTOSURE_FILES:FILTER_VCF`"
+                },
                 "extra_snv_clinical_filter_args": {
                     "type": "string",
                     "description": "extra filtering arguments for `PROCESS_SNVS:BCFTOOLS_VIEW_CLINICAL`"
