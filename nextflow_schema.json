@@ -401,7 +401,7 @@
             "$ref": "#/$defs/generic_options"
         }
     ],
-    "properties": {
+    "arguments": {
         "extra_snv_clinical_filter_args": {
             "type": "string",
             "description": "extra filtering arguments for `PROCESS_SNVS:BCFTOOLS_VIEW_CLINICAL`"
