@@ -223,6 +223,22 @@
                     "help_text": "Path to comma-separated file containing information about the databases used for structural variant annotation.",
                     "pattern": "^\\S+\\.(csv|tsv|json|yaml|yml)$",
                     "schema": "assets/svdb_query_vcf_schema.json"
+                },
+                "extra_snv_clinical_filter_args": {
+                    "type": "string",
+                    "description": "extra filtering arguments for `PROCESS_SNVS:BCFTOOLS_VIEW_CLINICAL`"
+                },
+                "extra_snv_research_filter_args": {
+                    "type": "string",
+                    "description": "extra filtering arguments for `PROCESS_SNVS:BCFTOOLS_VIEW_RESEARCH`"
+                },
+                "extra_vep_snv_args": {
+                    "type": "string",
+                    "description": "extra arguments for `PROCESS_SNVS:ENSEMBLVEP_VEP`"
+                },
+                "extra_sv_vep_args": {
+                    "type": "string",
+                    "description": "extra arguments for `PROCESS_SVS:ENSEMBLVEP_VEP`"
                 }
             }
         },
@@ -400,23 +416,5 @@
         {
             "$ref": "#/$defs/generic_options"
         }
-    ],
-    "arguments": {
-        "extra_snv_clinical_filter_args": {
-            "type": "string",
-            "description": "extra filtering arguments for `PROCESS_SNVS:BCFTOOLS_VIEW_CLINICAL`"
-        },
-        "extra_snv_research_filter_args": {
-            "type": "string",
-            "description": "extra filtering arguments for `PROCESS_SNVS:BCFTOOLS_VIEW_RESEARCH`"
-        },
-        "extra_vep_snv_args": {
-            "type": "string",
-            "description": "extra arguments for `PROCESS_SNVS:ENSEMBLVEP_VEP`"
-        },
-        "extra_sv_vep_args": {
-            "type": "string",
-            "description": "extra arguments for `PROCESS_SVS:ENSEMBLVEP_VEP`"
-        }
-    }
+    ]
 }

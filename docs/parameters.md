@@ -47,6 +47,10 @@ Annotation related files and options required for the workflow.
 | `vcfanno_toml` | Path to the vcfanno toml file. <details><summary>Help</summary><small>If no toml is passed, default configurations will be used according to genome build within the context of the pipeline.</small></details>| `string` |  |  |  |
 | `vcfanno_lua` | Path to the vcfanno lua file. <details><summary>Help</summary><small>Custom operations file (lua). For use when the built-in ops don't supply the needed reduction.</small></details>| `string` |  |  |  |
 | `svdb_query_dbs` | Databases used for structural variant annotation in vcf format. <details><summary>Help</summary><small>Path to comma-separated file containing information about the databases used for structural variant annotation.</small></details>| `string` |  |  |  |
+| `extra_snv_clinical_filter_args` | extra filtering arguments for `PROCESS_SNVS:BCFTOOLS_VIEW_CLINICAL` | `string` |  |  |  |
+| `extra_snv_research_filter_args` | extra filtering arguments for `PROCESS_SNVS:BCFTOOLS_VIEW_RESEARCH` | `string` |  |  |  |
+| `extra_vep_snv_args` | extra arguments for `PROCESS_SNVS:ENSEMBLVEP_VEP` | `string` |  |  |  |
+| `extra_sv_vep_args` | extra arguments for `PROCESS_SVS:ENSEMBLVEP_VEP` | `string` |  |  |  |
 
 ## Institutional config options
 
