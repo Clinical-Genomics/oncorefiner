@@ -36,16 +36,15 @@ nextflow_workflow {
         then {
             // All directories and files in the output directory
             def output_directories_and_files = getAllFilesFromDir(params.outdir, relative: true, includeDir: true)
-            // All files in the output directory
-            def output_files = getAllFilesFromDir(params.outdir)
 
             assertAll(
                 { assert workflow.success },
                 { assert snapshot(
                     // All directories and files in the output directory
                     output_directories_and_files,
-                    // All files in the output directory with their md5 checksum
-                    output_files.collect { file -> [ file.getName(), path(file.toString()).md5 ] }
+                    // Output file with md5 checksum
+                    file(workflow.out.cgh.get(0).get(1)).name,
+                    path(workflow.out.cgh.get(0).get(1)).md5
                 ).match() }
             )
         }

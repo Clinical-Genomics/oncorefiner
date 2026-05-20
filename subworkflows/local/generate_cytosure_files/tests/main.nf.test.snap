@@ -5,17 +5,13 @@
                 "vcf2cytosure",
                 "vcf2cytosure/tumor.cgh"
             ],
-            [
-                [
-                    "tumor.cgh",
-                    "2dfa8fdd26448127347045837c7cbf7c"
-                ]
-            ]
+            "tumor.cgh",
+            "2dfa8fdd26448127347045837c7cbf7c"
         ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "25.10.4"
         },
-        "timestamp": "2026-04-28T14:37:18.83334"
+        "timestamp": "2026-05-20T10:15:09.743924"
     }
 }
