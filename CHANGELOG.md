@@ -29,6 +29,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#69](https://github.com/Clinical-Genomics/oncorefiner/pull/69) Added `tumor_normal` config file, used by the default test profile.
 - [#69](https://github.com/Clinical-Genomics/oncorefiner/pull/69) Added `tumor_only` config file, profile and pipeline test and snapshot.
 - [#99](https://github.com/Clinical-Genomics/oncorefiner/pull/99) Added `genmod_score_config` parameter.
+- [#97](https://github.com/Clinical-Genomics/oncorefiner/pull/97) Added 'genomic-medicine-sweden/vcf_annotate_score_genmod' subworkflow to `PROCESS_SNVS`.
 
 ### `Changed`
 
