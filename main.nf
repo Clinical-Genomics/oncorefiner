@@ -141,7 +141,10 @@ workflow CLINICALGENOMICS_ONCOREFINER {
                                                  : channel.empty()
 
     // Input for genmod_score
-    ch_genmod_score_config = val_genmod_score_config ? channel.fromPath(val_genmod_score_config).map { it -> [[id:'genmod_score_config'], it] }.collect()
+    ch_genmod_score_config = val_genmod_score_config && val_snv_vcf ?
+                                                     channel.fromPath(val_genmod_score_config)
+                                                     .combine(ch_snv_vcf)
+                                                     .map { genmod_score_config, meta, _snv_vcf -> [meta, genmod_score_config] }
                                                      : channel.empty()
 
     ONCOREFINER (
