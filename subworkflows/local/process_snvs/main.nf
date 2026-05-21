@@ -106,11 +106,19 @@ workflow PROCESS_SNVS {
             ch_vep_extra_files
         )
 
+        // Rank and add score annotation with genmod_score
+        ch_annotate_score_genmod_in = ENSEMBLVEP_VEP.out.vcf
+            .combine(ch_genmod_score_config)
+            .multiMap { meta_vcf, vcf, _meta_genmod_score_config, genmod_score_config ->
+                vcf: tuple(meta_vcf, vcf)
+                score_config: tuple(meta_vcf, genmod_score_config)
+            }
+
         VCF_ANNOTATE_SCORE_GENMOD (
-            ENSEMBLVEP_VEP.out.vcf,
+            ch_annotate_score_genmod_in.vcf,
             channel.empty(),
             channel.empty(),
-            ch_genmod_score_config,
+            ch_annotate_score_genmod_in.score_config,
             true
         )
 
