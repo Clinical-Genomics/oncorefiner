@@ -38,7 +38,7 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     val_bai_tumor                   // string:  [optional]  path to BAI file for the tumor sample
     val_cadd_prescored_indels       // string:  [optional]  path to CADD prescored indels file
     val_cadd_resources              // string:  [optional]  path to CADD resources directory
-    val_genmod_score_config         // string:  [optional]  path to Genmod config file
+    val_genmod_score_config         // string:  [optional]  path to Genmod score config file
     val_genome                      // string:  [optional]  genome assembly (e.g. "GRCh38")
     val_genome_fasta                // string:  [optional]  path to genome fasta file
     val_genome_fai                  // string:  [optional]  path to genome fasta index file
