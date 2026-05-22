@@ -11,7 +11,7 @@ fusions.rename(columns={'name': 'FUSIONID', 'reported': 'REPORTED_FUSION'}, inpl
 # merge fusions and breakends on 'fivePrimeBreakendId' ('threePrimeBreakendId') and 'id' columns
 fusion_breakend_merge = fusions[['fivePrimeBreakendId', 'threePrimeBreakendId', 'FUSIONID', 'REPORTED_FUSION']].merge(breakends[['id', 'svId']], left_on='fivePrimeBreakendId', right_on='id', how='left')
 
-# merge above with svs on 'svid' column
+# merge above with svs on 'svId' column
 fusion_breakend_svs_merge = fusion_breakend_merge.merge(svs, on='svId', how='left')
 
 # keep only the relevant columns for the final output

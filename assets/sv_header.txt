@@ -1,2 +1,2 @@
 ##INFO=<ID=REPORTED_FUSION,Number=1,Type=String,Description="Variant is a reported fusion, true or false">
-##INFO=<ID=FUSIONID,Number=1,Type=String,Description="Name of reported fusion">
+##INFO=<ID=FUSIONID,Number=1,Type=String,Description="Name of fusion">
