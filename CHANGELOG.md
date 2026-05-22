@@ -45,7 +45,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#87](https://github.com/Clinical-Genomics/oncorefiner/pull/87) Updated all testdata file paths to GRCh38 files, updated snapshot.
 - [#100](https://github.com/Clinical-Genomics/oncorefiner/pull/100) Template update for nf-core tools 4.0.2.
 - [#100](https://github.com/Clinical-Genomics/oncorefiner/pull/100) Changed minimum required nextflow version to 25.10.4.
-- [#106](https://github.com/Clinical-Genomics/oncorefiner/pull/106) Changed logic for `stable_path` in pipeline tests to exclude all vcf and index files. Removed individual entries for these files in the `tests/.nftignore`.
+- [#106](https://github.com/Clinical-Genomics/oncorefiner/pull/106) Changed logic for `stable_path` in pipeline tests to exclude all vcf and index files by default. Removed individual entries for these files in `tests/.nftignore`.
 
 ### `Fixed`
 
