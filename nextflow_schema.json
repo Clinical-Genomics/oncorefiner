@@ -226,19 +226,19 @@
                 },
                 "extra_cadd_annotate_args": {
                     "type": "string",
-                    "description": "extra filtering arguments for `ANNOTATE_CADD:BCFTOOLS_ANNOTATE_INDELS`"
+                    "description": "extra arguments for `ANNOTATE_CADD:BCFTOOLS_ANNOTATE_INDELS`"
                 },
                 "extra_cytosure_filter_args": {
                     "type": "string",
-                    "description": "extra filtering arguments for `GENERATE_CYTOSURE_FILES:FILTER_VCF`"
+                    "description": "extra arguments for `GENERATE_CYTOSURE_FILES:FILTER_VCF`"
                 },
                 "extra_snv_clinical_filter_args": {
                     "type": "string",
-                    "description": "extra filtering arguments for `PROCESS_SNVS:BCFTOOLS_VIEW_CLINICAL`"
+                    "description": "extra arguments for `PROCESS_SNVS:BCFTOOLS_VIEW_CLINICAL`"
                 },
                 "extra_snv_research_filter_args": {
                     "type": "string",
-                    "description": "extra filtering arguments for `PROCESS_SNVS:BCFTOOLS_VIEW_RESEARCH`"
+                    "description": "extra arguments for `PROCESS_SNVS:BCFTOOLS_VIEW_RESEARCH`"
                 },
                 "extra_vep_snv_args": {
                     "type": "string",

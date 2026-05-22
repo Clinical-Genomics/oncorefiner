@@ -28,6 +28,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#59](https://github.com/Clinical-Genomics/oncorefiner/pull/59) Added `ANNOTATE_CADD` subworkflow with following test (stub only), for CADD scoring of InDels, used in `PROCESS_SNVS`.
 - [#69](https://github.com/Clinical-Genomics/oncorefiner/pull/69) Added `tumor_normal` config file, used by the default test profile.
 - [#69](https://github.com/Clinical-Genomics/oncorefiner/pull/69) Added `tumor_only` config file, profile and pipeline test and snapshot.
+- [#101](https://github.com/Clinical-Genomics/oncorefiner/pull/101) Added parameters for arguments in processes `PROCESS_SNVS:BCFTOOLS_VIEW_*`, `PROCESS_*:ENSEMBLVEP_VEP`, `GENERATE_CYTOSURE_FILES:FILTER_VCF` and `ANNOTATE_CADD:BCFTOOLS_ANNOTATE_INDELS`.
 
 ### `Changed`
 
@@ -77,7 +78,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#90](https://github.com/Clinical-Genomics/oncorefiner/pull/90) Fixed bug in `GENERATE_CYTOSURE` and `PROCESS_SNVs`: updated test meta to be `subject_a` and input to contain tbi.
 - [#95](https://github.com/Clinical-Genomics/oncorefiner/pull/95) Fixed so VEP annotates in the same order for tests in `PROCESS_SVs`.
 - [#96](https://github.com/Clinical-Genomics/oncorefiner/pull/96) Moved custom test settings for `PROCESS_SNVS:BCFTOOLS_VIEW_*` to test configs.
-- [#101](https://github.com/Clinical-Genomics/oncorefiner/pull/101) Added parameters for arguments in processes `PROCESS_SNVS:BCFTOOLS_VIEW_*`, `PROCESS_*:ENSEMBLVEP_VEP`, `GENERATE_CYTOSURE_FILES:FILTER_VCF` and `ANNOTATE_CADD:BCFTOOLS_ANNOTATE_INDELS` as well as specified specific test settings for these in `test_base.config`
+- [#101](https://github.com/Clinical-Genomics/oncorefiner/pull/101) Refactored config settings for `PROCESS_SNVS:BCFTOOLS_VIEW_*`, `PROCESS_*:ENSEMBLVEP_VEP`, `GENERATE_CYTOSURE_FILES:FILTER_VCF` and `ANNOTATE_CADD:BCFTOOLS_ANNOTATE_INDELS` to take parameters and specified specific test settings for these in `test_base.config`
 
 ### `Dependencies`
 
