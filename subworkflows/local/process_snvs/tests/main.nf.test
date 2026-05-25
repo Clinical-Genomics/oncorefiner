@@ -41,17 +41,21 @@ nextflow_workflow {
                 input[4] = null
                 input[5] = channel.of([
                     [id:'subject_a'],
-                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.somatic.vcf.gz', checkIfExists: true)
+                    file(params.pipelines_testdata_base_path + 'reference/genmod_score_config.ini', checkIfExists: true)
                 ])
                 input[6] = channel.of([
                     [id:'subject_a'],
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.somatic.vcf.gz', checkIfExists: true)
+                ])
+                input[7] = channel.of([
+                    [id:'subject_a'],
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.somatic.vcf.gz.tbi', checkIfExists: true)
                 ])
-                input[7] = []
-                input[8] = channel.of([
+                input[8] = []
+                input[9] = channel.of([
                     file(params.pipelines_testdata_base_path + 'reference/GRCh38/vcfanno_functions.lua', checkIfExists: true)
                 ])
-                input[9] = channel.of([
+                input[10] = channel.of([
                     file(params.pipelines_testdata_base_path + 'reference/GRCh38/grch38_gnomad_reformatted_merged_v4.1_subset.vcf.gz', checkIfExists: true),
                     file(params.pipelines_testdata_base_path + 'reference/GRCh38/grch38_gnomad_reformatted_merged_v4.1_subset.vcf.gz.tbi', checkIfExists: true),
                     file(params.pipelines_testdata_base_path + 'reference/GRCh38/grch38_swegen_frequencies_fixploidy_-20190204_subset.vcf.gz', checkIfExists: true),
@@ -60,18 +64,18 @@ nextflow_workflow {
                     file(params.pipelines_testdata_base_path + 'reference/GRCh38/whole_genome_SNVs_chr_subset.tsv.gz.tbi', checkIfExists: true)
 
                 ])
-                input[10] = channel.of([
+                input[11] = channel.of([
                     file(params.pipelines_testdata_base_path + 'reference/GRCh38/grch38_vcfanno_config.toml', checkIfExists: true)
                 ])
-                input[11] = UNTAR_VEP_CACHE.out.untar.map{ _meta, files -> [files]}.collect()
-                input[12] = channel.of([
+                input[12] = UNTAR_VEP_CACHE.out.untar.map{ _meta, files -> [files]}.collect()
+                input[13] = channel.of([
                     file(params.pipelines_testdata_base_path + 'reference/GRCh38/LoFtool_scores.txt', checkIfExists: true),
                     file(params.pipelines_testdata_base_path + 'reference/GRCh38/pLI_values.txt', checkIfExists: true)
                 ])
-                input[13] = null
-                input[14] = 'GRCh38'
-                input[15] = 'homo_sapiens'
-                input[16] = '115'
+                input[14] = null
+                input[15] = 'GRCh38'
+                input[16] = 'homo_sapiens'
+                input[17] = '115'
                 """
             }
         }
