@@ -30,6 +30,17 @@ The pipeline is built using [Nextflow](https://www.nextflow.io/) and processes d
 
 [`Vcfanno`](https://github.com/brentp/vcfanno) annotates VCF files with a number of INFO fields from the VCFs or BED files provided.
 
+### `PROCESS_SNVS:VCF_ANNOTATE_SCORE_GENMOD`
+
+<details markdown="1">
+<summary>Output files</summary>
+
+- `bcftools``
+- `<meta.id>.vcf.gz`: a gzipped VCF file containing ranked and annotated SNVs.
+- `<meta.id>.vcf.gz.tbi`: index file for the gzipped VCF file.
+
+</details>
+
 ### MultiQC
 
 <details markdown="1">
