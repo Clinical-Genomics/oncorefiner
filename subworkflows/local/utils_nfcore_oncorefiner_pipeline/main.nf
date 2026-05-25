@@ -185,6 +185,7 @@ def toolCitationText() {
     def cadd           = "CADD (Rentzsch et al. 2019)"
     def ensemblvep_vep = "Ensembl VEP (McLaren et al. 2016)"
     def svdb           = "svdb"
+    def genmod         = "Genmod"
     def multiqc        = "MultiQC (Ewels et al. 2016)"
 
     if (params.snv_vcf) {
@@ -204,6 +205,12 @@ def toolCitationText() {
             svdb           +
             bcftools_view  +
             ensemblvep_vep
+
+        if (params.genmod_score_config) {
+            citations_list =
+                citations_list +
+                genmod
+        }
     }
 
     // always run
