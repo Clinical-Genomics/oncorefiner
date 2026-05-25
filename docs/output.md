@@ -35,7 +35,7 @@ The pipeline is built using [Nextflow](https://www.nextflow.io/) and processes d
 <details markdown="1">
 <summary>Output files</summary>
 
-- `bcftools``
+- `bcftools`
 - `<meta.id>.vcf.gz`: a gzipped VCF file containing ranked and annotated SNVs.
 - `<meta.id>.vcf.gz.tbi`: index file for the gzipped VCF file.
 
