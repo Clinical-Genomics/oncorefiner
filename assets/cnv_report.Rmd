@@ -33,7 +33,7 @@ This report provides an interactive view of Copy Number Variation (CNV) results 
 
 
 <details>
-<summary><strong>How to use the yables (click to expand)</strong></summary>
+<summary><strong>How to use the tables (click to expand)</strong></summary>
 
 The tables below allow sorting and filtering.
 
