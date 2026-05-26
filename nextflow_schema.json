@@ -82,7 +82,7 @@
                     "enum": ["female", "male", "unknown"],
                     "description": "Sex of the patient."
                 },
-                "cnv_gene": {
+                "cnv_gene_tsv": {
                     "type": "string",
                     "format": "file-path",
                     "exists": true,
@@ -91,7 +91,7 @@
                     "pattern": "^\\S+\\.tsv$",
                     "help_text": "This file should be a tab-separated file with a header row. Typically *.purple.cnv.gene.tsv file from Oncoanalyser."
                 },
-                "cnv_segment": {
+                "cnv_segment_tsv": {
                     "type": "string",
                     "format": "file-path",
                     "exists": true,
