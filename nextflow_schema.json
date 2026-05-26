@@ -89,7 +89,7 @@
                     "description": "Path to a file containing gene-level information of CNV calls.",
                     "fa_icon": "fas fa-file-csv",
                     "pattern": "^\\S+\\.tsv$",
-                    "help_text": "This file should be a tab-separated file with a header row. Typically *.purple.cnv.somatic.tsv file from Oncoanalyser."
+                    "help_text": "This file should be a tab-separated file with a header row. Typically *.purple.cnv.gene.tsv file from Oncoanalyser."
                 },
                 "cnv_segment": {
                     "type": "string",
@@ -98,7 +98,7 @@
                     "description": "Path to a file containing segment-level information of CNV calls.",
                     "fa_icon": "fas fa-file-csv",
                     "pattern": "^\\S+\\.tsv$",
-                    "help_text": "This file should be a tab-separated file with a header row. Typically *.purple.cnv.gene.tsv file from Oncoanalyser."
+                    "help_text": "This file should be a tab-separated file with a header row. Typically *.purple.cnv.somatic.tsv file from Oncoanalyser."
                 },
                 "email": {
                     "type": "string",
