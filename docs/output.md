@@ -41,6 +41,9 @@ The pipeline is built using [Nextflow](https://www.nextflow.io/) and processes d
 
 </details>
 
+[`Vcfanno`](https://github.com/brentp/vcfanno) annotates VCF files with a number of INFO fields from the VCFs or BED files provided.
+
+
 ### MultiQC
 
 <details markdown="1">
