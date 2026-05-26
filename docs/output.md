@@ -41,7 +41,14 @@ The pipeline is built using [Nextflow](https://www.nextflow.io/) and processes d
 
 </details>
 
-[`Vcfanno`](https://github.com/brentp/vcfanno) annotates VCF files with a number of INFO fields from the VCFs or BED files provided.
+[`Genmod score`](https://github.com/Clinical-Genomics/genmod) assigns a score to each variant based on the genmod score config file provided. The output vcf file is annotated with the following INFO fields which reflect the assigned score:
+
+```
+RankScore
+RankScoreNormalized
+RankScoreMinMax
+RankResult
+```
 
 
 ### MultiQC
