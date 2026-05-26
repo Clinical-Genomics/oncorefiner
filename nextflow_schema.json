@@ -82,6 +82,24 @@
                     "enum": ["female", "male", "unknown"],
                     "description": "Sex of the patient."
                 },
+                "cnv_gene_tsv": {
+                    "type": "string",
+                    "format": "file-path",
+                    "exists": true,
+                    "description": "Path to a file containing gene-level information of CNV calls.",
+                    "fa_icon": "fas fa-file-csv",
+                    "pattern": "^\\S+\\.tsv$",
+                    "help_text": "This file should be a tab-separated file with a header row. Typically *.purple.cnv.gene.tsv file from Oncoanalyser."
+                },
+                "cnv_segment_tsv": {
+                    "type": "string",
+                    "format": "file-path",
+                    "exists": true,
+                    "description": "Path to a file containing segment-level information of CNV calls.",
+                    "fa_icon": "fas fa-file-csv",
+                    "pattern": "^\\S+\\.tsv$",
+                    "help_text": "This file should be a tab-separated file with a header row. Typically *.purple.cnv.somatic.tsv file from Oncoanalyser."
+                },
                 "email": {
                     "type": "string",
                     "description": "Email address for completion summary.",
@@ -322,13 +340,6 @@
                     "type": "boolean",
                     "description": "Do not use coloured log outputs.",
                     "fa_icon": "fas fa-palette",
-                    "hidden": true
-                },
-                "hook_url": {
-                    "type": "string",
-                    "description": "Incoming hook URL for messaging service",
-                    "fa_icon": "fas fa-people-group",
-                    "help_text": "Incoming hook URL for messaging service. Currently, MS Teams and Slack are supported.",
                     "hidden": true
                 },
                 "multiqc_config": {
