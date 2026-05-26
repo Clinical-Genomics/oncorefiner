@@ -197,6 +197,13 @@ def toolCitationText() {
             if (params.cadd_resources) {
                 citations_list = citations_list + cadd
             }
+        
+        if (params.genmod_score_config) {
+            citations_list =
+                citations_list +
+                genmod
+        }
+
     }
 
     if (params.sv_vcf) {
@@ -205,12 +212,6 @@ def toolCitationText() {
             svdb           +
             bcftools_view  +
             ensemblvep_vep
-
-        if (params.genmod_score_config) {
-            citations_list =
-                citations_list +
-                genmod
-        }
     }
 
     // always run
