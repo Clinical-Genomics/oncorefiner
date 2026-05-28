@@ -110,6 +110,13 @@
                     "default": "GRCh38",
                     "enum": ["GRCh38", "GRCh37"]
                 },
+                "genome_version_number": {
+                    "type": "integer",
+                    "default": 38,
+                    "hidden": true,
+                    "description": "Genome version number. By default parsed from `params.genome` by removing \"GRCh\" from genome name to obtain only the version number (e.g. \"GRCh38\" -> \"38\").",
+                    "enum": [37, 38]
+                },
                 "fasta": {
                     "type": "string",
                     "format": "file-path",
