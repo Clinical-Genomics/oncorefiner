@@ -77,6 +77,38 @@
                     "format": "file-path",
                     "exists": true
                 },
+                "cobalt_ratio_tsv_tumor": {
+                    "type": "string",
+                    "description": "Path to a TSV file containing cobalt coverage ratios for the tumor sample.",
+                    "fa_icon": "fas fa-file",
+                    "pattern": "^\\S+\\.tsv$",
+                    "format": "file-path",
+                    "exists": true
+                },
+                "amber_baf_tsv_gz_tumor": {
+                    "type": "string",
+                    "description": "Path to a gzipped TSV file containing amber BAF values for the tumor sample.",
+                    "fa_icon": "fas fa-file",
+                    "pattern": "^\\S+\\.tsv\\.gz$",
+                    "format": "file-path",
+                    "exists": true
+                },
+                "cobalt_ratio_tsv_normal": {
+                    "type": "string",
+                    "description": "Path to a TSV file containing cobalt coverage ratios for the normal sample.",
+                    "fa_icon": "fas fa-file",
+                    "pattern": "^\\S+\\.tsv$",
+                    "format": "file-path",
+                    "exists": true
+                },
+                "amber_baf_tsv_gz_normal": {
+                    "type": "string",
+                    "description": "Path to a gzipped TSV file containing amber BAF values for the normal sample.",
+                    "fa_icon": "fas fa-file",
+                    "pattern": "^\\S+\\.tsv\\.gz$",
+                    "format": "file-path",
+                    "exists": true
+                },
                 "sex": {
                     "type": "string",
                     "enum": ["female", "male", "unknown"],
