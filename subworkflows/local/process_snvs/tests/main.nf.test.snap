@@ -2,6 +2,9 @@
     "with tumor-normal data": {
         "content": [
             [
+                "bcftools",
+                "bcftools/subject_a.vcf.gz",
+                "bcftools/subject_a.vcf.gz.tbi",
                 "clinical_filtering",
                 "clinical_filtering/subject_a_clinical.vcf.gz",
                 "clinical_filtering/subject_a_clinical.vcf.gz.tbi",
@@ -18,8 +21,12 @@
             ],
             [
                 [
+                    "subject_a.vcf.gz",
+                    "c4e094059322ba88b5e53d7b4913cceb"
+                ],
+                [
                     "subject_a_clinical.vcf.gz",
-                    "c7dae0b238f6b5f4bf91c0682824f474"
+                    "c4e094059322ba88b5e53d7b4913cceb"
                 ],
                 [
                     "subject_a_research.vcf.gz",
@@ -35,7 +42,7 @@
                 ]
             ]
         ],
-        "timestamp": "2026-05-28T11:50:19.877882",
+        "timestamp": "2026-05-28T12:14:04.222222",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.2"

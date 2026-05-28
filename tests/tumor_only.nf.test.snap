@@ -89,7 +89,7 @@
                 "vep/subject_a_vep.vcf.gz_summary.html"
             ],
             [
-                "tumor.cgh:md5,ec06e9c9371636aba5e9717857e39e6b"
+                "tumor.cgh:md5,22c058183d93a767ee61d5319513dc39"
             ],
             [
                 [
@@ -160,10 +160,10 @@
                 ]
             ]
         ],
-        "timestamp": "2026-05-22T09:38:11.476961",
+        "timestamp": "2026-05-28T12:11:36.574765",
         "meta": {
             "nf-test": "0.9.5",
-            "nextflow": "26.04.1"
+            "nextflow": "26.04.2"
         }
     }
 }
