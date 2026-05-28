@@ -110,6 +110,13 @@
                     "default": "GRCh38",
                     "enum": ["GRCh38", "GRCh37"]
                 },
+                "genome_version_number": {
+                    "type": "integer",
+                    "default": 38,
+                    "hidden": true,
+                    "description": "Genome version number. By default parsed from `params.genome` by removing \"GRCh\" from genome name to obtain only the version number (e.g. \"GRCh38\" -> \"38\").",
+                    "enum": [37, 38]
+                },
                 "fasta": {
                     "type": "string",
                     "format": "file-path",
@@ -377,7 +384,7 @@
                     "type": "string",
                     "fa_icon": "far fa-check-circle",
                     "description": "Base URL or local path to location of pipeline test dataset files",
-                    "default": "https://raw.githubusercontent.com/Clinical-Genomics/test-datasets/60a4ba9429f86a715fd07000b348cc6433c1c5d4/",
+                    "default": "https://raw.githubusercontent.com/Clinical-Genomics/test-datasets/b269a1be954c5ae16b1dff465599d0ac51ea8289/",
                     "hidden": true
                 },
                 "trace_report_suffix": {
