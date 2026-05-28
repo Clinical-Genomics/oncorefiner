@@ -49,6 +49,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#100](https://github.com/Clinical-Genomics/oncorefiner/pull/100) Changed minimum required nextflow version to 25.10.4.
 - [#106](https://github.com/Clinical-Genomics/oncorefiner/pull/106) Changed logic for `stable_path` in pipeline tests to exclude all vcf and index files by default. Removed individual entries for these files in `tests/.nftignore`.
 - [#108](https://github.com/Clinical-Genomics/oncorefiner/pull/108) Update `pipelines_testdata_base_path` to reflect the latest commit to `Clinical-Genomics/test-datasets/` that includes the genmod score config file.
+- [#108](https://github.com/Clinical-Genomics/oncorefiner/pull/108) Updated `bcftools/view` module, also included in `genomic-medicine-sweden/vcf_annotate_score_genmod` subworkflow.
 
 ### `Fixed`
 
