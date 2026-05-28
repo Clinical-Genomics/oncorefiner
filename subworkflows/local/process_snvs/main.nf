@@ -119,7 +119,7 @@ workflow PROCESS_SNVS {
             channel.empty(),
             channel.empty(),
             ch_annotate_score_genmod_in.score_config,
-            true
+            true,
         )
 
         // Clinical Filtering
