@@ -74,8 +74,9 @@ nextflow_workflow {
                 ])
                 input[14] = null
                 input[15] = 'GRCh38'
-                input[16] = 'homo_sapiens'
-                input[17] = '115'
+                input[16] = false
+                input[17] = 'homo_sapiens'
+                input[18] = '115'
                 """
             }
         }
