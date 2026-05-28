@@ -267,19 +267,19 @@ workflow {
     // WORKFLOW OUTPUTS: Group files by publish directory
     //
     ch_snv_publish = CLINICALGENOMICS_ONCOREFINER.out.cadd_annotated_vcf
-                    .mix(CLINICALGENOMICS_ONCOREFINER.out.cadd_annotated_tbi)
-                    .mix(CLINICALGENOMICS_ONCOREFINER.out.snv_clinical_filtered_vcf)
-                    .mix(CLINICALGENOMICS_ONCOREFINER.out.snv_clinical_filtered_tbi)
-                    .mix(CLINICALGENOMICS_ONCOREFINER.out.snv_vcfanno_vcf)
-                    .mix(CLINICALGENOMICS_ONCOREFINER.out.snv_vcfanno_tbi)
-                    .mix(CLINICALGENOMICS_ONCOREFINER.out.snv_vep_annotated_vcf)
-                    .mix(CLINICALGENOMICS_ONCOREFINER.out.snv_vep_annotated_tbi)
-                    .mix(CLINICALGENOMICS_ONCOREFINER.out.snv_vep_report)
-                    .mix(CLINICALGENOMICS_ONCOREFINER.out.snv_research_filtered_vcf)
-                    .mix(CLINICALGENOMICS_ONCOREFINER.out.snv_research_filtered_tbi)
+        .mix(CLINICALGENOMICS_ONCOREFINER.out.cadd_annotated_tbi)
+        .mix(CLINICALGENOMICS_ONCOREFINER.out.snv_clinical_filtered_vcf)
+        .mix(CLINICALGENOMICS_ONCOREFINER.out.snv_clinical_filtered_tbi)
+        .mix(CLINICALGENOMICS_ONCOREFINER.out.snv_vcfanno_vcf)
+        .mix(CLINICALGENOMICS_ONCOREFINER.out.snv_vcfanno_tbi)
+        .mix(CLINICALGENOMICS_ONCOREFINER.out.snv_vep_annotated_vcf)
+        .mix(CLINICALGENOMICS_ONCOREFINER.out.snv_vep_annotated_tbi)
+        .mix(CLINICALGENOMICS_ONCOREFINER.out.snv_vep_report)
+        .mix(CLINICALGENOMICS_ONCOREFINER.out.snv_research_filtered_vcf)
+        .mix(CLINICALGENOMICS_ONCOREFINER.out.snv_research_filtered_tbi)
 
     publish:
-        snv = ch_snv_publish
+    snv = ch_snv_publish
 }
 
 output {
