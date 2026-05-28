@@ -107,25 +107,25 @@ workflow PROCESS_SNVS {
             ch_vep_extra_files
         )
 
-        if (val_skip_genmod_score) {
-        // Rank and add score annotation with genmod score
-        ch_annotate_score_genmod_in = ENSEMBLVEP_VEP.out.vcf
-            .combine(ch_genmod_score_config)
-            .multiMap { meta_vcf, vcf, _meta_genmod_score_config, genmod_score_config ->
-                vcf: tuple(meta_vcf, vcf)
-                score_config: tuple(meta_vcf, genmod_score_config)
-            }
+        if (!val_skip_genmod_score) {
+            // Rank and add score annotation with genmod score
+            ch_annotate_score_genmod_in = ENSEMBLVEP_VEP.out.vcf
+                .combine(ch_genmod_score_config)
+                .multiMap { meta_vcf, vcf, _meta_genmod_score_config, genmod_score_config ->
+                    vcf: tuple(meta_vcf, vcf)
+                    score_config: tuple(meta_vcf, genmod_score_config)
+                }
 
-        VCF_ANNOTATE_SCORE_GENMOD (
-            ch_annotate_score_genmod_in.vcf,
-            channel.empty(),
-            channel.empty(),
-            ch_annotate_score_genmod_in.score_config,
-            true,
-        )
+            VCF_ANNOTATE_SCORE_GENMOD (
+                ch_annotate_score_genmod_in.vcf,
+                channel.empty(),
+                channel.empty(),
+                ch_annotate_score_genmod_in.score_config,
+                true,
+            )
 
-        ch_clinical_filtering_in = VCF_ANNOTATE_SCORE_GENMOD.out.vcf
-            .join(VCF_ANNOTATE_SCORE_GENMOD.out.index)
+            ch_clinical_filtering_in = VCF_ANNOTATE_SCORE_GENMOD.out.vcf
+                .join(VCF_ANNOTATE_SCORE_GENMOD.out.index)
 
         } else {
             ch_clinical_filtering_in = ENSEMBLVEP_VEP.out.vcf
