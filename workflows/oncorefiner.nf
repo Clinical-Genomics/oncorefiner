@@ -42,11 +42,11 @@ workflow ONCOREFINER {
         ch_vep_extra_files              // channel: [optional]  [path(plugin_file1), path(plugin_file2), ...]
         val_cadd_resources              // string:  [optional]  path to CADD resources directory
         val_genome                      // string:  [optional]  genome assembly (e.g. "GRCh38")
-        val_skip_genmod_score           // boolean: [mandatory] whether to skip PROCESS_SNVS:VCF_ANNOTATE_SCORE_GENMOD process
         val_multiqc_config              // string:  [optional]  path to multiqc config file
         val_multiqc_logo                // string:  [optional]  path to image file to be used as logo in multiqc report
         val_multiqc_methods_description // string:  [optional]  path to text file containing methods description to be included in multiqc report
         val_outdir                      // string:  [mandatory] path to output directory (default: ./results)
+        val_skip_genmod_score           // boolean: [mandatory] whether to skip PROCESS_SNVS:VCF_ANNOTATE_SCORE_GENMOD process
         val_species                     // string:  [optional]  species (e.g. "homo_sapiens")
         val_vep_cache_version           // string:  [optional]  version of vep cache to use (e.g. "107")
 
