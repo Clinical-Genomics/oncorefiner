@@ -180,7 +180,7 @@ workflow ONCOREFINER {
     emit:
         cadd_annotated_vcf        = PROCESS_SNVS.out.cadd_annotated_vcf    // channel: [val(meta), path(vcf)]
         cadd_annotated_tbi        = PROCESS_SNVS.out.cadd_annotated_tbi    // channel: [val(meta), path(tbi)]
-        multiqc_report            = MULTIQC.out.report.toList()            // channel: /path/to/multiqc_report.html
+        multiqc_report            = MULTIQC.out.report.map { _meta, report -> [report] }.toList() // channel: /path/to/multiqc_report.html
         snv_clinical_filtered_vcf = PROCESS_SNVS.out.clinical_filtered_vcf // channel: [val(meta), path(vcf)]
         snv_clinical_filtered_tbi = PROCESS_SNVS.out.clinical_filtered_tbi // channel: [val(meta), path(tbi)]
         snv_vcfanno_vcf           = PROCESS_SNVS.out.vcfanno_vcf           // channel: [val(meta), path(vcf)]
