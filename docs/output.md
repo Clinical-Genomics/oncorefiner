@@ -12,7 +12,7 @@ The pipeline is built using [Nextflow](https://www.nextflow.io/) and processes d
 
 <!-- TODO: Add step description here similarly to what was added in `README.md`. -->
 
-- [`Genmod score`](https://github.com/Clinical-Genomics/genmod) - Rank variants and annotate output VCF file with score infomation. 
+- [`Genmod score`](https://github.com/Clinical-Genomics/genmod) - Rank variants and annotate output VCF file with score infomation.
 - [MultiQC](#multiqc) - Aggregate report describing results and QC from the whole pipeline
 - [Pipeline information](#pipeline-information) - Report metrics generated during the workflow execution
 
@@ -37,8 +37,8 @@ The pipeline is built using [Nextflow](https://www.nextflow.io/) and processes d
 <summary>Output files</summary>
 
 - `bcftools/`
-    - `<meta.id>.vcf.gz`: a gzipped VCF file containing ranked and annotated SNVs.
-    - `<meta.id>.vcf.gz.tbi`: index file for the gzipped VCF file.
+  - `<meta.id>.vcf.gz`: a gzipped VCF file containing ranked and annotated SNVs.
+  - `<meta.id>.vcf.gz.tbi`: index file for the gzipped VCF file.
 
 </details>
 
