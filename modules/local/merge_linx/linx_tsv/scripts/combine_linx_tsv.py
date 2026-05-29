@@ -11,7 +11,7 @@ breakends = pd.read_csv(sys.argv[2], sep='\t', dtype=str)
 svs       = pd.read_csv(sys.argv[3], sep='\t', dtype=str)
 
 fusions.rename(columns={'name': 'FUSION_NAME', 'reported': 'REPORTED'}, inplace=True)
-fusions['REPORTED'] = fusions['REPORTED'].replace({'false': '.', 'true':'REPORTED'})
+fusions['REPORTED'] = fusions['REPORTED'].replace({'false': 0, 'true': 1}) # to adhere to pysam
 
 # merge fusions and breakends on 'fivePrimeBreakendId' & 'threePrimeBreakendId' and 'id' columns
 fusion_fivebreakend = fusions[['fivePrimeBreakendId', 'threePrimeBreakendId', 'FUSION_NAME', 'REPORTED']].merge(breakends[['id', 'svId']], left_on='fivePrimeBreakendId', right_on='id', how='left')
