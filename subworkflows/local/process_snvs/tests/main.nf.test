@@ -83,8 +83,17 @@ nextflow_workflow {
             assertAll(
                 { assert workflow.success },
                 { assert snapshot(
-                    // workflow.out.cadd_annotated_vcf.collect { file(it).name + ":variantsMD5," + path(it).vcf.variantsMD5 },
-                    workflow.out.clinical_filtered_vcf.map { _meta, vcf -> file(vcf).name + ":variantsMD5," + path(vcf).vcf.variantsMD5 },
+                    workflow.out.cadd_annotated_vcf.collect { meta, vcf -> [meta, file(vcf).name, ":variantsMD5,", path(vcf).vcf.variantsMD5 ]},
+                    workflow.out.cadd_annotated_tbi.collect { meta, tbi -> [meta, file(tbi).name] },
+                    workflow.out.clinical_filtered_vcf.collect { meta, vcf -> [meta, file(vcf).name, ":variantsMD5,", path(vcf).vcf.variantsMD5 ]},
+                    workflow.out.clinical_filtered_tbi.collect { meta, tbi -> [meta, file(tbi).name] },
+                    workflow.out.vcfanno_vcf.collect { meta, vcf -> [meta, file(vcf).name, ":variantsMD5,", path(vcf).vcf.variantsMD5 ]},
+                    workflow.out.vcfanno_tbi.collect { meta, tbi -> [meta, file(tbi).name] },
+                    workflow.out.vep_annotated_vcf.collect { meta, vcf -> [meta, file(vcf).name, ":variantsMD5,", path(vcf).vcf.variantsMD5 ]},
+                    workflow.out.vep_annotated_tbi.collect { meta, tbi -> [meta, file(tbi).name] },
+                    workflow.out.vep_report.collect { meta, _process, _tool, report -> [meta, file(report).name] },
+                    workflow.out.research_filtered_vcf.collect { meta, vcf -> [meta, file(vcf).name, ":variantsMD5,", path(vcf).vcf.variantsMD5 ]},
+                    workflow.out.research_filtered_tbi.collect { meta, tbi -> [meta, file(tbi).name] },
 
                     // VCFs with stable variants
                     vcfs_with_stable_variants.collect{ file -> [ file.getName(), path(file.toString()).vcf.variantsMD5 ] }
