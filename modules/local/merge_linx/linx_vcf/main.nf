@@ -9,10 +9,11 @@ process MERGE_LINX_VCF {
 
     script:
     """
-    python3 ${params.combine_linx_vcf_script} \\
-    ${merged_tsv} \\
-    ${vcfentries_tsv} \\
-    ${meta.id}_linx_pos.tsv
+    python ${params.combine_linx_vcf_script} \\
+    vcf
+    tsv
+    header
+    output
     """
 
     stub:
