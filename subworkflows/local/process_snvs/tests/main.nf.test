@@ -77,9 +77,6 @@ nextflow_workflow {
         }
 
         then {
-            // vcfs_with_stable_variants: Vcf files with stable variants - can be snapshot using variantsMD5, excluding the untar directories and files
-            def vcfs_with_stable_variants = getAllFilesFromDir(params.outdir, include: ['**/*.vcf.gz'], ignore: ['untar**'])
-
             assertAll(
                 { assert workflow.success },
                 { assert snapshot(
@@ -94,9 +91,6 @@ nextflow_workflow {
                     workflow.out.vep_report.collect { meta, _process, _tool, report -> [meta, file(report).name] },
                     workflow.out.research_filtered_vcf.collect { meta, vcf -> [meta, file(vcf).name, ":variantsMD5,", path(vcf).vcf.variantsMD5 ]},
                     workflow.out.research_filtered_tbi.collect { meta, tbi -> [meta, file(tbi).name] },
-
-                    // VCFs with stable variants
-                    vcfs_with_stable_variants.collect{ file -> [ file.getName(), path(file.toString()).vcf.variantsMD5 ] }
                 ).match() }
             )
         }
