@@ -49,7 +49,6 @@ Annotation related files and options required for the workflow.
 | `vcfanno_lua` | Path to the vcfanno lua file. <details><summary>Help</summary><small>Custom operations file (lua). For use when the built-in ops don't supply the needed reduction.</small></details>| `string` |  |  |  |
 | `svdb_query_dbs` | Databases used for structural variant annotation in vcf format. <details><summary>Help</summary><small>Path to comma-separated file containing information about the databases used for structural variant annotation.</small></details>| `string` |  |  |  |
 | `extra_cadd_annotate_args` | extra arguments for `ANNOTATE_CADD:BCFTOOLS_ANNOTATE_INDELS` | `string` |  |  |  |
-| `extra_cytosure_filter_args` | extra arguments for `GENERATE_CYTOSURE_FILES:FILTER_VCF` | `string` |  |  |  |
 | `extra_snv_clinical_filter_args` | extra arguments for `PROCESS_SNVS:BCFTOOLS_VIEW_CLINICAL` | `string` |  |  |  |
 | `extra_snv_research_filter_args` | extra arguments for `PROCESS_SNVS:BCFTOOLS_VIEW_RESEARCH` | `string` |  |  |  |
 | `extra_vep_snv_args` | extra arguments for `PROCESS_SNVS:ENSEMBLVEP_VEP` | `string` |  |  |  |

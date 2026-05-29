@@ -235,10 +235,6 @@
                     "type": "string",
                     "description": "extra arguments for `ANNOTATE_CADD:BCFTOOLS_ANNOTATE_INDELS`"
                 },
-                "extra_cytosure_filter_args": {
-                    "type": "string",
-                    "description": "extra arguments for `GENERATE_CYTOSURE_FILES:FILTER_VCF`"
-                },
                 "extra_snv_clinical_filter_args": {
                     "type": "string",
                     "description": "extra arguments for `PROCESS_SNVS:BCFTOOLS_VIEW_CLINICAL`"
