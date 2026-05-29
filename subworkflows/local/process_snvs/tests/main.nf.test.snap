@@ -86,15 +86,12 @@
                     },
                     "subject_a_research.vcf.gz.tbi"
                 ]
-            ],
-            [
-                
             ]
         ],
+        "timestamp": "2026-05-29T10:48:23.830871",
         "meta": {
-            "nf-test": "0.9.3",
-            "nextflow": "25.10.4"
-        },
-        "timestamp": "2026-05-29T09:46:45.489366"
+            "nf-test": "0.9.5",
+            "nextflow": "26.04.2"
+        }
     }
 }
