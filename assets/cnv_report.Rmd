@@ -1,6 +1,6 @@
 ---
 title: "CNV Report"
-date: "`r format(Sys.time(), '%Y-%m-%d %H:%M %Z')`"
+date: "`r format(Sys.time(), \"%Y-%m-%d %H:%M %Z\")`"
 output:
   html_document:
     theme: cosmo
