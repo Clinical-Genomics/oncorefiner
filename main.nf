@@ -143,10 +143,10 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     // Input for genmod_score
     if (val_genmod_score_config) {
         ch_genmod_score_config = channel.fromPath(val_genmod_score_config).map { it -> [[id:it.simpleName], it] }.collect()
-        val_skip_genmod_score = false
+        val_run_genmod_score = true
     } else {
         ch_genmod_score_config = channel.empty()
-        val_skip_genmod_score = true
+        val_run_genmod_score = false
     }
 
     ONCOREFINER (
@@ -176,7 +176,7 @@ workflow CLINICALGENOMICS_ONCOREFINER {
         val_multiqc_logo,
         val_multiqc_methods_description,
         val_outdir,
-        val_skip_genmod_score,
+        val_run_genmod_score,
         val_species,
         val_vep_cache_version,
     )

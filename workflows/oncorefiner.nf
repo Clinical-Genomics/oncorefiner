@@ -46,7 +46,7 @@ workflow ONCOREFINER {
         val_multiqc_logo                // string:  [optional]  path to image file to be used as logo in multiqc report
         val_multiqc_methods_description // string:  [optional]  path to text file containing methods description to be included in multiqc report
         val_outdir                      // string:  [mandatory] path to output directory (default: ./results)
-        val_skip_genmod_score           // boolean: [mandatory] whether to skip PROCESS_SNVS:VCF_ANNOTATE_SCORE_GENMOD process
+        val_run_genmod_score           // boolean: [mandatory] whether to skip PROCESS_SNVS:VCF_ANNOTATE_SCORE_GENMOD process
         val_species                     // string:  [optional]  species (e.g. "homo_sapiens")
         val_vep_cache_version           // string:  [optional]  version of vep cache to use (e.g. "107")
 
@@ -73,7 +73,7 @@ workflow ONCOREFINER {
             ch_vep_extra_files,
             val_cadd_resources,
             val_genome,
-            val_skip_genmod_score,
+            val_run_genmod_score,
             val_species,
             val_vep_cache_version
         )
