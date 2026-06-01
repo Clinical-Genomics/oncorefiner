@@ -226,12 +226,26 @@
                 "vep/subject_a_vep_summary.html"
             ],
             [
+                "subject_a_clinical.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                "subject_a_clinical.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e",
                 ".stub:md5,d41d8cd98f00b204e9800998ecf8427e",
                 ".stub:md5,d41d8cd98f00b204e9800998ecf8427e",
-                "tumor.cgh:md5,d41d8cd98f00b204e9800998ecf8427e"
+                "subject_a_clinical.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                "subject_a_clinical.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e",
+                "subject_a_research.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                "subject_a_research.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e",
+                "subject_a_research.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                "subject_a_research.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e",
+                "tumor.cgh:md5,d41d8cd98f00b204e9800998ecf8427e",
+                "subject_a_vcfanno.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                "subject_a_vcfanno.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e",
+                "subject_a_svdbquery_vep.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                "subject_a_svdbquery_vep.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e",
+                "subject_a_vep.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940",
+                "subject_a_vep.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
             ]
         ],
-        "timestamp": "2026-06-01T15:21:42.654885",
+        "timestamp": "2026-06-01T15:34:06.622192",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.2"
