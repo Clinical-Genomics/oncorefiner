@@ -10,7 +10,7 @@ include { softwareVersionsToYAML } from '../subworkflows/nf-core/utils_nfcore_pi
 include { methodsDescriptionText } from '../subworkflows/local/utils_nfcore_oncorefiner_pipeline'
 include { PROCESS_SNVS           } from '../subworkflows/local/process_snvs/main.nf'
 include { PROCESS_SVS            } from '../subworkflows/local/process_svs/main.nf'
-
+include { PROCESS_CNVS           } from '../subworkflows/local/process_cnvs/main.nf'
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     RUN MAIN WORKFLOW
@@ -26,6 +26,8 @@ workflow ONCOREFINER {
         ch_cadd_header                  // channel: [mandatory] [path(txt)]
         ch_cadd_prescored_indels        // channel: [optional]  [val(meta), path(dir)]
         ch_cadd_resources               // channel: [optional]  [val(meta), path(dir)]
+        ch_cnv_gene_tsv                 // channel: [optional]  [val(meta), path(tsv)]
+        ch_cnv_segment_tsv              // channel: [optional]  [val(meta), path(tsv)]
         ch_genome_fasta                 // channel: [optional]  [val(meta), path(fasta)]
         ch_genome_fai                   // channel: [optional]  [val(meta), path(fai)]
         ch_snv_vcf                      // channel: [optional]  [val(meta), path(vcf)]
@@ -89,6 +91,11 @@ workflow ONCOREFINER {
             ch_vep_extra_files
         )
 
+        PROCESS_CNVS(
+            ch_cnv_gene_tsv,
+            ch_cnv_segment_tsv
+        )
+
     //
     // Collate and save software versions
     //
@@ -147,6 +154,7 @@ workflow ONCOREFINER {
     emit:
     multiqc_report = MULTIQC.out.report.map { _meta, report -> [report] }.toList() // channel: /path/to/multiqc_report.html
     versions       = ch_versions                 // channel: [ path(versions.yml) ]
+    cnv_report = PROCESS_CNVS.out.html_report
 }
 
 /*

@@ -38,6 +38,8 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     val_bai_tumor                   // string:  [optional]  path to BAI file for the tumor sample
     val_cadd_prescored_indels       // string:  [optional]  path to CADD prescored indels file
     val_cadd_resources              // string:  [optional]  path to CADD resources directory
+    val_cnv_gene_tsv                // string:  [optional]  path to CNV gene TSV file
+    val_cnv_segment_tsv             // string:  [optional]  path to CNV segment TSV file
     val_genome                      // string:  [optional]  genome assembly (e.g. "GRCh38")
     val_genome_fasta                // string:  [optional]  path to genome fasta file
     val_genome_fai                  // string:  [optional]  path to genome fasta index file
@@ -139,6 +141,12 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     ch_sv_dbs            = val_svdb_query_dbs    ? channel.fromPath(val_svdb_query_dbs)
                                                  : channel.empty()
 
+    // Input for CNV report
+    ch_cnv_gene_tsv      = val_cnv_gene_tsv      ? channel.fromPath(val_cnv_gene_tsv).map { it -> [[id:'CNV_REPORT'], it] }.collect()
+                                                 : channel.empty()
+    ch_cnv_segment_tsv   = val_cnv_segment_tsv   ? channel.fromPath(val_cnv_segment_tsv).map { it -> [[id:'CNV_REPORT'], it] }.collect()
+                                                 : channel.empty()                                                                                             
+
 
     ONCOREFINER (
         samplesheet,
@@ -147,6 +155,8 @@ workflow CLINICALGENOMICS_ONCOREFINER {
         ch_cadd_header,
         ch_cadd_prescored_indels,
         ch_cadd_resources,
+        ch_cnv_gene_tsv,
+        ch_cnv_segment_tsv,
         ch_genome_fasta,
         ch_genome_fai,
         ch_snv_vcf,
@@ -220,6 +230,8 @@ workflow {
         params.bai_tumor,
         params.cadd_prescored_indels,
         params.cadd_resources,
+        params.cnv_gene_tsv,
+        params.cnv_segment_tsv,
         params.genome,
         params.fasta,
         params.fai,
