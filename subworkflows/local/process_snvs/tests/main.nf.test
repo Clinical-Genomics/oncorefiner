@@ -173,7 +173,7 @@ nextflow_workflow {
                 { assert snapshot(
                     // All directories and files in the output directory
                     output_directories_and_files,
-                    ).match() }
+                ).match() }
             )
         }
     }

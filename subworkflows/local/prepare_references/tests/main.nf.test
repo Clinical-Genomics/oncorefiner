@@ -38,6 +38,39 @@ nextflow_workflow {
         }
     }
 
+    test("Test preparing VEP cache: no untarring needed - stub") {
+
+        options "-stub"
+
+        when {
+
+            params {
+                outdir = "$outputDir"
+            }
+            // Provided path to mock input (subworkflow wants value with path to directory) - should be improved in the future
+            workflow {
+                """
+                input[0] = 'path/to/vep_cache_untarred'
+                """
+            }
+        }
+
+        then {
+            // Check untarred directory and files
+            def output_directories_files = getAllFilesFromDir(params.outdir, relative: true, includeDir: true)
+
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(
+                    // Check the name of the output directory
+                    workflow.out.vep_resources[0][0].tokenize('/').last(),
+                    // Check that no output files or directories are produced
+                    output_directories_files
+                ).match() }
+            )
+        }
+    }
+
     test("Test preparing VEP cache: untarring needed") {
 
         when {
@@ -61,39 +94,6 @@ nextflow_workflow {
 					// Check the name of the output directory
                     workflow.out.vep_resources[0][0].tokenize('/').last(),
                     // Check untarred directory and files
-                    output_directories_files
-                ).match() }
-            )
-        }
-    }
-
-    test("Test preparing VEP cache: no untarring needed - stub") {
-
-        options "-stub"
-
-        when {
-
-            params {
-                outdir = "$outputDir"
-            }
-            // Provided path to mock input (subworkflow wants value with path to directory) - should be improved in the future
-            workflow {
-                """
-                input[0] =  'path/to/vep_cache_untarred'
-                """
-            }
-        }
-
-        then {
-            // Check untarred directory and files
-            def output_directories_files = getAllFilesFromDir(params.outdir, relative: true, includeDir: true)
-
-            assertAll(
-                { assert workflow.success },
-                { assert snapshot(
-                    // Check the name of the output directory
-                    workflow.out.vep_resources[0][0].tokenize('/').last(),
-                    // Check that no output files or directories are produced
                     output_directories_files
                 ).match() }
             )
