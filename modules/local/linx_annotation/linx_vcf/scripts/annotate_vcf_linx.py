@@ -21,30 +21,15 @@ output_file = sys.argv[4]
 
 
 # parse new header
-def new_header(header_file, header_dict, header_lines):
+def new_header(header_file, header_lines):
     f= open(header_file, 'rt')
     for line in f:
         line = line.strip()
-        try:
-            # extract the ID, Number, Type from the header line
-            id = line.split('ID=')[1].split(',')[0]
-            number = line.split('Number=')[1].split(',')[0]
-            type = line.split('Type=')[1].split(',')[0]
-            header_dict[id] = {'number': number, 'type': type}
 
-            # if the type is Flag, check that number is 0, and if not, raise an error - May be handled by pysam?
-            if type == 'Flag' and number != '0':
-                raise ValueError(f"Header line {line} has type Flag but number is not 0")
+        # append line to list to be added to new header
+        header_lines.append(line)
 
-            # append line to list to be added to new header
-            header_lines.append(line)
-
-        # make sure that the header line is in the correct format, and if not, raise an error
-        except ValueError:
-            print(f"Header line {line} is not in the correct format")
-            raise
-
-    return header_dict, header_lines
+    return header_lines
 
 # parse tsv file
 def parse_tsv(tsv_file):
@@ -54,7 +39,7 @@ def parse_tsv(tsv_file):
 
         id_column = reader.fieldnames[0]
         for row in reader:
-            key = row.pop(id_column) #removes id column from dict, returns id (value)
+            key = row.pop(id_column) # removes id column from dict, returns id (value)
 
             # convert numeric strings to ints
             values = { k: int(v) if v.isdigit() else v
@@ -87,12 +72,13 @@ def annotate_vcf(vcf, new_header_lines, tsv_dict):
     return output_file, output_index
 
 # run
-new_header_dict = {}
+
+# parse new header
 new_header_lines = []
-new_header_dict, new_header_lines = new_header(header_file, new_header_dict, new_header_lines)
+new_header_lines = new_header(header_file, new_header_lines)
 
 # parse tsv file
 tsv_dict = parse_tsv(tsv_file)
 
-# annotate vcfv
+# annotate vcf
 annotate_vcf(vcf_file, new_header_lines, tsv_dict)
