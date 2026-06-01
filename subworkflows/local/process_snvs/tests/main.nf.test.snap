@@ -35,10 +35,34 @@
                 ]
             ]
         ],
+        "timestamp": "2026-05-07T10:45:33.948103",
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "25.10.4"
-        },
-        "timestamp": "2026-05-07T10:45:33.948103"
+        }
+    },
+    "with tumor-normal data - stub": {
+        "content": [
+            [
+                "clinical_filtering",
+                "clinical_filtering/subject_a_clinical.vcf.gz",
+                "clinical_filtering/subject_a_clinical.vcf.gz.tbi",
+                "research_filtering",
+                "research_filtering/subject_a_research.vcf.gz",
+                "research_filtering/subject_a_research.vcf.gz.tbi",
+                "vcfanno",
+                "vcfanno/subject_a_vcfanno.vcf.gz",
+                "vcfanno/subject_a_vcfanno.vcf.gz.tbi",
+                "vep",
+                "vep/subject_a_vep.vcf.gz",
+                "vep/subject_a_vep.vcf.gz.tbi",
+                "vep/subject_a_vep_summary.html"
+            ]
+        ],
+        "timestamp": "2026-06-01T15:06:42.615285",
+        "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "26.04.2"
+        }
     }
 }
