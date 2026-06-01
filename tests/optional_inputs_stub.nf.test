@@ -1,6 +1,6 @@
 nextflow_pipeline {
 
-    name "Test pipeline ONCOREFINER"
+    name "Test pipeline ONCOREFINER without providing optional inputs - stub"
     script "../main.nf"
     tag "pipeline"
     tag "conditional_inputs_stub"
