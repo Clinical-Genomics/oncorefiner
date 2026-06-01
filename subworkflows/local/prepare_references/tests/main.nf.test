@@ -31,7 +31,7 @@ nextflow_workflow {
                 { assert snapshot(
                     // Check the name of the output directory
                     workflow.out.vep_resources[0][0].tokenize('/').last(),
-                    // Check that no ouput files or directories are produced
+                    // Check that no output files or directories are produced
                     output_directories_files
                 ).match() }
             )
@@ -93,7 +93,7 @@ nextflow_workflow {
                 { assert snapshot(
                     // Check the name of the output directory
                     workflow.out.vep_resources[0][0].tokenize('/').last(),
-                    // Check that no ouput files or directories are produced
+                    // Check that no output files or directories are produced
                     output_directories_files
                 ).match() }
             )
