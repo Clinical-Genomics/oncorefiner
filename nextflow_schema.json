@@ -77,9 +77,9 @@
                     "format": "file-path",
                     "exists": true
                 },
-                "cobalt_ratio_tsv_tumor": {
+                "cobalt_ratio_pcf_tumor": {
                     "type": "string",
-                    "description": "Path to a TSV file containing cobalt coverage ratios for the tumor sample.",
+                    "description": "Path to a TSV file containing cobalt segment coverage ratios for the tumor sample.",
                     "fa_icon": "fas fa-file",
                     "pattern": "^\\S+\\.tsv$",
                     "format": "file-path",
@@ -93,9 +93,9 @@
                     "format": "file-path",
                     "exists": true
                 },
-                "cobalt_ratio_tsv_normal": {
+                "cobalt_ratio_pcf_normal": {
                     "type": "string",
-                    "description": "Path to a TSV file containing cobalt coverage ratios for the normal sample.",
+                    "description": "Path to a TSV file containing cobalt segment coverage ratios for the normal sample.",
                     "fa_icon": "fas fa-file",
                     "pattern": "^\\S+\\.tsv$",
                     "format": "file-path",
