@@ -48,13 +48,13 @@ def main():
     args = parser.parse_args()
 
     # load tsv into pandas df
-    fusions   = pd.read_csv(args.f, sep='\t', dtype=str)
-    breakends = pd.read_csv(args.b, sep='\t', dtype=str)
-    svs       = pd.read_csv(args.s, sep='\t', dtype=str)
+    fusions   = pd.read_csv(args.f, sep='\t', dtype=str, required=True)
+    breakends = pd.read_csv(args.b, sep='\t', dtype=str, required=True)
+    svs       = pd.read_csv(args.s, sep='\t', dtype=str, required=True)
 
     output_file = args.o
 
-    merge_linx_files(fusions, breakends, svs, output_file)
+    merge_linx_files(fusions, breakends, svs, output_file, required=True)
 
 if __name__ == "__main__":
     main()
