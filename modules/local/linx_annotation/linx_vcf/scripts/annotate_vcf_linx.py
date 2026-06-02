@@ -53,11 +53,11 @@ def parse_tsv(tsv_file):
                 for field, value in values.items():
                     if tsv_dict[key][field] == value:
                         continue
-                    current = tsv_dict[key][field]
-                    if isinstance(current, list):
-                        current.append(value)
+                    current_entry = tsv_dict[key][field] # current entry for column
+                    if isinstance(current_entry, list):
+                        current_entry.append(value)
                     else:
-                        tsv_dict[key][field] = [current, value]
+                        tsv_dict[key][field] = [current_entry, value]
 
     # convert to tuple if multiple values for same field, to be compatible with VCF specifications
     for key, fields in tsv_dict.items():
