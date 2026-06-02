@@ -81,7 +81,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#90](https://github.com/Clinical-Genomics/oncorefiner/pull/90) Fixed bug in `GENERATE_CYTOSURE` and `PROCESS_SNVs`: updated test meta to be `subject_a` and input to contain tbi.
 - [#95](https://github.com/Clinical-Genomics/oncorefiner/pull/95) Fixed so VEP annotates in the same order for tests in `PROCESS_SVs`.
 - [#96](https://github.com/Clinical-Genomics/oncorefiner/pull/96) Moved custom test settings for `PROCESS_SNVS:BCFTOOLS_VIEW_*` to test configs.
-- [#101](https://github.com/Clinical-Genomics/oncorefiner/pull/101) Refactored config settings for `PROCESS_SNVS:BCFTOOLS_VIEW_*`, `PROCESS_*:ENSEMBLVEP_VEP`, `GENERATE_CYTOSURE_FILES:FILTER_VCF` and `ANNOTATE_CADD:BCFTOOLS_ANNOTATE_INDELS` to take parameters and specified specific test settings for these in `test_base.config`
+- [#101](https://github.com/Clinical-Genomics/oncorefiner/pull/101) Refactored config settings for `PROCESS_SNVS:BCFTOOLS_VIEW_*`, `PROCESS_*:ENSEMBLVEP_VEP`, and `ANNOTATE_CADD:BCFTOOLS_ANNOTATE_INDELS` to take parameters and specified specific test settings for these in `test_base.config`
 - [#110](https://github.com/Clinical-Genomics/oncorefiner/pull/110) Added `genome` argument for `VCF2CYTOSURE`, given by `params.genome_version_number`, to ensure the reference genome used for the process matches the given input data.
 
 ### `Dependencies`
