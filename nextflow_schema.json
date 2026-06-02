@@ -110,6 +110,13 @@
                     "default": "GRCh38",
                     "enum": ["GRCh38", "GRCh37"]
                 },
+                "genome_version_number": {
+                    "type": "integer",
+                    "default": 38,
+                    "hidden": true,
+                    "description": "Genome version number. By default parsed from `params.genome` by removing \"GRCh\" from genome name to obtain only the version number (e.g. \"GRCh38\" -> \"38\").",
+                    "enum": [37, 38]
+                },
                 "fasta": {
                     "type": "string",
                     "format": "file-path",
@@ -223,6 +230,26 @@
                     "help_text": "Path to comma-separated file containing information about the databases used for structural variant annotation.",
                     "pattern": "^\\S+\\.(csv|tsv|json|yaml|yml)$",
                     "schema": "assets/svdb_query_vcf_schema.json"
+                },
+                "extra_args_cadd_annotate": {
+                    "type": "string",
+                    "description": "Extra arguments for `ANNOTATE_CADD:BCFTOOLS_ANNOTATE_INDELS`"
+                },
+                "extra_args_snv_clinical_filter": {
+                    "type": "string",
+                    "description": "Extra arguments for `PROCESS_SNVS:BCFTOOLS_VIEW_CLINICAL`"
+                },
+                "extra_args_snv_research_filter": {
+                    "type": "string",
+                    "description": "Extra arguments for `PROCESS_SNVS:BCFTOOLS_VIEW_RESEARCH`"
+                },
+                "extra_args_snv_vep": {
+                    "type": "string",
+                    "description": "Extra arguments for `PROCESS_SNVS:ENSEMBLVEP_VEP`"
+                },
+                "extra_args_sv_vep": {
+                    "type": "string",
+                    "description": "Extra arguments for `PROCESS_SVS:ENSEMBLVEP_VEP`"
                 }
             }
         },
@@ -353,7 +380,7 @@
                     "type": "string",
                     "fa_icon": "far fa-check-circle",
                     "description": "Base URL or local path to location of pipeline test dataset files",
-                    "default": "https://raw.githubusercontent.com/Clinical-Genomics/test-datasets/60a4ba9429f86a715fd07000b348cc6433c1c5d4/",
+                    "default": "https://raw.githubusercontent.com/Clinical-Genomics/test-datasets/b269a1be954c5ae16b1dff465599d0ac51ea8289/",
                     "hidden": true
                 },
                 "trace_report_suffix": {
