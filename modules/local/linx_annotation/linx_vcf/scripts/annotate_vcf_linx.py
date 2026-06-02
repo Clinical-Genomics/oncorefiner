@@ -44,18 +44,16 @@ def parse_tsv(tsv_file):
             # convert numeric strings to ints
             values = { k: int(v) if v.isdigit() else v
                       for k, v in row.items() }
-            print(values)
+
             # avoid overwriting if id has multiple annotations
             if key not in tsv_dict:
                 tsv_dict[key] = values
+
             else: # append new value to existing annotations
                 for field, value in values.items():
-                    print(field,value)
                     if tsv_dict[key][field] == value:
                         continue
-
                     current = tsv_dict[key][field]
-                    print(current)
                     if isinstance(current, list):
                         current.append(value)
                     else:
