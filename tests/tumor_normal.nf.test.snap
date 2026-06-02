@@ -83,8 +83,8 @@
                 "vep/subject_a_vep.vcf.gz_summary.html"
             ],
             [
-                "normal.cgh:md5,4d15de693be0db795e1b6b91b6e8d0bf",
-                "tumor.cgh:md5,2dfa8fdd26448127347045837c7cbf7c"
+                "normal.cgh:md5,1474d79c5254e4ecfdc9e15ce13d7916",
+                "tumor.cgh:md5,09c4fba0b534f86fc176fe2ccf00820d"
             ],
             [
                 [
@@ -147,10 +147,10 @@
                 ]
             ]
         ],
+        "timestamp": "2026-05-27T11:42:36.625299",
         "meta": {
-            "nf-test": "0.9.3",
-            "nextflow": "25.10.4"
-        },
-        "timestamp": "2026-05-07T13:20:18.421691"
+            "nf-test": "0.9.5",
+            "nextflow": "26.04.2"
+        }
     }
 }

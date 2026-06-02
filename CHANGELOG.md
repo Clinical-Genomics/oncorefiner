@@ -28,6 +28,8 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#59](https://github.com/Clinical-Genomics/oncorefiner/pull/59) Added `ANNOTATE_CADD` subworkflow with following test (stub only), for CADD scoring of InDels, used in `PROCESS_SNVS`.
 - [#69](https://github.com/Clinical-Genomics/oncorefiner/pull/69) Added `tumor_normal` config file, used by the default test profile.
 - [#69](https://github.com/Clinical-Genomics/oncorefiner/pull/69) Added `tumor_only` config file, profile and pipeline test and snapshot.
+- [#101](https://github.com/Clinical-Genomics/oncorefiner/pull/101) Added parameters for arguments in processes `PROCESS_SNVS:BCFTOOLS_VIEW_*`, `PROCESS_*:ENSEMBLVEP_VEP`, `GENERATE_CYTOSURE_FILES:FILTER_VCF` and `ANNOTATE_CADD:BCFTOOLS_ANNOTATE_INDELS`.
+- [#111](https://github.com/Clinical-Genomics/oncorefiner/pull/111) Added hidden `genome_version_number` parameter, parsed by default from `params.genome`.
 
 ### `Changed`
 
@@ -45,6 +47,8 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#87](https://github.com/Clinical-Genomics/oncorefiner/pull/87) Updated all testdata file paths to GRCh38 files, updated snapshot.
 - [#100](https://github.com/Clinical-Genomics/oncorefiner/pull/100) Template update for nf-core tools 4.0.2.
 - [#100](https://github.com/Clinical-Genomics/oncorefiner/pull/100) Changed minimum required nextflow version to 25.10.4.
+- [#106](https://github.com/Clinical-Genomics/oncorefiner/pull/106) Changed logic for `stable_path` in pipeline tests to exclude all vcf and index files by default. Removed individual entries for these files in `tests/.nftignore`.
+- [#108](https://github.com/Clinical-Genomics/oncorefiner/pull/108) Update `pipelines_testdata_base_path` to reflect the latest commit to `Clinical-Genomics/test-datasets/` that includes the genmod score config file.
 
 ### `Fixed`
 
@@ -77,6 +81,9 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#90](https://github.com/Clinical-Genomics/oncorefiner/pull/90) Fixed bug in `GENERATE_CYTOSURE` and `PROCESS_SNVs`: updated test meta to be `subject_a` and input to contain tbi.
 - [#95](https://github.com/Clinical-Genomics/oncorefiner/pull/95) Fixed so VEP annotates in the same order for tests in `PROCESS_SVs`.
 - [#96](https://github.com/Clinical-Genomics/oncorefiner/pull/96) Moved custom test settings for `PROCESS_SNVS:BCFTOOLS_VIEW_*` to test configs.
+- [#101](https://github.com/Clinical-Genomics/oncorefiner/pull/101) Refactored config settings for `PROCESS_SNVS:BCFTOOLS_VIEW_*`, `PROCESS_*:ENSEMBLVEP_VEP`, and `ANNOTATE_CADD:BCFTOOLS_ANNOTATE_INDELS` to take parameters and specified specific test settings for these in `test_base.config`
+- [#110](https://github.com/Clinical-Genomics/oncorefiner/pull/110) Added `genome` argument for `VCF2CYTOSURE`, given by `params.genome_version_number`, to ensure the reference genome used for the process matches the given input data.
+- [#116](https://github.com/Clinical-Genomics/oncorefiner/pull/116) Updated `GENERATE_CYTOSURE_FILES` subworkflow test snapshot in sequence of [#110](https://github.com/Clinical-Genomics/oncorefiner/pull/110).
 
 ### `Dependencies`
 
