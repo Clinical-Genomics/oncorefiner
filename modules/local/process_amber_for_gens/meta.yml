@@ -1,0 +1,24 @@
+name: amber_baf_to_zoom
+description: Convert AMBER BAF TSV into zoom-level tabix-indexed BAF tracks
+keywords:
+  - baf
+  - amber
+  - tabix
+  - bgzip
+tools:
+  - custom:
+      description: Custom BAF zoom conversion script
+input:
+  - meta:
+      type: map
+      description: Sample metadata
+  - amber_baf_tsv:
+      type: file
+      description: AMBER BAF TSV, optionally gzipped
+output:
+  - baf_zoom:
+      type: file
+      description: bgzipped and tabix-indexed BAF zoom files
+      pattern: "*.baf.zoom.tsv.gz"
+authors:
+  - "@math.joh.bio"
