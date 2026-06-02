@@ -24,13 +24,10 @@ fusion_breakend_merge = pd.concat([fusion_fivebreakend, fusion_threebreakend], i
 # merge above with svs on 'svId' column in sv file
 fusion_breakend_svs_merge = fusion_breakend_merge.merge(svs, on='svId', how='left')
 
-# keep only the relevant columns for the final output
+# keep only the relevant columns for the final output - for debug - add columns svId, fivePrimeBreakendId, threePrimeBreakendId
 result = fusion_breakend_svs_merge[
     [
         "vcfId",
-        "svId", # TODO remove, only for debug
-        "fivePrimeBreakendId", # TODO remove, only for debug
-        "threePrimeBreakendId", # TODO remove, only for debug
         "FUSION_NAME",
         "REPORTED"
     ]
