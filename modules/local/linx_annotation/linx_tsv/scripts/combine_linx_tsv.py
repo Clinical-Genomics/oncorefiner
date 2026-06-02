@@ -40,21 +40,21 @@ def merge_linx_files(fusions, breakends, svs, output_file):
 def main():
     parser = argparse.ArgumentParser(description="Merge LINX files into one TSV file")
 
-    parser.add_argument("-f", type=str, help="The fusion linx tsv file")
-    parser.add_argument("-b", type=str, help="The breakends linx tsv file")
-    parser.add_argument("-s", type=str, help="The svs linx tsv file")
-    parser.add_argument("-o", type=str, help="name of output tsv file")
+    parser.add_argument("-f", type=str, help="The fusion linx tsv file", required=True)
+    parser.add_argument("-b", type=str, help="The breakends linx tsv file", required=True)
+    parser.add_argument("-s", type=str, help="The svs linx tsv file", required=True)
+    parser.add_argument("-o", type=str, help="name of output tsv file", required=True)
 
     args = parser.parse_args()
 
     # load tsv into pandas df
-    fusions   = pd.read_csv(args.f, sep='\t', dtype=str, required=True)
-    breakends = pd.read_csv(args.b, sep='\t', dtype=str, required=True)
-    svs       = pd.read_csv(args.s, sep='\t', dtype=str, required=True)
+    fusions   = pd.read_csv(args.f, sep='\t', dtype=str)
+    breakends = pd.read_csv(args.b, sep='\t', dtype=str)
+    svs       = pd.read_csv(args.s, sep='\t', dtype=str)
 
     output_file = args.o
 
-    merge_linx_files(fusions, breakends, svs, output_file, required=True)
+    merge_linx_files(fusions, breakends, svs, output_file)
 
 if __name__ == "__main__":
     main()
