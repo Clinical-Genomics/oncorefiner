@@ -8,14 +8,14 @@
             [
                 [
                     "tumor.cgh",
-                    "6982664c6f78b094fd4a26afc25e153e"
+                    "09c4fba0b534f86fc176fe2ccf00820d"
                 ]
             ]
         ],
+        "timestamp": "2026-06-01T10:51:52.862763",
         "meta": {
-            "nf-test": "0.9.2",
-            "nextflow": "25.10.0"
-        },
-        "timestamp": "2026-04-22T11:00:47.667949"
+            "nf-test": "0.9.5",
+            "nextflow": "26.04.2"
+        }
     }
 }

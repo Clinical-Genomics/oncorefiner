@@ -27,6 +27,7 @@ Reference genome related files and options required for the workflow.
 | Parameter | Description | Type | Default | Required | Hidden |
 |-----------|-----------|-----------|-----------|-----------|-----------|
 | `genome` | Name of the genome reference. (accepted: `GRCh38`\|`GRCh37`) <details><summary>Help</summary><small>Use this parameter to specify the ID for the reference genome used. This is then used to annotate the SV and SNV files e.g. `--genome GRCh38`.</small></details>| `string` | GRCh38 |  |  |
+| `genome_version_number` | Genome version number. By default parsed from `params.genome` by removing "GRCh" from genome name to obtain only the version number (e.g. "GRCh38" -> "38"). (accepted: `37`\|`38`) | `integer` | 38 |  | True |
 | `fasta` | Path to FASTA genome file. <details><summary>Help</summary><small>If you don't have a BWA index available this will be generated for you automatically. Combine with `--save_reference` to save BWA index for future runs.</small></details>| `string` |  |  |  |
 | `fai` | Path to FASTA genome index file. <details><summary>Help</summary><small>If none provided, will be generated automatically from the FASTA reference</small></details>| `string` |  |  |  |
 | `cadd_prescored_indels` | Path to a directory containing prescored indels for CADD. <details><summary>Help</summary><small>This folder contains the compressed files and indexes that would otherwise be in data/prescored folder as described in https://github.com/kircherlab/CADD-scripts/#manual-installation.</small></details>| `string` |  |  |  |
@@ -47,6 +48,11 @@ Annotation related files and options required for the workflow.
 | `vcfanno_toml` | Path to the vcfanno toml file. <details><summary>Help</summary><small>If no toml is passed, default configurations will be used according to genome build within the context of the pipeline.</small></details>| `string` |  |  |  |
 | `vcfanno_lua` | Path to the vcfanno lua file. <details><summary>Help</summary><small>Custom operations file (lua). For use when the built-in ops don't supply the needed reduction.</small></details>| `string` |  |  |  |
 | `svdb_query_dbs` | Databases used for structural variant annotation in vcf format. <details><summary>Help</summary><small>Path to comma-separated file containing information about the databases used for structural variant annotation.</small></details>| `string` |  |  |  |
+| `extra_args_cadd_annotate` | Extra arguments for `ANNOTATE_CADD:BCFTOOLS_ANNOTATE_INDELS` | `string` |  |  |  |
+| `extra_args_snv_clinical_filter` | Extra arguments for `PROCESS_SNVS:BCFTOOLS_VIEW_CLINICAL` | `string` |  |  |  |
+| `extra_args_snv_research_filter` | Extra arguments for `PROCESS_SNVS:BCFTOOLS_VIEW_RESEARCH` | `string` |  |  |  |
+| `extra_args_snv_vep` | Extra arguments for `PROCESS_SNVS:ENSEMBLVEP_VEP` | `string` |  |  |  |
+| `extra_args_sv_vep` | Extra arguments for `PROCESS_SVS:ENSEMBLVEP_VEP` | `string` |  |  |  |
 
 ## Institutional config options
 
@@ -73,12 +79,11 @@ Less common options for the pipeline, typically set in a config file.
 | `plaintext_email` | Send plain-text email instead of HTML. | `boolean` |  |  | True |
 | `max_multiqc_email_size` | File size limit when attaching MultiQC reports to summary emails. | `string` | 25.MB |  | True |
 | `monochrome_logs` | Do not use coloured log outputs. | `boolean` |  |  | True |
-| `hook_url` | Incoming hook URL for messaging service <details><summary>Help</summary><small>Incoming hook URL for messaging service. Currently, MS Teams and Slack are supported.</small></details>| `string` |  |  | True |
 | `multiqc_config` | Custom config file to supply to MultiQC. | `string` |  |  | True |
 | `multiqc_logo` | Custom logo file to supply to MultiQC. File name must also be set in the MultiQC config file | `string` |  |  | True |
 | `multiqc_methods_description` | Custom MultiQC yaml file containing HTML including a methods description. | `string` |  |  |  |
 | `validate_params` | Boolean whether to validate parameters against the schema at runtime | `boolean` | True |  | True |
-| `pipelines_testdata_base_path` | Base URL or local path to location of pipeline test dataset files | `string` | https://raw.githubusercontent.com/Clinical-Genomics/test-datasets/a0b1a0c806be5823377671bba35eb22f2e28956d/ |  | True |
+| `pipelines_testdata_base_path` | Base URL or local path to location of pipeline test dataset files | `string` | https://raw.githubusercontent.com/Clinical-Genomics/test-datasets/b269a1be954c5ae16b1dff465599d0ac51ea8289/ |  | True |
 | `trace_report_suffix` | Suffix to add to the trace report filename. Default is the date and time in the format yyyy-MM-dd_HH-mm-ss. | `string` |  |  | True |
 | `help` | Display the help message. | `['boolean', 'string']` |  |  |  |
 | `help_full` | Display the full detailed help message. | `boolean` |  |  |  |
