@@ -230,6 +230,26 @@
                     "help_text": "Path to comma-separated file containing information about the databases used for structural variant annotation.",
                     "pattern": "^\\S+\\.(csv|tsv|json|yaml|yml)$",
                     "schema": "assets/svdb_query_vcf_schema.json"
+                },
+                "extra_args_cadd_annotate": {
+                    "type": "string",
+                    "description": "Extra arguments for `ANNOTATE_CADD:BCFTOOLS_ANNOTATE_INDELS`"
+                },
+                "extra_args_snv_clinical_filter": {
+                    "type": "string",
+                    "description": "Extra arguments for `PROCESS_SNVS:BCFTOOLS_VIEW_CLINICAL`"
+                },
+                "extra_args_snv_research_filter": {
+                    "type": "string",
+                    "description": "Extra arguments for `PROCESS_SNVS:BCFTOOLS_VIEW_RESEARCH`"
+                },
+                "extra_args_snv_vep": {
+                    "type": "string",
+                    "description": "Extra arguments for `PROCESS_SNVS:ENSEMBLVEP_VEP`"
+                },
+                "extra_args_sv_vep": {
+                    "type": "string",
+                    "description": "Extra arguments for `PROCESS_SVS:ENSEMBLVEP_VEP`"
                 }
             }
         },
