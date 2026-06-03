@@ -42,6 +42,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#73](https://github.com/Clinical-Genomics/oncorefiner/pull/73) Moved logic for processing SV VCF files, previously in `workflows/oncorefiner.nf`, to `PROCESS_SVS` subworkflow.
 - [#69](https://github.com/Clinical-Genomics/oncorefiner/pull/69) Renamed and refactored test config to `test_base.config` to include common parameters and files used for all tests.
 - [#69](https://github.com/Clinical-Genomics/oncorefiner/pull/69) Refactored default pipeline test and test profile to run a `tumor_normal` default test and updated snapshot.
+- [#88](https://github.com/Clinical-Genomics/oncorefiner/pull/88) Update contributing guidelines to follow current conventions on running `prek` for pre-commit hooks, identation and item order in code blocks and remove outdate channel publishing instructions.
 
 ### `Fixed`
 
