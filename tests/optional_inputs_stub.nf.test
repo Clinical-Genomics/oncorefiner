@@ -4,7 +4,6 @@ nextflow_pipeline {
     script "../main.nf"
     tag "pipeline"
     tag "conditional_inputs_stub"
-    tag "tumor_normal"
 
     test("No `genmod_score_config` with '-profile test' - stub") {
 
