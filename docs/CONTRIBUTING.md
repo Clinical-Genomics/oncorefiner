@@ -303,14 +303,14 @@ Please use the following naming schemes, to make it easy to understand what is g
 
   ```groovy
   take:
-  ch_vcf                // channel: [mandatory] [ val(meta), path(vcf) ]
-  ch_reduced_penetrance // channel: [optional]  [ path(penetrance) ]
-  val_aligner           // string:  [mandatory] aligner name (bwa/bwamem2/bwameme)
-  process_with_sort     // Boolean
+  ch_vep_cache       // channel: [optional]  [path(vep_cache)]
+  ch_vep_extra_files // channel: [optional]  [path(plugin_file1), path(plugin_file2), ...]
+  val_cadd_resources // string:  [optional]  path to CADD resources directory
+  val_genome         // string:  [optional]  genome assembly (e.g. "GRCh38")
 
   emit:
-  vcf     = ch_vcf      // channel: [ val(meta), path(vcf) ]
-  publish = ch_publish  // channel: [ val(destination), val(value) ]
+  vcf   = ch_vcf             // channel: [ val(meta), path(vcf) ]
+  index = ch_tbi.mix(ch_csi) // channel: [ val(meta), path(index) ]
   ```
 
 - Use `ch_* = <...>` whenever possible. Avoid using the `.set {ch_*}` operator to create new channels.
