@@ -19,11 +19,15 @@ nextflow_pipeline {
         then {
             // stable_name: All files + folders in ${params.outdir}/ with a stable name
             def stable_name = getAllFilesFromDir(params.outdir, relative: true, includeDir: true, ignore: ['pipeline_info/*.{html,json,txt}'])
+            // pipeline versions.yml file for multiqc from which Nextflow version is removed because we test pipelines on multiple Nextflow versions
+            def versions = removeNextflowVersion("$outputDir/pipeline_info/oncorefiner_software_mqc_versions.yml")
             assertAll(
                 { assert workflow.success},
+                // Assert that "GENMODE_SCORE" is not run
+                { assert "GENMODE_SCORE" !in versions.keySet()},
                 { assert snapshot(
-                    // pipeline versions.yml file for multiqc from which Nextflow version is removed because we test pipelines on multiple Nextflow versions
-                    removeNextflowVersion("$outputDir/pipeline_info/oncorefiner_software_mqc_versions.yml"),
+                    // List of software versions run in the pipeline
+                    versions,
                     // All stable file names, with a relative path
                     stable_name,
                 ).match() }

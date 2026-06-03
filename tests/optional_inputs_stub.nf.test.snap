@@ -3,10 +3,10 @@
         "content": [
             {
                 "BCFTOOLS_VIEW_CLINICAL": {
-                    "bcftools": 1.22
+                    "bcftools": "1.23.1"
                 },
                 "BCFTOOLS_VIEW_RESEARCH": {
-                    "bcftools": 1.22
+                    "bcftools": "1.23.1"
                 },
                 "ENSEMBLVEP_VEP": {
                     "ensemblvep": 115.2,
@@ -14,7 +14,7 @@
                     "tabix": 1.21
                 },
                 "FILTER_VCF": {
-                    "bcftools": 1.22
+                    "bcftools": "1.23.1"
                 },
                 "SAMTOOLS_VIEW": {
                     "samtools": "1.23.1"
@@ -79,7 +79,7 @@
                 "vep/subject_a_vep_summary.html"
             ]
         ],
-        "timestamp": "2026-06-01T16:28:05.479657",
+        "timestamp": "2026-06-03T09:33:30.16198",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.2"
