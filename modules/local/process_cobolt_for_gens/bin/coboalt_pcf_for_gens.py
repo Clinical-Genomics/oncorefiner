@@ -77,6 +77,7 @@ def write_segment_zoom_file(
 )
 @click.option(
     "--output-file",
+    required=True,
     help="Output BED-like zoom file for GENS.",
 )
 def main(input_file: str, output_file: str) -> None:
