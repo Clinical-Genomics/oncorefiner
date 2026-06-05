@@ -53,11 +53,11 @@ def parse_tsv(tsv_file: str) -> dict:
 
     return tsv_dict
 
-def annotate_vcf(vcf_file: str, header_file: str, tsv_dict: dict, output_file: str) -> tuple:
+def annotate_vcf(vcf_file: click.Path, header_file: click.Path, tsv_dict: dict, output_file: click.Path) -> tuple:
 
     """ Annotate VCF file using the tsv_dict and header_file, and save the annotated VCF to output_file. Returns the path to the annotated VCF and its index file"""
 
-    vcf_in = pysam.VariantFile(vcf_file, 'rb')
+    vcf_in: pysam.VariantFile = pysam.VariantFile(vcf_file, 'rb')
 
     # add new header lines to original header from header file
     with open(header_file, 'r') as hf:
@@ -67,7 +67,7 @@ def annotate_vcf(vcf_file: str, header_file: str, tsv_dict: dict, output_file: s
         vcf_in.header.add_line(line)
     merged_header = vcf_in.header
 
-    vcf_out = pysam.VariantFile( output_file, "w", header=merged_header ) # auto-detects compression from file extension
+    vcf_out: pysam.VariantFile = pysam.VariantFile( output_file, "w", header=merged_header ) # auto-detects compression from file extension
 
     for record in vcf_in:
         if record.id in list(tsv_dict.keys()):
@@ -90,7 +90,7 @@ def annotate_vcf(vcf_file: str, header_file: str, tsv_dict: dict, output_file: s
 @click.option("-o", "--output_file", type=click.Path(), help="name of output annotated VCF file", required=True)
 
 # run
-def main(vcf_file: str, header_file: str, tsv_file: str, output_file: str) -> None:
+def main(vcf_file: click.Path, header_file: click.Path, tsv_file: click.Path, output_file: click.Path) -> None:
 
     # parse tsv file
     tsv_dict = parse_tsv(tsv_file)
