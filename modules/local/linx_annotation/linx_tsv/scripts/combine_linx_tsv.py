@@ -12,6 +12,12 @@ At least the following columns are expected in the input files:
 - Fusion TSV file: fivePrimeBreakendId, threePrimeBreakendId, name, reported
 - Breakend TSV file: id, svId
 - SV TSV file: svId, vcfId
+
+The output is a merged tsv file with the following columns:
+- vcfId: the ID of the SV in the VCF file, from the svId column in the SV TSV file
+- FUSION_NAME: the name of the fusion, from the name column in the fusion TSV file
+- REPORTED: whether the fusion is reported, from the reported column in the fusion TSV file, converted to 0/1 for compatibility with pysam specifications
+
 """
 
 @click.command()
