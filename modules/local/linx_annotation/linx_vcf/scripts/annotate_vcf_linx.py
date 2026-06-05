@@ -1,10 +1,10 @@
-import sys
+import click
 import pysam
 import csv
 
 """
 This script aims to annotate a vcf using:
-1. a VCF file following the specifications, where the ID field will be used to annoate entries
+1. a VCF file following the VCF specifications, where the ID field will be used to annoate entries
 2. a TSV file where the ids to annotate is always the first column and the remaining are new INFO fields: ex.: ID, TAG1, TAG2, TAG3
 3. a TXT file with the header lines of the tags added, following the VCF specifications (i.e. ##INFO=<ID=ID,Number=number,Type=type,Description="description")
 
@@ -13,26 +13,12 @@ This means that the ‘Flag’ type indicates that the INFO field does not conta
 0 and the flag will be added as is to the INFO field based on 0 (false) or 1 (true).
 """
 
-# get input files from command line arguments, TODO add click
-vcf_file = sys.argv[1]
-tsv_file = sys.argv[2]
-header_file = sys.argv[3]
-output_file = sys.argv[4]
-
-
-# parse new header
-def new_header(header_file, header_lines):
-    f= open(header_file, 'rt')
-    for line in f:
-        line = line.strip()
-
-        # append line to list to be added to new header
-        header_lines.append(line)
-
-    return header_lines
 
 # parse tsv file
-def parse_tsv(tsv_file):
+def parse_tsv(tsv_file: str) -> dict:
+
+    """Parses the tsv file into a dictionary with the id as key and the remaining columns as values in a nested dict"""
+
     tsv_dict = {}
     with open(tsv_file, newline='') as f:
         reader = csv.DictReader(f, delimiter="\t") # convert each tsv row to dict
@@ -59,7 +45,7 @@ def parse_tsv(tsv_file):
                     else:
                         tsv_dict[key][field] = [current_entry, value]
 
-    # convert to tuple if multiple values for same field, to be compatible with VCF specifications
+    # convert to tuple if multiple values for same field, to be compatible with pysam specifications
     for key, fields in tsv_dict.items():
         for field, value in fields.items():
             if isinstance(value, list):
@@ -67,10 +53,16 @@ def parse_tsv(tsv_file):
 
     return tsv_dict
 
-def annotate_vcf(vcf, new_header_lines, tsv_dict):
-    vcf_in = pysam.VariantFile(vcf, 'rb')
+def annotate_vcf(vcf_file: str, header_file: str, tsv_dict: dict, output_file: str) -> tuple:
 
-    # add new header lines)
+    """ Annotate VCF file using the tsv_dict and header_file, and save the annotated VCF to output_file. Returns the path to the annotated VCF and its index file"""
+
+    vcf_in = pysam.VariantFile(vcf_file, 'rb')
+
+    # add new header lines to original header from header file
+    with open(header_file, 'r') as hf:
+        new_header_lines = hf.read().splitlines()
+
     for line in new_header_lines:
         vcf_in.header.add_line(line)
     merged_header = vcf_in.header
@@ -89,14 +81,23 @@ def annotate_vcf(vcf, new_header_lines, tsv_dict):
 
     return output_file, output_index
 
+@click.command()
+
+# get input files
+@click.option("-v", "--vcf_file", type=click.Path(exists=True), help="The VCF file to annotate", required=True)
+@click.option("-t", "--tsv_file", type=click.Path(exists=True), help="The TSV file with annotations", required=True)
+@click.option("-h", "--header_file", type=click.Path(exists=True), help="A txt file with new header lines for the annotations", required=True)
+@click.option("-o", "--output_file", type=click.Path(), help="name of output annotated VCF file", required=True)
+
 # run
+def main(vcf_file: str, header_file: str, tsv_file: str, output_file: str) -> None:
 
-# parse new header
-new_header_lines = []
-new_header_lines = new_header(header_file, new_header_lines)
+    # parse tsv file
+    tsv_dict = parse_tsv(tsv_file)
 
-# parse tsv file
-tsv_dict = parse_tsv(tsv_file)
+    # annotate vcf
+    annotate_vcf(vcf_file, header_file, tsv_dict, output_file)
 
-# annotate vcf
-annotate_vcf(vcf_file, new_header_lines, tsv_dict)
+# main
+if __name__ == "__main__":
+    main()
