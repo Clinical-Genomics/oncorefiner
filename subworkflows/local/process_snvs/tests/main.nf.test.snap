@@ -2,12 +2,6 @@
     "with tumor-normal data": {
         "content": [
             [
-                
-            ],
-            [
-                
-            ],
-            [
                 [
                     {
                         "id": "subject_a"
@@ -15,17 +9,15 @@
                     "subject_a_clinical.vcf.gz",
                     ":variantsMD5,",
                     "c7dae0b238f6b5f4bf91c0682824f474"
-                ]
-            ],
-            [
+                ],
                 [
                     {
                         "id": "subject_a"
                     },
-                    "subject_a_clinical.vcf.gz.tbi"
-                ]
-            ],
-            [
+                    "subject_a_research.vcf.gz",
+                    ":variantsMD5,",
+                    "4cdfadaf39f5ed1c1d854226e6099c0d"
+                ],
                 [
                     {
                         "id": "subject_a"
@@ -33,17 +25,7 @@
                     "subject_a_vcfanno.vcf.gz",
                     ":variantsMD5,",
                     "f79b3dd00e3a53231a4bbd52ebcc6d1d"
-                ]
-            ],
-            [
-                [
-                    {
-                        "id": "subject_a"
-                    },
-                    "subject_a_vcfanno.vcf.gz.tbi"
-                ]
-            ],
-            [
+                ],
                 [
                     {
                         "id": "subject_a"
@@ -58,6 +40,24 @@
                     {
                         "id": "subject_a"
                     },
+                    "subject_a_clinical.vcf.gz.tbi"
+                ],
+                [
+                    {
+                        "id": "subject_a"
+                    },
+                    "subject_a_research.vcf.gz.tbi"
+                ],
+                [
+                    {
+                        "id": "subject_a"
+                    },
+                    "subject_a_vcfanno.vcf.gz.tbi"
+                ],
+                [
+                    {
+                        "id": "subject_a"
+                    },
                     "subject_a_vep.vcf.gz.tbi"
                 ]
             ],
@@ -68,30 +68,12 @@
                     },
                     "subject_a_vep.vcf.gz_summary.html"
                 ]
-            ],
-            [
-                [
-                    {
-                        "id": "subject_a"
-                    },
-                    "subject_a_research.vcf.gz",
-                    ":variantsMD5,",
-                    "4cdfadaf39f5ed1c1d854226e6099c0d"
-                ]
-            ],
-            [
-                [
-                    {
-                        "id": "subject_a"
-                    },
-                    "subject_a_research.vcf.gz.tbi"
-                ]
             ]
         ],
-        "timestamp": "2026-05-29T10:48:23.830871",
         "meta": {
-            "nf-test": "0.9.5",
-            "nextflow": "26.04.2"
-        }
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.4"
+        },
+        "timestamp": "2026-06-05T13:06:00.461054"
     }
 }
