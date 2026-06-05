@@ -1,27 +1,50 @@
+import click
 import pandas as pd
-import argparse
 
 """
 This script aims to combine the three linx files (fusions, breakends, svs) into one merged tsv file
+Expects three linx tsv files with a header line and tab-delimited columns:
+- Fusion TSV file
+- Breakend TSV file
+- SV TSV file
+
+At least the following columns are expected in the input files:
+- Fusion TSV file: fivePrimeBreakendId, threePrimeBreakendId, name, reported
+- Breakend TSV file: id, svId
+- SV TSV file: svId, vcfId
 """
 
-def merge_linx_files(fusions, breakends, svs, output_file):
+@click.command()
+@click.option("-f", "--fusion_file", type=click.Path(exists=True), help="The fusion linx tsv file", required=True)
+@click.option("-b", "--breakend_file", type=click.Path(exists=True), help="The breakends linx tsv file", required=True)
+@click.option("-sv", "--sv_file", type=click.Path(exists=True), help="The svs linx tsv file", required=True)
+@click.option("-o", "--output_file", type=click.Path(), help="name of output tsv file", required=True)
 
-    fusions.rename(columns={'name': 'FUSION_NAME', 'reported': 'REPORTED'}, inplace=True)
+def merge_linx_files(fusion_file: str, breakend_file: str, sv_file: str, output_file: str) -> None:
+
+    # load tsv into pandas df
+    fusions   = pd.read_csv(fusion_file, sep='\t', dtype=str)
+    breakends = pd.read_csv(breakend_file, sep='\t', dtype=str)
+    svs       = pd.read_csv(sv_file, sep='\t', dtype=str)
+
+    fusions.rename(columns={'name': 'FUSION_NAME', 'reported': 'REPORTED'}, inplace=True) # rename columns to desired header names in subsequenct VCF annotation step
     fusions['REPORTED'] = fusions['REPORTED'].replace({'false': 0, 'true': 1}) # to adhere to pysam
 
-    # merge fusions and breakends on 'fivePrimeBreakendId' & 'threePrimeBreakendId' and 'id' columns
-    fusion_fivebreakend = fusions[['fivePrimeBreakendId', 'threePrimeBreakendId', 'FUSION_NAME', 'REPORTED']].merge(breakends[['id', 'svId']], left_on='fivePrimeBreakendId', right_on='id', how='left')
-    fusion_threebreakend = fusions[['fivePrimeBreakendId', 'threePrimeBreakendId', 'FUSION_NAME', 'REPORTED']].merge(breakends[['id', 'svId']], left_on='threePrimeBreakendId', right_on='id', how='left')
+    # subset dataframes
+    fusions = fusions[['fivePrimeBreakendId', 'threePrimeBreakendId', 'FUSION_NAME', 'REPORTED']]
+    breakends = breakends[['id', 'svId']]
 
-    # merge the two
+    # merge fusions and breakends on 'fivePrimeBreakendId' & 'threePrimeBreakendId' and 'id' columns
+    fusion_fivebreakend = fusions.merge(breakends, left_on='fivePrimeBreakendId', right_on='id', how='left')
+    fusion_threebreakend = fusions.merge(breakends, left_on='threePrimeBreakendId', right_on='id', how='left')
+
+    # merge fusion_fivebreakend and fusion_threebreakend to get all fusions
     fusion_breakend_merge = pd.concat([fusion_fivebreakend, fusion_threebreakend], ignore_index=True)
 
-
-    # merge above with svs on 'svId' column in sv file
+    # merge fusion_breakend_merge with svs on 'svId' column in sv file
     fusion_breakend_svs_merge = fusion_breakend_merge.merge(svs, on='svId', how='left')
 
-    # keep only the relevant columns for the final output - for debug - add columns svId, fivePrimeBreakendId, threePrimeBreakendId
+    # keep only the relevant columns for the final output - for debug: add columns svId, fivePrimeBreakendId, threePrimeBreakendId
     result = fusion_breakend_svs_merge[
         [
             "vcfId",
@@ -30,31 +53,12 @@ def merge_linx_files(fusions, breakends, svs, output_file):
         ]
     ]
 
-    # remove duplicates (entries with same svId)
+    # remove duplicates
     result = result.drop_duplicates()
 
     # save the final merged dataframe to a tsv file
     result.to_csv(output_file, sep='\t', index=False)
 
-
-def main():
-    parser = argparse.ArgumentParser(description="Merge LINX files into one TSV file")
-
-    parser.add_argument("-f", type=str, help="The fusion linx tsv file", required=True)
-    parser.add_argument("-b", type=str, help="The breakends linx tsv file", required=True)
-    parser.add_argument("-s", type=str, help="The svs linx tsv file", required=True)
-    parser.add_argument("-o", type=str, help="name of output tsv file", required=True)
-
-    args = parser.parse_args()
-
-    # load tsv into pandas df
-    fusions   = pd.read_csv(args.f, sep='\t', dtype=str)
-    breakends = pd.read_csv(args.b, sep='\t', dtype=str)
-    svs       = pd.read_csv(args.s, sep='\t', dtype=str)
-
-    output_file = args.o
-
-    merge_linx_files(fusions, breakends, svs, output_file)
-
+# main
 if __name__ == "__main__":
-    main()
+    merge_linx_files()
