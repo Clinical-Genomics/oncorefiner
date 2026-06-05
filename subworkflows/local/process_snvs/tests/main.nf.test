@@ -77,8 +77,7 @@ nextflow_workflow {
         }
 
         then {
-            // All VCFs
-            //def ch_vcfs = [workflow.out.cadd_annotated_vcf, workflow.out.clinical_filtered_vcf, workflow.out.vcfanno_vcf]
+            // All vcfs
             def output_vcfs = workflow.out.findAll { key, value -> key.endsWith('_vcf')}
                 .collectMany { key, value -> value}
 
@@ -92,18 +91,7 @@ nextflow_workflow {
                     //workflow.out,
                     output_vcfs.collect { meta, vcf -> [meta, file(vcf).name, ":variantsMD5,", path(vcf).vcf.variantsMD5 ]},
                     output_tbis.collect { meta, tbi -> [meta, file(tbi).name] },
-                    //ch_vcfs.collect { meta, vcf -> [meta, file(vcf).name, ":variantsMD5,", path(vcf).vcf.variantsMD5 ]},
-                    //workflow.out.cadd_annotated_vcf.collect { meta, vcf -> [meta, file(vcf).name, ":variantsMD5,", path(vcf).vcf.variantsMD5 ]},
-                    //workflow.out.cadd_annotated_tbi.collect { meta, tbi -> [meta, file(tbi).name] },
-                    //workflow.out.clinical_filtered_vcf.collect { meta, vcf -> [meta, file(vcf).name, ":variantsMD5,", path(vcf).vcf.variantsMD5 ]},
-                    //workflow.out.clinical_filtered_tbi.collect { meta, tbi -> [meta, file(tbi).name] },
-                    //workflow.out.vcfanno_vcf.collect { meta, vcf -> [meta, file(vcf).name, ":variantsMD5,", path(vcf).vcf.variantsMD5 ]},
-                    //workflow.out.vcfanno_tbi.collect { meta, tbi -> [meta, file(tbi).name] },
-                    //workflow.out.vep_annotated_vcf.collect { meta, vcf -> [meta, file(vcf).name, ":variantsMD5,", path(vcf).vcf.variantsMD5 ]},
-                    //workflow.out.vep_annotated_tbi.collect { meta, tbi -> [meta, file(tbi).name] },
                     workflow.out.vep_report.collect { meta, _process, _tool, report -> [meta, file(report).name] },
-                    //workflow.out.research_filtered_vcf.collect { meta, vcf -> [meta, file(vcf).name, ":variantsMD5,", path(vcf).vcf.variantsMD5 ]},
-                    //workflow.out.research_filtered_tbi.collect { meta, tbi -> [meta, file(tbi).name] },
                 ).match() }
             )
         }
