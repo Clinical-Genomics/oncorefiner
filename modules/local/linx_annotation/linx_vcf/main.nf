@@ -18,7 +18,11 @@ process LINX_VCF{
 
     script:
     """
-    python
+    python -Xgil=0 ./scripts/annotate_vcf_linx.py \\
+    -v ${vcf_file} \\
+    -h ${header_file} \\
+    -t  ${tsv_file} \\
+    -o ${output_file}
     """
 
     stub:
