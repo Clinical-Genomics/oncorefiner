@@ -86,7 +86,7 @@ nextflow_workflow {
 
         then {
             // Check untarred directory and files
-            def output_directories_files = getAllFilesFromDir(params.outdir, relative: true, includeDir: true)
+            def output_directories_files = getAllFilesFromDir(workflow.out.vep_resources[0][0], relative: true, includeDir: true)
 
             assertAll(
                 { assert workflow.success },
@@ -117,7 +117,7 @@ nextflow_workflow {
 
         then {
             // Check untarred directory and files
-            def output_directories_files = getAllFilesFromDir(params.outdir, relative: true, includeDir: true)
+            def output_directories_files = getAllFilesFromDir(workflow.out.vep_resources[0][0], relative: true, includeDir: true)
 
             assertAll(
                 { assert workflow.success },
