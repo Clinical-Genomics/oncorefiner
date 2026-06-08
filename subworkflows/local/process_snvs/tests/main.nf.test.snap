@@ -74,6 +74,75 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.4"
         },
-        "timestamp": "2026-06-05T13:06:00.461054"
+        "timestamp": "2026-05-07T10:45:33.948103"
+    },
+    "with tumor-normal data - stub": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "subject_a"
+                    },
+                    "subject_a_clinical.vcf.gz"
+                ],
+                [
+                    {
+                        "id": "subject_a"
+                    },
+                    "subject_a_research.vcf.gz"
+                ],
+                [
+                    {
+                        "id": "subject_a"
+                    },
+                    "subject_a_vcfanno.vcf.gz"
+                ],
+                [
+                    {
+                        "id": "subject_a"
+                    },
+                    "subject_a_vep.vcf.gz"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "subject_a"
+                    },
+                    "subject_a_clinical.vcf.gz.tbi"
+                ],
+                [
+                    {
+                        "id": "subject_a"
+                    },
+                    "subject_a_research.vcf.gz.tbi"
+                ],
+                [
+                    {
+                        "id": "subject_a"
+                    },
+                    "subject_a_vcfanno.vcf.gz.tbi"
+                ],
+                [
+                    {
+                        "id": "subject_a"
+                    },
+                    "subject_a_vep.vcf.gz.tbi"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "subject_a"
+                    },
+                    "subject_a_vep_summary.html"
+                ]
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.4"
+        },
+        "timestamp": "2026-06-08T09:54:12.41387"
     }
 }
