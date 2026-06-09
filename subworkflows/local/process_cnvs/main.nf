@@ -23,18 +23,16 @@ workflow PROCESS_CNVS {
     
     main:
     // Path to report template (Rmd file)
+    // Todo: eventually this should be passed as an input to the workflow, but for now we can hardcode it since it's part of our assets
     def cnv_report_template = file("${projectDir}/assets/cnv_report.Rmd", checkIfExists: true)
 
     // Join the two distinct file channels together based on the meta.id
     ch_combined_inputs = ch_cnv_gene_tsv.join(ch_cnv_segment_tsv)
 
-    // Prepare the exact tuple format expected by the module's input:
-    // Input 1: tuple val(meta), path(notebook)
-    // Input 2: val(parameters)
-    // Input 3: path(input_files)
+    // Prepare the input for module
     ch_report_inputs = ch_combined_inputs.map { meta, cnv_gene_tsv, cnv_segment_tsv ->
         
-        // Define any internal variables you want to pass to the Rmd document params
+        // Define any internal variables to pass to the Rmd document params
         def r_params = [
             cnv_gene   : cnv_gene_tsv.name,
             cnv_segment: cnv_segment_tsv.name,
