@@ -14,7 +14,7 @@ At least the following columns are expected in the input files:
 - SV TSV file: svId, vcfId
 
 The output is a merged tsv file with the following columns:
-- vcfId: the ID of the SV in the VCF file, from the svId column in the SV TSV file
+- vcfId: the ID of the SV in the VCF file, from the vcfId column in the SV TSV file
 - FUSION_NAME: the name of the fusion, from the name column in the fusion TSV file
 - REPORTED: whether the fusion is reported, from the reported column in the fusion TSV file, converted to 0/1 for compatibility with pysam specifications
 
@@ -26,9 +26,15 @@ def merged_linx_files(fusions: pd.DataFrame, breakends: pd.DataFrame, svs: pd.Da
 
     """ Merges input tsv files and returns a dataframe with the relevant columns for annotation of VCF file"""
 
-    # rename columns to desired header names in subsequenct VCF annotation step and change reported column to 0/1
+    # load tsv into pandas df
+    fusions: pd.DataFrame   = pd.read_csv(fusion_file, sep='\t', dtype=str)
+    breakends: pd.DataFrame = pd.read_csv(breakend_file, sep='\t', dtype=str)
+    svs: pd.DataFrame       = pd.read_csv(sv_file, sep='\t', dtype=str)
+
+    # rename columns to desired header names in subsequenct VCF annotation step
     fusions.rename(columns ={'name': 'FUSION_NAME', 'reported': 'REPORTED'}, inplace=True)
-    fusions['REPORTED'] = fusions['REPORTED'].replace({'false': 0, 'true': 1}) # to adhere to pysam
+    # change reported column to 0/1 to adhere to pysam
+    fusions['REPORTED'] = fusions['REPORTED'].replace({'false': 0, 'true': 1})
 
     # subset dataframes
     fusions_subset = fusions[['fivePrimeBreakendId', 'threePrimeBreakendId', 'FUSION_NAME', 'REPORTED']]
@@ -38,7 +44,7 @@ def merged_linx_files(fusions: pd.DataFrame, breakends: pd.DataFrame, svs: pd.Da
     fusion_fivebreakend = fusions_subset.merge(breakends_subset, left_on='fivePrimeBreakendId', right_on='id', how='left')
     fusion_threebreakend = fusions_subset.merge(breakends_subset, left_on='threePrimeBreakendId', right_on='id', how='left')
 
-    # merge fusion_fivebreakend and fusion_threebreakend to get all fusions
+    # concatenate fusion_fivebreakend and fusion_threebreakend to get all fusions
     fusion_breakend_merge = pd.concat([fusion_fivebreakend, fusion_threebreakend], ignore_index=True)
 
     # merge fusion_breakend_merge with svs on 'svId' column in sv file
@@ -71,13 +77,8 @@ def combine_linx_files(
     sv_file: click.Path,
     output_file: click.Path) -> None:
 
-    # load tsv into pandas df
-    fusions: pd.DataFrame   = pd.read_csv(fusion_file, sep='\t', dtype=str)
-    breakends: pd.DataFrame = pd.read_csv(breakend_file, sep='\t', dtype=str)
-    svs: pd.DataFrame       = pd.read_csv(sv_file, sep='\t', dtype=str)
-
     # run main function
-    merged_df: pd.DataFrame = merged_linx_files(fusions, breakends, svs)
+    merged_df: pd.DataFrame = merged_linx_files(fusion_file, breakend_file, sv_file)
 
     # save the final merged dataframe to a tsv file
     merged_df.to_csv(output_file, sep='\t', index=False)
