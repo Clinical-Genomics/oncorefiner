@@ -18,6 +18,52 @@
                     "description": "The output directory where the results will be saved. You have to use absolute paths to storage on Cloud infrastructure.",
                     "fa_icon": "fas fa-folder-open"
                 },
+                "email": {
+                    "type": "string",
+                    "description": "Email address for completion summary.",
+                    "fa_icon": "fas fa-envelope",
+                    "help_text": "Set this parameter to your e-mail address to get a summary e-mail with details of the run sent to you when the workflow exits. If set in your user config file (`~/.nextflow/config`) then you don't need to specify this on the command line for every run.",
+                    "pattern": "^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$"
+                },
+                "multiqc_title": {
+                    "type": "string",
+                    "description": "MultiQC report title. Printed as page header, used for filename if not otherwise specified.",
+                    "fa_icon": "fas fa-file-signature"
+                }
+            }
+        },
+        "metadata": {
+            "title": "Metadata",
+            "type": "object",
+            "description": "",
+            "default": "",
+            "properties": {
+                "case_id": {
+                    "type": "string",
+                    "description": "Case id (pet name)."
+                },
+                "sex": {
+                    "type": "string",
+                    "enum": ["female", "male", "unknown"],
+                    "description": "Sex of the patient."
+                },
+                "sample_id_tumor": {
+                    "type": "string",
+                    "description": "Sample id of the tumor sample."
+                },
+                "sample_id_normal": {
+                    "type": "string",
+                    "description": "Sample id of the normal sample."
+                }
+            },
+            "required": ["case_id", "sex", "sample_id_tumor", "sample_id_normal"]
+        },
+        "input_files": {
+            "title": "Input files",
+            "type": "object",
+            "description": "",
+            "default": "",
+            "properties": {
                 "snv_vcf": {
                     "type": "string",
                     "fa_icon": "fas fa-file",
@@ -65,23 +111,6 @@
                     "pattern": "^\\S+\\.bai$",
                     "format": "file-path",
                     "exists": true
-                },
-                "sex": {
-                    "type": "string",
-                    "enum": ["female", "male", "unknown"],
-                    "description": "Sex of the patient."
-                },
-                "email": {
-                    "type": "string",
-                    "description": "Email address for completion summary.",
-                    "fa_icon": "fas fa-envelope",
-                    "help_text": "Set this parameter to your e-mail address to get a summary e-mail with details of the run sent to you when the workflow exits. If set in your user config file (`~/.nextflow/config`) then you don't need to specify this on the command line for every run.",
-                    "pattern": "^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$"
-                },
-                "multiqc_title": {
-                    "type": "string",
-                    "description": "MultiQC report title. Printed as page header, used for filename if not otherwise specified.",
-                    "fa_icon": "fas fa-file-signature"
                 }
             }
         },
@@ -396,6 +425,12 @@
     "allOf": [
         {
             "$ref": "#/$defs/input_output_options"
+        },
+        {
+            "$ref": "#/$defs/metadata"
+        },
+        {
+            "$ref": "#/$defs/input_files"
         },
         {
             "$ref": "#/$defs/reference_genome_options"
