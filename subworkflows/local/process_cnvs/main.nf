@@ -45,9 +45,6 @@ workflow PROCESS_CNVS {
         return [ [meta, cnv_report_template], r_params, data_files ]
     }
 
-    // -------------------------------------------------------------
-    // 2. Invoke the Module
-    // -------------------------------------------------------------
     RMARKDOWNNOTEBOOK (
         ch_report_inputs.map { it[0] }, // tuple val(meta), path(notebook)
         ch_report_inputs.map { it[1] }, // val parameters
