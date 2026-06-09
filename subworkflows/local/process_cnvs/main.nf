@@ -36,7 +36,6 @@ workflow PROCESS_CNVS {
         def r_params = [
             cnv_gene   : cnv_gene_tsv.name,
             cnv_segment: cnv_segment_tsv.name,
-            output_file: "${meta}_cnv_report"
         ]
 
         // Group the 2 target data files into a single list element
@@ -44,6 +43,7 @@ workflow PROCESS_CNVS {
 
         return [ [meta, cnv_report_template], r_params, data_files ]
     }
+
 
     RMARKDOWNNOTEBOOK (
         ch_report_inputs.map { it[0] }, // tuple val(meta), path(notebook)
