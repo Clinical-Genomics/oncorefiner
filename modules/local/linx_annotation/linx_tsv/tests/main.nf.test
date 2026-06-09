@@ -1,0 +1,48 @@
+nextflow_process {
+
+    name "Test Process LINX_TSV"
+    script "../main.nf"
+    process "LINX_TSV"
+    tag "modules"
+    tag "modules_local"
+    tag "linx_tsv"
+
+    config "./nextflow.config"
+
+    test("Merge LINX TSV") {
+        when {
+
+            process {
+                """
+                input[0] = [
+                    [ id:'fusion' ],
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_only/subject_a.tumor.linx.fusion.tsv', checkIfExists: true)
+                ]
+                input[1] = [
+                    [ id:'breakend' ],
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_only/subject_a.tumor.linx.breakend.tsv', checkIfExists: true)
+                ]
+                input[2] = [
+                    [ id:'sv' ],
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_only/subject_a.tumor.linx.sv.tsv', checkIfExists: true)
+                ]
+                input[3] = [
+                    [ id:'tsv' ],
+                    ''
+                ]
+
+                """
+            }
+        }
+
+        then {
+            assert process.success
+            assertAll(
+                { assert snapshot(
+                    file(process.out.tsv[0][1]).name,
+                    process.out.findAll { key, val -> key.startsWith("versions") }
+                ).match() }
+            )
+        }
+    }
+}
