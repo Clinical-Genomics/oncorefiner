@@ -31,6 +31,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#101](https://github.com/Clinical-Genomics/oncorefiner/pull/101) Added parameters for arguments in processes `PROCESS_SNVS:BCFTOOLS_VIEW_*`, `PROCESS_*:ENSEMBLVEP_VEP` and `ANNOTATE_CADD:BCFTOOLS_ANNOTATE_INDELS`.
 - [#111](https://github.com/Clinical-Genomics/oncorefiner/pull/111) Added hidden `genome_version_number` parameter, parsed by default from `params.genome`.
 - [#117](https://github.com/Clinical-Genomics/oncorefiner/pull/117) Added stub version for all pipeline and local subworkflow tests.
+- [#124](https://github.com/Clinical-Genomics/oncorefiner/pull/124) Added metadata parameters `case_id`, `sample_id_tumor` and `sample_id_normal`.
 
 ### `Changed`
 
