@@ -75,14 +75,16 @@ nextflow_workflow {
         }
 
         then {
+            def vep_resources = workflow.out.vep_resources[0][0]
+
             // Check untarred directory and files
-            def output_directories_files = getAllFilesFromDir(workflow.out.vep_resources[0][0], relative: true, includeDir: true)
+            def output_directories_files = getAllFilesFromDir(vep_resources, relative: true, includeDir: true)
 
             assertAll(
                 { assert workflow.success },
                 { assert snapshot(
 					// Check the name of the output directory
-                    workflow.out.vep_resources[0][0].tokenize('/').last(),
+                    vep_resources.tokenize('/').last(),
                     // Check untarred directory and files
                     output_directories_files
                 ).match() }
@@ -104,14 +106,16 @@ nextflow_workflow {
         }
 
         then {
+            def vep_resources = workflow.out.vep_resources[0][0]
+
             // Check untarred directory and files
-            def output_directories_files = getAllFilesFromDir(workflow.out.vep_resources[0][0], relative: true, includeDir: true)
+            def output_directories_files = getAllFilesFromDir(vep_resources, relative: true, includeDir: true)
 
             assertAll(
                 { assert workflow.success },
                 { assert snapshot(
 					// Check the name of the output directory
-                    workflow.out.vep_resources[0][0].tokenize('/').last(),
+                    vep_resources.tokenize('/').last(),
                     // Check untarred directory and files
                     output_directories_files
                 ).match() }
