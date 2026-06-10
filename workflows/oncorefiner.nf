@@ -20,7 +20,6 @@ include { PROCESS_SVS            } from '../subworkflows/local/process_svs/main.
 workflow ONCOREFINER {
 
     take:
-        ch_samplesheet                  // channel: [mandatory] samplesheet read in from --input
         ch_bam_bai_normal               // channel: [optional]  [val(meta), path(bam), path(bai)]
         ch_bam_bai_tumor                // channel: [mandatory] [val(meta), path(bam), path(bai)]
         ch_cadd_header                  // channel: [mandatory] [path(txt)]
