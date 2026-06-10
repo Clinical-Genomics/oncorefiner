@@ -13,6 +13,7 @@
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
+include { channelFromMetaAndPath         } from './subworkflows/local/utils_nfcore_oncorefiner_pipeline'
 include { ONCOREFINER             } from './workflows/oncorefiner'
 include { PIPELINE_INITIALISATION } from './subworkflows/local/utils_nfcore_oncorefiner_pipeline'
 include { PIPELINE_COMPLETION     } from './subworkflows/local/utils_nfcore_oncorefiner_pipeline'
@@ -37,6 +38,7 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     val_bai_tumor                   // string:  [optional]  path to BAI file for the tumor sample
     val_cadd_prescored_indels       // string:  [optional]  path to CADD prescored indels file
     val_cadd_resources              // string:  [optional]  path to CADD resources directory
+    val_case_id                     // string:  [mandatory] case id (used in channel metadata)
     val_genome                      // string:  [optional]  genome assembly (e.g. "GRCh38")
     val_genome_fasta                // string:  [optional]  path to genome fasta file
     val_genome_fai                  // string:  [optional]  path to genome fasta index file
@@ -44,6 +46,9 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     val_multiqc_logo                // string:  [optional]  path to image file to be used as logo in multiqc report
     val_multiqc_methods_description // string:  [optional]  path to text file containing methods description to be included in multiqc report
     val_outdir                      // string:  [mandatory] path to output directory (default: ./results)
+    val_sample_id_normal            // string:  [optional]  sample id for the normal sample (used in channel metadata)
+    val_sample_id_tumor             // string:  [optional]  sample id for the tumor sample (used in channel metadata)
+    val_sex                         // string:  [optional]  sex of the patient (used in channel metadata)
     val_snv_vcf                     // string:  [optional]  path to input SNV vcf file
     val_species                     // string:  [optional]  species (e.g. "homo_sapiens")
     val_sv_vcf                      // string:  [optional]  path to input SV vcf file
@@ -69,11 +74,16 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     // WORKFLOW: Run pipeline
     //
 
-    // Input channels
-    ch_snv_vcf         = channel.fromPath(val_snv_vcf).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
-    ch_snv_vcf_tbi     = channel.fromPath(val_snv_vcf + '.tbi', checkIfExists: true).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
-    ch_sv_vcf          = channel.fromPath(val_sv_vcf).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
-    ch_sv_vcf_tbi      = channel.fromPath(val_sv_vcf + '.tbi', checkIfExists: true).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
+    // Initialise input channels
+
+    def metadata_case_file          = [id: val_case_id, case_id: val_case_id]
+    def metadata_normal_sample_file = [id: val_sample_id_normal, case_id: val_case_id, sample_id: val_sample_id_normal, sample_type: "normal", sex: val_sex]
+    def metadata_tumor_sample_file  = [id: val_sample_id_tumor, case_id: val_case_id, sample_id: val_sample_id_tumor, sample_type: "tumor", sex: val_sex]
+
+    ch_snv_vcf         = channelFromMetaAndPath(metadata_case_file, val_snv_vcf)
+    ch_snv_vcf_tbi     = channelFromMetaAndPath(metadata_case_file, val_snv_vcf + '.tbi')
+    ch_sv_vcf          = channelFromMetaAndPath(metadata_case_file, val_sv_vcf)
+    ch_sv_vcf_tbi      = channelFromMetaAndPath(metadata_case_file, val_sv_vcf + '.tbi')
     ch_vep_extra_files = channel.empty()
     ch_svdb_dbs        = channel.empty()
 
@@ -216,6 +226,7 @@ workflow {
         params.bai_tumor,
         params.cadd_prescored_indels,
         params.cadd_resources,
+        params.case_id,
         params.genome,
         params.fasta,
         params.fai,
@@ -223,6 +234,9 @@ workflow {
         params.multiqc_logo,
         params.multiqc_methods_description,
         params.outdir,
+        params.sample_id_normal,
+        params.sample_id_tumor,
+        params.sex,
         params.snv_vcf,
         params.species,
         params.sv_vcf,

@@ -250,3 +250,19 @@ def methodsDescriptionText(mqc_methods_yaml) {
 
     return description_html.toString()
 }
+
+/**
+ * Creates a channel from a metadata tuple and file path if provided and exists, otherwise returns an empty channel.
+ * @param filePath The path to the file (can be null)
+ * @param meta The channel metadata tuple
+ * @return Channel with metadata tuple and collected file path
+ */
+def channelFromMetaAndPath(meta, filePath) {
+    if (filePath && meta) {
+        return channel.fromPath(filePath, checkIfExists: true).map { file -> [meta, file] }
+    }
+    if (filePath && !meta) {
+        error "Metadata must be provided when a file path is given. Please provide metadata for the file: ${filePath}"
+    }
+    return channel.empty()
+}
