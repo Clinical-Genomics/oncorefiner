@@ -80,10 +80,10 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     def metadata_normal_sample_file = [id: val_sample_id_normal, case_id: val_case_id, sample_id: val_sample_id_normal, sample_type: "normal", sex: val_sex]
     def metadata_tumor_sample_file  = [id: val_sample_id_tumor, case_id: val_case_id, sample_id: val_sample_id_tumor, sample_type: "tumor", sex: val_sex]
 
-    ch_snv_vcf         = channelFromMetaAndPath(metadata_case_file, val_snv_vcf)
-    ch_snv_vcf_tbi     = channelFromMetaAndPath(metadata_case_file, val_snv_vcf + '.tbi')
-    ch_sv_vcf          = channelFromMetaAndPath(metadata_case_file, val_sv_vcf)
-    ch_sv_vcf_tbi      = channelFromMetaAndPath(metadata_case_file, val_sv_vcf + '.tbi')
+    ch_snv_vcf         = channelFromMetaAndPath(metadata_case_file, val_snv_vcf).collect()
+    ch_snv_vcf_tbi     = channelFromMetaAndPath(metadata_case_file, val_snv_vcf + '.tbi').collect()
+    ch_sv_vcf          = channelFromMetaAndPath(metadata_case_file, val_sv_vcf).collect()
+    ch_sv_vcf_tbi      = channelFromMetaAndPath(metadata_case_file, val_sv_vcf + '.tbi').collect()
     ch_vep_extra_files = channel.empty()
     ch_svdb_dbs        = channel.empty()
 
@@ -97,8 +97,8 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     ch_bam_bai_tumor = ch_bam_tumor.join(ch_bai_tumor, failOnMismatch: true, failOnDuplicate: true)
 
     // Reference files
-    ch_genome_fasta          = channelFromMetaAndPath(metadata_case_file, val_genome_fasta)
-    ch_genome_fai            = channelFromMetaAndPath(metadata_case_file, val_genome_fai)
+    ch_genome_fasta          = channelFromMetaAndPath(metadata_case_file, val_genome_fasta).collect()
+    ch_genome_fai            = channelFromMetaAndPath(metadata_case_file, val_genome_fai).collect()
     ch_genome_fasta_fai      = ch_genome_fasta.join(ch_genome_fai, failOnMismatch: true, failOnDuplicate: true)
 
     // CADD input files
