@@ -1,16 +1,13 @@
 {
     "Test preparing VEP cache: no untarring needed - stub": {
         "content": [
-            "vep_cache_untarred",
-            [
-                
-            ]
+            "vep_cache_untarred"
         ],
         "meta": {
-            "nf-test": "0.9.5",
-            "nextflow": "26.04.2"
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.4"
         },
-        "timestamp": "2026-06-01T13:59:28.278125"
+        "timestamp": "2026-06-10T14:12:13.997032"
     },
     "Test preparing VEP cache: untarring needed - stub": {
         "content": [
@@ -451,16 +448,13 @@
     },
     "Test preparing VEP cache: no untarring needed": {
         "content": [
-            "vep_cache_untarred",
-            [
-                
-            ]
+            "vep_cache_untarred"
         ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "25.10.4"
         },
-        "timestamp": "2026-05-05T09:34:53.861164"
+        "timestamp": "2026-06-10T14:12:11.653597"
     },
     "Test preparing VEP cache: untarring needed": {
         "content": [
