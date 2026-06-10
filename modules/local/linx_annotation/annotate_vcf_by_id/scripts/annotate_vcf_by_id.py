@@ -14,8 +14,8 @@ This means that the ‘Flag’ type indicates that the INFO field does not conta
 """
 
 
-def convert_types(row: dict) -> dict:
-    # convert numeric strings to ints
+def define_data_types(row: dict) -> dict:
+    # convert values to float, int or string
     for key, value in row.items():
         try:
             row[key] = int(value)
@@ -24,15 +24,45 @@ def convert_types(row: dict) -> dict:
                 row[key] = float(value)
             except ValueError:
                 row[key] = str(value)
-    # add float
+
     return row
 
+def add_entry_to_annotation_dict(tsv_annotations_dict: dict, vcf_id: str, vcf_id_annotations: dict) -> dict:
+    # avoid overwriting if id has multiple annotations
+    if vcf_id not in tsv_annotations_dict:
+        tsv_annotations_dict[vcf_id] = vcf_id_annotations
 
-def update_vcf_header(
-    vcf_in: pysam.VariantFile, header_file: click.Path
+    else:
+        # append new annotation value to existing annotations
+        for annotation_tag, annotation_value in vcf_id_annotations.items():
+
+            if tsv_annotations_dict[vcf_id][annotation_tag] == annotation_value:
+                continue
+
+            # current entry for column
+            current_entry = tsv_annotations_dict[vcf_id][annotation_tag]
+            if isinstance(current_entry, list):
+                current_entry.append(annotation_value)
+            else:
+                tsv_annotations_dict[vcf_id][annotation_tag] = [current_entry, annotation_value]
+
+    return tsv_annotations_dict
+
+def convert_lists_to_tuples(tsv_annotations_dict: dict) -> dict:
+
+    for vcf_id, vcf_id_annotations in tsv_annotations_dict.items():
+        for annotation_tag, annotation_value in vcf_id_annotations.items():
+            if isinstance(annotation_value, list):
+                vcf_id_annotations[annotation_tag] = tuple(annotation_value)
+
+    return tsv_annotations_dict
+
+def update_vcf_header_with_new_lines(
+    vcf_in: pysam.VariantFile, header_file_path: click.Path
 ) -> pysam.VariantHeader:
+
     # add new header lines to original header from header file
-    with open(header_file, "r") as hf:
+    with open(header_file_path, "r") as hf:
         new_header_lines = hf.read().splitlines()
 
     for line in new_header_lines:
@@ -42,7 +72,7 @@ def update_vcf_header(
     return merged_header
 
 
-def update_info_field(
+def update_vcf_info_field(
     record: pysam.VariantRecord, tsv_dict: dict
 ) -> pysam.VariantRecord:
     if record.id in tsv_dict:
@@ -52,46 +82,31 @@ def update_info_field(
 
 
 # parse tsv file
-def parse_tsv(tsv_file_path: click.Path) -> dict:
+def get_dict_from_tsv(tsv_file_path: click.Path) -> dict:
     """Parses the tsv file into a dictionary (id as key and the remaining columns as values in a nested dict) compatible with annotation with pysam"""
 
-    tsv_dict = {}
+    tsv_annotations_dict = {}
     with open(tsv_file_path, newline="") as f:
-        # convert each tsv row to dict
-        reader = csv.DictReader(f, delimiter="\t")
+        # converts each tsv row to dict
+        tsv_reader = csv.DictReader(f, delimiter="\t")
 
-        id_column = reader.fieldnames[0]
-        for row in reader:
-            # removes id column from dict, returns id (value)
-            key = row.pop(id_column)
+        vcf_id_column_header = tsv_reader.fieldnames[0]
 
-            # convert numeric strings to ints
-            values = convert_types(row)
+        for tsv_row in tsv_reader:
+            # removes id column from dict, returns id
+            vcf_id = tsv_row.pop(vcf_id_column_header)
 
-            # avoid overwriting if id has multiple annotations
-            if key not in tsv_dict:
-                tsv_dict[key] = values
+            # convert values to ints, float or keep as string
+            vcf_id_annotations = define_data_types(tsv_row)
 
-            else:
-                # append new value to existing annotations
-                for field, value in values.items():
-                    if tsv_dict[key][field] == value:
-                        continue
+            # add row to dictionary, avoid overwriting if id has multiple annotations
+            tsv_annotations_dict = add_entry_to_annotation_dict(tsv_annotations_dict, vcf_id, vcf_id_annotations)
 
-                    # current entry for column
-                    current_entry = tsv_dict[key][field]
-                    if isinstance(current_entry, list):
-                        current_entry.append(value)
-                    else:
-                        tsv_dict[key][field] = [current_entry, value]
 
-    # convert to tuple if multiple values for same field, to be compatible with pysam specifications
-    for key, fields in tsv_dict.items():
-        for field, value in fields.items():
-            if isinstance(value, list):
-                fields[field] = tuple(value)
+    # convert list to tuple if multiple values for same field, to be compatible with pysam specifications
+    tsv_annotations_dict = convert_lists_to_tuples(tsv_annotations_dict)
 
-    return tsv_dict
+    return tsv_annotations_dict
 
 
 def annotate_vcf(
@@ -104,7 +119,7 @@ def annotate_vcf(
 
     vcf_in: pysam.VariantFile = pysam.VariantFile(vcf_file, "rb")
 
-    merged_header = update_vcf_header(vcf_in, header_file)
+    merged_header = update_vcf_header_with_new_lines(vcf_in, header_file_path=header_file)
 
     # pysam auto-detects compression from file extension
     vcf_out: pysam.VariantFile = pysam.VariantFile(
@@ -112,7 +127,7 @@ def annotate_vcf(
     )
 
     for record in vcf_in:
-        record = update_info_field(record, tsv_dict)
+        record = update_vcf_info_field(record, tsv_dict)
         vcf_out.write(record)
 
     vcf_in.close()
@@ -151,8 +166,8 @@ def annotate_vcf(
 @click.option(
     "-o",
     "--output_file",
-    type=click.Path(),
-    help="name of output annotated VCF file",
+    type=click.Path(), # change to string
+    help="Output name or path for the annotated VCF file",
     required=True,
 )
 
@@ -165,7 +180,7 @@ def main(
 ) -> None:
 
     # parse tsv file
-    tsv_dict = parse_tsv(tsv_file)
+    tsv_dict: dict = get_dict_from_tsv(tsv_file_path = tsv_file)
 
     # annotate vcf
     annotate_vcf(vcf_file, header_file, tsv_dict, output_file)
