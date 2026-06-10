@@ -88,25 +88,17 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     ch_svdb_dbs        = channel.empty()
 
     // Alignment files
-    ch_bam_bai_normal  = channel.empty()
+    def ch_bam_normal = channelFromMetaAndPath(metadata_normal_sample_file, val_bam_normal)
+    def ch_bai_normal = channelFromMetaAndPath(metadata_normal_sample_file, val_bai_normal)
+    ch_bam_bai_normal = ch_bam_normal.join(ch_bai_normal, failOnMismatch: true, failOnDuplicate: true)
 
-    if (val_bam_normal && val_bai_normal) {
-        ch_bam_bai_normal = channel.fromPath(val_bam_normal)
-                            .combine(channel.fromPath(val_bai_normal))
-                            .map { bam, bai -> [[type:'normal'], bam, bai] }
-    }
-
-    ch_bam_bai_tumor = channel.empty()
-
-    if (val_bam_tumor && val_bai_tumor) {
-        ch_bam_bai_tumor = channel.fromPath(val_bam_tumor)
-                            .combine(channel.fromPath(val_bai_tumor))
-                            .map { bam, bai -> [[type:'tumor'], bam, bai] }
-    }
+    def ch_bam_tumor = channelFromMetaAndPath(metadata_tumor_sample_file, val_bam_tumor)
+    def ch_bai_tumor = channelFromMetaAndPath(metadata_tumor_sample_file, val_bai_tumor)
+    ch_bam_bai_tumor = ch_bam_tumor.join(ch_bai_tumor, failOnMismatch: true, failOnDuplicate: true)
 
     // Reference files
-    ch_genome_fasta          = channel.fromPath(val_genome_fasta).map { it -> [[id:it.simpleName], it] }.collect()
-    ch_genome_fai            = channel.fromPath(val_genome_fai).map { it -> [[id:it.simpleName], it] }.collect()
+    ch_genome_fasta          = channelFromMetaAndPath(metadata_case_file, val_genome_fasta)
+    ch_genome_fai            = channelFromMetaAndPath(metadata_case_file, val_genome_fai)
     ch_genome_fasta_fai      = ch_genome_fasta.join(ch_genome_fai, failOnMismatch: true, failOnDuplicate: true)
 
     // CADD input files
