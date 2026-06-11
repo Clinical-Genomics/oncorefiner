@@ -11,10 +11,35 @@
 The typical command for running the pipeline is as follows:
 
 ```bash
-nextflow run Clinical-Genomics/oncorefiner --outdir ./results  -profile docker
+nextflow run Clinical-Genomics/oncorefiner -profile docker -params-file params.yaml
 ```
 
-This will launch the pipeline with the `docker` configuration profile. See below for more information about profiles.
+This will launch the pipeline with:
+
+- the pipeline settings provided in the params file which can be given in a `yaml` or `json` format.
+- `docker` configuration profile (see below for more information about profiles).
+
+The params file should always contain the following mandatory parameters:
+
+```yaml title="params.yaml"
+outdir: './results/'
+
+# Metadata
+case_id: '<case_id>'
+sex: '<sex>'
+sample_id_tumor: '<sample_id_tumor>'
+sample_id_normal: '<sample_id_normal>'
+<...>
+```
+
+Additionally, there are several parameters that can be used to customize the pipeline run. See [parameters documentation](../docs/parameters.md) for a full list of available parameters, their descriptions and formats.
+
+Parameters can be specified in a params file or given as a flag in the command above, i.e. `--outdir ./results/`.
+
+> [!WARNING]
+> Do not use `-c <file>` to specify parameters as this will result in errors. Custom config files specified with `-c` must only be used for [tuning process resource specifications](https://nf-co.re/docs/running/run-pipelines#configuring-pipelines), other infrastructural tweaks (such as output directories), or module arguments (args).
+
+You can also generate such `YAML`/`JSON` files via [nf-core/launch](https://nf-co.re/launch).
 
 Note that the pipeline will create the following files in your working directory:
 
@@ -24,30 +49,6 @@ work                # Directory containing the nextflow working files
 .nextflow_log       # Log file from Nextflow
 # Other nextflow hidden files, eg. history of pipeline runs and old logs.
 ```
-
-Additionally, there are several parameters that can be used to customize the pipeline run. See [parameters documentation](../docs/parameters.md) for a full list of available parameters, their descriptions and formats.
-
-If you wish to repeatedly use the same parameters for multiple runs, rather than specifying each flag in the command, you can specify these in a params file.
-
-Pipeline settings can be provided in a `yaml` or `json` file via `-params-file <file>`.
-
-> [!WARNING]
-> Do not use `-c <file>` to specify parameters as this will result in errors. Custom config files specified with `-c` must only be used for [tuning process resource specifications](https://nf-co.re/docs/running/run-pipelines#configuring-pipelines), other infrastructural tweaks (such as output directories), or module arguments (args).
-
-The above pipeline run specified with a params file in yaml format:
-
-```bash
-nextflow run Clinical-Genomics/oncorefiner -profile docker -params-file params.yaml
-```
-
-with:
-
-```yaml title="params.yaml"
-outdir: './results/'
-<...>
-```
-
-You can also generate such `YAML`/`JSON` files via [nf-core/launch](https://nf-co.re/launch).
 
 ### Updating the pipeline
 
