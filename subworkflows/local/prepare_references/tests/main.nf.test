@@ -6,6 +6,7 @@ nextflow_workflow {
     tag "subworkflows"
     tag "prepare_references"
     config "./nextflow.config"
+    topics "versions"
 
     test("Test preparing VEP cache: no untarring needed") {
 
@@ -27,6 +28,8 @@ nextflow_workflow {
             assertAll(
                 { assert workflow.success },
                 { assert snapshot(
+                    // Check topic versions to see what processes were run
+                    topics,
                     // Check the name of the output directory
                     workflow.out.vep_resources[0][0].tokenize('/').last(),
                 ).match() }
@@ -56,6 +59,8 @@ nextflow_workflow {
             assertAll(
                 { assert workflow.success },
                 { assert snapshot(
+                    // Check topic versions to see what processes were run
+                    topics,
                     // Check the name of the output directory
                     workflow.out.vep_resources[0][0].tokenize('/').last(),
                 ).match() }
@@ -83,6 +88,8 @@ nextflow_workflow {
             assertAll(
                 { assert workflow.success },
                 { assert snapshot(
+                    // Check topic versions to see what processes were run
+                    topics,
 					// Check the name of the output directory
                     vep_resources.tokenize('/').last(),
                     // Check untarred directory and files
@@ -114,6 +121,8 @@ nextflow_workflow {
             assertAll(
                 { assert workflow.success },
                 { assert snapshot(
+                    // Check topic versions to see what processes were run
+                    topics,
 					// Check the name of the output directory
                     vep_resources.tokenize('/').last(),
                     // Check untarred directory and files

@@ -1,16 +1,30 @@
 {
     "Test preparing VEP cache: no untarring needed - stub": {
         "content": [
+            {
+                "versions": [
+                    
+                ]
+            },
             "vep_cache_untarred"
         ],
+        "timestamp": "2026-06-11T11:49:53.654295",
         "meta": {
-            "nf-test": "0.9.3",
+            "nf-test": "0.9.5",
             "nextflow": "25.10.4"
-        },
-        "timestamp": "2026-06-10T14:12:13.997032"
+        }
     },
     "Test preparing VEP cache: untarring needed - stub": {
         "content": [
+            {
+                "versions": [
+                    [
+                        "PREPARE_REFERENCES:UNTAR_VEP_CACHE",
+                        "untar",
+                        "1.34"
+                    ]
+                ]
+            },
             "vep_cache",
             [
                 "",
@@ -440,24 +454,38 @@
                 "homo_sapiens_merged/115_GRCh38/info.txt"
             ]
         ],
+        "timestamp": "2026-06-11T11:50:36.361826",
         "meta": {
-            "nf-test": "0.9.3",
+            "nf-test": "0.9.5",
             "nextflow": "25.10.4"
-        },
-        "timestamp": "2026-06-08T15:41:30.03119"
+        }
     },
     "Test preparing VEP cache: no untarring needed": {
         "content": [
+            {
+                "versions": [
+                    
+                ]
+            },
             "vep_cache_untarred"
         ],
+        "timestamp": "2026-06-11T11:49:51.248569",
         "meta": {
-            "nf-test": "0.9.3",
+            "nf-test": "0.9.5",
             "nextflow": "25.10.4"
-        },
-        "timestamp": "2026-06-10T14:12:11.653597"
+        }
     },
     "Test preparing VEP cache: untarring needed": {
         "content": [
+            {
+                "versions": [
+                    [
+                        "PREPARE_REFERENCES:UNTAR_VEP_CACHE",
+                        "untar",
+                        "1.34"
+                    ]
+                ]
+            },
             "vep_cache",
             [
                 "",
@@ -887,10 +915,10 @@
                 "homo_sapiens_merged/115_GRCh38/info.txt"
             ]
         ],
+        "timestamp": "2026-06-11T11:50:11.858719",
         "meta": {
-            "nf-test": "0.9.3",
+            "nf-test": "0.9.5",
             "nextflow": "25.10.4"
-        },
-        "timestamp": "2026-06-08T15:41:05.057774"
+        }
     }
 }
