@@ -40,7 +40,7 @@
             "properties": {
                 "case_id": {
                     "type": "string",
-                    "description": "Case id (pet name)."
+                    "description": "Case ID."
                 },
                 "sex": {
                     "type": "string",

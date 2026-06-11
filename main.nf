@@ -38,7 +38,7 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     val_bai_tumor                   // string:  [optional]  path to BAI file for the tumor sample
     val_cadd_prescored_indels       // string:  [optional]  path to CADD prescored indels file
     val_cadd_resources              // string:  [optional]  path to CADD resources directory
-    val_case_id                     // string:  [mandatory] case id (used in channel metadata)
+    val_case_id                     // string:  [mandatory] case ID (used in channel metadata)
     val_genome                      // string:  [optional]  genome assembly (e.g. "GRCh38")
     val_genome_fasta                // string:  [optional]  path to genome fasta file
     val_genome_fai                  // string:  [optional]  path to genome fasta index file
@@ -46,8 +46,8 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     val_multiqc_logo                // string:  [optional]  path to image file to be used as logo in multiqc report
     val_multiqc_methods_description // string:  [optional]  path to text file containing methods description to be included in multiqc report
     val_outdir                      // string:  [mandatory] path to output directory (default: ./results)
-    val_sample_id_normal            // string:  [optional]  sample id for the normal sample (used in channel metadata)
-    val_sample_id_tumor             // string:  [optional]  sample id for the tumor sample (used in channel metadata)
+    val_sample_id_normal            // string:  [optional]  sample ID for the normal sample (used in channel metadata)
+    val_sample_id_tumor             // string:  [optional]  sample ID for the tumor sample (used in channel metadata)
     val_sex                         // string:  [optional]  sex of the patient (used in channel metadata)
     val_snv_vcf                     // string:  [optional]  path to input SNV vcf file
     val_species                     // string:  [optional]  species (e.g. "homo_sapiens")
