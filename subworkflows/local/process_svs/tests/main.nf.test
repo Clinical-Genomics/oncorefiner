@@ -38,11 +38,11 @@ nextflow_workflow {
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/subject_a.tumor.redux.bam.bai', checkIfExists: true)
                 ])
                 input[2] = channel.of([
-                    ['id':'test_case', 'case_id':'test_case'],
+                    [id:'subject_a'],
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.sv.vcf.gz', checkIfExists: true)
                 ])
                 input[3] = channel.of([
-                    ['id':'test_case', 'case_id':'test_case'],
+                    [id:'subject_a'],
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.sv.vcf.gz.tbi', checkIfExists: true)
                 ])
                 input[4] = channel.of(
@@ -53,7 +53,7 @@ nextflow_workflow {
                 input[7] = 115
                 input[8] = UNTAR_VEP_CACHE.out.untar.map{ _meta, files -> [files]}.collect()
                 input[9] = channel.of([
-                    ['id':'test_case', 'case_id':'test_case'],
+                    [id:'subject_a'],
                     file(params.pipelines_testdata_base_path + 'reference/GRCh38/GRCh38_masked_exclusions_alts_hlas_subset.fasta', checkIfExists: true)
                 ])
                 input[10] = channel.of([
