@@ -1,4 +1,99 @@
 {
+    "Tumor Normal analysis with '-profile test' - stub": {
+        "content": [
+            {
+                "BCFTOOLS_VIEW": {
+                    "bcftools": "1.23.1"
+                },
+                "BCFTOOLS_VIEW_CLINICAL": {
+                    "bcftools": "1.23.1"
+                },
+                "BCFTOOLS_VIEW_RESEARCH": {
+                    "bcftools": "1.23.1"
+                },
+                "ENSEMBLVEP_VEP": {
+                    "ensemblvep": 115.2,
+                    "perl-math-cdf": 0.1,
+                    "tabix": 1.21
+                },
+                "FILTER_VCF": {
+                    "bcftools": "1.23.1"
+                },
+                "GENMOD_SCORE": {
+                    "genmod": "3.10.2"
+                },
+                "SAMTOOLS_VIEW": {
+                    "samtools": "1.23.1"
+                },
+                "SVDB_QUERY": {
+                    "svdb": "2.8.4"
+                },
+                "TIDDIT_COV": {
+                    "tiddit": "3.9.5"
+                },
+                "UNTAR_VEP_CACHE": {
+                    "untar": 1.34
+                },
+                "VCF2CYTOSURE": {
+                    "vcf2cytosure": "0.9.3"
+                },
+                "VCFANNO": {
+                    "vcfanno": "0.3.7"
+                },
+                "Workflow": {
+                    "Clinical-Genomics/oncorefiner": "v1.0.0dev"
+                }
+            },
+            [
+                "alignments",
+                "alignments/subject_a_normal.cram",
+                "alignments/subject_a_normal.cram.crai",
+                "alignments/subject_a_tumor.cram",
+                "alignments/subject_a_tumor.cram.crai",
+                "bcftools",
+                "bcftools/subject_a.vcf.gz",
+                "bcftools/subject_a.vcf.gz.tbi",
+                "clinical_filtering",
+                "clinical_filtering/subject_a_clinical.vcf.gz",
+                "clinical_filtering/subject_a_clinical.vcf.gz.tbi",
+                "multiqc",
+                "multiqc/multiqc_data",
+                "multiqc/multiqc_data/.stub",
+                "multiqc/multiqc_plots",
+                "multiqc/multiqc_plots/.stub",
+                "multiqc/multiqc_report.html",
+                "pipeline_info",
+                "pipeline_info/oncorefiner_software_mqc_versions.yml",
+                "process_svs",
+                "process_svs/subject_a_clinical.vcf.gz",
+                "process_svs/subject_a_clinical.vcf.gz.tbi",
+                "process_svs/subject_a_research.vcf.gz",
+                "process_svs/subject_a_research.vcf.gz.tbi",
+                "process_svs/subject_a_vcfdb_query.vcf",
+                "research_filtering",
+                "research_filtering/subject_a_research.vcf.gz",
+                "research_filtering/subject_a_research.vcf.gz.tbi",
+                "vcf2cytosure",
+                "vcf2cytosure/normal.cgh",
+                "vcf2cytosure/tumor.cgh",
+                "vcfanno",
+                "vcfanno/subject_a_vcfanno.vcf.gz",
+                "vcfanno/subject_a_vcfanno.vcf.gz.tbi",
+                "vep",
+                "vep/subject_a_svdbquery_vep.vcf.gz",
+                "vep/subject_a_svdbquery_vep.vcf.gz.tbi",
+                "vep/subject_a_svdbquery_vep_summary.html",
+                "vep/subject_a_vep.vcf.gz",
+                "vep/subject_a_vep.vcf.gz.tbi",
+                "vep/subject_a_vep_summary.html"
+            ]
+        ],
+        "timestamp": "2026-06-01T16:41:00.201162",
+        "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "26.04.2"
+        }
+    },
     "Tumor Normal analysis with '-profile test'": {
         "content": [
             {
@@ -164,7 +259,7 @@
                 ]
             ]
         ],
-        "timestamp": "2026-05-28T12:13:27.347101",
+        "timestamp": "2026-06-01T13:50:50.286939",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.2"

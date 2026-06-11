@@ -31,7 +31,6 @@ include { SAMTOOLS_VIEW           } from './modules/nf-core/samtools/view/main'
 workflow CLINICALGENOMICS_ONCOREFINER {
 
     take:
-    samplesheet                     // channel: [mandatory] samplesheet read in from --input
     val_bam_normal                  // string:  [optional]  path to BAM file for the normal sample
     val_bai_normal                  // string:  [optional]  path to BAI file for the normal sample
     val_bam_tumor                   // string:  [optional]  path to BAM file for the tumor sample
@@ -150,7 +149,6 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     }
 
     ONCOREFINER (
-        samplesheet,
         ch_bam_bai_normal,
         ch_bam_bai_tumor,
         ch_cadd_header,
@@ -214,7 +212,6 @@ workflow {
         params.monochrome_logs,
         args,
         params.outdir,
-        params.input,
         params.help,
         params.help_full,
         params.show_hidden
@@ -224,7 +221,6 @@ workflow {
     // WORKFLOW: Run main workflow
     //
     CLINICALGENOMICS_ONCOREFINER (
-        PIPELINE_INITIALISATION.out.samplesheet,
         params.bam_normal,
         params.bai_normal,
         params.bam_tumor,
