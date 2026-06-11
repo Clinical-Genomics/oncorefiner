@@ -52,6 +52,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#106](https://github.com/Clinical-Genomics/oncorefiner/pull/106) Changed logic for `stable_path` in pipeline tests to exclude all vcf and index files by default. Removed individual entries for these files in `tests/.nftignore`.
 - [#108](https://github.com/Clinical-Genomics/oncorefiner/pull/108) Update `pipelines_testdata_base_path` to reflect the latest commit to `Clinical-Genomics/test-datasets/` that includes the genmod score config file.
 - [#88](https://github.com/Clinical-Genomics/oncorefiner/pull/88) Update contributing guidelines to follow current conventions on running `prek` for pre-commit hooks, indentation and item order in code blocks and remove outdated channel publishing instructions.
+- [#127](https://github.com/Clinical-Genomics/oncorefiner/pull/127) Update `pipelines_testdata_base_path` to reflect the latest commit to `Clinical-Genomics/test-datasets/oncorefiner` that removes `testdata/samplesheet_test.csv`.
 
 ### `Fixed`
 
