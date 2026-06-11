@@ -14,6 +14,13 @@ include { ENSEMBLVEP_VEP                           } from '../../../modules/nf-c
 include { SVDB_QUERY                               } from '../../../modules/nf-core/svdb/query/main'
 
 //
+// MODULE: Local modules
+//
+
+include { LINX_TSV           } from '../../../modules/local/linx_annotation/linx_tsv/main'
+include { ANNOTATE_VCF_BY_ID } from '../../../modules/local/linx_annotation/annotate_vcf_by_id/main'
+
+//
 // LOCAL SUBWORKFLOWS
 //
 
@@ -41,6 +48,9 @@ workflow PROCESS_SVS {
         ch_vep_extra_files    // channel: [optional]  [val(meta), path(vep_extra_files)]
 
     main:
+        // Annotate VCF with LINX
+        ch_linx_tsv =
+
         // SVDB QUERY
         ch_sv_dbs
             .splitCsv ( header:true )
