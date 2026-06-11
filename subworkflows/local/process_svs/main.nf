@@ -37,6 +37,9 @@ workflow PROCESS_SVS {
     take:
         ch_bam_bai_normal     // channel: [optional]  [val(meta), path(bam), path(bai)]
         ch_bam_bai_tumor      // channel: [mandatory]  [val(meta), path(bam), path(bai)]
+        ch_linx_breakends_tsv // channel: [optional]  [val(meta), path(tsv)]
+        ch_linx_fusion_tsv    // channel: [optional]  [val(meta), path(tsv)]
+        ch_linx_sv_tsv        // channel: [optional]  [val(meta), path(tsv)]
         ch_sv_vcf             // channel: [required]  [val(meta), path(vcf)]
         ch_sv_vcf_tbi         // channel: [required]  [val(meta), path(vcf.tbi)]
         ch_sv_dbs             // channel: [required]  path(svdb_dbs_csv)

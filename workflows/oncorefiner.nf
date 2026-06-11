@@ -28,6 +28,9 @@ workflow ONCOREFINER {
         ch_cadd_resources               // channel: [optional]  [val(meta), path(dir)]
         ch_genome_fasta                 // channel: [optional]  [val(meta), path(fasta)]
         ch_genome_fai                   // channel: [optional]  [val(meta), path(fai)]
+        ch_linx_breakends_tsv           // channel: [optional]  [val(meta), path(tsv)]
+        ch_linx_fusion_tsv              // channel: [optional]  [val(meta), path(tsv)]
+        ch_linx_sv_tsv                  // channel: [optional]  [val(meta), path(tsv)]
         ch_snv_vcf                      // channel: [optional]  [val(meta), path(vcf)]
         ch_snv_vcf_tbi                  // channel: [optional]  [val(meta), path(vcf.tbi)]
         ch_sv_dbs                       // channel: [optional]  [path(csv)]
@@ -78,6 +81,9 @@ workflow ONCOREFINER {
         PROCESS_SVS(
             ch_bam_bai_normal,
             ch_bam_bai_tumor,
+            ch_linx_breakends_tsv,
+            ch_linx_fusion_tsv,
+            ch_linx_sv_tsv,
             ch_sv_vcf,
             ch_sv_vcf_tbi,
             ch_sv_dbs,
