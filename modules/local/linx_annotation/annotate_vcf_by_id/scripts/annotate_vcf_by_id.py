@@ -77,7 +77,7 @@ def update_vcf_info_field(
 ) -> pysam.VariantRecord:
 
     if record.id in tsv_dict:
-        annotations = tsv_dict[record.id]
+        annotations: dict = tsv_dict[record.id]
         record.info.update(annotations)
     return record
 
