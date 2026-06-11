@@ -81,10 +81,6 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     ch_vep_extra_files = channel.empty()
     ch_svdb_dbs        = channel.empty()
 
-    ch_linx_breakends_tsv = channel.fromPath(val_linx_breakends_tsv).map { tsv -> [[id:tsv.simpleName], tsv] }.collect()
-    ch_linx_fusion_tsv   = channel.fromPath(val_linx_fusion_tsv).map { tsv -> [[id:tsv.simpleName], tsv] }.collect()
-    ch_linx_sv_tsv       = channel.fromPath(val_linx_sv_tsv).map { tsv -> [[id:tsv.simpleName], tsv] }.collect()
-
     // Alignment files
     ch_bam_bai_normal  = channel.empty()
 
@@ -106,6 +102,13 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     ch_genome_fasta          = channel.fromPath(val_genome_fasta).map { it -> [[id:it.simpleName], it] }.collect()
     ch_genome_fai            = channel.fromPath(val_genome_fai).map { it -> [[id:it.simpleName], it] }.collect()
     ch_genome_fasta_fai      = ch_genome_fasta.join(ch_genome_fai, failOnMismatch: true, failOnDuplicate: true)
+
+    // Input for VCF annotation with LINX
+    ch_linx_breakends_tsv = channel.fromPath(val_linx_breakends_tsv).map { tsv -> [[id:tsv.simpleName], tsv] }.collect()
+    ch_linx_fusion_tsv    = channel.fromPath(val_linx_fusion_tsv).map { tsv -> [[id:tsv.simpleName], tsv] }.collect()
+    ch_linx_sv_tsv        = channel.fromPath(val_linx_sv_tsv).map { tsv -> [[id:tsv.simpleName], tsv] }.collect()
+
+    ch_sv_header = channel.fromPath("$projectDir/assets/sv_annotation_header.txt", checkIfExists: true).collect()
 
     // CADD input files
     ch_cadd_header           = channel.fromPath("$projectDir/assets/cadd_to_vcf_header.txt", checkIfExists: true).collect()
@@ -162,6 +165,7 @@ workflow CLINICALGENOMICS_ONCOREFINER {
         ch_snv_vcf,
         ch_snv_vcf_tbi,
         ch_sv_dbs,
+        ch_sv_header,
         ch_sv_vcf,
         ch_sv_vcf_tbi,
         ch_vcfanno_extra,

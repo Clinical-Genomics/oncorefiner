@@ -34,6 +34,7 @@ workflow ONCOREFINER {
         ch_snv_vcf                      // channel: [optional]  [val(meta), path(vcf)]
         ch_snv_vcf_tbi                  // channel: [optional]  [val(meta), path(vcf.tbi)]
         ch_sv_dbs                       // channel: [optional]  [path(csv)]
+        ch_sv_header                    // channel: [optional]  [path(txt)]
         ch_sv_vcf                       // channel: [optional]  [val(meta), path(vcf)]
         ch_sv_vcf_tbi                   // channel: [optional]  [val(meta), path(vcf.tbi)]
         ch_vcfanno_extra                // channel: [optional]  [path(extra_file1), path(extra_file2), ...]
@@ -84,6 +85,7 @@ workflow ONCOREFINER {
             ch_linx_breakends_tsv,
             ch_linx_fusion_tsv,
             ch_linx_sv_tsv,
+            ch_sv_header,
             ch_sv_vcf,
             ch_sv_vcf_tbi,
             ch_sv_dbs,

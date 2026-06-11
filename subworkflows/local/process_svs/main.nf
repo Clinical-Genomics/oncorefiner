@@ -17,8 +17,8 @@ include { SVDB_QUERY                               } from '../../../modules/nf-c
 // MODULE: Local modules
 //
 
-include { LINX_TSV           } from '../../../modules/local/linx_annotation/linx_tsv/main'
-include { ANNOTATE_VCF_BY_ID } from '../../../modules/local/linx_annotation/annotate_vcf_by_id/main'
+include { COMBINE_LINX_TSV           } from '../../../modules/local/linx_annotation/combine_linx_tsv/main'
+include { ANNOTATE_VCF_BY_ID         } from '../../../modules/local/linx_annotation/annotate_vcf_by_id/main'
 
 //
 // LOCAL SUBWORKFLOWS
@@ -40,6 +40,7 @@ workflow PROCESS_SVS {
         ch_linx_breakends_tsv // channel: [optional]  [val(meta), path(tsv)]
         ch_linx_fusion_tsv    // channel: [optional]  [val(meta), path(tsv)]
         ch_linx_sv_tsv        // channel: [optional]  [val(meta), path(tsv)]
+        ch_sv_header          // channel: [optional]  [path(txt)]
         ch_sv_vcf             // channel: [required]  [val(meta), path(vcf)]
         ch_sv_vcf_tbi         // channel: [required]  [val(meta), path(vcf.tbi)]
         ch_sv_dbs             // channel: [required]  path(svdb_dbs_csv)
@@ -52,7 +53,23 @@ workflow PROCESS_SVS {
 
     main:
         // Annotate VCF with LINX
-        ch_linx_tsv =
+        ch_linx_input = ch_linx_fusion_tsv
+            .join(ch_linx_breakends_tsv, failOnMismatch: true)
+            .join(ch_linx_sv_tsv, failOnMismatch: true)
+            .map { meta, fusion_file, breakend_file, sv_file ->
+                tuple( meta, fusion_file, breakend_file, sv_file)
+            }
+
+        COMBINE_LINX_TSV(ch_linx_input)
+
+        ch_annotate_vcf_input = ch_sv_vcf
+            .join(COMBINE_LINX_TSV.out.tsv, failOnMismatch: true) // probably wont work due to meta?
+            .join(ch_sv_header, failOnMismatch: true)
+            .map { meta, tsv, vcf, header ->
+                tuple(meta, tsv, vcf, header)
+            }
+
+        ANNOTATE_VCF_BY_ID(ch_annotate_vcf_input)
 
         // SVDB QUERY
         ch_sv_dbs
