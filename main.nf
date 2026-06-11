@@ -97,17 +97,14 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     ch_bam_bai_tumor = ch_bam_tumor.join(ch_bai_tumor, failOnMismatch: true, failOnDuplicate: true)
 
     // Reference files
-    ch_genome_fasta          = channelFromMetaAndPath(metadata_case_file, val_genome_fasta).collect()
-    ch_genome_fai            = channelFromMetaAndPath(metadata_case_file, val_genome_fai).collect()
-    ch_genome_fasta_fai      = ch_genome_fasta.join(ch_genome_fai, failOnMismatch: true, failOnDuplicate: true)
+    ch_genome_fasta     = channelFromMetaAndPath(metadata_case_file, val_genome_fasta).collect()
+    ch_genome_fai       = channelFromMetaAndPath(metadata_case_file, val_genome_fai).collect()
+    ch_genome_fasta_fai = ch_genome_fasta.join(ch_genome_fai, failOnMismatch: true, failOnDuplicate: true)
 
     // CADD input files
-    ch_cadd_header           = channel.fromPath("$projectDir/assets/cadd_to_vcf_header.txt", checkIfExists: true).collect()
-    ch_cadd_resources        = val_cadd_resources        ? channel.fromPath(val_cadd_resources).map { it -> [[id:'cadd_resources'], it] }.collect()
-                                                         : channel.value([])
-
-    ch_cadd_prescored_indels = val_cadd_prescored_indels ? channel.fromPath(val_cadd_prescored_indels).map { it -> [[id:'cadd_prescored_indels'], it] }.collect()
-                                                         : channel.value([])
+    ch_cadd_header           = channelFromMetaAndPath(metadata_case_file, "$projectDir/assets/cadd_to_vcf_header.txt").collect()
+    ch_cadd_resources        = channelFromMetaAndPath(metadata_case_file, val_cadd_resources).collect()
+    ch_cadd_prescored_indels = channelFromMetaAndPath(metadata_case_file, val_cadd_prescored_indels).collect()
 
     // Input for VEP
     ch_vep_extra_files_unsplit  = val_vep_plugin_files ? channel.fromPath(val_vep_plugin_files).collect() : channel.value([])
