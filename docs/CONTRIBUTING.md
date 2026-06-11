@@ -210,8 +210,6 @@ qc_bam_text = [
 ]
 ```
 
-For tools that run only when the input samplesheet contains a particular file type, use a helper function rather than a param check — see `hasSpringInput()` as an example.
-
 #### 3. `README.md`
 
 Add the tool to the relevant numbered section in the **Pipeline summary**. If the tool belongs to a new category not yet represented, add a new numbered section in the appropriate position.

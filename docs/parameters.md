@@ -8,7 +8,6 @@ Define where the pipeline should find input data and save output data.
 
 | Parameter | Description | Type | Default | Required | Hidden |
 |-----------|-----------|-----------|-----------|-----------|-----------|
-| `input` | Path to comma-separated file containing information about the samples in the experiment. <details><summary>Help</summary><small>You will need to create a design file with information about the samples in your experiment before running the pipeline. Use this parameter to specify its location. It has to be a comma-separated file with 3 columns, and a header row.</small></details>| `string` |  | True |  |
 | `outdir` | The output directory where the results will be saved. You have to use absolute paths to storage on Cloud infrastructure. | `string` |  | True |  |
 | `snv_vcf` | Path to a VCF file containing somatic SNV/INDEL variants to be processed by the pipeline. The VCF may include one or multiple samples. Typically, this is a single tumor sample for tumor-only analyses, or both tumor and matched normal samples for tumor-normal analyses. | `string` |  |  |  |
 | `sv_vcf` | Path to a VCF file containing somatic structural variants (SVs) to be processed by the pipeline. The VCF may include one or multiple samples. Typically, this is a single tumor sample for tumor-only analyses, or both tumor and matched normal samples for tumor-normal analyses. | `string` |  |  |  |
@@ -83,7 +82,7 @@ Less common options for the pipeline, typically set in a config file.
 | `multiqc_logo` | Custom logo file to supply to MultiQC. File name must also be set in the MultiQC config file | `string` |  |  | True |
 | `multiqc_methods_description` | Custom MultiQC yaml file containing HTML including a methods description. | `string` |  |  |  |
 | `validate_params` | Boolean whether to validate parameters against the schema at runtime | `boolean` | True |  | True |
-| `pipelines_testdata_base_path` | Base URL or local path to location of pipeline test dataset files | `string` | https://raw.githubusercontent.com/Clinical-Genomics/test-datasets/b269a1be954c5ae16b1dff465599d0ac51ea8289/ |  | True |
+| `pipelines_testdata_base_path` | Base URL or local path to location of pipeline test dataset files | `string` | https://raw.githubusercontent.com/Clinical-Genomics/test-datasets/8386554a6da51bba43cfc0b0e6448d816d246e43/ |  | True |
 | `trace_report_suffix` | Suffix to add to the trace report filename. Default is the date and time in the format yyyy-MM-dd_HH-mm-ss. | `string` |  |  | True |
 | `help` | Display the help message. | `['boolean', 'string']` |  |  |  |
 | `help_full` | Display the full detailed help message. | `boolean` |  |  |  |

@@ -52,6 +52,8 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#108](https://github.com/Clinical-Genomics/oncorefiner/pull/108) Update `pipelines_testdata_base_path` to reflect the latest commit to `Clinical-Genomics/test-datasets/` that includes the genmod score config file.
 - [#81](https://github.com/Clinical-Genomics/oncorefiner/pull/81) Update publishing strategy for `PROCESS_SNVS` subworkflow to use output blocks. Removed publishing settings from the subworkflow config file.
 - [#88](https://github.com/Clinical-Genomics/oncorefiner/pull/88) Update contributing guidelines to follow current conventions on running `prek` for pre-commit hooks, indentation and item order in code blocks and remove outdated channel publishing instructions.
+- [#127](https://github.com/Clinical-Genomics/oncorefiner/pull/127) Update `pipelines_testdata_base_path` to reflect the latest commit to `Clinical-Genomics/test-datasets/oncorefiner` that removes `testdata/samplesheet_test.csv`.
+- [#128](https://github.com/Clinical-Genomics/oncorefiner/pull/128) Upgraded nf-test version to 0.9.5 so that the CI check supports topic channel tests.
 
 ### `Fixed`
 
@@ -87,6 +89,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#101](https://github.com/Clinical-Genomics/oncorefiner/pull/101) Refactored config settings for `PROCESS_SNVS:BCFTOOLS_VIEW_*`, `PROCESS_*:ENSEMBLVEP_VEP`, and `ANNOTATE_CADD:BCFTOOLS_ANNOTATE_INDELS` to take parameters and specified specific test settings for these in `test_base.config`
 - [#110](https://github.com/Clinical-Genomics/oncorefiner/pull/110) Added `genome` argument for `VCF2CYTOSURE`, given by `params.genome_version_number`, to ensure the reference genome used for the process matches the given input data.
 - [#116](https://github.com/Clinical-Genomics/oncorefiner/pull/116) Updated `GENERATE_CYTOSURE_FILES` subworkflow test snapshot in sequence of [#110](https://github.com/Clinical-Genomics/oncorefiner/pull/110).
+- [#123](https://github.com/Clinical-Genomics/oncorefiner/pull/123) Changed the subworkflow test when untarring is needed in `PREPARE_REFERENCES` to check `workflow.out.vep_resources` instead of `params.outdir`
 
 ### `Dependencies`
 
@@ -96,3 +99,4 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 
 - [#18](https://github.com/Clinical-Genomics/oncorefiner/pull/18) Removed CI checks `awstest` and `awsfulltest`.
 - [#51](https://github.com/Clinical-Genomics/oncorefiner/pull/51) Removed unused parameter `custom_extra_files`.
+- [#125](https://github.com/Clinical-Genomics/oncorefiner/pull/125) Removed `input` parameter and samplesheet logic and documentation.
