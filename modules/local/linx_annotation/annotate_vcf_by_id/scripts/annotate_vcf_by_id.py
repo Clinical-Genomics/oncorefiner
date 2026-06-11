@@ -75,6 +75,7 @@ def update_vcf_header_with_new_lines(
 def update_vcf_info_field(
     record: pysam.VariantRecord, tsv_dict: dict
 ) -> pysam.VariantRecord:
+
     if record.id in tsv_dict:
         annotations = tsv_dict[record.id]
         record.info.update(annotations)
@@ -94,17 +95,17 @@ def get_dict_from_tsv(tsv_file_path: click.Path) -> dict:
 
         for tsv_row in tsv_reader:
             # removes id column from dict, returns id
-            vcf_id = tsv_row.pop(vcf_id_column_header)
+            vcf_id: str = tsv_row.pop(vcf_id_column_header)
 
             # convert values to ints, float or keep as string
-            vcf_id_annotations = define_data_types(tsv_row)
+            vcf_id_annotations: dict = define_data_types(tsv_row)
 
             # add row to dictionary, avoid overwriting if id has multiple annotations
-            tsv_annotations_dict = add_entry_to_annotation_dict(tsv_annotations_dict, vcf_id, vcf_id_annotations)
+            tsv_annotations_dict: dict = add_entry_to_annotation_dict(tsv_annotations_dict, vcf_id, vcf_id_annotations)
 
 
     # convert list to tuple if multiple values for same field, to be compatible with pysam specifications
-    tsv_annotations_dict = convert_lists_to_tuples(tsv_annotations_dict)
+    tsv_annotations_dict: dict = convert_lists_to_tuples(tsv_annotations_dict)
 
     return tsv_annotations_dict
 
@@ -119,7 +120,7 @@ def annotate_vcf(
 
     vcf_in: pysam.VariantFile = pysam.VariantFile(vcf_file, "rb")
 
-    merged_header = update_vcf_header_with_new_lines(vcf_in, header_file_path=header_file)
+    merged_header: pysam.VariantHeader = update_vcf_header_with_new_lines(vcf_in, header_file_path=header_file)
 
     # pysam auto-detects compression from file extension
     vcf_out: pysam.VariantFile = pysam.VariantFile(
@@ -127,14 +128,14 @@ def annotate_vcf(
     )
 
     for record in vcf_in:
-        record = update_vcf_info_field(record, tsv_dict)
+        record: pysam.VariantRecord = update_vcf_info_field(record, tsv_dict)
         vcf_out.write(record)
 
     vcf_in.close()
     vcf_out.close()
 
     # write index file for annotated vcf
-    output_index = pysam.tabix_index(output_file, preset="vcf", force=True)
+    output_index: pysam.TabixFile = pysam.tabix_index(output_file, preset="vcf", force=True)
 
     return output_file, output_index
 
