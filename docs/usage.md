@@ -28,7 +28,7 @@ outdir: './results/'
 case_id: '<case_id>'
 sex: '<sex>'
 sample_id_tumor: '<sample_id_tumor>'
-sample_id_normal: '<sample_id_normal>'
+sample_id_normal: '<sample_id_normal>' # Only when running a Tumor Normal analysis.
 <...>
 ```
 
