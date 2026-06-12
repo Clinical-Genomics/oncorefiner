@@ -105,11 +105,11 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     // Alignment files
     def ch_bam_normal = channelFromMetaAndPath(metadata_normal_sample_file, val_bam_normal)
     def ch_bai_normal = channelFromMetaAndPath(metadata_normal_sample_file, val_bai_normal)
-    ch_bam_bai_normal = ch_bam_normal.join(ch_bai_normal, failOnMismatch: true, failOnDuplicate: true)
+    def ch_bam_bai_normal = ch_bam_normal.join(ch_bai_normal, failOnMismatch: true, failOnDuplicate: true)
 
     def ch_bam_tumor = channelFromMetaAndPath(metadata_tumor_sample_file, val_bam_tumor)
     def ch_bai_tumor = channelFromMetaAndPath(metadata_tumor_sample_file, val_bai_tumor)
-    ch_bam_bai_tumor = ch_bam_tumor.join(ch_bai_tumor, failOnMismatch: true, failOnDuplicate: true)
+    def ch_bam_bai_tumor = ch_bam_tumor.join(ch_bai_tumor, failOnMismatch: true, failOnDuplicate: true)
 
     // Reference files
     ch_genome_fasta     = channelFromMetaAndPath(metadata_case_file, val_genome_fasta)
