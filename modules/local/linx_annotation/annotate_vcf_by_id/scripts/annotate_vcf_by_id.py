@@ -27,24 +27,32 @@ def define_data_types(row: dict) -> dict:
 
     return row
 
-def add_entry_to_annotation_dict(tsv_annotations_dict: dict, vcf_id: str, vcf_id_annotations: dict) -> dict:
-    # avoid overwriting if id has multiple annotations
-    if vcf_id not in tsv_annotations_dict:
-        tsv_annotations_dict[vcf_id] = vcf_id_annotations
+def add_entry_to_existing_id(vcf_id_annotations: dict, tsv_annotations_dict: dict, vcf_id: str) -> dict:
 
-    else:
-        # append new annotation value to existing annotations
-        for annotation_tag, annotation_value in vcf_id_annotations.items():
-
+    for annotation_tag, annotation_value in vcf_id_annotations.items():
+            # if new annotation is the same as existing annotation, skip
             if tsv_annotations_dict[vcf_id][annotation_tag] == annotation_value:
                 continue
 
             # current entry for column
             current_entry = tsv_annotations_dict[vcf_id][annotation_tag]
+
+            # if current entry is list, append new value, otherwise convert to list and add both current and new
             if isinstance(current_entry, list):
                 current_entry.append(annotation_value)
             else:
                 tsv_annotations_dict[vcf_id][annotation_tag] = [current_entry, annotation_value]
+
+    return tsv_annotations_dict
+
+def add_entry_to_annotation_dict(tsv_annotations_dict: dict, vcf_id: str, vcf_id_annotations: dict[str:str]) -> dict:
+    # avoid overwriting if id has multiple annotations
+    if vcf_id not in tsv_annotations_dict:
+        tsv_annotations_dict[vcf_id] = vcf_id_annotations
+
+    else:
+        # append new annotation value to existing ID annotations
+        add_entry_to_existing_id(vcf_id_annotations, tsv_annotations_dict, vcf_id)
 
     return tsv_annotations_dict
 
@@ -98,7 +106,7 @@ def get_dict_from_tsv(tsv_file_path: click.Path) -> dict:
             vcf_id: str = tsv_row.pop(vcf_id_column_header)
 
             # convert values to ints, float or keep as string
-            vcf_id_annotations: dict = define_data_types(tsv_row)
+            vcf_id_annotations: dict[str:str] = define_data_types(tsv_row)
 
             # add row to dictionary, avoid overwriting if id has multiple annotations
             tsv_annotations_dict: dict = add_entry_to_annotation_dict(tsv_annotations_dict, vcf_id, vcf_id_annotations)
