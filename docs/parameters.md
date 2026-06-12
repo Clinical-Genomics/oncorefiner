@@ -18,10 +18,10 @@ Define where the pipeline should find input data and save output data.
 
 | Parameter | Description | Type | Default | Required | Hidden |
 |-----------|-----------|-----------|-----------|-----------|-----------|
-| `case_id` | Case id (pet name). | `string` |  | True |  |
+| `case_id` | Case ID. | `string` |  | True |  |
 | `sex` | Sex of the patient. (accepted: `female`\|`male`\|`unknown`) | `string` |  | True |  |
 | `sample_id_tumor` | Sample id of the tumor sample. | `string` |  | True |  |
-| `sample_id_normal` | Sample id of the normal sample. | `string` |  | True |  |
+| `sample_id_normal` | Sample id of the normal sample. | `string` |  |  |  |
 
 ## Input files
 

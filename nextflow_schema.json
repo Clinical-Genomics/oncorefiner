@@ -56,7 +56,7 @@
                     "description": "Sample id of the normal sample."
                 }
             },
-            "required": ["case_id", "sex", "sample_id_tumor", "sample_id_normal"]
+            "required": ["case_id", "sex", "sample_id_tumor"]
         },
         "input_files": {
             "title": "Input files",
