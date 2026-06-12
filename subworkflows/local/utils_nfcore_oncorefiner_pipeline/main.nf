@@ -252,6 +252,24 @@ def methodsDescriptionText(mqc_methods_yaml) {
 }
 
 /**
+ * Creates a metadata map with provided values, excluding any null values.
+ * @param case_id The case ID (required)
+ * @param sample_id The sample ID (can be null)
+ * @param sample_type The sample type (can be null)
+ * @param sex The sex (can be null)
+ * @return Metadata map with provided values
+ */
+def makeMetadata(id, case_id, sample_id=null, sample_type=null, sex=null) {
+    [
+        id         : id,
+        case_id    : case_id,
+        sample_id  : sample_id,
+        sample_type: sample_type,
+        sex        : sex
+    ].findAll { key, value -> value != null }
+}
+
+/**
  * Creates a value channel from a metadata tuple and file path if provided and the file exists, otherwise returns an empty channel.
  * @param filePath The path to the file (can be null)
  * @param meta The channel metadata tuple

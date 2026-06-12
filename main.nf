@@ -14,6 +14,7 @@
 */
 
 include { channelFromMetaAndPath  } from './subworkflows/local/utils_nfcore_oncorefiner_pipeline'
+include { makeMetadata            } from './subworkflows/local/utils_nfcore_oncorefiner_pipeline'
 include { ONCOREFINER             } from './workflows/oncorefiner'
 include { PIPELINE_INITIALISATION } from './subworkflows/local/utils_nfcore_oncorefiner_pipeline'
 include { PIPELINE_COMPLETION     } from './subworkflows/local/utils_nfcore_oncorefiner_pipeline'
@@ -76,9 +77,23 @@ workflow CLINICALGENOMICS_ONCOREFINER {
 
     // Initialise input channels
 
-    def metadata_case_file          = [id: val_case_id, case_id: val_case_id]
-    def metadata_normal_sample_file = [id: val_sample_id_normal, case_id: val_case_id, sample_id: val_sample_id_normal, sample_type: "normal", sex: val_sex]
-    def metadata_tumor_sample_file  = [id: val_sample_id_tumor, case_id: val_case_id, sample_id: val_sample_id_tumor, sample_type: "tumor", sex: val_sex]
+    def metadata_case_file = makeMetadata(val_case_id, val_case_id)
+
+    def metadata_normal_sample_file = makeMetadata(
+        val_sample_id_normal,
+        val_case_id,
+        val_sample_id_normal,
+        "normal",
+        val_sex
+    )
+
+    def metadata_tumor_sample_file = makeMetadata(
+        val_sample_id_tumor,
+        val_case_id,
+        val_sample_id_tumor,
+        "tumor",
+        val_sex
+    )
 
     ch_snv_vcf         = channelFromMetaAndPath(metadata_case_file, val_snv_vcf)
     ch_snv_vcf_tbi     = channelFromMetaAndPath(metadata_case_file, val_snv_vcf + '.tbi')
