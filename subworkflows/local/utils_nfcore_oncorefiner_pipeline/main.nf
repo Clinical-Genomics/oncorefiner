@@ -270,21 +270,17 @@ def makeMetadata(id, case_id, sample_id=null, sample_type=null, sex=null) {
 }
 
 /**
- * Creates a value channel from a metadata tuple and file path if provided and the file exists, otherwise returns a channel with the given fallback value or an empty channel by default.
+ * Creates a value channel from a metadata tuple and file path if provided and the file exists, otherwise returns an empty channel.
  * @param filePath The path to the file (can be null)
  * @param meta The channel metadata tuple
- * @param fallbackValue An optional fallback value to emit in the output channel if the file path is not provided
  * @return Value channel with metadata tuple and collected file path or empty channel
  */
-def channelFromMetaAndPath(meta, filePath, fallbackValue=null) {
+def channelFromMetaAndPath(meta, filePath) {
     if (filePath && meta) {
         return channel.fromPath(filePath, checkIfExists: true).map { file -> [meta, file] }.collect()
     }
     if (filePath && !meta) {
-        error "Metadata must be provided when a file path is given. Please provide metadata for file: ${filePath}"
-    }
-    if (fallbackValue) {
-        return channel.from(fallbackValue).collect()
+        error "Metadata must be provided when a file path is given. Please provide metadata for the file: ${filePath}"
     }
     return channel.empty()
 }
