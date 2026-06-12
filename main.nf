@@ -134,7 +134,8 @@ workflow CLINICALGENOMICS_ONCOREFINER {
 
 
     // Input for SVDB
-    ch_sv_dbs = channelFromMetaAndPath(metadata_case_file, val_svdb_query_dbs)
+    ch_sv_dbs            = val_svdb_query_dbs    ? channel.fromPath(val_svdb_query_dbs)
+                                                 : channel.empty()
 
 
     ONCOREFINER (
