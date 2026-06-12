@@ -19,7 +19,9 @@ This will launch the pipeline with:
 - the pipeline settings provided in the params file which can be given in a `yaml` or `json` format.
 - `docker` configuration profile (see below for more information about profiles).
 
-The params file should always contain the following mandatory parameters:
+Parameters can be specified in a params file or given as a flag in the command above, i.e. `--outdir ./results/`.
+
+The following parameters are mandatory for any run:
 
 ```yaml title="params.yaml"
 outdir: './results/'
@@ -33,8 +35,6 @@ sample_id_normal: '<sample_id_normal>' # Only when running a Tumor Normal analys
 ```
 
 Additionally, there are several parameters that can be used to customize the pipeline run. See [parameters documentation](../docs/parameters.md) for a full list of available parameters, their descriptions and formats.
-
-Parameters can be specified in a params file or given as a flag in the command above, i.e. `--outdir ./results/`.
 
 > [!WARNING]
 > Do not use `-c <file>` to specify parameters as this will result in errors. Custom config files specified with `-c` must only be used for [tuning process resource specifications](https://nf-co.re/docs/running/run-pipelines#configuring-pipelines), other infrastructural tweaks (such as output directories), or module arguments (args).
