@@ -170,7 +170,8 @@ def annotate_vcf(
         output_file, "w", header=merged_header
     )
 
-    for record in vcf_in: # directly get correct entry?
+    # need to loop through records to get entries with correct ID
+    for record in vcf_in:
         record: pysam.VariantRecord = update_vcf_info_field(record, tsv_dict)
         vcf_out.write(record)
 
