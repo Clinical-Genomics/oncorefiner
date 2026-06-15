@@ -14,9 +14,9 @@
                     {
                         "id": "subject_a"
                     },
-                    "subject_a_research.vcf.gz",
+                    "subject_a_genmod_score.vcf.gz",
                     ":variantsMD5,",
-                    "4cdfadaf39f5ed1c1d854226e6099c0d"
+                    "c4e094059322ba88b5e53d7b4913cceb"
                 ],
                 [
                     {
@@ -46,7 +46,7 @@
                     {
                         "id": "subject_a"
                     },
-                    "subject_a_research.vcf.gz.tbi"
+                    "subject_a_genmod_score.vcf.gz.tbi"
                 ],
                 [
                     {
@@ -70,7 +70,7 @@
                 ]
             ]
         ],
-        "timestamp": "2026-06-15T12:11:48.543461",
+        "timestamp": "2026-06-15T14:03:11.505206",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.2"
@@ -89,7 +89,7 @@
                     {
                         "id": "subject_a"
                     },
-                    "subject_a_research.vcf.gz"
+                    "subject_a_genmod_score.vcf.gz"
                 ],
                 [
                     {
@@ -115,7 +115,7 @@
                     {
                         "id": "subject_a"
                     },
-                    "subject_a_research.vcf.gz.tbi"
+                    "subject_a_genmod_score.vcf.gz.tbi"
                 ],
                 [
                     {
@@ -139,10 +139,10 @@
                 ]
             ]
         ],
-        "timestamp": "2026-06-08T09:54:12.41387",
+        "timestamp": "2026-06-15T14:03:56.657672",
         "meta": {
-            "nf-test": "0.9.3",
-            "nextflow": "25.10.4"
+            "nf-test": "0.9.5",
+            "nextflow": "26.04.2"
         }
     }
 }
