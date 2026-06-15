@@ -133,7 +133,7 @@ workflow PROCESS_SNVS {
             )
 
             ch_research_filtered_vcf = VCF_ANNOTATE_SCORE_GENMOD.out.vcf
-            ch_research_filtered_tbi = VCF_ANNOTATE_SCORE_GENMOD.out.tbi
+            ch_research_filtered_tbi = VCF_ANNOTATE_SCORE_GENMOD.out.index
             ch_clinical_filtering_in = ch_research_filtered_vcf
                 .join(ch_research_filtered_tbi)
 
