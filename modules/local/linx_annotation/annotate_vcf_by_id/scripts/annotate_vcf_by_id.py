@@ -14,7 +14,7 @@ This means that the ‘Flag’ type indicates that the INFO field does not conta
 """
 
 
-def convert_data_types(tsv_row_dict: dict[str, str]) -> dict[str, str | int | float |bool]: # fix or find function?
+def convert_data_types(tsv_row_dict: dict[str, str]) -> dict[str, str | int | float ]: # fix or find function?
     # convert values to float, int or string
     for key, value in tsv_row_dict.items():
         try:
@@ -23,19 +23,16 @@ def convert_data_types(tsv_row_dict: dict[str, str]) -> dict[str, str | int | fl
             try:
                 tsv_row_dict[key] = float(value)
             except ValueError:
-                try:
-                    tsv_row_dict[key] = bool(value)
-                except ValueError:
-                    tsv_row_dict[key] = str(value)
+                tsv_row_dict[key] = str(value)
 
     return tsv_row_dict
 
 
 def add_entry_to_existing_id(
     vcf_id: str,
-    vcf_id_annotations: dict[str, str | int | float | bool],
-    tsv_annotations_dict: dict[str, dict[str, str | int | float | bool]],
-) -> dict[str, dict[str, str | int | float | bool]]:
+    vcf_id_annotations: dict[str, str | int | float ],
+    tsv_annotations_dict: dict[str, dict[str, str | int | float]],
+) -> dict[str, dict[str, str | int | float ]]:
 
     for annotation_tag, annotation_value in vcf_id_annotations.items():
         # if new annotation is the same as existing annotation, skip
@@ -43,7 +40,7 @@ def add_entry_to_existing_id(
             continue
 
         # current entry for column
-        current_annotation_value: str | int | float | bool | list = tsv_annotations_dict[vcf_id][annotation_tag]
+        current_annotation_value: str | int | float | list = tsv_annotations_dict[vcf_id][annotation_tag]
 
 # below its own function?
         # if current entry is list, append new value, otherwise convert to list and add both current and new
@@ -60,9 +57,9 @@ def add_entry_to_existing_id(
 
 def add_entry_to_annotation_dict(
     vcf_id: str,
-    vcf_id_annotations: dict[str, str | int | float | bool],
-    tsv_annotations_dict: dict[str, dict[str, str | int | float | bool]] #check type
-) -> dict[str, dict[str, str | int | float | bool]]:
+    vcf_id_annotations: dict[str, str | int | float ],
+    tsv_annotations_dict: dict[str, dict[str, str | int | float]] #check type
+) -> dict[str, dict[str, str | int | float ]]:
 
     # avoid overwriting if id has multiple annotations
     if vcf_id not in tsv_annotations_dict:
@@ -76,8 +73,8 @@ def add_entry_to_annotation_dict(
 
 
 def convert_lists_to_tuples(
-    tsv_annotations_dict: dict[str, dict[str, str | int | float | bool]]
-) -> dict[str, dict[str, str | int | float | bool]]:
+    tsv_annotations_dict: dict[str, dict[str, str | int | float]]
+) -> dict[str, dict[str, str | int | float]]:
 
     for vcf_id, vcf_id_annotations in tsv_annotations_dict.items():
         for annotation_tag, annotation_value in vcf_id_annotations.items():
@@ -103,11 +100,11 @@ def update_vcf_header_with_new_lines(
 
 
 def update_vcf_info_field(
-    record: pysam.VariantRecord, tsv_dict: dict[str, dict[str, str | int | float | bool | tuple]]
+    record: pysam.VariantRecord, tsv_dict: dict[str, dict[str, str | int | float | tuple]]
 ) -> pysam.VariantRecord:
 
     if record.id in tsv_dict:
-        annotations: dict[str, str | int | float | bool | tuple] = tsv_dict[record.id]
+        annotations: dict[str, str | int | float | tuple] = tsv_dict[record.id]
         record.info.update(annotations)
     return record
 
@@ -128,7 +125,7 @@ def get_dict_from_tsv(tsv_file_path: click.Path) -> dict:
             vcf_id: str = tsv_row_dict.pop(vcf_id_column_header) # maybe split up
 
             # convert values to ints, float or keep as string
-            vcf_id_annotations: dict[str, str | int | float |bool] = convert_data_types(
+            vcf_id_annotations: dict[str, str | int | float] = convert_data_types(
                 tsv_row_dict
             )
 
@@ -136,24 +133,23 @@ def get_dict_from_tsv(tsv_file_path: click.Path) -> dict:
 
 
             # add row to dictionary, avoid overwriting if id has multiple annotations
-            tsv_annotations_dict: dict[str, dict[str, str | int | float |bool]] = (
+            tsv_annotations_dict: dict[str, dict[str, str | int | float]] = (
                 add_entry_to_annotation_dict(
                     vcf_id, vcf_id_annotations, tsv_annotations_dict
                 )
             )
 
     # convert list to tuple if multiple values for same field, to be compatible with pysam specifications
-    tsv_annotations_dict: dict[str, dict[str, str | int | float | bool]] = (
+    tsv_annotations_dict: dict[str, dict[str, str | int | float | tuple]] = (
         convert_lists_to_tuples(tsv_annotations_dict)
     )
-
     return tsv_annotations_dict
 
 
 def annotate_vcf(
     vcf_file: click.Path,
     header_file: click.Path,
-    tsv_dict: dict[str, dict[str, str | int | float | bool]],
+    tsv_dict: dict[str, dict[str, str | int | float | tuple]],
     output_file: click.Path,
 ) -> tuple:
     """Annotate VCF file using the tsv_dict and header_file, and save the annotated VCF to output_file. Returns the path to the annotated VCF and its index file"""
