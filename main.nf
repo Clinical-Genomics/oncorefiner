@@ -122,7 +122,7 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     def ch_cadd_prescored_indels = channelFromMetaAndPath(metadata_case_file, val_cadd_prescored_indels)
 
     // Input for VEP
-    def ch_vep_extra_files_unsplit  = val_vep_plugin_files ? channel.fromPath(val_vep_plugin_files).collect() : channel.value([])
+    ch_vep_extra_files_unsplit  = val_vep_plugin_files ? channel.fromPath(val_vep_plugin_files).collect() : channel.value([])
     if (val_vep_plugin_files) {
         ch_vep_extra_files_unsplit.splitCsv ( header:true )
             .map { row ->
@@ -138,18 +138,18 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     }
 
     // Input for Vcfanno
-    def ch_vcfanno_extra     = val_vcfanno_extra     ? channel.fromPath(val_vcfanno_extra).collect()
+    ch_vcfanno_extra     = val_vcfanno_extra     ? channel.fromPath(val_vcfanno_extra).collect()
                                                  : []
-    def ch_vcfanno_lua       = val_vcfanno_lua       ? channel.fromPath(val_vcfanno_lua).collect()
+    ch_vcfanno_lua       = val_vcfanno_lua       ? channel.fromPath(val_vcfanno_lua).collect()
                                                  : channel.value([])
-    def ch_vcfanno_resources = val_vcfanno_resources ? channel.fromPath(val_vcfanno_resources).splitText().map{it -> it.trim()}.collect()
+    ch_vcfanno_resources = val_vcfanno_resources ? channel.fromPath(val_vcfanno_resources).splitText().map{it -> it.trim()}.collect()
                                                  : channel.value([])
-    def ch_vcfanno_toml      = val_vcfanno_toml      ? channel.fromPath(val_vcfanno_toml).collect()
+    ch_vcfanno_toml      = val_vcfanno_toml      ? channel.fromPath(val_vcfanno_toml).collect()
                                                  : channel.value([])
 
 
     // Input for SVDB
-    def ch_sv_dbs            = val_svdb_query_dbs    ? channel.fromPath(val_svdb_query_dbs)
+    ch_sv_dbs            = val_svdb_query_dbs    ? channel.fromPath(val_svdb_query_dbs)
                                                  : channel.empty()
 
 
