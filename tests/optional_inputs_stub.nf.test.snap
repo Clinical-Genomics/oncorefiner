@@ -2,16 +2,8 @@
     "No `vep_extra_files` with '-profile test' - stub": {
         "content": [
             {
-                "BCFTOOLS_VIEW_CLINICAL": {
-                    "bcftools": 1.22
-                },
                 "BCFTOOLS_VIEW_RESEARCH": {
                     "bcftools": 1.22
-                },
-                "ENSEMBLVEP_VEP": {
-                    "ensemblvep": 115.2,
-                    "perl-math-cdf": 0.1,
-                    "tabix": 1.21
                 },
                 "FILTER_VCF": {
                     "bcftools": 1.22
@@ -53,29 +45,18 @@
                 "pipeline_info",
                 "pipeline_info/oncorefiner_software_mqc_versions.yml",
                 "process_svs",
-                "process_svs/subject_a_clinical.vcf.gz",
-                "process_svs/subject_a_clinical.vcf.gz.tbi",
                 "process_svs/subject_a_research.vcf.gz",
                 "process_svs/subject_a_research.vcf.gz.tbi",
                 "process_svs/subject_a_vcfdb_query.vcf",
                 "snv",
-                "snv/subject_a_clinical.vcf.gz",
-                "snv/subject_a_clinical.vcf.gz.tbi",
                 "snv/subject_a_vcfanno.vcf.gz",
                 "snv/subject_a_vcfanno.vcf.gz.tbi",
-                "snv/subject_a_vep.vcf.gz",
-                "snv/subject_a_vep.vcf.gz.tbi",
-                "snv/subject_a_vep_summary.html",
                 "vcf2cytosure",
                 "vcf2cytosure/normal.cgh",
-                "vcf2cytosure/tumor.cgh",
-                "vep",
-                "vep/subject_a_svdbquery_vep.vcf.gz",
-                "vep/subject_a_svdbquery_vep.vcf.gz.tbi",
-                "vep/subject_a_svdbquery_vep_summary.html"
+                "vcf2cytosure/tumor.cgh"
             ]
         ],
-        "timestamp": "2026-06-15T16:24:19.299719289",
+        "timestamp": "2026-06-15T16:42:41.566021436",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.0"
