@@ -14,9 +14,9 @@
                     {
                         "id": "subject_a"
                     },
-                    "subject_a_research.vcf.gz",
+                    "subject_a_vep.vcf.gz",
                     ":variantsMD5,",
-                    "4cdfadaf39f5ed1c1d854226e6099c0d"
+                    "c7dae0b238f6b5f4bf91c0682824f474"
                 ],
                 [
                     {
@@ -46,7 +46,7 @@
                     {
                         "id": "subject_a"
                     },
-                    "subject_a_research.vcf.gz.tbi"
+                    "subject_a_vep.vcf.gz.tbi"
                 ],
                 [
                     {
@@ -70,11 +70,11 @@
                 ]
             ]
         ],
+        "timestamp": "2026-06-15T14:27:06.907156",
         "meta": {
-            "nf-test": "0.9.3",
-            "nextflow": "25.10.4"
-        },
-        "timestamp": "2026-05-07T10:45:33.948103"
+            "nf-test": "0.9.5",
+            "nextflow": "26.04.2"
+        }
     },
     "with tumor-normal data - stub": {
         "content": [
@@ -89,7 +89,7 @@
                     {
                         "id": "subject_a"
                     },
-                    "subject_a_research.vcf.gz"
+                    "subject_a_vep.vcf.gz"
                 ],
                 [
                     {
@@ -115,7 +115,7 @@
                     {
                         "id": "subject_a"
                     },
-                    "subject_a_research.vcf.gz.tbi"
+                    "subject_a_vep.vcf.gz.tbi"
                 ],
                 [
                     {
@@ -139,10 +139,10 @@
                 ]
             ]
         ],
+        "timestamp": "2026-06-15T14:27:47.993642",
         "meta": {
-            "nf-test": "0.9.3",
-            "nextflow": "25.10.4"
-        },
-        "timestamp": "2026-06-08T09:54:12.41387"
+            "nf-test": "0.9.5",
+            "nextflow": "26.04.2"
+        }
     }
 }
