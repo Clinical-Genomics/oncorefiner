@@ -107,13 +107,13 @@ workflow PROCESS_SNVS {
             ch_vep_extra_files
         )
 
+        // Output research vcf channel after annotation
+        ch_research_filtered_vcf = ENSEMBLVEP_VEP.out.vcf
+        ch_research_filtered_tbi = ENSEMBLVEP_VEP.out.tbi
+
         // Clinical Filtering
-        ENSEMBLVEP_VEP.out.vcf
-            .join(ENSEMBLVEP_VEP.out.tbi)
-            .map { meta, vcf, tbi ->
-                tuple(meta, vcf, tbi)
-                }
-            .set { ch_clinical_filtering_in }
+        ch_clinical_filtering_in = ch_research_filtered_vcf
+            .join(ch_research_filtered_tbi)
 
         BCFTOOLS_VIEW_CLINICAL(ch_clinical_filtering_in, [], [], [])
 
@@ -127,6 +127,6 @@ workflow PROCESS_SNVS {
     vep_annotated_vcf     = ENSEMBLVEP_VEP.out.vcf         // channel: [val(meta), path(vcf)]
     vep_annotated_tbi     = ENSEMBLVEP_VEP.out.tbi         // channel: [val(meta), path(tbi)]
     vep_report            = ENSEMBLVEP_VEP.out.report      // channel: [val(meta), val(process), val(tool), path(html)]
-    research_filtered_vcf = BCFTOOLS_VIEW_RESEARCH.out.vcf // channel: [val(meta), path(vcf)]
-    research_filtered_tbi = BCFTOOLS_VIEW_RESEARCH.out.tbi // channel: [val(meta), path(tbi)]
+    research_filtered_vcf = ch_research_filtered_vcf       // channel: [val(meta), path(vcf)]
+    research_filtered_tbi = ch_research_filtered_tbi       // channel: [val(meta), path(tbi)]
 }
