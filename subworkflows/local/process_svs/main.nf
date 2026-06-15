@@ -14,17 +14,11 @@ include { ENSEMBLVEP_VEP                           } from '../../../modules/nf-c
 include { SVDB_QUERY                               } from '../../../modules/nf-core/svdb/query/main'
 
 //
-// MODULE: Local modules
-//
-
-include { COMBINE_LINX_TSV           } from '../../../modules/local/linx_annotation/combine_linx_tsv/main'
-include { ANNOTATE_VCF_BY_ID         } from '../../../modules/local/linx_annotation/annotate_vcf_by_id/main'
-
-//
 // LOCAL SUBWORKFLOWS
 //
 
 include { GENERATE_CYTOSURE_FILES } from '../../../subworkflows/local/generate_cytosure_files/main'
+include { ANNOTATE_LINX           } from '../../../subworkflows/local/annotate_linx/main'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -52,24 +46,18 @@ workflow PROCESS_SVS {
         ch_vep_extra_files    // channel: [optional]  [val(meta), path(vep_extra_files)]
 
     main:
-        // Annotate VCF with LINX
-        ch_linx_input = ch_linx_fusion_tsv
-            .join(ch_linx_breakends_tsv, failOnMismatch: true)
-            .join(ch_linx_sv_tsv, failOnMismatch: true)
-            .map { meta, fusion_file, breakend_file, sv_file ->
-                tuple( meta, fusion_file, breakend_file, sv_file)
-            }
 
-        COMBINE_LINX_TSV(ch_linx_input)
 
-        ch_annotate_vcf_input = ch_sv_vcf
-            .join(COMBINE_LINX_TSV.out.tsv, failOnMismatch: true) // probably wont work due to meta?
-            .join(ch_sv_header, failOnMismatch: true)
-            .map { meta, tsv, vcf, header ->
-                tuple(meta, tsv, vcf, header)
-            }
+        // Annotate VCF with LINX TSVs
+        ANNOTATE_LINX(
+            ch_linx_breakends_tsv,
+            ch_linx_fusion_tsv,
+            ch_linx_sv_tsv,
+            ch_sv_header,
+            ch_sv_vcf,
+            ch_sv_vcf_tbi
+        )
 
-        ANNOTATE_VCF_BY_ID(ch_annotate_vcf_input)
 
         // SVDB QUERY
         ch_sv_dbs
