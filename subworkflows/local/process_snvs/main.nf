@@ -132,12 +132,16 @@ workflow PROCESS_SNVS {
                 true,
             )
 
-            ch_clinical_filtering_in = VCF_ANNOTATE_SCORE_GENMOD.out.vcf
-                .join(VCF_ANNOTATE_SCORE_GENMOD.out.index)
+            ch_research_filtered_vcf = VCF_ANNOTATE_SCORE_GENMOD.out.vcf
+            ch_research_filtered_tbi = VCF_ANNOTATE_SCORE_GENMOD.out.tbi
+            ch_clinical_filtering_in = ch_research_filtered_vcf
+                .join(ch_research_filtered_tbi)
 
         } else {
-            ch_clinical_filtering_in = ENSEMBLVEP_VEP.out.vcf
-                .join(ENSEMBLVEP_VEP.out.tbi)
+            ch_research_filtered_vcf = ENSEMBLVEP_VEP.out.vcf
+            ch_research_filtered_tbi = ENSEMBLVEP_VEP.out.tbi
+            ch_clinical_filtering_in = ch_research_filtered_vcf
+                .join(ch_research_filtered_tbi)
         }
 
         // Clinical Filtering
@@ -153,6 +157,6 @@ workflow PROCESS_SNVS {
     vep_annotated_vcf     = ENSEMBLVEP_VEP.out.vcf         // channel: [val(meta), path(vcf)]
     vep_annotated_tbi     = ENSEMBLVEP_VEP.out.tbi         // channel: [val(meta), path(tbi)]
     vep_report            = ENSEMBLVEP_VEP.out.report      // channel: [val(meta), val(process), val(tool), path(html)]
-    research_filtered_vcf = BCFTOOLS_VIEW_RESEARCH.out.vcf // channel: [val(meta), path(vcf)]
-    research_filtered_tbi = BCFTOOLS_VIEW_RESEARCH.out.tbi // channel: [val(meta), path(tbi)]
+    research_filtered_vcf = ch_research_filtered_vcf       // channel: [val(meta), path(vcf)]
+    research_filtered_tbi = ch_research_filtered_tbi       // channel: [val(meta), path(tbi)]
 }
