@@ -61,8 +61,6 @@
                 "snv",
                 "snv/subject_a_clinical.vcf.gz",
                 "snv/subject_a_clinical.vcf.gz.tbi",
-                "snv/subject_a_research.vcf.gz",
-                "snv/subject_a_research.vcf.gz.tbi",
                 "snv/subject_a_vcfanno.vcf.gz",
                 "snv/subject_a_vcfanno.vcf.gz.tbi",
                 "snv/subject_a_vep.vcf.gz",
@@ -77,11 +75,11 @@
                 "vep/subject_a_svdbquery_vep_summary.html"
             ]
         ],
+        "timestamp": "2026-06-15T14:21:20.993278",
         "meta": {
-            "nf-test": "0.9.3",
-            "nextflow": "25.10.4"
-        },
-        "timestamp": "2026-06-08T09:56:55.147283"
+            "nf-test": "0.9.5",
+            "nextflow": "26.04.2"
+        }
     },
     "Tumor Normal analysis with '-profile test'": {
         "content": [
@@ -149,8 +147,6 @@
                 "snv",
                 "snv/subject_a_clinical.vcf.gz",
                 "snv/subject_a_clinical.vcf.gz.tbi",
-                "snv/subject_a_research.vcf.gz",
-                "snv/subject_a_research.vcf.gz.tbi",
                 "snv/subject_a_vcfanno.vcf.gz",
                 "snv/subject_a_vcfanno.vcf.gz.tbi",
                 "snv/subject_a_vep.vcf.gz",
@@ -182,10 +178,6 @@
                     "VcfFile [chromosomes=[chr9, chr7, chr8, chrX, chr5, chr6, chr3, chr21, chr4, chr11, chr22, chr1, chr12, chr2, chr13, chr20, chr18, chr19, chr15, chr16, chr17], sampleCount=2, variantCount=103, phased=false, phasedAutodetect=false]"
                 ],
                 [
-                    "subject_a_research.vcf.gz",
-                    "VcfFile [chromosomes=[chr9, chr7, chr8, chrX, chr5, chr6, chr3, chr21, chr4, chr11, chr22, chr1, chr12, chr2, chr13, chr20, chr18, chr19, chr15, chr16, chr17], sampleCount=2, variantCount=103, phased=false, phasedAutodetect=false]"
-                ],
-                [
                     "subject_a_vcfanno.vcf.gz",
                     "VcfFile [chromosomes=[chr9, chr7, chr8, chrX, chr5, chr6, chr3, chr21, chr4, chr11, chr22, chr1, chr12, chr2, chr13, chr20, chr18, chr19, chr15, chr16, chr17], sampleCount=2, variantCount=103, phased=false, phasedAutodetect=false]"
                 ],
@@ -212,10 +204,6 @@
                     "c7dae0b238f6b5f4bf91c0682824f474"
                 ],
                 [
-                    "subject_a_research.vcf.gz",
-                    "4cdfadaf39f5ed1c1d854226e6099c0d"
-                ],
-                [
                     "subject_a_vcfanno.vcf.gz",
                     "f79b3dd00e3a53231a4bbd52ebcc6d1d"
                 ],
@@ -229,10 +217,10 @@
                 ]
             ]
         ],
+        "timestamp": "2026-06-15T14:20:11.938884",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.2"
-        },
-        "timestamp": "2026-06-01T13:50:50.286939"
+        }
     }
 }
