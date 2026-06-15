@@ -89,6 +89,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#110](https://github.com/Clinical-Genomics/oncorefiner/pull/110) Added `genome` argument for `VCF2CYTOSURE`, given by `params.genome_version_number`, to ensure the reference genome used for the process matches the given input data.
 - [#116](https://github.com/Clinical-Genomics/oncorefiner/pull/116) Updated `GENERATE_CYTOSURE_FILES` subworkflow test snapshot in sequence of [#110](https://github.com/Clinical-Genomics/oncorefiner/pull/110).
 - [#123](https://github.com/Clinical-Genomics/oncorefiner/pull/123) Changed the subworkflow test when untarring is needed in `PREPARE_REFERENCES` to check `workflow.out.vep_resources` instead of `params.outdir`
+- [#129](https://github.com/Clinical-Genomics/oncorefiner/pull/129) Changed the extra arguments `extra_args_*` to default to '' instead of null and removed empty `extra_args_snv_vep` in `test_base.config`
 
 ### `Dependencies`
 
