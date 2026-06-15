@@ -1,5 +1,5 @@
 {
-    "No `vep_extra_files` with '-profile test' - stub": {
+    "No `vep_plugin_files` with '-profile test' - stub": {
         "content": [
             {
                 "BCFTOOLS_VIEW_RESEARCH": {
@@ -56,7 +56,7 @@
                 "vcf2cytosure/tumor.cgh"
             ]
         ],
-        "timestamp": "2026-06-15T16:42:41.566021436",
+        "timestamp": "2026-06-15T17:03:43.573535257",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.0"
