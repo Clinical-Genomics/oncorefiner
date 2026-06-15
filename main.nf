@@ -195,7 +195,18 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     SAMTOOLS_VIEW ( ch_samtools_in.bam_bai, ch_samtools_in.fasta_fai, [[], []], [[],[]], 'crai' )
 
     emit:
-    multiqc_report = ONCOREFINER.out.multiqc_report // channel: /path/to/multiqc_report.html
+    cadd_annotated_vcf        = ONCOREFINER.out.cadd_annotated_vcf        // channel: [val(meta), path(vcf)]
+    cadd_annotated_tbi        = ONCOREFINER.out.cadd_annotated_tbi        // channel: [val(meta), path(tbi)]
+    multiqc_report            = ONCOREFINER.out.multiqc_report            // channel: /path/to/multiqc_report.html
+    snv_clinical_filtered_vcf = ONCOREFINER.out.snv_clinical_filtered_vcf // channel: [val(meta), path(vcf)]
+    snv_clinical_filtered_tbi = ONCOREFINER.out.snv_clinical_filtered_tbi // channel: [val(meta), path(tbi)]
+    snv_vcfanno_vcf           = ONCOREFINER.out.snv_vcfanno_vcf           // channel: [val(meta), path(vcf)]
+    snv_vcfanno_tbi           = ONCOREFINER.out.snv_vcfanno_tbi           // channel: [val(meta), path(vcf.tbi)]
+    snv_vep_annotated_vcf     = ONCOREFINER.out.snv_vep_annotated_vcf     // channel: [val(meta), path(vcf)]
+    snv_vep_annotated_tbi     = ONCOREFINER.out.snv_vep_annotated_tbi     // channel: [val(meta), path(tbi)]
+    snv_vep_report            = ONCOREFINER.out.snv_vep_report            // channel: [val(meta), val(process), val(tool), path(html)]
+    snv_research_filtered_vcf = ONCOREFINER.out.snv_research_filtered_vcf // channel: [val(meta), path(vcf)]
+    snv_research_filtered_tbi = ONCOREFINER.out.snv_research_filtered_tbi // channel: [val(meta), path(vcf.tbi)]
 }
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -265,6 +276,30 @@ workflow {
         params.monochrome_logs,
         CLINICALGENOMICS_ONCOREFINER.out.multiqc_report
     )
+
+    //
+    // WORKFLOW OUTPUTS: Group files by publish directory
+    //
+    ch_snv_publish = CLINICALGENOMICS_ONCOREFINER.out.cadd_annotated_vcf
+        .mix(CLINICALGENOMICS_ONCOREFINER.out.cadd_annotated_tbi)
+        .mix(CLINICALGENOMICS_ONCOREFINER.out.snv_clinical_filtered_vcf)
+        .mix(CLINICALGENOMICS_ONCOREFINER.out.snv_clinical_filtered_tbi)
+        .mix(CLINICALGENOMICS_ONCOREFINER.out.snv_vcfanno_vcf)
+        .mix(CLINICALGENOMICS_ONCOREFINER.out.snv_vcfanno_tbi)
+        .mix(CLINICALGENOMICS_ONCOREFINER.out.snv_vep_annotated_vcf)
+        .mix(CLINICALGENOMICS_ONCOREFINER.out.snv_vep_annotated_tbi)
+        .mix(CLINICALGENOMICS_ONCOREFINER.out.snv_vep_report)
+        .mix(CLINICALGENOMICS_ONCOREFINER.out.snv_research_filtered_vcf)
+        .mix(CLINICALGENOMICS_ONCOREFINER.out.snv_research_filtered_tbi)
+
+    publish:
+    snv = ch_snv_publish
+}
+
+output {
+    snv {
+        path "snv"
+    }
 }
 
 /*

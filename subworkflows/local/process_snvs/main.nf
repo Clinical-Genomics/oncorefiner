@@ -87,7 +87,15 @@ workflow PROCESS_SNVS {
             ANNOTATE_CADD.out.vcf
                 .join(ANNOTATE_CADD.out.tbi)
                 .set { ch_vep_snv }
+
+            ch_cadd_vcf = ANNOTATE_CADD.out.vcf
+            ch_cadd_tbi = ANNOTATE_CADD.out.tbi
         }
+        else {
+            ch_cadd_vcf = channel.empty()
+            ch_cadd_tbi = channel.empty()
+        }
+
 
         ENSEMBLVEP_VEP (
             ch_vep_snv,
@@ -99,13 +107,26 @@ workflow PROCESS_SNVS {
             ch_vep_extra_files
         )
 
+        // Output research vcf channel after annotation
+        ch_research_filtered_vcf = ENSEMBLVEP_VEP.out.vcf
+        ch_research_filtered_tbi = ENSEMBLVEP_VEP.out.tbi
+
         // Clinical Filtering
-        ENSEMBLVEP_VEP.out.vcf
-            .join(ENSEMBLVEP_VEP.out.tbi)
-            .map { meta, vcf, tbi ->
-                tuple(meta, vcf, tbi)
-                }
-            .set { ch_clinical_filtering_in }
+        ch_clinical_filtering_in = ch_research_filtered_vcf
+            .join(ch_research_filtered_tbi)
 
         BCFTOOLS_VIEW_CLINICAL(ch_clinical_filtering_in, [], [], [])
+
+    emit:
+    cadd_annotated_vcf    = ch_cadd_vcf                    // channel: [val(meta), path(vcf)]
+    cadd_annotated_tbi    = ch_cadd_tbi                    // channel: [val(meta), path(tbi)]
+    clinical_filtered_vcf = BCFTOOLS_VIEW_CLINICAL.out.vcf // channel: [val(meta), path(vcf)]
+    clinical_filtered_tbi = BCFTOOLS_VIEW_CLINICAL.out.tbi // channel: [val(meta), path(tbi)]
+    vcfanno_vcf           = VCFANNO.out.vcf                // channel: [val(meta), path(vcf)]
+    vcfanno_tbi           = VCFANNO.out.tbi                // channel: [val(meta), path(tbi)]
+    vep_annotated_vcf     = ENSEMBLVEP_VEP.out.vcf         // channel: [val(meta), path(vcf)]
+    vep_annotated_tbi     = ENSEMBLVEP_VEP.out.tbi         // channel: [val(meta), path(tbi)]
+    vep_report            = ENSEMBLVEP_VEP.out.report      // channel: [val(meta), val(process), val(tool), path(html)]
+    research_filtered_vcf = ch_research_filtered_vcf       // channel: [val(meta), path(vcf)]
+    research_filtered_tbi = ch_research_filtered_tbi       // channel: [val(meta), path(tbi)]
 }

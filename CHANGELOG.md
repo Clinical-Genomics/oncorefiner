@@ -52,6 +52,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#100](https://github.com/Clinical-Genomics/oncorefiner/pull/100) Changed minimum required nextflow version to 25.10.4.
 - [#106](https://github.com/Clinical-Genomics/oncorefiner/pull/106) Changed logic for `stable_path` in pipeline tests to exclude all vcf and index files by default. Removed individual entries for these files in `tests/.nftignore`.
 - [#108](https://github.com/Clinical-Genomics/oncorefiner/pull/108) Update `pipelines_testdata_base_path` to reflect the latest commit to `Clinical-Genomics/test-datasets/` that includes the genmod score config file.
+- [#81](https://github.com/Clinical-Genomics/oncorefiner/pull/81) Update publishing strategy for `PROCESS_SNVS` subworkflow to use output blocks. Removed publishing settings from the subworkflow config file.
 - [#88](https://github.com/Clinical-Genomics/oncorefiner/pull/88) Update contributing guidelines to follow current conventions on running `prek` for pre-commit hooks, indentation and item order in code blocks and remove outdated channel publishing instructions.
 - [#127](https://github.com/Clinical-Genomics/oncorefiner/pull/127) Update `pipelines_testdata_base_path` to reflect the latest commit to `Clinical-Genomics/test-datasets/oncorefiner` that removes `testdata/samplesheet_test.csv`.
 - [#128](https://github.com/Clinical-Genomics/oncorefiner/pull/128) Upgraded nf-test version to 0.9.5 so that the CI check supports topic channel tests.
@@ -95,6 +96,8 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#110](https://github.com/Clinical-Genomics/oncorefiner/pull/110) Added `genome` argument for `VCF2CYTOSURE`, given by `params.genome_version_number`, to ensure the reference genome used for the process matches the given input data.
 - [#116](https://github.com/Clinical-Genomics/oncorefiner/pull/116) Updated `GENERATE_CYTOSURE_FILES` subworkflow test snapshot in sequence of [#110](https://github.com/Clinical-Genomics/oncorefiner/pull/110).
 - [#123](https://github.com/Clinical-Genomics/oncorefiner/pull/123) Changed the subworkflow test when untarring is needed in `PREPARE_REFERENCES` to check `workflow.out.vep_resources` instead of `params.outdir`
+- [#129](https://github.com/Clinical-Genomics/oncorefiner/pull/129) Changed the extra arguments `extra_args_*` to default to '' instead of null and removed empty `extra_args_snv_vep` in `test_base.config`
+- [#130](https://github.com/Clinical-Genomics/oncorefiner/pull/130) Changed output logic for `PROCESS_SNVS` to output the `research_filtered_vcf` file after annotation with vep.
 
 ### `Dependencies`
 

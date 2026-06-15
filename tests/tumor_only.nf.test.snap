@@ -42,9 +42,6 @@
                 "alignments",
                 "alignments/subject_a_tumor.cram",
                 "alignments/subject_a_tumor.cram.crai",
-                "clinical_filtering",
-                "clinical_filtering/test_case_clinical.vcf.gz",
-                "clinical_filtering/test_case_clinical.vcf.gz.tbi",
                 "multiqc",
                 "multiqc/multiqc_data",
                 "multiqc/multiqc_data/llms-full.txt",
@@ -63,21 +60,20 @@
                 "process_svs/test_case_research.vcf.gz",
                 "process_svs/test_case_research.vcf.gz.tbi",
                 "process_svs/test_case_vcfdb_query.vcf",
-                "research_filtering",
-                "research_filtering/test_case_research.vcf.gz",
-                "research_filtering/test_case_research.vcf.gz.tbi",
+                "snv",
+                "snv/test_case_clinical.vcf.gz",
+                "snv/test_case_clinical.vcf.gz.tbi",
+                "snv/test_case_vcfanno.vcf.gz",
+                "snv/test_case_vcfanno.vcf.gz.tbi",
+                "snv/test_case_vep.vcf.gz",
+                "snv/test_case_vep.vcf.gz.tbi",
+                "snv/test_case_vep.vcf.gz_summary.html",
                 "vcf2cytosure",
                 "vcf2cytosure/tumor.cgh",
-                "vcfanno",
-                "vcfanno/test_case_vcfanno.vcf.gz",
-                "vcfanno/test_case_vcfanno.vcf.gz.tbi",
                 "vep",
                 "vep/test_case_svdbquery_vep.vcf.gz",
                 "vep/test_case_svdbquery_vep.vcf.gz.tbi",
-                "vep/test_case_svdbquery_vep.vcf.gz_summary.html",
-                "vep/test_case_vep.vcf.gz",
-                "vep/test_case_vep.vcf.gz.tbi",
-                "vep/test_case_vep.vcf.gz_summary.html"
+                "vep/test_case_svdbquery_vep.vcf.gz_summary.html"
             ],
             [
                 "tumor.cgh:md5,22c058183d93a767ee61d5319513dc39"
@@ -85,18 +81,14 @@
             [
                 [
                     "test_case_clinical.vcf.gz",
-                    "VcfFile [chromosomes=[chr9, chr7, chr8, chrX, chr5, chr6, chr3, chr21, chr4, chr11, chr22, chr1, chr12, chr2, chr13, chr20, chr18, chr19, chr15, chr16, chr17], sampleCount=1, variantCount=104, phased=false, phasedAutodetect=false]"
+                    "VcfFile [chromosomes=[chr19, chr9, chr11], sampleCount=1, variantCount=6, phased=false, phasedAutodetect=false]"
+                ],
+                [
+                    "test_case_research.vcf.gz",
+                    "VcfFile [chromosomes=[chr19, chr9, chr11], sampleCount=1, variantCount=6, phased=false, phasedAutodetect=false]"
                 ],
                 [
                     "test_case_clinical.vcf.gz",
-                    "VcfFile [chromosomes=[chr19, chr9, chr11], sampleCount=1, variantCount=6, phased=false, phasedAutodetect=false]"
-                ],
-                [
-                    "test_case_research.vcf.gz",
-                    "VcfFile [chromosomes=[chr19, chr9, chr11], sampleCount=1, variantCount=6, phased=false, phasedAutodetect=false]"
-                ],
-                [
-                    "test_case_research.vcf.gz",
                     "VcfFile [chromosomes=[chr9, chr7, chr8, chrX, chr5, chr6, chr3, chr21, chr4, chr11, chr22, chr1, chr12, chr2, chr13, chr20, chr18, chr19, chr15, chr16, chr17], sampleCount=1, variantCount=104, phased=false, phasedAutodetect=false]"
                 ],
                 [
@@ -104,19 +96,15 @@
                     "VcfFile [chromosomes=[chr9, chr7, chr8, chrX, chr5, chr6, chr3, chr21, chr4, chr11, chr22, chr1, chr12, chr2, chr13, chr20, chr18, chr19, chr15, chr16, chr17], sampleCount=1, variantCount=104, phased=false, phasedAutodetect=false]"
                 ],
                 [
-                    "test_case_svdbquery_vep.vcf.gz",
-                    "VcfFile [chromosomes=[chr19, chr9, chr11], sampleCount=1, variantCount=6, phased=false, phasedAutodetect=false]"
-                ],
-                [
                     "test_case_vep.vcf.gz",
                     "VcfFile [chromosomes=[chr9, chr7, chr8, chrX, chr5, chr6, chr3, chr21, chr4, chr11, chr22, chr1, chr12, chr2, chr13, chr20, chr18, chr19, chr15, chr16, chr17], sampleCount=1, variantCount=104, phased=false, phasedAutodetect=false]"
+                ],
+                [
+                    "test_case_svdbquery_vep.vcf.gz",
+                    "VcfFile [chromosomes=[chr19, chr9, chr11], sampleCount=1, variantCount=6, phased=false, phasedAutodetect=false]"
                 ]
             ],
             [
-                [
-                    "test_case_clinical.vcf.gz",
-                    "96afd20d30255284c06a3fd505a1d466"
-                ],
                 [
                     "test_case_clinical.vcf.gz",
                     "4338cd18f8e9efcaf9b59237f1a52fe3"
@@ -126,24 +114,24 @@
                     "b9cb38b8cd9294ba4aa110592c5133e"
                 ],
                 [
-                    "test_case_research.vcf.gz",
-                    "27194adc2bdd7b36168516d5c8e6e293"
+                    "test_case_clinical.vcf.gz",
+                    "96afd20d30255284c06a3fd505a1d466"
                 ],
                 [
                     "test_case_vcfanno.vcf.gz",
                     "e99aee3237070db74efee69d7a5d4be2"
                 ],
                 [
-                    "test_case_svdbquery_vep.vcf.gz",
-                    "4338cd18f8e9efcaf9b59237f1a52fe3"
-                ],
-                [
                     "test_case_vep.vcf.gz",
                     "96afd20d30255284c06a3fd505a1d466"
+                ],
+                [
+                    "test_case_svdbquery_vep.vcf.gz",
+                    "4338cd18f8e9efcaf9b59237f1a52fe3"
                 ]
             ]
         ],
-        "timestamp": "2026-06-10T16:45:34.78805",
+        "timestamp": "2026-06-15T16:07:33.600517",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.2"
@@ -192,9 +180,6 @@
                 "alignments",
                 "alignments/subject_a_tumor.cram",
                 "alignments/subject_a_tumor.cram.crai",
-                "clinical_filtering",
-                "clinical_filtering/test_case_clinical.vcf.gz",
-                "clinical_filtering/test_case_clinical.vcf.gz.tbi",
                 "multiqc",
                 "multiqc/multiqc_data",
                 "multiqc/multiqc_data/.stub",
@@ -209,24 +194,23 @@
                 "process_svs/test_case_research.vcf.gz",
                 "process_svs/test_case_research.vcf.gz.tbi",
                 "process_svs/test_case_vcfdb_query.vcf",
-                "research_filtering",
-                "research_filtering/test_case_research.vcf.gz",
-                "research_filtering/test_case_research.vcf.gz.tbi",
+                "snv",
+                "snv/test_case_clinical.vcf.gz",
+                "snv/test_case_clinical.vcf.gz.tbi",
+                "snv/test_case_vcfanno.vcf.gz",
+                "snv/test_case_vcfanno.vcf.gz.tbi",
+                "snv/test_case_vep.vcf.gz",
+                "snv/test_case_vep.vcf.gz.tbi",
+                "snv/test_case_vep_summary.html",
                 "vcf2cytosure",
                 "vcf2cytosure/tumor.cgh",
-                "vcfanno",
-                "vcfanno/test_case_vcfanno.vcf.gz",
-                "vcfanno/test_case_vcfanno.vcf.gz.tbi",
                 "vep",
                 "vep/test_case_svdbquery_vep.vcf.gz",
                 "vep/test_case_svdbquery_vep.vcf.gz.tbi",
-                "vep/test_case_svdbquery_vep_summary.html",
-                "vep/test_case_vep.vcf.gz",
-                "vep/test_case_vep.vcf.gz.tbi",
-                "vep/test_case_vep_summary.html"
+                "vep/test_case_svdbquery_vep_summary.html"
             ]
         ],
-        "timestamp": "2026-06-10T16:46:31.937811",
+        "timestamp": "2026-06-15T16:08:31.382834",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.2"
