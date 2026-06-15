@@ -18,6 +18,7 @@ include { PIPELINE_INITIALISATION } from './subworkflows/local/utils_nfcore_onco
 include { PIPELINE_COMPLETION     } from './subworkflows/local/utils_nfcore_oncorefiner_pipeline'
 include { PREPARE_REFERENCES      } from './subworkflows/local/prepare_references'
 include { SAMTOOLS_VIEW           } from './modules/nf-core/samtools/view/main'
+include { samplesheetToList       } from 'plugin/nf-schema'
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     NAMED WORKFLOWS FOR PIPELINE
@@ -135,7 +136,7 @@ workflow CLINICALGENOMICS_ONCOREFINER {
 
 
     // Input for SVDB
-    ch_sv_dbs            = val_svdb_query_dbs    ? channel.fromPath(val_svdb_query_dbs)
+    ch_sv_dbs            = val_svdb_query_dbs    ? channel.fromList(samplesheetToList(val_svdb_query_dbs, 'assets/assets/svdb_query_vcf_schema.json')).collect()
                                                  : channel.empty()
 
 
