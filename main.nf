@@ -136,7 +136,7 @@ workflow CLINICALGENOMICS_ONCOREFINER {
 
 
     // Input for SVDB
-    ch_sv_dbs            = val_svdb_query_dbs    ? channel.fromList(samplesheetToList(val_svdb_query_dbs, 'assets/svdb_query_vcf_schema.json')).collect()
+    ch_sv_dbs            = val_svdb_query_dbs    ? channel.fromList(samplesheetToList(val_svdb_query_dbs, 'assets/svdb_query_vcf_schema.json'))
                                                  : channel.empty()
 
 
