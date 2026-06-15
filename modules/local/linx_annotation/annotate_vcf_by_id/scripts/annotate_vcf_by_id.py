@@ -27,6 +27,25 @@ def convert_data_types(tsv_row_dict: dict[str, str]) -> dict[str, str | int | fl
 
     return tsv_row_dict
 
+def convert_entry_to_list(
+    tsv_annotations_dict: dict[str, dict[str, str | int | float]],
+    vcf_id: str,
+    annotation_tag: str,
+    annotation_value: str | int | float
+) -> dict[str, dict[str, str | int | float]]:
+
+    # current entry for column
+    current_annotation_value: str | int | float | list = tsv_annotations_dict[vcf_id][annotation_tag]
+
+    if isinstance(current_annotation_value, list):
+        current_annotation_value.append(annotation_value)
+    else:
+        tsv_annotations_dict[vcf_id][annotation_tag] = [
+            current_annotation_value,
+            annotation_value, # check the order is right
+        ]
+
+    return tsv_annotations_dict
 
 def add_entry_to_existing_id(
     vcf_id: str,
@@ -39,18 +58,7 @@ def add_entry_to_existing_id(
         if tsv_annotations_dict[vcf_id][annotation_tag] == annotation_value:
             continue
 
-        # current entry for column
-        current_annotation_value: str | int | float | list = tsv_annotations_dict[vcf_id][annotation_tag]
-
-# below its own function?
-        # if current entry is list, append new value, otherwise convert to list and add both current and new
-        if isinstance(current_annotation_value, list):
-            current_annotation_value.append(annotation_value)
-        else:
-            tsv_annotations_dict[vcf_id][annotation_tag] = [
-                current_annotation_value,
-                annotation_value, # check the order is right
-            ]
+        tsv_annotations_dict = convert_entry_to_list(tsv_annotations_dict, vcf_id, annotation_tag, annotation_value)
 
     return tsv_annotations_dict
 
@@ -128,9 +136,6 @@ def get_dict_from_tsv(tsv_file_path: click.Path) -> dict:
             vcf_id_annotations: dict[str, str | int | float] = convert_data_types(
                 tsv_row_dict
             )
-
-            # annnotate vcf directly with row???
-
 
             # add row to dictionary, avoid overwriting if id has multiple annotations
             tsv_annotations_dict: dict[str, dict[str, str | int | float]] = (
