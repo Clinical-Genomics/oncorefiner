@@ -1,0 +1,37 @@
+nextflow_pipeline {
+
+    name "Test pipeline ONCOREFINER without providing optional inputs - stub"
+    script "../main.nf"
+    tag "pipeline"
+    tag "conditional_inputs_stub"
+
+    test("No `vep_extra_files` with '-profile test' - stub") {
+
+        options "-stub"
+
+        when {
+            params {
+                outdir = "$outputDir"
+                vep_plugin_files = null
+            }
+        }
+
+        then {
+            // stable_name: All files + folders in ${params.outdir}/ with a stable name
+            def stable_name = getAllFilesFromDir(params.outdir, relative: true, includeDir: true, ignore: ['pipeline_info/*.{html,json,txt}'])
+            // pipeline versions.yml file for multiqc from which Nextflow version is removed because we test pipelines on multiple Nextflow versions
+            def versions = removeNextflowVersion("$outputDir/pipeline_info/oncorefiner_software_mqc_versions.yml")
+            assertAll(
+                { assert workflow.success},
+                // Assert that "ENSEMBLVEP_VEP" runs
+                { assert "ENSEMBLVEP_VEP" in versions.keySet()},
+                { assert snapshot(
+                    // List of software versions run in the pipeline
+                    versions,
+                    // All stable file names, with a relative path
+                    stable_name,
+                ).match() }
+            )
+        }
+    }
+}
