@@ -33,6 +33,11 @@
                 "type": "string",
                 "pattern": "^\\S+$",
                 "errorMessage": "Out allele count key must be provided and cannot contain spaces"
+            },
+            "use_in_freq_filter": {
+                "type": "boolean",
+                "default": false,
+                "description": "Whether to use the input frequency key for filtering variants in the query database. This property currently has no effect."
             }
         },
         "required": ["filename", "out_freq_info_key", "out_allele_count_info_key"]
