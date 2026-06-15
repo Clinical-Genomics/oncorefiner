@@ -2,67 +2,147 @@
     "with tumor-normal data": {
         "content": [
             [
-                "clinical_filtering",
-                "clinical_filtering/subject_a_clinical.vcf.gz",
-                "clinical_filtering/subject_a_clinical.vcf.gz.tbi",
-                "research_filtering",
-                "research_filtering/subject_a_research.vcf.gz",
-                "research_filtering/subject_a_research.vcf.gz.tbi",
-                "vcfanno",
-                "vcfanno/subject_a_vcfanno.vcf.gz",
-                "vcfanno/subject_a_vcfanno.vcf.gz.tbi",
-                "vep",
-                "vep/subject_a_vep.vcf.gz",
-                "vep/subject_a_vep.vcf.gz.tbi",
-                "vep/subject_a_vep.vcf.gz_summary.html"
-            ],
-            [
                 [
+                    {
+                        "id": "subject_a"
+                    },
                     "subject_a_clinical.vcf.gz",
+                    ":variantsMD5,",
                     "c7dae0b238f6b5f4bf91c0682824f474"
                 ],
                 [
+                    {
+                        "id": "subject_a"
+                    },
                     "subject_a_research.vcf.gz",
+                    ":variantsMD5,",
                     "4cdfadaf39f5ed1c1d854226e6099c0d"
                 ],
                 [
+                    {
+                        "id": "subject_a"
+                    },
                     "subject_a_vcfanno.vcf.gz",
+                    ":variantsMD5,",
                     "f79b3dd00e3a53231a4bbd52ebcc6d1d"
                 ],
                 [
+                    {
+                        "id": "subject_a"
+                    },
                     "subject_a_vep.vcf.gz",
+                    ":variantsMD5,",
                     "c7dae0b238f6b5f4bf91c0682824f474"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "subject_a"
+                    },
+                    "subject_a_clinical.vcf.gz.tbi"
+                ],
+                [
+                    {
+                        "id": "subject_a"
+                    },
+                    "subject_a_research.vcf.gz.tbi"
+                ],
+                [
+                    {
+                        "id": "subject_a"
+                    },
+                    "subject_a_vcfanno.vcf.gz.tbi"
+                ],
+                [
+                    {
+                        "id": "subject_a"
+                    },
+                    "subject_a_vep.vcf.gz.tbi"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "subject_a"
+                    },
+                    "subject_a_vep.vcf.gz_summary.html"
                 ]
             ]
         ],
-        "timestamp": "2026-05-07T10:45:33.948103",
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "25.10.4"
-        }
+        },
+        "timestamp": "2026-05-07T10:45:33.948103"
     },
     "with tumor-normal data - stub": {
         "content": [
             [
-                "clinical_filtering",
-                "clinical_filtering/subject_a_clinical.vcf.gz",
-                "clinical_filtering/subject_a_clinical.vcf.gz.tbi",
-                "research_filtering",
-                "research_filtering/subject_a_research.vcf.gz",
-                "research_filtering/subject_a_research.vcf.gz.tbi",
-                "vcfanno",
-                "vcfanno/subject_a_vcfanno.vcf.gz",
-                "vcfanno/subject_a_vcfanno.vcf.gz.tbi",
-                "vep",
-                "vep/subject_a_vep.vcf.gz",
-                "vep/subject_a_vep.vcf.gz.tbi",
-                "vep/subject_a_vep_summary.html"
+                [
+                    {
+                        "id": "subject_a"
+                    },
+                    "subject_a_clinical.vcf.gz"
+                ],
+                [
+                    {
+                        "id": "subject_a"
+                    },
+                    "subject_a_research.vcf.gz"
+                ],
+                [
+                    {
+                        "id": "subject_a"
+                    },
+                    "subject_a_vcfanno.vcf.gz"
+                ],
+                [
+                    {
+                        "id": "subject_a"
+                    },
+                    "subject_a_vep.vcf.gz"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "subject_a"
+                    },
+                    "subject_a_clinical.vcf.gz.tbi"
+                ],
+                [
+                    {
+                        "id": "subject_a"
+                    },
+                    "subject_a_research.vcf.gz.tbi"
+                ],
+                [
+                    {
+                        "id": "subject_a"
+                    },
+                    "subject_a_vcfanno.vcf.gz.tbi"
+                ],
+                [
+                    {
+                        "id": "subject_a"
+                    },
+                    "subject_a_vep.vcf.gz.tbi"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "subject_a"
+                    },
+                    "subject_a_vep_summary.html"
+                ]
             ]
         ],
-        "timestamp": "2026-06-01T15:06:42.615285",
         "meta": {
-            "nf-test": "0.9.5",
-            "nextflow": "26.04.2"
-        }
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.4"
+        },
+        "timestamp": "2026-06-08T09:54:12.41387"
     }
 }
