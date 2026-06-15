@@ -51,6 +51,9 @@
     "with tumor-normal data - stub": {
         "content": [
             [
+                "bcftools",
+                "bcftools/subject_a.vcf.gz",
+                "bcftools/subject_a.vcf.gz.tbi",
                 "clinical_filtering",
                 "clinical_filtering/subject_a_clinical.vcf.gz",
                 "clinical_filtering/subject_a_clinical.vcf.gz.tbi",
@@ -66,7 +69,7 @@
                 "vep/subject_a_vep_summary.html"
             ]
         ],
-        "timestamp": "2026-06-01T15:06:42.615285",
+        "timestamp": "2026-06-15T11:54:54.702011",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.2"
