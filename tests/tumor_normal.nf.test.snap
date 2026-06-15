@@ -88,6 +88,9 @@
             "nf-test": "0.9.5",
             "nextflow": "26.04.2"
         }
+            "nf-test": "0.9.5",
+            "nextflow": "26.04.2"
+        }
     },
     "Tumor Normal analysis with '-profile test'": {
         "content": [
@@ -245,6 +248,7 @@
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.2"
+        }
         }
     }
 }

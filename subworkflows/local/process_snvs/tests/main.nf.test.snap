@@ -75,6 +75,9 @@
             "nf-test": "0.9.5",
             "nextflow": "26.04.2"
         }
+            "nf-test": "0.9.5",
+            "nextflow": "26.04.2"
+        }
     },
     "with tumor-normal data - stub": {
         "content": [
@@ -141,6 +144,9 @@
         ],
         "timestamp": "2026-06-15T14:03:56.657672",
         "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "26.04.2"
+        }
             "nf-test": "0.9.5",
             "nextflow": "26.04.2"
         }

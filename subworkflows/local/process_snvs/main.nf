@@ -132,12 +132,14 @@ workflow PROCESS_SNVS {
                 true,
             )
 
+            // Output research vcf channel after scoring
             ch_research_filtered_vcf = VCF_ANNOTATE_SCORE_GENMOD.out.vcf
             ch_research_filtered_tbi = VCF_ANNOTATE_SCORE_GENMOD.out.index
             ch_clinical_filtering_in = ch_research_filtered_vcf
                 .join(ch_research_filtered_tbi)
 
         } else {
+            // Output research vcf channel after annotation
             ch_research_filtered_vcf = ENSEMBLVEP_VEP.out.vcf
             ch_research_filtered_tbi = ENSEMBLVEP_VEP.out.tbi
             ch_clinical_filtering_in = ch_research_filtered_vcf

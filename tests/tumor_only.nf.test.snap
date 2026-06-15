@@ -152,6 +152,7 @@
             "nf-test": "0.9.5",
             "nextflow": "26.04.2"
         }
+        }
     },
     "Tumor only analysis with '-profile test_tumor_only' - stub": {
         "content": [
@@ -236,6 +237,9 @@
         ],
         "timestamp": "2026-06-15T14:47:25.83296",
         "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "26.04.2"
+        }
             "nf-test": "0.9.5",
             "nextflow": "26.04.2"
         }
