@@ -3,30 +3,31 @@ process COMBINE_LINX_TSV{
 
     conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/a1/a1a02b55777ce514673dfcc42280441fbbdcae21cbd89d956eb6459a0117f5e4/data' :
-        'community.wave.seqera.io/library/pysam_click_python:573fe89e5d35db27' }"
+        'https://wave.seqera.io/view/inspect?image=community.wave.seqera.io/library/click_python_pip_pandas:1ffa4e2ace0e5bf3&platform=linux/amd64' :
+        'community.wave.seqera.io/library/click_python_pip_pandas:1ffa4e2ace0e5bf3' }"
 
     input:
-    tuple val(meta), path(fusion_tsv_file), path(breakends_tsv_file), path(sv_tsv_file), path(output_file)
+    tuple val(meta), path(fusion_tsv_file), path(breakends_tsv_file), path(sv_tsv_file)
 
     output:
-    tuple val(meta), path("*tsv"), emit: tsv
+    tuple val(meta), path("*.tsv"), emit: tsv
 
     when:
     task.ext.when == null || task.ext.when
 
     script:
+    def prefix = task.ext.prefix ?: "${meta.id}"
     """
-    python -Xgil=0 ./scripts/combine_linx_tsv.py \\
+    python ${moduleDir}/scripts/combine_linx_tsv.py \\
     -f ${fusion_tsv_file} \\
     -b ${breakends_tsv_file} \\
     -sv ${sv_tsv_file} \\
-    -o ${output_file}
+    -o ${prefix}.tsv
     """
 
     stub:
     def prefix = task.ext.prefix ?: "${meta.id}"
     """
-    touch ${output_file}
+    touch ${prefix}.tsv
     """
 }

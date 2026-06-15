@@ -7,11 +7,11 @@ process ANNOTATE_VCF_BY_ID{
         'community.wave.seqera.io/library/pysam_click_python:573fe89e5d35db27' }"
 
     input:
-    tuple val(meta), path(vcf_file), path(header_file), path(tsv_file) // not needed?, path(output_file)
+    tuple val(meta), path(vcf_file), path(tsv_file), path(header_file)
 
     output:
     tuple val(meta), path("${prefix}.vcf.gz"), emit: vcf
-    tuple val(meta), path("${prefix}.vcf.gz.tbi"), emit: vcf_index
+    tuple val(meta), path("${prefix}.vcf.gz.tbi"), emit: tbi
     tuple val("${task.process}"), val('annotate_vcf_by_id'), topic: versions, emit: versions_annotate_vcf
 
     when:
@@ -20,7 +20,7 @@ process ANNOTATE_VCF_BY_ID{
     script:
     prefix = task.ext.prefix ?: "${meta.id}"
     """
-    python -Xgil=0 ./scripts/annotate_vcf_by_id.py \\
+    python -Xgil=0 ${moduleDir}/scripts/annotate_vcf_by_id.py \\
     -v ${vcf_file} \\
     -h ${header_file} \\
     -t ${tsv_file} \\
