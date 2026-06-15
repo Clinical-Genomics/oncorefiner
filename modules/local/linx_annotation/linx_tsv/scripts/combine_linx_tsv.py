@@ -71,8 +71,8 @@ def merge_linx_files(
         fusions, breakends, left_on="fivePrimeBreakendId", right_on="id", how="left"
     )
 
-    fusion_fivebreakend: pd.DataFrame = fusions.merge(
-        breakends, left_on="fivePrimeBreakendId", right_on="id", how="left"
+    fusion_fivebreakend: pd.DataFrame = merge_dataframes(
+        fusions, breakends, left_on="fivePrimeBreakendId", right_on="id", how="left"
     )
 
     fusion_threebreakend: pd.DataFrame = merge_dataframes(
