@@ -5,7 +5,7 @@ nextflow_pipeline {
     tag "pipeline"
     tag "conditional_inputs_stub"
 
-    test("No `vep_extra_files` with '-profile test' - stub") {
+    test("No `vep_plugin_files` with '-profile test' - stub") {
 
         options "-stub"
 
