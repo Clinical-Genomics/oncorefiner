@@ -18,6 +18,8 @@ include { PIPELINE_INITIALISATION } from './subworkflows/local/utils_nfcore_onco
 include { PIPELINE_COMPLETION     } from './subworkflows/local/utils_nfcore_oncorefiner_pipeline'
 include { PREPARE_REFERENCES      } from './subworkflows/local/prepare_references'
 include { SAMTOOLS_VIEW           } from './modules/nf-core/samtools/view/main'
+include { samplesheetToList       } from 'plugin/nf-schema'
+
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     NAMED WORKFLOWS FOR PIPELINE
@@ -108,21 +110,8 @@ workflow CLINICALGENOMICS_ONCOREFINER {
                                                          : channel.value([])
 
     // Input for VEP
-    ch_vep_extra_files_unsplit  = val_vep_plugin_files ? channel.fromPath(val_vep_plugin_files).collect() : channel.value([])
-    if (val_vep_plugin_files) {
-        ch_vep_extra_files_unsplit.splitCsv ( header:true )
-            .map { row ->
-                def f = file(row.vep_files[0])
-                if(f.isFile() || f.isDirectory()){
-                    return [f]
-                } else {
-                    error("\nVep database file ${f} does not exist.")
-                }
-            }
-            .collect()
-            .set {ch_vep_extra_files}
-    }
-
+    ch_vep_extra_files = val_vep_plugin_files ? channel.fromList(samplesheetToList(val_vep_plugin_files, 'assets/vep_plugin_files_schema.json')).collect()
+                                              : channel.value([])
     // Input for Vcfanno
     ch_vcfanno_extra     = val_vcfanno_extra     ? channel.fromPath(val_vcfanno_extra).collect()
                                                  : []
