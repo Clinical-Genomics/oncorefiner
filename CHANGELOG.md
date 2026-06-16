@@ -93,6 +93,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#123](https://github.com/Clinical-Genomics/oncorefiner/pull/123) Changed the subworkflow test when untarring is needed in `PREPARE_REFERENCES` to check `workflow.out.vep_resources` instead of `params.outdir`
 - [#129](https://github.com/Clinical-Genomics/oncorefiner/pull/129) Changed the extra arguments `extra_args_*` to default to '' instead of null and removed empty `extra_args_snv_vep` in `test_base.config`
 - [#130](https://github.com/Clinical-Genomics/oncorefiner/pull/130) Changed output logic for `PROCESS_SNVS` to output the `research_filtered_vcf` file after annotation with vep.
+- [#131](https://github.com/Clinical-Genomics/oncorefiner/pull/131) Fixed strict Nextflow syntax compatibility in `ANNOTATE_CADD`
 
 ### `Dependencies`
 
