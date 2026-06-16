@@ -76,7 +76,6 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     ch_snv_vcf_tbi     = channel.fromPath(val_snv_vcf + '.tbi', checkIfExists: true).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
     ch_sv_vcf          = channel.fromPath(val_sv_vcf).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
     ch_sv_vcf_tbi      = channel.fromPath(val_sv_vcf + '.tbi', checkIfExists: true).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
-    ch_vep_extra_files = channel.empty()
     ch_svdb_dbs        = channel.empty()
 
     // Alignment files
