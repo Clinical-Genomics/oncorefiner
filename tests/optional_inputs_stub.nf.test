@@ -23,8 +23,8 @@ nextflow_pipeline {
             def versions = removeNextflowVersion("$outputDir/pipeline_info/oncorefiner_software_mqc_versions.yml")
             assertAll(
                 { assert workflow.success},
-                // Assert that "ENSEMBLVEP_VEP" does not run when `vep_plugin_files` is not provided - revert this after assertion after fix has been applied
-                { assert "ENSEMBLVEP_VEP" !in versions.keySet()},
+                // Assert that "ENSEMBLVEP_VEP" runs when `vep_plugin_files` is not provided
+                { assert "ENSEMBLVEP_VEP" in versions.keySet()},
                 { assert snapshot(
                     // List of software versions run in the pipeline
                     versions,
