@@ -31,6 +31,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#101](https://github.com/Clinical-Genomics/oncorefiner/pull/101) Added parameters for arguments in processes `PROCESS_SNVS:BCFTOOLS_VIEW_*`, `PROCESS_*:ENSEMBLVEP_VEP` and `ANNOTATE_CADD:BCFTOOLS_ANNOTATE_INDELS`.
 - [#111](https://github.com/Clinical-Genomics/oncorefiner/pull/111) Added hidden `genome_version_number` parameter, parsed by default from `params.genome`.
 - [#117](https://github.com/Clinical-Genomics/oncorefiner/pull/117) Added stub version for all pipeline and local subworkflow tests.
+- [#137](https://github.com/Clinical-Genomics/oncorefiner/pull/137) Added nf-schema validation to VEP database inputs (`vep_plugin_files`) and support for TSV, JSON and YAML file formats in addition to CSV.
 
 ### `Changed`
 
@@ -94,6 +95,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#129](https://github.com/Clinical-Genomics/oncorefiner/pull/129) Changed the extra arguments `extra_args_*` to default to '' instead of null and removed empty `extra_args_snv_vep` in `test_base.config`
 - [#130](https://github.com/Clinical-Genomics/oncorefiner/pull/130) Changed output logic for `PROCESS_SNVS` to output the `research_filtered_vcf` file after annotation with vep.
 - [#131](https://github.com/Clinical-Genomics/oncorefiner/pull/131) Fixed strict Nextflow syntax compatibility in `ANNOTATE_CADD`
+- [#137](https://github.com/Clinical-Genomics/oncorefiner/pull/134) Fixed VEP able to run without `vep_plugin_files` parameter.
 
 ### `Dependencies`
 
