@@ -3,8 +3,8 @@ process ANNOTATE_VCF_BY_ID{
 
     conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/a1/a1a02b55777ce514673dfcc42280441fbbdcae21cbd89d956eb6459a0117f5e4/data' :
-        'community.wave.seqera.io/library/pysam_click_python:573fe89e5d35db27' }"
+        'https://wave.seqera.io/view/inspect?image=community.wave.seqera.io/library/pysam_click_python:ff252e0bf843a2dd&platform=linux/amd64' :
+        'community.wave.seqera.io/library/pysam_click_python:ff252e0bf843a2dd' }"
 
     input:
     tuple val(meta), path(vcf_file), path(tsv_file), path(header_file)
@@ -12,7 +12,7 @@ process ANNOTATE_VCF_BY_ID{
     output:
     tuple val(meta), path("${prefix}.vcf.gz"), emit: vcf
     tuple val(meta), path("${prefix}.vcf.gz.tbi"), emit: tbi
-    tuple val("${task.process}"), val('annotate_vcf_by_id'), topic: versions, emit: versions_annotate_vcf
+    //tuple val("${task.process}"), val('annotate_vcf_by_id'), topic: versions, emit: versions_annotate_vcf //not working?
 
     when:
     task.ext.when == null || task.ext.when
@@ -33,4 +33,6 @@ process ANNOTATE_VCF_BY_ID{
     touch ${prefix}.vcf.gz
     touch ${prefix}.vcf.gz.tbi
     """
+
+
 }

@@ -58,6 +58,8 @@ workflow PROCESS_SVS {
             ch_sv_vcf_tbi
         )
 
+        ch_sv_linx_vcf = ANNOTATE_LINX.out.annotated_vcf
+        ch_sv_linx_vcf_tbi = ANNOTATE_LINX.out.annotated_vcf_tbi
 
         // SVDB QUERY
         ch_sv_dbs
@@ -72,7 +74,7 @@ workflow PROCESS_SVS {
             .set { ch_svdb_dbs }
 
         SVDB_QUERY (
-            ch_sv_vcf,
+            ch_sv_linx_vcf,
             ch_svdb_dbs.in_occs.toList(),
             ch_svdb_dbs.in_frqs.toList(),
             ch_svdb_dbs.out_occs.toList(),
