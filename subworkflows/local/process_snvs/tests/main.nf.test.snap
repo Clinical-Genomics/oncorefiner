@@ -8,15 +8,15 @@
                     },
                     "subject_a_clinical.vcf.gz",
                     ":variantsMD5,",
-                    "c7dae0b238f6b5f4bf91c0682824f474"
+                    "c4e094059322ba88b5e53d7b4913cceb"
                 ],
                 [
                     {
                         "id": "subject_a"
                     },
-                    "subject_a_vep.vcf.gz",
+                    "subject_a_genmod_score.vcf.gz",
                     ":variantsMD5,",
-                    "c7dae0b238f6b5f4bf91c0682824f474"
+                    "c4e094059322ba88b5e53d7b4913cceb"
                 ],
                 [
                     {
@@ -46,7 +46,7 @@
                     {
                         "id": "subject_a"
                     },
-                    "subject_a_vep.vcf.gz.tbi"
+                    "subject_a_genmod_score.vcf.gz.tbi"
                 ],
                 [
                     {
@@ -70,7 +70,7 @@
                 ]
             ]
         ],
-        "timestamp": "2026-06-15T14:27:06.907156",
+        "timestamp": "2026-06-15T16:01:56.128354",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.2"
@@ -89,7 +89,7 @@
                     {
                         "id": "subject_a"
                     },
-                    "subject_a_vep.vcf.gz"
+                    "subject_a_genmod_score.vcf.gz"
                 ],
                 [
                     {
@@ -115,7 +115,7 @@
                     {
                         "id": "subject_a"
                     },
-                    "subject_a_vep.vcf.gz.tbi"
+                    "subject_a_genmod_score.vcf.gz.tbi"
                 ],
                 [
                     {
@@ -139,7 +139,7 @@
                 ]
             ]
         ],
-        "timestamp": "2026-06-15T14:27:47.993642",
+        "timestamp": "2026-06-15T16:02:42.212231",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.2"
