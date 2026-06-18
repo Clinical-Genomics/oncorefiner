@@ -18,6 +18,7 @@ include { SVDB_QUERY                               } from '../../../modules/nf-c
 //
 
 include { GENERATE_CYTOSURE_FILES } from '../../../subworkflows/local/generate_cytosure_files/main'
+include { ANNOTATE_LINX           } from '../../../subworkflows/local/annotate_linx/main'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -30,6 +31,10 @@ workflow PROCESS_SVS {
     take:
     ch_bam_bai_normal     // channel: [optional]  [val(meta), path(bam), path(bai)]
     ch_bam_bai_tumor      // channel: [mandatory]  [val(meta), path(bam), path(bai)]
+    ch_linx_breakends_tsv // channel: [optional]  [val(meta), path(tsv)]
+    ch_linx_fusion_tsv    // channel: [optional]  [val(meta), path(tsv)]
+    ch_linx_sv_tsv        // channel: [optional]  [val(meta), path(tsv)]
+    ch_sv_header          // channel: [optional]  [path(txt)]
     ch_sv_vcf             // channel: [required]  [val(meta), path(vcf)]
     ch_sv_vcf_tbi         // channel: [required]  [val(meta), path(vcf.tbi)]
     ch_sv_dbs             // channel: [required]  path(svdb_dbs_csv)
@@ -41,6 +46,20 @@ workflow PROCESS_SVS {
     ch_vep_extra_files    // channel: [optional]  [val(meta), path(vep_extra_files)]
 
     main:
+
+    // Annotate VCF with LINX TSVs
+    ANNOTATE_LINX(
+        ch_linx_breakends_tsv,
+        ch_linx_fusion_tsv,
+        ch_linx_sv_tsv,
+        ch_sv_header,
+        ch_sv_vcf,
+        ch_sv_vcf_tbi
+    )
+
+    ch_sv_linx_vcf = ANNOTATE_LINX.out.vcf
+    ch_sv_linx_vcf_tbi = ANNOTATE_LINX.out.tbi
+
     // SVDB QUERY
     ch_sv_dbs
         .splitCsv ( header:true )
@@ -54,7 +73,7 @@ workflow PROCESS_SVS {
         .set { ch_svdb_dbs }
 
     SVDB_QUERY (
-        ch_sv_vcf,
+        ch_sv_linx_vcf,
         ch_svdb_dbs.in_occs.toList(),
         ch_svdb_dbs.in_frqs.toList(),
         ch_svdb_dbs.out_occs.toList(),

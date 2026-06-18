@@ -43,6 +43,9 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     val_genome                      // string:  [optional]  genome assembly (e.g. "GRCh38")
     val_genome_fasta                // string:  [optional]  path to genome fasta file
     val_genome_fai                  // string:  [optional]  path to genome fasta index file
+    val_linx_breakends_tsv          // string:  [optional]  path to LINX breakends tsv file
+    val_linx_fusion_tsv             // string:  [optional]  path to LINX fusion tsv file
+    val_linx_sv_tsv                 // string:  [optional]  path to LINX sv tsv file
     val_multiqc_config              // string:  [optional]  path to multiqc config file
     val_multiqc_logo                // string:  [optional]  path to image file to be used as logo in multiqc report
     val_multiqc_methods_description // string:  [optional]  path to text file containing methods description to be included in multiqc report
@@ -101,6 +104,13 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     ch_genome_fai            = channel.fromPath(val_genome_fai).map { it -> [[id:it.simpleName], it] }.collect()
     ch_genome_fasta_fai      = ch_genome_fasta.join(ch_genome_fai, failOnMismatch: true, failOnDuplicate: true)
 
+    // Input for VCF annotation with LINX
+    ch_linx_breakends_tsv = channel.fromPath(val_linx_breakends_tsv).map { tsv -> [[id:tsv.simpleName], tsv] }.collect()
+    ch_linx_fusion_tsv    = channel.fromPath(val_linx_fusion_tsv).map { tsv -> [[id:tsv.simpleName], tsv] }.collect()
+    ch_linx_sv_tsv        = channel.fromPath(val_linx_sv_tsv).map { tsv -> [[id:tsv.simpleName], tsv] }.collect()
+
+    ch_sv_header = channel.fromPath("$projectDir/assets/sv_annotation_header.txt", checkIfExists: true).collect()
+
     // CADD input files
     ch_cadd_header           = channel.fromPath("$projectDir/assets/cadd_to_vcf_header.txt", checkIfExists: true).collect()
     ch_cadd_resources        = val_cadd_resources        ? channel.fromPath(val_cadd_resources).map { it -> [[id:'cadd_resources'], it] }.collect()
@@ -145,9 +155,13 @@ workflow CLINICALGENOMICS_ONCOREFINER {
         ch_genmod_score_config,
         ch_genome_fasta,
         ch_genome_fai,
+        ch_linx_breakends_tsv,
+        ch_linx_fusion_tsv,
+        ch_linx_sv_tsv,
         ch_snv_vcf,
         ch_snv_vcf_tbi,
         ch_sv_dbs,
+        ch_sv_header,
         ch_sv_vcf,
         ch_sv_vcf_tbi,
         ch_vcfanno_extra,
@@ -230,6 +244,9 @@ workflow {
         params.genome,
         params.fasta,
         params.fai,
+        params.linx_breakends_tsv,
+        params.linx_fusion_tsv,
+        params.linx_sv_tsv,
         params.multiqc_config,
         params.multiqc_logo,
         params.multiqc_methods_description,
