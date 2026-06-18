@@ -18,6 +18,8 @@ include { PIPELINE_INITIALISATION } from './subworkflows/local/utils_nfcore_onco
 include { PIPELINE_COMPLETION     } from './subworkflows/local/utils_nfcore_oncorefiner_pipeline'
 include { PREPARE_REFERENCES      } from './subworkflows/local/prepare_references'
 include { SAMTOOLS_VIEW           } from './modules/nf-core/samtools/view/main'
+include { samplesheetToList       } from 'plugin/nf-schema'
+
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     NAMED WORKFLOWS FOR PIPELINE
@@ -31,13 +33,13 @@ include { SAMTOOLS_VIEW           } from './modules/nf-core/samtools/view/main'
 workflow CLINICALGENOMICS_ONCOREFINER {
 
     take:
-    samplesheet                     // channel: [mandatory] samplesheet read in from --input
     val_bam_normal                  // string:  [optional]  path to BAM file for the normal sample
     val_bai_normal                  // string:  [optional]  path to BAI file for the normal sample
     val_bam_tumor                   // string:  [optional]  path to BAM file for the tumor sample
     val_bai_tumor                   // string:  [optional]  path to BAI file for the tumor sample
     val_cadd_prescored_indels       // string:  [optional]  path to CADD prescored indels file
     val_cadd_resources              // string:  [optional]  path to CADD resources directory
+    val_genmod_score_config         // string:  [optional]  path to Genmod score config file
     val_genome                      // string:  [optional]  genome assembly (e.g. "GRCh38")
     val_genome_fasta                // string:  [optional]  path to genome fasta file
     val_genome_fai                  // string:  [optional]  path to genome fasta index file
@@ -75,7 +77,6 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     ch_snv_vcf_tbi     = channel.fromPath(val_snv_vcf + '.tbi', checkIfExists: true).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
     ch_sv_vcf          = channel.fromPath(val_sv_vcf).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
     ch_sv_vcf_tbi      = channel.fromPath(val_sv_vcf + '.tbi', checkIfExists: true).map { vcf -> [[id:vcf.simpleName], vcf] }.collect()
-    ch_vep_extra_files = channel.empty()
     ch_svdb_dbs        = channel.empty()
 
     // Alignment files
@@ -109,21 +110,8 @@ workflow CLINICALGENOMICS_ONCOREFINER {
                                                          : channel.value([])
 
     // Input for VEP
-    ch_vep_extra_files_unsplit  = val_vep_plugin_files ? channel.fromPath(val_vep_plugin_files).collect() : channel.value([])
-    if (val_vep_plugin_files) {
-        ch_vep_extra_files_unsplit.splitCsv ( header:true )
-            .map { row ->
-                def f = file(row.vep_files[0])
-                if(f.isFile() || f.isDirectory()){
-                    return [f]
-                } else {
-                    error("\nVep database file ${f} does not exist.")
-                }
-            }
-            .collect()
-            .set {ch_vep_extra_files}
-    }
-
+    ch_vep_extra_files = val_vep_plugin_files ? channel.fromList(samplesheetToList(val_vep_plugin_files, 'assets/vep_plugin_files_schema.json')).collect()
+                                              : channel.value([])
     // Input for Vcfanno
     ch_vcfanno_extra     = val_vcfanno_extra     ? channel.fromPath(val_vcfanno_extra).collect()
                                                  : []
@@ -139,14 +127,22 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     ch_sv_dbs            = val_svdb_query_dbs    ? channel.fromPath(val_svdb_query_dbs)
                                                  : channel.empty()
 
+    // Input for genmod_score
+    if (val_genmod_score_config) {
+        ch_genmod_score_config = channel.fromPath(val_genmod_score_config).map { it -> [[id:it.simpleName], it] }.collect()
+        val_run_genmod_score = true
+    } else {
+        ch_genmod_score_config = channel.empty()
+        val_run_genmod_score = false
+    }
 
     ONCOREFINER (
-        samplesheet,
         ch_bam_bai_normal,
         ch_bam_bai_tumor,
         ch_cadd_header,
         ch_cadd_prescored_indels,
         ch_cadd_resources,
+        ch_genmod_score_config,
         ch_genome_fasta,
         ch_genome_fai,
         ch_snv_vcf,
@@ -166,6 +162,7 @@ workflow CLINICALGENOMICS_ONCOREFINER {
         val_multiqc_logo,
         val_multiqc_methods_description,
         val_outdir,
+        val_run_genmod_score,
         val_species,
         val_vep_cache_version,
     )
@@ -183,7 +180,18 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     SAMTOOLS_VIEW ( ch_samtools_in.bam_bai, ch_samtools_in.fasta_fai, [[], []], [[],[]], 'crai' )
 
     emit:
-    multiqc_report = ONCOREFINER.out.multiqc_report // channel: /path/to/multiqc_report.html
+    cadd_annotated_vcf        = ONCOREFINER.out.cadd_annotated_vcf        // channel: [val(meta), path(vcf)]
+    cadd_annotated_tbi        = ONCOREFINER.out.cadd_annotated_tbi        // channel: [val(meta), path(tbi)]
+    multiqc_report            = ONCOREFINER.out.multiqc_report            // channel: /path/to/multiqc_report.html
+    snv_clinical_filtered_vcf = ONCOREFINER.out.snv_clinical_filtered_vcf // channel: [val(meta), path(vcf)]
+    snv_clinical_filtered_tbi = ONCOREFINER.out.snv_clinical_filtered_tbi // channel: [val(meta), path(tbi)]
+    snv_vcfanno_vcf           = ONCOREFINER.out.snv_vcfanno_vcf           // channel: [val(meta), path(vcf)]
+    snv_vcfanno_tbi           = ONCOREFINER.out.snv_vcfanno_tbi           // channel: [val(meta), path(vcf.tbi)]
+    snv_vep_annotated_vcf     = ONCOREFINER.out.snv_vep_annotated_vcf     // channel: [val(meta), path(vcf)]
+    snv_vep_annotated_tbi     = ONCOREFINER.out.snv_vep_annotated_tbi     // channel: [val(meta), path(tbi)]
+    snv_vep_report            = ONCOREFINER.out.snv_vep_report            // channel: [val(meta), val(process), val(tool), path(html)]
+    snv_research_filtered_vcf = ONCOREFINER.out.snv_research_filtered_vcf // channel: [val(meta), path(vcf)]
+    snv_research_filtered_tbi = ONCOREFINER.out.snv_research_filtered_tbi // channel: [val(meta), path(vcf.tbi)]
 }
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -203,7 +211,6 @@ workflow {
         params.monochrome_logs,
         args,
         params.outdir,
-        params.input,
         params.help,
         params.help_full,
         params.show_hidden
@@ -213,13 +220,13 @@ workflow {
     // WORKFLOW: Run main workflow
     //
     CLINICALGENOMICS_ONCOREFINER (
-        PIPELINE_INITIALISATION.out.samplesheet,
         params.bam_normal,
         params.bai_normal,
         params.bam_tumor,
         params.bai_tumor,
         params.cadd_prescored_indels,
         params.cadd_resources,
+        params.genmod_score_config,
         params.genome,
         params.fasta,
         params.fai,
@@ -251,6 +258,30 @@ workflow {
         params.monochrome_logs,
         CLINICALGENOMICS_ONCOREFINER.out.multiqc_report
     )
+
+    //
+    // WORKFLOW OUTPUTS: Group files by publish directory
+    //
+    ch_snv_publish = CLINICALGENOMICS_ONCOREFINER.out.cadd_annotated_vcf
+        .mix(CLINICALGENOMICS_ONCOREFINER.out.cadd_annotated_tbi)
+        .mix(CLINICALGENOMICS_ONCOREFINER.out.snv_clinical_filtered_vcf)
+        .mix(CLINICALGENOMICS_ONCOREFINER.out.snv_clinical_filtered_tbi)
+        .mix(CLINICALGENOMICS_ONCOREFINER.out.snv_vcfanno_vcf)
+        .mix(CLINICALGENOMICS_ONCOREFINER.out.snv_vcfanno_tbi)
+        .mix(CLINICALGENOMICS_ONCOREFINER.out.snv_vep_annotated_vcf)
+        .mix(CLINICALGENOMICS_ONCOREFINER.out.snv_vep_annotated_tbi)
+        .mix(CLINICALGENOMICS_ONCOREFINER.out.snv_vep_report)
+        .mix(CLINICALGENOMICS_ONCOREFINER.out.snv_research_filtered_vcf)
+        .mix(CLINICALGENOMICS_ONCOREFINER.out.snv_research_filtered_tbi)
+
+    publish:
+    snv = ch_snv_publish
+}
+
+output {
+    snv {
+        path "snv"
+    }
 }
 
 /*
