@@ -1,0 +1,29 @@
+{
+    "Annotate VCF with LINX tsv": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "test"
+                    },
+                    "test_linxannotated.vcf.gz",
+                    ":variantsMD5,",
+                    "da36427a37c150dc78ef322d3841f4a1"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "test"
+                    },
+                    "test_linxannotated.vcf.gz.tbi"
+                ]
+            ]
+        ],
+        "timestamp": "2026-06-18T11:29:55.665686",
+        "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "25.10.4"
+        }
+    }
+}
