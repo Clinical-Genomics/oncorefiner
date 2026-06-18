@@ -2,11 +2,14 @@
     "Tumor only analysis with '-profile test_tumor_only'": {
         "content": [
             {
+                "BCFTOOLS_VIEW": {
+                    "bcftools": "1.23.1"
+                },
                 "BCFTOOLS_VIEW_CLINICAL": {
-                    "bcftools": 1.22
+                    "bcftools": "1.23.1"
                 },
                 "BCFTOOLS_VIEW_RESEARCH": {
-                    "bcftools": 1.22
+                    "bcftools": "1.23.1"
                 },
                 "ENSEMBLVEP_VEP": {
                     "ensemblvep": 115.2,
@@ -14,7 +17,10 @@
                     "tabix": 1.21
                 },
                 "FILTER_VCF": {
-                    "bcftools": 1.22
+                    "bcftools": "1.23.1"
+                },
+                "GENMOD_SCORE": {
+                    "genmod": "3.10.2"
                 },
                 "SAMTOOLS_VIEW": {
                     "samtools": "1.23.1"
@@ -64,6 +70,8 @@
                 "snv",
                 "snv/subject_a_clinical.vcf.gz",
                 "snv/subject_a_clinical.vcf.gz.tbi",
+                "snv/subject_a_genmod_score.vcf.gz",
+                "snv/subject_a_genmod_score.vcf.gz.tbi",
                 "snv/subject_a_vcfanno.vcf.gz",
                 "snv/subject_a_vcfanno.vcf.gz.tbi",
                 "snv/subject_a_vep.vcf.gz",
@@ -95,6 +103,10 @@
                     "VcfFile [chromosomes=[chr9, chr7, chr8, chrX, chr5, chr6, chr3, chr21, chr4, chr11, chr22, chr1, chr12, chr2, chr13, chr20, chr18, chr19, chr15, chr16, chr17], sampleCount=2, variantCount=103, phased=false, phasedAutodetect=false]"
                 ],
                 [
+                    "subject_a_genmod_score.vcf.gz",
+                    "VcfFile [chromosomes=[chr9, chr7, chr8, chrX, chr5, chr6, chr3, chr21, chr4, chr11, chr22, chr1, chr12, chr2, chr13, chr20, chr18, chr19, chr15, chr16, chr17], sampleCount=2, variantCount=103, phased=false, phasedAutodetect=false]"
+                ],
+                [
                     "subject_a_vcfanno.vcf.gz",
                     "VcfFile [chromosomes=[chr9, chr7, chr8, chrX, chr5, chr6, chr3, chr21, chr4, chr11, chr22, chr1, chr12, chr2, chr13, chr20, chr18, chr19, chr15, chr16, chr17], sampleCount=2, variantCount=103, phased=false, phasedAutodetect=false]"
                 ],
@@ -118,7 +130,11 @@
                 ],
                 [
                     "subject_a_clinical.vcf.gz",
-                    "c7dae0b238f6b5f4bf91c0682824f474"
+                    "c4e094059322ba88b5e53d7b4913cceb"
+                ],
+                [
+                    "subject_a_genmod_score.vcf.gz",
+                    "c4e094059322ba88b5e53d7b4913cceb"
                 ],
                 [
                     "subject_a_vcfanno.vcf.gz",
@@ -134,7 +150,7 @@
                 ]
             ]
         ],
-        "timestamp": "2026-06-18T10:35:18.160015148",
+        "timestamp": "2026-06-18T10:46:07.44870288",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.0"
@@ -143,11 +159,14 @@
     "Tumor only analysis with '-profile test_tumor_only' - stub": {
         "content": [
             {
+                "BCFTOOLS_VIEW": {
+                    "bcftools": "1.23.1"
+                },
                 "BCFTOOLS_VIEW_CLINICAL": {
-                    "bcftools": 1.22
+                    "bcftools": "1.23.1"
                 },
                 "BCFTOOLS_VIEW_RESEARCH": {
-                    "bcftools": 1.22
+                    "bcftools": "1.23.1"
                 },
                 "ENSEMBLVEP_VEP": {
                     "ensemblvep": 115.2,
@@ -155,7 +174,10 @@
                     "tabix": 1.21
                 },
                 "FILTER_VCF": {
-                    "bcftools": 1.22
+                    "bcftools": "1.23.1"
+                },
+                "GENMOD_SCORE": {
+                    "genmod": "3.10.2"
                 },
                 "SAMTOOLS_VIEW": {
                     "samtools": "1.23.1"
@@ -201,6 +223,8 @@
                 "snv",
                 "snv/subject_a_clinical.vcf.gz",
                 "snv/subject_a_clinical.vcf.gz.tbi",
+                "snv/subject_a_genmod_score.vcf.gz",
+                "snv/subject_a_genmod_score.vcf.gz.tbi",
                 "snv/subject_a_vcfanno.vcf.gz",
                 "snv/subject_a_vcfanno.vcf.gz.tbi",
                 "snv/subject_a_vep.vcf.gz",
@@ -215,7 +239,7 @@
                 "vep/subject_a_svdbquery_vep_summary.html"
             ]
         ],
-        "timestamp": "2026-06-18T10:35:34.974641229",
+        "timestamp": "2026-06-18T10:46:24.630964907",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.0"

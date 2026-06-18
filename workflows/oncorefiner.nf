@@ -25,6 +25,7 @@ workflow ONCOREFINER {
     ch_cadd_header                  // channel: [mandatory] [path(txt)]
     ch_cadd_prescored_indels        // channel: [optional]  [val(meta), path(dir)]
     ch_cadd_resources               // channel: [optional]  [val(meta), path(dir)]
+    ch_genmod_score_config          // channel: [optional]  [val(meta), path(ini)]
     ch_genome_fasta                 // channel: [optional]  [val(meta), path(fasta)]
     ch_genome_fai                   // channel: [optional]  [val(meta), path(fai)]
     ch_snv_vcf                      // channel: [optional]  [val(meta), path(vcf)]
@@ -44,6 +45,7 @@ workflow ONCOREFINER {
     val_multiqc_logo                // string:  [optional]  path to image file to be used as logo in multiqc report
     val_multiqc_methods_description // string:  [optional]  path to text file containing methods description to be included in multiqc report
     val_outdir                      // string:  [mandatory] path to output directory (default: ./results)
+    val_run_genmod_score           // boolean: [mandatory] whether to skip PROCESS_SNVS:VCF_ANNOTATE_SCORE_GENMOD process
     val_species                     // string:  [optional]  species (e.g. "homo_sapiens")
     val_vep_cache_version           // string:  [optional]  version of vep cache to use (e.g. "107")
 
@@ -59,6 +61,7 @@ workflow ONCOREFINER {
         ch_cadd_header,
         ch_cadd_prescored_indels,
         ch_cadd_resources,
+        ch_genmod_score_config,
         ch_snv_vcf,
         ch_snv_vcf_tbi,
         ch_vcfanno_extra,
@@ -69,6 +72,7 @@ workflow ONCOREFINER {
         ch_vep_extra_files,
         val_cadd_resources,
         val_genome,
+        val_run_genmod_score,
         val_species,
         val_vep_cache_version
     )
