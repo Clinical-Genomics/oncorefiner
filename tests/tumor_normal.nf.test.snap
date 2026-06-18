@@ -57,7 +57,6 @@
                 "process_svs/subject_a_clinical.vcf.gz.tbi",
                 "process_svs/subject_a_research.vcf.gz",
                 "process_svs/subject_a_research.vcf.gz.tbi",
-                "process_svs/subject_a_vcfdb_query.vcf",
                 "snv",
                 "snv/subject_a_clinical.vcf.gz",
                 "snv/subject_a_clinical.vcf.gz.tbi",
@@ -75,10 +74,10 @@
                 "vep/subject_a_svdbquery_vep_summary.html"
             ]
         ],
-        "timestamp": "2026-06-15T14:21:20.993278",
+        "timestamp": "2026-06-18T10:34:42.739003485",
         "meta": {
             "nf-test": "0.9.5",
-            "nextflow": "26.04.2"
+            "nextflow": "26.04.0"
         }
     },
     "Tumor Normal analysis with '-profile test'": {
@@ -143,7 +142,6 @@
                 "process_svs/subject_a_clinical.vcf.gz.tbi",
                 "process_svs/subject_a_research.vcf.gz",
                 "process_svs/subject_a_research.vcf.gz.tbi",
-                "process_svs/subject_a_vcfdb_query.vcf",
                 "snv",
                 "snv/subject_a_clinical.vcf.gz",
                 "snv/subject_a_clinical.vcf.gz.tbi",
@@ -217,10 +215,10 @@
                 ]
             ]
         ],
-        "timestamp": "2026-06-15T14:20:11.938884",
+        "timestamp": "2026-06-18T10:34:26.599065816",
         "meta": {
             "nf-test": "0.9.5",
-            "nextflow": "26.04.2"
+            "nextflow": "26.04.0"
         }
     }
 }
