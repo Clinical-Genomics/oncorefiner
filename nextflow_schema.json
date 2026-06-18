@@ -203,8 +203,8 @@
                     "format": "file-path",
                     "description": "Databases used by both named and custom plugins to annotate variants.",
                     "fa_icon": "fas fa-file-csv",
-                    "help_text": "Path to a file containing the absolute paths to databases and their indices used by VEP's custom and named plugins resources defined within the vcfanno toml file. One line per resource.",
-                    "pattern": "^\\S+\\.csv$",
+                    "help_text": "Path to a CSV/TSV/JSON/YAML file with vep_files as header, and then the absolute paths to databases and their indices used by VEP's custom and named plugins resources defined within the vcfanno toml file.",
+                    "pattern": "^\\S+\\.(csv|tsv|json|ya?ml)$",
                     "mimetype": "text/csv",
                     "schema": "assets/vep_plugin_files_schema.json"
                 },
@@ -268,6 +268,13 @@
                 "extra_args_sv_vep": {
                     "type": "string",
                     "description": "Extra arguments for `PROCESS_SVS:ENSEMBLVEP_VEP`."
+                },
+                "genmod_score_config": {
+                    "type": "string",
+                    "description": "Path to genmod score configuration file (rank model).",
+                    "format": "file-path",
+                    "pattern": "^\\S+\\.(ini)$",
+                    "exists": true
                 }
             }
         },

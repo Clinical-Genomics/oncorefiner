@@ -20,6 +20,8 @@ include { PIPELINE_INITIALISATION } from './subworkflows/local/utils_nfcore_onco
 include { PIPELINE_COMPLETION     } from './subworkflows/local/utils_nfcore_oncorefiner_pipeline'
 include { PREPARE_REFERENCES      } from './subworkflows/local/prepare_references'
 include { SAMTOOLS_VIEW           } from './modules/nf-core/samtools/view/main'
+include { samplesheetToList       } from 'plugin/nf-schema'
+
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     NAMED WORKFLOWS FOR PIPELINE
@@ -40,6 +42,7 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     val_cadd_prescored_indels       // string:  [optional]  path to CADD prescored indels file
     val_cadd_resources              // string:  [optional]  path to CADD resources directory
     val_case_id                     // string:  [mandatory] case ID (used in channel metadata)
+    val_genmod_score_config         // string:  [optional]  path to Genmod score config file
     val_genome                      // string:  [optional]  genome assembly (e.g. "GRCh38")
     val_genome_fasta                // string:  [optional]  path to genome fasta file
     val_genome_fai                  // string:  [optional]  path to genome fasta index file
@@ -122,21 +125,8 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     def ch_cadd_prescored_indels = channelFromMetaAndPath(metadata_case_file, val_cadd_prescored_indels)
 
     // Input for VEP
-    ch_vep_extra_files_unsplit  = val_vep_plugin_files ? channel.fromPath(val_vep_plugin_files).collect() : channel.value([])
-    if (val_vep_plugin_files) {
-        ch_vep_extra_files_unsplit.splitCsv ( header:true )
-            .map { row ->
-                def f = file(row.vep_files[0])
-                if(f.isFile() || f.isDirectory()){
-                    return [f]
-                } else {
-                    error("\nVep database file ${f} does not exist.")
-                }
-            }
-            .collect()
-            .set {ch_vep_extra_files}
-    }
-
+    ch_vep_extra_files = val_vep_plugin_files ? channel.fromList(samplesheetToList(val_vep_plugin_files, 'assets/vep_plugin_files_schema.json')).collect()
+                                              : channel.value([])
     // Input for Vcfanno
     ch_vcfanno_extra     = val_vcfanno_extra     ? channel.fromPath(val_vcfanno_extra).collect()
                                                  : []
@@ -152,6 +142,14 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     ch_sv_dbs            = val_svdb_query_dbs    ? channel.fromPath(val_svdb_query_dbs)
                                                  : channel.empty()
 
+    // Input for genmod_score
+    if (val_genmod_score_config) {
+        ch_genmod_score_config = channel.fromPath(val_genmod_score_config).map { it -> [[id:it.simpleName], it] }.collect()
+        val_run_genmod_score = true
+    } else {
+        ch_genmod_score_config = channel.empty()
+        val_run_genmod_score = false
+    }
 
     ONCOREFINER (
         ch_bam_bai_normal,
@@ -159,6 +157,7 @@ workflow CLINICALGENOMICS_ONCOREFINER {
         ch_cadd_header,
         ch_cadd_prescored_indels,
         ch_cadd_resources,
+        ch_genmod_score_config,
         ch_genome_fasta,
         ch_genome_fai,
         ch_snv_vcf,
@@ -178,6 +177,7 @@ workflow CLINICALGENOMICS_ONCOREFINER {
         val_multiqc_logo,
         val_multiqc_methods_description,
         val_outdir,
+        val_run_genmod_score,
         val_species,
         val_vep_cache_version,
     )
@@ -242,6 +242,7 @@ workflow {
         params.cadd_prescored_indels,
         params.cadd_resources,
         params.case_id,
+        params.genmod_score_config,
         params.genome,
         params.fasta,
         params.fai,
