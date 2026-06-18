@@ -45,7 +45,7 @@ workflow PROCESS_SNVS {
     ch_vep_extra_files       // channel: [optional]  [path(plugin_file1), path(plugin_file2), ...]
     val_cadd_resources       // string:  [optional]  path to CADD resources directory
     val_genome               // string:  [optional]  genome assembly (e.g. "GRCh38")
-        val_run_genmod_score    // boolean: [mandatory] whether to skip VCF_ANNOTATE_SCORE_GENMOD process
+    val_run_genmod_score    // boolean: [mandatory] whether to skip VCF_ANNOTATE_SCORE_GENMOD process
     val_species              // string:  [optional]  species (e.g. "homo_sapiens")
     val_vep_cache_version    // string:  [optional]  version of vep cache to use (e.g. "107")
 

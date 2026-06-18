@@ -14,6 +14,13 @@ include { ENSEMBLVEP_VEP                           } from '../../../modules/nf-c
 include { SVDB_QUERY                               } from '../../../modules/nf-core/svdb/query/main'
 
 //
+// SUBWORKFLOW: Installed directly from genomic-medicine-sweden/subworkflows
+//
+
+include { VCF_ANNOTATE_SCORE_GENMOD } from '../../../subworkflows/genomic-medicine-sweden/vcf_annotate_score_genmod/main'
+
+
+//
 // LOCAL SUBWORKFLOWS
 //
 
@@ -31,6 +38,7 @@ workflow PROCESS_SVS {
     take:
     ch_bam_bai_normal     // channel: [optional]  [val(meta), path(bam), path(bai)]
     ch_bam_bai_tumor      // channel: [mandatory]  [val(meta), path(bam), path(bai)]
+    ch_genmod_score_config   // channel: [optional]  [val(meta), path(ini)]
     ch_linx_breakends_tsv // channel: [optional]  [val(meta), path(tsv)]
     ch_linx_fusion_tsv    // channel: [optional]  [val(meta), path(tsv)]
     ch_linx_sv_tsv        // channel: [optional]  [val(meta), path(tsv)]
@@ -39,6 +47,7 @@ workflow PROCESS_SVS {
     ch_sv_vcf_tbi         // channel: [required]  [val(meta), path(vcf.tbi)]
     ch_sv_dbs             // channel: [required]  path(svdb_dbs_csv)
     val_genome            // value:   [required]  Genome build (e.g. GRCh38)
+    val_run_genmod_score  // boolean: [mandatory] whether to skip VCF_ANNOTATE_SCORE_GENMOD process
     val_species           // value:   [required]  Species
     val_vep_cache_version // value:   [required]  VEP cache
     ch_vep_cache          // channel: [optional]  [val(meta), path(vep_cache)]
@@ -108,6 +117,41 @@ workflow PROCESS_SVS {
         ch_genome_fasta,
         ch_vep_extra_files
     )
+
+    // Rank score
+    if (val_run_genmod_score) {
+        // Rank and add score annotation with genmod score
+        ch_annotate_score_genmod_in = ENSEMBLVEP_VEP.out.vcf
+            .combine(ch_genmod_score_config)
+            .multiMap { meta_vcf, vcf, _meta_genmod_score_config, genmod_score_config ->
+                vcf: tuple(meta_vcf, vcf)
+                score_config: tuple(meta_vcf, genmod_score_config)
+            }
+
+        VCF_ANNOTATE_SCORE_GENMOD (
+            ch_annotate_score_genmod_in.vcf,
+            channel.empty(),
+            channel.empty(),
+            ch_annotate_score_genmod_in.score_config,
+            true,
+        )
+
+        // Output research vcf channel after scoring
+        ch_research_filtered_vcf = VCF_ANNOTATE_SCORE_GENMOD.out.vcf
+        ch_research_filtered_tbi = VCF_ANNOTATE_SCORE_GENMOD.out.index
+
+        ch_clinical_filtering_in = ch_research_filtered_vcf
+            .join(ch_research_filtered_tbi)
+
+    } else {
+        // Output research vcf channel after annotation
+        ch_research_filtered_vcf = ENSEMBLVEP_VEP.out.vcf
+        ch_research_filtered_tbi = ENSEMBLVEP_VEP.out.tbi
+
+        ch_clinical_filtering_in = ch_research_filtered_vcf
+            .join(ch_research_filtered_tbi)
+    }
+
 
     // Clinical Filtering
     ENSEMBLVEP_VEP.out.vcf
