@@ -3,6 +3,7 @@ nextflow_workflow {
     name "Test Workflow GENERATE_CYTOSURE_FILES"
     script "../main.nf"
     workflow "GENERATE_CYTOSURE_FILES"
+    config "./nextflow.config"
     tag "subworkflows"
     tag "generate_cytosure_files"
 
