@@ -239,6 +239,13 @@
                 "extra_args_sv_vep": {
                     "type": "string",
                     "description": "Extra arguments for `PROCESS_SVS:ENSEMBLVEP_VEP`."
+                },
+                "genmod_score_config": {
+                    "type": "string",
+                    "description": "Path to genmod score configuration file (rank model).",
+                    "format": "file-path",
+                    "pattern": "^\\S+\\.(ini)$",
+                    "exists": true
                 }
             }
         },

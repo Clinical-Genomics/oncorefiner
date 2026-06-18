@@ -52,6 +52,7 @@ Annotation related files and options required for the workflow.
 | `extra_args_snv_research_filter` | Extra arguments for `PROCESS_SNVS:BCFTOOLS_VIEW_RESEARCH`. | `string` |  |  |  |
 | `extra_args_snv_vep` | Extra arguments for `PROCESS_SNVS:ENSEMBLVEP_VEP`. | `string` |  |  |  |
 | `extra_args_sv_vep` | Extra arguments for `PROCESS_SVS:ENSEMBLVEP_VEP`. | `string` |  |  |  |
+| `genmod_score_config` | Path to genmod score configuration file (rank model). | `string` |  |  |  |
 
 ## Institutional config options
 

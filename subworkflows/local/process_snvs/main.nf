@@ -14,6 +14,12 @@ include { BCFTOOLS_VIEW as BCFTOOLS_VIEW_RESEARCH } from '../../../modules/nf-co
 include { BCFTOOLS_VIEW as BCFTOOLS_VIEW_CLINICAL } from '../../../modules/nf-core/bcftools/view/main'
 include { ANNOTATE_CADD                           } from '../../../subworkflows/local/annotate_cadd'
 
+//
+// SUBWORKFLOW: Installed directly from genomic-medicine-sweden/subworkflows
+//
+
+include { VCF_ANNOTATE_SCORE_GENMOD } from '../../../subworkflows/genomic-medicine-sweden/vcf_annotate_score_genmod/main'
+
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     RUN PROCESS_SNVS WORKFLOW
@@ -28,6 +34,7 @@ workflow PROCESS_SNVS {
     ch_cadd_header           // channel: [optional]  [val(meta), path(header_file)]
     ch_cadd_prescored_indels // channel: [optional]  [val(meta), path(dir)]
     ch_cadd_resources        // channel: [optional]  [val(meta), path(dir)]
+    ch_genmod_score_config   // channel: [optional]  [val(meta), path(ini)]
     ch_snv_vcf               // channel: [optional]  [val(meta), path(vcf)]
     ch_snv_vcf_tbi           // channel: [optional]  [val(meta), path(vcf.tbi)]
     ch_vcfanno_extra         // channel: [optional]  [path(extra_file1), path(extra_file2), ...]
@@ -38,6 +45,7 @@ workflow PROCESS_SNVS {
     ch_vep_extra_files       // channel: [optional]  [path(plugin_file1), path(plugin_file2), ...]
     val_cadd_resources       // string:  [optional]  path to CADD resources directory
     val_genome               // string:  [optional]  genome assembly (e.g. "GRCh38")
+        val_run_genmod_score    // boolean: [mandatory] whether to skip VCF_ANNOTATE_SCORE_GENMOD process
     val_species              // string:  [optional]  species (e.g. "homo_sapiens")
     val_vep_cache_version    // string:  [optional]  version of vep cache to use (e.g. "107")
 
@@ -107,15 +115,41 @@ workflow PROCESS_SNVS {
         ch_vep_extra_files
     )
 
-    // Output research vcf channel after annotation
-    ch_research_filtered_vcf = ENSEMBLVEP_VEP.out.vcf
-    ch_research_filtered_tbi = ENSEMBLVEP_VEP.out.tbi
+    if (val_run_genmod_score) {
+        // Rank and add score annotation with genmod score
+        ch_annotate_score_genmod_in = ENSEMBLVEP_VEP.out.vcf
+            .combine(ch_genmod_score_config)
+            .multiMap { meta_vcf, vcf, _meta_genmod_score_config, genmod_score_config ->
+                vcf: tuple(meta_vcf, vcf)
+                score_config: tuple(meta_vcf, genmod_score_config)
+            }
 
-    // Clinical Filtering
-    ch_clinical_filtering_in = ch_research_filtered_vcf
-        .join(ch_research_filtered_tbi)
+        VCF_ANNOTATE_SCORE_GENMOD (
+            ch_annotate_score_genmod_in.vcf,
+            channel.empty(),
+            channel.empty(),
+            ch_annotate_score_genmod_in.score_config,
+            true,
+        )
 
-    BCFTOOLS_VIEW_CLINICAL(ch_clinical_filtering_in, [], [], [])
+        // Output research vcf channel after scoring
+        ch_research_filtered_vcf = VCF_ANNOTATE_SCORE_GENMOD.out.vcf
+        ch_research_filtered_tbi = VCF_ANNOTATE_SCORE_GENMOD.out.index
+
+        ch_clinical_filtering_in = ch_research_filtered_vcf
+            .join(ch_research_filtered_tbi)
+
+    } else {
+        // Output research vcf channel after annotation
+        ch_research_filtered_vcf = ENSEMBLVEP_VEP.out.vcf
+        ch_research_filtered_tbi = ENSEMBLVEP_VEP.out.tbi
+
+        ch_clinical_filtering_in = ch_research_filtered_vcf
+            .join(ch_research_filtered_tbi)
+    }
+
+        // Clinical Filtering
+        BCFTOOLS_VIEW_CLINICAL(ch_clinical_filtering_in, [], [], [])
 
     emit:
     cadd_annotated_vcf    = ch_cadd_vcf                    // channel: [val(meta), path(vcf)]
