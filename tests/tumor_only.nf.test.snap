@@ -46,8 +46,6 @@
             },
             [
                 "alignments",
-                "alignments/subject_a_normal.cram",
-                "alignments/subject_a_normal.cram.crai",
                 "alignments/subject_a_tumor.cram",
                 "alignments/subject_a_tumor.cram.crai",
                 "multiqc",
@@ -78,7 +76,6 @@
                 "snv/subject_a_vep.vcf.gz.tbi",
                 "snv/subject_a_vep.vcf.gz_summary.html",
                 "vcf2cytosure",
-                "vcf2cytosure/normal.cgh",
                 "vcf2cytosure/tumor.cgh",
                 "vep",
                 "vep/subject_a_svdbquery_vep.vcf.gz",
@@ -86,71 +83,70 @@
                 "vep/subject_a_svdbquery_vep.vcf.gz_summary.html"
             ],
             [
-                "normal.cgh:md5,1474d79c5254e4ecfdc9e15ce13d7916",
-                "tumor.cgh:md5,09c4fba0b534f86fc176fe2ccf00820d"
+                "tumor.cgh:md5,22c058183d93a767ee61d5319513dc39"
             ],
             [
                 [
                     "subject_a_clinical.vcf.gz",
-                    "VcfFile [chromosomes=[chr19, chr9, chr11], sampleCount=2, variantCount=6, phased=false, phasedAutodetect=false]"
+                    "VcfFile [chromosomes=[chr19, chr9, chr11], sampleCount=1, variantCount=6, phased=false, phasedAutodetect=false]"
                 ],
                 [
                     "subject_a_research.vcf.gz",
-                    "VcfFile [chromosomes=[chr19, chr9, chr11], sampleCount=2, variantCount=6, phased=false, phasedAutodetect=false]"
+                    "VcfFile [chromosomes=[chr19, chr9, chr11], sampleCount=1, variantCount=6, phased=false, phasedAutodetect=false]"
                 ],
                 [
                     "subject_a_clinical.vcf.gz",
-                    "VcfFile [chromosomes=[chr9, chr7, chr8, chrX, chr5, chr6, chr3, chr21, chr4, chr11, chr22, chr1, chr12, chr2, chr13, chr20, chr18, chr19, chr15, chr16, chr17], sampleCount=2, variantCount=103, phased=false, phasedAutodetect=false]"
+                    "VcfFile [chromosomes=[chr9, chr7, chr8, chrX, chr5, chr6, chr3, chr21, chr4, chr11, chr22, chr1, chr12, chr2, chr13, chr20, chr18, chr19, chr15, chr16, chr17], sampleCount=1, variantCount=104, phased=false, phasedAutodetect=false]"
                 ],
                 [
                     "subject_a_genmod_score.vcf.gz",
-                    "VcfFile [chromosomes=[chr9, chr7, chr8, chrX, chr5, chr6, chr3, chr21, chr4, chr11, chr22, chr1, chr12, chr2, chr13, chr20, chr18, chr19, chr15, chr16, chr17], sampleCount=2, variantCount=103, phased=false, phasedAutodetect=false]"
+                    "VcfFile [chromosomes=[chr9, chr7, chr8, chrX, chr5, chr6, chr3, chr21, chr4, chr11, chr22, chr1, chr12, chr2, chr13, chr20, chr18, chr19, chr15, chr16, chr17], sampleCount=1, variantCount=104, phased=false, phasedAutodetect=false]"
                 ],
                 [
                     "subject_a_vcfanno.vcf.gz",
-                    "VcfFile [chromosomes=[chr9, chr7, chr8, chrX, chr5, chr6, chr3, chr21, chr4, chr11, chr22, chr1, chr12, chr2, chr13, chr20, chr18, chr19, chr15, chr16, chr17], sampleCount=2, variantCount=103, phased=false, phasedAutodetect=false]"
+                    "VcfFile [chromosomes=[chr9, chr7, chr8, chrX, chr5, chr6, chr3, chr21, chr4, chr11, chr22, chr1, chr12, chr2, chr13, chr20, chr18, chr19, chr15, chr16, chr17], sampleCount=1, variantCount=104, phased=false, phasedAutodetect=false]"
                 ],
                 [
                     "subject_a_vep.vcf.gz",
-                    "VcfFile [chromosomes=[chr9, chr7, chr8, chrX, chr5, chr6, chr3, chr21, chr4, chr11, chr22, chr1, chr12, chr2, chr13, chr20, chr18, chr19, chr15, chr16, chr17], sampleCount=2, variantCount=103, phased=false, phasedAutodetect=false]"
+                    "VcfFile [chromosomes=[chr9, chr7, chr8, chrX, chr5, chr6, chr3, chr21, chr4, chr11, chr22, chr1, chr12, chr2, chr13, chr20, chr18, chr19, chr15, chr16, chr17], sampleCount=1, variantCount=104, phased=false, phasedAutodetect=false]"
                 ],
                 [
                     "subject_a_svdbquery_vep.vcf.gz",
-                    "VcfFile [chromosomes=[chr19, chr9, chr11], sampleCount=2, variantCount=6, phased=false, phasedAutodetect=false]"
+                    "VcfFile [chromosomes=[chr19, chr9, chr11], sampleCount=1, variantCount=6, phased=false, phasedAutodetect=false]"
                 ]
             ],
             [
                 [
                     "subject_a_clinical.vcf.gz",
-                    "aca08367cdefe343d4d2a8c10a8633be"
+                    "4338cd18f8e9efcaf9b59237f1a52fe3"
                 ],
                 [
                     "subject_a_research.vcf.gz",
-                    "5555fa260ad068c6b0c1704ac6ac933"
+                    "b9cb38b8cd9294ba4aa110592c5133e"
                 ],
                 [
                     "subject_a_clinical.vcf.gz",
-                    "c4e094059322ba88b5e53d7b4913cceb"
+                    "3c5c23c3b7f00a1def9ba48ea852a904"
                 ],
                 [
                     "subject_a_genmod_score.vcf.gz",
-                    "c4e094059322ba88b5e53d7b4913cceb"
+                    "3c5c23c3b7f00a1def9ba48ea852a904"
                 ],
                 [
                     "subject_a_vcfanno.vcf.gz",
-                    "f79b3dd00e3a53231a4bbd52ebcc6d1d"
+                    "e99aee3237070db74efee69d7a5d4be2"
                 ],
                 [
                     "subject_a_vep.vcf.gz",
-                    "c7dae0b238f6b5f4bf91c0682824f474"
+                    "96afd20d30255284c06a3fd505a1d466"
                 ],
                 [
                     "subject_a_svdbquery_vep.vcf.gz",
-                    "aca08367cdefe343d4d2a8c10a8633be"
+                    "4338cd18f8e9efcaf9b59237f1a52fe3"
                 ]
             ]
         ],
-        "timestamp": "2026-06-18T10:46:07.44870288",
+        "timestamp": "2026-06-18T13:18:41.185845144",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.0"
@@ -203,8 +199,6 @@
             },
             [
                 "alignments",
-                "alignments/subject_a_normal.cram",
-                "alignments/subject_a_normal.cram.crai",
                 "alignments/subject_a_tumor.cram",
                 "alignments/subject_a_tumor.cram.crai",
                 "multiqc",
@@ -231,7 +225,6 @@
                 "snv/subject_a_vep.vcf.gz.tbi",
                 "snv/subject_a_vep_summary.html",
                 "vcf2cytosure",
-                "vcf2cytosure/normal.cgh",
                 "vcf2cytosure/tumor.cgh",
                 "vep",
                 "vep/subject_a_svdbquery_vep.vcf.gz",
@@ -239,7 +232,7 @@
                 "vep/subject_a_svdbquery_vep_summary.html"
             ]
         ],
-        "timestamp": "2026-06-18T10:46:24.630964907",
+        "timestamp": "2026-06-18T13:18:56.728297138",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.0"
