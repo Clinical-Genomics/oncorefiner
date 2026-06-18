@@ -1,7 +1,0 @@
-channels:
-  - conda-forge
-  - bioconda
-dependencies:
-  - conda-forge::python=3.1012 # check
-  - conda-forge::pysam=0.20.3 # check
-  - conda-forge::click=8.2.0 # check
