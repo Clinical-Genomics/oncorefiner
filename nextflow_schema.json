@@ -10,19 +10,8 @@
             "type": "object",
             "fa_icon": "fas fa-terminal",
             "description": "Define where the pipeline should find input data and save output data.",
-            "required": ["input", "outdir"],
+            "required": ["outdir"],
             "properties": {
-                "input": {
-                    "type": "string",
-                    "format": "file-path",
-                    "exists": true,
-                    "schema": "assets/schema_input.json",
-                    "mimetype": "text/csv",
-                    "pattern": "^\\S+\\.csv$",
-                    "description": "Path to comma-separated file containing information about the samples in the experiment.",
-                    "help_text": "You will need to create a design file with information about the samples in your experiment before running the pipeline. Use this parameter to specify its location. It has to be a comma-separated file with 3 columns, and a header row.",
-                    "fa_icon": "fas fa-file-csv"
-                },
                 "outdir": {
                     "type": "string",
                     "format": "directory-path",
@@ -206,8 +195,8 @@
                     "format": "file-path",
                     "description": "Databases used by both named and custom plugins to annotate variants.",
                     "fa_icon": "fas fa-file-csv",
-                    "help_text": "Path to a file containing the absolute paths to databases and their indices used by VEP's custom and named plugins resources defined within the vcfanno toml file. One line per resource.",
-                    "pattern": "^\\S+\\.csv$",
+                    "help_text": "Path to a CSV/TSV/JSON/YAML file with vep_files as header, and then the absolute paths to databases and their indices used by VEP's custom and named plugins resources defined within the vcfanno toml file.",
+                    "pattern": "^\\S+\\.(csv|tsv|json|ya?ml)$",
                     "mimetype": "text/csv",
                     "schema": "assets/vep_plugin_files_schema.json"
                 },
@@ -254,23 +243,30 @@
                 },
                 "extra_args_cadd_annotate": {
                     "type": "string",
-                    "description": "Extra arguments for `ANNOTATE_CADD:BCFTOOLS_ANNOTATE_INDELS`"
+                    "description": "Extra arguments for `ANNOTATE_CADD:BCFTOOLS_ANNOTATE_INDELS`."
                 },
                 "extra_args_snv_clinical_filter": {
                     "type": "string",
-                    "description": "Extra arguments for `PROCESS_SNVS:BCFTOOLS_VIEW_CLINICAL`"
+                    "description": "Extra arguments for `PROCESS_SNVS:BCFTOOLS_VIEW_CLINICAL`."
                 },
                 "extra_args_snv_research_filter": {
                     "type": "string",
-                    "description": "Extra arguments for `PROCESS_SNVS:BCFTOOLS_VIEW_RESEARCH`"
+                    "description": "Extra arguments for `PROCESS_SNVS:BCFTOOLS_VIEW_RESEARCH`."
                 },
                 "extra_args_snv_vep": {
                     "type": "string",
-                    "description": "Extra arguments for `PROCESS_SNVS:ENSEMBLVEP_VEP`"
+                    "description": "Extra arguments for `PROCESS_SNVS:ENSEMBLVEP_VEP`."
                 },
                 "extra_args_sv_vep": {
                     "type": "string",
-                    "description": "Extra arguments for `PROCESS_SVS:ENSEMBLVEP_VEP`"
+                    "description": "Extra arguments for `PROCESS_SVS:ENSEMBLVEP_VEP`."
+                },
+                "genmod_score_config": {
+                    "type": "string",
+                    "description": "Path to genmod score configuration file (rank model).",
+                    "format": "file-path",
+                    "pattern": "^\\S+\\.(ini)$",
+                    "exists": true
                 }
             }
         },
@@ -401,7 +397,7 @@
                     "type": "string",
                     "fa_icon": "far fa-check-circle",
                     "description": "Base URL or local path to location of pipeline test dataset files",
-                    "default": "https://raw.githubusercontent.com/Clinical-Genomics/test-datasets/b269a1be954c5ae16b1dff465599d0ac51ea8289/",
+                    "default": "https://raw.githubusercontent.com/Clinical-Genomics/test-datasets/ccc8bf4dcbe6a3e1a4975331f830d53fa655d8c1/",
                     "hidden": true
                 },
                 "trace_report_suffix": {

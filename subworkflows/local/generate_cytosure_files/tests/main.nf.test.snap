@@ -1,4 +1,17 @@
 {
+    "Alignment files from Tumor sample and somatic SV vcf files from TN test data - stub": {
+        "content": [
+            [
+                "vcf2cytosure",
+                "vcf2cytosure/tumor.cgh"
+            ]
+        ],
+        "timestamp": "2026-06-01T16:48:40.967945",
+        "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "26.04.2"
+        }
+    },
     "Alignment files from Tumor sample and somatic SV vcf files from TN test data": {
         "content": [
             [
