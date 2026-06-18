@@ -56,6 +56,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#127](https://github.com/Clinical-Genomics/oncorefiner/pull/127) Update `pipelines_testdata_base_path` to reflect the latest commit to `Clinical-Genomics/test-datasets/oncorefiner` that removes `testdata/samplesheet_test.csv`.
 - [#128](https://github.com/Clinical-Genomics/oncorefiner/pull/128) Upgraded nf-test version to 0.9.5 so that the CI check supports topic channel tests.
 - [#138](https://github.com/Clinical-Genomics/oncorefiner/pull/138) Changed indentation to consistently match the nf-core template.
+- [#139](https://github.com/Clinical-Genomics/oncorefiner/pull/139) Changed `tests/.nftignore` to not include `process_svs/*.{vcf}`, since uncompressed VCF files are no longer output
 
 ### `Fixed`
 
@@ -106,3 +107,4 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#18](https://github.com/Clinical-Genomics/oncorefiner/pull/18) Removed CI checks `awstest` and `awsfulltest`.
 - [#51](https://github.com/Clinical-Genomics/oncorefiner/pull/51) Removed unused parameter `custom_extra_files`.
 - [#125](https://github.com/Clinical-Genomics/oncorefiner/pull/125) Removed `input` parameter and samplesheet logic and documentation.
+- [#139](https://github.com/Clinical-Genomics/oncorefiner/pull/139) Removed SVDB output file, since it's an intermediary file not useful to have in the outputs.
