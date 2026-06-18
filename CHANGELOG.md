@@ -61,6 +61,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#138](https://github.com/Clinical-Genomics/oncorefiner/pull/138) Changed indentation to consistently match the nf-core template.
 - [#103](https://github.com/Clinical-Genomics/oncorefiner/pull/108) Updated `bcftools/view` module, also included in `genomic-medicine-sweden/vcf_annotate_score_genmod` subworkflow.
 - [#103](https://github.com/Clinical-Genomics/oncorefiner/pull/103) Changed `PROCESS_SNVS` output logic to return `ch_research_filtered_vcf/tbi` after scoring if this step is run. The file names for these outputs are then given by `VCF_ANNOTATE_SCORE_GENMOD:BCFTOOLS_VIEW`, i.e. with prefix `${meta.id}_genmod_score` as specified in the config file.
+- [#141](https://github.com/Clinical-Genomics/oncorefiner/pull/141) Refactored `GENERATE_CYTOSURE_FILES` to emit output from `VCF2CYTOSURE`.
 
 ### `Fixed`
 
