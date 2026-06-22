@@ -8,7 +8,7 @@ nextflow_process {
     tag "combine_linx_tsv"
     config "./nextflow.config"
 
-    test("Combine LINX TSVs") {
+    test("Combine LINX TSVs, tumor-normal") {
         when {
 
             process {

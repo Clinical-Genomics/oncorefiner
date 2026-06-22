@@ -81,26 +81,26 @@ workflow ONCOREFINER {
         val_vep_cache_version
     )
 
-        // Process SV VCF files
-        PROCESS_SVS(
-            ch_bam_bai_normal,
-            ch_bam_bai_tumor,
-            ch_genmod_score_config,
-            ch_linx_breakends_tsv,
-            ch_linx_fusion_tsv,
-            ch_linx_sv_tsv,
-            ch_sv_header,
-            ch_sv_vcf,
-            ch_sv_vcf_tbi,
-            ch_sv_dbs,
-            val_genome,
-            val_run_genmod_score,
-            val_species,
-            val_vep_cache_version,
-            ch_vep_cache,
-            ch_genome_fasta,
-            ch_vep_extra_files
-        )
+    // Process SV VCF files
+    PROCESS_SVS(
+        ch_bam_bai_normal,
+        ch_bam_bai_tumor,
+        ch_genmod_score_config,
+        ch_linx_breakends_tsv,
+        ch_linx_fusion_tsv,
+        ch_linx_sv_tsv,
+        ch_sv_header,
+        ch_sv_vcf,
+        ch_sv_vcf_tbi,
+        ch_sv_dbs,
+        val_genome,
+        val_run_genmod_score,
+        val_species,
+        val_vep_cache_version,
+        ch_vep_cache,
+        ch_genome_fasta,
+        ch_vep_extra_files
+    )
 
     //
     // Collate and save software versions
