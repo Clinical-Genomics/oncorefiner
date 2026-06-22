@@ -20,8 +20,6 @@ process ANNOTATE_VCF_BY_ID{
     script:
     prefix = task.ext.prefix ?: "${meta.id}"
     """
-    #!/usr/bin/env python3
-
     annotate_vcf_by_id.py \\
     -v ${vcf_file} \\
     -h ${header_file} \\
