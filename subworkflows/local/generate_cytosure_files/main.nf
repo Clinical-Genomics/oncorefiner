@@ -37,4 +37,7 @@ workflow GENERATE_CYTOSURE_FILES {
         [[],[]],
         []
     )
+
+    emit:
+    VCF2CYTOSURE.out.cgh // channel: [val(meta), path(cgh)]
 }
