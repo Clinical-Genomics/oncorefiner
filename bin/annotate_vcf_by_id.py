@@ -5,8 +5,8 @@ import pysam
 import csv
 
 """
-This script aims to annotate the infor field of a vcf based on the ID field, using:
-1. a VCF file following the VCF specifications, where the ID field will be used to annoate entries
+This script aims to annotate the info field of a vcf based on the ID field, using:
+1. a VCF file following the VCF specifications, where the ID field will be used to annotate entries
 2. a TSV file where the ids to annotate is always the first column and the remaining are new INFO fields: ex.: ID, TAG1, TAG2, TAG3
 3. a TXT file with the header lines of the tags added, following the VCF specifications (i.e. ##INFO=<ID=ID,Number=number,Type=type,Description="description")
 
@@ -17,7 +17,7 @@ This means that the ‘Flag’ type indicates that the INFO field does not conta
 
 
 def convert_data_types(tsv_row_dict: dict[str, str]) -> dict[str, str | int | float ]:
-    # convert values to float, int or string
+    """ Convert values to float, int or string - pysam requires correct types for annotation"""
     for key, value in tsv_row_dict.items():
         try:
             tsv_row_dict[key] = int(value)
@@ -35,6 +35,7 @@ def convert_entry_to_list(
     annotation_tag: str,
     annotation_value: str | int | float
 ) -> dict[str, dict[str, str | int | float]]:
+    """ Converts a single annotation entry to a list when multiple values exist for the same ID and tag"""
 
     # current entry for column
     current_annotation_value: str | int | float | list = tsv_annotations_dict[vcf_id][annotation_tag]
@@ -54,6 +55,8 @@ def add_entry_to_existing_id(
     vcf_id_annotations: dict[str, str | int | float ],
     tsv_annotations_dict: dict[str, dict[str, str | int | float]],
 ) -> dict[str, dict[str, str | int | float ]]:
+    """ Adds new annotation entries to existing ID in the annotation dictionary,
+    converting to list if multiple values exist for the same tag (using function above)"""
 
     for annotation_tag, annotation_value in vcf_id_annotations.items():
         # if new annotation is the same as existing annotation, skip
@@ -68,8 +71,10 @@ def add_entry_to_existing_id(
 def add_entry_to_annotation_dict(
     vcf_id: str,
     vcf_id_annotations: dict[str, str | int | float ],
-    tsv_annotations_dict: dict[str, dict[str, str | int | float]] #check type
+    tsv_annotations_dict: dict[str, dict[str, str | int | float]]
 ) -> dict[str, dict[str, str | int | float ]]:
+    """ Adds annotation entries to the annotation dictionary,
+    avoiding overwriting existing annotations for the same ID by using the function above"""
 
     # avoid overwriting if id has multiple annotations
     if vcf_id not in tsv_annotations_dict:
@@ -85,6 +90,8 @@ def add_entry_to_annotation_dict(
 def convert_lists_to_tuples(
     tsv_annotations_dict: dict[str, dict[str, str | int | float]]
 ) -> dict[str, dict[str, str | int | float]]:
+    """ Converts lists to tuples in the annotation dictionary when multiple values exist for the same ID and tag,
+    to be compatible with pysam specifications"""
 
     for vcf_id, vcf_id_annotations in tsv_annotations_dict.items():
         for annotation_tag, annotation_value in vcf_id_annotations.items():
@@ -97,6 +104,7 @@ def convert_lists_to_tuples(
 def update_vcf_header_with_new_lines(
     vcf_in: pysam.VariantFile, header_file_path: click.Path
 ) -> pysam.VariantHeader:
+    """ Adds new header lines to original header from header file, and returns the merged header"""
 
     # add new header lines to original header from header file
     with open(header_file_path, "r") as hf:
@@ -112,6 +120,7 @@ def update_vcf_header_with_new_lines(
 def update_vcf_info_field(
     record: pysam.VariantRecord, tsv_dict: dict[str, dict[str, str | int | float | tuple]]
 ) -> pysam.VariantRecord:
+    """Updates the INFO field of a VCF record with annotations from the tsv_dict"""
 
     if record.id in tsv_dict:
         annotations: dict[str, str | int | float | tuple] = tsv_dict[record.id]
@@ -121,7 +130,8 @@ def update_vcf_info_field(
 
 # parse tsv file
 def get_dict_from_tsv(tsv_file_path: click.Path) -> dict:
-    """Parses the tsv file into a dictionary (id as key and the remaining columns as values in a nested dict) compatible with annotation with pysam"""
+    """Parses the tsv file into a dictionary (id as key and the remaining columns as values in a nested dict),
+    to be compatible with annotation with pysam"""
 
     tsv_annotations_dict = {}
     with open(tsv_file_path, newline="") as f:
@@ -146,7 +156,7 @@ def get_dict_from_tsv(tsv_file_path: click.Path) -> dict:
                 )
             )
 
-    # convert list to tuple if multiple values for same field, to be compatible with pysam specifications
+    # convert list to tuple if multiple values for same field
     tsv_annotations_dict: dict[str, dict[str, str | int | float | tuple]] = (
         convert_lists_to_tuples(tsv_annotations_dict)
     )
@@ -159,7 +169,8 @@ def annotate_vcf(
     tsv_dict: dict[str, dict[str, str | int | float | tuple]],
     output_file: click.Path,
 ) -> tuple:
-    """Annotate VCF file using the tsv_dict and header_file, and save the annotated VCF to output_file. Returns the path to the annotated VCF and its index file"""
+    """Annotate VCF file using the tsv_dict and header_file, and save the annotated VCF to output_file.
+    Returns the path to the annotated VCF and its index file"""
 
     vcf_in: pysam.VariantFile = pysam.VariantFile(vcf_file, "rb")
 
