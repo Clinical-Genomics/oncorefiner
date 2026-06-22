@@ -9,7 +9,7 @@ nextflow_process {
 
     config "./nextflow.config"
 
-    test("Annotate VCF by ID") {
+    test("Annotate VCF by ID, tumor-normal") {
 
         setup {
             run("COMBINE_LINX_TSV") {

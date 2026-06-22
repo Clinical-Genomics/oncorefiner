@@ -43,7 +43,33 @@
                 ]
             ]
         ],
-        "timestamp": "2026-06-18T11:53:45.128521",
+        "timestamp": "2026-06-22T15:47:23.407949",
+        "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "25.10.4"
+        }
+    },
+    "with tumor-normal data - stub": {
+        "content": [
+            [
+                "process_svs",
+                "process_svs/subject_a_clinical.vcf.gz",
+                "process_svs/subject_a_clinical.vcf.gz.tbi",
+                "process_svs/subject_a_linxannotated.vcf.gz",
+                "process_svs/subject_a_linxannotated.vcf.gz.tbi",
+                "process_svs/subject_a_linxcombined.tsv",
+                "process_svs/subject_a_research.vcf.gz",
+                "process_svs/subject_a_research.vcf.gz.tbi",
+                "process_svs/subject_a_vcfdb_query.vcf",
+                "vcf2cytosure",
+                "vcf2cytosure/tumor.cgh",
+                "vep",
+                "vep/subject_a_svdbquery_vep.vcf.gz",
+                "vep/subject_a_svdbquery_vep.vcf.gz.tbi",
+                "vep/subject_a_svdbquery_vep_summary.html"
+            ]
+        ],
+        "timestamp": "2026-06-22T15:47:57.399962",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "25.10.4"
