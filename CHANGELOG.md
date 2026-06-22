@@ -31,6 +31,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#101](https://github.com/Clinical-Genomics/oncorefiner/pull/101) Added parameters for arguments in processes `PROCESS_SNVS:BCFTOOLS_VIEW_*`, `PROCESS_*:ENSEMBLVEP_VEP` and `ANNOTATE_CADD:BCFTOOLS_ANNOTATE_INDELS`.
 - [#111](https://github.com/Clinical-Genomics/oncorefiner/pull/111) Added hidden `genome_version_number` parameter, parsed by default from `params.genome`.
 - [#117](https://github.com/Clinical-Genomics/oncorefiner/pull/117) Added stub version for all pipeline and local subworkflow tests.
+- [#133](https://github.com/Clinical-Genomics/oncorefiner/pull/133) Added pipeline stub test without `vep_plugin_files` parameter.
 - [#137](https://github.com/Clinical-Genomics/oncorefiner/pull/137) Added nf-schema validation to VEP database inputs (`vep_plugin_files`) and support for TSV, JSON and YAML file formats in addition to CSV.
 - [#103](https://github.com/Clinical-Genomics/oncorefiner/pull/103) Added `genmod_score_config` parameter.
 - [#103](https://github.com/Clinical-Genomics/oncorefiner/pull/103) Added `genomic-medicine-sweden/vcf_annotate_score_genmod` subworkflow to `PROCESS_SNVS`.
@@ -62,6 +63,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#103](https://github.com/Clinical-Genomics/oncorefiner/pull/108) Updated `bcftools/view` module, also included in `genomic-medicine-sweden/vcf_annotate_score_genmod` subworkflow.
 - [#103](https://github.com/Clinical-Genomics/oncorefiner/pull/103) Changed `PROCESS_SNVS` output logic to return `ch_research_filtered_vcf/tbi` after scoring if this step is run. The file names for these outputs are then given by `VCF_ANNOTATE_SCORE_GENMOD:BCFTOOLS_VIEW`, i.e. with prefix `${meta.id}_genmod_score` as specified in the config file.
 - [#142](https://github.com/Clinical-Genomics/oncorefiner/pull/142) Update `pipelines_testdata_base_path` to reflect the latest commit to `Clinical-Genomics/test-datasets/oncorefiner` that adds LINX TSV files.
+- [#141](https://github.com/Clinical-Genomics/oncorefiner/pull/141) Refactored `GENERATE_CYTOSURE_FILES` to emit output from `VCF2CYTOSURE`.
 
 ### `Fixed`
 
