@@ -18,11 +18,7 @@ process COMBINE_LINX_TSV{
     script:
     def prefix = task.ext.prefix ?: "${meta.id}"
     """
-    python ${moduleDir}/scripts/combine_linx_tsv.py \\
-    -f ${fusion_tsv_file} \\
-    -b ${breakends_tsv_file} \\
-    -sv ${sv_tsv_file} \\
-    -o ${prefix}.tsv
+    combine_linx_tsv.py -f ${fusion_tsv_file} -b ${breakends_tsv_file} -sv ${sv_tsv_file} -o ${prefix}.tsv
     """
 
     stub:
