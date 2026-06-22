@@ -14,7 +14,7 @@ This means that the ‘Flag’ type indicates that the INFO field does not conta
 """
 
 
-def convert_data_types(tsv_row_dict: dict[str, str]) -> dict[str, str | int | float ]: # fix or find function?
+def convert_data_types(tsv_row_dict: dict[str, str]) -> dict[str, str | int | float ]:
     # convert values to float, int or string
     for key, value in tsv_row_dict.items():
         try:
@@ -42,7 +42,7 @@ def convert_entry_to_list(
     else:
         tsv_annotations_dict[vcf_id][annotation_tag] = [
             current_annotation_value,
-            annotation_value, # check the order is right
+            annotation_value,
         ]
 
     return tsv_annotations_dict
