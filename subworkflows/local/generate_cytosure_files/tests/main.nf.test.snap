@@ -26,12 +26,12 @@
                         {
                             "id": "subject_a"
                         },
-                        "tumor_vcf2cytosure.cgh:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "tumor.cgh:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ]
             }
         ],
-        "timestamp": "2026-06-18T11:59:16.290516",
+        "timestamp": "2026-06-18T11:49:43.567602",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.2"
@@ -64,12 +64,12 @@
                         {
                             "id": "subject_a"
                         },
-                        "tumor_vcf2cytosure.cgh:md5,09c4fba0b534f86fc176fe2ccf00820d"
+                        "tumor.cgh:md5,09c4fba0b534f86fc176fe2ccf00820d"
                     ]
                 ]
             }
         ],
-        "timestamp": "2026-06-18T11:59:03.671133",
+        "timestamp": "2026-06-18T11:48:02.245565",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.2"
