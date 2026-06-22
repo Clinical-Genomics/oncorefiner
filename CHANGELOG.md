@@ -36,6 +36,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#103](https://github.com/Clinical-Genomics/oncorefiner/pull/103) Added `genmod_score_config` parameter.
 - [#103](https://github.com/Clinical-Genomics/oncorefiner/pull/103) Added `genomic-medicine-sweden/vcf_annotate_score_genmod` subworkflow to `PROCESS_SNVS`.
 - [#103](https://github.com/Clinical-Genomics/oncorefiner/pull/103) Added `tests/optional_inputs_stub.nf.test` to test running the pipeline without optional inputs. Includes stub test for running the pipeline without providing the `genmod_score_config` parameter.
+- [#135](https://github.com/Clinical-Genomics/oncorefiner/pull/135) Added test config for `GENERATE_CYTOSURE_FILES`.
 - [#124](https://github.com/Clinical-Genomics/oncorefiner/pull/124) Added metadata parameters `case_id`, `sample_id_tumor` and `sample_id_normal`.
 - [#124](https://github.com/Clinical-Genomics/oncorefiner/pull/124) Added `channelFromMetaAndPath` custom channel factory.
 
@@ -110,6 +111,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#130](https://github.com/Clinical-Genomics/oncorefiner/pull/130) Changed output logic for `PROCESS_SNVS` to output the `research_filtered_vcf` file after annotation with vep.
 - [#131](https://github.com/Clinical-Genomics/oncorefiner/pull/131) Fixed strict Nextflow syntax compatibility in `ANNOTATE_CADD`
 - [#137](https://github.com/Clinical-Genomics/oncorefiner/pull/134) Fixed VEP able to run without `vep_plugin_files` parameter.
+- [#135](https://github.com/Clinical-Genomics/oncorefiner/pull/135) Fixed test for `GENERATE_CYTOSURE_FILES` so that it states the necessary parameters for the test, uses configurations from the test config and is independent from pipeline wide configuration.
 
 ### `Dependencies`
 
