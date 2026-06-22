@@ -140,7 +140,7 @@ workflow PROCESS_SVS {
         ch_research_filtered_vcf = VCF_ANNOTATE_SCORE_GENMOD.out.vcf
         ch_research_filtered_tbi = VCF_ANNOTATE_SCORE_GENMOD.out.index
 
-        ch_clinical_filtering_in = ch_research_filtered_vcf
+        ch_clinical_filtering_sv_in = ch_research_filtered_vcf
             .join(ch_research_filtered_tbi)
 
     } else {
@@ -148,18 +148,10 @@ workflow PROCESS_SVS {
         ch_research_filtered_vcf = ENSEMBLVEP_VEP.out.vcf
         ch_research_filtered_tbi = ENSEMBLVEP_VEP.out.tbi
 
-        ch_clinical_filtering_in = ch_research_filtered_vcf
+        ch_clinical_filtering_sv_in = ch_research_filtered_vcf
             .join(ch_research_filtered_tbi)
     }
 
-
-    // Clinical Filtering
-    ENSEMBLVEP_VEP.out.vcf
-        .join(ENSEMBLVEP_VEP.out.tbi)
-        .map { meta, vcf, tbi ->
-            tuple(meta, vcf, tbi)
-            }
-        .set { ch_clinical_filtering_sv_in }
     BCFTOOLS_VIEW_CLINICAL(ch_clinical_filtering_sv_in, [], [], [])
 
     // VCF2CYTOSURE
