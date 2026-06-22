@@ -6,6 +6,8 @@ nextflow_workflow {
     tag "subworkflows"
     tag "generate_cytosure_files"
 
+    topics "versions"
+
     test("Alignment files from Tumor sample and somatic SV vcf files from TN test data") {
 
         when {
@@ -33,18 +35,50 @@ nextflow_workflow {
         }
 
         then {
-            // All directories and files in the output directory
-            def output_directories_and_files = getAllFilesFromDir(params.outdir, relative: true, includeDir: true)
-            // All files in the output directory
-            def output_files = getAllFilesFromDir(params.outdir)
-
             assertAll(
                 { assert workflow.success },
                 { assert snapshot(
-                    // All directories and files in the output directory
-                    output_directories_and_files,
-                    // All files in the output directory with their md5 checksum
-                    output_files.collect { file -> [ file.getName(), path(file.toString()).md5 ] }
+                    topics,
+                    workflow.out
+                ).match() }
+            )
+        }
+    }
+
+    test("Alignment files from Tumor sample and somatic SV vcf files from TN test data - stub") {
+
+        options "-stub"
+
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+
+            workflow {
+                """
+                input[0] = channel.of([
+                    ['type':'tumor'],
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/subject_a.tumor.redux.bam', checkIfExists: true),
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/subject_a.tumor.redux.bam.bai', checkIfExists: true)
+                ])
+                input[1] = channel.of([
+                    [id:'subject_a'],
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.sv.vcf.gz.tbi', checkIfExists: true)
+                ])
+                input[2] = channel.of([
+                    [id:'subject_a'],
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.sv.vcf.gz', checkIfExists: true)
+                ])
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(
+                    topics,
+                    workflow.out
                 ).match() }
             )
         }

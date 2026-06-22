@@ -28,6 +28,7 @@
    1. Annotate with [`Vcfanno`](https://github.com/brentp/vcfanno). Intended for local/custom annotation.
    1. Filter with [`bcftools`](https://github.com/samtools/bcftools). This step aims to apply quality, population-level filtering and/or other general criteria as defined in the configuration settings.
    1. Annotate with [`Ensembl VEP`](https://www.ensembl.org/info/docs/tools/vep/index.html)
+   1. Rank variants and annotate with [`Genmod score`](https://github.com/Clinical-Genomics/genmod). A score is assigned to each variant based on the genmod score config file provided. Annotation with the score is added to the output vcf file.
    1. Filter with [`bcftools`](https://github.com/samtools/bcftools). This step applies clinically relevant filters as defined in the configuration settings. For example, it may involve subsetting variants based on a a list of clinically relevant genes.
 
 1. Process SV VCF files
@@ -45,26 +46,11 @@ For further information about the each step and output files, please refer to th
 > [!NOTE]
 > If you are new to Nextflow and nf-core, please refer to [this page](https://nf-co.re/docs/usage/installation) on how to set-up Nextflow. Make sure to [test your setup](https://nf-co.re/docs/usage/introduction#how-to-run-a-pipeline) with `-profile test` before running the workflow on actual data.
 
-First, prepare a samplesheet with your input data that looks as follows:
-
-`samplesheet.csv`:
-
-```csv
-sample,fastq_1,fastq_2
-CONTROL_REP1,AEG588A1_S1_L002_R1_001.fastq.gz,AEG588A1_S1_L002_R2_001.fastq.gz
-```
-
-Each row represents a fastq file (single-end) or a pair of fastq files (paired end).
-
-> [!NOTE]
-> The information from the samplesheet is not currently used in the pipeline, but it is required to be able to run the pipeline and will be used in future developments.
-
 Now, you can run the pipeline using:
 
 ```bash
 nextflow run Clinical-Genomics/oncorefiner \
    -profile <docker/singularity/.../institute> \
-   --input samplesheet.csv \
    --outdir <OUTDIR>
 ```
 
