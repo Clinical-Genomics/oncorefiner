@@ -33,7 +33,7 @@ nextflow_workflow {
                 """
                 input[0] = channel.empty()
                 input[1] = channel.of([
-                    ['id':'subject_a_tumor_sample', 'case_id':'test_case', 'sample_id':'subject_a_tumor_sample', 'sample_type':'tumor', 'sex':'female'],
+                    ['type':'tumor'],
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/subject_a.tumor.redux.bam', checkIfExists: true),
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/subject_a.tumor.redux.bam.bai', checkIfExists: true)
                 ])
@@ -111,7 +111,7 @@ nextflow_workflow {
                 """
                 input[0] = channel.empty()
                 input[1] = channel.of([
-                    ['id':'subject_a_tumor_sample', 'case_id':'test_case', 'sample_id':'subject_a_tumor_sample', 'sample_type':'tumor', 'sex':'female'],
+                    ['type':'tumor'],
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/subject_a.tumor.redux.bam', checkIfExists: true),
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/subject_a.tumor.redux.bam.bai', checkIfExists: true)
                 ])
