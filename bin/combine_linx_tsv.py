@@ -131,6 +131,7 @@ def merge_linx_files(
     help="name of output tsv file",
     required=True,
 )
+
 def combine_linx_files(
     fusion_file: click.Path,
     breakend_file: click.Path,

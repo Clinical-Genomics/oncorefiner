@@ -231,7 +231,7 @@ def annotate_vcf(
     required=True,
 )
 
-# run
+# run main
 def main(
     vcf_file: click.Path,
     header_file: click.Path,
