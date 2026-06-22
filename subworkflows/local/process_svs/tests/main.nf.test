@@ -1,6 +1,6 @@
 nextflow_workflow {
 
-    name "Test subworkflow Process Structural Variants (PROCESS_SVS)"
+    name "Test subworkflow PROCESS_SVS"
     script "../main.nf"
     config "./nextflow.config"
     workflow "PROCESS_SVS"
@@ -37,7 +37,7 @@ nextflow_workflow {
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/subject_a.tumor.redux.bam', checkIfExists: true),
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/subject_a.tumor.redux.bam.bai', checkIfExists: true)
                 ])
-                input[2] =  channel.of([
+                input[2] = channel.of([
                     [id:'subject_a'],
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.linx.breakend.tsv', checkIfExists: true)
                 ])
