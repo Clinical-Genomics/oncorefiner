@@ -16,6 +16,9 @@ Define where the pipeline should find input data and save output data.
 | `bam_normal` | Path to alignment BAM file for the normal sample. | `string` |  |  |  |
 | `bai_normal` | Path to BAM index file for the normal sample. | `string` |  |  |  |
 | `sex` | Sex of the patient. (accepted: `female`\|`male`\|`unknown`) | `string` |  |  |  |
+| `linx_fusion_tsv` | Path to fusion linx tsv file for the sample. | `string` |  |  |  |
+| `linx_breakends_tsv` | Path to breakend linx tsv file for the sample. | `string` |  |  |  |
+| `linx_sv_tsv` | Path to sv linx tsv file for the sample. | `string` |  |  |  |
 | `email` | Email address for completion summary. <details><summary>Help</summary><small>Set this parameter to your e-mail address to get a summary e-mail with details of the run sent to you when the workflow exits. If set in your user config file (`~/.nextflow/config`) then you don't need to specify this on the command line for every run.</small></details>| `string` |  |  |  |
 | `multiqc_title` | MultiQC report title. Printed as page header, used for filename if not otherwise specified. | `string` |  |  |  |
 
@@ -83,7 +86,7 @@ Less common options for the pipeline, typically set in a config file.
 | `multiqc_logo` | Custom logo file to supply to MultiQC. File name must also be set in the MultiQC config file | `string` |  |  | True |
 | `multiqc_methods_description` | Custom MultiQC yaml file containing HTML including a methods description. | `string` |  |  |  |
 | `validate_params` | Boolean whether to validate parameters against the schema at runtime | `boolean` | True |  | True |
-| `pipelines_testdata_base_path` | Base URL or local path to location of pipeline test dataset files | `string` | https://raw.githubusercontent.com/Clinical-Genomics/test-datasets/8386554a6da51bba43cfc0b0e6448d816d246e43/ |  | True |
+| `pipelines_testdata_base_path` | Base URL or local path to location of pipeline test dataset files | `string` | https://raw.githubusercontent.com/Clinical-Genomics/test-datasets/ccc8bf4dcbe6a3e1a4975331f830d53fa655d8c1/ |  | True |
 | `trace_report_suffix` | Suffix to add to the trace report filename. Default is the date and time in the format yyyy-MM-dd_HH-mm-ss. | `string` |  |  | True |
 | `help` | Display the help message. | `['boolean', 'string']` |  |  |  |
 | `help_full` | Display the full detailed help message. | `boolean` |  |  |  |

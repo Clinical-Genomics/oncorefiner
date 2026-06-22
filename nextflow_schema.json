@@ -71,6 +71,27 @@
                     "enum": ["female", "male", "unknown"],
                     "description": "Sex of the patient."
                 },
+                "linx_fusion_tsv": {
+                    "type": "string",
+                    "description": "Path to fusion linx tsv file for the sample.",
+                    "pattern": "^\\S+\\.tsv$",
+                    "format": "file-path",
+                    "exists": true
+                },
+                "linx_breakends_tsv": {
+                    "type": "string",
+                    "description": "Path to breakend linx tsv file for the sample.",
+                    "pattern": "^\\S+\\.tsv$",
+                    "format": "file-path",
+                    "exists": true
+                },
+                "linx_sv_tsv": {
+                    "type": "string",
+                    "description": "Path to sv linx tsv file for the sample.",
+                    "pattern": "^\\S+\\.tsv$",
+                    "format": "file-path",
+                    "exists": true
+                },
                 "email": {
                     "type": "string",
                     "description": "Email address for completion summary.",
@@ -376,7 +397,7 @@
                     "type": "string",
                     "fa_icon": "far fa-check-circle",
                     "description": "Base URL or local path to location of pipeline test dataset files",
-                    "default": "https://raw.githubusercontent.com/Clinical-Genomics/test-datasets/8386554a6da51bba43cfc0b0e6448d816d246e43/",
+                    "default": "https://raw.githubusercontent.com/Clinical-Genomics/test-datasets/ccc8bf4dcbe6a3e1a4975331f830d53fa655d8c1/",
                     "hidden": true
                 },
                 "trace_report_suffix": {
