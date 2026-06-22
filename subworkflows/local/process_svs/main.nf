@@ -18,7 +18,6 @@ include { SVDB_QUERY                               } from '../../../modules/nf-c
 //
 
 include { GENERATE_CYTOSURE_FILES } from '../../../subworkflows/local/generate_cytosure_files/main'
-include { ANNOTATE_LINX           } from '../../../subworkflows/local/annotate_linx/main'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

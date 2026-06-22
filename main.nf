@@ -101,8 +101,6 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     ch_genome_fai            = channel.fromPath(val_genome_fai).map { it -> [[id:it.simpleName], it] }.collect()
     ch_genome_fasta_fai      = ch_genome_fasta.join(ch_genome_fai, failOnMismatch: true, failOnDuplicate: true)
 
-    ch_sv_header = channel.fromPath("$projectDir/assets/sv_annotation_header.txt", checkIfExists: true).collect()
-
     // CADD input files
     ch_cadd_header           = channel.fromPath("$projectDir/assets/cadd_to_vcf_header.txt", checkIfExists: true).collect()
     ch_cadd_resources        = val_cadd_resources        ? channel.fromPath(val_cadd_resources).map { it -> [[id:'cadd_resources'], it] }.collect()
