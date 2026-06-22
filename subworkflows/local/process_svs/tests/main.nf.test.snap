@@ -36,10 +36,10 @@
                 ]
             ]
         ],
-        "timestamp": "2026-06-11T15:57:46.876865",
+        "timestamp": "2026-05-07T10:50:32.18893",
         "meta": {
-            "nf-test": "0.9.5",
-            "nextflow": "26.04.2"
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.4"
         }
     },
     "with tumor-normal data - stub": {
@@ -59,7 +59,7 @@
                 "vep/subject_a_svdbquery_vep_summary.html"
             ]
         ],
-        "timestamp": "2026-06-10T16:34:52.90961",
+        "timestamp": "2026-06-01T15:11:38.518539",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.2"
