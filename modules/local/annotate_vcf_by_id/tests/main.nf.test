@@ -37,7 +37,8 @@ nextflow_process {
                     ])
                     .join(COMBINE_LINX_TSV.out.tsv, failOnMismatch: true)
                     .combine( channel.fromPath('$projectDir/assets/sv_annotation_header.txt') )
-                input[0] = ch_input.map { meta, vcf, tsv, header -> tuple(meta, vcf, tsv, header) }
+                    .map { meta, vcf, tsv, header -> tuple(meta, vcf, tsv, header) }
+                input[0] = ch_input
 
                 """
             }
@@ -85,7 +86,8 @@ nextflow_process {
                     ])
                     .join(COMBINE_LINX_TSV.out.tsv, failOnMismatch: true)
                     .combine( channel.fromPath('$projectDir/assets/sv_annotation_header.txt') )
-                input[0] = ch_input.map { meta, vcf, tsv, header -> tuple(meta, vcf, tsv, header) }
+                    .map { meta, vcf, tsv, header -> tuple(meta, vcf, tsv, header) }
+                input[0] = ch_input
 
                 """
             }
