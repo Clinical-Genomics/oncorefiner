@@ -3,6 +3,7 @@
 import click
 import pysam
 import csv
+import ast
 
 """
 This script aims to annotate the info field of a vcf based on the ID field, using:
@@ -20,12 +21,9 @@ def convert_data_types(tsv_row_dict: dict[str, str]) -> dict[str, str | int | fl
     """ Convert values to float, int or string - pysam requires correct types for annotation"""
     for key, value in tsv_row_dict.items():
         try:
-            tsv_row_dict[key] = int(value)
-        except ValueError:
-            try:
-                tsv_row_dict[key] = float(value)
-            except ValueError:
-                tsv_row_dict[key] = str(value)
+            tsv_row_dict[key] = ast.literal_eval(value)
+        except (ValueError, SyntaxError):
+            tsv_row_dict[key] = value
 
     return tsv_row_dict
 
