@@ -11,6 +11,7 @@ process COMBINE_LINX_TSV{
 
     output:
     tuple val(meta), path("*.tsv"), emit: tsv
+    tuple val("${task.process}"), val('combine_linx_tsv'), val('1.0'), topic: versions, emit: versions_combine_linx_tsv
 
     when:
     task.ext.when == null || task.ext.when
@@ -18,7 +19,11 @@ process COMBINE_LINX_TSV{
     script:
     def prefix = task.ext.prefix ?: "${meta.id}"
     """
-    combine_linx_tsv.py -f ${fusion_tsv_file} -b ${breakends_tsv_file} -sv ${sv_tsv_file} -o ${prefix}.tsv
+    combine_linx_tsv.py \
+    -f ${fusion_tsv_file} \
+    -b ${breakends_tsv_file} \
+    -sv ${sv_tsv_file} \
+    -o ${prefix}.tsv
     """
 
     stub:

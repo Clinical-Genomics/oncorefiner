@@ -47,8 +47,9 @@ nextflow_process {
             assert process.success
             assertAll(
                 { assert snapshot(
-                    process.out.vcf.collect { meta, vcf -> [meta, file(vcf).name, ":variantsMD5,", path(vcf).vcf.variantsMD5 ]} ,
+                    process.out.vcf.collect { meta, vcf -> [meta, file(vcf).name + ":variantsMD5," + path(vcf).vcf.variantsMD5 ]} ,
                     process.out.tbi.collect { meta, tbi -> [meta, file(tbi).name ]} ,
+                    process.out.findAll { key, val -> key.startsWith("versions") } ,
                 ).match() }
             )
         }
@@ -94,7 +95,9 @@ nextflow_process {
             assert process.success
             assertAll(
                 { assert snapshot(
-                    process.out ,
+                    process.out.vcf.collect { meta, vcf -> [meta, file(vcf).name ]} ,
+                    process.out.tbi.collect { meta, tbi -> [meta, file(tbi).name ]} ,
+                    process.out.findAll { key, val -> key.startsWith("versions") } ,
                 ).match() }
             )
         }

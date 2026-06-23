@@ -12,7 +12,7 @@ process ANNOTATE_VCF_BY_ID{
     output:
     tuple val(meta), path("${prefix}.vcf.gz"), emit: vcf
     tuple val(meta), path("${prefix}.vcf.gz.tbi"), emit: tbi
-    tuple val("${task.process}"), val('annotate_vcf_by_id'), val('1.0'), topic: versions, emit: versions_annotate_vcf //not working?
+    tuple val("${task.process}"), val('annotate_vcf_by_id'), val('1.0'), topic: versions, emit: versions_annotate_vcf
 
     when:
     task.ext.when == null || task.ext.when
