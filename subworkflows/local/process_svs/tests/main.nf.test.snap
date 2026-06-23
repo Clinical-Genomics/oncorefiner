@@ -8,7 +8,7 @@
                 "process_svs/subject_a_research.vcf.gz",
                 "process_svs/subject_a_research.vcf.gz.tbi",
                 "vcf2cytosure",
-                "vcf2cytosure/tumor.cgh",
+                "vcf2cytosure/null.cgh",
                 "vep",
                 "vep/subject_a_svdbquery_vep.vcf.gz",
                 "vep/subject_a_svdbquery_vep.vcf.gz.tbi",
@@ -29,13 +29,13 @@
                 ]
             ],
             [
-                
+
             ]
         ],
-        "timestamp": "2026-06-18T10:52:05.497569497",
+        "timestamp": "2026-06-22T16:46:29.078308",
         "meta": {
             "nf-test": "0.9.5",
-            "nextflow": "26.04.0"
+            "nextflow": "26.04.2"
         }
     },
     "with tumor-normal data - stub": {
@@ -47,14 +47,14 @@
                 "process_svs/subject_a_research.vcf.gz",
                 "process_svs/subject_a_research.vcf.gz.tbi",
                 "vcf2cytosure",
-                "vcf2cytosure/tumor.cgh",
+                "vcf2cytosure/null.cgh",
                 "vep",
                 "vep/subject_a_svdbquery_vep.vcf.gz",
                 "vep/subject_a_svdbquery_vep.vcf.gz.tbi",
                 "vep/subject_a_svdbquery_vep_summary.html"
             ]
         ],
-        "timestamp": "2026-06-18T10:52:15.339396226",
+        "timestamp": "2026-06-22T16:47:12.993747",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.0"
