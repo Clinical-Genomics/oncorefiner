@@ -140,7 +140,7 @@ def get_dict_from_tsv(tsv_file_path: click.Path) -> dict:
 
         for tsv_row_dict in tsv_reader:
             # removes id column from dict, returns id
-            vcf_id: str = tsv_row_dict.pop(vcf_id_column_header) # maybe split up
+            vcf_id: str = tsv_row_dict.pop(vcf_id_column_header)
 
             # convert values to ints, float or keep as string
             vcf_id_annotations: dict[str, str | int | float] = convert_data_types(
@@ -166,7 +166,7 @@ def annotate_vcf(
     header_file: click.Path,
     tsv_dict: dict[str, dict[str, str | int | float | tuple]],
     output_file: click.Path,
-) -> tuple:
+) :
     """Annotate VCF file using the tsv_dict and header_file, and save the annotated VCF to output_file.
     Returns the path to the annotated VCF and its index file"""
 
@@ -194,12 +194,9 @@ def annotate_vcf(
         output_file, preset="vcf", force=True
     )
 
-    return output_file, output_index
-
 
 @click.command()
 
-# get input files
 @click.option(
     "-v",
     "--vcf_file",
@@ -224,7 +221,7 @@ def annotate_vcf(
 @click.option(
     "-o",
     "--output_file",
-    type=click.Path(),  # change to string
+    type=click.STRING,
     help="Output name or path for the annotated VCF file",
     required=True,
 )
