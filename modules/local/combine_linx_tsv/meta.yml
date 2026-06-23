@@ -1,0 +1,48 @@
+name: "combine_linx_tsv"
+description: Combines multiple LINX TSV files into a single TSV file.
+keywords:
+  - python
+  - combine
+  - genomics
+tools:
+  - "python":
+      description: "Combines multiple LINX TSV files into a single TSV file."
+      homepage: "https://www.python.org/"
+      documentation: "https://docs.python.org/3/"
+      tool_dev_url: "https://github.com/python/cpython"
+      doi: ""
+      licence: ["MIT"]
+      identifier: biotools:python
+input:
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. `[ id:'sample1', single_end:false ]`
+    - fusion_tsv_file:
+        type: file
+        description: LINX fusion TSV file
+        pattern: "*.tsv"
+    - breakends_tsv_file:
+        type: file
+        description: LINX breakends TSV file
+        pattern: "*.tsv"
+    - sv_tsv_file:
+        type: file
+        description: LINX SV TSV file
+        pattern: "*.tsv"
+output:
+  - tsv:
+      - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1', single_end:false ]`
+      - "*.tsv":
+          type: file
+          description: Combined TSV file with the columns "vcfId", "FUSION_NAME", "REPORTED"
+          pattern: "*.tsv"
+authors:
+  - "@kristinebilgrav"
+maintainers:
+  - "@kristinebilgrav"
