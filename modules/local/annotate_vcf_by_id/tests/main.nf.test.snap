@@ -25,5 +25,62 @@
             "nf-test": "0.9.5",
             "nextflow": "25.10.4"
         }
+    },
+    "Annotate VCF by ID, tumor-normal - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "/Users/kristinebilgrav/Development/oncorefiner/.nf-test/tests/74db3be0021b79679332b969be946bce/work/78/105bbe26477f23ba354878c4960893/test_linxannotated.vcf.gz"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_linxannotated.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "2": [
+                    [
+                        "ANNOTATE_VCF_BY_ID",
+                        "annotate_vcf_by_id",
+                        "1.0"
+                    ]
+                ],
+                "tbi": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_linxannotated.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "vcf": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "/Users/kristinebilgrav/Development/oncorefiner/.nf-test/tests/74db3be0021b79679332b969be946bce/work/78/105bbe26477f23ba354878c4960893/test_linxannotated.vcf.gz"
+                    ]
+                ],
+                "versions_annotate_vcf": [
+                    [
+                        "ANNOTATE_VCF_BY_ID",
+                        "annotate_vcf_by_id",
+                        "1.0"
+                    ]
+                ]
+            }
+        ],
+        "timestamp": "2026-06-23T16:36:48.32358",
+        "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "25.10.4"
+        }
     }
 }

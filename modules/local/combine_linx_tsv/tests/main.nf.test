@@ -32,4 +32,32 @@ nextflow_process {
             )
         }
     }
+
+    test("Combine LINX TSVs, tumor-normal - stub") {
+
+        options "-stub"
+
+        when {
+
+            process {
+                """
+                input[0] = [
+                    [ id:'test_tsv' ],
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.linx.fusion.tsv', checkIfExists: true),
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.linx.breakend.tsv', checkIfExists: true),
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.linx.svs.tsv', checkIfExists: true)
+                ]
+                """
+            }
+        }
+
+        then {
+            assert process.success
+            assertAll(
+                { assert snapshot(
+                    process.out.tsv
+                ).match() }
+            )
+        }
+    }
 }

@@ -1,4 +1,21 @@
 {
+    "Combine LINX TSVs, tumor-normal - stub": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "test_tsv"
+                    },
+                    "test_tsv_linxcombined.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ]
+            ]
+        ],
+        "timestamp": "2026-06-23T16:29:52.611178",
+        "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "25.10.4"
+        }
+    },
     "Combine LINX TSVs, tumor-normal": {
         "content": [
             [
