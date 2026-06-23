@@ -37,6 +37,8 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#103](https://github.com/Clinical-Genomics/oncorefiner/pull/103) Added `genomic-medicine-sweden/vcf_annotate_score_genmod` subworkflow to `PROCESS_SNVS`.
 - [#103](https://github.com/Clinical-Genomics/oncorefiner/pull/103) Added `tests/optional_inputs_stub.nf.test` to test running the pipeline without optional inputs. Includes stub test for running the pipeline without providing the `genmod_score_config` parameter.
 - [#135](https://github.com/Clinical-Genomics/oncorefiner/pull/135) Added test config for `GENERATE_CYTOSURE_FILES`.
+- [#124](https://github.com/Clinical-Genomics/oncorefiner/pull/124) Added metadata parameters `case_id`, `sample_id_tumor` and `sample_id_normal`.
+- [#124](https://github.com/Clinical-Genomics/oncorefiner/pull/124) Added `channelFromMetaAndPath` custom channel factory.
 
 ### `Changed`
 
@@ -65,6 +67,10 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#103](https://github.com/Clinical-Genomics/oncorefiner/pull/103) Changed `PROCESS_SNVS` output logic to return `ch_research_filtered_vcf/tbi` after scoring if this step is run. The file names for these outputs are then given by `VCF_ANNOTATE_SCORE_GENMOD:BCFTOOLS_VIEW`, i.e. with prefix `${meta.id}_genmod_score` as specified in the config file.
 - [#142](https://github.com/Clinical-Genomics/oncorefiner/pull/142) Update `pipelines_testdata_base_path` to reflect the latest commit to `Clinical-Genomics/test-datasets/oncorefiner` that adds LINX TSV files.
 - [#141](https://github.com/Clinical-Genomics/oncorefiner/pull/141) Refactored `GENERATE_CYTOSURE_FILES` to emit output from `VCF2CYTOSURE`.
+- [#124](https://github.com/Clinical-Genomics/oncorefiner/pull/124) Refactored input channel initialisation to update meta according to new metadata parameters for: Case specific file channels - `ch_snv_vcf`, `ch_snv_vcf_tbi`, `ch_sv_vcf`, `ch_sv_vcf_tbi`; and Sample specific file channel - `ch_bam_bai_normal`, `ch_bam_bai_tumor`, `ch_genome_fasta`, `ch_genome_fai`.
+- [#124](https://github.com/Clinical-Genomics/oncorefiner/pull/124) Update configuration settings to use `meta.sample_type` instead of the previous `meta.type`.
+- [#124](https://github.com/Clinical-Genomics/oncorefiner/pull/124) Update `generate_cytosure_files` and `process_svs` test and snapshots to accommodate to changes in pipeline configuration.
+- [#124](https://github.com/Clinical-Genomics/oncorefiner/pull/124) Update documentation in `docs/usage.md` and `README.md` on how to start a pipeline run given the necessary metadata input parameters.
 
 ### `Fixed`
 
