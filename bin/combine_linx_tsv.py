@@ -23,15 +23,10 @@ The output is a merged tsv file with the following columns:
 """
 
 
-def merge_linx_files(
-    fusion_file: click.Path, breakend_file: click.Path, sv_file: click.Path
+def merge_linx_dataframes(
+    fusions: pd.DataFrame, breakends: pd.DataFrame, svs: pd.DataFrame
 ) -> pd.DataFrame:
     """Merges input tsv files and returns a dataframe with the relevant columns for annotation of VCF file"""
-
-    # load tsv into pandas df
-    fusions: pd.DataFrame = pd.read_csv(fusion_file, sep="\t", dtype=str)
-    breakends: pd.DataFrame = pd.read_csv(breakend_file, sep="\t", dtype=str)
-    svs: pd.DataFrame = pd.read_csv(sv_file, sep="\t", dtype=str)
 
     # rename columns to desired header names in subsequenct VCF annotation step
     fusions.rename(columns={"name": "FUSION_NAME", "reported": "REPORTED"}, inplace=True)
@@ -98,8 +93,13 @@ def combine_linx_files(
     output_file: click.STRING,
 ) -> None:
 
-    # run main function
-    merged_df: pd.DataFrame = merge_linx_files(fusion_file, breakend_file, sv_file)
+    # load tsv into pandas df
+    fusions: pd.DataFrame = pd.read_csv(fusion_file, sep="\t", dtype=str)
+    breakends: pd.DataFrame = pd.read_csv(breakend_file, sep="\t", dtype=str)
+    svs: pd.DataFrame = pd.read_csv(sv_file, sep="\t", dtype=str)
+
+    # merge dataframes
+    merged_df: pd.DataFrame = merge_linx_dataframes(fusions, breakends, svs)
 
     # save the final merged dataframe to a tsv file
     merged_df.to_csv(output_file, sep="\t", index=False)
