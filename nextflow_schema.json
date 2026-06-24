@@ -245,7 +245,7 @@
                     "format": "file-path",
                     "description": "Databases used for structural variant annotation in vcf format.",
                     "fa_icon": "fas fa-file-csv",
-                    "help_text": "Path to comma-separated file containing information about the databases used for structural variant annotation.",
+                    "help_text": "Path to CSV, TSV, JSON or YAML file containing information about the databases used for structural variant annotation.",
                     "pattern": "^\\S+\\.(csv|tsv|json|yaml|yml)$",
                     "schema": "assets/svdb_query_vcf_schema.json"
                 },
