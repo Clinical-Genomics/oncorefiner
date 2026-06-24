@@ -167,6 +167,7 @@ workflow ONCOREFINER {
     snv_vep_report            = PROCESS_SNVS.out.vep_report                                   // channel: [val(meta), val(process), val(tool), path(html)]
     snv_research_filtered_vcf = PROCESS_SNVS.out.research_filtered_vcf                        // channel: [val(meta), path(vcf)]
     snv_research_filtered_tbi = PROCESS_SNVS.out.research_filtered_tbi                        // channel: [val(meta), path(vcf.tbi)]
+    cnv_report_html           = PROCESS_CNVS.out.html_report                                  // channel: [val(meta), path(html)]
     versions                  = ch_versions                                                   // channel: [ path(versions.yml) ]
 
 }
