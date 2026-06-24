@@ -51,5 +51,4 @@ workflow PROCESS_CNVS {
 
     emit:
     html_report = RMARKDOWNNOTEBOOK.out.report   // channel: [ val(meta), path(*.html) ]
-    versions    = RMARKDOWNNOTEBOOK.out.versions // channel: [ path(versions.yml) ]
 }

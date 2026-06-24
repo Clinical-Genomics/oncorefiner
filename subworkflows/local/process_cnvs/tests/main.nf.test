@@ -8,6 +8,7 @@ nextflow_workflow {
     tag "process_cnvs"
 
     config "./nextflow.config"
+    topics "versions"
 
     test("Process CNVs, tumor-normal") {
 
@@ -17,11 +18,11 @@ nextflow_workflow {
                 """
                 input[0] = channel.of([
                     [id:'CNV_REPORT'],
-                    file(params.pipelines_testdata_base_path + 'reference/GRCh38/tumor_normal/subject_a.tumor.purple.cnv.gene.tsv', checkIfExists: true)
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.cnv.gene.tsv', checkIfExists: true)
                 ])
                 input[1] = channel.of([
                     [id:'CNV_REPORT'],
-                    file(params.pipelines_testdata_base_path + 'reference/GRCh38/tumor_normal/subject_a.tumor.purple.cnv.somatic.tsv', checkIfExists: true)
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.cnv.somatic.tsv', checkIfExists: true)
                 ])
                 """
             }
@@ -31,8 +32,8 @@ nextflow_workflow {
             assert workflow.success
             assertAll(
                 { assert snapshot(
-                    workflow.out.html_report.collect { meta, html -> [meta, file(html).name + ":variantsMD5," + path(html).vcf.variantsMD5 ]} ,
-                    workflow.out.findAll { key, val -> key.startsWith("versions") } ,
+                    workflow.out.html_report.collect { meta, html -> [ smeta, file(html).name]} ,
+                    topics,
                 ).match() }
             )
         }
@@ -48,11 +49,11 @@ nextflow_workflow {
                 """
                 input[0] = channel.of([
                     [id:'CNV_REPORT'],
-                    file(params.pipelines_testdata_base_path + 'reference/GRCh38/tumor_normal/subject_a.tumor.purple.cnv.gene.tsv', checkIfExists: true)
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.cnv.gene.tsv', checkIfExists: true)
                 ])
                 input[1] = channel.of([
                     [id:'CNV_REPORT'],
-                    file(params.pipelines_testdata_base_path + 'reference/GRCh38/tumor_normal/subject_a.tumor.purple.cnv.somatic.tsv', checkIfExists: true)
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.cnv.somatic.tsv', checkIfExists: true)
                 ])
 
                 """
@@ -63,8 +64,8 @@ nextflow_workflow {
             assert workflow.success
             assertAll(
                 { assert snapshot(
-                    workflow.out.html_report.collect { meta, html -> [meta, file(html).name ]} ,
-                    workflow.out.findAll { key, val -> key.startsWith("versions") } ,
+                    workflow.out.html_report.collect { meta, html -> [ meta, file(html).name ]},
+                    topics ,
                 ).match() }
             )
         }
