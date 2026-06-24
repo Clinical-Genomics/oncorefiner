@@ -56,6 +56,8 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#87](https://github.com/Clinical-Genomics/oncorefiner/pull/87) Updated all testdata file paths to GRCh38 files, updated snapshot.
 - [#100](https://github.com/Clinical-Genomics/oncorefiner/pull/100) Template update for nf-core tools 4.0.2.
 - [#100](https://github.com/Clinical-Genomics/oncorefiner/pull/100) Changed minimum required nextflow version to 25.10.4.
+- [#103](https://github.com/Clinical-Genomics/oncorefiner/pull/108) Updated `bcftools/view` module, also included in `genomic-medicine-sweden/vcf_annotate_score_genmod` subworkflow.
+- [#103](https://github.com/Clinical-Genomics/oncorefiner/pull/103) Changed `PROCESS_SNVS` output logic to return `ch_research_filtered_vcf/tbi` after scoring if this step is run. The file names for these outputs are then given by `VCF_ANNOTATE_SCORE_GENMOD:BCFTOOLS_VIEW`, i.e. with prefix `${meta.id}_genmod_score` as specified in the config file.
 - [#106](https://github.com/Clinical-Genomics/oncorefiner/pull/106) Changed logic for `stable_path` in pipeline tests to exclude all vcf and index files by default. Removed individual entries for these files in `tests/.nftignore`.
 - [#108](https://github.com/Clinical-Genomics/oncorefiner/pull/108) Update `pipelines_testdata_base_path` to reflect the latest commit to `Clinical-Genomics/test-datasets/` that includes the genmod score config file.
 - [#81](https://github.com/Clinical-Genomics/oncorefiner/pull/81) Update publishing strategy for `PROCESS_SNVS` subworkflow to use output blocks. Removed publishing settings from the subworkflow config file.
@@ -63,6 +65,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#127](https://github.com/Clinical-Genomics/oncorefiner/pull/127) Update `pipelines_testdata_base_path` to reflect the latest commit to `Clinical-Genomics/test-datasets/oncorefiner` that removes `testdata/samplesheet_test.csv`.
 - [#128](https://github.com/Clinical-Genomics/oncorefiner/pull/128) Upgraded nf-test version to 0.9.5 so that the CI check supports topic channel tests.
 - [#138](https://github.com/Clinical-Genomics/oncorefiner/pull/138) Changed indentation to consistently match the nf-core template.
+- [#139](https://github.com/Clinical-Genomics/oncorefiner/pull/139) Changed `tests/.nftignore` to not include `process_svs/*.{vcf}`, since uncompressed VCF files are no longer output
 - [#103](https://github.com/Clinical-Genomics/oncorefiner/pull/108) Updated `bcftools/view` module, also included in `genomic-medicine-sweden/vcf_annotate_score_genmod` subworkflow.
 - [#103](https://github.com/Clinical-Genomics/oncorefiner/pull/103) Changed `PROCESS_SNVS` output logic to return `ch_research_filtered_vcf/tbi` after scoring if this step is run. The file names for these outputs are then given by `VCF_ANNOTATE_SCORE_GENMOD:BCFTOOLS_VIEW`, i.e. with prefix `${meta.id}_genmod_score` as specified in the config file.
 - [#142](https://github.com/Clinical-Genomics/oncorefiner/pull/142) Update `pipelines_testdata_base_path` to reflect the latest commit to `Clinical-Genomics/test-datasets/oncorefiner` that adds LINX TSV files.
@@ -124,3 +127,4 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#18](https://github.com/Clinical-Genomics/oncorefiner/pull/18) Removed CI checks `awstest` and `awsfulltest`.
 - [#51](https://github.com/Clinical-Genomics/oncorefiner/pull/51) Removed unused parameter `custom_extra_files`.
 - [#125](https://github.com/Clinical-Genomics/oncorefiner/pull/125) Removed `input` parameter and samplesheet logic and documentation.
+- [#139](https://github.com/Clinical-Genomics/oncorefiner/pull/139) Removed SVDB output file, since it's an intermediary file not useful to have in the outputs.
