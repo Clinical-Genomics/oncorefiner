@@ -48,6 +48,8 @@
                 "alignments",
                 "alignments/subject_a_tumor.cram",
                 "alignments/subject_a_tumor.cram.crai",
+                "cnv",
+                "cnv/subject_a_cnv_report.html",
                 "multiqc",
                 "multiqc/multiqc_data",
                 "multiqc/multiqc_data/llms-full.txt",
@@ -83,6 +85,7 @@
                 "vep/test_tumor_only_case_svdbquery_vep.vcf.gz_summary.html"
             ],
             [
+                "subject_a_cnv_report.html:md5,374e891b32468a30ad8b818baa4445a1",
                 "tumor.cgh:md5,22c058183d93a767ee61d5319513dc39"
             ],
             [
@@ -146,10 +149,10 @@
                 ]
             ]
         ],
-        "timestamp": "2026-06-22T16:37:50.983616",
+        "timestamp": "2026-06-24T15:00:43.217049",
         "meta": {
             "nf-test": "0.9.5",
-            "nextflow": "26.04.0"
+            "nextflow": "25.10.4"
         }
     },
     "Tumor only analysis with '-profile test_tumor_only' - stub": {
@@ -201,6 +204,8 @@
                 "alignments",
                 "alignments/subject_a_tumor.cram",
                 "alignments/subject_a_tumor.cram.crai",
+                "cnv",
+                "cnv/subject_a_cnv_report.html",
                 "multiqc",
                 "multiqc/multiqc_data",
                 "multiqc/multiqc_data/.stub",
@@ -232,10 +237,10 @@
                 "vep/test_tumor_only_case_svdbquery_vep_summary.html"
             ]
         ],
-        "timestamp": "2026-06-22T16:38:54.315531",
+        "timestamp": "2026-06-24T15:01:27.8014",
         "meta": {
             "nf-test": "0.9.5",
-            "nextflow": "26.04.0"
+            "nextflow": "25.10.4"
         }
     }
 }

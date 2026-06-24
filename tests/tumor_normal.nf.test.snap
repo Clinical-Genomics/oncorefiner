@@ -50,6 +50,8 @@
                 "alignments/subject_a_normal.cram.crai",
                 "alignments/subject_a_tumor.cram",
                 "alignments/subject_a_tumor.cram.crai",
+                "cnv",
+                "cnv/subject_a_cnv_report.html",
                 "multiqc",
                 "multiqc/multiqc_data",
                 "multiqc/multiqc_data/.stub",
@@ -82,10 +84,10 @@
                 "vep/test_tumor_normal_case_svdbquery_vep_summary.html"
             ]
         ],
-        "timestamp": "2026-06-22T16:34:07.010459",
+        "timestamp": "2026-06-24T14:59:21.507693",
         "meta": {
             "nf-test": "0.9.5",
-            "nextflow": "26.04.0"
+            "nextflow": "25.10.4"
         }
     },
     "Tumor Normal analysis with '-profile test'": {
@@ -139,6 +141,8 @@
                 "alignments/subject_a_normal.cram.crai",
                 "alignments/subject_a_tumor.cram",
                 "alignments/subject_a_tumor.cram.crai",
+                "cnv",
+                "cnv/subject_a_cnv_report.html",
                 "multiqc",
                 "multiqc/multiqc_data",
                 "multiqc/multiqc_data/llms-full.txt",
@@ -175,6 +179,7 @@
                 "vep/test_tumor_normal_case_svdbquery_vep.vcf.gz_summary.html"
             ],
             [
+                "subject_a_cnv_report.html:md5,5b4f4eb3cfbe7666ab79e09ffa6c688e",
                 "normal.cgh:md5,4d969b296e558f0fc911844f35fad6e9",
                 "tumor.cgh:md5,dd4ac501252ca74cb364ae447ec6b3eb"
             ],
@@ -239,10 +244,10 @@
                 ]
             ]
         ],
-        "timestamp": "2026-06-22T16:32:59.351833",
+        "timestamp": "2026-06-24T14:58:30.258466",
         "meta": {
             "nf-test": "0.9.5",
-            "nextflow": "26.04.0"
+            "nextflow": "25.10.4"
         }
     }
 }
