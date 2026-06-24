@@ -1,6 +1,6 @@
 ---
 title: "CNV Report"
-date: "`r format(Sys.time(), \"%Y-%m-%d %H:%M %Z\")`"
+date: "`r format(Sys.time(), '%Y-%m-%d %H:%M %Z')`"
 output:
   html_document:
     theme: cosmo
@@ -19,7 +19,7 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 ```
 
 
-This report provides an interactive view of Copy Number Variation (CNV) results at both the gene and segment level. 
+This report provides an interactive view of Copy Number Variation (CNV) results at both the gene and segment level.
 
 ---
 
@@ -69,7 +69,7 @@ datatable(
     search = list(regex = TRUE)
   ),
   rownames = FALSE
-) 
+)
 ```
 
 
