@@ -1,0 +1,72 @@
+nextflow_workflow {
+
+    name "Test subworkflow PROCESS_CNVS"
+    script "../main.nf"
+    workflow "PROCESS_CNVS"
+    tag "subworkflows"
+    tag "subworkflows_local"
+    tag "process_cnvs"
+
+    config "./nextflow.config"
+
+    test("Process CNVs, tumor-normal") {
+
+        when {
+
+            workflow {
+                """
+                input[0] = channel.of([
+                    [id:'CNV_REPORT'],
+                    file(params.pipelines_testdata_base_path + 'reference/GRCh38/tumor_normal/subject_a.tumor.purple.cnv.gene.tsv', checkIfExists: true)
+                ])
+                input[1] = channel.of([
+                    [id:'CNV_REPORT'],
+                    file(params.pipelines_testdata_base_path + 'reference/GRCh38/tumor_normal/subject_a.tumor.purple.cnv.somatic.tsv', checkIfExists: true)
+                ])
+                """
+            }
+        }
+
+        then {
+            assert workflow.success
+            assertAll(
+                { assert snapshot(
+                    workflow.out.html_report.collect { meta, html -> [meta, file(html).name + ":variantsMD5," + path(html).vcf.variantsMD5 ]} ,
+                    workflow.out.findAll { key, val -> key.startsWith("versions") } ,
+                ).match() }
+            )
+        }
+    }
+
+    test("Process CNVs, tumor-normal - stub") {
+
+        options "-stub"
+
+        when {
+
+            workflow {
+                """
+                input[0] = channel.of([
+                    [id:'CNV_REPORT'],
+                    file(params.pipelines_testdata_base_path + 'reference/GRCh38/tumor_normal/subject_a.tumor.purple.cnv.gene.tsv', checkIfExists: true)
+                ])
+                input[1] = channel.of([
+                    [id:'CNV_REPORT'],
+                    file(params.pipelines_testdata_base_path + 'reference/GRCh38/tumor_normal/subject_a.tumor.purple.cnv.somatic.tsv', checkIfExists: true)
+                ])
+
+                """
+            }
+        }
+
+        then {
+            assert workflow.success
+            assertAll(
+                { assert snapshot(
+                    workflow.out.html_report.collect { meta, html -> [meta, file(html).name ]} ,
+                    workflow.out.findAll { key, val -> key.startsWith("versions") } ,
+                ).match() }
+            )
+        }
+    }
+}

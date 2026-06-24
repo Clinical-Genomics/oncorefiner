@@ -22,6 +22,7 @@ workflow PROCESS_CNVS {
     ch_cnv_segment_tsv // channel: [optional]  [val(meta), path(tsv)]
 
     main:
+
     // Path to report template (Rmd file)
     // Todo: eventually this should be passed as an input to the workflow, but for now we can hardcode it since it's part of our assets
     def cnv_report_template = file("${projectDir}/assets/cnv_report.Rmd", checkIfExists: true)
@@ -41,7 +42,6 @@ workflow PROCESS_CNVS {
 
                 return [ [meta, cnv_report_template], r_params, data_files ]
             }
-    ch_report_inputs.view()
 
     RMARKDOWNNOTEBOOK (
         ch_report_inputs.map { it[0] }, // tuple val(meta), path(notebook)
