@@ -29,19 +29,19 @@ workflow PROCESS_CNVS {
 
     // Join the two distinct file channels together based on the meta.id
     ch_report_inputs = ch_cnv_gene_tsv
-            .join(ch_cnv_segment_tsv)
-            .map { meta, cnv_gene_tsv, cnv_segment_tsv ->
-                // Define any internal variables to pass to the Rmd document params
-                def r_params = [
-                    cnv_gene   : cnv_gene_tsv.name,
-                    cnv_segment: cnv_segment_tsv.name,
-                ]
+        .join(ch_cnv_segment_tsv)
+        .map { meta, cnv_gene_tsv, cnv_segment_tsv ->
+            // Define any internal variables to pass to the Rmd document params
+            def r_params = [
+                cnv_gene   : cnv_gene_tsv.name,
+                cnv_segment: cnv_segment_tsv.name,
+            ]
 
-                // Group the 2 target data files into a single list element
-                def data_files = [cnv_gene_tsv, cnv_segment_tsv]
+            // Group the 2 target data files into a single list element
+            def data_files = [cnv_gene_tsv, cnv_segment_tsv]
 
-                return [ [meta, cnv_report_template], r_params, data_files ]
-            }
+            return [ [meta, cnv_report_template], r_params, data_files ]
+        }
 
     RMARKDOWNNOTEBOOK (
         ch_report_inputs.map { it[0] }, // tuple val(meta), path(notebook)

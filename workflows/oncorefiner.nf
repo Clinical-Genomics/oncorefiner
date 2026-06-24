@@ -94,10 +94,10 @@ workflow ONCOREFINER {
         ch_vep_extra_files
     )
 
-        PROCESS_CNVS(
-            ch_cnv_gene_tsv,
-            ch_cnv_segment_tsv
-        )
+    PROCESS_CNVS(
+        ch_cnv_gene_tsv,
+        ch_cnv_segment_tsv
+    )
 
     //
     // Collate and save software versions
