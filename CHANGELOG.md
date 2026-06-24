@@ -77,6 +77,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#124](https://github.com/Clinical-Genomics/oncorefiner/pull/124) Update documentation in `docs/usage.md` and `README.md` on how to start a pipeline run given the necessary metadata input parameters.
 - [#145](https://github.com/Clinical-Genomics/oncorefiner/pull/145) Small fixes to `GENERATE_CYTOSURE_FILES` tests from #135: updated config regex to include the fully qualified name of the process in order for the settings to be applied with the highest priority and removed parameter dependency from each test by moving the values to the config file instead.
 - [#149](https://github.com/Clinical-Genomics/oncorefiner/pull/149) Updated test data base path to remove unused column in SVDB files
+- [#151](https://github.com/Clinical-Genomics/oncorefiner/pull/151) Updated test data base path to include CNV files
 
 ### `Fixed`
 
