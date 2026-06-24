@@ -317,6 +317,9 @@ output {
     snv {
         path "snv"
     }
+    cnv {
+        path "cnv"
+    }
 }
 
 /*
