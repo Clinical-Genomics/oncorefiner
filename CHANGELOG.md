@@ -29,6 +29,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#69](https://github.com/Clinical-Genomics/oncorefiner/pull/69) Added `tumor_normal` config file, used by the default test profile.
 - [#69](https://github.com/Clinical-Genomics/oncorefiner/pull/69) Added `tumor_only` config file, profile and pipeline test and snapshot.
 - [#101](https://github.com/Clinical-Genomics/oncorefiner/pull/101) Added parameters for arguments in processes `PROCESS_SNVS:BCFTOOLS_VIEW_*`, `PROCESS_*:ENSEMBLVEP_VEP` and `ANNOTATE_CADD:BCFTOOLS_ANNOTATE_INDELS`.
+- [#104](https://github.com/Clinical-Genomics/oncorefiner/pull/104) Added parameters for cnv report generation (`cnv_gene_tsv`, `cnv_segment_tsv`)
 - [#111](https://github.com/Clinical-Genomics/oncorefiner/pull/111) Added hidden `genome_version_number` parameter, parsed by default from `params.genome`.
 - [#117](https://github.com/Clinical-Genomics/oncorefiner/pull/117) Added stub version for all pipeline and local subworkflow tests.
 - [#133](https://github.com/Clinical-Genomics/oncorefiner/pull/133) Added pipeline stub test without `vep_plugin_files` parameter.
