@@ -8,7 +8,7 @@ nextflow_process {
     tag "combine_linx_tsv"
     config "./nextflow.config"
 
-    test("Combine LINX TSVs, tumor-normal") {
+    test("Test combining the LINX TSVs into annotation compatible TSV, tumor-normal") {
         when {
 
             process {
@@ -34,7 +34,7 @@ nextflow_process {
         }
     }
 
-    test("Combine LINX TSVs, tumor-normal - stub") {
+    test("Test combining the LINX TSVs into annotation compatible TSV, tumor-normal - stub") {
 
         options "-stub"
 

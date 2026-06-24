@@ -1,5 +1,5 @@
 {
-    "Combine LINX TSVs, tumor-normal - stub": {
+    "Test combining the LINX TSVs into annotation compatible TSV, tumor-normal - stub": {
         "content": [
             [
                 [
@@ -23,13 +23,13 @@
                 ]
             }
         ],
-        "timestamp": "2026-06-24T13:48:18.09344",
+        "timestamp": "2026-06-24T14:08:24.641261",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "25.10.4"
         }
     },
-    "Combine LINX TSVs, tumor-normal": {
+    "Test combining the LINX TSVs into annotation compatible TSV, tumor-normal": {
         "content": [
             [
                 [
@@ -53,7 +53,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-06-24T13:48:35.819594",
+        "timestamp": "2026-06-24T14:08:21.144843",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "25.10.4"
