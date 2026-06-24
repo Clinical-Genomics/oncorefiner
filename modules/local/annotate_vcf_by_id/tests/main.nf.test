@@ -8,6 +8,7 @@ nextflow_process {
     tag "annotate_vcf_by_id"
 
     config "./nextflow.config"
+    topics "versions"
 
     test("Annotate VCF by ID, tumor-normal") {
 
@@ -17,7 +18,7 @@ nextflow_process {
                 process {
                     """
                     input[0] = [
-                    [ id:'test' ],
+                    [id: 'test', case_id: 'test', sample_id: 'subject_a', sample_type: 'tumor_normal', sex: 'female'],
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.linx.fusion.tsv', checkIfExists: true),
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.linx.breakend.tsv', checkIfExists: true),
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.linx.svs.tsv', checkIfExists: true)
@@ -31,14 +32,12 @@ nextflow_process {
 
             process {
                 """
-                ch_input = channel.of([
-                    [ id:'test' ],
+                input[0] = channel.of([
+                    [id: 'test', case_id: 'test', sample_id: 'subject_a', sample_type: 'tumor_normal', sex: 'female'],
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.sv.vcf.gz', checkIfExists: true)
                     ])
                     .join(COMBINE_LINX_TSV.out.tsv, failOnMismatch: true)
                     .combine( channel.fromPath('$projectDir/assets/sv_annotation_header.txt') )
-                    .map { meta, vcf, tsv, header -> tuple(meta, vcf, tsv, header) }
-                input[0] = ch_input
 
                 """
             }
@@ -50,7 +49,7 @@ nextflow_process {
                 { assert snapshot(
                     process.out.vcf.collect { meta, vcf -> [meta, file(vcf).name + ":variantsMD5," + path(vcf).vcf.variantsMD5 ]} ,
                     process.out.tbi.collect { meta, tbi -> [meta, file(tbi).name ]} ,
-                    process.out.findAll { key, val -> key.startsWith("versions") } ,
+                    topics ,
                 ).match() }
             )
         }
@@ -66,7 +65,7 @@ nextflow_process {
                 process {
                     """
                     input[0] = [
-                    [ id:'test' ],
+                    [id: 'test', case_id: 'test', sample_id: 'subject_a', sample_type: 'tumor_normal', sex: 'female'],
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.linx.fusion.tsv', checkIfExists: true),
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.linx.breakend.tsv', checkIfExists: true),
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.linx.svs.tsv', checkIfExists: true)
@@ -80,14 +79,12 @@ nextflow_process {
 
             process {
                 """
-                ch_input = channel.of([
-                    [ id:'test' ],
+                input[0] = channel.of([
+                    [id: 'test', case_id: 'test', sample_id: 'subject_a', sample_type: 'tumor_normal', sex: 'female'],
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.sv.vcf.gz', checkIfExists: true)
                     ])
                     .join(COMBINE_LINX_TSV.out.tsv, failOnMismatch: true)
                     .combine( channel.fromPath('$projectDir/assets/sv_annotation_header.txt') )
-                    .map { meta, vcf, tsv, header -> tuple(meta, vcf, tsv, header) }
-                input[0] = ch_input
 
                 """
             }
@@ -99,7 +96,7 @@ nextflow_process {
                 { assert snapshot(
                     process.out.vcf.collect { meta, vcf -> [meta, file(vcf).name ]} ,
                     process.out.tbi.collect { meta, tbi -> [meta, file(tbi).name ]} ,
-                    process.out.findAll { key, val -> key.startsWith("versions") } ,
+                    topics ,
                 ).match() }
             )
         }

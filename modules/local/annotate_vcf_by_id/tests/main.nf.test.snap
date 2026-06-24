@@ -4,7 +4,11 @@
             [
                 [
                     {
-                        "id": "test"
+                        "id": "test",
+                        "case_id": "test",
+                        "sample_id": "subject_a",
+                        "sample_type": "tumor_normal",
+                        "sex": "female"
                     },
                     "test_linxannotated.vcf.gz:variantsMD5,da36427a37c150dc78ef322d3841f4a1"
                 ]
@@ -12,22 +16,31 @@
             [
                 [
                     {
-                        "id": "test"
+                        "id": "test",
+                        "case_id": "test",
+                        "sample_id": "subject_a",
+                        "sample_type": "tumor_normal",
+                        "sex": "female"
                     },
                     "test_linxannotated.vcf.gz.tbi"
                 ]
             ],
             {
-                "versions_annotate_vcf": [
+                "versions": [
                     [
                         "ANNOTATE_VCF_BY_ID",
                         "annotate_vcf_by_id",
+                        "1.0"
+                    ],
+                    [
+                        "COMBINE_LINX_TSV",
+                        "combine_linx_tsv",
                         "1.0"
                     ]
                 ]
             }
         ],
-        "timestamp": "2026-06-23T17:20:02.277056",
+        "timestamp": "2026-06-24T13:50:49.055728",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "25.10.4"
@@ -38,7 +51,11 @@
             [
                 [
                     {
-                        "id": "test"
+                        "id": "test",
+                        "case_id": "test",
+                        "sample_id": "subject_a",
+                        "sample_type": "tumor_normal",
+                        "sex": "female"
                     },
                     "test_linxannotated.vcf.gz"
                 ]
@@ -46,22 +63,31 @@
             [
                 [
                     {
-                        "id": "test"
+                        "id": "test",
+                        "case_id": "test",
+                        "sample_id": "subject_a",
+                        "sample_type": "tumor_normal",
+                        "sex": "female"
                     },
                     "test_linxannotated.vcf.gz.tbi"
                 ]
             ],
             {
-                "versions_annotate_vcf": [
+                "versions": [
                     [
                         "ANNOTATE_VCF_BY_ID",
                         "annotate_vcf_by_id",
+                        "1.0"
+                    ],
+                    [
+                        "COMBINE_LINX_TSV",
+                        "combine_linx_tsv",
                         "1.0"
                     ]
                 ]
             }
         ],
-        "timestamp": "2026-06-23T17:15:29.621378",
+        "timestamp": "2026-06-24T13:54:26.897472",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "25.10.4"

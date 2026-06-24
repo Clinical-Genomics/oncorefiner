@@ -4,9 +4,13 @@
             [
                 [
                     {
-                        "id": "test_tsv"
+                        "id": "test",
+                        "case_id": "test",
+                        "sample_id": "subject_a",
+                        "sample_type": "tumor_normal",
+                        "sex": "female"
                     },
-                    "test_tsv_linxcombined.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    "test_linxcombined.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
                 ]
             ],
             {
@@ -19,7 +23,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-06-23T17:25:08.855962",
+        "timestamp": "2026-06-24T13:48:18.09344",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "25.10.4"
@@ -30,9 +34,13 @@
             [
                 [
                     {
-                        "id": "test_tsv"
+                        "id": "test",
+                        "case_id": "test",
+                        "sample_id": "subject_a",
+                        "sample_type": "tumor_normal",
+                        "sex": "female"
                     },
-                    "test_tsv_linxcombined.tsv:md5,ae1e0ecb9111096ff27545f03af70cc0"
+                    "test_linxcombined.tsv:md5,ae1e0ecb9111096ff27545f03af70cc0"
                 ]
             ],
             {
@@ -45,7 +53,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-06-23T17:24:50.468536",
+        "timestamp": "2026-06-24T13:48:35.819594",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "25.10.4"

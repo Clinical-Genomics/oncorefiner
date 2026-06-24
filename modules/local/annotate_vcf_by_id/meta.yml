@@ -12,13 +12,13 @@ tools:
       tool_dev_url: "https://github.com/python/cpython"
       doi: ""
       licence: ["MIT"]
-      identifier: biotools:python
+      identifier: annotate_vcf_by_id
 input:
   - - meta:
         type: map
         description: |
-          Groovy Map containing sample information
-          e.g. `[ id:'sample1', single_end:false ]`
+          Groovy Map containing case information
+          e.g. `[id: 'test', case_id: 'test', sample_id: 'subject_a', sample_type: 'tumor_normal', sex: 'female']`
     - vcf_file:
         type: file
         description: VCF file to be annotated
@@ -36,8 +36,8 @@ output:
       - meta:
           type: map
           description: |
-            Groovy Map containing sample information
-            e.g. `[ id:'sample1', single_end:false ]`
+            Groovy Map containing case information
+            e.g. `[id: 'test', case_id: 'test', sample_id: 'subject_a', sample_type: 'tumor_normal', sex: 'female']`
       - "*.vcf":
           type: file
           description: Annotated VCF file
@@ -46,8 +46,8 @@ output:
       - meta:
           type: map
           description: |
-            Groovy Map containing sample information
-            e.g. `[ id:'sample1', single_end:false ]`
+            Groovy Map containing case information
+            e.g. `[id: 'test', case_id: 'test', sample_id: 'subject_a', sample_type: 'tumor_normal', sex: 'female']`
       - "*.vcf.tbi":
           type: file
           description: Annotated VCF index file
