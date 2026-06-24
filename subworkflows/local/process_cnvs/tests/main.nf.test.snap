@@ -4,13 +4,13 @@
             [
                 [
                     {
-                        "id": "CNV_REPORT",
+                        "id": "test",
                         "case_id": "test",
                         "sample_id": "subject_a",
                         "sample_type": "tumor_normal",
                         "sex": "female"
                     },
-                    "CNV_REPORT_cnv_report.html"
+                    "test_cnv_report.html"
                 ]
             ],
             {
@@ -19,7 +19,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-06-24T14:31:01.260845",
+        "timestamp": "2026-06-24T14:41:35.78546",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "25.10.4"
@@ -30,13 +30,13 @@
             [
                 [
                     {
-                        "id": "CNV_REPORT",
+                        "id": "test",
                         "case_id": "test",
                         "sample_id": "subject_a",
                         "sample_type": "tumor_normal",
                         "sex": "female"
                     },
-                    "CNV_REPORT_cnv_report.html"
+                    "test_cnv_report.html"
                 ]
             ],
             {
@@ -45,7 +45,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-06-24T14:30:55.364579",
+        "timestamp": "2026-06-24T14:41:30.588535",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "25.10.4"
