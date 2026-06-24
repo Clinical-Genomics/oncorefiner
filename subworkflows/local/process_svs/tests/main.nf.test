@@ -52,7 +52,6 @@ nextflow_workflow {
                         'AC',
                         'gnomad_svAF',
                         'gnomad_svAC',
-                        ''
                     ],
                     [
                         params.pipelines_testdata_base_path + 'reference/GRCh38/grch38_swegen_svdb_concat_sort_-20200608_subset.vcf.gz',
@@ -60,7 +59,6 @@ nextflow_workflow {
                         'OCC',
                         'swegenAF',
                         'swegenOCC',
-                        ''
                     ]
                 )
                 input[5] = "GRCh38"
@@ -145,7 +143,6 @@ nextflow_workflow {
                         'AC',
                         'gnomad_svAF',
                         'gnomad_svAC',
-                        ''
                     ],
                     [
                         params.pipelines_testdata_base_path + 'reference/GRCh38/grch38_swegen_svdb_concat_sort_-20200608_subset.vcf.gz',
@@ -153,7 +150,6 @@ nextflow_workflow {
                         'OCC',
                         'swegenAF',
                         'swegenOCC',
-                        ''
                     ]
                 )
                 input[5] = "GRCh38"

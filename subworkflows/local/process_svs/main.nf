@@ -43,7 +43,7 @@ workflow PROCESS_SVS {
     main:
         // SVDB QUERY
         ch_sv_dbs
-            .multiMap { filename, in_freq_info_key, in_allele_count_info_key, out_freq_info_key, out_allele_count_info_key, _use_in_freq_filter ->
+            .multiMap { filename, in_freq_info_key, in_allele_count_info_key, out_freq_info_key, out_allele_count_info_key ->
                 vcf_dbs: filename
                 in_frqs: in_freq_info_key
                 in_occs: in_allele_count_info_key
