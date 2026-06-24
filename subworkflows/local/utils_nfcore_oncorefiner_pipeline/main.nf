@@ -145,6 +145,7 @@ def toolCitationText() {
     def cadd           = "CADD (Rentzsch et al. 2019)"
     def ensemblvep_vep = "Ensembl VEP (McLaren et al. 2016)"
     def svdb           = "svdb"
+    def genmod         = "Genmod"
     def multiqc        = "MultiQC (Ewels et al. 2016)"
 
     if (params.snv_vcf) {
@@ -156,6 +157,13 @@ def toolCitationText() {
             if (params.cadd_resources) {
                 citations_list = citations_list + cadd
             }
+
+        if (params.genmod_score_config) {
+            citations_list =
+                citations_list +
+                genmod
+        }
+
     }
 
     if (params.sv_vcf) {
@@ -249,4 +257,38 @@ def methodsDescriptionText(mqc_methods_yaml) {
     def description_html = engine.createTemplate(methods_text).make(meta)
 
     return description_html.toString()
+}
+
+/**
+ * Creates a metadata map with provided values, excluding any null values.
+ * @param case_id The case ID (required)
+ * @param sample_id The sample ID (can be null)
+ * @param sample_type The sample type (can be null)
+ * @param sex The sex (can be null)
+ * @return Metadata map with provided values
+ */
+def makeMetadata(id, case_id, sample_id=null, sample_type=null, sex=null) {
+    [
+        id         : id,
+        case_id    : case_id,
+        sample_id  : sample_id,
+        sample_type: sample_type,
+        sex        : sex
+    ].findAll { key, value -> value != null }
+}
+
+/**
+ * Creates a value channel from a metadata tuple and file path if provided and the file exists, otherwise returns an empty channel.
+ * @param filePath The path to the file (can be null)
+ * @param meta The channel metadata tuple
+ * @return Value channel with metadata tuple and collected file path or empty channel
+ */
+def channelFromMetaAndPath(meta, filePath) {
+    if (filePath && meta) {
+        return channel.fromPath(filePath, checkIfExists: true).map { file -> [meta, file] }.collect()
+    }
+    if (filePath && !meta) {
+        error "Metadata must be provided when a file path is given. Please provide metadata for the file: ${filePath}"
+    }
+    return channel.empty()
 }
