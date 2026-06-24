@@ -13,6 +13,7 @@ process ANNOTATE_VCF_BY_ID{
     tuple val(meta), path("${prefix}.vcf.gz"), emit: vcf
     tuple val(meta), path("${prefix}.vcf.gz.tbi"), emit: tbi
     tuple val("${task.process}"), val('annotate_vcf_by_id'), val('1.0'), topic: versions, emit: versions_annotate_vcf
+    // WARN: Version information not provided by tool on CLI. Please update version string above when bumping container versions.
 
     when:
     task.ext.when == null || task.ext.when
@@ -30,7 +31,7 @@ process ANNOTATE_VCF_BY_ID{
     stub:
     prefix = task.ext.prefix ?: "${meta.id}"
     """
-    touch ${prefix}.vcf.gz
+    echo | gzip >  ${prefix}.vcf.gz
     touch ${prefix}.vcf.gz.tbi
     """
 

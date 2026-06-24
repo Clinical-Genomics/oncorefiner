@@ -12,6 +12,7 @@ process COMBINE_LINX_TSV{
     output:
     tuple val(meta), path("*.tsv"), emit: tsv
     tuple val("${task.process}"), val('combine_linx_tsv'), val('1.0'), topic: versions, emit: versions_combine_linx_tsv
+    // WARN: Version information not provided by tool on CLI. Please update version string above when bumping container versions.
 
     when:
     task.ext.when == null || task.ext.when
