@@ -32,7 +32,7 @@ nextflow_workflow {
             assert workflow.success
             assertAll(
                 { assert snapshot(
-                    workflow.out.html_report.collect { meta, html -> [ smeta, file(html).name]} ,
+                    workflow.out.html_report.collect { meta, html -> [ meta, file(html).name]} ,
                     topics,
                 ).match() }
             )
