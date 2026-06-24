@@ -63,7 +63,6 @@
                 "process_svs/test_tumor_normal_case_clinical.vcf.gz.tbi",
                 "process_svs/test_tumor_normal_case_research.vcf.gz",
                 "process_svs/test_tumor_normal_case_research.vcf.gz.tbi",
-                "process_svs/test_tumor_normal_case_vcfdb_query.vcf",
                 "snv",
                 "snv/test_tumor_normal_case_clinical.vcf.gz",
                 "snv/test_tumor_normal_case_clinical.vcf.gz.tbi",
@@ -86,7 +85,7 @@
         "timestamp": "2026-06-22T16:34:07.010459",
         "meta": {
             "nf-test": "0.9.5",
-            "nextflow": "26.04.2"
+            "nextflow": "26.04.0"
         }
     },
     "Tumor Normal analysis with '-profile test'": {
@@ -157,7 +156,6 @@
                 "process_svs/test_tumor_normal_case_clinical.vcf.gz.tbi",
                 "process_svs/test_tumor_normal_case_research.vcf.gz",
                 "process_svs/test_tumor_normal_case_research.vcf.gz.tbi",
-                "process_svs/test_tumor_normal_case_vcfdb_query.vcf",
                 "snv",
                 "snv/test_tumor_normal_case_clinical.vcf.gz",
                 "snv/test_tumor_normal_case_clinical.vcf.gz.tbi",
@@ -244,7 +242,7 @@
         "timestamp": "2026-06-22T16:32:59.351833",
         "meta": {
             "nf-test": "0.9.5",
-            "nextflow": "26.04.2"
+            "nextflow": "26.04.0"
         }
     }
 }

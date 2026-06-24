@@ -7,7 +7,6 @@
                 "process_svs/subject_a_clinical.vcf.gz.tbi",
                 "process_svs/subject_a_research.vcf.gz",
                 "process_svs/subject_a_research.vcf.gz.tbi",
-                "process_svs/subject_a_vcfdb_query.vcf",
                 "vcf2cytosure",
                 "vcf2cytosure/null.cgh",
                 "vep",
@@ -30,10 +29,7 @@
                 ]
             ],
             [
-                [
-                    "subject_a_vcfdb_query.vcf",
-                    "2e990ef9ab2c6ca2da8e497de0b4415"
-                ]
+
             ]
         ],
         "timestamp": "2026-06-22T16:46:29.078308",
@@ -50,7 +46,6 @@
                 "process_svs/subject_a_clinical.vcf.gz.tbi",
                 "process_svs/subject_a_research.vcf.gz",
                 "process_svs/subject_a_research.vcf.gz.tbi",
-                "process_svs/subject_a_vcfdb_query.vcf",
                 "vcf2cytosure",
                 "vcf2cytosure/null.cgh",
                 "vep",
@@ -62,7 +57,7 @@
         "timestamp": "2026-06-22T16:47:12.993747",
         "meta": {
             "nf-test": "0.9.5",
-            "nextflow": "26.04.2"
+            "nextflow": "26.04.0"
         }
     }
 }
