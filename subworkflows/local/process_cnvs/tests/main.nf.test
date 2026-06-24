@@ -17,11 +17,11 @@ nextflow_workflow {
             workflow {
                 """
                 input[0] = channel.of([
-                    [id:'CNV_REPORT'],
+                    [id: 'CNV_REPORT', case_id: 'test', sample_id: 'subject_a', sample_type: 'tumor_normal', sex: 'female'],
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.cnv.gene.tsv', checkIfExists: true)
                 ])
                 input[1] = channel.of([
-                    [id:'CNV_REPORT'],
+                    [id: 'CNV_REPORT', case_id: 'test', sample_id: 'subject_a', sample_type: 'tumor_normal', sex: 'female'],
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.cnv.somatic.tsv', checkIfExists: true)
                 ])
                 """
@@ -48,11 +48,11 @@ nextflow_workflow {
             workflow {
                 """
                 input[0] = channel.of([
-                    [id:'CNV_REPORT'],
+                    [id: 'CNV_REPORT', case_id: 'test', sample_id: 'subject_a', sample_type: 'tumor_normal', sex: 'female'],
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.cnv.gene.tsv', checkIfExists: true)
                 ])
                 input[1] = channel.of([
-                    [id:'CNV_REPORT'],
+                    [id: 'CNV_REPORT', case_id: 'test', sample_id: 'subject_a', sample_type: 'tumor_normal', sex: 'female'],
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.cnv.somatic.tsv', checkIfExists: true)
                 ])
 
