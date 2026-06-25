@@ -179,7 +179,6 @@
                 "vep/test_tumor_normal_case_svdbquery_vep.vcf.gz_summary.html"
             ],
             [
-                "subject_a_cnv_report.html:md5,5b4f4eb3cfbe7666ab79e09ffa6c688e",
                 "normal.cgh:md5,4d969b296e558f0fc911844f35fad6e9",
                 "tumor.cgh:md5,dd4ac501252ca74cb364ae447ec6b3eb"
             ],
@@ -244,7 +243,7 @@
                 ]
             ]
         ],
-        "timestamp": "2026-06-24T14:58:30.258466",
+        "timestamp": "2026-06-25T11:42:20.249495",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "25.10.4"

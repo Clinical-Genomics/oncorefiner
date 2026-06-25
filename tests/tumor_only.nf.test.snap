@@ -85,7 +85,6 @@
                 "vep/test_tumor_only_case_svdbquery_vep.vcf.gz_summary.html"
             ],
             [
-                "subject_a_cnv_report.html:md5,374e891b32468a30ad8b818baa4445a1",
                 "tumor.cgh:md5,22c058183d93a767ee61d5319513dc39"
             ],
             [
@@ -149,7 +148,7 @@
                 ]
             ]
         ],
-        "timestamp": "2026-06-24T15:00:43.217049",
+        "timestamp": "2026-06-25T11:44:53.819318",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "25.10.4"
