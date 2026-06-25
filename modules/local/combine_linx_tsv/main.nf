@@ -3,7 +3,7 @@ process COMBINE_LINX_TSV{
 
     conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'https://wave.seqera.io/view/inspect?image=community.wave.seqera.io/library/click_python_pip_pandas:1ffa4e2ace0e5bf3&platform=linux/amd64' :
+        'https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/89/89a8dce6193522bfbdcab9bc0c4e652a5533ce1c73ad3378033bd0b4e109f6f9/data' :
         'community.wave.seqera.io/library/click_python_pip_pandas:1ffa4e2ace0e5bf3' }"
 
     input:
