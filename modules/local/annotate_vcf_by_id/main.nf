@@ -3,8 +3,9 @@ process ANNOTATE_VCF_BY_ID{
 
     conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'https://wave.seqera.io/view/inspect?image=community.wave.seqera.io/library/pysam_click_python:ff252e0bf843a2dd&platform=linux/amd64' :
-        'community.wave.seqera.io/library/pysam_click_python:ff252e0bf843a2dd' }"
+        'https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/d1/d1842a9963f48f7ba6da5b38e0440ae829b1449107e0b368895f4eacb6d8ba1f/data' :
+        'community.wave.seqera.io/library/python_pip_click_pysam:63bd41b7f79f8fa7' }"
+
 
     input:
     tuple val(meta), path(vcf_file), path(tsv_file), path(header_file)

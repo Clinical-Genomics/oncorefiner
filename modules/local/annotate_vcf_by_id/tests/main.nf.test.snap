@@ -4,7 +4,7 @@
             [
                 [
                     {
-                        "id": "test",
+                        "id": "test_linxannotated",
                         "case_id": "test",
                         "sample_id": "subject_a",
                         "sample_type": "tumor_normal",
@@ -16,7 +16,7 @@
             [
                 [
                     {
-                        "id": "test",
+                        "id": "test_linxannotated",
                         "case_id": "test",
                         "sample_id": "subject_a",
                         "sample_type": "tumor_normal",
@@ -40,7 +40,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-06-24T13:50:49.055728",
+        "timestamp": "2026-06-25T11:14:49.886825",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "25.10.4"
@@ -48,46 +48,72 @@
     },
     "Annotate VCF by ID, tumor-normal - stub": {
         "content": [
-            [
-                [
-                    {
-                        "id": "test",
-                        "case_id": "test",
-                        "sample_id": "subject_a",
-                        "sample_type": "tumor_normal",
-                        "sex": "female"
-                    },
-                    "test_linxannotated.vcf.gz"
-                ]
-            ],
-            [
-                [
-                    {
-                        "id": "test",
-                        "case_id": "test",
-                        "sample_id": "subject_a",
-                        "sample_type": "tumor_normal",
-                        "sex": "female"
-                    },
-                    "test_linxannotated.vcf.gz.tbi"
-                ]
-            ],
             {
-                "versions": [
+                "0": [
+                    [
+                        {
+                            "id": "test_linxannotated",
+                            "case_id": "test",
+                            "sample_id": "subject_a",
+                            "sample_type": "tumor_normal",
+                            "sex": "female"
+                        },
+                        "test_linxannotated.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test_linxannotated",
+                            "case_id": "test",
+                            "sample_id": "subject_a",
+                            "sample_type": "tumor_normal",
+                            "sex": "female"
+                        },
+                        "test_linxannotated.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "2": [
                     [
                         "ANNOTATE_VCF_BY_ID",
                         "annotate_vcf_by_id",
                         "1.0"
-                    ],
+                    ]
+                ],
+                "tbi": [
                     [
-                        "COMBINE_LINX_TSV",
-                        "combine_linx_tsv",
+                        {
+                            "id": "test_linxannotated",
+                            "case_id": "test",
+                            "sample_id": "subject_a",
+                            "sample_type": "tumor_normal",
+                            "sex": "female"
+                        },
+                        "test_linxannotated.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "vcf": [
+                    [
+                        {
+                            "id": "test_linxannotated",
+                            "case_id": "test",
+                            "sample_id": "subject_a",
+                            "sample_type": "tumor_normal",
+                            "sex": "female"
+                        },
+                        "test_linxannotated.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                    ]
+                ],
+                "versions_annotate_vcf": [
+                    [
+                        "ANNOTATE_VCF_BY_ID",
+                        "annotate_vcf_by_id",
                         "1.0"
                     ]
                 ]
             }
         ],
-        "timestamp": "2026-06-24T13:54:26.897472",
+        "timestamp": "2026-06-25T11:14:54.745641",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "25.10.4"

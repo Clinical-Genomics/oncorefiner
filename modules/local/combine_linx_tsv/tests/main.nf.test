@@ -6,7 +6,8 @@ nextflow_process {
     tag "modules"
     tag "modules_local"
     tag "combine_linx_tsv"
-    config "./nextflow.config"
+
+    topics "versions"
 
     test("Test combining the LINX TSVs into annotation compatible TSV, tumor-normal") {
         when {
@@ -14,7 +15,7 @@ nextflow_process {
             process {
                 """
                 input[0] = [
-                    [id: 'test', case_id: 'test', sample_id: 'subject_a', sample_type: 'tumor_normal', sex: 'female'],
+                    [id: 'test_linxcombined', case_id: 'test', sample_id: 'subject_a', sample_type: 'tumor_normal', sex: 'female'],
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.linx.fusion.tsv', checkIfExists: true),
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.linx.breakend.tsv', checkIfExists: true),
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.linx.svs.tsv', checkIfExists: true)
@@ -28,7 +29,7 @@ nextflow_process {
             assertAll(
                 { assert snapshot(
                     process.out.tsv,
-                    process.out.findAll { key, val -> key.startsWith("versions") },
+                    topics,
                 ).match() }
             )
         }
@@ -43,7 +44,7 @@ nextflow_process {
             process {
                 """
                 input[0] = [
-                    [id: 'test', case_id: 'test', sample_id: 'subject_a', sample_type: 'tumor_normal', sex: 'female'],
+                    [id: 'test_linxcombined', case_id: 'test', sample_id: 'subject_a', sample_type: 'tumor_normal', sex: 'female'],
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.linx.fusion.tsv', checkIfExists: true),
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.linx.breakend.tsv', checkIfExists: true),
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.linx.svs.tsv', checkIfExists: true)
@@ -56,8 +57,7 @@ nextflow_process {
             assert process.success
             assertAll(
                 { assert snapshot(
-                    process.out.tsv,
-                    process.out.findAll { key, val -> key.startsWith("versions") },
+                    process.out,
                 ).match() }
             )
         }

@@ -1,19 +1,38 @@
 {
     "Test combining the LINX TSVs into annotation compatible TSV, tumor-normal - stub": {
         "content": [
-            [
-                [
-                    {
-                        "id": "test",
-                        "case_id": "test",
-                        "sample_id": "subject_a",
-                        "sample_type": "tumor_normal",
-                        "sex": "female"
-                    },
-                    "test_linxcombined.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
-                ]
-            ],
             {
+                "0": [
+                    [
+                        {
+                            "id": "test_linxcombined",
+                            "case_id": "test",
+                            "sample_id": "subject_a",
+                            "sample_type": "tumor_normal",
+                            "sex": "female"
+                        },
+                        "test_linxcombined.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    [
+                        "COMBINE_LINX_TSV",
+                        "combine_linx_tsv",
+                        "1.0"
+                    ]
+                ],
+                "tsv": [
+                    [
+                        {
+                            "id": "test_linxcombined",
+                            "case_id": "test",
+                            "sample_id": "subject_a",
+                            "sample_type": "tumor_normal",
+                            "sex": "female"
+                        },
+                        "test_linxcombined.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
                 "versions_combine_linx_tsv": [
                     [
                         "COMBINE_LINX_TSV",
@@ -23,7 +42,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-06-24T14:08:24.641261",
+        "timestamp": "2026-06-25T11:34:15.227271",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "25.10.4"
@@ -34,7 +53,7 @@
             [
                 [
                     {
-                        "id": "test",
+                        "id": "test_linxcombined",
                         "case_id": "test",
                         "sample_id": "subject_a",
                         "sample_type": "tumor_normal",
@@ -44,7 +63,7 @@
                 ]
             ],
             {
-                "versions_combine_linx_tsv": [
+                "versions": [
                     [
                         "COMBINE_LINX_TSV",
                         "combine_linx_tsv",
@@ -53,7 +72,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-06-24T14:08:21.144843",
+        "timestamp": "2026-06-25T11:34:42.807123",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "25.10.4"
