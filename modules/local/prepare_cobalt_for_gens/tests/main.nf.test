@@ -1,0 +1,85 @@
+nextflow_process {
+
+    name "Test Process PREPARE_COBALT_FOR_GENS"
+    script "../main.nf"
+    process "PREPARE_COBALT_FOR_GENS"
+    tag "modules"
+    tag "modules_local"
+    tag "prepare_cobalt_for_gens"
+
+    topics "versions"
+
+    test("Prepare cobalt files for GENS, tumor-normal") {
+
+        setup {
+            run("COMBINE_LINX_TSV") {
+                script "modules/local/combine_linx_tsv/main.nf"
+                process {
+                    """
+                    input[0] = [
+                    [id: 'test_linxannotated', case_id: 'test', sample_id: 'subject_a', sample_type: 'tumor_normal', sex: 'female'],
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.linx.fusion.tsv', checkIfExists: true),
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.linx.breakend.tsv', checkIfExists: true),
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.linx.svs.tsv', checkIfExists: true)
+                    ]
+                    """
+                }
+            }
+        }
+
+        when {
+
+            process {
+                """
+                input[0] = channel.of([
+                    [id: 'test_linxannotated', case_id: 'test', sample_id: 'subject_a', sample_type: 'tumor_normal', sex: 'female'],
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.sv.vcf.gz', checkIfExists: true)
+                    ])
+                    .join(COMBINE_LINX_TSV.out.tsv, failOnMismatch: true)
+                    .combine( channel.fromPath('$projectDir/assets/sv_annotation_header.txt') )
+
+                """
+            }
+        }
+
+        then {
+            assert process.success
+            assertAll(
+                { assert snapshot(
+                    process.out.vcf.collect { meta, vcf -> [meta, file(vcf).name + ":variantsMD5," + path(vcf).vcf.variantsMD5 ]},
+                    process.out.tbi.collect { meta, tbi -> [meta, file(tbi).name ]},
+                    topics,
+                ).match() }
+            )
+        }
+    }
+
+    test("Prepare cobalt files for GENS, tumor-normal - stub") {
+
+        options "-stub"
+
+        when {
+
+            process {
+                """
+                input[0] = channel.of([
+                    [id: 'test_linxannotated', case_id: 'test', sample_id: 'subject_a', sample_type: 'tumor_normal', sex: 'female'],
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.sv.vcf.gz', checkIfExists: true)
+                    ])
+                    .join(COMBINE_LINX_TSV.out.tsv, failOnMismatch: true)
+                    .combine( channel.fromPath('$projectDir/assets/sv_annotation_header.txt') )
+
+                """
+            }
+        }
+
+        then {
+            assert process.success
+            assertAll(
+                { assert snapshot(
+                    process.out,
+                ).match() }
+            )
+        }
+    }
+}
