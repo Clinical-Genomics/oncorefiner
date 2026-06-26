@@ -1,0 +1,117 @@
+{
+    "Prepare cobalt files for GENS, normal (tumor-normal data) - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test_cobalt_cov",
+                            "case_id": "test",
+                            "sample_id": "subject_a",
+                            "sample_type": "normal",
+                            "sex": "female"
+                        },
+                        "test_cobalt_cov.normal.bed.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test_cobalt_cov",
+                            "case_id": "test",
+                            "sample_id": "subject_a",
+                            "sample_type": "normal",
+                            "sex": "female"
+                        },
+                        "test_cobalt_cov.normal.bed.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "2": [
+                    [
+                        "PREPARE_COBALT_FOR_GENS",
+                        "prepare_cobalt_for_gens",
+                        "1.0"
+                    ]
+                ],
+                "bed": [
+                    [
+                        {
+                            "id": "test_cobalt_cov",
+                            "case_id": "test",
+                            "sample_id": "subject_a",
+                            "sample_type": "normal",
+                            "sex": "female"
+                        },
+                        "test_cobalt_cov.normal.bed.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                    ]
+                ],
+                "tbi": [
+                    [
+                        {
+                            "id": "test_cobalt_cov",
+                            "case_id": "test",
+                            "sample_id": "subject_a",
+                            "sample_type": "normal",
+                            "sex": "female"
+                        },
+                        "test_cobalt_cov.normal.bed.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions_cobalt_for_gens": [
+                    [
+                        "PREPARE_COBALT_FOR_GENS",
+                        "prepare_cobalt_for_gens",
+                        "1.0"
+                    ]
+                ]
+            }
+        ],
+        "timestamp": "2026-06-26T13:55:38.637474",
+        "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "25.10.4"
+        }
+    },
+    "Prepare cobalt files for GENS, normal (tumor-normal data)": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "test_cobalt_cov",
+                        "case_id": "test",
+                        "sample_id": "subject_a",
+                        "sample_type": "normal",
+                        "sex": "female"
+                    },
+                    "test_cobalt_cov.normal.bed.gz:md5,d80e5d2edb1559d3e035c0739a8d172f"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "test_cobalt_cov",
+                        "case_id": "test",
+                        "sample_id": "subject_a",
+                        "sample_type": "normal",
+                        "sex": "female"
+                    },
+                    "test_cobalt_cov.normal.bed.gz.tbi"
+                ]
+            ],
+            {
+                "versions": [
+                    [
+                        "PREPARE_COBALT_FOR_GENS",
+                        "prepare_cobalt_for_gens",
+                        "1.0"
+                    ]
+                ]
+            }
+        ],
+        "timestamp": "2026-06-26T13:55:34.725615",
+        "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "25.10.4"
+        }
+    }
+}
