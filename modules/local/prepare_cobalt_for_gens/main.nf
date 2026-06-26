@@ -27,4 +27,12 @@ process PREPARE_COBALT_FOR_GENS {
 
     tabix ${prefix}.${sample_type}.cobalt.cov.bed.gz
     """
+
+    stub:
+    prefix = task.ext.prefix ?: "${meta.id}"
+    """
+    echo | gzip >  ${prefix}.bed.gz
+    touch ${prefix}.bed.gz.tbi
+    """
+
 }
