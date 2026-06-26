@@ -34,6 +34,31 @@ nextflow_process {
             )
         }
     }
+    test("Prepare cobalt files for GENS, tumor (tumor-normal data)") {
+
+        when {
+
+            process {
+                """
+                input[0] = channel.of([
+                    [id: 'test_cobalt_cov', case_id: 'test', sample_id: 'subject_a', sample_type: 'tumor', sex: 'female'],
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.cobalt.ratio.pcf', checkIfExists: true)
+                    ])
+                """
+            }
+        }
+
+        then {
+            assert process.success
+            assertAll(
+                { assert snapshot(
+                    process.out.bed,
+                    process.out.tbi.collect { meta, tbi -> [meta, file(tbi).name ]},
+                    topics,
+                ).match() }
+            )
+        }
+    }
 
     test("Prepare cobalt files for GENS, normal (tumor-normal data) - stub") {
 
@@ -46,6 +71,31 @@ nextflow_process {
                 input[0] = channel.of([
                     [id: 'test_cobalt_cov', case_id: 'test', sample_id: 'subject_a', sample_type: 'normal', sex: 'female'],
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.normal.cobalt.ratio.pcf', checkIfExists: true)
+                    ])
+                """
+            }
+        }
+
+        then {
+            assert process.success
+            assertAll(
+                { assert snapshot(
+                    process.out,
+                ).match() }
+            )
+        }
+    }
+    test("Prepare cobalt files for GENS, tumor (tumor-normal data) - stub") {
+
+        options "-stub"
+
+        when {
+
+            process {
+                """
+                input[0] = channel.of([
+                    [id: 'test_cobalt_cov', case_id: 'test', sample_id: 'subject_a', sample_type: 'tumor', sex: 'female'],
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.cobalt.ratio.pcf', checkIfExists: true)
                     ])
                 """
             }
