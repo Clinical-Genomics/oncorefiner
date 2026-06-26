@@ -1,0 +1,25 @@
+name:
+description: Convert AMBER BAF TSV into zoom-level tabix-indexed BAF tracks
+keywords:
+  - cov
+  - cobalt
+  - tabix
+  - bgzip
+tools:
+  - custom:
+      description: Custom cobalt zoom conversion script
+input:
+  - meta:
+      type: map
+      description: Sample metadata
+  - cobalt_pcf:
+      type: file
+      description: COBALT PCF file
+output:
+  - cov_zoom:
+      type: file
+      description: bgzipped and tabix-indexed COBALT coverage zoom files
+      pattern: "*.cov.zoom.tsv.gz"
+authors:
+  - "@math.joh.bio"
+  - "@kristinebilgrav"
