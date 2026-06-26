@@ -45,7 +45,7 @@ nextflow_process {
                 """
                 input[0] = channel.of([
                     [id: 'test_cobalt_cov', case_id: 'test', sample_id: 'subject_a', sample_type: 'normal', sex: 'female'],
-                    file('/Users/kristinebilgrav/Development/test-datasets/testdata/GRCh38/tumor_normal/subject_a.normal.cobalt.ratio.pcf', checkIfExists: true)
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.normal.cobalt.ratio.pcf', checkIfExists: true)
                     ])
                 """
             }
