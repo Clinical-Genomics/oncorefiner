@@ -145,11 +145,10 @@ workflow CLINICALGENOMICS_ONCOREFINER {
                                                  : channel.empty()
 
     // Input for CNV report
-    ch_cnv_gene_tsv      = val_cnv_gene_tsv      ? channel.fromPath(val_cnv_gene_tsv).map { it -> [[id:it.simpleName], it] }.collect()
+    ch_cnv_gene_tsv      = val_cnv_gene_tsv      ? channelFromMetaAndPath(metadata_case_file, val_cnv_gene_tsv)
                                                  : channel.empty()
-    ch_cnv_segment_tsv   = val_cnv_segment_tsv   ? channel.fromPath(val_cnv_segment_tsv).map { it -> [[id:it.simpleName], it] }.collect()
+    ch_cnv_segment_tsv   = val_cnv_segment_tsv   ? channelFromMetaAndPath(metadata_case_file, val_cnv_segment_tsv)
                                                  : channel.empty()
-
     // Input for genmod_score
     if (val_genmod_score_config) {
         ch_genmod_score_config = channel.fromPath(val_genmod_score_config).map { it -> [[id:it.simpleName], it] }.collect()
