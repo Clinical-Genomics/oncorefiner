@@ -99,32 +99,20 @@ def convert_lists_to_tuples(
     return tsv_annotations_dict
 
 
-def update_vcf_header_with_new_lines(
+def get_updated_vcf_header(
     vcf_in: pysam.VariantFile, header_file_path: click.Path
 ) -> pysam.VariantHeader:
     """ Adds new header lines to original header from header file, and returns the merged header"""
 
     # add new header lines to original header from header file
-    with open(header_file_path, "r") as hf:
-        new_header_lines = hf.read().splitlines()
+    with open(header_file_path, "r") as header_file:
+        new_header_lines = header_file.readlines()
 
     for line in new_header_lines:
         vcf_in.header.add_line(line)
     merged_header = vcf_in.header
 
     return merged_header
-
-
-def update_vcf_info_field(
-    record: pysam.VariantRecord, tsv_dict: dict[str, dict[str, str | int | float | tuple]]
-) -> pysam.VariantRecord:
-    """Updates the INFO field of a VCF record with annotations from the tsv_dict"""
-
-    if record.id in tsv_dict:
-        annotations: dict[str, str | int | float | tuple] = tsv_dict[record.id]
-        record.info.update(annotations)
-    return record
-
 
 # parse tsv file
 def get_dict_from_tsv(tsv_file_path: click.Path) -> dict:
@@ -167,12 +155,11 @@ def annotate_vcf(
     tsv_dict: dict[str, dict[str, str | int | float | tuple]],
     output_file: click.Path,
 ) :
-    """Annotate VCF file using the tsv_dict and header_file, and save the annotated VCF to output_file.
-    Returns the path to the annotated VCF and its index file"""
+    """Annotate VCF file using the tsv_dict and header_file, and save the annotated VCF to output_file."""
 
     vcf_in: pysam.VariantFile = pysam.VariantFile(vcf_file, "rb")
 
-    merged_header: pysam.VariantHeader = update_vcf_header_with_new_lines(
+    merged_header: pysam.VariantHeader = get_updated_vcf_header(
         vcf_in, header_file_path=header_file
     )
 
@@ -183,16 +170,14 @@ def annotate_vcf(
 
     # need to loop through records to get entries with correct ID
     for record in vcf_in:
-        record: pysam.VariantRecord = update_vcf_info_field(record, tsv_dict)
+        if record.id in tsv_dict:
+            record.info.update(tsv_dict[record.id])
         vcf_out.write(record)
 
     vcf_in.close()
     vcf_out.close()
 
-    # write index file for annotated vcf
-    output_index: pysam.TabixFile = pysam.tabix_index(
-        output_file, preset="vcf", force=True
-    )
+
 
 
 @click.command()
@@ -239,6 +224,11 @@ def main(
 
     # annotate vcf
     annotate_vcf(vcf_file, header_file, tsv_dict, output_file)
+
+    # write index file for annotated vcf
+    output_index: pysam.TabixFile = pysam.tabix_index(
+        output_file, preset="vcf", force=True
+    )
 
 
 # main
