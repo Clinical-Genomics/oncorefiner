@@ -1,6 +1,6 @@
 
 
-process process_amber_for_gens {
+process PREPARE_AMBER_FOR_GENS {
     tag "$meta.id"
 
     input:

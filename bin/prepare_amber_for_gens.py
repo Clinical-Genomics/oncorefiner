@@ -3,6 +3,7 @@
 import click
 import pandas as pd
 
+### tumor and normal baf take tumor/normal parameter to know which file to check.
 
 DEFAULT_LEVELS = {
     "o": 135,
