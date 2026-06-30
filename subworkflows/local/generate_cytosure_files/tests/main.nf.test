@@ -3,6 +3,7 @@ nextflow_workflow {
     name "Test Workflow GENERATE_CYTOSURE_FILES"
     script "../main.nf"
     workflow "GENERATE_CYTOSURE_FILES"
+    config "./nextflow.config"
     tag "subworkflows"
     tag "generate_cytosure_files"
 
@@ -11,10 +12,6 @@ nextflow_workflow {
     test("Alignment files from Tumor sample and somatic SV vcf files from TN test data") {
 
         when {
-            params {
-                outdir = "$outputDir"
-            }
-
             workflow {
                 """
                 input[0] = channel.of([
@@ -50,10 +47,6 @@ nextflow_workflow {
         options "-stub"
 
         when {
-            params {
-                outdir = "$outputDir"
-            }
-
             workflow {
                 """
                 input[0] = channel.of([

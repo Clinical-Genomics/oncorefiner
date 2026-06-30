@@ -51,6 +51,7 @@ Now, you can run the pipeline using:
 ```bash
 nextflow run Clinical-Genomics/oncorefiner \
    -profile <docker/singularity/.../institute> \
+   -params-file <params.yaml/params.json> \
    --outdir <OUTDIR>
 ```
 

@@ -46,6 +46,26 @@ workflow PROCESS_SVS {
         ch_vep_extra_files    // channel: [optional]  [val(meta), path(vep_extra_files)]
 
     main:
+    // SVDB QUERY
+    ch_sv_dbs
+        .multiMap { filename, in_freq_info_key, in_allele_count_info_key, out_freq_info_key, out_allele_count_info_key ->
+            vcf_dbs: filename
+            in_frqs: in_freq_info_key
+            in_occs: in_allele_count_info_key
+            out_frqs: out_freq_info_key
+            out_occs: out_allele_count_info_key
+        }
+        .set { ch_svdb_dbs }
+
+    SVDB_QUERY (
+        ch_sv_vcf,
+        ch_svdb_dbs.in_occs.toList(),
+        ch_svdb_dbs.in_frqs.toList(),
+        ch_svdb_dbs.out_occs.toList(),
+        ch_svdb_dbs.out_frqs.toList(),
+        ch_svdb_dbs.vcf_dbs.toList(),
+        []
+    )
 
 
         // Annotate VCF with LINX TSVs

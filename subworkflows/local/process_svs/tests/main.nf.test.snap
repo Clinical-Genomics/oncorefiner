@@ -10,9 +10,8 @@
                 "process_svs/subject_a_linxcombined.tsv",
                 "process_svs/subject_a_research.vcf.gz",
                 "process_svs/subject_a_research.vcf.gz.tbi",
-                "process_svs/subject_a_vcfdb_query.vcf",
                 "vcf2cytosure",
-                "vcf2cytosure/tumor.cgh",
+                "vcf2cytosure/null.cgh",
                 "vep",
                 "vep/subject_a_svdbquery_vep.vcf.gz",
                 "vep/subject_a_svdbquery_vep.vcf.gz.tbi",
@@ -37,6 +36,7 @@
                 ]
             ],
             [
+<<<<<<< HEAD
                 [
                     "subject_a_vcfdb_query.vcf",
                     "da36427a37c150dc78ef322d3841f4a1"
@@ -47,6 +47,15 @@
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "25.10.4"
+=======
+
+            ]
+        ],
+        "timestamp": "2026-06-22T16:46:29.078308",
+        "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "26.04.2"
+>>>>>>> dev
         }
     },
     "with tumor-normal data - stub": {
@@ -60,19 +69,18 @@
                 "process_svs/subject_a_linxcombined.tsv",
                 "process_svs/subject_a_research.vcf.gz",
                 "process_svs/subject_a_research.vcf.gz.tbi",
-                "process_svs/subject_a_vcfdb_query.vcf",
                 "vcf2cytosure",
-                "vcf2cytosure/tumor.cgh",
+                "vcf2cytosure/null.cgh",
                 "vep",
                 "vep/subject_a_svdbquery_vep.vcf.gz",
                 "vep/subject_a_svdbquery_vep.vcf.gz.tbi",
                 "vep/subject_a_svdbquery_vep_summary.html"
             ]
         ],
-        "timestamp": "2026-06-22T15:47:57.399962",
+        "timestamp": "2026-06-22T16:47:12.993747",
         "meta": {
             "nf-test": "0.9.5",
-            "nextflow": "25.10.4"
+            "nextflow": "26.04.0"
         }
     }
 }
