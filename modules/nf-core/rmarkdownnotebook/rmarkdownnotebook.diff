@@ -13,6 +13,7 @@ Changes in 'rmarkdownnotebook/environment.yml':
 +  - conda-forge::r-dt=0.34.0
 +  - conda-forge::r-readr=2.1.5
 +  - conda-forge::r-rmarkdown=2.29
+
 'modules/nf-core/rmarkdownnotebook/meta.yml' is unchanged
 Changes in 'rmarkdownnotebook/main.nf':
 --- modules/nf-core/rmarkdownnotebook/main.nf

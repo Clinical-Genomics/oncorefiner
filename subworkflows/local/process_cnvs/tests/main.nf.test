@@ -65,7 +65,7 @@ nextflow_workflow {
             assertAll(
                 { assert snapshot(
                     workflow.out.html_report.collect { meta, html -> [ meta, file(html).name ]},
-                    topics ,
+                    topics,
                 ).match() }
             )
         }
