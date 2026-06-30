@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-from collections import defaultdict
-
 import click
 import pysam
 import csv

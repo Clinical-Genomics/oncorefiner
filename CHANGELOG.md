@@ -35,6 +35,8 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#103](https://github.com/Clinical-Genomics/oncorefiner/pull/103) Added `genmod_score_config` parameter.
 - [#103](https://github.com/Clinical-Genomics/oncorefiner/pull/103) Added `genomic-medicine-sweden/vcf_annotate_score_genmod` subworkflow to `PROCESS_SNVS`.
 - [#103](https://github.com/Clinical-Genomics/oncorefiner/pull/103) Added `tests/optional_inputs_stub.nf.test` to test running the pipeline without optional inputs. Includes stub test for running the pipeline without providing the `genmod_score_config` parameter.
+- [#140](https://github.com/Clinical-Genomics/oncorefiner/pull/140) Added local module `COMBINE_LINX_TSV` for combining LINX TSV files into one TSV for use in annotation of VCF file and tests.
+- [#140](https://github.com/Clinical-Genomics/oncorefiner/pull/140) Added local module `ANNOTATE_VCF_BY_ID` for annotating a VCF by using the VCF ID and a TSV annotation file and tests.
 
 ### `Changed`
 
