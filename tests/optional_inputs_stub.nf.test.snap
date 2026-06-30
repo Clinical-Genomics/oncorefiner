@@ -16,6 +16,9 @@
                 "FILTER_VCF": {
                     "bcftools": "1.23.1"
                 },
+                "RMARKDOWNNOTEBOOK": {
+                    "rmarkdownnotebook": 2.29
+                },
                 "SAMTOOLS_VIEW": {
                     "samtools": "1.23.1"
                 },
@@ -45,7 +48,7 @@
                 "alignments/subject_a_tumor.cram",
                 "alignments/subject_a_tumor.cram.crai",
                 "cnv",
-                "cnv/subject_a_cnv_report.html",
+                "cnv/test_tumor_normal_case_cnv_report.html",
                 "multiqc",
                 "multiqc/multiqc_data",
                 "multiqc/multiqc_data/.stub",
@@ -76,7 +79,7 @@
                 "vep/test_tumor_normal_case_svdbquery_vep_summary.html"
             ]
         ],
-        "timestamp": "2026-06-24T14:55:59.553375",
+        "timestamp": "2026-06-30T10:40:25.646896",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "25.10.4"
@@ -104,6 +107,9 @@
                 },
                 "GENMOD_SCORE": {
                     "genmod": "3.10.2"
+                },
+                "RMARKDOWNNOTEBOOK": {
+                    "rmarkdownnotebook": 2.29
                 },
                 "SAMTOOLS_VIEW": {
                     "samtools": "1.23.1"
@@ -134,7 +140,7 @@
                 "alignments/subject_a_tumor.cram",
                 "alignments/subject_a_tumor.cram.crai",
                 "cnv",
-                "cnv/subject_a_cnv_report.html",
+                "cnv/test_tumor_normal_case_cnv_report.html",
                 "multiqc",
                 "multiqc/multiqc_data",
                 "multiqc/multiqc_data/.stub",
@@ -167,7 +173,7 @@
                 "vep/test_tumor_normal_case_svdbquery_vep_summary.html"
             ]
         ],
-        "timestamp": "2026-06-24T14:56:48.301185",
+        "timestamp": "2026-06-30T10:41:24.175037",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "25.10.4"
