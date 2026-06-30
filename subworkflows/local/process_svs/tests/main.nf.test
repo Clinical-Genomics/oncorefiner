@@ -46,7 +46,20 @@ nextflow_workflow {
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.sv.vcf.gz.tbi', checkIfExists: true)
                 ])
                 input[4] = channel.of(
-                    file(params.pipelines_testdata_base_path + 'reference/GRCh38/svdb_querydb_files.csv', checkIfExists: true)
+                    [
+                        params.pipelines_testdata_base_path + 'reference/GRCh38/grch38_gnomad_reformated_sv_v4.1_subset.vcf.gz',
+                        'AF',
+                        'AC',
+                        'gnomad_svAF',
+                        'gnomad_svAC',
+                    ],
+                    [
+                        params.pipelines_testdata_base_path + 'reference/GRCh38/grch38_swegen_svdb_concat_sort_-20200608_subset.vcf.gz',
+                        'FRQ',
+                        'OCC',
+                        'swegenAF',
+                        'swegenOCC',
+                    ]
                 )
                 input[5] = "GRCh38"
                 input[6] = "homo_sapiens"
@@ -124,7 +137,20 @@ nextflow_workflow {
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.sv.vcf.gz.tbi', checkIfExists: true)
                 ])
                 input[4] = channel.of(
-                    file(params.pipelines_testdata_base_path + 'reference/GRCh38/svdb_querydb_files.csv', checkIfExists: true)
+                    [
+                        params.pipelines_testdata_base_path + 'reference/GRCh38/grch38_gnomad_reformated_sv_v4.1_subset.vcf.gz',
+                        'AF',
+                        'AC',
+                        'gnomad_svAF',
+                        'gnomad_svAC',
+                    ],
+                    [
+                        params.pipelines_testdata_base_path + 'reference/GRCh38/grch38_swegen_svdb_concat_sort_-20200608_subset.vcf.gz',
+                        'FRQ',
+                        'OCC',
+                        'swegenAF',
+                        'swegenOCC',
+                    ]
                 )
                 input[5] = "GRCh38"
                 input[6] = "homo_sapiens"
