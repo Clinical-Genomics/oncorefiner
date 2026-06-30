@@ -51,6 +51,14 @@ RankScoreMinMax
 RankResult
 ```
 
+### CNV
+
+<details markdown="1">
+<summary>Output files</summary>
+
+- `cnv`
+  - `<meta.id>.cnv_report.html`
+
 ### MultiQC
 
 <details markdown="1">
