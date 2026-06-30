@@ -51,7 +51,7 @@ def format_annotation_dict(raw_annotation_dict: dict) -> dict:
     info_fields_dict: dict = {key: string_to_object(value) for key, value in raw_annotation_dict.items()}
     return {vcf_id: info_fields_dict}
 
-def merge_dict(dicts, header_id_type: dict[str, str]):
+"""def merge_dict(dicts, header_id_type: dict[str, str]):
     grouped = {}
     for dict in dicts:
         for key in dict:
@@ -70,7 +70,34 @@ def merge_dict(dicts, header_id_type: dict[str, str]):
                 else:
                     grouped[key][field] = tuple(values)
 
-    return grouped
+    return grouped"""
+
+def merge_dict_by_field(dicts: list[dict], field_type: dict[str, str]):
+    """Merges a list of dictionaries into a single dictionary, grouping values by key, based on field type. If a field is of type "Flag", the maximum
+    value is kept; otherwise, all values are stored in a tuple.
+
+    Keyword arguments:
+    dicts -- list of dictionaries to merge i.e. [{vcf_id: {field: value, ...}}, {vcf_id: {field: value, ...}}, ...]
+    field_type -- dictionary mapping field names to their types i.e. {field_name: "Flag" | "Other", ...}
+    """
+
+    merged_dict = {}
+    for dict in dicts:
+        vcf_id: str = next(iter(dict))
+
+        if vcf_id not in merged_dict:
+            merged_dict[vcf_id] = dict[vcf_id]
+        else:
+            for field, value in dict[vcf_id].items():
+                if field_type[field] == "Flag":
+                    merged_dict[vcf_id][field] = max(merged_dict[vcf_id][field], value)
+                else:
+                    # Append to existing list or create list with existing value and new value
+                    if isinstance(merged_dict[vcf_id][field], list):
+                        merged_dict[vcf_id][field].append(value)
+                    else:
+                        merged_dict[vcf_id][field] = [merged_dict[vcf_id][field], value]
+    return merged_dict
 
 
 def get_dict_from_tsv(tsv_file_path: click.Path, header_id_type: dict[str, str]) -> dict:
@@ -80,7 +107,8 @@ def get_dict_from_tsv(tsv_file_path: click.Path, header_id_type: dict[str, str])
     with open(tsv_file_path, newline="") as f:
         raw_annotation_dict_list: list[dict] = [row for row in csv.DictReader(f, delimiter="\t")]
         annotation_dict_list: list[dict] = [format_annotation_dict(raw_annotation_dict) for raw_annotation_dict in raw_annotation_dict_list]
-        converted_dict: dict = merge_dict(annotation_dict_list, header_id_type)
+        converted_dict: dict = merge_dict_by_field(annotation_dict_list, header_id_type)
+        print(converted_dict)
 
         return converted_dict
 
