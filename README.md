@@ -37,6 +37,9 @@
    1. Annotate with [`Ensembl VEP`](https://www.ensembl.org/info/docs/tools/vep/index.html).
    1. Filter with [`bcftools`](https://github.com/samtools/bcftools). This step applies clinically relevant filters as defined in the configuration settings. For example, it may involve subsetting variants based on a a list of clinically relevant genes.
 
+1. Process CNV
+   1. Generate interactive CNV html report using [`rmarkdownnotebook`](https://rmarkdown.rstudio.com/), based on _.purple.cnv.gene.tsv and _.purple.cnv.somatic.tsv
+
 1. Present QC for raw reads ([`MultiQC`](http://multiqc.info/)).
 
 For further information about the each step and output files, please refer to the [output documentation](.github/docs/output.md).

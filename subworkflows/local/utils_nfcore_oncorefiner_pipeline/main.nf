@@ -147,6 +147,7 @@ def toolCitationText() {
     def svdb           = "svdb"
     def genmod         = "Genmod"
     def multiqc        = "MultiQC (Ewels et al. 2016)"
+    def rmarkdownnotebook = "R Markdown Notebook"
 
     if (params.snv_vcf) {
         citations_list =
@@ -172,6 +173,12 @@ def toolCitationText() {
             svdb           +
             bcftools_view  +
             ensemblvep_vep
+    }
+
+    if (params.cnv_gene_tsv || params.cnv_segment_tsv) {
+        citations_list =
+            citations_list +
+            rmarkdownnotebook
     }
 
     // always run
