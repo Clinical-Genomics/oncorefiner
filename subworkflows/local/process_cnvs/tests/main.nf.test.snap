@@ -5,10 +5,7 @@
                 [
                     {
                         "id": "test",
-                        "case_id": "test",
-                        "sample_id": "subject_a",
-                        "sample_type": "tumor_normal",
-                        "sex": "female"
+                        "case_id": "test"
                     },
                     "test_cnv_report.html"
                 ]
@@ -23,7 +20,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-06-30T09:51:05.982261",
+        "timestamp": "2026-06-30T15:34:02.678044",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "25.10.4"
@@ -35,10 +32,7 @@
                 [
                     {
                         "id": "test",
-                        "case_id": "test",
-                        "sample_id": "subject_a",
-                        "sample_type": "tumor_normal",
-                        "sex": "female"
+                        "case_id": "test"
                     },
                     "test_cnv_report.html"
                 ]
@@ -53,7 +47,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-06-30T09:51:00.468889",
+        "timestamp": "2026-06-30T15:33:57.158372",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "25.10.4"
