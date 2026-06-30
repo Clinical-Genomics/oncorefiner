@@ -24,6 +24,7 @@ process PREPARE_AMBER_FOR_GENS {
     """
     amber_baf_for_gens.py \\
         --input-file ${amber_baf_tsv} \\
+        --sample_type ${meta.sample_type} \\
         --output-file ${prefix}.${meta.sample_type}.baf.zoom.tsv
 
     for f in *.baf.zoom.tsv; do

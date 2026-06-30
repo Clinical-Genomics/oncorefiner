@@ -59,21 +59,21 @@ def write_baf_file(
     help="Input BAF TSV file",
 )
 @click.option(
-    "--tumor-output",
-    default="tumor_baf_zoom.tsv",
+    "--sample-type",
     show_default=True,
-    help="Output file for tumorBAF",
+    help="Sample type (e.g., tumor or tumor_normal)",
 )
 @click.option(
-    "--normal-output",
-    default="normal_baf_zoom.tsv",
+    "--output-file",
+    default="*_baf_zoom.tsv",
     show_default=True,
-    help="Output file for normalBAF",
+    help="Output file for BAF",
 )
+
 def main(
-    input_file: str,
-    tumor_output: str,
-    normal_output: str,
+    input_file: click.Path,
+    output_file: click.STRING,
+    sample_type: click.STRING,
 ) -> None:
     """Convert BAF table into zoom-level files."""
 
@@ -91,27 +91,32 @@ def main(
             f"Missing required columns: {', '.join(sorted(missing))}"
         )
 
-    if "tumorBAF" in df.columns:
+    if sample_type == "tumor":
         write_baf_file(
             df=df,
             baf_column="tumorBAF",
-            output_path=tumor_output,
+            output_path=output_file,
             levels=DEFAULT_LEVELS,
         )
-        click.echo(f"Wrote tumor output: {tumor_output}")
-    else:
-        click.echo("No tumorBAF column found.")
+        click.echo(f"Wrote tumor output: {output_file}")
 
-    if "normalBAF" in df.columns:
+    if "normal" and "tumor" in sample_type:
         write_baf_file(
             df=df,
             baf_column="normalBAF",
-            output_path=normal_output,
+            output_path=output_file,
             levels=DEFAULT_LEVELS,
         )
-        click.echo(f"Wrote normal output: {normal_output}")
-    else:
-        click.echo("No normalBAF column found.")
+        click.echo(f"Wrote normal output: {output_file}")
+
+        write_baf_file(
+            df=df,
+            baf_column="tumorBAF",
+            output_path=output_file,
+            levels=DEFAULT_LEVELS,
+        )
+        click.echo(f"Wrote tumor output: {output_file}")
+
 
 
 if __name__ == "__main__":
