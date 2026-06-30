@@ -5,27 +5,22 @@ keywords:
   - annotate
   - genomics
 tools:
-  - "python":
+  - "annotate_vcf_by_id":
       description: "Annotates VCF files by ID."
-      homepage: "https://www.python.org/"
-      documentation: "https://docs.python.org/3/"
-      tool_dev_url: "https://github.com/python/cpython"
-      doi: ""
-      licence: ["MIT"]
       identifier: annotate_vcf_by_id
 input:
   - - meta:
         type: map
         description: |
           Groovy Map containing case information
-          e.g. `[id: 'test', case_id: 'test', sample_id: 'subject_a', sample_type: 'tumor_normal', sex: 'female']`
+          e.g. `[id: case_id, case_id: case_id]`
     - vcf_file:
         type: file
         description: VCF file to be annotated
         pattern: "*.vcf"
     - tsv_file:
         type: file
-        description: TSV file to use for annotation with the format ID\tTAG1\tTAG2\t...\tTAGN
+        description: TSV file to use for annotation with the format ID\tTAG1\tTAG2\t...\tTAGN, header required.
         pattern: "*.tsv"
     - header_file:
         type: file
@@ -37,7 +32,7 @@ output:
           type: map
           description: |
             Groovy Map containing case information
-            e.g. `[id: 'test', case_id: 'test', sample_id: 'subject_a', sample_type: 'tumor_normal', sex: 'female']`
+            e.g. `[id: case_id, case_id: case_id]`
       - "*.vcf":
           type: file
           description: Annotated VCF file
@@ -47,7 +42,7 @@ output:
           type: map
           description: |
             Groovy Map containing case information
-            e.g. `[id: 'test', case_id: 'test', sample_id: 'subject_a', sample_type: 'tumor_normal', sex: 'female']`
+            e.g. `[id: case_id, case_id: case_id]`
       - "*.vcf.tbi":
           type: file
           description: Annotated VCF index file

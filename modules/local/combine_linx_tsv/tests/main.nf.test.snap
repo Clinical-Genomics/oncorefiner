@@ -5,13 +5,10 @@
                 "0": [
                     [
                         {
-                            "id": "test_linxcombined",
-                            "case_id": "test",
-                            "sample_id": "subject_a",
-                            "sample_type": "tumor_normal",
-                            "sex": "female"
+                            "id": "test_linx",
+                            "case_id": "subject_a"
                         },
-                        "test_linxcombined.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test_linx.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "1": [
@@ -24,13 +21,10 @@
                 "tsv": [
                     [
                         {
-                            "id": "test_linxcombined",
-                            "case_id": "test",
-                            "sample_id": "subject_a",
-                            "sample_type": "tumor_normal",
-                            "sex": "female"
+                            "id": "test_linx",
+                            "case_id": "subject_a"
                         },
-                        "test_linxcombined.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test_linx.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "versions_combine_linx_tsv": [
@@ -42,7 +36,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-06-25T11:34:15.227271",
+        "timestamp": "2026-06-30T13:10:26.844311",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "25.10.4"
@@ -53,13 +47,10 @@
             [
                 [
                     {
-                        "id": "test_linxcombined",
-                        "case_id": "test",
-                        "sample_id": "subject_a",
-                        "sample_type": "tumor_normal",
-                        "sex": "female"
+                        "id": "test_linx",
+                        "case_id": "subject_a"
                     },
-                    "test_linxcombined.tsv:md5,ae1e0ecb9111096ff27545f03af70cc0"
+                    "test_linx.tsv:md5,ae1e0ecb9111096ff27545f03af70cc0"
                 ]
             ],
             {
@@ -72,7 +63,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-06-25T11:34:42.807123",
+        "timestamp": "2026-06-30T13:10:23.473197",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "25.10.4"

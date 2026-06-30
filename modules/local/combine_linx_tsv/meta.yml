@@ -5,20 +5,15 @@ keywords:
   - combine
   - genomics
 tools:
-  - "python":
+  - "combine_linx_tsv":
       description: "Combines multiple LINX TSV files into a single TSV file."
-      homepage: "https://www.python.org/"
-      documentation: "https://docs.python.org/3/"
-      tool_dev_url: "https://github.com/python/cpython"
-      doi: ""
-      licence: ["MIT"]
-      identifier: biotools:python
+      identifier: biotools:combine_linx_tsv
 input:
   - - meta:
         type: map
         description: |
           Groovy Map containing sample information
-          e.g. `[ id:'sample1', single_end:false ]`
+          e.g. `[id: 'case_id', case_id: 'subject_a']`
     - fusion_tsv_file:
         type: file
         description: LINX fusion TSV file
@@ -37,7 +32,7 @@ output:
           type: map
           description: |
             Groovy Map containing sample information
-            e.g. `[ id:'sample1', single_end:false ]`
+            e.g. `[id: 'case_id', case_id: 'subject_a']`
       - "*.tsv":
           type: file
           description: Combined TSV file with the columns "vcfId", "FUSION_NAME", "REPORTED"

@@ -33,6 +33,4 @@ process ANNOTATE_VCF_BY_ID{
     echo | gzip >  ${prefix}.vcf.gz
     touch ${prefix}.vcf.gz.tbi
     """
-
-
 }
