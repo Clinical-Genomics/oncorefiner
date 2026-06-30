@@ -105,7 +105,6 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     ch_sv_vcf          = channelFromMetaAndPath(metadata_case_file, val_sv_vcf)
     ch_sv_vcf_tbi      = channelFromMetaAndPath(metadata_case_file, val_sv_vcf + '.tbi')
     ch_vep_extra_files = channel.empty()
-    ch_svdb_dbs        = channel.empty()
 
     // Alignment files
     def ch_bam_normal     = channelFromMetaAndPath(metadata_normal_sample_file, val_bam_normal)
@@ -141,7 +140,7 @@ workflow CLINICALGENOMICS_ONCOREFINER {
 
 
     // Input for SVDB
-    ch_sv_dbs            = val_svdb_query_dbs    ? channel.fromPath(val_svdb_query_dbs)
+    ch_sv_dbs            = val_svdb_query_dbs    ? channel.fromList(samplesheetToList(val_svdb_query_dbs, 'assets/svdb_query_vcf_schema.json'))
                                                  : channel.empty()
 
     // Input for CNV report
