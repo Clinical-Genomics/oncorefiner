@@ -36,18 +36,6 @@
                 ]
             ],
             [
-<<<<<<< HEAD
-                [
-                    "subject_a_vcfdb_query.vcf",
-                    "da36427a37c150dc78ef322d3841f4a1"
-                ]
-            ]
-        ],
-        "timestamp": "2026-06-22T15:47:23.407949",
-        "meta": {
-            "nf-test": "0.9.5",
-            "nextflow": "25.10.4"
-=======
 
             ]
         ],
@@ -55,7 +43,6 @@
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.2"
->>>>>>> dev
         }
     },
     "with tumor-normal data - stub": {

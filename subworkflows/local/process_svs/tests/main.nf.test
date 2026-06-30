@@ -59,11 +59,7 @@ nextflow_workflow {
                     [id:'subject_a'],
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.sv.vcf.gz.tbi', checkIfExists: true)
                 ])
-<<<<<<< HEAD
                 input[8] = channel.of(
-                    file(params.pipelines_testdata_base_path + 'reference/GRCh38/svdb_querydb_files.csv', checkIfExists: true)
-=======
-                input[4] = channel.of(
                     [
                         params.pipelines_testdata_base_path + 'reference/GRCh38/grch38_gnomad_reformated_sv_v4.1_subset.vcf.gz',
                         'AF',
@@ -78,7 +74,6 @@ nextflow_workflow {
                         'swegenAF',
                         'swegenOCC',
                     ]
->>>>>>> dev
                 )
                 input[9] = "GRCh38"
                 input[10] = "homo_sapiens"
@@ -169,7 +164,7 @@ nextflow_workflow {
                     [id:'subject_a'],
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.sv.vcf.gz.tbi', checkIfExists: true)
                 ])
-                input[4] = channel.of(
+                input[8] = channel.of(
                     [
                         params.pipelines_testdata_base_path + 'reference/GRCh38/grch38_gnomad_reformated_sv_v4.1_subset.vcf.gz',
                         'AF',

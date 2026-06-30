@@ -46,6 +46,20 @@ workflow PROCESS_SVS {
         ch_vep_extra_files    // channel: [optional]  [val(meta), path(vep_extra_files)]
 
     main:
+    // Annotate VCF with LINX TSVs
+    ANNOTATE_LINX(
+        ch_linx_breakends_tsv,
+        ch_linx_fusion_tsv,
+        ch_linx_sv_tsv,
+        ch_sv_header,
+        ch_sv_vcf,
+        ch_sv_vcf_tbi
+    )
+
+    ch_sv_linx_vcf = ANNOTATE_LINX.out.vcf
+    ch_sv_linx_vcf_tbi = ANNOTATE_LINX.out.tbi
+
+
     // SVDB QUERY
     ch_sv_dbs
         .multiMap { filename, in_freq_info_key, in_allele_count_info_key, out_freq_info_key, out_allele_count_info_key ->
@@ -58,7 +72,7 @@ workflow PROCESS_SVS {
         .set { ch_svdb_dbs }
 
     SVDB_QUERY (
-        ch_sv_vcf,
+        ch_sv_linx_vcf,
         ch_svdb_dbs.in_occs.toList(),
         ch_svdb_dbs.in_frqs.toList(),
         ch_svdb_dbs.out_occs.toList(),
@@ -67,92 +81,55 @@ workflow PROCESS_SVS {
         []
     )
 
+    // Quality Filtering
+    SVDB_QUERY.out.vcf
+        .map { meta, vcf ->
+            tuple(meta, vcf, []) }
+        .set { ch_research_filtering_sv_in }
 
-        // Annotate VCF with LINX TSVs
-        ANNOTATE_LINX(
-            ch_linx_breakends_tsv,
-            ch_linx_fusion_tsv,
-            ch_linx_sv_tsv,
-            ch_sv_header,
-            ch_sv_vcf,
-            ch_sv_vcf_tbi
-        )
 
-        ch_sv_linx_vcf = ANNOTATE_LINX.out.vcf
-        ch_sv_linx_vcf_tbi = ANNOTATE_LINX.out.tbi
+    BCFTOOLS_VIEW_RESEARCH(ch_research_filtering_sv_in, [], [], [])
 
-        // SVDB QUERY
-        ch_sv_dbs
-            .splitCsv ( header:true )
-            .multiMap { row ->
-                vcf_dbs:  row.filename
-                in_frqs:  row.in_freq_info_key
-                in_occs:  row.in_allele_count_info_key
-                out_frqs: row.out_freq_info_key
-                out_occs: row.out_allele_count_info_key
+    // VEP
+    BCFTOOLS_VIEW_RESEARCH.out.vcf
+        .map { meta, vcf ->
+                    tuple(meta, vcf, []) }
+        .set { ch_vep_sv }
+
+
+    ENSEMBLVEP_VEP(
+        ch_vep_sv,
+        val_genome,
+        val_species,
+        val_vep_cache_version,
+        ch_vep_cache,
+        ch_genome_fasta,
+        ch_vep_extra_files
+    )
+
+    // Clinical Filtering
+    ENSEMBLVEP_VEP.out.vcf
+        .join(ENSEMBLVEP_VEP.out.tbi)
+        .map { meta, vcf, tbi ->
+            tuple(meta, vcf, tbi)
             }
-            .set { ch_svdb_dbs }
+        .set { ch_clinical_filtering_sv_in }
+    BCFTOOLS_VIEW_CLINICAL(ch_clinical_filtering_sv_in, [], [], [])
 
-        SVDB_QUERY (
-            ch_sv_linx_vcf,
-            ch_svdb_dbs.in_occs.toList(),
-            ch_svdb_dbs.in_frqs.toList(),
-            ch_svdb_dbs.out_occs.toList(),
-            ch_svdb_dbs.out_frqs.toList(),
-            ch_svdb_dbs.vcf_dbs.toList(),
-            []
+    // VCF2CYTOSURE
+    ch_bam_bai = channel.empty().mix(ch_bam_bai_tumor, ch_bam_bai_normal)
+    ch_vcf2cytosure_in = ch_bam_bai.combine(
+        ch_sv_vcf.join(ch_sv_vcf_tbi, failOnMismatch: true),
         )
+        .multiMap { meta_bam_bai, bam, bai, meta_vcf, vcf, tbi ->
+            bam_bai: tuple(meta_bam_bai, bam, bai)
+            vcf: tuple(meta_vcf, vcf)
+            tbi: tuple(meta_vcf, tbi)
+        }
 
-
-        // Quality Filtering
-        SVDB_QUERY.out.vcf
-            .map { meta, vcf ->
-                tuple(meta, vcf, []) }
-            .set { ch_research_filtering_sv_in }
-
-
-        BCFTOOLS_VIEW_RESEARCH(ch_research_filtering_sv_in, [], [], [])
-
-        // VEP
-        BCFTOOLS_VIEW_RESEARCH.out.vcf
-            .map { meta, vcf ->
-                        tuple(meta, vcf, []) }
-            .set { ch_vep_sv }
-
-
-        ENSEMBLVEP_VEP(
-            ch_vep_sv,
-            val_genome,
-            val_species,
-            val_vep_cache_version,
-            ch_vep_cache,
-            ch_genome_fasta,
-            ch_vep_extra_files
-        )
-
-        // Clinical Filtering
-        ENSEMBLVEP_VEP.out.vcf
-            .join(ENSEMBLVEP_VEP.out.tbi)
-            .map { meta, vcf, tbi ->
-                tuple(meta, vcf, tbi)
-                }
-            .set { ch_clinical_filtering_sv_in }
-        BCFTOOLS_VIEW_CLINICAL(ch_clinical_filtering_sv_in, [], [], [])
-
-        // VCF2CYTOSURE
-        ch_bam_bai = channel.empty().mix(ch_bam_bai_tumor, ch_bam_bai_normal)
-        ch_vcf2cytosure_in = ch_bam_bai.combine(
-            ch_sv_vcf.join(ch_sv_vcf_tbi, failOnMismatch: true),
-            )
-            .multiMap { meta_bam_bai, bam, bai, meta_vcf, vcf, tbi ->
-                bam_bai: tuple(meta_bam_bai, bam, bai)
-                vcf: tuple(meta_vcf, vcf)
-                tbi: tuple(meta_vcf, tbi)
-            }
-
-        GENERATE_CYTOSURE_FILES (
-            ch_vcf2cytosure_in.bam_bai,
-            ch_vcf2cytosure_in.tbi,
-            ch_vcf2cytosure_in.vcf
-        )
+    GENERATE_CYTOSURE_FILES (
+        ch_vcf2cytosure_in.bam_bai,
+        ch_vcf2cytosure_in.tbi,
+        ch_vcf2cytosure_in.vcf
+    )
 }
