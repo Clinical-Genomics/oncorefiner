@@ -15,11 +15,15 @@
             ],
             {
                 "versions": [
-                    
+                    [
+                        "PROCESS_CNVS:RMARKDOWNNOTEBOOK",
+                        "rmarkdownnotebook",
+                        "2.29"
+                    ]
                 ]
             }
         ],
-        "timestamp": "2026-06-24T14:41:35.78546",
+        "timestamp": "2026-06-30T09:51:05.982261",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "25.10.4"
@@ -41,11 +45,15 @@
             ],
             {
                 "versions": [
-                    
+                    [
+                        "PROCESS_CNVS:RMARKDOWNNOTEBOOK",
+                        "rmarkdownnotebook",
+                        "2.29"
+                    ]
                 ]
             }
         ],
-        "timestamp": "2026-06-24T14:41:30.588535",
+        "timestamp": "2026-06-30T09:51:00.468889",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "25.10.4"
