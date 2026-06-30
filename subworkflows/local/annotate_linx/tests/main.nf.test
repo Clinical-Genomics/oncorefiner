@@ -5,6 +5,7 @@ nextflow_workflow {
     workflow "ANNOTATE_LINX"
     tag "subworkflows"
     tag "annotate_linx"
+    topics "versions"
 
     test("Annotate VCF with LINX tsv") {
 
@@ -44,6 +45,7 @@ nextflow_workflow {
                 { assert snapshot(
                     workflow.out.vcf.collect { meta, vcf -> [meta, file(vcf).name, ":variantsMD5,", path(vcf).vcf.variantsMD5 ]} ,
                     workflow.out.tbi.collect { meta, tbi -> [meta, file(tbi).name ]} ,
+                    topics
                 ).match() }
             )
         }
