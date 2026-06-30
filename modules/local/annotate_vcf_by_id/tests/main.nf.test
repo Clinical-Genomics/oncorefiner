@@ -7,7 +7,7 @@ nextflow_process {
     tag "modules_local"
     tag "annotate_vcf_by_id"
 
-    config "./nextflow.config"
+    topics "versions"
 
     test("Annotate VCF by ID, tumor-normal") {
 
@@ -17,7 +17,7 @@ nextflow_process {
                 process {
                     """
                     input[0] = [
-                    [ id:'test' ],
+                    [id: 'test_linx', case_id: 'subject_a'],
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.linx.fusion.tsv', checkIfExists: true),
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.linx.breakend.tsv', checkIfExists: true),
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.linx.svs.tsv', checkIfExists: true)
@@ -31,13 +31,12 @@ nextflow_process {
 
             process {
                 """
-                ch_input = channel.of([
-                    [ id:'test' ],
+                input[0] = channel.of([
+                    [id: 'test_linx', case_id: 'subject_a'],
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.sv.vcf.gz', checkIfExists: true)
                     ])
                     .join(COMBINE_LINX_TSV.out.tsv, failOnMismatch: true)
                     .combine( channel.fromPath('$projectDir/assets/sv_annotation_header.txt') )
-                input[0] = ch_input.map { meta, vcf, tsv, header -> tuple(meta, vcf, tsv, header) }
 
                 """
             }
@@ -47,8 +46,54 @@ nextflow_process {
             assert process.success
             assertAll(
                 { assert snapshot(
-                    process.out.vcf.collect { meta, vcf -> [meta, file(vcf).name, ":variantsMD5,", path(vcf).vcf.variantsMD5 ]} ,
-                    process.out.tbi.collect { meta, tbi -> [meta, file(tbi).name ]} ,
+                    process.out.vcf.collect { meta, vcf -> [meta, file(vcf).name + ":variantsMD5," + path(vcf).vcf.variantsMD5 ]},
+                    process.out.tbi.collect { meta, tbi -> [meta, file(tbi).name ]},
+                    topics,
+                ).match() }
+            )
+        }
+    }
+
+    test("Annotate VCF by ID, tumor-normal - stub") {
+
+        options "-stub"
+
+        setup {
+            run("COMBINE_LINX_TSV") {
+                script "modules/local/combine_linx_tsv/main.nf"
+                process {
+                    """
+                    input[0] = [
+                    [id: 'test_linx', case_id: 'subject_a'],
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.linx.fusion.tsv', checkIfExists: true),
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.linx.breakend.tsv', checkIfExists: true),
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.linx.svs.tsv', checkIfExists: true)
+                    ]
+                    """
+                }
+            }
+        }
+
+        when {
+
+            process {
+                """
+                input[0] = channel.of([
+                    [id: 'test_linx', case_id: 'subject_a'],
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.sv.vcf.gz', checkIfExists: true)
+                    ])
+                    .join(COMBINE_LINX_TSV.out.tsv, failOnMismatch: true)
+                    .combine( channel.fromPath('$projectDir/assets/sv_annotation_header.txt') )
+
+                """
+            }
+        }
+
+        then {
+            assert process.success
+            assertAll(
+                { assert snapshot(
+                    process.out,
                 ).match() }
             )
         }
