@@ -18,7 +18,7 @@ This means that the ‘Flag’ type indicates that the INFO field does not conta
 0 and the flag will be added as is to the INFO field based on 0 (false) or 1 (true).
 """
 
-def prepare_header(
+def get_new_header_and_dict(
     vcf_in: pysam.VariantFile, header_file_path: click.Path
 ) -> tuple[pysam.VariantHeader, dict[str, str]]:
     """ Adds new header lines to original header from header file, and returns the merged header"""
@@ -108,7 +108,6 @@ def get_dict_from_tsv(tsv_file_path: click.Path, header_id_type: dict[str, str])
         raw_annotation_dict_list: list[dict] = [row for row in csv.DictReader(f, delimiter="\t")]
         annotation_dict_list: list[dict] = [format_annotation_dict(raw_annotation_dict) for raw_annotation_dict in raw_annotation_dict_list]
         converted_dict: dict = merge_dict_by_field(annotation_dict_list, header_id_type)
-        print(converted_dict)
 
         return converted_dict
 
@@ -168,7 +167,7 @@ def main(
 
     # prepare header
     vcf_in: pysam.VariantFile = pysam.VariantFile(vcf_file, "rb")
-    merged_header, header_id_type = prepare_header(vcf_in, header_file_path=header_file)
+    merged_header, header_id_type = get_new_header_and_dict(vcf_in, header_file_path=header_file)
 
     # parse tsv file
     tsv_dict: dict = get_dict_from_tsv(tsv_file_path=tsv_file, header_id_type=header_id_type)
