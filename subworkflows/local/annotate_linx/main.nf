@@ -2,8 +2,8 @@
 // MODULE: Local modules
 //
 
-include { COMBINE_LINX_TSV           } from '../../../modules/local/combine_linx_tsv/main'
-include { ANNOTATE_VCF_BY_ID         } from '../../../modules/local/annotate_vcf_by_id/main'
+include { COMBINE_LINX_TSV   } from '../../../modules/local/combine_linx_tsv/main'
+include { ANNOTATE_VCF_BY_ID } from '../../../modules/local/annotate_vcf_by_id/main'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -26,9 +26,6 @@ workflow ANNOTATE_LINX {
     ch_linx_input = ch_linx_fusion_tsv
         .join(ch_linx_breakends_tsv, failOnMismatch: true)
         .join(ch_linx_sv_tsv, failOnMismatch: true)
-        .map { meta, fusion_file, breakend_file, sv_file ->
-            tuple( meta, fusion_file, breakend_file, sv_file)
-        }
 
     COMBINE_LINX_TSV(ch_linx_input)
 

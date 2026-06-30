@@ -111,7 +111,7 @@ nextflow_workflow {
         }
     }
 
-        test("with tumor-normal data - stub") {
+    test("with tumor-normal data - stub") {
 
         options "-stub"
 
