@@ -42,6 +42,8 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#136](https://github.com/Clinical-Genomics/oncorefiner/pull/136) Added nf-schema validation to SVDB database inputs (`svdb_query_dbs`)
 - [#140](https://github.com/Clinical-Genomics/oncorefiner/pull/140) Added local module `COMBINE_LINX_TSV` for combining LINX TSV files into one TSV for use in annotation of VCF file and tests.
 - [#140](https://github.com/Clinical-Genomics/oncorefiner/pull/140) Added local module `ANNOTATE_VCF_BY_ID` for annotating a VCF by using the VCF ID and a TSV annotation file and tests.
+- [#143](https://github.com/Clinical-Genomics/oncorefiner/pull/143) Added local subworkflow `ANNOTATE_LINX` for annotating VCF file with LINX TSV file, and tests.
+- [#143](https://github.com/Clinical-Genomics/oncorefiner/pull/143) Added local subworkflow `ANNOTATE_LINX` to subworkflow `PROCESS_SVS`, and updated tests.
 
 ### `Changed`
 

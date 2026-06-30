@@ -2,11 +2,17 @@
     "No `genmod_score_config` with '-profile test' - stub": {
         "content": [
             {
+                "ANNOTATE_VCF_BY_ID": {
+                    "annotate_vcf_by_id": 1.0
+                },
                 "BCFTOOLS_VIEW_CLINICAL": {
                     "bcftools": "1.23.1"
                 },
                 "BCFTOOLS_VIEW_RESEARCH": {
                     "bcftools": "1.23.1"
+                },
+                "COMBINE_LINX_TSV": {
+                    "combine_linx_tsv": 1.0
                 },
                 "ENSEMBLVEP_VEP": {
                     "ensemblvep": 115.2,
@@ -55,6 +61,9 @@
                 "process_svs",
                 "process_svs/test_tumor_normal_case_clinical.vcf.gz",
                 "process_svs/test_tumor_normal_case_clinical.vcf.gz.tbi",
+                "process_svs/test_tumor_normal_case_linxannotated.vcf.gz",
+                "process_svs/test_tumor_normal_case_linxannotated.vcf.gz.tbi",
+                "process_svs/test_tumor_normal_case_linxcombined.tsv",
                 "process_svs/test_tumor_normal_case_research.vcf.gz",
                 "process_svs/test_tumor_normal_case_research.vcf.gz.tbi",
                 "snv",
@@ -74,15 +83,18 @@
                 "vep/test_tumor_normal_case_svdbquery_vep_summary.html"
             ]
         ],
-        "timestamp": "2026-06-22T16:40:15.631533",
+        "timestamp": "2026-06-30T14:38:55.96807",
         "meta": {
             "nf-test": "0.9.5",
-            "nextflow": "26.04.2"
+            "nextflow": "25.10.4"
         }
     },
     "No `vep_plugin_files` with '-profile test' - stub": {
         "content": [
             {
+                "ANNOTATE_VCF_BY_ID": {
+                    "annotate_vcf_by_id": 1.0
+                },
                 "BCFTOOLS_VIEW": {
                     "bcftools": "1.23.1"
                 },
@@ -91,6 +103,9 @@
                 },
                 "BCFTOOLS_VIEW_RESEARCH": {
                     "bcftools": "1.23.1"
+                },
+                "COMBINE_LINX_TSV": {
+                    "combine_linx_tsv": 1.0
                 },
                 "ENSEMBLVEP_VEP": {
                     "ensemblvep": 115.2,
@@ -142,6 +157,9 @@
                 "process_svs",
                 "process_svs/test_tumor_normal_case_clinical.vcf.gz",
                 "process_svs/test_tumor_normal_case_clinical.vcf.gz.tbi",
+                "process_svs/test_tumor_normal_case_linxannotated.vcf.gz",
+                "process_svs/test_tumor_normal_case_linxannotated.vcf.gz.tbi",
+                "process_svs/test_tumor_normal_case_linxcombined.tsv",
                 "process_svs/test_tumor_normal_case_research.vcf.gz",
                 "process_svs/test_tumor_normal_case_research.vcf.gz.tbi",
                 "snv",
@@ -163,10 +181,10 @@
                 "vep/test_tumor_normal_case_svdbquery_vep_summary.html"
             ]
         ],
-        "timestamp": "2026-06-22T16:41:16.320337",
+        "timestamp": "2026-06-30T14:39:50.395153",
         "meta": {
             "nf-test": "0.9.5",
-            "nextflow": "26.04.0"
+            "nextflow": "25.10.4"
         }
     }
 }
