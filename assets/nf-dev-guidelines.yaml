@@ -12,7 +12,7 @@ intro: |
 
 sections:
   - general
-  - file: contributing/adding-citations.md
+  - file: docs/contributing/adding-citations.md
   - coding_conventions
 
 vars:
