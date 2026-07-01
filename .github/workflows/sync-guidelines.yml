@@ -2,6 +2,7 @@ name: Sync guidelines
 
 on:
   workflow_dispatch:
+  push:
   schedule:
     - cron: "0 8 * * *" # daily
 
