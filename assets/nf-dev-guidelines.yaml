@@ -26,6 +26,15 @@ vars:
   modules_note: >-
     prefer a module from modules/nf-core/ over writing a local one.
     Only add to modules/local/ when no nf-core module exists or the use case is too pipeline-specific.
+
+  naming_conventions: |
+    #### Naming conversions
+
+    Please use the following naming schemes, to make it easy to understand what is going where.
+
+    - initial process channel: `ch_output_from_<process>`
+    - intermediate and terminal channels: `ch_<previousprocess>_for_<nextprocess>`
+
   pre_commit_note: >-
     This repository includes the
     [`nf-core pipelines schema docs` pre-commit hook](https://github.com/genomic-medicine-sweden/nf-core-schema-docs)
@@ -50,6 +59,15 @@ vars:
     - chore: Other changes that don't modify src or test files
     - revert: Reverts a previous commit
 
+  publishing: |
+    ### Publishing
+
+    - Build a single `ch_publish` channel inside each subworkflow by mixing all publishable outputs into `[destination, value]` tuples.
+    - The emit name must always be `publish = ch_publish` — never the bare shorthand.
+    - Group channels that share a destination with `mix` first, then apply **one** `.map` per destination group — never one map per channel.
+    - If your subworkflow calls inner subworkflows, always mix their `.out.publish` into the outer `ch_publish`. Never discard it.
+    - Remove the corresponding `publishDir` entry from `conf/modules/` when adding a process to `ch_publish`.
+
   nf_test_examples: "You can also run `nf-test test <path> (...)` or `nf-test test --tag <tag> (...)` for a single given test or groups of tests."
 
   additional_test_notes: |
@@ -60,6 +78,9 @@ vars:
     > - `nextflow run . -profile test_tumor_only` for a test run of a Tumor only analysis.
     >
     > When running nf-test with the command mentioned above, the correct test profile will be automatically applied for each test.
+
+  extra_configuration_notes: |
+    - Config files should only contain settings that are relevant for all runs. If there are specific extra arguments for certain tools that are only relevant for test runs, consider creating dedicated parameters for these and define them in the test config files (see `extra_args_cadd_annotate` for an example).
 
   extra_test_notes: "- Use `-stub` in the `when:` block only when real test data is difficult to generate. Prefer running with real data where it is reasonably available."
 
