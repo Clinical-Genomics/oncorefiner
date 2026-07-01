@@ -1,0 +1,115 @@
+title: "`Clinical-Genomics/oncorefiner`: Contributing Guidelines"
+
+intro: |
+  Hi there!
+  Many thanks for taking an interest in improving Clinical-Genomics/oncorefiner.
+
+  We try to manage the required tasks for Clinical-Genomics/oncorefiner using GitHub issues, you probably came to this page when creating one.
+  Please use the pre-filled template to save time.
+
+  However, don't be put off by this template - other more general issues and suggestions are welcome!
+  Contributions to the code are even more welcome ;)
+
+sections:
+  - general
+  - coding_conventions
+
+vars:
+  repo_name: Clinical-Genomics/oncorefiner
+  repo_url: https://github.com/Clinical-Genomics/oncorefiner
+  codespaces_url: https://github.com/Clinical-Genomics/oncorefiner/codespaces
+  workflow_file: workflows/oncorefiner.nf
+  reuse_note: >-
+    `ENSEMBLVEP_VEP` and `BCFTOOLS_VIEW` are intentionally included multiple times under different aliases.
+    Follow this pattern before creating a near-identical subworkflow.
+  modules_note: >-
+    prefer a module from modules/nf-core/ over writing a local one.
+    Only add to modules/local/ when no nf-core module exists or the use case is too pipeline-specific.
+  pre_commit_note: >-
+    This repository includes the
+    [`nf-core pipelines schema docs` pre-commit hook](https://github.com/genomic-medicine-sweden/nf-core-schema-docs)
+    which automatically updates parameter documentation if you change `nextflow_schema.json`.
+    Alternatively, `prek` can be used instead of `pre-commit`: install with `conda install prek` and run `prek install`.
+
+  pr_title_conventions_section: |
+    #### PR title conventions
+
+    We have implemented a standardised PR title format to make it easier to understand the type of change being proposed at a glance.
+    Addionally, there is an automated check for every PR that will only allow mergere if the title adheres to one of the following formats:
+
+    - feat: A new feature
+    - fix: A bug fix
+    - docs: Documentation only changes
+    - style: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
+    - refactor: A code change that neither fixes a bug nor adds a feature
+    - perf: A code change that improves performance
+    - test: Adding missing tests or correcting existing tests
+    - build: Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)
+    - ci: Changes to our CI configuration files and scripts (example scopes: Travis, Circle, BrowserStack, SauceLabs)
+    - chore: Other changes that don't modify src or test files
+    - revert: Reverts a previous commit
+
+  nf_test_examples: "You can also run `nf-test test <path> (...)` or `nf-test test --tag <tag> (...)` for a single given test or groups of tests."
+
+  additional_test_notes: |
+    > [!NOTE]
+    > It is also possible to test run the pipeline using test profiles, without running nf-test. There are currently two test profiles available and you can run:
+    >
+    > - `nextflow run . -profile test` for a default test run of a Tumor Normal analysis.
+    > - `nextflow run . -profile test_tumor_only` for a test run of a Tumor only analysis.
+    >
+    > When running nf-test with the command mentioned above, the correct test profile will be automatically applied for each test.
+
+  adding_new_tools_section: |
+    ### Adding citations
+
+    When adding a new tool to the pipeline, update the following three locations:
+
+    #### 1. `CITATIONS.md`
+
+    Add an entry for the tool in alphabetical order under `## Pipeline tools`. If the tool has a publication, include a `>` citation block:
+
+    ```markdown
+    - [ToolName](https://link-to-paper-or-repo)
+
+      > Author A, Author B. Title. Journal. Year;vol(issue):pages. doi:...
+    ```
+
+    #### 2. `subworkflows/local/utils_nfcore_oncorefiner_pipeline/main.nf`
+
+    Add citation text and bibliography entries inside `toolCitationText()` and `toolBibliographyText()`. Both functions are structured identically — group the tool's entry under the relevant category variable (e.g. `align_text`, `qc_bam_text`, `preprocessing_text`, `snv_annotation_text`). Mirror any conditional logic that gates the tool's execution (e.g. skip params, analysis type, or input content) so the citation only appears when the tool actually runs:
+
+    ```groovy
+    // toolCitationText()
+    qc_bam_text = [
+        ...,
+        (condition) ? "ToolName (Author et al., Year)," : ""
+    ]
+
+    // toolBibliographyText()
+    qc_bam_text = [
+        ...,
+        (condition) ? "<li>Author A, Author B. Title. Journal. Year. doi:...</li>" : ""
+    ]
+    ```
+
+    #### 3. `README.md`
+
+    Add the tool to the relevant numbered section in the **Pipeline summary**. If the tool belongs to a new category not yet represented, add a new numbered section in the appropriate position.
+
+    ### Images and figures
+
+    For overview images and other documents we follow the nf-core [style guidelines and examples](https://nf-co.re/developers/design_guidelines).
+
+  extra_test_notes: "- Use `-stub` in the `when:` block only when real test data is difficult to generate. Prefer running with real data where it is reasonably available."
+
+  extra_style_notes: |
+    - Sort `include` statements alphabetically by the name inside the brackets. Right-pad each name with spaces so all closing `}` align to the same column (the longest name in the block sets the width):
+
+      ```groovy
+      include { BCFTOOLS_VIEW as FILTER_VCF } from '../../../modules/nf-core/bcftools/view/main'
+      include { TIDDIT_COV                  } from '../../../modules/nf-core/tiddit/cov/main'
+      include { VCF2CYTOSURE                } from '../../../modules/nf-core/vcf2cytosure/main'
+      ```
+
+    - Sort items in the `take`, `emit` and `publish` blocks, alphabetically (see example below).
