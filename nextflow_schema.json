@@ -112,11 +112,6 @@
                     "format": "file-path",
                     "exists": true
                 },
-                "sex": {
-                    "type": "string",
-                    "enum": ["female", "male", "unknown"],
-                    "description": "Sex of the patient."
-                },
                 "cnv_gene_tsv": {
                     "type": "string",
                     "format": "file-path",
@@ -134,18 +129,6 @@
                     "fa_icon": "fas fa-file-csv",
                     "pattern": "^\\S+\\.tsv$",
                     "help_text": "This file should be a tab-separated file with a header row. Typically *.purple.cnv.somatic.tsv file from Oncoanalyser."
-                },
-                "email": {
-                    "type": "string",
-                    "description": "Email address for completion summary.",
-                    "fa_icon": "fas fa-envelope",
-                    "help_text": "Set this parameter to your e-mail address to get a summary e-mail with details of the run sent to you when the workflow exits. If set in your user config file (`~/.nextflow/config`) then you don't need to specify this on the command line for every run.",
-                    "pattern": "^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$"
-                },
-                "multiqc_title": {
-                    "type": "string",
-                    "description": "MultiQC report title. Printed as page header, used for filename if not otherwise specified.",
-                    "fa_icon": "fas fa-file-signature"
                 }
             }
         },
@@ -440,7 +423,7 @@
                     "type": "string",
                     "fa_icon": "far fa-check-circle",
                     "description": "Base URL or local path to location of pipeline test dataset files",
-                    "default": "https://raw.githubusercontent.com/Clinical-Genomics/test-datasets/31900a796fd1990d3cb1a63988b33afb08dbfe79/",
+                    "default": "https://raw.githubusercontent.com/Clinical-Genomics/test-datasets/b9c2328ab3fb456efb079a953a7620af5e15aa8d/",
                     "hidden": true
                 },
                 "trace_report_suffix": {
