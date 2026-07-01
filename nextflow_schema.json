@@ -101,6 +101,11 @@
                     "format": "file-path",
                     "exists": true
                 },
+                "sampletype": {
+                    "type": "string",
+                    "description": "Type of the sample.",
+                    "enum": ["tumor_only", "tumor_normal"]
+                },
                 "sex": {
                     "type": "string",
                     "enum": ["female", "male", "unknown"],
