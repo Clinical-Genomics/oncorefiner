@@ -40,6 +40,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#124](https://github.com/Clinical-Genomics/oncorefiner/pull/124) Added metadata parameters `case_id`, `sample_id_tumor` and `sample_id_normal`.
 - [#124](https://github.com/Clinical-Genomics/oncorefiner/pull/124) Added `channelFromMetaAndPath` custom channel factory.
 - [#136](https://github.com/Clinical-Genomics/oncorefiner/pull/136) Added nf-schema validation to SVDB database inputs (`svdb_query_dbs`)
+- [#154](https://github.com/Clinical-Genomics/oncorefiner/pull/154) Added GitHub workflow and config file to sync common contribution guidelines from https://github.com/genomic-medicine-sweden/nf-dev-guidelines
 
 ### `Changed`
 
@@ -77,6 +78,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#124](https://github.com/Clinical-Genomics/oncorefiner/pull/124) Update documentation in `docs/usage.md` and `README.md` on how to start a pipeline run given the necessary metadata input parameters.
 - [#145](https://github.com/Clinical-Genomics/oncorefiner/pull/145) Small fixes to `GENERATE_CYTOSURE_FILES` tests from #135: updated config regex to include the fully qualified name of the process in order for the settings to be applied with the highest priority and removed parameter dependency from each test by moving the values to the config file instead.
 - [#149](https://github.com/Clinical-Genomics/oncorefiner/pull/149) Updated test data base path to remove unused column in SVDB files
+- [#154](https://github.com/Clinical-Genomics/oncorefiner/pull/154) Changed `.nf-core.yml` to allow for template strings in contribution guidelines sync workflow
 
 ### `Fixed`
 
