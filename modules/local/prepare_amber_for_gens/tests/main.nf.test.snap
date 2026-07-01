@@ -1,0 +1,99 @@
+{
+    "Prepare AMBER files for GENS, tumor-normal - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test_amber_gens",
+                            "case_id": "test"
+                        },
+                        "test_amber_gens.tumor_normal.baf.zoom.tsv.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test_amber_gens",
+                            "case_id": "test"
+                        },
+                        "test_amber_gens.tumor_normal.baf.zoom.tsv.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "2": [
+                    [
+                        "PREPARE_AMBER_FOR_GENS",
+                        "prepare_amber_for_gens",
+                        "1.0"
+                    ]
+                ],
+                "tbi": [
+                    [
+                        {
+                            "id": "test_amber_gens",
+                            "case_id": "test"
+                        },
+                        "test_amber_gens.tumor_normal.baf.zoom.tsv.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "tsv": [
+                    [
+                        {
+                            "id": "test_amber_gens",
+                            "case_id": "test"
+                        },
+                        "test_amber_gens.tumor_normal.baf.zoom.tsv.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                    ]
+                ],
+                "versions_amber_for_gens": [
+                    [
+                        "PREPARE_AMBER_FOR_GENS",
+                        "prepare_amber_for_gens",
+                        "1.0"
+                    ]
+                ]
+            }
+        ],
+        "timestamp": "2026-07-01T16:23:34.600738",
+        "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "25.10.4"
+        }
+    },
+    "Prepare AMBER files for GENS, tumor-normal": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "test_amber_gens",
+                        "case_id": "test"
+                    },
+                    "test_amber_gens.tumor_normal.baf.zoom.tsv.gz:md5,87317df569141e8908d318197fc075af"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "test_amber_gens",
+                        "case_id": "test"
+                    },
+                    "test_amber_gens.tumor_normal.baf.zoom.tsv.gz.tbi"
+                ]
+            ],
+            {
+                "versions": [
+                    [
+                        "PREPARE_AMBER_FOR_GENS",
+                        "prepare_amber_for_gens",
+                        "1.0"
+                    ]
+                ]
+            }
+        ],
+        "timestamp": "2026-07-01T16:22:11.908873",
+        "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "25.10.4"
+        }
+    }
+}

@@ -16,11 +16,10 @@ nextflow_process {
             process {
                 """
                 input[0] = channel.of([
-                    [id: 'test_amber_gens', case_id: 'test', sample_type: 'tumor_normal'],
-                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.sv.vcf.gz', checkIfExists: true)
+                    [id: 'test_amber_gens', case_id: 'test'],
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.amber.baf.tsv.gz', checkIfExists: true),
+                    'tumor_normal'
                     ])
-                    .join(COMBINE_LINX_TSV.out.tsv, failOnMismatch: true)
-                    .combine( channel.fromPath('$projectDir/assets/sv_annotation_header.txt') )
 
                 """
             }
@@ -47,12 +46,10 @@ nextflow_process {
             process {
                 """
                 input[0] = channel.of([
-                    [id: 'test_amber_gens', case_id: 'test', sample_id: 'subject_a', sample_type: 'tumor_normal', sex: 'female'],
-                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.sv.vcf.gz', checkIfExists: true)
+                    [id: 'test_amber_gens', case_id: 'test'],
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.amber.baf.tsv.gz', checkIfExists: true),
+                    'tumor_normal'
                     ])
-                    .join(COMBINE_LINX_TSV.out.tsv, failOnMismatch: true)
-                    .combine( channel.fromPath('$projectDir/assets/sv_annotation_header.txt') )
-
                 """
             }
         }

@@ -8,7 +8,7 @@ process PREPARE_AMBER_FOR_GENS {
 
 
     input:
-    tuple val(meta), path(amber_baf_tsv)
+    tuple val(meta), path(amber_baf_tsv), val(sampletype)
 
     output:
     tuple val(meta), path("*.baf.zoom.tsv.gz"), emit: tsv
@@ -20,10 +20,10 @@ process PREPARE_AMBER_FOR_GENS {
     def prefix = meta.id ?: "sample"
 
     """
-    amber_baf_for_gens.py \\
+    prepare_amber_for_gens.py \\
         --input-file ${amber_baf_tsv} \\
-        --sample_type ${meta.sample_type} \\
-        --output-file ${prefix}.${meta.sample_type}.baf.zoom.tsv
+        --sample-type ${sampletype} \\
+        --output-file ${prefix}.${sampletype}.baf.zoom.tsv
 
     for f in *.baf.zoom.tsv; do
         if [[ -s "\$f" ]]; then
@@ -36,7 +36,7 @@ process PREPARE_AMBER_FOR_GENS {
     stub:
     prefix = task.ext.prefix ?: "${meta.id}"
     """
-    echo | gzip >  ${prefix}.${meta.sample_type}.bed.gz
-    touch ${prefix}.${meta.sample_type}.bed.gz.tbi
+    echo | gzip >  ${prefix}.${sampletype}.baf.zoom.tsv.gz
+    touch ${prefix}.${sampletype}.baf.zoom.tsv.gz.tbi
     """
 }
