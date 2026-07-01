@@ -36,6 +36,10 @@
 
   > Pedersen BS, Layer RM, Quinlan AR. Vcfanno: fast, flexible annotation of genetic variants. Genome Biol. 2016 Jun 1;17(1):118. doi: 10.1186/s13059-016-0973-5. PMID: 27250555; PMCID: PMC4888505.
 
+- [`Genmod`](https://github.com/Clinical-Genomics/genmod)
+
+  > doi: 10.5281/zenodo.591885.
+
 ## Software packaging/containerisation tools
 
 - [Anaconda](https://anaconda.com)
