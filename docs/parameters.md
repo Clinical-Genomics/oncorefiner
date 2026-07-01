@@ -8,17 +8,33 @@ Define where the pipeline should find input data and save output data.
 
 | Parameter | Description | Type | Default | Required | Hidden |
 |-----------|-----------|-----------|-----------|-----------|-----------|
-| `input` | Path to comma-separated file containing information about the samples in the experiment. <details><summary>Help</summary><small>You will need to create a design file with information about the samples in your experiment before running the pipeline. Use this parameter to specify its location. It has to be a comma-separated file with 3 columns, and a header row.</small></details>| `string` |  | True |  |
 | `outdir` | The output directory where the results will be saved. You have to use absolute paths to storage on Cloud infrastructure. | `string` |  | True |  |
+| `email` | Email address for completion summary. <details><summary>Help</summary><small>Set this parameter to your e-mail address to get a summary e-mail with details of the run sent to you when the workflow exits. If set in your user config file (`~/.nextflow/config`) then you don't need to specify this on the command line for every run.</small></details>| `string` |  |  |  |
+| `multiqc_title` | MultiQC report title. Printed as page header, used for filename if not otherwise specified. | `string` |  |  |  |
+
+## Metadata
+
+
+
+| Parameter | Description | Type | Default | Required | Hidden |
+|-----------|-----------|-----------|-----------|-----------|-----------|
+| `case_id` | Case ID. | `string` |  | True |  |
+| `sex` | Sex of the patient. (accepted: `female`\|`male`\|`unknown`) | `string` |  | True |  |
+| `sample_id_tumor` | Sample id of the tumor sample. | `string` |  | True |  |
+| `sample_id_normal` | Sample id of the normal sample. | `string` |  |  |  |
+
+## Input files
+
+
+
+| Parameter | Description | Type | Default | Required | Hidden |
+|-----------|-----------|-----------|-----------|-----------|-----------|
 | `snv_vcf` | Path to a VCF file containing somatic SNV/INDEL variants to be processed by the pipeline. The VCF may include one or multiple samples. Typically, this is a single tumor sample for tumor-only analyses, or both tumor and matched normal samples for tumor-normal analyses. | `string` |  |  |  |
 | `sv_vcf` | Path to a VCF file containing somatic structural variants (SVs) to be processed by the pipeline. The VCF may include one or multiple samples. Typically, this is a single tumor sample for tumor-only analyses, or both tumor and matched normal samples for tumor-normal analyses. | `string` |  |  |  |
 | `bam_tumor` | Path to alignment BAM file for the tumor sample. | `string` |  |  |  |
 | `bai_tumor` | Path to BAM index file for the tumor sample. | `string` |  |  |  |
 | `bam_normal` | Path to alignment BAM file for the normal sample. | `string` |  |  |  |
 | `bai_normal` | Path to BAM index file for the normal sample. | `string` |  |  |  |
-| `sex` | Sex of the patient. (accepted: `female`\|`male`\|`unknown`) | `string` |  |  |  |
-| `email` | Email address for completion summary. <details><summary>Help</summary><small>Set this parameter to your e-mail address to get a summary e-mail with details of the run sent to you when the workflow exits. If set in your user config file (`~/.nextflow/config`) then you don't need to specify this on the command line for every run.</small></details>| `string` |  |  |  |
-| `multiqc_title` | MultiQC report title. Printed as page header, used for filename if not otherwise specified. | `string` |  |  |  |
 
 ## Reference genome options
 
@@ -42,17 +58,18 @@ Annotation related files and options required for the workflow.
 |-----------|-----------|-----------|-----------|-----------|-----------|
 | `vep_cache_version` | Specify the version of the VEP cache provided to the `--vep_cache` option. | `integer` | 112 |  |  |
 | `vep_cache` | Path to vep's cache directory. <details><summary>Help</summary><small>If no directory path is passed, vcf files will not be annotated by vep.</small></details>| `string` |  |  |  |
-| `vep_plugin_files` | Databases used by both named and custom plugins to annotate variants. <details><summary>Help</summary><small>Path to a file containing the absolute paths to databases and their indices used by VEP's custom and named plugins resources defined within the vcfanno toml file. One line per resource.</small></details>| `string` |  |  |  |
+| `vep_plugin_files` | Databases used by both named and custom plugins to annotate variants. <details><summary>Help</summary><small>Path to a CSV/TSV/JSON/YAML file with vep_files as header, and then the absolute paths to databases and their indices used by VEP's custom and named plugins resources defined within the vcfanno toml file.</small></details>| `string` |  |  |  |
 | `vcfanno_extra` | Path to a VCF file containing annotations. <details><summary>Help</summary><small>Can be used to supply case-specific annotations in addition to those provided using --vcfanno_resources</small></details>| `string` |  |  |  |
 | `vcfanno_resources` | Path to a file containing the absolute paths to resources defined within the vcfanno toml file. One line per resource. <details><summary>Help</summary><small>If no file is passed, default configurations will be used according to genome build within the context of the pipeline.</small></details>| `string` |  |  |  |
 | `vcfanno_toml` | Path to the vcfanno toml file. <details><summary>Help</summary><small>If no toml is passed, default configurations will be used according to genome build within the context of the pipeline.</small></details>| `string` |  |  |  |
 | `vcfanno_lua` | Path to the vcfanno lua file. <details><summary>Help</summary><small>Custom operations file (lua). For use when the built-in ops don't supply the needed reduction.</small></details>| `string` |  |  |  |
-| `svdb_query_dbs` | Databases used for structural variant annotation in vcf format. <details><summary>Help</summary><small>Path to comma-separated file containing information about the databases used for structural variant annotation.</small></details>| `string` |  |  |  |
-| `extra_args_cadd_annotate` | Extra arguments for `ANNOTATE_CADD:BCFTOOLS_ANNOTATE_INDELS` | `string` |  |  |  |
-| `extra_args_snv_clinical_filter` | Extra arguments for `PROCESS_SNVS:BCFTOOLS_VIEW_CLINICAL` | `string` |  |  |  |
-| `extra_args_snv_research_filter` | Extra arguments for `PROCESS_SNVS:BCFTOOLS_VIEW_RESEARCH` | `string` |  |  |  |
-| `extra_args_snv_vep` | Extra arguments for `PROCESS_SNVS:ENSEMBLVEP_VEP` | `string` |  |  |  |
-| `extra_args_sv_vep` | Extra arguments for `PROCESS_SVS:ENSEMBLVEP_VEP` | `string` |  |  |  |
+| `svdb_query_dbs` | Databases used for structural variant annotation in vcf format. <details><summary>Help</summary><small>Path to CSV, TSV, JSON or YAML file containing information about the databases used for structural variant annotation.</small></details>| `string` |  |  |  |
+| `extra_args_cadd_annotate` | Extra arguments for `ANNOTATE_CADD:BCFTOOLS_ANNOTATE_INDELS`. | `string` |  |  |  |
+| `extra_args_snv_clinical_filter` | Extra arguments for `PROCESS_SNVS:BCFTOOLS_VIEW_CLINICAL`. | `string` |  |  |  |
+| `extra_args_snv_research_filter` | Extra arguments for `PROCESS_SNVS:BCFTOOLS_VIEW_RESEARCH`. | `string` |  |  |  |
+| `extra_args_snv_vep` | Extra arguments for `PROCESS_SNVS:ENSEMBLVEP_VEP`. | `string` |  |  |  |
+| `extra_args_sv_vep` | Extra arguments for `PROCESS_SVS:ENSEMBLVEP_VEP`. | `string` |  |  |  |
+| `genmod_score_config` | Path to genmod score configuration file (rank model). | `string` |  |  |  |
 
 ## Institutional config options
 
@@ -83,7 +100,7 @@ Less common options for the pipeline, typically set in a config file.
 | `multiqc_logo` | Custom logo file to supply to MultiQC. File name must also be set in the MultiQC config file | `string` |  |  | True |
 | `multiqc_methods_description` | Custom MultiQC yaml file containing HTML including a methods description. | `string` |  |  |  |
 | `validate_params` | Boolean whether to validate parameters against the schema at runtime | `boolean` | True |  | True |
-| `pipelines_testdata_base_path` | Base URL or local path to location of pipeline test dataset files | `string` | https://raw.githubusercontent.com/Clinical-Genomics/test-datasets/b269a1be954c5ae16b1dff465599d0ac51ea8289/ |  | True |
+| `pipelines_testdata_base_path` | Base URL or local path to location of pipeline test dataset files | `string` | https://raw.githubusercontent.com/Clinical-Genomics/test-datasets/b9c2328ab3fb456efb079a953a7620af5e15aa8d/ |  | True |
 | `trace_report_suffix` | Suffix to add to the trace report filename. Default is the date and time in the format yyyy-MM-dd_HH-mm-ss. | `string` |  |  | True |
 | `help` | Display the help message. | `['boolean', 'string']` |  |  |  |
 | `help_full` | Display the full detailed help message. | `boolean` |  |  |  |
