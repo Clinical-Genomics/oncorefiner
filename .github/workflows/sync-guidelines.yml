@@ -51,8 +51,9 @@ jobs:
         with:
           token: ${{ steps.app-token.outputs.token }}
           commit-message: "docs: update CONTRIBUTING.md from nf-dev-guidelines"
-          title: "Update CONTRIBUTING.md from nf-dev-guidelines"
+          title: "docs: Update CONTRIBUTING.md from nf-dev-guidelines"
           body: |
             Auto-generated from [nf-dev-guidelines](https://github.com/genomic-medicine-sweden/nf-dev-guidelines).
           branch: update-contributing-guidelines
           delete-branch: true
+          labels: Skip-Changelog
