@@ -1,5 +1,3 @@
-
-
 process PREPARE_AMBER_FOR_GENS {
     tag "$meta.id"
 

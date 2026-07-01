@@ -100,7 +100,7 @@ def main(
         )
         click.echo(f"Wrote tumor output: {output_file}")
 
-    if "normal" and "tumor" in sample_type:
+    if "normal" and "tumor" in sample_type: # need to check meta type for this - will it be tumor_normal or normal or tumor?
         write_baf_file(
             df=df,
             baf_column="normalBAF",
