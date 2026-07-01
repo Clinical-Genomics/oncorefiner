@@ -112,11 +112,6 @@
                     "format": "file-path",
                     "exists": true
                 },
-                "sex": {
-                    "type": "string",
-                    "enum": ["female", "male", "unknown"],
-                    "description": "Sex of the patient."
-                },
                 "linx_fusion_tsv": {
                     "type": "string",
                     "description": "Path to fusion linx tsv file for the sample.",
