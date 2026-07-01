@@ -12,6 +12,7 @@ intro: |
 
 sections:
   - general
+  - file: contributing/adding-citations.md
   - coding_conventions
 
 vars:
@@ -59,47 +60,6 @@ vars:
     > - `nextflow run . -profile test_tumor_only` for a test run of a Tumor only analysis.
     >
     > When running nf-test with the command mentioned above, the correct test profile will be automatically applied for each test.
-
-  adding_new_tools_section: |
-    ### Adding citations
-
-    When adding a new tool to the pipeline, update the following three locations:
-
-    #### 1. `CITATIONS.md`
-
-    Add an entry for the tool in alphabetical order under `## Pipeline tools`. If the tool has a publication, include a `>` citation block:
-
-    ```markdown
-    - [ToolName](https://link-to-paper-or-repo)
-
-      > Author A, Author B. Title. Journal. Year;vol(issue):pages. doi:...
-    ```
-
-    #### 2. `subworkflows/local/utils_nfcore_oncorefiner_pipeline/main.nf`
-
-    Add citation text and bibliography entries inside `toolCitationText()` and `toolBibliographyText()`. Both functions are structured identically — group the tool's entry under the relevant category variable (e.g. `align_text`, `qc_bam_text`, `preprocessing_text`, `snv_annotation_text`). Mirror any conditional logic that gates the tool's execution (e.g. skip params, analysis type, or input content) so the citation only appears when the tool actually runs:
-
-    ```groovy
-    // toolCitationText()
-    qc_bam_text = [
-        ...,
-        (condition) ? "ToolName (Author et al., Year)," : ""
-    ]
-
-    // toolBibliographyText()
-    qc_bam_text = [
-        ...,
-        (condition) ? "<li>Author A, Author B. Title. Journal. Year. doi:...</li>" : ""
-    ]
-    ```
-
-    #### 3. `README.md`
-
-    Add the tool to the relevant numbered section in the **Pipeline summary**. If the tool belongs to a new category not yet represented, add a new numbered section in the appropriate position.
-
-    ### Images and figures
-
-    For overview images and other documents we follow the nf-core [style guidelines and examples](https://nf-co.re/developers/design_guidelines).
 
   extra_test_notes: "- Use `-stub` in the `when:` block only when real test data is difficult to generate. Prefer running with real data where it is reasonably available."
 
