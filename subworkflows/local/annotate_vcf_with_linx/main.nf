@@ -41,7 +41,7 @@ workflow ANNOTATE_VCF_WITH_LINX {
 
     ch_annotate_vcf_input = ch_sv_vcf
         .join(COMBINE_LINX_TSV.out.tsv, failOnMismatch: true)
-        .combine(ch_sv_header)
+        .join(ch_sv_header, failOnMismatch: true)
 
     ANNOTATE_VCF_BY_ID(ch_annotate_vcf_input)
 

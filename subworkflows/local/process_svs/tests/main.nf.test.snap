@@ -3,35 +3,35 @@
         "content": [
             [
                 "process_svs",
-                "process_svs/subject_a_clinical.vcf.gz",
-                "process_svs/subject_a_clinical.vcf.gz.tbi",
-                "process_svs/subject_a_linxannotated.vcf.gz",
-                "process_svs/subject_a_linxannotated.vcf.gz.tbi",
-                "process_svs/subject_a_linxcombined.tsv",
-                "process_svs/subject_a_research.vcf.gz",
-                "process_svs/subject_a_research.vcf.gz.tbi",
+                "process_svs/test_clinical.vcf.gz",
+                "process_svs/test_clinical.vcf.gz.tbi",
+                "process_svs/test_linxannotated.vcf.gz",
+                "process_svs/test_linxannotated.vcf.gz.tbi",
+                "process_svs/test_linxcombined.tsv",
+                "process_svs/test_research.vcf.gz",
+                "process_svs/test_research.vcf.gz.tbi",
                 "vcf2cytosure",
                 "vcf2cytosure/null.cgh",
                 "vep",
-                "vep/subject_a_svdbquery_vep.vcf.gz",
-                "vep/subject_a_svdbquery_vep.vcf.gz.tbi",
-                "vep/subject_a_svdbquery_vep.vcf.gz_summary.html"
+                "vep/test_svdbquery_vep.vcf.gz",
+                "vep/test_svdbquery_vep.vcf.gz.tbi",
+                "vep/test_svdbquery_vep.vcf.gz_summary.html"
             ],
             [
                 [
-                    "subject_a_clinical.vcf.gz",
+                    "test_clinical.vcf.gz",
                     "37e41e9f40fafde247690f6b053df866"
                 ],
                 [
-                    "subject_a_linxannotated.vcf.gz",
+                    "test_linxannotated.vcf.gz",
                     "da36427a37c150dc78ef322d3841f4a1"
                 ],
                 [
-                    "subject_a_research.vcf.gz",
+                    "test_research.vcf.gz",
                     "da36427a37c150dc78ef322d3841f4a1"
                 ],
                 [
-                    "subject_a_svdbquery_vep.vcf.gz",
+                    "test_svdbquery_vep.vcf.gz",
                     "37e41e9f40fafde247690f6b053df866"
                 ]
             ],
@@ -39,10 +39,10 @@
                 
             ]
         ],
-        "timestamp": "2026-06-22T16:46:29.078308",
+        "timestamp": "2026-07-02T10:53:04.122639",
         "meta": {
             "nf-test": "0.9.5",
-            "nextflow": "26.04.2"
+            "nextflow": "26.04.0"
         }
     },
     "with tumor-normal data - stub": {
