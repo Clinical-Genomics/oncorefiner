@@ -14,6 +14,7 @@ sections:
   - general
   - file: docs/contributing/adding-citations.md
   - coding_conventions
+  - updating_contribution_guidelines
 
 vars:
   repo_name: Clinical-Genomics/oncorefiner
