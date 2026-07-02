@@ -1,3 +1,7 @@
+<!-- THIS FILE IS AUTO-GENERATED. DO NOT EDIT DIRECTLY. -->
+<!-- To update pipeline-specific content: edit repo-config.yaml or your custom section files. -->
+<!-- To update shared guidelines: trigger or wait for the daily sync workflow. -->
+
 # `Clinical-Genomics/oncorefiner`: Contributing Guidelines
 
 Hi there!
@@ -11,10 +15,13 @@ Contributions to the code are even more welcome ;)
 
 ## Table of contents
 
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
 - [General](#general)
   - [Contribution workflow](#contribution-workflow)
     - [Pull Requests](#pull-requests)
-      - [PR title conventions](#pr-title-conventions)
+    - [PR title conventions](#pr-title-conventions)
       - [Review](#review)
   - [Software versioning, changelog and updates](#software-versioning-changelog-and-updates)
     - [Semantic versioning and changelog](#semantic-versioning-and-changelog)
@@ -31,17 +38,19 @@ Contributions to the code are even more welcome ;)
     - [1. `CITATIONS.md`](#1-citationsmd)
     - [2. `subworkflows/local/utils_nfcore_oncorefiner_pipeline/main.nf`](#2-subworkflowslocalutils_nfcore_oncorefiner_pipelinemainnf)
     - [3. `README.md`](#3-readmemd)
-  - [Images and figures](#images-and-figures)
 - [Coding conventions](#coding-conventions)
   - [Architecture & structure](#architecture--structure)
   - [Adding a new step](#adding-a-new-step)
   - [Channels](#channels)
-    - [Naming schemes](#naming-schemes)
+    - [Naming conversions](#naming-conversions)
   - [Parameters](#parameters)
   - [Publishing](#publishing)
   - [Configuration](#configuration)
   - [Writing tests](#writing-tests)
   - [Style](#style)
+- [Updating contribution guidelines](#updating-contribution-guidelines)
+
+<!-- END doctoc -->
 
 ## General
 
@@ -61,7 +70,7 @@ If you're not used to this workflow with git, you can start with some [docs from
 
 When opening a pull request to suggest changes to the code, please make sure to follow the [Pipeline contribution conventions](#pipeline-contribution-conventions) for the code and to fill in the necessary information in the pull request template as well as address all points in the `PR checklist`.
 
-##### PR title conventions
+#### PR title conventions
 
 We have implemented a standardised PR title format to make it easier to understand the type of change being proposed at a glance.
 Addionally, there is an automated check for every PR that will only allow mergere if the title adheres to one of the following formats:
@@ -92,13 +101,13 @@ Be positive and constructive in your review, and whenever possible offer suggest
 
 #### Semantic versioning and changelog
 
-Release versioning is maintained according to [Semantic Versioning](https://semver.org/spec/v2.0.0.html) and a changelog is maintained according to the [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) format.
+Release versioning is maintained according to [Semantic Versioning](https://semver.org/spec/v2.0.0.html) and a changelog is maintained according to the [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) format. Although, for a Nextflow pipeline it can be hard to decide what is a breaking/non-breaking API change.
 
 ##### Patch
 
 :warning: Only in the unlikely and regretful event of a release happening with a bug.
 
-- On your own fork, make a new branch `patch` based on `upstream/main` or `upstream/master`.
+- Make a new branch `patch` based on `upstream/main` or `upstream/master`.
 - Fix the bug, and bump version (X.Y.Z+1).
 - Open a pull-request from `patch` to `main`/`master` with the changes.
 
@@ -108,10 +117,10 @@ If you are using a new feature from core Nextflow, you may bump the minimum requ
 
 #### Update nf-core template
 
-Since this is not an nf-core pipeline, the nf-core template is not automatically updated in the `TEMPLATE` branch. Follow these step to update the template:
+Since this is not an nf-core pipeline, the nf-core template is not automatically updated in the `TEMPLATE` branch. Follow these steps to update the template:
 
-1. Update the `TEMPLATE` branch by running `nf-core pipelines sync`. Fix any merge conflicts and open a PR to then merge the changes.
-1. Open a PR to merge the `TEMPLATE` branch into `dev` to update the template files in the main codebase.
+1. Update the `TEMPLATE` branch by running `nf-core pipelines sync`. Fix any merge conflicts.
+2. Open a PR to merge the `TEMPLATE` branch into `dev` to update the template files in the main codebase.
 
 ### Developer setup
 
@@ -119,12 +128,12 @@ Since this is not an nf-core pipeline, the nf-core template is not automatically
 
 In order to run the pipeline, develop and test your changes locally, we recommend that you set up:
 
-- A conda environment with `nextflow`, `nf-core` tools and `nf-test`. - For this, follow the instructions from the [nf-core documentation](https://nf-co.re/docs/nf-core-tools/cli/installation#install-with-conda) and install `nf-test` from bioconda or by following the [nf-test installation instructions](https://www.nf-test.com/installation/) . Additional information about [installation of nf-core dependencies](https://nf-co.re/docs/usage/getting_started/installation/) is also available, if needed.
+- A conda environment with `nextflow`, `nf-core` tools and `nf-test`. For this, follow the instructions from the [nf-core documentation](https://nf-co.re/docs/nf-core-tools/cli/installation#install-with-conda) and install `nf-test` from bioconda or by following the [nf-test installation instructions](https://www.nf-test.com/installation/). Additional information about [installation of nf-core dependencies](https://nf-co.re/docs/usage/getting_started/installation/) is also available, if needed.
 - Install Docker (https://www.docker.com/products/docker-desktop/) and make sure the daemon is running when you want to run the tests locally.
 
 Make sure to [test your setup](https://nf-co.re/docs/usage/introduction#how-to-run-a-pipeline) with `-profile test` before running the workflow on actual data.
 
-Additionally, pre-commit hooks are set up to automatically check the code and generate parameters documentation when committing. We recommend using `prek` to run these pre-commit hooks automatically. For this, install `prek` with `conda install prek` and run `prek install` in the root of the repository. Note that, other than the default pre-commit hooks from the nf-core template, there is an additional hook - [`nf-core pipelines schema docs` pre-commit hook](https://github.com/genomic-medicine-sweden/nf-core-schema-docs) - set up in this codebase for automatically generating parameters documentation if there are any changes to parameters in your commit.
+Additionally, pre-commit hooks are set up to automatically check the code and generate parameters documentation when committing. To install the pre-commit hooks, run `pre-commit install` in the root of the repository. This repository includes the [`nf-core pipelines schema docs` pre-commit hook](https://github.com/genomic-medicine-sweden/nf-core-schema-docs) which automatically updates parameter documentation if you change `nextflow_schema.json`. Alternatively, `prek` can be used instead of `pre-commit`: install with `conda install prek` and run `prek install`.
 
 #### GitHub Codespaces
 
@@ -143,7 +152,7 @@ Devcontainer specs:
 
 ### Running tests
 
-You have the option to test your changes locally by running the pipeline test suite. For receiving warnings about process selectors and other `debug` information, it is recommended to use the debug profile. Execute all the tests with the following command:
+You have the option to test your changes locally by running the pipeline. For receiving warnings about process selectors and other `debug` information, it is recommended to use the debug profile. Execute all the tests with the following command:
 
 ```bash
 nf-test test --profile debug,test,docker --verbose
@@ -151,7 +160,7 @@ nf-test test --profile debug,test,docker --verbose
 
 You can also run `nf-test test <path> (...)` or `nf-test test --tag <tag> (...)` for a single given test or groups of tests.
 
-> [!NOTE]  
+> [!NOTE]
 > It is also possible to test run the pipeline using test profiles, without running nf-test. There are currently two test profiles available and you can run:
 >
 > - `nextflow run . -profile test` for a default test run of a Tumor Normal analysis.
@@ -167,13 +176,13 @@ There are typically two types of tests that run:
 #### Lint tests
 
 `nf-core` has a [set of guidelines](https://nf-co.re/developers/guidelines) which all pipelines must adhere to.
-To enforce these and ensure that all pipelines stay in sync, we have developed a helper tool which runs checks on the pipeline code. This is in the [nf-core/tools repository](https://github.com/nf-core/tools) and once installed can be run locally with the `nf-core pipelines lint <pipeline-directory>` command.
+To enforce these and ensure that all pipelines stay in sync, nf-core has developed a helper tool which runs checks on the pipeline code. This is in the [nf-core/tools repository](https://github.com/nf-core/tools) and once installed can be run locally with the `nf-core pipelines lint <pipeline-directory>` command.
 
 If any failures or warnings are encountered, please follow the listed URL for more documentation.
 
 #### Pipeline tests
 
-Each `nf-core` pipeline should be set up with a minimal set of test-data.
+This pipeline is set up with a minimal set of test-data.
 `GitHub Actions` then runs the pipeline on this data to ensure that it exits successfully.
 If there are any test failures then the automated check has status set to fail.
 These tests are run both with the latest available version of `Nextflow` and also the minimum required version that is stated in the pipeline code.
@@ -214,10 +223,6 @@ qc_bam_text = [
 
 Add the tool to the relevant numbered section in the **Pipeline summary**. If the tool belongs to a new category not yet represented, add a new numbered section in the appropriate position.
 
-### Images and figures
-
-For overview images and other documents we follow the nf-core [style guidelines and examples](https://nf-co.re/developers/design_guidelines).
-
 ## Coding conventions
 
 To make the `Clinical-Genomics/oncorefiner` code and processing logic more understandable for new contributors and to ensure quality, we semi-standardise the way the code and other contributions are written.
@@ -227,7 +232,7 @@ To make the `Clinical-Genomics/oncorefiner` code and processing logic more under
 - **Use subworkflows** — Don't add logic to `workflows/oncorefiner.nf` that is specific to a subworkflow. Create new subworkflows as needed under `subworkflows/` and import them into `workflows/oncorefiner.nf`.
 - **Reuse over duplication** — `ENSEMBLVEP_VEP` and `BCFTOOLS_VIEW` are intentionally included multiple times under different aliases. Follow this pattern before creating a near-identical subworkflow.
 - **nf-core modules take precedence** — prefer a module from modules/nf-core/ over writing a local one. Only add to modules/local/ when no nf-core module exists or the use case is too pipeline-specific.
-- **Use and share subworkflows with the GMS community** — subworkflows from [genomic-medicine-sweden/nf-core-modules](https://github.com/genomic-medicine-sweden/nf-core-modules) are intended for use across pipelines within the Genomic Medicine Sweden group. Prefer using and contributing to these rather than writing pipeline-specific code in `modules/local/`. If you think a subworkflow could be useful for other pipelines, consider adding it there instead of `subworkflows/local/`.
+- **Use and share subworkflows with the GMS community** — subworkflows from [genomic-medicine-sweden/nf-core-modules](https://github.com/genomic-medicine-sweden/nf-core-modules) are intended for use across pipelines within the Genomic Medicine Sweden group. Prefer using and contributing to these rather than writing pipeline-specific code in `subworkflows/local/`. If you think a subworkflow could be useful for other pipelines, consider adding it there instead of `subworkflows/local/`.
 
 ### Adding a new step
 
@@ -241,13 +246,12 @@ If you wish to contribute a new step, please use the following coding standards:
 6. Add sanity checks and validation for all relevant parameters.
 7. Perform local tests to validate that the new code works as expected.
 8. If applicable, add a new test in the `tests` directory.
-9. Update MultiQC config `assets/multiqc_config.yml` so relevant suffixes, file name clean up and module plots are in the appropriate order. If applicable, add a [MultiQC](https://https://multiqc.info/) module.
+9. Update MultiQC config `assets/multiqc_config.yml` so relevant suffixes, file name clean up and module plots are in the appropriate order. If applicable, add a [MultiQC](https://multiqc.info/) module.
 10. Add a description of the output files and if relevant any appropriate images from the MultiQC report to `docs/output.md`.
 
 ### Channels
 
 - **Conditional channels**: always initialize to `channel.empty()` before any `if` block that may or may not assign them. Never leave a channel potentially undefined.
-
 #### Naming conversions
 
 Please use the following naming schemes, to make it easy to understand what is going where.
@@ -258,10 +262,7 @@ Please use the following naming schemes, to make it easy to understand what is g
 ### Parameters
 
 - `params` must only be accessed in the main unnamed workflow (`workflow` in `main.nf`). Subworkflows and named workflows receive all values as explicit `val_*` arguments. Never reference `params` directly inside a subworkflow.
-- Parameters should be initialised/defined with default values within the `params` scope in `nextflow.config`. Don't hardcode values that a user might reasonably want to change. Once added, run nf-core pipelines schema build to register them in nextflow_schema.json.
-
-<!-- TODO: Add information about parameters for skipping tools when that logic is decided. -->
-
+- Parameters should be initialised/defined with default values within the `params` scope in `nextflow.config`. Don't hardcode values that a user might reasonably want to change. Once added, run `nf-core pipelines schema build` to register them in `nextflow_schema.json`.
 ### Publishing
 
 - Build a single `ch_publish` channel inside each subworkflow by mixing all publishable outputs into `[destination, value]` tuples.
@@ -274,19 +275,34 @@ Please use the following naming schemes, to make it easy to understand what is g
 
 - Process-level options go in `conf/subworkflows/<subworkflow_name>.config`, not inline in the subworkflow `.nf` file.
 - Use module configs strictly for defining `ext.args`, `ext.args2`, and `ext.prefix`. Do not place complex decision-making, conditions or workflow behaviour logic there.
-- Config files should only contain settings that are relevant for all runs. If there are specific extra arguments for certain tools that are only relevant for test runs, consider creating dedicated parameters for these and define them in the test config files (see `extra_args_cadd_annotate` for an example).
-- Conditional behavior (e.g. save as CRAM vs BAM) is handled in the subworkflow via `channel.empty()` gating — not via config-level flags.
+- Conditional behavior (e.g. save as CRAM vs BAM) should be handled in the subworkflow — not via config-level flags.
 - Process resource requirements (CPUs / memory / time) go in `conf/base.config` using `withLabel:` selectors so they can be shared across processes. Use `${task.cpus}` and `${task.memory}` in `script:` blocks to apply them dynamically.
+- Config files should only contain settings that are relevant for all runs. If there are specific extra arguments for certain tools that are only relevant for test runs, consider creating dedicated parameters for these and define them in the test config files (see `extra_args_cadd_annotate` for an example).
 
 ### Writing tests
 
-- Every subworkflow should have a test at `subworkflows/local/<name>/tests/main.nf.test`.
-- Use `-stub` in the `when:` block only when real test data is difficult to generate. Prefer running with real data where it is reasonably available.
+- Every subworkflow should have tests at `subworkflows/local/<name>/tests/main.nf.test`.
 - Snapshot files (`*.nf.test.snap`) are committed alongside tests — update them when outputs change.
-- Pipeline-level tests live in `tests/` and cover the default and `test` profiles.
+- Pipeline-level tests live in `tests/`.
+- Use `-stub` in the `when:` block only when real test data is difficult to generate. Prefer running with real data where it is reasonably available.
 
 ### Style
 
+- Both `take:` and `emit:` block entries require an inline type comment. Use `name // type: [mandatory|optional] description` for `take:` and `name = value // channel: [type description]` for `emit:`. Always include the comment — never leave an entry uncommented.
+
+  ```groovy
+  take:
+  ch_vcf                // channel: [mandatory] [ val(meta), path(vcf) ]
+  ch_reduced_penetrance // channel: [optional]  [ path(penetrance) ]
+  val_aligner           // string:  [mandatory] aligner name (bwa/bwamem2/bwameme)
+  process_with_sort     // Boolean
+
+  emit:
+  vcf     = ch_vcf      // channel: [ val(meta), path(vcf) ]
+  publish = ch_publish  // channel: [ val(destination), val(value) ]
+  ```
+
+- Use `ch_* = <...>` to declare a new channel. Avoid using `.set { ch_* }`.
 - Sort `include` statements alphabetically by the name inside the brackets. Right-pad each name with spaces so all closing `}` align to the same column (the longest name in the block sets the width):
 
   ```groovy
@@ -297,18 +313,7 @@ Please use the following naming schemes, to make it easy to understand what is g
 
 - Sort items in the `take`, `emit` and `publish` blocks, alphabetically (see example below).
 
-- Both `take:` and `emit:` block entries require an inline type comment. Use `name // type: [mandatory|optional] description` for `take:` and `name = value // channel: [type description]` for `emit:`. Always include the comment — never leave an entry uncommented.
+## Updating contribution guidelines
 
-  ```groovy
-  take:
-  ch_vep_cache       // channel: [optional]  [path(vep_cache)]
-  ch_vep_extra_files // channel: [optional]  [path(plugin_file1), path(plugin_file2), ...]
-  val_cadd_resources // string:  [optional]  path to CADD resources directory
-  val_genome         // string:  [optional]  genome assembly (e.g. "GRCh38")
-
-  emit:
-  vcf   = ch_vcf             // channel: [ val(meta), path(vcf) ]
-  index = ch_tbi.mix(ch_csi) // channel: [ val(meta), path(index) ]
-  ```
-
-- Use `ch_* = <...>` whenever possible. Avoid using the `.set {ch_*}` operator to create new channels.
+This document is generated using [genomic-medicine-sweden/nf-dev-guidelines](https://github.com/genomic-medicine-sweden/nf-dev-guidelines).
+Follow the instructions in the [README](https://github.com/genomic-medicine-sweden/nf-dev-guidelines#readme-ov-file) to update the contribution guidelines.
