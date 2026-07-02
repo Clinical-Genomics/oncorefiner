@@ -1,10 +1,10 @@
 nextflow_workflow {
-    name "Test subworkflow ANNOTATE_LINX"
+    name "Test subworkflow ANNOTATE_VCF_WITH_LINX"
     script "../main.nf"
     config "./nextflow.config"
-    workflow "ANNOTATE_LINX"
+    workflow "ANNOTATE_VCF_WITH_LINX"
     tag "subworkflows"
-    tag "annotate_linx"
+    tag "annotate_vcf_with_linx"
     topics "versions"
 
     test("Annotate VCF with LINX tsv") {

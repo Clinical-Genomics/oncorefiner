@@ -1,3 +1,13 @@
+/*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    IMPORT MODULES / SUBWORKFLOWS / FUNCTIONS
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*/
+
+//
+// MODULE: Installed directly from nf-core/modules
+//
+
 //
 // MODULE: Local modules
 //
@@ -11,7 +21,7 @@ include { ANNOTATE_VCF_BY_ID } from '../../../modules/local/annotate_vcf_by_id/m
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
-workflow ANNOTATE_LINX {
+workflow ANNOTATE_VCF_WITH_LINX {
 
     take:
     ch_linx_breakends_tsv // channel: [optional]  [val(meta), path(tsv)]

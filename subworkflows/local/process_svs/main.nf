@@ -18,7 +18,7 @@ include { SVDB_QUERY                               } from '../../../modules/nf-c
 //
 
 include { GENERATE_CYTOSURE_FILES } from '../../../subworkflows/local/generate_cytosure_files/main'
-include { ANNOTATE_LINX           } from '../../../subworkflows/local/annotate_linx/main'
+include { ANNOTATE_VCF_WITH_LINX  } from '../../../subworkflows/local/annotate_vcf_with_linx/main'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -47,7 +47,7 @@ workflow PROCESS_SVS {
 
     main:
     // Annotate VCF with LINX TSVs
-    ANNOTATE_LINX(
+    ANNOTATE_VCF_WITH_LINX(
         ch_linx_breakends_tsv,
         ch_linx_fusion_tsv,
         ch_linx_sv_tsv,
@@ -56,8 +56,8 @@ workflow PROCESS_SVS {
         ch_sv_vcf_tbi
     )
 
-    ch_sv_linx_vcf = ANNOTATE_LINX.out.vcf
-    ch_sv_linx_vcf_tbi = ANNOTATE_LINX.out.tbi
+    ch_sv_linx_vcf = ANNOTATE_VCF_WITH_LINX.out.vcf
+    ch_sv_linx_vcf_tbi = ANNOTATE_VCF_WITH_LINX.out.tbi
 
 
     // SVDB QUERY
