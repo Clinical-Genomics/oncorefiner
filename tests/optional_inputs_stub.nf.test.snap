@@ -59,11 +59,11 @@
                 "pipeline_info",
                 "pipeline_info/oncorefiner_software_mqc_versions.yml",
                 "process_svs",
+                "process_svs/test_tumor_normal_case.tsv",
+                "process_svs/test_tumor_normal_case.vcf.gz",
+                "process_svs/test_tumor_normal_case.vcf.gz.tbi",
                 "process_svs/test_tumor_normal_case_clinical.vcf.gz",
                 "process_svs/test_tumor_normal_case_clinical.vcf.gz.tbi",
-                "process_svs/test_tumor_normal_case_linxannotated.vcf.gz",
-                "process_svs/test_tumor_normal_case_linxannotated.vcf.gz.tbi",
-                "process_svs/test_tumor_normal_case_linxcombined.tsv",
                 "process_svs/test_tumor_normal_case_research.vcf.gz",
                 "process_svs/test_tumor_normal_case_research.vcf.gz.tbi",
                 "snv",
@@ -83,10 +83,10 @@
                 "vep/test_tumor_normal_case_svdbquery_vep_summary.html"
             ]
         ],
-        "timestamp": "2026-06-30T14:38:55.96807",
+        "timestamp": "2026-07-02T11:48:40.689176",
         "meta": {
             "nf-test": "0.9.5",
-            "nextflow": "25.10.4"
+            "nextflow": "26.04.0"
         }
     },
     "No `vep_plugin_files` with '-profile test' - stub": {
@@ -155,11 +155,11 @@
                 "pipeline_info",
                 "pipeline_info/oncorefiner_software_mqc_versions.yml",
                 "process_svs",
+                "process_svs/test_tumor_normal_case.tsv",
+                "process_svs/test_tumor_normal_case.vcf.gz",
+                "process_svs/test_tumor_normal_case.vcf.gz.tbi",
                 "process_svs/test_tumor_normal_case_clinical.vcf.gz",
                 "process_svs/test_tumor_normal_case_clinical.vcf.gz.tbi",
-                "process_svs/test_tumor_normal_case_linxannotated.vcf.gz",
-                "process_svs/test_tumor_normal_case_linxannotated.vcf.gz.tbi",
-                "process_svs/test_tumor_normal_case_linxcombined.tsv",
                 "process_svs/test_tumor_normal_case_research.vcf.gz",
                 "process_svs/test_tumor_normal_case_research.vcf.gz.tbi",
                 "snv",
@@ -181,10 +181,10 @@
                 "vep/test_tumor_normal_case_svdbquery_vep_summary.html"
             ]
         ],
-        "timestamp": "2026-06-30T14:39:50.395153",
+        "timestamp": "2026-07-02T11:49:30.286438",
         "meta": {
             "nf-test": "0.9.5",
-            "nextflow": "25.10.4"
+            "nextflow": "26.04.0"
         }
     }
 }

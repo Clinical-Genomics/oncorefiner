@@ -65,11 +65,11 @@
                 "pipeline_info",
                 "pipeline_info/oncorefiner_software_mqc_versions.yml",
                 "process_svs",
+                "process_svs/test_tumor_normal_case.tsv",
+                "process_svs/test_tumor_normal_case.vcf.gz",
+                "process_svs/test_tumor_normal_case.vcf.gz.tbi",
                 "process_svs/test_tumor_normal_case_clinical.vcf.gz",
                 "process_svs/test_tumor_normal_case_clinical.vcf.gz.tbi",
-                "process_svs/test_tumor_normal_case_linxannotated.vcf.gz",
-                "process_svs/test_tumor_normal_case_linxannotated.vcf.gz.tbi",
-                "process_svs/test_tumor_normal_case_linxcombined.tsv",
                 "process_svs/test_tumor_normal_case_research.vcf.gz",
                 "process_svs/test_tumor_normal_case_research.vcf.gz.tbi",
                 "snv",
@@ -91,10 +91,10 @@
                 "vep/test_tumor_normal_case_svdbquery_vep_summary.html"
             ]
         ],
-        "timestamp": "2026-06-30T14:42:15.343171",
+        "timestamp": "2026-07-02T11:51:45.188045",
         "meta": {
             "nf-test": "0.9.5",
-            "nextflow": "25.10.4"
+            "nextflow": "26.04.0"
         }
     },
     "Tumor Normal analysis with '-profile test'": {
@@ -167,11 +167,11 @@
                 "pipeline_info",
                 "pipeline_info/oncorefiner_software_mqc_versions.yml",
                 "process_svs",
+                "process_svs/test_tumor_normal_case.tsv",
+                "process_svs/test_tumor_normal_case.vcf.gz",
+                "process_svs/test_tumor_normal_case.vcf.gz.tbi",
                 "process_svs/test_tumor_normal_case_clinical.vcf.gz",
                 "process_svs/test_tumor_normal_case_clinical.vcf.gz.tbi",
-                "process_svs/test_tumor_normal_case_linxannotated.vcf.gz",
-                "process_svs/test_tumor_normal_case_linxannotated.vcf.gz.tbi",
-                "process_svs/test_tumor_normal_case_linxcombined.tsv",
                 "process_svs/test_tumor_normal_case_research.vcf.gz",
                 "process_svs/test_tumor_normal_case_research.vcf.gz.tbi",
                 "snv",
@@ -193,17 +193,17 @@
                 "vep/test_tumor_normal_case_svdbquery_vep.vcf.gz_summary.html"
             ],
             [
-                "test_tumor_normal_case_linxcombined.tsv:md5,ae1e0ecb9111096ff27545f03af70cc0",
+                "test_tumor_normal_case.tsv:md5,ae1e0ecb9111096ff27545f03af70cc0",
                 "normal.cgh:md5,4d969b296e558f0fc911844f35fad6e9",
                 "tumor.cgh:md5,dd4ac501252ca74cb364ae447ec6b3eb"
             ],
             [
                 [
-                    "test_tumor_normal_case_clinical.vcf.gz",
+                    "test_tumor_normal_case.vcf.gz",
                     "VcfFile [chromosomes=[chr19, chr9, chr11], sampleCount=2, variantCount=6, phased=false, phasedAutodetect=false]"
                 ],
                 [
-                    "test_tumor_normal_case_linxannotated.vcf.gz",
+                    "test_tumor_normal_case_clinical.vcf.gz",
                     "VcfFile [chromosomes=[chr19, chr9, chr11], sampleCount=2, variantCount=6, phased=false, phasedAutodetect=false]"
                 ],
                 [
@@ -233,12 +233,12 @@
             ],
             [
                 [
-                    "test_tumor_normal_case_clinical.vcf.gz",
-                    "37e41e9f40fafde247690f6b053df866"
+                    "test_tumor_normal_case.vcf.gz",
+                    "da36427a37c150dc78ef322d3841f4a1"
                 ],
                 [
-                    "test_tumor_normal_case_linxannotated.vcf.gz",
-                    "da36427a37c150dc78ef322d3841f4a1"
+                    "test_tumor_normal_case_clinical.vcf.gz",
+                    "37e41e9f40fafde247690f6b053df866"
                 ],
                 [
                     "test_tumor_normal_case_research.vcf.gz",
@@ -266,10 +266,10 @@
                 ]
             ]
         ],
-        "timestamp": "2026-06-30T14:41:21.100472",
+        "timestamp": "2026-07-02T11:50:48.174292",
         "meta": {
             "nf-test": "0.9.5",
-            "nextflow": "25.10.4"
+            "nextflow": "26.04.0"
         }
     }
 }

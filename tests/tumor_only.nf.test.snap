@@ -67,11 +67,11 @@
                 "pipeline_info",
                 "pipeline_info/oncorefiner_software_mqc_versions.yml",
                 "process_svs",
+                "process_svs/test_tumor_only_case.tsv",
+                "process_svs/test_tumor_only_case.vcf.gz",
+                "process_svs/test_tumor_only_case.vcf.gz.tbi",
                 "process_svs/test_tumor_only_case_clinical.vcf.gz",
                 "process_svs/test_tumor_only_case_clinical.vcf.gz.tbi",
-                "process_svs/test_tumor_only_case_linxannotated.vcf.gz",
-                "process_svs/test_tumor_only_case_linxannotated.vcf.gz.tbi",
-                "process_svs/test_tumor_only_case_linxcombined.tsv",
                 "process_svs/test_tumor_only_case_research.vcf.gz",
                 "process_svs/test_tumor_only_case_research.vcf.gz.tbi",
                 "snv",
@@ -92,16 +92,16 @@
                 "vep/test_tumor_only_case_svdbquery_vep.vcf.gz_summary.html"
             ],
             [
-                "test_tumor_only_case_linxcombined.tsv:md5,ae1e0ecb9111096ff27545f03af70cc0",
+                "test_tumor_only_case.tsv:md5,ae1e0ecb9111096ff27545f03af70cc0",
                 "tumor.cgh:md5,22c058183d93a767ee61d5319513dc39"
             ],
             [
                 [
-                    "test_tumor_only_case_clinical.vcf.gz",
+                    "test_tumor_only_case.vcf.gz",
                     "VcfFile [chromosomes=[chr19, chr9, chr11], sampleCount=1, variantCount=6, phased=false, phasedAutodetect=false]"
                 ],
                 [
-                    "test_tumor_only_case_linxannotated.vcf.gz",
+                    "test_tumor_only_case_clinical.vcf.gz",
                     "VcfFile [chromosomes=[chr19, chr9, chr11], sampleCount=1, variantCount=6, phased=false, phasedAutodetect=false]"
                 ],
                 [
@@ -131,12 +131,12 @@
             ],
             [
                 [
-                    "test_tumor_only_case_clinical.vcf.gz",
-                    "1c75b0a5e1af4c9c6a658251b2aa46e9"
+                    "test_tumor_only_case.vcf.gz",
+                    "740d24979f0598e569785305b7aadfb8"
                 ],
                 [
-                    "test_tumor_only_case_linxannotated.vcf.gz",
-                    "740d24979f0598e569785305b7aadfb8"
+                    "test_tumor_only_case_clinical.vcf.gz",
+                    "1c75b0a5e1af4c9c6a658251b2aa46e9"
                 ],
                 [
                     "test_tumor_only_case_research.vcf.gz",
@@ -164,10 +164,10 @@
                 ]
             ]
         ],
-        "timestamp": "2026-06-30T14:43:22.358389",
+        "timestamp": "2026-07-02T11:52:50.482151",
         "meta": {
             "nf-test": "0.9.5",
-            "nextflow": "25.10.4"
+            "nextflow": "26.04.0"
         }
     },
     "Tumor only analysis with '-profile test_tumor_only' - stub": {
@@ -234,11 +234,11 @@
                 "pipeline_info",
                 "pipeline_info/oncorefiner_software_mqc_versions.yml",
                 "process_svs",
+                "process_svs/test_tumor_only_case.tsv",
+                "process_svs/test_tumor_only_case.vcf.gz",
+                "process_svs/test_tumor_only_case.vcf.gz.tbi",
                 "process_svs/test_tumor_only_case_clinical.vcf.gz",
                 "process_svs/test_tumor_only_case_clinical.vcf.gz.tbi",
-                "process_svs/test_tumor_only_case_linxannotated.vcf.gz",
-                "process_svs/test_tumor_only_case_linxannotated.vcf.gz.tbi",
-                "process_svs/test_tumor_only_case_linxcombined.tsv",
                 "process_svs/test_tumor_only_case_research.vcf.gz",
                 "process_svs/test_tumor_only_case_research.vcf.gz.tbi",
                 "snv",
@@ -259,10 +259,10 @@
                 "vep/test_tumor_only_case_svdbquery_vep_summary.html"
             ]
         ],
-        "timestamp": "2026-06-30T14:44:14.011518",
+        "timestamp": "2026-07-02T11:53:40.20646",
         "meta": {
             "nf-test": "0.9.5",
-            "nextflow": "25.10.4"
+            "nextflow": "26.04.0"
         }
     }
 }
