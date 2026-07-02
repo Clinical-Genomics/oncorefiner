@@ -1,0 +1,86 @@
+nextflow_workflow {
+
+    name "Test subworkflow GENS"
+    script "../main.nf"
+    workflow "GENS"
+    tag "subworkflows"
+    tag "subworkflows_local"
+    tag "gens"
+
+    topics "versions"
+
+    test("Process GENS, tumor-normal") {
+
+        when {
+
+            workflow {
+                """
+                input[0] = channel.of([
+                    [id: 'test_gens', case_id: 'test'],
+                    file('/Users/kristinebilgrav/Development/test-datasets/' + 'testdata/GRCh38/tumor_normal/subject_a.tumor.amber.baf.tsv.gz', checkIfExists: true),
+                ])
+                input[1] = channel.of([
+                    [id: 'test_gens', case_id: 'test', sample_id: 'subject_a', sample_type: 'normal', sex: 'female'],
+                    file('/Users/kristinebilgrav/Development/test-datasets/' + 'testdata/GRCh38/tumor_normal/subject_a.normal.cobalt.ratio.pcf', checkIfExists: true)
+                ])
+                input[2] = channel.of([
+                    [id: 'test_gens', case_id: 'test', sample_id: 'subject_a', sample_type: 'tumor', sex: 'female'],
+                    file('/Users/kristinebilgrav/Development/test-datasets/' + 'testdata/GRCh38/tumor_normal/subject_a.tumor.cobalt.ratio.pcf', checkIfExists: true)
+                ])
+                input[3] = 'tumor_normal'
+                """
+            }
+        }
+
+        then {
+            assert workflow.success
+            assertAll(
+                { assert snapshot(
+                    workflow.out.gens_baf_tsv_normal,
+                    workflow.out.gens_baf_tbi_normal,
+                    workflow.out.gens_baf_tsv_tumor,
+                    workflow.out.gens_baf_tbi_tumor,
+                    workflow.out.gens_cov_bed,
+                    workflow.out.gens_cov_bed_tbi,
+                    topics,
+                ).match() }
+            )
+        }
+    }
+
+    test("Process GENS, tumor-normal - stub") {
+
+        options "-stub"
+
+        when {
+
+            workflow {
+                """
+                input[0] = channel.of([
+                    [id: 'test_gens', case_id: 'test'],
+                    file('/Users/kristinebilgrav/Development/test-datasets/' + 'testdata/GRCh38/tumor_normal/subject_a.tumor.amber.baf.tsv.gz', checkIfExists: true),
+                ])
+                input[1] = channel.of([
+                    [id: 'test_gens', case_id: 'test', sample_id: 'subject_a', sample_type: 'normal', sex: 'female'],
+                    file('/Users/kristinebilgrav/Development/test-datasets/' + 'testdata/GRCh38/tumor_normal/subject_a.normal.cobalt.ratio.pcf', checkIfExists: true)
+                ])
+                input[2] = channel.of([
+                    [id: 'test_gens', case_id: 'test', sample_id: 'subject_a', sample_type: 'tumor', sex: 'female'],
+                    file('/Users/kristinebilgrav/Development/test-datasets/' + 'testdata/GRCh38/tumor_normal/subject_a.tumor.cobalt.ratio.pcf', checkIfExists: true)
+                ])
+                input[3] = 'tumor_normal'
+                """
+            }
+        }
+
+        then {
+            assert workflow.success
+            assertAll(
+                { assert snapshot(
+                    workflow.out,
+                    topics,
+                ).match() }
+            )
+        }
+    }
+}
