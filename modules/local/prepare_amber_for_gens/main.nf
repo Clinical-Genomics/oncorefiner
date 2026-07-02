@@ -11,8 +11,10 @@ process PREPARE_AMBER_FOR_GENS {
     tuple val(meta), path(amber_baf_tsv), val(sampletype)
 
     output:
-    tuple val(meta), path("*.baf.zoom.tsv.gz"), emit: tsv
-    tuple val(meta), path("*.baf.zoom.tsv.gz.tbi"), emit: tbi
+    tuple val(meta), path("*tumor.baf.zoom.tsv.gz"), emit: tsv_tumor
+    tuple val(meta), path("*normal.baf.zoom.tsv.gz"), emit: tsv_normal, optional: true
+    tuple val(meta), path("*tumor.baf.zoom.tsv.gz.tbi"), emit: tbi_tumor
+    tuple val(meta), path("*normal.baf.zoom.tsv.gz.tbi"), emit: tbi_normal, optional: true
     tuple val("${task.process}"), val('prepare_amber_for_gens'), val('1.0'), topic: versions, emit: versions_amber_for_gens
     // WARN: Version information not provided by tool on CLI. Please update version string above when bumping container versions.
 
@@ -23,7 +25,7 @@ process PREPARE_AMBER_FOR_GENS {
     prepare_amber_for_gens.py \\
         --input-file ${amber_baf_tsv} \\
         --sample-type ${sampletype} \\
-        --output-file ${prefix}.${sampletype}.baf.zoom.tsv
+        --output-file-prefix ${prefix}.${sampletype}
 
     for f in *.baf.zoom.tsv; do
         if [[ -s "\$f" ]]; then
@@ -36,7 +38,12 @@ process PREPARE_AMBER_FOR_GENS {
     stub:
     prefix = task.ext.prefix ?: "${meta.id}"
     """
-    echo | gzip >  ${prefix}.${sampletype}.baf.zoom.tsv.gz
-    touch ${prefix}.${sampletype}.baf.zoom.tsv.gz.tbi
+    sampletype=${sampletype}
+    if [[ $sampletype == *"normal"* ]]; then
+        echo | gzip > ${prefix}.${sampletype}.normal.baf.zoom.tsv.gz
+        touch ${prefix}.${sampletype}.normal.baf.zoom.tsv.gz.tbi
+    fi
+    echo | gzip > ${prefix}.${sampletype}.tumor.baf.zoom.tsv.gz
+    touch ${prefix}.${sampletype}.tumor.baf.zoom.tsv.gz.tbi
     """
 }

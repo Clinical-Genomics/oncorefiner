@@ -64,15 +64,15 @@ def write_baf_file(
     help="Sample type (e.g., tumor or tumor_normal)",
 )
 @click.option(
-    "--output-file",
+    "--output-file-prefix",
     default="*_baf_zoom.tsv",
     show_default=True,
-    help="Output file for BAF",
+    help="Output file prefix for BAF",
 )
 
 def main(
     input_file: click.Path,
-    output_file: click.STRING,
+    output_file_prefix: click.STRING,
     sample_type: click.STRING,
 ) -> None:
     """Convert BAF table into zoom-level files."""
@@ -91,32 +91,22 @@ def main(
             f"Missing required columns: {', '.join(sorted(missing))}"
         )
 
-    if sample_type == "tumor":
-        write_baf_file(
-            df=df,
-            baf_column="tumorBAF",
-            output_path=output_file,
-            levels=DEFAULT_LEVELS,
-        )
-        click.echo(f"Wrote tumor output: {output_file}")
+    write_baf_file(
+        df=df,
+        baf_column="tumorBAF",
+        output_path=f"{output_file_prefix}.tumor.baf.zoom.tsv",
+        levels=DEFAULT_LEVELS,
+    )
+    click.echo(f"Wrote tumor output: {output_file_prefix}.tumor.baf.zoom.tsv")
 
-    if "normal" and "tumor" in sample_type: # need to check meta type for this - will it be tumor_normal or normal or tumor?
+    if "normal" in sample_type:
         write_baf_file(
             df=df,
             baf_column="normalBAF",
-            output_path=output_file,
+            output_path=f"{output_file_prefix}.normal.baf.zoom.tsv",
             levels=DEFAULT_LEVELS,
         )
-        click.echo(f"Wrote normal output: {output_file}")
-
-        write_baf_file(
-            df=df,
-            baf_column="tumorBAF",
-            output_path=output_file,
-            levels=DEFAULT_LEVELS,
-        )
-        click.echo(f"Wrote tumor output: {output_file}")
-
+        click.echo(f"Wrote normal output: {output_file_prefix}.normal.baf.zoom.tsv")
 
 
 if __name__ == "__main__":
