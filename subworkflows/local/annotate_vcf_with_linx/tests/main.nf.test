@@ -14,24 +14,24 @@ nextflow_workflow {
             workflow {
                 """
                 input[0] = channel.of([
-                    [ id:'test' ],
+                    [id: 'test', case_id: 'subject_a'],
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.linx.breakend.tsv', checkIfExists: true)
                 ])
                 input[1] = channel.of([
-                    [ id:'test' ],
+                    [id: 'test', case_id: 'subject_a'],
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.linx.fusion.tsv', checkIfExists: true)
                 ])
                 input[2] = channel.of([
-                    [ id:'test' ],
+                    [id: 'test', case_id: 'subject_a'],
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.linx.svs.tsv', checkIfExists: true)
                 ])
                 input[3] = channel.fromPath('$projectDir/assets/sv_annotation_header.txt')
                 input[4] = channel.of([
-                    [ id:'test' ],
+                    [id: 'test', case_id: 'subject_a'],
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.sv.vcf.gz', checkIfExists: true)
                 ])
                 input[5] = channel.of([
-                    [ id:'test' ],
+                    [id: 'test', case_id: 'subject_a'],
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.sv.vcf.gz.tbi', checkIfExists: true)
                 ])
 
@@ -43,7 +43,7 @@ nextflow_workflow {
             assertAll(
                 { assert workflow.success },
                 { assert snapshot(
-                    workflow.out.vcf.collect { meta, vcf -> [meta, file(vcf).name, ":variantsMD5,", path(vcf).vcf.variantsMD5 ]} ,
+                    workflow.out.vcf.collect { meta, vcf -> [meta, file(vcf).name + ":variantsMD5," + path(vcf).vcf.variantsMD5 ]} ,
                     workflow.out.tbi.collect { meta, tbi -> [meta, file(tbi).name ]} ,
                     topics
                 ).match() }
@@ -59,24 +59,24 @@ nextflow_workflow {
             workflow {
                 """
                 input[0] = channel.of([
-                    [ id:'test' ],
+                    [id: 'test', case_id: 'subject_a'],
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.linx.breakend.tsv', checkIfExists: true)
                 ])
                 input[1] = channel.of([
-                    [ id:'test' ],
+                    [id: 'test', case_id: 'subject_a'],
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.linx.fusion.tsv', checkIfExists: true)
                 ])
                 input[2] = channel.of([
-                    [ id:'test' ],
+                    [id: 'test', case_id: 'subject_a'],
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.linx.svs.tsv', checkIfExists: true)
                 ])
                 input[3] = channel.fromPath('$projectDir/assets/sv_annotation_header.txt')
                 input[4] = channel.of([
-                    [ id:'test' ],
+                    [id: 'test', case_id: 'subject_a'],
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.sv.vcf.gz', checkIfExists: true)
                 ])
                 input[5] = channel.of([
-                    [ id:'test' ],
+                    [id: 'test', case_id: 'subject_a'],
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.sv.vcf.gz.tbi', checkIfExists: true)
                 ])
 

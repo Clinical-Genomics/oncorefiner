@@ -5,7 +5,8 @@
                 "0": [
                     [
                         {
-                            "id": "test"
+                            "id": "test",
+                            "case_id": "subject_a"
                         },
                         "test_linxannotated.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
                     ]
@@ -13,7 +14,8 @@
                 "1": [
                     [
                         {
-                            "id": "test"
+                            "id": "test",
+                            "case_id": "subject_a"
                         },
                         "test_linxannotated.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
@@ -21,7 +23,8 @@
                 "tbi": [
                     [
                         {
-                            "id": "test"
+                            "id": "test",
+                            "case_id": "subject_a"
                         },
                         "test_linxannotated.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
@@ -29,17 +32,18 @@
                 "vcf": [
                     [
                         {
-                            "id": "test"
+                            "id": "test",
+                            "case_id": "subject_a"
                         },
                         "test_linxannotated.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
                     ]
                 ]
             }
         ],
-        "timestamp": "2026-06-30T15:16:22.047076",
+        "timestamp": "2026-07-02T10:44:29.628788",
         "meta": {
             "nf-test": "0.9.5",
-            "nextflow": "25.10.4"
+            "nextflow": "26.04.0"
         }
     },
     "Annotate VCF with LINX tsv": {
@@ -47,17 +51,17 @@
             [
                 [
                     {
-                        "id": "test"
+                        "id": "test",
+                        "case_id": "subject_a"
                     },
-                    "test_linxannotated.vcf.gz",
-                    ":variantsMD5,",
-                    "da36427a37c150dc78ef322d3841f4a1"
+                    "test_linxannotated.vcf.gz:variantsMD5,da36427a37c150dc78ef322d3841f4a1"
                 ]
             ],
             [
                 [
                     {
-                        "id": "test"
+                        "id": "test",
+                        "case_id": "subject_a"
                     },
                     "test_linxannotated.vcf.gz.tbi"
                 ]
@@ -77,7 +81,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-07-02T10:37:13.840552",
+        "timestamp": "2026-07-02T10:44:25.563977",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.0"

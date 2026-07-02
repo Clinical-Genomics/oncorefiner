@@ -33,19 +33,15 @@ workflow ANNOTATE_VCF_WITH_LINX {
 
     main:
 
-    ch_linx_input = ch_linx_fusion_tsv
+    ch_combine_linx_tsv_in = ch_linx_fusion_tsv
         .join(ch_linx_breakends_tsv, failOnMismatch: true)
         .join(ch_linx_sv_tsv, failOnMismatch: true)
 
-    COMBINE_LINX_TSV(ch_linx_input)
+    COMBINE_LINX_TSV(ch_combine_linx_tsv_in)
 
     ch_annotate_vcf_input = ch_sv_vcf
         .join(COMBINE_LINX_TSV.out.tsv, failOnMismatch: true)
         .combine(ch_sv_header)
-        .map { meta, vcf_file, tsv_file, header_file ->
-            tuple(meta, vcf_file, tsv_file, header_file)
-        }
-
 
     ANNOTATE_VCF_BY_ID(ch_annotate_vcf_input)
 

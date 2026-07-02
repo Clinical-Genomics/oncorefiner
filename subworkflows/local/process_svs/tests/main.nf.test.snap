@@ -36,7 +36,7 @@
                 ]
             ],
             [
-
+                
             ]
         ],
         "timestamp": "2026-06-22T16:46:29.078308",
@@ -49,22 +49,22 @@
         "content": [
             [
                 "process_svs",
-                "process_svs/subject_a_clinical.vcf.gz",
-                "process_svs/subject_a_clinical.vcf.gz.tbi",
-                "process_svs/subject_a_linxannotated.vcf.gz",
-                "process_svs/subject_a_linxannotated.vcf.gz.tbi",
-                "process_svs/subject_a_linxcombined.tsv",
-                "process_svs/subject_a_research.vcf.gz",
-                "process_svs/subject_a_research.vcf.gz.tbi",
+                "process_svs/test_clinical.vcf.gz",
+                "process_svs/test_clinical.vcf.gz.tbi",
+                "process_svs/test_linxannotated.vcf.gz",
+                "process_svs/test_linxannotated.vcf.gz.tbi",
+                "process_svs/test_linxcombined.tsv",
+                "process_svs/test_research.vcf.gz",
+                "process_svs/test_research.vcf.gz.tbi",
                 "vcf2cytosure",
                 "vcf2cytosure/null.cgh",
                 "vep",
-                "vep/subject_a_svdbquery_vep.vcf.gz",
-                "vep/subject_a_svdbquery_vep.vcf.gz.tbi",
-                "vep/subject_a_svdbquery_vep_summary.html"
+                "vep/test_svdbquery_vep.vcf.gz",
+                "vep/test_svdbquery_vep.vcf.gz.tbi",
+                "vep/test_svdbquery_vep_summary.html"
             ]
         ],
-        "timestamp": "2026-06-22T16:47:12.993747",
+        "timestamp": "2026-07-02T10:47:21.027424",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.0"

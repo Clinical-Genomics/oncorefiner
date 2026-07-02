@@ -143,25 +143,25 @@ nextflow_workflow {
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/subject_a.tumor.redux.bam.bai', checkIfExists: true)
                 ])
                 input[2] = channel.of([
-                    [id:'subject_a'],
+                    [id: 'test', case_id: 'subject_a'],
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.linx.breakend.tsv', checkIfExists: true)
                 ])
                 input[3] = channel.of([
-                    [id:'subject_a'],
+                    [id: 'test', case_id: 'subject_a'],
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.linx.fusion.tsv', checkIfExists: true)
                 ])
                 input[4] = channel.of([
-                    [id:'subject_a'],
+                    [id: 'test', case_id: 'subject_a'],
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.linx.svs.tsv', checkIfExists: true)
                 ])
                 input[5] = channel.fromPath('$projectDir/assets/sv_annotation_header.txt')
 
                 input[6] = channel.of([
-                    [id:'subject_a'],
+                    [id: 'test', case_id: 'subject_a'],
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.sv.vcf.gz', checkIfExists: true)
                 ])
                 input[7] = channel.of([
-                    [id:'subject_a'],
+                    [id: 'test', case_id: 'subject_a'],
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.sv.vcf.gz.tbi', checkIfExists: true)
                 ])
                 input[8] = channel.of(
