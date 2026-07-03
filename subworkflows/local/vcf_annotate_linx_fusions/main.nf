@@ -21,7 +21,7 @@ include { ANNOTATE_VCF_BY_ID } from '../../../modules/local/annotate_vcf_by_id/m
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
-workflow ANNOTATE_VCF_WITH_LINX {
+workflow VCF_ANNOTATE_LINX_FUSIONS {
 
     take:
     ch_linx_breakends_tsv // channel: [required]  [val(meta), path(tsv)]
@@ -39,11 +39,11 @@ workflow ANNOTATE_VCF_WITH_LINX {
 
     COMBINE_LINX_TSV(ch_combine_linx_tsv_in)
 
-    ch_annotate_vcf_input = ch_sv_vcf
+    ch_annotate_vcf_by_id_in = ch_sv_vcf
         .join(COMBINE_LINX_TSV.out.tsv, failOnMismatch: true)
         .join(ch_sv_header, failOnMismatch: true)
 
-    ANNOTATE_VCF_BY_ID(ch_annotate_vcf_input)
+    ANNOTATE_VCF_BY_ID(ch_annotate_vcf_by_id_in)
 
     emit:
     vcf     = ANNOTATE_VCF_BY_ID.out.vcf
