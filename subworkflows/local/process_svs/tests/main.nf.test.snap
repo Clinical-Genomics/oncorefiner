@@ -3,35 +3,35 @@
         "content": [
             [
                 "process_svs",
-                "process_svs/test_clinical.vcf.gz",
-                "process_svs/test_clinical.vcf.gz.tbi",
-                "process_svs/test_linxannotated.vcf.gz",
-                "process_svs/test_linxannotated.vcf.gz.tbi",
-                "process_svs/test_linxcombined.tsv",
-                "process_svs/test_research.vcf.gz",
-                "process_svs/test_research.vcf.gz.tbi",
+                "process_svs/subject_a_clinical.vcf.gz",
+                "process_svs/subject_a_clinical.vcf.gz.tbi",
+                "process_svs/subject_a_linxannotated.vcf.gz",
+                "process_svs/subject_a_linxannotated.vcf.gz.tbi",
+                "process_svs/subject_a_linxcombined.tsv",
+                "process_svs/subject_a_research.vcf.gz",
+                "process_svs/subject_a_research.vcf.gz.tbi",
                 "vcf2cytosure",
                 "vcf2cytosure/null.cgh",
                 "vep",
-                "vep/test_svdbquery_vep.vcf.gz",
-                "vep/test_svdbquery_vep.vcf.gz.tbi",
-                "vep/test_svdbquery_vep.vcf.gz_summary.html"
+                "vep/subject_a_svdbquery_vep.vcf.gz",
+                "vep/subject_a_svdbquery_vep.vcf.gz.tbi",
+                "vep/subject_a_svdbquery_vep.vcf.gz_summary.html"
             ],
             [
                 [
-                    "test_clinical.vcf.gz",
+                    "subject_a_clinical.vcf.gz",
                     "37e41e9f40fafde247690f6b053df866"
                 ],
                 [
-                    "test_linxannotated.vcf.gz",
+                    "subject_a_linxannotated.vcf.gz",
                     "da36427a37c150dc78ef322d3841f4a1"
                 ],
                 [
-                    "test_research.vcf.gz",
+                    "subject_a_research.vcf.gz",
                     "da36427a37c150dc78ef322d3841f4a1"
                 ],
                 [
-                    "test_svdbquery_vep.vcf.gz",
+                    "subject_a_svdbquery_vep.vcf.gz",
                     "37e41e9f40fafde247690f6b053df866"
                 ]
             ],
@@ -39,7 +39,7 @@
                 
             ]
         ],
-        "timestamp": "2026-07-02T10:53:04.122639",
+        "timestamp": "2026-07-03T11:24:48.990825",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.0"
@@ -49,22 +49,22 @@
         "content": [
             [
                 "process_svs",
-                "process_svs/test_clinical.vcf.gz",
-                "process_svs/test_clinical.vcf.gz.tbi",
-                "process_svs/test_linxannotated.vcf.gz",
-                "process_svs/test_linxannotated.vcf.gz.tbi",
-                "process_svs/test_linxcombined.tsv",
-                "process_svs/test_research.vcf.gz",
-                "process_svs/test_research.vcf.gz.tbi",
+                "process_svs/subject_a_clinical.vcf.gz",
+                "process_svs/subject_a_clinical.vcf.gz.tbi",
+                "process_svs/subject_a_linxannotated.vcf.gz",
+                "process_svs/subject_a_linxannotated.vcf.gz.tbi",
+                "process_svs/subject_a_linxcombined.tsv",
+                "process_svs/subject_a_research.vcf.gz",
+                "process_svs/subject_a_research.vcf.gz.tbi",
                 "vcf2cytosure",
                 "vcf2cytosure/null.cgh",
                 "vep",
-                "vep/test_svdbquery_vep.vcf.gz",
-                "vep/test_svdbquery_vep.vcf.gz.tbi",
-                "vep/test_svdbquery_vep_summary.html"
+                "vep/subject_a_svdbquery_vep.vcf.gz",
+                "vep/subject_a_svdbquery_vep.vcf.gz.tbi",
+                "vep/subject_a_svdbquery_vep_summary.html"
             ]
         ],
-        "timestamp": "2026-07-02T10:47:21.027424",
+        "timestamp": "2026-07-03T11:25:16.646746",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.0"
