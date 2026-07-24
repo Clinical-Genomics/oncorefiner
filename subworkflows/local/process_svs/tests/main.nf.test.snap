@@ -17,7 +17,7 @@
             [
                 [
                     "subject_a_clinical.vcf.gz",
-                    "aca08367cdefe343d4d2a8c10a8633be"
+                    "19c4e9b367a1917c49b878d3134b09b5"
                 ],
                 [
                     "subject_a_research.vcf.gz",
@@ -25,18 +25,17 @@
                 ],
                 [
                     "subject_a_svdbquery_vep.vcf.gz",
-                    "5586f18ef999bffe0b0b9cc1831f7ff3"
-
+                    "19c4e9b367a1917c49b878d3134b09b5"
                 ]
             ],
             [
-
+                
             ]
         ],
-        "timestamp": "2026-06-22T16:46:29.078308",
+        "timestamp": "2026-07-24T16:40:11.310569",
         "meta": {
             "nf-test": "0.9.5",
-            "nextflow": "26.04.2"
+            "nextflow": "25.10.0"
         }
     },
     "with tumor-normal data - stub": {
