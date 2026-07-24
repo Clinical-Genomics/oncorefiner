@@ -9,32 +9,35 @@ include { VCF2CYTOSURE                } from '../../../modules/nf-core/vcf2cytos
 
 workflow GENERATE_CYTOSURE_FILES {
     take:
-        ch_bam_bai // channel: [optional]  [val(meta), path(bam), path(bai)]
-        ch_tbi     // channel: [mandatory] [val(meta), path(tbi)]
-        ch_vcf     // channel: [mandatory] [val(meta), path(vcf)]
+    ch_bam_bai // channel: [optional]  [val(meta), path(bam), path(bai)]
+    ch_tbi     // channel: [mandatory] [val(meta), path(tbi)]
+    ch_vcf     // channel: [mandatory] [val(meta), path(vcf)]
 
     main:
-        // Filter out SGL variants, if present
-        ch_vcf_tbi = ch_vcf.join(ch_tbi, failOnMismatch: true)
-        FILTER_VCF(
-            ch_vcf_tbi,
-            [],
-            [],
-            []
-        )
+    // Filter out SGL variants, if present
+    ch_vcf_tbi = ch_vcf.join(ch_tbi, failOnMismatch: true)
+    FILTER_VCF(
+        ch_vcf_tbi,
+        [],
+        [],
+        []
+    )
 
-        // Generate coverage bed file
-        TIDDIT_COV(
-            ch_bam_bai,
-             [[],[]]
-        )
+    // Generate coverage bed file
+    TIDDIT_COV(
+        ch_bam_bai,
+         [[],[]]
+    )
 
-        // Run vcf2cytosure
-        VCF2CYTOSURE(
-            FILTER_VCF.out.vcf,
-            TIDDIT_COV.out.cov,
-            [[],[]],
-            [[],[]],
-            []
-        )
+    // Run vcf2cytosure
+    VCF2CYTOSURE(
+        FILTER_VCF.out.vcf,
+        TIDDIT_COV.out.cov,
+        [[],[]],
+        [[],[]],
+        []
+    )
+
+    emit:
+    VCF2CYTOSURE.out.cgh // channel: [val(meta), path(cgh)]
 }

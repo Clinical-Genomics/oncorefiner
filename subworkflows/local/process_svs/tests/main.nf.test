@@ -1,6 +1,6 @@
 nextflow_workflow {
 
-    name "Test subworkflow Process Structural Variants (PROCESS_SVS)"
+    name "Test subworkflow PROCESS_SVS"
     script "../main.nf"
     config "./nextflow.config"
     workflow "PROCESS_SVS"
@@ -46,7 +46,20 @@ nextflow_workflow {
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.sv.vcf.gz.tbi', checkIfExists: true)
                 ])
                 input[4] = channel.of(
-                    file(params.pipelines_testdata_base_path + 'reference/GRCh38/svdb_querydb_files.csv', checkIfExists: true)
+                    [
+                        params.pipelines_testdata_base_path + 'reference/GRCh38/grch38_gnomad_reformated_sv_v4.1_subset.vcf.gz',
+                        'AF',
+                        'AC',
+                        'gnomad_svAF',
+                        'gnomad_svAC',
+                    ],
+                    [
+                        params.pipelines_testdata_base_path + 'reference/GRCh38/grch38_swegen_svdb_concat_sort_-20200608_subset.vcf.gz',
+                        'FRQ',
+                        'OCC',
+                        'swegenAF',
+                        'swegenOCC',
+                    ]
                 )
                 input[5] = "GRCh38"
                 input[6] = "homo_sapiens"
@@ -79,6 +92,90 @@ nextflow_workflow {
                     gz_vcfs_with_stable_variants.collect{ file -> [ file.getName(), path(file.toString()).vcf.variantsMD5 ] },
                     // VCFs with stable variants
                     vcfs_with_stable_variants.collect{ file -> [ file.getName(), path(file.toString()).vcf.variantsMD5 ] }
+                ).match() }
+            )
+        }
+    }
+
+    test("with tumor-normal data - stub") {
+
+        options "-stub"
+
+        setup {
+        run("UNTAR", alias: "UNTAR_VEP_CACHE") {
+            script "modules/nf-core/untar/main.nf"
+            process {
+                """
+                input[0] = channel.of([
+                    [id:'vep_cache'],
+                    file(params.pipelines_testdata_base_path + 'reference/GRCh38/vep_cache.tar.gz', checkIfExists: true)
+                ])
+                """
+                }
+            }
+        }
+
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+
+            workflow {
+                """
+                input[0] = channel.empty()
+                input[1] = channel.of([
+                    ['type':'tumor'],
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/subject_a.tumor.redux.bam', checkIfExists: true),
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/subject_a.tumor.redux.bam.bai', checkIfExists: true)
+                ])
+                input[2] = channel.of([
+                    [id:'subject_a'],
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.sv.vcf.gz', checkIfExists: true)
+                ])
+                input[3] = channel.of([
+                    [id:'subject_a'],
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.sv.vcf.gz.tbi', checkIfExists: true)
+                ])
+                input[4] = channel.of(
+                    [
+                        params.pipelines_testdata_base_path + 'reference/GRCh38/grch38_gnomad_reformated_sv_v4.1_subset.vcf.gz',
+                        'AF',
+                        'AC',
+                        'gnomad_svAF',
+                        'gnomad_svAC',
+                    ],
+                    [
+                        params.pipelines_testdata_base_path + 'reference/GRCh38/grch38_swegen_svdb_concat_sort_-20200608_subset.vcf.gz',
+                        'FRQ',
+                        'OCC',
+                        'swegenAF',
+                        'swegenOCC',
+                    ]
+                )
+                input[5] = "GRCh38"
+                input[6] = "homo_sapiens"
+                input[7] = 115
+                input[8] = UNTAR_VEP_CACHE.out.untar.map{ _meta, files -> [files]}.collect()
+                input[9] = channel.of([
+                    [id:'reference'],
+                    file(params.pipelines_testdata_base_path + 'reference/GRCh38/GRCh38_masked_exclusions_alts_hlas_subset.fasta', checkIfExists: true)
+                ])
+                input[10] = channel.of([
+                    file(params.pipelines_testdata_base_path + 'reference/GRCh38/LoFtool_scores.txt', checkIfExists: true),
+                    file(params.pipelines_testdata_base_path + 'reference/GRCh38/pLI_values.txt', checkIfExists: true)
+                ])
+                """
+            }
+        }
+
+        then {
+            // All files and directories in the output directory, excluding the untar directories and files
+            def output_directories_and_files = getAllFilesFromDir(params.outdir, relative: true, includeDir: true, ignore: ['untar**'])
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(
+                    // All directories and files in the output directory
+                    output_directories_and_files,
                 ).match() }
             )
         }
