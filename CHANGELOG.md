@@ -40,6 +40,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#124](https://github.com/Clinical-Genomics/oncorefiner/pull/124) Added metadata parameters `case_id`, `sample_id_tumor` and `sample_id_normal`.
 - [#124](https://github.com/Clinical-Genomics/oncorefiner/pull/124) Added `channelFromMetaAndPath` custom channel factory.
 - [#136](https://github.com/Clinical-Genomics/oncorefiner/pull/136) Added nf-schema validation to SVDB database inputs (`svdb_query_dbs`)
+- [#114](https://github.com/Clinical-Genomics/oncorefiner/pull/114) Added local python scipts to `/bin`, to be used in modules `COMBINE_LINX_TSV` and `ANNOTATE_VCF_BY_ID`.
 - [#140](https://github.com/Clinical-Genomics/oncorefiner/pull/140) Added local module `COMBINE_LINX_TSV` for combining LINX TSV files into one TSV for use in annotation of VCF file and tests.
 - [#140](https://github.com/Clinical-Genomics/oncorefiner/pull/140) Added local module `ANNOTATE_VCF_BY_ID` for annotating a VCF by using the VCF ID and a TSV annotation file and tests.
 - [#143](https://github.com/Clinical-Genomics/oncorefiner/pull/143) Added local subworkflow `VCF_ANNOTATE_LINX_FUSIONS` for annotating VCF file with LINX TSV file, using modules `annotate_vcf_by_id` and `combine_linx_tsv`, and tests.
@@ -81,6 +82,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#124](https://github.com/Clinical-Genomics/oncorefiner/pull/124) Update documentation in `docs/usage.md` and `README.md` on how to start a pipeline run given the necessary metadata input parameters.
 - [#145](https://github.com/Clinical-Genomics/oncorefiner/pull/145) Small fixes to `GENERATE_CYTOSURE_FILES` tests from #135: updated config regex to include the fully qualified name of the process in order for the settings to be applied with the highest priority and removed parameter dependency from each test by moving the values to the config file instead.
 - [#149](https://github.com/Clinical-Genomics/oncorefiner/pull/149) Updated test data base path to remove unused column in SVDB files
+- [#118](https://github.com/Clinical-Genomics/oncorefiner/pull/118) Added parameters for LINX files and a header file to assets.
 
 ### `Fixed`
 
