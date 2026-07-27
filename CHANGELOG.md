@@ -40,9 +40,9 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#135](https://github.com/Clinical-Genomics/oncorefiner/pull/135) Added test config for `GENERATE_CYTOSURE_FILES`.
 - [#124](https://github.com/Clinical-Genomics/oncorefiner/pull/124) Added metadata parameters `case_id`, `sample_id_tumor` and `sample_id_normal`.
 - [#124](https://github.com/Clinical-Genomics/oncorefiner/pull/124) Added `channelFromMetaAndPath` custom channel factory.
-- [#126](https://github.com/Clinical-Genomics/oncorefiner/pull/126) Added the nf-core module `rmarkdownnotebook`
+- [#126](https://github.com/Clinical-Genomics/oncorefiner/pull/126) Added the nf-core module `rmarkdownnotebook`.
 - [#126](https://github.com/Clinical-Genomics/oncorefiner/pull/126) Added the subworkflow `PROCESS_CNVS` along with subworkflow test.
-- [#136](https://github.com/Clinical-Genomics/oncorefiner/pull/136) Added nf-schema validation to SVDB database inputs (`svdb_query_dbs`)
+- [#136](https://github.com/Clinical-Genomics/oncorefiner/pull/136) Added nf-schema validation to SVDB database inputs.(`svdb_query_dbs`)
 
 ### `Changed`
 
@@ -81,8 +81,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#145](https://github.com/Clinical-Genomics/oncorefiner/pull/145) Small fixes to `GENERATE_CYTOSURE_FILES` tests from #135: updated config regex to include the fully qualified name of the process in order for the settings to be applied with the highest priority and removed parameter dependency from each test by moving the values to the config file instead.
 - [#149](https://github.com/Clinical-Genomics/oncorefiner/pull/149) Updated test data base path to remove unused column in SVDB files
 - [#151](https://github.com/Clinical-Genomics/oncorefiner/pull/151) Updated test data base path to include CNV files
-- [#126](https://github.com/Clinical-Genomics/oncorefiner/pull/126) Updated config test files to include parameters and files for `PROCESS_CNVS`
-- [#126](https://github.com/Clinical-Genomics/oncorefiner/pull/126) Updated pipeline test snapshot to accomodate for `PROCESS_CNVS`
+- [#126](https://github.com/Clinical-Genomics/oncorefiner/pull/126) Added the CNV html file to the tests/.nftignore
 
 ### `Fixed`
 
