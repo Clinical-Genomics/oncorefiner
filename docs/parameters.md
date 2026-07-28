@@ -35,6 +35,10 @@ Define where the pipeline should find input data and save output data.
 | `bai_tumor` | Path to BAM index file for the tumor sample. | `string` |  |  |  |
 | `bam_normal` | Path to alignment BAM file for the normal sample. | `string` |  |  |  |
 | `bai_normal` | Path to BAM index file for the normal sample. | `string` |  |  |  |
+| `amber_baf_tsv_gz` | Path to a gzipped TSV file containing amber BAF values for the sample. | `string` |  |  |  |
+| `cobalt_ratio_pcf_tumor` | Path to a TSV file containing cobalt segment coverage ratios for the tumor sample. | `string` |  |  |  |
+| `cobalt_ratio_pcf_normal` | Path to a TSV file containing cobalt segment coverage ratios for the normal sample. | `string` |  |  |  |
+| `sampletype` | Type of the sample. (accepted: `tumor_only`\|`tumor_normal`) | `string` |  |  |  |
 
 ## Reference genome options
 
