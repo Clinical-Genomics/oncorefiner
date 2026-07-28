@@ -43,6 +43,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#136](https://github.com/Clinical-Genomics/oncorefiner/pull/136) Added nf-schema validation to SVDB database inputs (`svdb_query_dbs`)
 - []() Added the local subworkflow `GENS`
 - [#120](https://github.com/Clinical-Genomics/oncorefiner/pull/120) Added local module `PREPARE_AMBER_FOR_GENS`, using script in `/bin`, along with tests.
+- [#122](https://github.com/Clinical-Genomics/oncorefiner/pull/122) Added local module `prepare_cobalt_for_gens` using python script in `/bin`, along with tests.
 
 ### `Changed`
 
