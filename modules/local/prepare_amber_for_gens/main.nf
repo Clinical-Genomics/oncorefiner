@@ -11,10 +11,10 @@ process PREPARE_AMBER_FOR_GENS {
     tuple val(meta), path(amber_baf_tsv), val(sampletype)
 
     output:
-    tuple val(meta), path("*tumor.baf.zoom.tsv.gz"), emit: tsv_tumor
-    tuple val(meta), path("*normal.baf.zoom.tsv.gz"), emit: tsv_normal, optional: true
-    tuple val(meta), path("*tumor.baf.zoom.tsv.gz.tbi"), emit: tbi_tumor
-    tuple val(meta), path("*normal.baf.zoom.tsv.gz.tbi"), emit: tbi_normal, optional: true
+    tuple val(meta), path("*tumor.baf.zoom.tsv.gz"), emit: tumor_tsv
+    tuple val(meta), path("*normal.baf.zoom.tsv.gz"), emit: normal_tsv, optional: true
+    tuple val(meta), path("*tumor.baf.zoom.tsv.gz.tbi"), emit: tumor_tbi
+    tuple val(meta), path("*normal.baf.zoom.tsv.gz.tbi"), emit: normal_tbi, optional: true
     tuple val("${task.process}"), val('prepare_amber_for_gens'), val('1.0'), topic: versions, emit: versions_amber_for_gens
     // WARN: Version information not provided by tool on CLI. Please update version string above when bumping container versions.
 

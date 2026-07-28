@@ -16,7 +16,7 @@ nextflow_process {
             process {
                 """
                 input[0] = channel.of([
-                    [id: 'test_amber_gens', case_id: 'test'],
+                    [id: 'test_amber_gens', case_id: 'subject_a'],
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.amber.baf.tsv.gz', checkIfExists: true),
                     'tumor_normal'
                     ])
@@ -26,12 +26,19 @@ nextflow_process {
         }
 
         then {
+            def output_tsv = process.out.findAll { key, value -> key.endsWith('_tsv')}
+                .collectMany { key, value -> value}
+
+            // All output tbi files
+            def output_tbis = process.out.findAll { key, value -> key.endsWith('_tbi')}
+                .collectMany { key, value -> value}
+
             assert process.success
             assertAll(
                 { assert snapshot(
-                    process.out.tsv,
-                    process.out.tbi.collect { meta, tbi -> [meta, file(tbi).name ]},
-                    topics
+                        output_tsv,
+                        output_tbis.collect { meta, tbi -> [meta, file(tbi).name ]},
+                        topics
                 ).match() }
             )
         }
@@ -46,7 +53,7 @@ nextflow_process {
             process {
                 """
                 input[0] = channel.of([
-                    [id: 'test_amber_gens', case_id: 'test'],
+                    [id: 'test_amber_gens', case_id: 'subject_a'],
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.amber.baf.tsv.gz', checkIfExists: true),
                     'tumor_normal'
                     ])
@@ -71,7 +78,7 @@ nextflow_process {
             process {
                 """
                 input[0] = channel.of([
-                    [id: 'test_amber_gens', case_id: 'test'],
+                    [id: 'test_amber_gens', case_id: 'subject_a'],
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_only/subject_a.tumor.amber.baf.tsv.gz', checkIfExists: true),
                     'tumor_only'
                     ])
@@ -81,11 +88,18 @@ nextflow_process {
         }
 
         then {
+            def output_tsv = process.out.findAll { key, value -> key.endsWith('_tsv')}
+                .collectMany { key, value -> value}
+
+            // All output tbi files
+            def output_tbis = process.out.findAll { key, value -> key.endsWith('_tbi')}
+                .collectMany { key, value -> value}
+
             assert process.success
             assertAll(
                 { assert snapshot(
-                    process.out.tsv,
-                    process.out.tbi.collect { meta, tbi -> [meta, file(tbi).name ]},
+                    output_tsv,
+                    output_tbis.collect { meta, tbi -> [meta, file(tbi).name ]},
                     topics
                 ).match() }
             )
@@ -101,7 +115,7 @@ nextflow_process {
             process {
                 """
                 input[0] = channel.of([
-                    [id: 'test_amber_gens', case_id: 'test'],
+                    [id: 'test_amber_gens', case_id: 'subject_a'],
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_only/subject_a.tumor.amber.baf.tsv.gz', checkIfExists: true),
                     'tumor_only'
                     ])

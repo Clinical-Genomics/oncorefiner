@@ -6,7 +6,7 @@
                     [
                         {
                             "id": "test_amber_gens",
-                            "case_id": "test"
+                            "case_id": "subject_a"
                         },
                         "test_amber_gens.tumor_normal.tumor.baf.zoom.tsv.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
                     ]
@@ -15,7 +15,7 @@
                     [
                         {
                             "id": "test_amber_gens",
-                            "case_id": "test"
+                            "case_id": "subject_a"
                         },
                         "test_amber_gens.tumor_normal.normal.baf.zoom.tsv.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
                     ]
@@ -24,7 +24,7 @@
                     [
                         {
                             "id": "test_amber_gens",
-                            "case_id": "test"
+                            "case_id": "subject_a"
                         },
                         "test_amber_gens.tumor_normal.tumor.baf.zoom.tsv.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
@@ -33,7 +33,7 @@
                     [
                         {
                             "id": "test_amber_gens",
-                            "case_id": "test"
+                            "case_id": "subject_a"
                         },
                         "test_amber_gens.tumor_normal.normal.baf.zoom.tsv.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
@@ -45,38 +45,38 @@
                         "1.0"
                     ]
                 ],
-                "tbi_normal": [
+                "normal_tbi": [
                     [
                         {
                             "id": "test_amber_gens",
-                            "case_id": "test"
+                            "case_id": "subject_a"
                         },
                         "test_amber_gens.tumor_normal.normal.baf.zoom.tsv.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
-                "tbi_tumor": [
+                "normal_tsv": [
                     [
                         {
                             "id": "test_amber_gens",
-                            "case_id": "test"
-                        },
-                        "test_amber_gens.tumor_normal.tumor.baf.zoom.tsv.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ]
-                ],
-                "tsv_normal": [
-                    [
-                        {
-                            "id": "test_amber_gens",
-                            "case_id": "test"
+                            "case_id": "subject_a"
                         },
                         "test_amber_gens.tumor_normal.normal.baf.zoom.tsv.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
                     ]
                 ],
-                "tsv_tumor": [
+                "tumor_tbi": [
                     [
                         {
                             "id": "test_amber_gens",
-                            "case_id": "test"
+                            "case_id": "subject_a"
+                        },
+                        "test_amber_gens.tumor_normal.tumor.baf.zoom.tsv.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "tumor_tsv": [
+                    [
+                        {
+                            "id": "test_amber_gens",
+                            "case_id": "subject_a"
                         },
                         "test_amber_gens.tumor_normal.tumor.baf.zoom.tsv.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
                     ]
@@ -90,7 +90,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-07-02T14:13:50.298182",
+        "timestamp": "2026-07-28T10:26:56.37487",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.0"
@@ -98,9 +98,37 @@
     },
     "Prepare AMBER files for GENS, tumor-normal": {
         "content": [
-            null,
             [
-                
+                [
+                    {
+                        "id": "test_amber_gens",
+                        "case_id": "subject_a"
+                    },
+                    "test_amber_gens.tumor_normal.normal.baf.zoom.tsv.gz:md5,cb7c9d7281611c8e7138ded59a681412"
+                ],
+                [
+                    {
+                        "id": "test_amber_gens",
+                        "case_id": "subject_a"
+                    },
+                    "test_amber_gens.tumor_normal.tumor.baf.zoom.tsv.gz:md5,87317df569141e8908d318197fc075af"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "test_amber_gens",
+                        "case_id": "subject_a"
+                    },
+                    "test_amber_gens.tumor_normal.normal.baf.zoom.tsv.gz.tbi"
+                ],
+                [
+                    {
+                        "id": "test_amber_gens",
+                        "case_id": "subject_a"
+                    },
+                    "test_amber_gens.tumor_normal.tumor.baf.zoom.tsv.gz.tbi"
+                ]
             ],
             {
                 "versions": [
@@ -112,7 +140,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-07-02T14:13:47.079353",
+        "timestamp": "2026-07-28T11:09:16.113865",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.0"
@@ -120,9 +148,23 @@
     },
     "Prepare AMBER files for GENS, tumor-only": {
         "content": [
-            null,
             [
-                
+                [
+                    {
+                        "id": "test_amber_gens",
+                        "case_id": "subject_a"
+                    },
+                    "test_amber_gens.tumor_only.tumor.baf.zoom.tsv.gz:md5,ccb0b5ad7111f53c6d660e608af438ce"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "test_amber_gens",
+                        "case_id": "subject_a"
+                    },
+                    "test_amber_gens.tumor_only.tumor.baf.zoom.tsv.gz.tbi"
+                ]
             ],
             {
                 "versions": [
@@ -134,7 +176,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-07-02T14:13:53.861281",
+        "timestamp": "2026-07-28T11:10:07.575104",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.0"
@@ -147,7 +189,7 @@
                     [
                         {
                             "id": "test_amber_gens",
-                            "case_id": "test"
+                            "case_id": "subject_a"
                         },
                         "test_amber_gens.tumor_only.tumor.baf.zoom.tsv.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
                     ]
@@ -159,7 +201,7 @@
                     [
                         {
                             "id": "test_amber_gens",
-                            "case_id": "test"
+                            "case_id": "subject_a"
                         },
                         "test_amber_gens.tumor_only.tumor.baf.zoom.tsv.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
@@ -174,26 +216,26 @@
                         "1.0"
                     ]
                 ],
-                "tbi_normal": [
+                "normal_tbi": [
                     
                 ],
-                "tbi_tumor": [
+                "normal_tsv": [
+                    
+                ],
+                "tumor_tbi": [
                     [
                         {
                             "id": "test_amber_gens",
-                            "case_id": "test"
+                            "case_id": "subject_a"
                         },
                         "test_amber_gens.tumor_only.tumor.baf.zoom.tsv.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
-                "tsv_normal": [
-                    
-                ],
-                "tsv_tumor": [
+                "tumor_tsv": [
                     [
                         {
                             "id": "test_amber_gens",
-                            "case_id": "test"
+                            "case_id": "subject_a"
                         },
                         "test_amber_gens.tumor_only.tumor.baf.zoom.tsv.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
                     ]
@@ -207,7 +249,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-07-02T14:13:56.763516",
+        "timestamp": "2026-07-28T10:27:03.252189",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.0"
