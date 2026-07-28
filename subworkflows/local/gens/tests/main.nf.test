@@ -17,15 +17,15 @@ nextflow_workflow {
                 """
                 input[0] = channel.of([
                     [id: 'test_gens', case_id: 'test'],
-                    file('/Users/kristinebilgrav/Development/test-datasets/' + 'testdata/GRCh38/tumor_normal/subject_a.tumor.amber.baf.tsv.gz', checkIfExists: true),
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.amber.baf.tsv.gz', checkIfExists: true),
                 ])
                 input[1] = channel.of([
                     [id: 'test_gens', case_id: 'test', sample_id: 'subject_a', sample_type: 'normal', sex: 'female'],
-                    file('/Users/kristinebilgrav/Development/test-datasets/' + 'testdata/GRCh38/tumor_normal/subject_a.normal.cobalt.ratio.pcf', checkIfExists: true)
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.normal.cobalt.ratio.pcf', checkIfExists: true)
                 ])
                 input[2] = channel.of([
                     [id: 'test_gens', case_id: 'test', sample_id: 'subject_a', sample_type: 'tumor', sex: 'female'],
-                    file('/Users/kristinebilgrav/Development/test-datasets/' + 'testdata/GRCh38/tumor_normal/subject_a.tumor.cobalt.ratio.pcf', checkIfExists: true)
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.cobalt.ratio.pcf', checkIfExists: true)
                 ])
                 input[3] = 'tumor_normal'
                 """
@@ -58,15 +58,15 @@ nextflow_workflow {
                 """
                 input[0] = channel.of([
                     [id: 'test_gens', case_id: 'test'],
-                    file('/Users/kristinebilgrav/Development/test-datasets/' + 'testdata/GRCh38/tumor_normal/subject_a.tumor.amber.baf.tsv.gz', checkIfExists: true),
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.amber.baf.tsv.gz', checkIfExists: true),
                 ])
                 input[1] = channel.of([
                     [id: 'test_gens', case_id: 'test', sample_id: 'subject_a', sample_type: 'normal', sex: 'female'],
-                    file('/Users/kristinebilgrav/Development/test-datasets/' + 'testdata/GRCh38/tumor_normal/subject_a.normal.cobalt.ratio.pcf', checkIfExists: true)
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.normal.cobalt.ratio.pcf', checkIfExists: true)
                 ])
                 input[2] = channel.of([
                     [id: 'test_gens', case_id: 'test', sample_id: 'subject_a', sample_type: 'tumor', sex: 'female'],
-                    file('/Users/kristinebilgrav/Development/test-datasets/' + 'testdata/GRCh38/tumor_normal/subject_a.tumor.cobalt.ratio.pcf', checkIfExists: true)
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.cobalt.ratio.pcf', checkIfExists: true)
                 ])
                 input[3] = 'tumor_normal'
                 """
