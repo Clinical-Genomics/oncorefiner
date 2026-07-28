@@ -61,7 +61,7 @@ def write_baf_file(
 @click.option(
     "--sample-type",
     show_default=True,
-    help="Sample type (e.g., tumor or tumor_normal)",
+    help="Sample type (e.g., tumor_only or tumor_normal)",
 )
 @click.option(
     "--output-file-prefix",
