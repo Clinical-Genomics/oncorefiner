@@ -35,6 +35,10 @@ Define where the pipeline should find input data and save output data.
 | `bai_tumor` | Path to BAM index file for the tumor sample. | `string` |  |  |  |
 | `bam_normal` | Path to alignment BAM file for the normal sample. | `string` |  |  |  |
 | `bai_normal` | Path to BAM index file for the normal sample. | `string` |  |  |  |
+| `amber_baf_tsv_gz` | Path to a gzipped TSV file containing amber BAF values for the sample. | `string` |  |  |  |
+| `cobalt_ratio_pcf_tumor` | Path to a TSV file containing cobalt segment coverage ratios for the tumor sample. | `string` |  |  |  |
+| `cobalt_ratio_pcf_normal` | Path to a TSV file containing cobalt segment coverage ratios for the normal sample. | `string` |  |  |  |
+| `sampletype` | Type of the sample. (accepted: `tumor_only`\|`tumor_normal`) | `string` |  |  |  |
 
 ## Reference genome options
 
@@ -100,7 +104,7 @@ Less common options for the pipeline, typically set in a config file.
 | `multiqc_logo` | Custom logo file to supply to MultiQC. File name must also be set in the MultiQC config file | `string` |  |  | True |
 | `multiqc_methods_description` | Custom MultiQC yaml file containing HTML including a methods description. | `string` |  |  |  |
 | `validate_params` | Boolean whether to validate parameters against the schema at runtime | `boolean` | True |  | True |
-| `pipelines_testdata_base_path` | Base URL or local path to location of pipeline test dataset files | `string` | https://raw.githubusercontent.com/Clinical-Genomics/test-datasets/b9c2328ab3fb456efb079a953a7620af5e15aa8d/ |  | True |
+| `pipelines_testdata_base_path` | Base URL or local path to location of pipeline test dataset files | `string` | https://raw.githubusercontent.com/Clinical-Genomics/test-datasets/f8d0341fa3e50bc9b349172dff8b77cf2f915047/ |  | True |
 | `trace_report_suffix` | Suffix to add to the trace report filename. Default is the date and time in the format yyyy-MM-dd_HH-mm-ss. | `string` |  |  | True |
 | `help` | Display the help message. | `['boolean', 'string']` |  |  |  |
 | `help_full` | Display the full detailed help message. | `boolean` |  |  |  |
