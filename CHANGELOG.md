@@ -42,6 +42,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#124](https://github.com/Clinical-Genomics/oncorefiner/pull/124) Added `channelFromMetaAndPath` custom channel factory.
 - [#136](https://github.com/Clinical-Genomics/oncorefiner/pull/136) Added nf-schema validation to SVDB database inputs (`svdb_query_dbs`)
 - []() Added the local subworkflow `GENS`
+- [#120](https://github.com/Clinical-Genomics/oncorefiner/pull/120) Added local module `PREPARE_AMBER_FOR_GENS`, using script in `/bin`, along with tests.
 
 ### `Changed`
 
