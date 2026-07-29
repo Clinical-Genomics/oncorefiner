@@ -8,7 +8,20 @@ on:
     types: [published]
 
 jobs:
-  lint:
+
+  pre-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+
+      - name: Install Nextflow
+        uses: nf-core/setup-nextflow@b4ec1bc7c16a94435159de94a05253542fddf6ef # v3
+
+      - name: Run prek
+        uses: j178/prek-action@6ad80277337ad479fe43bd70701c3f7f8aa74db3 # v2
+
+  nf-core:
+
     runs-on: ubuntu-latest
     steps:
       - name: Check out pipeline code
@@ -33,9 +46,6 @@ jobs:
 
       - name: Install dependencies
         run: uv tool install nf-core==${{ steps.read_yml.outputs['nf_core_version'] }}
-
-      - name: Run prek
-        uses: j178/prek-action@6ad80277337ad479fe43bd70701c3f7f8aa74db3 # v2
 
       - name: Run nf-core pipelines lint
         if: ${{ github.base_ref != 'master' || github.base_ref != 'main' }}
@@ -66,3 +76,21 @@ jobs:
             lint_log.txt
             lint_results.md
             PR_number.txt
+
+      # Build a comment for the shared pr-comment.yml poster to publish on the PR
+      - name: Prepare PR comment
+        if: ${{ always() }}
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          mkdir -p pr-comment
+          echo "$PR_NUMBER" > pr-comment/pr_number.txt
+          echo "lint" > pr-comment/header.txt
+          [ -f lint_results.md ] && cp lint_results.md pr-comment/comment.md || true
+
+      - name: Upload PR comment artifact
+        if: ${{ always() }}
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
+        with:
+          name: pr-comment
+          path: pr-comment/
