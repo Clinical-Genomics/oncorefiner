@@ -8,7 +8,8 @@ process PREPARE_AMBER_FOR_GENS {
 
 
     input:
-    tuple val(meta), path(amber_baf_tsv), val(sampletype)
+    tuple val(meta), path(amber_baf_tsv)
+    val(sampletype)
 
     output:
     tuple val(meta), path("*tumor.baf.zoom.tsv.gz"), emit: tumor_tsv

@@ -25,11 +25,10 @@ workflow GENS {
     val_sampletype       // string:  [required]  sample type, e.g. "tumor_only" or "tumor_normal"
 
     main:
-    def ch_amber_baf_tsv_sampletype = ch_amber_baf_tsv
-        .combine(val_sampletype)
 
     PREPARE_AMBER_FOR_GENS (
-        ch_amber_baf_tsv_sampletype
+        ch_amber_baf_tsv,
+        val_sampletype
     )
 
     def ch_cobalt_pcf_tumor_normal = channel.empty().mix(
@@ -52,6 +51,6 @@ workflow GENS {
     gens_baf_tumor_tsv  = PREPARE_AMBER_FOR_GENS.out.tumor_tsv
     gens_baf_tumor_tbi  = PREPARE_AMBER_FOR_GENS.out.tumor_tbi
     gens_cov_bed        = PREPARE_COBALT_FOR_GENS.out.bed
-    gens_cov_bed_tbi    = PREPARE_COBALT_FOR_GENS.out.bed_tbi
+    gens_cov_bed_tbi    = PREPARE_COBALT_FOR_GENS.out.tbi
 
 }
