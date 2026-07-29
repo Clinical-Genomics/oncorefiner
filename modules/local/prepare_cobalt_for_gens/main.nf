@@ -16,7 +16,8 @@ process PREPARE_COBALT_FOR_GENS {
     // WARN: Version information not provided by tool on CLI. Please update version string above when bumping container versions.
 
     script:
-    def prefix = meta.id ?: "sample"
+    def args   = task.ext.args ?: ''
+    def prefix = task.ext.prefix ?: "${meta.id}"
 
     """
     prepare_cobalt_for_gens.py \\

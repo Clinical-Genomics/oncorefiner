@@ -44,15 +44,6 @@
     "Prepare cobalt files for GENS, normal (tumor-only data)": {
         "content": [
             {
-                "0": [
-                    
-                ],
-                "1": [
-                    
-                ],
-                "2": [
-                    
-                ],
                 "bed": [
                     
                 ],
@@ -69,7 +60,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-07-28T09:37:18.683242",
+        "timestamp": "2026-07-29T08:42:21.831346",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.0"
@@ -78,37 +69,6 @@
     "Prepare cobalt files for GENS, tumor (tumor-normal data) - stub": {
         "content": [
             {
-                "0": [
-                    [
-                        {
-                            "id": "test_cobalt_cov",
-                            "case_id": "test",
-                            "sample_id": "subject_a",
-                            "sample_type": "tumor",
-                            "sex": "female"
-                        },
-                        "test_cobalt_cov.tumor.bed.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
-                    ]
-                ],
-                "1": [
-                    [
-                        {
-                            "id": "test_cobalt_cov",
-                            "case_id": "test",
-                            "sample_id": "subject_a",
-                            "sample_type": "tumor",
-                            "sex": "female"
-                        },
-                        "test_cobalt_cov.tumor.bed.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ]
-                ],
-                "2": [
-                    [
-                        "PREPARE_COBALT_FOR_GENS",
-                        "prepare_cobalt_for_gens",
-                        "1.0"
-                    ]
-                ],
                 "bed": [
                     [
                         {
@@ -142,10 +102,10 @@
                 ]
             }
         ],
-        "timestamp": "2026-06-26T14:54:03.356553",
+        "timestamp": "2026-07-29T08:42:06.661597",
         "meta": {
             "nf-test": "0.9.5",
-            "nextflow": "25.10.4"
+            "nextflow": "26.04.0"
         }
     },
     "Prepare cobalt files for GENS, tumor (tumor-normal data)": {
@@ -193,37 +153,6 @@
     "Prepare cobalt files for GENS, tumor (tumor-only data) - stub": {
         "content": [
             {
-                "0": [
-                    [
-                        {
-                            "id": "test_cobalt_cov",
-                            "case_id": "test",
-                            "sample_id": "subject_a",
-                            "sample_type": "tumor",
-                            "sex": "female"
-                        },
-                        "test_cobalt_cov.tumor.bed.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
-                    ]
-                ],
-                "1": [
-                    [
-                        {
-                            "id": "test_cobalt_cov",
-                            "case_id": "test",
-                            "sample_id": "subject_a",
-                            "sample_type": "tumor",
-                            "sex": "female"
-                        },
-                        "test_cobalt_cov.tumor.bed.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ]
-                ],
-                "2": [
-                    [
-                        "PREPARE_COBALT_FOR_GENS",
-                        "prepare_cobalt_for_gens",
-                        "1.0"
-                    ]
-                ],
                 "bed": [
                     [
                         {
@@ -257,7 +186,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-07-28T09:41:08.555922",
+        "timestamp": "2026-07-29T08:42:25.312531",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.0"
@@ -266,37 +195,6 @@
     "Prepare cobalt files for GENS, normal (tumor-normal data) - stub": {
         "content": [
             {
-                "0": [
-                    [
-                        {
-                            "id": "test_cobalt_cov",
-                            "case_id": "test",
-                            "sample_id": "subject_a",
-                            "sample_type": "normal",
-                            "sex": "female"
-                        },
-                        "test_cobalt_cov.normal.bed.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
-                    ]
-                ],
-                "1": [
-                    [
-                        {
-                            "id": "test_cobalt_cov",
-                            "case_id": "test",
-                            "sample_id": "subject_a",
-                            "sample_type": "normal",
-                            "sex": "female"
-                        },
-                        "test_cobalt_cov.normal.bed.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ]
-                ],
-                "2": [
-                    [
-                        "PREPARE_COBALT_FOR_GENS",
-                        "prepare_cobalt_for_gens",
-                        "1.0"
-                    ]
-                ],
                 "bed": [
                     [
                         {
@@ -330,24 +228,15 @@
                 ]
             }
         ],
-        "timestamp": "2026-06-26T13:55:38.637474",
+        "timestamp": "2026-07-29T08:42:02.244445",
         "meta": {
             "nf-test": "0.9.5",
-            "nextflow": "25.10.4"
+            "nextflow": "26.04.0"
         }
     },
     "Prepare cobalt files for GENS, normal (tumor-only data) - stub": {
         "content": [
             {
-                "0": [
-                    
-                ],
-                "1": [
-                    
-                ],
-                "2": [
-                    
-                ],
                 "bed": [
                     
                 ],
@@ -359,7 +248,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-07-28T09:40:00.498407",
+        "timestamp": "2026-07-29T08:42:29.922451",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.0"
