@@ -31,6 +31,7 @@ include { samplesheetToList       } from 'plugin/nf-schema'
 //
 // WORKFLOW: Run main analysis pipeline depending on type of input
 //
+
 workflow CLINICALGENOMICS_ONCOREFINER {
 
     take:
