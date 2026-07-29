@@ -11,30 +11,30 @@ process PREPARE_COBALT_FOR_GENS {
     tuple val(meta), path(cobalt_pcf)
 
     output:
-    tuple val(meta), path("*${meta.sample_type}.bed.gz"),  emit: bed
-    tuple val(meta), path("*${meta.sample_type}.bed.gz.tbi"), emit: tbi
+    tuple val(meta), path("*.bed.gz"),  emit: bed
+    tuple val(meta), path("*.bed.gz.tbi"), emit: tbi
     tuple val("${task.process}"), val('prepare_cobalt_for_gens'), val('1.0'), topic: versions, emit: versions_cobalt_for_gens
     // WARN: Version information not provided by tool on CLI. Please update version string above when bumping container versions.
 
     script:
     def args   = task.ext.args ?: ''
-    def prefix = task.ext.prefix ?: "${meta.id}"
+    def prefix = task.ext.prefix ?: "${meta.id}.${meta.sample_type}"
 
     """
     prepare_cobalt_for_gens.py \\
         --input-file ${cobalt_pcf} \\
-        --output-file ${prefix}.${meta.sample_type}.bed
+        --output-file ${prefix}.bed
 
-    bgzip ${prefix}.${meta.sample_type}.bed
+    bgzip ${prefix}.bed
 
-    tabix ${prefix}.${meta.sample_type}.bed.gz
+    tabix ${prefix}.bed.gz
     """
 
     stub:
-    prefix = task.ext.prefix ?: "${meta.id}"
+    prefix = task.ext.prefix ?: "${meta.id}.${meta.sample_type}"
     """
-    echo | gzip >  ${prefix}.${meta.sample_type}.bed.gz
-    touch ${prefix}.${meta.sample_type}.bed.gz.tbi
+    echo | gzip >  ${prefix}.bed.gz
+    touch ${prefix}.bed.gz.tbi
     """
 
 }
