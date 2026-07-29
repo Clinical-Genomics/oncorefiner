@@ -18,9 +18,8 @@ nextflow_process {
                 input[0] = channel.of([
                     [id: 'test_amber_gens', case_id: 'subject_a'],
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.amber.baf.tsv.gz', checkIfExists: true),
-                    'tumor_normal'
                     ])
-
+                input[1] = 'tumor_normal'
                 """
             }
         }
@@ -55,8 +54,8 @@ nextflow_process {
                 input[0] = channel.of([
                     [id: 'test_amber_gens', case_id: 'subject_a'],
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.amber.baf.tsv.gz', checkIfExists: true),
-                    'tumor_normal'
                     ])
+                input[1] = 'tumor_normal'
                 """
             }
         }
@@ -80,9 +79,8 @@ nextflow_process {
                 input[0] = channel.of([
                     [id: 'test_amber_gens', case_id: 'subject_a'],
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_only/subject_a.tumor.amber.baf.tsv.gz', checkIfExists: true),
-                    'tumor_only'
                     ])
-
+                input[1] = 'tumor_only'
                 """
             }
         }
@@ -117,8 +115,8 @@ nextflow_process {
                 input[0] = channel.of([
                     [id: 'test_amber_gens', case_id: 'subject_a'],
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_only/subject_a.tumor.amber.baf.tsv.gz', checkIfExists: true),
-                    'tumor_only'
-                    ])
+                ])
+                input[1] = 'tumor_only'
                 """
             }
         }
