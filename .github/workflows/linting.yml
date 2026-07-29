@@ -8,9 +8,7 @@ on:
     types: [published]
 
 jobs:
-
   lint:
-
     runs-on: ubuntu-latest
     steps:
       - name: Check out pipeline code

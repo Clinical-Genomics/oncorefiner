@@ -1,6 +1,6 @@
 # Clinical-Genomics/oncorefiner pipeline parameters
 
-Customizable post-processing and extension layer built on top of Oncoanalyser that adapts its outputs to clinical and operational needs, adds missing analyses, and ensures flexibility for evolving standards while retaining Oncoanalyser robust core
+Customizable post-processing and extension layer for Oncoanalyser that adapts its outputs according to clinical and operational needs, adds missing analyses, and ensures flexibility for evolving standards while retaining Oncoanalyser's robust core.
 
 ## Input/output options
 
