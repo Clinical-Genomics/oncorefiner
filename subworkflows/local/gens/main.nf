@@ -25,18 +25,19 @@ workflow GENS {
     val_sampletype       // string:  [required]  sample type, e.g. "tumor_only" or "tumor_normal"
 
     main:
-    ch_amber_baf_tsv_sampletype = ch_amber_baf_tsv
+    def ch_amber_baf_tsv_sampletype = ch_amber_baf_tsv
         .combine(val_sampletype)
 
     PREPARE_AMBER_FOR_GENS (
         ch_amber_baf_tsv_sampletype
     )
 
-    ch_cobalt_pcf_tumor_normal = channel.empty().mix(
+    def ch_cobalt_pcf_tumor_normal = channel.empty().mix(
         ch_cobalt_pcf_normal,
         ch_cobalt_pcf_tumor
     )
-    ch_cobalt_pcf_in = ch_cobalt_pcf_tumor_normal
+
+    def ch_cobalt_pcf_in = ch_cobalt_pcf_tumor_normal
         .multiMap { meta, cobalt_pcf ->
             pcf: tuple(meta, cobalt_pcf)
         }
@@ -46,10 +47,10 @@ workflow GENS {
     )
 
     emit:
-    gens_baf_tsv_normal = PREPARE_AMBER_FOR_GENS.out.tsv_normal
-    gens_baf_tbi_normal = PREPARE_AMBER_FOR_GENS.out.tbi_normal
-    gens_baf_tsv_tumor  = PREPARE_AMBER_FOR_GENS.out.tsv_tumor
-    gens_baf_tbi_tumor  = PREPARE_AMBER_FOR_GENS.out.tbi_tumor
+    gens_baf_normal_tsv = PREPARE_AMBER_FOR_GENS.out.normal_tsv
+    gens_baf_normal_tbi = PREPARE_AMBER_FOR_GENS.out.normal_tbi
+    gens_baf_tumor_tsv  = PREPARE_AMBER_FOR_GENS.out.tumor_tsv
+    gens_baf_tumor_tbi  = PREPARE_AMBER_FOR_GENS.out.tumor_tbi
     gens_cov_bed        = PREPARE_COBALT_FOR_GENS.out.bed
     gens_cov_bed_tbi    = PREPARE_COBALT_FOR_GENS.out.bed_tbi
 
