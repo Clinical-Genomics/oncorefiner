@@ -234,7 +234,7 @@
             [
                 [
                     "test_tumor_normal_case_clinical.vcf.gz",
-                    "37e41e9f40fafde247690f6b053df866"
+                    "f92bc125c747cdbce5e5c6c2ff8b023a"
                 ],
                 [
                     "test_tumor_normal_case_linxannotated.vcf.gz",
@@ -262,11 +262,11 @@
                 ],
                 [
                     "test_tumor_normal_case_svdbquery_vep.vcf.gz",
-                    "37e41e9f40fafde247690f6b053df866"
+                    "f92bc125c747cdbce5e5c6c2ff8b023a"
                 ]
             ]
         ],
-        "timestamp": "2026-07-03T11:01:01.015898",
+        "timestamp": "2026-07-31T11:32:36.304753",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.0"
