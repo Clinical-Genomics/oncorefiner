@@ -71,6 +71,11 @@
                         "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
                         "installed_by": ["vcf_annotate_score_genmod"]
                     },
+                    "htslib/bgziptabix": {
+                        "branch": "master",
+                        "git_sha": "37f69c8ca3eb3d038a5d44f33a329e49f44bd4f2",
+                        "installed_by": ["modules"]
+                    },
                     "multiqc": {
                         "branch": "master",
                         "git_sha": "008f9d3e61209bf995edac3ba531f54e269e1215",
@@ -84,11 +89,6 @@
                     "svdb/query": {
                         "branch": "master",
                         "git_sha": "7d09b5f86908bdd951e42aef9994ad5bb0f6c307",
-                        "installed_by": ["modules"]
-                    },
-                    "tabix/bgzip": {
-                        "branch": "master",
-                        "git_sha": "54e41f4ed3aead45054380a9befeb927612ffc91",
                         "installed_by": ["modules"]
                     },
                     "tabix/tabix": {
