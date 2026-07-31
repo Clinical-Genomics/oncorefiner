@@ -60,7 +60,7 @@ workflow PROCESS_SVS {
         .set { ch_svdb_dbs }
 
     SVDB_QUERY (
-        ch_sv_vcf,
+        STANDARDISE_ESVEE_VCF.out.vcf,
         ch_svdb_dbs.in_occs.toList(),
         ch_svdb_dbs.in_frqs.toList(),
         ch_svdb_dbs.out_occs.toList(),
@@ -108,7 +108,7 @@ workflow PROCESS_SVS {
     // VCF2CYTOSURE
     ch_bam_bai = channel.empty().mix(ch_bam_bai_tumor, ch_bam_bai_normal)
     ch_vcf2cytosure_in = ch_bam_bai.combine(
-        ch_sv_vcf.join(ch_sv_vcf_tbi, failOnMismatch: true),
+        STANDARDISE_ESVEE_VCF.out.vcf.join(STANDARDISE_ESVEE_VCF.out.tbi, failOnMismatch: true),
         )
         .multiMap { meta_bam_bai, bam, bai, meta_vcf, vcf, tbi ->
             bam_bai: tuple(meta_bam_bai, bam, bai)
