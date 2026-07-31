@@ -1,0 +1,85 @@
+name: standardise_esvee_records
+description: >
+  Convert paired ESVEE breakend-style structural variant records into
+  single symbolic VCF records suitable for downstream annotation and filtering.
+keywords:
+  - structural variants
+  - esvee
+  - purple
+  - vcf
+  - breakend
+  - bgzip
+  - tabix
+
+tools:
+  - python:
+      description: >
+        Converts paired ESVEE breakend records into symbolic structural
+        variant records.
+      homepage: "https://www.python.org/"
+      documentation: "https://docs.python.org/3/"
+      tool_dev_url: "https://github.com/python/cpython"
+      identifier: standardise_esvee_records
+
+  - bgzip:
+      description: Compress files using the BGZF format.
+      homepage: "http://www.htslib.org/doc/bgzip.html"
+      documentation: "http://www.htslib.org/doc/bgzip.html"
+      identifier: bgzip
+
+  - tabix:
+      description: Create a tabix index for the compressed VCF.
+      homepage: "http://www.htslib.org/doc/tabix.html"
+      documentation: "http://www.htslib.org/doc/tabix.html"
+      identifier: tabix
+
+input:
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing sample or case information.
+        For example:
+        `[id: 'subject_a', case_id: 'subject_a', sample_type: 'tumor']`
+
+  - sv_vcf:
+      type: file
+      description: >
+        ESVEE/PURPLE structural variant VCF containing paired breakend-style
+        DEL, DUP, INV and INS records.
+      pattern: "*.{vcf,vcf.gz}"
+
+output:
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing sample or case information.
+        For example:
+        `[id: 'subject_a', case_id: 'subject_a', sample_type: 'tumor']`
+
+  - vcf:
+      type: file
+      description: >
+        BGZF-compressed standardized structural variant VCF. Valid paired
+        DEL, DUP, INV and INS records are collapsed into symbolic records.
+        SGL records are converted to BND records.
+      pattern: "*.standardised.vcf.gz"
+
+  - tbi:
+      type: file
+      description: Tabix index for the standardized structural variant VCF.
+      pattern: "*.standardised.vcf.gz.tbi"
+
+  - report:
+      type: file
+      description: >
+        TSV report containing transformation counts, warning counts and
+        per-record transformation details.
+      pattern: "*.standardised.report.tsv"
+
+  - versions_standardise_esvee_records:
+      type: tuple
+      description: >
+        Tool and script version information emitted through the versions topic.
+
+authors:
+  - "@math.joh.bio"
