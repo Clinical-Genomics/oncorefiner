@@ -13,12 +13,13 @@ include { BCFTOOLS_VIEW as BCFTOOLS_VIEW_CLINICAL   } from '../../../modules/nf-
 include { ENSEMBLVEP_VEP                           } from '../../../modules/nf-core/ensemblvep/vep/main'
 include { SVDB_QUERY                               } from '../../../modules/nf-core/svdb/query/main'
 
+
 //
 // LOCAL SUBWORKFLOWS
 //
 
+include { STANDARDISE_ESVEE_VCF   } from '../../../subworkflows/local/standardise_esvee_vcf/main'
 include { GENERATE_CYTOSURE_FILES } from '../../../subworkflows/local/generate_cytosure_files/main'
-
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     RUN PROCESS_SVS WORKFLOW
@@ -41,6 +42,12 @@ workflow PROCESS_SVS {
     ch_vep_extra_files    // channel: [optional]  [val(meta), path(vep_extra_files)]
 
     main:
+
+    // Standardise Esvee VCF
+    STANDARDISE_ESVEE_VCF(
+        ch_sv_vcf
+    )
+
     // SVDB QUERY
     ch_sv_dbs
         .multiMap { filename, in_freq_info_key, in_allele_count_info_key, out_freq_info_key, out_allele_count_info_key ->
