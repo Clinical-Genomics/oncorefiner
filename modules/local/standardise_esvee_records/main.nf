@@ -2,22 +2,22 @@ process STANDARDISE_ESVEE_RECORDS {
     tag "$meta.id"
 
     conda "${moduleDir}/environment.yml"
+
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/68/68a2ae938ce2d285498e0a81233acf6bd423ac910c3fe6fc68f44322559b1187/data' :
-        'community.wave.seqera.io/library/tabix_click_pandas_py-bgzip_python:4d1c106d561e2b25' }"
+        'https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/91/91b47b3490e3993dbca42c06d76edbb65b887ac5f9a72bcb31f63471fbdcdecf/data' :
+        'community.wave.seqera.io/library/python_click:7a177b12e71d4c56' }"
 
     input:
     tuple val(meta), path(sv_vcf)
 
     output:
-    tuple val(meta), path("*.standardised.vcf.gz"),     emit: vcf
-    tuple val(meta), path("*.standardised.vcf.gz.tbi"), emit: tbi
+    tuple val(meta), path("*.standardised.vcf"), emit: vcf
     tuple val(meta), path("*.standardised.report.tsv"), emit: report
-    tuple val("${task.process}"), val('standardise_esvee_records'), val('1.0'),
+    tuple val("${task.process}"),
+        val('standardise_esvee_records'),
+        val('1.0'),
         topic: versions,
         emit: versions_standardise_esvee_records
-    // WARN: Version information is not provided by the script.
-    // Update the hardcoded version when changing the script.
 
     script:
     def prefix = task.ext.prefix ?: meta.id
@@ -28,13 +28,6 @@ process STANDARDISE_ESVEE_RECORDS {
         --output ${prefix}.standardised.vcf \\
         --report ${prefix}.standardised.report.tsv \\
         --verbose-report
-
-    bgzip -f ${prefix}.standardised.vcf
-
-    tabix \\
-        -f \\
-        -p vcf \\
-        ${prefix}.standardised.vcf.gz
     """
 
     stub:
@@ -49,9 +42,6 @@ process STANDARDISE_ESVEE_RECORDS {
     ##INFO=<ID=INSSEQ,Number=1,Type=String,Description="Inserted sequence">
     #CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO
     EOF
-
-    bgzip -f ${prefix}.standardised.vcf
-    tabix -f -p vcf ${prefix}.standardised.vcf.gz
 
     cat <<'EOF' > ${prefix}.standardised.report.tsv
     section	name	value
