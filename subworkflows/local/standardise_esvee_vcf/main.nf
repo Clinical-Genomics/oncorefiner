@@ -16,11 +16,16 @@ workflow STANDARDISE_ESVEE_VCF {
         ch_sv_vcf
     )
 
+    // Add empty optional index and regions inputs
+    STANDARDISE_ESVEE_RECORDS.out.vcf
+        .map { meta, vcf ->
+            tuple(meta, vcf, [], [])
+        }
+        .set { ch_bgziptabix_in }
+
     // Compress and tabix-index the standardised VCF
     HTSLIB_BGZIPTABIX(
-        STANDARDISE_ESVEE_RECORDS.out.vcf,
-        [],
-        [],
+        ch_bgziptabix_in,
         'compress',
         true,
         'vcf'
