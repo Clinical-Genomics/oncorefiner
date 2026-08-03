@@ -42,6 +42,9 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#124](https://github.com/Clinical-Genomics/oncorefiner/pull/124) Added `channelFromMetaAndPath` custom channel factory.
 - [#136](https://github.com/Clinical-Genomics/oncorefiner/pull/136) Added nf-schema validation to SVDB database inputs (`svdb_query_dbs`)
 - [#84](https://github.com/Clinical-Genomics/oncorefiner/pull/84) Added arguments to VEP keeping invalid variants in output VCF
+- [#126](https://github.com/Clinical-Genomics/oncorefiner/pull/126) Added the nf-core module `rmarkdownnotebook`.
+- [#126](https://github.com/Clinical-Genomics/oncorefiner/pull/126) Added the subworkflow `PROCESS_CNVS` along with subworkflow test.
+- [#136](https://github.com/Clinical-Genomics/oncorefiner/pull/136) Added nf-schema validation to SVDB database inputs.(`svdb_query_dbs`)
 
 ### `Changed`
 
@@ -82,6 +85,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#151](https://github.com/Clinical-Genomics/oncorefiner/pull/151) Updated test data base path to include CNV files
 - [#161](https://github.com/Clinical-Genomics/oncorefiner/pull/161) Template update for nf-core tools 4.0.3.
 - [#160](https://github.com/Clinical-Genomics/oncorefiner/pull/160) Updated nftutils from 0.0.3 to 1.0.0.
+- [#126](https://github.com/Clinical-Genomics/oncorefiner/pull/126) Added the CNV html file to the tests/.nftignore
 
 ### `Fixed`
 

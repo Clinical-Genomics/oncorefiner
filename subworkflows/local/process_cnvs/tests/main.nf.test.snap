@@ -1,0 +1,56 @@
+{
+    "Process CNVs, tumor-normal - stub": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "test",
+                        "case_id": "test"
+                    },
+                    "test_cnv_report.html"
+                ]
+            ],
+            {
+                "versions": [
+                    [
+                        "PROCESS_CNVS:RMARKDOWNNOTEBOOK",
+                        "rmarkdownnotebook",
+                        "2.29"
+                    ]
+                ]
+            }
+        ],
+        "timestamp": "2026-06-30T15:34:02.678044",
+        "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "25.10.4"
+        }
+    },
+    "Process CNVs, tumor-normal": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "test",
+                        "case_id": "test"
+                    },
+                    "test_cnv_report.html"
+                ]
+            ],
+            {
+                "versions": [
+                    [
+                        "PROCESS_CNVS:RMARKDOWNNOTEBOOK",
+                        "rmarkdownnotebook",
+                        "2.29"
+                    ]
+                ]
+            }
+        ],
+        "timestamp": "2026-06-30T15:33:57.158372",
+        "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "25.10.4"
+        }
+    }
+}
