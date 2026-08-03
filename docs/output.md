@@ -28,7 +28,7 @@ The pipeline is built using [Nextflow](https://www.nextflow.io/) and processes d
   - `linxannotated.vcf.gz.tbi`: a index file for the gzipped VCF file.
 
 </details>
-[`LINX`](https://github.com/hartwigmedical/hmftools/tree/master/linx)
+[LINX](https://github.com/hartwigmedical/hmftools/tree/master/linx)
 The VCF displays the SVs as two instances, where only one will be annotated with the LINX information. The two can be connected using the `SVID` in the INFO field.
 
 ### Vcfanno
