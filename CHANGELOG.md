@@ -30,6 +30,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#69](https://github.com/Clinical-Genomics/oncorefiner/pull/69) Added `tumor_only` config file, profile and pipeline test and snapshot.
 - [#101](https://github.com/Clinical-Genomics/oncorefiner/pull/101) Added parameters for arguments in processes `PROCESS_SNVS:BCFTOOLS_VIEW_*`, `PROCESS_*:ENSEMBLVEP_VEP` and `ANNOTATE_CADD:BCFTOOLS_ANNOTATE_INDELS`.
 - [#111](https://github.com/Clinical-Genomics/oncorefiner/pull/111) Added hidden `genome_version_number` parameter, parsed by default from `params.genome`.
+- [#112](https://github.com/Clinical-Genomics/oncorefiner/pull/112) Added parameters `amber_baf_tsv_gz`, `cobalt_ratio_pcf_tumor`, `cobalt_ratio_pcf_normal` and `sampletype` needed for GENS workflow and populated them in the test dataset.
 - [#117](https://github.com/Clinical-Genomics/oncorefiner/pull/117) Added stub version for all pipeline and local subworkflow tests.
 - [#133](https://github.com/Clinical-Genomics/oncorefiner/pull/133) Added pipeline stub test without `vep_plugin_files` parameter.
 - [#137](https://github.com/Clinical-Genomics/oncorefiner/pull/137) Added nf-schema validation to VEP database inputs (`vep_plugin_files`) and support for TSV, JSON and YAML file formats in addition to CSV.
@@ -40,6 +41,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#124](https://github.com/Clinical-Genomics/oncorefiner/pull/124) Added metadata parameters `case_id`, `sample_id_tumor` and `sample_id_normal`.
 - [#124](https://github.com/Clinical-Genomics/oncorefiner/pull/124) Added `channelFromMetaAndPath` custom channel factory.
 - [#136](https://github.com/Clinical-Genomics/oncorefiner/pull/136) Added nf-schema validation to SVDB database inputs (`svdb_query_dbs`)
+- [#84](https://github.com/Clinical-Genomics/oncorefiner/pull/84) Added arguments to VEP keeping invalid variants in output VCF
 - [#120](https://github.com/Clinical-Genomics/oncorefiner/pull/120) Added local module `PREPARE_AMBER_FOR_GENS`, using script in `/bin`, along with tests.
 
 ### `Changed`
@@ -78,6 +80,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#124](https://github.com/Clinical-Genomics/oncorefiner/pull/124) Update documentation in `docs/usage.md` and `README.md` on how to start a pipeline run given the necessary metadata input parameters.
 - [#145](https://github.com/Clinical-Genomics/oncorefiner/pull/145) Small fixes to `GENERATE_CYTOSURE_FILES` tests from #135: updated config regex to include the fully qualified name of the process in order for the settings to be applied with the highest priority and removed parameter dependency from each test by moving the values to the config file instead.
 - [#149](https://github.com/Clinical-Genomics/oncorefiner/pull/149) Updated test data base path to remove unused column in SVDB files
+- [#160](https://github.com/Clinical-Genomics/oncorefiner/pull/160) Updated nftutils from 0.0.3 to 1.0.0.
 
 ### `Fixed`
 
@@ -120,6 +123,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#137](https://github.com/Clinical-Genomics/oncorefiner/pull/134) Fixed VEP able to run without `vep_plugin_files` parameter.
 - [#135](https://github.com/Clinical-Genomics/oncorefiner/pull/135) Fixed test for `GENERATE_CYTOSURE_FILES` so that it states the necessary parameters for the test, uses configurations from the test config and is independent from pipeline wide configuration.
 - [#156](https://github.com/Clinical-Genomics/oncorefiner/pull/156) Update `pipelines_testdata_base_path` to reflect the latest commit to `Clinical-Genomics/test-datasets/` with addions of AMBER and COBALT files needed for GENS workflow.
+- [#162](https://github.com/Clinical-Genomics/oncorefiner/pull/162) Updated pipeline test snapshot following update of VEP arguments in #84.
 
 ### `Dependencies`
 
