@@ -32,6 +32,7 @@
    1. Filter with [`bcftools`](https://github.com/samtools/bcftools). This step applies clinically relevant filters as defined in the configuration settings. For example, it may involve subsetting variants based on a a list of clinically relevant genes.
 
 1. Process SV VCF files
+   1. Add annotation of fusions from LINX files using custom script `vcf_annotate_linx_fusions`.
    1. Annotate VCF with external database (params) using [`SVDB`](https://github.com/J35P312/SVDB).
    1. Filter with [`bcftools`](https://github.com/samtools/bcftools). This step aims to apply quality, population-level filtering and/or other general criteria as defined in the configuration settings.
    1. Annotate with [`Ensembl VEP`](https://www.ensembl.org/info/docs/tools/vep/index.html).
