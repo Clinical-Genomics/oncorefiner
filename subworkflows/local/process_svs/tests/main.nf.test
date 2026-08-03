@@ -7,6 +7,7 @@ nextflow_workflow {
     tag "subworkflows"
     tag "process_svs"
 
+    topics "versions"
 
     test("with tumor-normal data") {
 
@@ -78,20 +79,21 @@ nextflow_workflow {
         }
 
         then {
-            // All files and directories in the output directory, excluding the untar directories and files
-            def output_directories_and_files = getAllFilesFromDir(params.outdir, relative: true, includeDir: true, ignore: ['untar**'])
-            // vcfs_with_stable_variants: Vcf files with stable variants - can be snapshot using variantsMD5, excluding the untar directories and files
-            def gz_vcfs_with_stable_variants = getAllFilesFromDir(params.outdir, include: ['**/*.vcf.gz'], ignore: ['untar**'])
-            def vcfs_with_stable_variants = getAllFilesFromDir(params.outdir, include: ['**/*.vcf'], ignore: ['untar**'])
+            // All output VCF files with stable variants
+            def output_vcfs = workflow.out.findAll { key, value -> key.endsWith('_vcf')}
+                .collectMany { key, value -> value}
+
+            // All output tbi files
+            def output_tbis = workflow.out.findAll { key, value -> key.endsWith('_tbi')}
+                .collectMany { key, value -> value}
+
             assertAll(
                 { assert workflow.success },
                 { assert snapshot(
-                    // All directories and files in the output directory
-                    output_directories_and_files,
-                    // Gzipped VCFs with stable variants
-                    gz_vcfs_with_stable_variants.collect{ file -> [ file.getName(), path(file.toString()).vcf.variantsMD5 ] },
-                    // VCFs with stable variants
-                    vcfs_with_stable_variants.collect{ file -> [ file.getName(), path(file.toString()).vcf.variantsMD5 ] }
+                    output_vcfs.collect { meta, vcf -> [meta, file(vcf).name + ":variantsMD5," + path(vcf).vcf.variantsMD5 ]},
+                    output_tbis.collect { meta, tbi -> [meta, file(tbi).name] },
+                    workflow.out.vep_report.collect { meta, _process, _tool, report -> [meta, file(report).name] },
+                    topics
                 ).match() }
             )
         }
@@ -169,13 +171,11 @@ nextflow_workflow {
         }
 
         then {
-            // All files and directories in the output directory, excluding the untar directories and files
-            def output_directories_and_files = getAllFilesFromDir(params.outdir, relative: true, includeDir: true, ignore: ['untar**'])
+
             assertAll(
                 { assert workflow.success },
                 { assert snapshot(
-                    // All directories and files in the output directory
-                    output_directories_and_files,
+                   sanitizeOutput(workflow.out)
                 ).match() }
             )
         }
