@@ -187,9 +187,63 @@
                         "subject_a_svdbquery_vep_summary.html:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ]
+            },
+            {
+                "versions": [
+                    [
+                        "PROCESS_SVS:BCFTOOLS_VIEW_CLINICAL",
+                        "bcftools",
+                        "1.23.1"
+                    ],
+                    [
+                        "PROCESS_SVS:BCFTOOLS_VIEW_RESEARCH",
+                        "bcftools",
+                        "1.23.1"
+                    ],
+                    [
+                        "PROCESS_SVS:ENSEMBLVEP_VEP",
+                        "ensemblvep",
+                        "115.2"
+                    ],
+                    [
+                        "PROCESS_SVS:ENSEMBLVEP_VEP",
+                        "perl-math-cdf",
+                        "0.1"
+                    ],
+                    [
+                        "PROCESS_SVS:ENSEMBLVEP_VEP",
+                        "tabix",
+                        "1.21"
+                    ],
+                    [
+                        "PROCESS_SVS:GENERATE_CYTOSURE_FILES:FILTER_VCF",
+                        "bcftools",
+                        "1.23.1"
+                    ],
+                    [
+                        "PROCESS_SVS:GENERATE_CYTOSURE_FILES:TIDDIT_COV",
+                        "tiddit",
+                        "3.9.5"
+                    ],
+                    [
+                        "PROCESS_SVS:GENERATE_CYTOSURE_FILES:VCF2CYTOSURE",
+                        "vcf2cytosure",
+                        "0.9.3"
+                    ],
+                    [
+                        "PROCESS_SVS:SVDB_QUERY",
+                        "svdb",
+                        "2.8.4"
+                    ],
+                    [
+                        "UNTAR_VEP_CACHE",
+                        "untar",
+                        "1.34"
+                    ]
+                ]
             }
         ],
-        "timestamp": "2026-08-03T15:05:59.040234",
+        "timestamp": "2026-08-03T15:16:04.43194",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
