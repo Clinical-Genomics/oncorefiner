@@ -13,8 +13,10 @@ process PREPARE_COBALT_FOR_GENS {
     output:
     tuple val(meta), path("*.bed.gz"),  emit: bed
     tuple val(meta), path("*.bed.gz.tbi"), emit: tbi
-    tuple val("${task.process}"), val('prepare_cobalt_for_gens'), val('1.0'), topic: versions, emit: versions_cobalt_for_gens
-    // WARN: Version information not provided by tool on CLI. Please update version string above when bumping container versions.
+    tuple val("${task.process}"), val('python'), eval("python --version | sed '1!d; s/^.*python //'"), topic: versions, emit: versions_python
+    tuple val("${task.process}"), val('bgzip'), eval("bgzip --version | sed '1!d; s/^.*bgzip //'"), topic: versions, emit: versions_bgzip
+    tuple val("${task.process}"), val('tabix'), eval("tabix --version | sed '1!d; s/^.*tabix //'"), topic: versions, emit: versions_tabix
+    tuple val("${task.process}"), val('prepare_cobalt_for_gens'), eval("prepare_cobalt_for_gens.py --version | sed '1!d; s/^.*prepare_cobalt_for_gens //'"), topic: versions, emit: versions_cobalt_for_gens
 
     script:
     def args   = task.ext.args ?: ''

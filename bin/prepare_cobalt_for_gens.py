@@ -4,6 +4,7 @@ import math
 import click
 import pandas as pd
 
+__version__ = "1.0"
 
 DEFAULT_SPACING = {
     "o": 50_000,
@@ -80,6 +81,9 @@ def write_segment_zoom_file(
     required=True,
     help="Output BED-like zoom file for GENS.",
 )
+
+@click.version_option(__version__, prog_name="prepare_cobalt_for_gens")
+
 def main(input_file: str, output_file: str) -> None:
     """Convert segment mean file into GENS zoom-level data."""
 
@@ -113,6 +117,8 @@ def main(input_file: str, output_file: str) -> None:
     )
 
     click.echo(f"Wrote segment zoom file: {output_file}")
+
+    click.echo(f"prepare_cobalt_for_gens {__version__}")
 
 
 if __name__ == "__main__":

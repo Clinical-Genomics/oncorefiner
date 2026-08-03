@@ -1,71 +1,4 @@
 {
-    "Prepare cobalt files for GENS, tumor (tumor-only data)": {
-        "content": [
-            [
-                [
-                    {
-                        "id": "test_cobalt_cov",
-                        "case_id": "test",
-                        "sample_id": "subject_a",
-                        "sample_type": "tumor",
-                        "sex": "female"
-                    },
-                    "test_cobalt_cov.tumor.bed.gz:md5,1a22ba6f7f24087f1c7fbb51c73a3b9d"
-                ]
-            ],
-            [
-                [
-                    {
-                        "id": "test_cobalt_cov",
-                        "case_id": "test",
-                        "sample_id": "subject_a",
-                        "sample_type": "tumor",
-                        "sex": "female"
-                    },
-                    "test_cobalt_cov.tumor.bed.gz.tbi"
-                ]
-            ],
-            {
-                "versions": [
-                    [
-                        "PREPARE_COBALT_FOR_GENS",
-                        "prepare_cobalt_for_gens",
-                        "1.0"
-                    ]
-                ]
-            }
-        ],
-        "timestamp": "2026-07-29T11:36:33.845673",
-        "meta": {
-            "nf-test": "0.9.5",
-            "nextflow": "26.04.0"
-        }
-    },
-    "Prepare cobalt files for GENS, normal (tumor-only data)": {
-        "content": [
-            {
-                "bed": [
-                    
-                ],
-                "tbi": [
-                    
-                ],
-                "versions_cobalt_for_gens": [
-                    
-                ]
-            },
-            {
-                "versions": [
-                    
-                ]
-            }
-        ],
-        "timestamp": "2026-07-29T08:42:21.831346",
-        "meta": {
-            "nf-test": "0.9.5",
-            "nextflow": "26.04.0"
-        }
-    },
     "Prepare cobalt files for GENS, tumor (tumor-normal data) - stub": {
         "content": [
             {
@@ -93,16 +26,37 @@
                         "test_cobalt_cov.tumor.bed.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
+                "versions_bgzip": [
+                    [
+                        "PREPARE_COBALT_FOR_GENS",
+                        "bgzip",
+                        "(htslib) 1.23.1"
+                    ]
+                ],
                 "versions_cobalt_for_gens": [
                     [
                         "PREPARE_COBALT_FOR_GENS",
                         "prepare_cobalt_for_gens",
-                        "1.0"
+                        "prepare_cobalt_for_gens, version 1.0"
+                    ]
+                ],
+                "versions_python": [
+                    [
+                        "PREPARE_COBALT_FOR_GENS",
+                        "python",
+                        "Python 3.14.6"
+                    ]
+                ],
+                "versions_tabix": [
+                    [
+                        "PREPARE_COBALT_FOR_GENS",
+                        "tabix",
+                        "(htslib) 1.23.1"
                     ]
                 ]
             }
         ],
-        "timestamp": "2026-07-29T11:36:20.458785",
+        "timestamp": "2026-08-03T11:55:03.815219",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.0"
@@ -138,55 +92,28 @@
                 "versions": [
                     [
                         "PREPARE_COBALT_FOR_GENS",
-                        "prepare_cobalt_for_gens",
-                        "1.0"
-                    ]
-                ]
-            }
-        ],
-        "timestamp": "2026-07-29T11:36:10.366305",
-        "meta": {
-            "nf-test": "0.9.5",
-            "nextflow": "26.04.0"
-        }
-    },
-    "Prepare cobalt files for GENS, tumor (tumor-only data) - stub": {
-        "content": [
-            {
-                "bed": [
-                    [
-                        {
-                            "id": "test_cobalt_cov",
-                            "case_id": "test",
-                            "sample_id": "subject_a",
-                            "sample_type": "tumor",
-                            "sex": "female"
-                        },
-                        "test_cobalt_cov.tumor.bed.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
-                    ]
-                ],
-                "tbi": [
-                    [
-                        {
-                            "id": "test_cobalt_cov",
-                            "case_id": "test",
-                            "sample_id": "subject_a",
-                            "sample_type": "tumor",
-                            "sex": "female"
-                        },
-                        "test_cobalt_cov.tumor.bed.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ]
-                ],
-                "versions_cobalt_for_gens": [
+                        "bgzip",
+                        "(htslib) 1.23.1"
+                    ],
                     [
                         "PREPARE_COBALT_FOR_GENS",
                         "prepare_cobalt_for_gens",
-                        "1.0"
+                        "prepare_cobalt_for_gens, version 1.0"
+                    ],
+                    [
+                        "PREPARE_COBALT_FOR_GENS",
+                        "python",
+                        "Python 3.14.6"
+                    ],
+                    [
+                        "PREPARE_COBALT_FOR_GENS",
+                        "tabix",
+                        "(htslib) 1.23.1"
                     ]
                 ]
             }
         ],
-        "timestamp": "2026-07-29T11:36:42.18558",
+        "timestamp": "2026-08-03T11:54:53.483615",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.0"
@@ -219,36 +146,37 @@
                         "test_cobalt_cov.normal.bed.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
+                "versions_bgzip": [
+                    [
+                        "PREPARE_COBALT_FOR_GENS",
+                        "bgzip",
+                        "(htslib) 1.23.1"
+                    ]
+                ],
                 "versions_cobalt_for_gens": [
                     [
                         "PREPARE_COBALT_FOR_GENS",
                         "prepare_cobalt_for_gens",
-                        "1.0"
+                        "prepare_cobalt_for_gens, version 1.0"
+                    ]
+                ],
+                "versions_python": [
+                    [
+                        "PREPARE_COBALT_FOR_GENS",
+                        "python",
+                        "Python 3.14.6"
+                    ]
+                ],
+                "versions_tabix": [
+                    [
+                        "PREPARE_COBALT_FOR_GENS",
+                        "tabix",
+                        "(htslib) 1.23.1"
                     ]
                 ]
             }
         ],
-        "timestamp": "2026-07-29T11:36:15.46588",
-        "meta": {
-            "nf-test": "0.9.5",
-            "nextflow": "26.04.0"
-        }
-    },
-    "Prepare cobalt files for GENS, normal (tumor-only data) - stub": {
-        "content": [
-            {
-                "bed": [
-                    
-                ],
-                "tbi": [
-                    
-                ],
-                "versions_cobalt_for_gens": [
-                    
-                ]
-            }
-        ],
-        "timestamp": "2026-07-29T08:42:29.922451",
+        "timestamp": "2026-08-03T11:54:58.661525",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.0"
@@ -284,13 +212,28 @@
                 "versions": [
                     [
                         "PREPARE_COBALT_FOR_GENS",
+                        "bgzip",
+                        "(htslib) 1.23.1"
+                    ],
+                    [
+                        "PREPARE_COBALT_FOR_GENS",
                         "prepare_cobalt_for_gens",
-                        "1.0"
+                        "prepare_cobalt_for_gens, version 1.0"
+                    ],
+                    [
+                        "PREPARE_COBALT_FOR_GENS",
+                        "python",
+                        "Python 3.14.6"
+                    ],
+                    [
+                        "PREPARE_COBALT_FOR_GENS",
+                        "tabix",
+                        "(htslib) 1.23.1"
                     ]
                 ]
             }
         ],
-        "timestamp": "2026-07-29T11:35:51.119507",
+        "timestamp": "2026-08-03T11:54:40.744501",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.0"
