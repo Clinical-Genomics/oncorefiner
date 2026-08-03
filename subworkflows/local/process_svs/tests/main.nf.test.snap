@@ -46,6 +46,14 @@
                     {
                         "id": "subject_a"
                     },
+                    "null.cgh"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "subject_a"
+                    },
                     "subject_a_svdbquery_vep.vcf.gz_summary.html"
                 ]
             ],
@@ -104,7 +112,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-08-03T15:08:20.385297",
+        "timestamp": "2026-08-03T15:12:00.066505",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"

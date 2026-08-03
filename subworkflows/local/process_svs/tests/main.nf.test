@@ -92,6 +92,7 @@ nextflow_workflow {
                 { assert snapshot(
                     output_vcfs.collect { meta, vcf -> [meta, file(vcf).name + ":variantsMD5," + path(vcf).vcf.variantsMD5 ]},
                     output_tbis.collect { meta, tbi -> [meta, file(tbi).name] },
+                    workflow.out.vcf2cytosure_cgh.collect { meta, cgh -> [meta, file(cgh).name] },
                     workflow.out.vep_report.collect { meta, _process, _tool, report -> [meta, file(report).name] },
                     topics
                 ).match() }
