@@ -20,13 +20,14 @@ nextflow_workflow {
                 """
                 input[0] = channel.of([
                     [id:'test'],
-                    file(params.pipelines_testdata_base_path + 'testdata/tumor_normal/subject_a.tumor.purple.somatic.vcf.gz', checkIfExists: true)
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh37/tumor_normal/subject_a.tumor.purple.somatic.vcf.gz', checkIfExists: true)
                     ])
                 input[1] = 'GRCh37'
-                input[2] = channel.fromPath(params.pipelines_testdata_base_path + 'reference/reference.fasta.fai', checkIfExists: true).map {it -> [[id:it.simpleName], it]  }.collect()
+                input[2] = channel.fromPath(params.pipelines_testdata_base_path + 'reference/GRCh37/reference.fasta.fai', checkIfExists: true).map {it -> [[id:it.simpleName], it]  }.collect()
                 input[3] = channel.fromPath("$projectDir/assets/cadd_to_vcf_header.txt", checkIfExists: true).collect()
-                input[4] = channel.from("\$PWD").map { dir -> [ [ id: 'cadd_resources' ], dir ] }
-                input[5] = channel.from("\$PWD").map { dir -> [ [ id: 'cadd_prescored_indels' ], dir ] }
+                // Mock input directories for CADD resources and pre-scored indels, as the stub workflow will not actually read from these directories
+                input[4] = channel.from("$projectDir/assets/").map { dir -> [ [ id: 'cadd_resources' ], dir ] }
+                input[5] = channel.from("$projectDir/docs/").map { dir -> [ [ id: 'cadd_prescored_indels' ], dir ] }
                 """
             }
         }
@@ -53,13 +54,14 @@ nextflow_workflow {
                 """
                 input[0] = channel.of([
                     [id:'test'],
-                    file(params.pipelines_testdata_base_path + 'testdata/tumor_normal/subject_a.tumor.purple.somatic.vcf.gz', checkIfExists: true)
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.somatic.vcf.gz', checkIfExists: true)
                     ])
                 input[1] = 'GRCh38'
-                input[2] = channel.fromPath(params.pipelines_testdata_base_path + 'reference/reference.fasta.fai', checkIfExists: true).map {it -> [[id:it.simpleName], it]  }.collect()
+                input[2] = channel.fromPath(params.pipelines_testdata_base_path + 'reference/GRCh38/GRCh38_masked_exclusions_alts_hlas_subset.fasta.fai', checkIfExists: true).map {it -> [[id:it.simpleName], it]  }.collect()
                 input[3] = channel.fromPath("$projectDir/assets/cadd_to_vcf_header.txt", checkIfExists: true).collect()
-                input[4] = channel.from("\$PWD").map { dir -> [ [ id: 'cadd_resources' ], dir ] }
-                input[5] = channel.from("\$PWD").map { dir -> [ [ id: 'cadd_prescored_indels' ], dir ] }
+                // Mock input directories for CADD resources and pre-scored indels, as the stub workflow will not actually read from these directories
+                input[4] = channel.from("$projectDir/assets/").map { dir -> [ [ id: 'cadd_resources' ], dir ] }
+                input[5] = channel.from("$projectDir/docs/").map { dir -> [ [ id: 'cadd_prescored_indels' ], dir ] }
                 """
             }
         }

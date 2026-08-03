@@ -1,0 +1,241 @@
+{
+    "Tumor only analysis with '-profile test_tumor_only'": {
+        "content": [
+            {
+                "BCFTOOLS_VIEW": {
+                    "bcftools": "1.23.1"
+                },
+                "BCFTOOLS_VIEW_CLINICAL": {
+                    "bcftools": "1.23.1"
+                },
+                "BCFTOOLS_VIEW_RESEARCH": {
+                    "bcftools": "1.23.1"
+                },
+                "ENSEMBLVEP_VEP": {
+                    "ensemblvep": 115.2,
+                    "perl-math-cdf": 0.1,
+                    "tabix": 1.21
+                },
+                "FILTER_VCF": {
+                    "bcftools": "1.23.1"
+                },
+                "GENMOD_SCORE": {
+                    "genmod": "3.10.2"
+                },
+                "SAMTOOLS_VIEW": {
+                    "samtools": "1.23.1"
+                },
+                "SVDB_QUERY": {
+                    "svdb": "2.8.4"
+                },
+                "TIDDIT_COV": {
+                    "tiddit": "3.9.5"
+                },
+                "UNTAR_VEP_CACHE": {
+                    "untar": 1.34
+                },
+                "VCF2CYTOSURE": {
+                    "vcf2cytosure": "0.9.3"
+                },
+                "VCFANNO": {
+                    "vcfanno": "0.3.7"
+                },
+                "Workflow": {
+                    "Clinical-Genomics/oncorefiner": "v1.0.0dev"
+                }
+            },
+            [
+                "alignments",
+                "alignments/subject_a_tumor.cram",
+                "alignments/subject_a_tumor.cram.crai",
+                "multiqc",
+                "multiqc/multiqc_data",
+                "multiqc/multiqc_data/llms-full.txt",
+                "multiqc/multiqc_data/multiqc.log",
+                "multiqc/multiqc_data/multiqc.parquet",
+                "multiqc/multiqc_data/multiqc_citations.txt",
+                "multiqc/multiqc_data/multiqc_data.json",
+                "multiqc/multiqc_data/multiqc_software_versions.txt",
+                "multiqc/multiqc_data/multiqc_sources.txt",
+                "multiqc/multiqc_report.html",
+                "pipeline_info",
+                "pipeline_info/oncorefiner_software_mqc_versions.yml",
+                "process_svs",
+                "process_svs/test_tumor_only_case_clinical.vcf.gz",
+                "process_svs/test_tumor_only_case_clinical.vcf.gz.tbi",
+                "process_svs/test_tumor_only_case_research.vcf.gz",
+                "process_svs/test_tumor_only_case_research.vcf.gz.tbi",
+                "snv",
+                "snv/test_tumor_only_case_clinical.vcf.gz",
+                "snv/test_tumor_only_case_clinical.vcf.gz.tbi",
+                "snv/test_tumor_only_case_genmod_score.vcf.gz",
+                "snv/test_tumor_only_case_genmod_score.vcf.gz.tbi",
+                "snv/test_tumor_only_case_vcfanno.vcf.gz",
+                "snv/test_tumor_only_case_vcfanno.vcf.gz.tbi",
+                "snv/test_tumor_only_case_vep.vcf.gz",
+                "snv/test_tumor_only_case_vep.vcf.gz.tbi",
+                "snv/test_tumor_only_case_vep.vcf.gz_summary.html",
+                "vcf2cytosure",
+                "vcf2cytosure/tumor.cgh",
+                "vep",
+                "vep/test_tumor_only_case_svdbquery_vep.vcf.gz",
+                "vep/test_tumor_only_case_svdbquery_vep.vcf.gz.tbi",
+                "vep/test_tumor_only_case_svdbquery_vep.vcf.gz_summary.html"
+            ],
+            [
+                "tumor.cgh:md5,22c058183d93a767ee61d5319513dc39"
+            ],
+            [
+                [
+                    "test_tumor_only_case_clinical.vcf.gz",
+                    "VcfFile [chromosomes=[chr19, chr9, chr11], sampleCount=1, variantCount=6, phased=false, phasedAutodetect=false]"
+                ],
+                [
+                    "test_tumor_only_case_research.vcf.gz",
+                    "VcfFile [chromosomes=[chr19, chr9, chr11], sampleCount=1, variantCount=6, phased=false, phasedAutodetect=false]"
+                ],
+                [
+                    "test_tumor_only_case_clinical.vcf.gz",
+                    "VcfFile [chromosomes=[chr9, chr7, chr8, chrX, chr5, chr6, chr3, chr21, chr4, chr11, chr22, chr1, chr12, chr2, chr13, chr20, chr18, chr19, chr15, chr16, chr17], sampleCount=1, variantCount=104, phased=false, phasedAutodetect=false]"
+                ],
+                [
+                    "test_tumor_only_case_genmod_score.vcf.gz",
+                    "VcfFile [chromosomes=[chr9, chr7, chr8, chrX, chr5, chr6, chr3, chr21, chr4, chr11, chr22, chr1, chr12, chr2, chr13, chr20, chr18, chr19, chr15, chr16, chr17], sampleCount=1, variantCount=104, phased=false, phasedAutodetect=false]"
+                ],
+                [
+                    "test_tumor_only_case_vcfanno.vcf.gz",
+                    "VcfFile [chromosomes=[chr9, chr7, chr8, chrX, chr5, chr6, chr3, chr21, chr4, chr11, chr22, chr1, chr12, chr2, chr13, chr20, chr18, chr19, chr15, chr16, chr17], sampleCount=1, variantCount=104, phased=false, phasedAutodetect=false]"
+                ],
+                [
+                    "test_tumor_only_case_vep.vcf.gz",
+                    "VcfFile [chromosomes=[chr9, chr7, chr8, chrX, chr5, chr6, chr3, chr21, chr4, chr11, chr22, chr1, chr12, chr2, chr13, chr20, chr18, chr19, chr15, chr16, chr17], sampleCount=1, variantCount=104, phased=false, phasedAutodetect=false]"
+                ],
+                [
+                    "test_tumor_only_case_svdbquery_vep.vcf.gz",
+                    "VcfFile [chromosomes=[chr19, chr9, chr11], sampleCount=1, variantCount=6, phased=false, phasedAutodetect=false]"
+                ]
+            ],
+            [
+                [
+                    "test_tumor_only_case_clinical.vcf.gz",
+                    "c4a240376672ae2adc490e3ccc31f317"
+                ],
+                [
+                    "test_tumor_only_case_research.vcf.gz",
+                    "b9cb38b8cd9294ba4aa110592c5133e"
+                ],
+                [
+                    "test_tumor_only_case_clinical.vcf.gz",
+                    "86368653579fc08f5fe7b47a6212053f"
+                ],
+                [
+                    "test_tumor_only_case_genmod_score.vcf.gz",
+                    "86368653579fc08f5fe7b47a6212053f"
+                ],
+                [
+                    "test_tumor_only_case_vcfanno.vcf.gz",
+                    "e99aee3237070db74efee69d7a5d4be2"
+                ],
+                [
+                    "test_tumor_only_case_vep.vcf.gz",
+                    "96afd20d30255284c06a3fd505a1d466"
+                ],
+                [
+                    "test_tumor_only_case_svdbquery_vep.vcf.gz",
+                    "c4a240376672ae2adc490e3ccc31f317"
+                ]
+            ]
+        ],
+        "timestamp": "2026-07-29T14:51:36.683029",
+        "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "26.04.0"
+        }
+    },
+    "Tumor only analysis with '-profile test_tumor_only' - stub": {
+        "content": [
+            {
+                "BCFTOOLS_VIEW": {
+                    "bcftools": "1.23.1"
+                },
+                "BCFTOOLS_VIEW_CLINICAL": {
+                    "bcftools": "1.23.1"
+                },
+                "BCFTOOLS_VIEW_RESEARCH": {
+                    "bcftools": "1.23.1"
+                },
+                "ENSEMBLVEP_VEP": {
+                    "ensemblvep": 115.2,
+                    "perl-math-cdf": 0.1,
+                    "tabix": 1.21
+                },
+                "FILTER_VCF": {
+                    "bcftools": "1.23.1"
+                },
+                "GENMOD_SCORE": {
+                    "genmod": "3.10.2"
+                },
+                "SAMTOOLS_VIEW": {
+                    "samtools": "1.23.1"
+                },
+                "SVDB_QUERY": {
+                    "svdb": "2.8.4"
+                },
+                "TIDDIT_COV": {
+                    "tiddit": "3.9.5"
+                },
+                "UNTAR_VEP_CACHE": {
+                    "untar": 1.34
+                },
+                "VCF2CYTOSURE": {
+                    "vcf2cytosure": "0.9.3"
+                },
+                "VCFANNO": {
+                    "vcfanno": "0.3.7"
+                },
+                "Workflow": {
+                    "Clinical-Genomics/oncorefiner": "v1.0.0dev"
+                }
+            },
+            [
+                "alignments",
+                "alignments/subject_a_tumor.cram",
+                "alignments/subject_a_tumor.cram.crai",
+                "multiqc",
+                "multiqc/multiqc_data",
+                "multiqc/multiqc_data/.stub",
+                "multiqc/multiqc_plots",
+                "multiqc/multiqc_plots/.stub",
+                "multiqc/multiqc_report.html",
+                "pipeline_info",
+                "pipeline_info/oncorefiner_software_mqc_versions.yml",
+                "process_svs",
+                "process_svs/test_tumor_only_case_clinical.vcf.gz",
+                "process_svs/test_tumor_only_case_clinical.vcf.gz.tbi",
+                "process_svs/test_tumor_only_case_research.vcf.gz",
+                "process_svs/test_tumor_only_case_research.vcf.gz.tbi",
+                "snv",
+                "snv/test_tumor_only_case_clinical.vcf.gz",
+                "snv/test_tumor_only_case_clinical.vcf.gz.tbi",
+                "snv/test_tumor_only_case_genmod_score.vcf.gz",
+                "snv/test_tumor_only_case_genmod_score.vcf.gz.tbi",
+                "snv/test_tumor_only_case_vcfanno.vcf.gz",
+                "snv/test_tumor_only_case_vcfanno.vcf.gz.tbi",
+                "snv/test_tumor_only_case_vep.vcf.gz",
+                "snv/test_tumor_only_case_vep.vcf.gz.tbi",
+                "snv/test_tumor_only_case_vep_summary.html",
+                "vcf2cytosure",
+                "vcf2cytosure/tumor.cgh",
+                "vep",
+                "vep/test_tumor_only_case_svdbquery_vep.vcf.gz",
+                "vep/test_tumor_only_case_svdbquery_vep.vcf.gz.tbi",
+                "vep/test_tumor_only_case_svdbquery_vep_summary.html"
+            ]
+        ],
+        "timestamp": "2026-06-22T16:38:54.315531",
+        "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "26.04.0"
+        }
+    }
+}

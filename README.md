@@ -1,19 +1,12 @@
 # Clinical-Genomics/oncorefiner
 
-<h1>
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="docs/images/nf-core-oncorefiner_logo_dark.png">
-    <img alt="nf-core/oncorefiner" src="docs/images/nf-core-oncorefiner_logo_light.png">
-  </picture>
-</h1>
-
 [![Open in GitHub Codespaces](https://img.shields.io/badge/Open_In_GitHub_Codespaces-black?labelColor=grey&logo=github)](https://github.com/codespaces/new/Clinical-Genomics/oncorefiner)
 [![GitHub Actions CI Status](https://github.com/Clinical-Genomics/oncorefiner/actions/workflows/nf-test.yml/badge.svg)](https://github.com/Clinical-Genomics/oncorefiner/actions/workflows/nf-test.yml)
 [![GitHub Actions Linting Status](https://github.com/Clinical-Genomics/oncorefiner/actions/workflows/linting.yml/badge.svg)](https://github.com/Clinical-Genomics/oncorefiner/actions/workflows/linting.yml)[![Cite with Zenodo](http://img.shields.io/badge/DOI-10.5281/zenodo.XXXXXXX-1073c8?labelColor=000000)](https://doi.org/10.5281/zenodo.XXXXXXX)
 [![nf-test](https://img.shields.io/badge/unit_tests-nf--test-337ab7.svg)](https://www.nf-test.com)
 
-[![Nextflow](https://img.shields.io/badge/version-%E2%89%A525.10.0-green?style=flat&logo=nextflow&logoColor=white&color=%230DC09D&link=https%3A%2F%2Fnextflow.io)](https://www.nextflow.io/)
-[![nf-core template version](https://img.shields.io/badge/nf--core_template-3.5.2-green?style=flat&logo=nfcore&logoColor=white&color=%2324B064&link=https%3A%2F%2Fnf-co.re)](https://github.com/nf-core/tools/releases/tag/3.5.2)
+[![Nextflow](https://img.shields.io/badge/version-%E2%89%A525.10.4-green?style=flat&logo=nextflow&logoColor=white&color=%230DC09D&link=https%3A%2F%2Fnextflow.io)](https://www.nextflow.io/)
+[![nf-core template version](https://img.shields.io/badge/nf--core_template-4.0.3-green?style=flat&logo=nfcore&logoColor=white&color=%2324B064&link=https%3A%2F%2Fnf-co.re)](https://github.com/nf-core/tools/releases/tag/4.0.3)
 [![run with conda](http://img.shields.io/badge/run%20with-conda-3EB049?labelColor=000000&logo=anaconda)](https://docs.conda.io/en/latest/)
 [![run with docker](https://img.shields.io/badge/run%20with-docker-0db7ed?labelColor=000000&logo=docker)](https://www.docker.com/)
 [![run with singularity](https://img.shields.io/badge/run%20with-singularity-1d355c.svg?labelColor=000000)](https://sylabs.io/docs/)
@@ -29,12 +22,13 @@
 ### Workflow diagram
 
 <!-- TODO nf-core: Include a figure that guides the user through the major workflow steps. Many nf-core
-     workflows use the "tube map" design for that. See https://nf-co.re/docs/guidelines/graphic_design/workflow_diagrams#examples for examples.   -->
+     workflows use the "tube map" design for that. See https://nf-co.re/docs/community/brand/workflow-schematics#examples for examples.   -->
 
 1. Process SNV VCF files
    1. Annotate with [`Vcfanno`](https://github.com/brentp/vcfanno). Intended for local/custom annotation.
    1. Filter with [`bcftools`](https://github.com/samtools/bcftools). This step aims to apply quality, population-level filtering and/or other general criteria as defined in the configuration settings.
    1. Annotate with [`Ensembl VEP`](https://www.ensembl.org/info/docs/tools/vep/index.html)
+   1. Rank variants and annotate with [`Genmod score`](https://github.com/Clinical-Genomics/genmod). A score is assigned to each variant based on the genmod score config file provided. Annotation with the score is added to the output vcf file.
    1. Filter with [`bcftools`](https://github.com/samtools/bcftools). This step applies clinically relevant filters as defined in the configuration settings. For example, it may involve subsetting variants based on a a list of clinically relevant genes.
 
 1. Process SV VCF files
@@ -52,31 +46,17 @@ For further information about the each step and output files, please refer to th
 > [!NOTE]
 > If you are new to Nextflow and nf-core, please refer to [this page](https://nf-co.re/docs/usage/installation) on how to set-up Nextflow. Make sure to [test your setup](https://nf-co.re/docs/usage/introduction#how-to-run-a-pipeline) with `-profile test` before running the workflow on actual data.
 
-First, prepare a samplesheet with your input data that looks as follows:
-
-`samplesheet.csv`:
-
-```csv
-sample,fastq_1,fastq_2
-CONTROL_REP1,AEG588A1_S1_L002_R1_001.fastq.gz,AEG588A1_S1_L002_R2_001.fastq.gz
-```
-
-Each row represents a fastq file (single-end) or a pair of fastq files (paired end).
-
-> [!NOTE]
-> The information from the samplesheet is not currently used in the pipeline, but it is required to be able to run the pipeline and will be used in future developments.
-
 Now, you can run the pipeline using:
 
 ```bash
 nextflow run Clinical-Genomics/oncorefiner \
    -profile <docker/singularity/.../institute> \
-   --input samplesheet.csv \
+   -params-file <params.yaml/params.json> \
    --outdir <OUTDIR>
 ```
 
 > [!WARNING]
-> Please provide pipeline parameters via the CLI or Nextflow `-params-file` option. Custom config files including those provided by the `-c` Nextflow option can be used to provide any configuration _**except for parameters**_; see [docs](https://nf-co.re/docs/usage/getting_started/configuration#custom-configuration-files).
+> Please provide pipeline parameters via the CLI or Nextflow `-params-file` option. Custom config files including those provided by the `-c` Nextflow option can be used to provide any configuration _**except for parameters**_; see [docs](https://nf-co.re/docs/running/run-pipelines#using-parameter-files).
 
 For more details and further functionality, please refer to the [usage documentation](./docs/usage.md) and the [parameter documentation](./docs/parameters.md).
 

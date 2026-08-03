@@ -6,31 +6,63 @@ nextflow_workflow {
     tag "subworkflows"
     tag "prepare_references"
     config "./nextflow.config"
+    topics "versions"
 
     test("Test preparing VEP cache: no untarring needed") {
 
         when {
+
             params {
                 outdir = "$outputDir"
             }
+            // Provided path to mock input (subworkflow wants value with path to directory) - should be improved in the future
             workflow {
                 """
-                input[0] = params.pipelines_testdata_base_path + 'reference/vep_cache_and_plugins/'
+                input[0] =  'path/to/vep_cache_untarred'
                 """
             }
         }
 
         then {
-            // Check untarred directory and files
-            def output_directories_files = getAllFilesFromDir(params.outdir, relative: true, includeDir: true)
 
             assertAll(
                 { assert workflow.success },
                 { assert snapshot(
+                    // Check topic versions to see what processes were run
+                    topics,
                     // Check the name of the output directory
                     workflow.out.vep_resources[0][0].tokenize('/').last(),
-                    // Check that no ouput files or directories are produced
-                    output_directories_files
+                ).match() }
+            )
+        }
+    }
+
+    test("Test preparing VEP cache: no untarring needed - stub") {
+
+        options "-stub"
+
+        when {
+
+            params {
+                outdir = "$outputDir"
+            }
+            // Provided path to mock input (subworkflow wants value with path to directory) - should be improved in the future
+            workflow {
+                """
+                input[0] = 'path/to/vep_cache_untarred'
+                """
+            }
+        }
+
+        then {
+
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(
+                    // Check topic versions to see what processes were run
+                    topics,
+                    // Check the name of the output directory
+                    workflow.out.vep_resources[0][0].tokenize('/').last(),
                 ).match() }
             )
         }
@@ -39,25 +71,60 @@ nextflow_workflow {
     test("Test preparing VEP cache: untarring needed") {
 
         when {
-            params {
-                outdir = "$outputDir"
-            }
+
             workflow {
                 """
-                input[0] = params.pipelines_testdata_base_path + 'reference/vep_cache_and_plugins.tar.gz'
+                input[0] = params.pipelines_testdata_base_path + 'reference/GRCh38/vep_cache.tar.gz'
                 """
             }
         }
 
         then {
+            def vep_resources = workflow.out.vep_resources[0][0]
+
             // Check untarred directory and files
-            def output_directories_files = getAllFilesFromDir(params.outdir, relative: true, includeDir: true)
+            def output_directories_files = getAllFilesFromDir(vep_resources, relative: true, includeDir: true)
 
             assertAll(
                 { assert workflow.success },
                 { assert snapshot(
+                    // Check topic versions to see what processes were run
+                    topics,
 					// Check the name of the output directory
-                    workflow.out.vep_resources[0][0].tokenize('/').last(),
+                    vep_resources.tokenize('/').last(),
+                    // Check untarred directory and files
+                    output_directories_files
+                ).match() }
+            )
+        }
+    }
+
+    test("Test preparing VEP cache: untarring needed - stub") {
+
+        options "-stub"
+
+        when {
+
+            workflow {
+                """
+                input[0] = params.pipelines_testdata_base_path + 'reference/GRCh38/vep_cache.tar.gz'
+                """
+            }
+        }
+
+        then {
+            def vep_resources = workflow.out.vep_resources[0][0]
+
+            // Check untarred directory and files
+            def output_directories_files = getAllFilesFromDir(vep_resources, relative: true, includeDir: true)
+
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(
+                    // Check topic versions to see what processes were run
+                    topics,
+					// Check the name of the output directory
+                    vep_resources.tokenize('/').last(),
                     // Check untarred directory and files
                     output_directories_files
                 ).match() }

@@ -1,0 +1,248 @@
+{
+    "Tumor Normal analysis with '-profile test' - stub": {
+        "content": [
+            {
+                "BCFTOOLS_VIEW": {
+                    "bcftools": "1.23.1"
+                },
+                "BCFTOOLS_VIEW_CLINICAL": {
+                    "bcftools": "1.23.1"
+                },
+                "BCFTOOLS_VIEW_RESEARCH": {
+                    "bcftools": "1.23.1"
+                },
+                "ENSEMBLVEP_VEP": {
+                    "ensemblvep": 115.2,
+                    "perl-math-cdf": 0.1,
+                    "tabix": 1.21
+                },
+                "FILTER_VCF": {
+                    "bcftools": "1.23.1"
+                },
+                "GENMOD_SCORE": {
+                    "genmod": "3.10.2"
+                },
+                "SAMTOOLS_VIEW": {
+                    "samtools": "1.23.1"
+                },
+                "SVDB_QUERY": {
+                    "svdb": "2.8.4"
+                },
+                "TIDDIT_COV": {
+                    "tiddit": "3.9.5"
+                },
+                "UNTAR_VEP_CACHE": {
+                    "untar": 1.34
+                },
+                "VCF2CYTOSURE": {
+                    "vcf2cytosure": "0.9.3"
+                },
+                "VCFANNO": {
+                    "vcfanno": "0.3.7"
+                },
+                "Workflow": {
+                    "Clinical-Genomics/oncorefiner": "v1.0.0dev"
+                }
+            },
+            [
+                "alignments",
+                "alignments/subject_a_normal.cram",
+                "alignments/subject_a_normal.cram.crai",
+                "alignments/subject_a_tumor.cram",
+                "alignments/subject_a_tumor.cram.crai",
+                "multiqc",
+                "multiqc/multiqc_data",
+                "multiqc/multiqc_data/.stub",
+                "multiqc/multiqc_plots",
+                "multiqc/multiqc_plots/.stub",
+                "multiqc/multiqc_report.html",
+                "pipeline_info",
+                "pipeline_info/oncorefiner_software_mqc_versions.yml",
+                "process_svs",
+                "process_svs/test_tumor_normal_case_clinical.vcf.gz",
+                "process_svs/test_tumor_normal_case_clinical.vcf.gz.tbi",
+                "process_svs/test_tumor_normal_case_research.vcf.gz",
+                "process_svs/test_tumor_normal_case_research.vcf.gz.tbi",
+                "snv",
+                "snv/test_tumor_normal_case_clinical.vcf.gz",
+                "snv/test_tumor_normal_case_clinical.vcf.gz.tbi",
+                "snv/test_tumor_normal_case_genmod_score.vcf.gz",
+                "snv/test_tumor_normal_case_genmod_score.vcf.gz.tbi",
+                "snv/test_tumor_normal_case_vcfanno.vcf.gz",
+                "snv/test_tumor_normal_case_vcfanno.vcf.gz.tbi",
+                "snv/test_tumor_normal_case_vep.vcf.gz",
+                "snv/test_tumor_normal_case_vep.vcf.gz.tbi",
+                "snv/test_tumor_normal_case_vep_summary.html",
+                "vcf2cytosure",
+                "vcf2cytosure/normal.cgh",
+                "vcf2cytosure/tumor.cgh",
+                "vep",
+                "vep/test_tumor_normal_case_svdbquery_vep.vcf.gz",
+                "vep/test_tumor_normal_case_svdbquery_vep.vcf.gz.tbi",
+                "vep/test_tumor_normal_case_svdbquery_vep_summary.html"
+            ]
+        ],
+        "timestamp": "2026-06-22T16:34:07.010459",
+        "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "26.04.0"
+        }
+    },
+    "Tumor Normal analysis with '-profile test'": {
+        "content": [
+            {
+                "BCFTOOLS_VIEW": {
+                    "bcftools": "1.23.1"
+                },
+                "BCFTOOLS_VIEW_CLINICAL": {
+                    "bcftools": "1.23.1"
+                },
+                "BCFTOOLS_VIEW_RESEARCH": {
+                    "bcftools": "1.23.1"
+                },
+                "ENSEMBLVEP_VEP": {
+                    "ensemblvep": 115.2,
+                    "perl-math-cdf": 0.1,
+                    "tabix": 1.21
+                },
+                "FILTER_VCF": {
+                    "bcftools": "1.23.1"
+                },
+                "GENMOD_SCORE": {
+                    "genmod": "3.10.2"
+                },
+                "SAMTOOLS_VIEW": {
+                    "samtools": "1.23.1"
+                },
+                "SVDB_QUERY": {
+                    "svdb": "2.8.4"
+                },
+                "TIDDIT_COV": {
+                    "tiddit": "3.9.5"
+                },
+                "UNTAR_VEP_CACHE": {
+                    "untar": 1.34
+                },
+                "VCF2CYTOSURE": {
+                    "vcf2cytosure": "0.9.3"
+                },
+                "VCFANNO": {
+                    "vcfanno": "0.3.7"
+                },
+                "Workflow": {
+                    "Clinical-Genomics/oncorefiner": "v1.0.0dev"
+                }
+            },
+            [
+                "alignments",
+                "alignments/subject_a_normal.cram",
+                "alignments/subject_a_normal.cram.crai",
+                "alignments/subject_a_tumor.cram",
+                "alignments/subject_a_tumor.cram.crai",
+                "multiqc",
+                "multiqc/multiqc_data",
+                "multiqc/multiqc_data/llms-full.txt",
+                "multiqc/multiqc_data/multiqc.log",
+                "multiqc/multiqc_data/multiqc.parquet",
+                "multiqc/multiqc_data/multiqc_citations.txt",
+                "multiqc/multiqc_data/multiqc_data.json",
+                "multiqc/multiqc_data/multiqc_software_versions.txt",
+                "multiqc/multiqc_data/multiqc_sources.txt",
+                "multiqc/multiqc_report.html",
+                "pipeline_info",
+                "pipeline_info/oncorefiner_software_mqc_versions.yml",
+                "process_svs",
+                "process_svs/test_tumor_normal_case_clinical.vcf.gz",
+                "process_svs/test_tumor_normal_case_clinical.vcf.gz.tbi",
+                "process_svs/test_tumor_normal_case_research.vcf.gz",
+                "process_svs/test_tumor_normal_case_research.vcf.gz.tbi",
+                "snv",
+                "snv/test_tumor_normal_case_clinical.vcf.gz",
+                "snv/test_tumor_normal_case_clinical.vcf.gz.tbi",
+                "snv/test_tumor_normal_case_genmod_score.vcf.gz",
+                "snv/test_tumor_normal_case_genmod_score.vcf.gz.tbi",
+                "snv/test_tumor_normal_case_vcfanno.vcf.gz",
+                "snv/test_tumor_normal_case_vcfanno.vcf.gz.tbi",
+                "snv/test_tumor_normal_case_vep.vcf.gz",
+                "snv/test_tumor_normal_case_vep.vcf.gz.tbi",
+                "snv/test_tumor_normal_case_vep.vcf.gz_summary.html",
+                "vcf2cytosure",
+                "vcf2cytosure/normal.cgh",
+                "vcf2cytosure/tumor.cgh",
+                "vep",
+                "vep/test_tumor_normal_case_svdbquery_vep.vcf.gz",
+                "vep/test_tumor_normal_case_svdbquery_vep.vcf.gz.tbi",
+                "vep/test_tumor_normal_case_svdbquery_vep.vcf.gz_summary.html"
+            ],
+            [
+                "normal.cgh:md5,4d969b296e558f0fc911844f35fad6e9",
+                "tumor.cgh:md5,dd4ac501252ca74cb364ae447ec6b3eb"
+            ],
+            [
+                [
+                    "test_tumor_normal_case_clinical.vcf.gz",
+                    "VcfFile [chromosomes=[chr19, chr9, chr11], sampleCount=2, variantCount=6, phased=false, phasedAutodetect=false]"
+                ],
+                [
+                    "test_tumor_normal_case_research.vcf.gz",
+                    "VcfFile [chromosomes=[chr19, chr9, chr11], sampleCount=2, variantCount=6, phased=false, phasedAutodetect=false]"
+                ],
+                [
+                    "test_tumor_normal_case_clinical.vcf.gz",
+                    "VcfFile [chromosomes=[chr9, chr7, chr8, chrX, chr5, chr6, chr3, chr21, chr4, chr11, chr22, chr1, chr12, chr2, chr13, chr20, chr18, chr19, chr15, chr16, chr17], sampleCount=2, variantCount=103, phased=false, phasedAutodetect=false]"
+                ],
+                [
+                    "test_tumor_normal_case_genmod_score.vcf.gz",
+                    "VcfFile [chromosomes=[chr9, chr7, chr8, chrX, chr5, chr6, chr3, chr21, chr4, chr11, chr22, chr1, chr12, chr2, chr13, chr20, chr18, chr19, chr15, chr16, chr17], sampleCount=2, variantCount=103, phased=false, phasedAutodetect=false]"
+                ],
+                [
+                    "test_tumor_normal_case_vcfanno.vcf.gz",
+                    "VcfFile [chromosomes=[chr9, chr7, chr8, chrX, chr5, chr6, chr3, chr21, chr4, chr11, chr22, chr1, chr12, chr2, chr13, chr20, chr18, chr19, chr15, chr16, chr17], sampleCount=2, variantCount=103, phased=false, phasedAutodetect=false]"
+                ],
+                [
+                    "test_tumor_normal_case_vep.vcf.gz",
+                    "VcfFile [chromosomes=[chr9, chr7, chr8, chrX, chr5, chr6, chr3, chr21, chr4, chr11, chr22, chr1, chr12, chr2, chr13, chr20, chr18, chr19, chr15, chr16, chr17], sampleCount=2, variantCount=103, phased=false, phasedAutodetect=false]"
+                ],
+                [
+                    "test_tumor_normal_case_svdbquery_vep.vcf.gz",
+                    "VcfFile [chromosomes=[chr19, chr9, chr11], sampleCount=2, variantCount=6, phased=false, phasedAutodetect=false]"
+                ]
+            ],
+            [
+                [
+                    "test_tumor_normal_case_clinical.vcf.gz",
+                    "19c4e9b367a1917c49b878d3134b09b5"
+                ],
+                [
+                    "test_tumor_normal_case_research.vcf.gz",
+                    "5555fa260ad068c6b0c1704ac6ac933"
+                ],
+                [
+                    "test_tumor_normal_case_clinical.vcf.gz",
+                    "b3f08a4bb466307cfdb8b06231798637"
+                ],
+                [
+                    "test_tumor_normal_case_genmod_score.vcf.gz",
+                    "b3f08a4bb466307cfdb8b06231798637"
+                ],
+                [
+                    "test_tumor_normal_case_vcfanno.vcf.gz",
+                    "f79b3dd00e3a53231a4bbd52ebcc6d1d"
+                ],
+                [
+                    "test_tumor_normal_case_vep.vcf.gz",
+                    "c7dae0b238f6b5f4bf91c0682824f474"
+                ],
+                [
+                    "test_tumor_normal_case_svdbquery_vep.vcf.gz",
+                    "19c4e9b367a1917c49b878d3134b09b5"
+                ]
+            ]
+        ],
+        "timestamp": "2026-07-29T14:41:08.478851",
+        "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "26.04.0"
+        }
+    }
+}
