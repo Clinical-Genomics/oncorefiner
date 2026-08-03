@@ -20,7 +20,6 @@ process PREPARE_AMBER_FOR_GENS {
     tuple val("${task.process}"), val('bgzip'), eval("bgzip --version | sed '1!d; s/^.*bgzip //'"), topic: versions, emit: versions_bgzip
     tuple val("${task.process}"), val('tabix'), eval("tabix --version | sed '1!d; s/^.*tabix //'"), topic: versions, emit: versions_tabix
     tuple val("${task.process}"), val('prepare_amber_for_gens'), eval("prepare_amber_for_gens.py --version | sed '1!d; s/^.*prepare_amber_for_gens //'"), topic: versions, emit: versions_amber_for_gens
-    // WARN: Version information not provided by tool on CLI. Please update version string above when bumping container versions.
 
     script:
     def prefix = meta.id ?: "sample"
