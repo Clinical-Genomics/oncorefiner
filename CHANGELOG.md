@@ -83,10 +83,9 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#124](https://github.com/Clinical-Genomics/oncorefiner/pull/124) Update documentation in `docs/usage.md` and `README.md` on how to start a pipeline run given the necessary metadata input parameters.
 - [#145](https://github.com/Clinical-Genomics/oncorefiner/pull/145) Small fixes to `GENERATE_CYTOSURE_FILES` tests from #135: updated config regex to include the fully qualified name of the process in order for the settings to be applied with the highest priority and removed parameter dependency from each test by moving the values to the config file instead.
 - [#149](https://github.com/Clinical-Genomics/oncorefiner/pull/149) Updated test data base path to remove unused column in SVDB files
-  <<<<<<< HEAD
-- # [#118](https://github.com/Clinical-Genomics/oncorefiner/pull/118) Added parameters for LINX files and a header file to assets.
+- [#118](https://github.com/Clinical-Genomics/oncorefiner/pull/118) Added parameters for LINX files and a header file to assets.
+- [#161](https://github.com/Clinical-Genomics/oncorefiner/pull/161) Template update for nf-core tools 4.0.3.
 - [#160](https://github.com/Clinical-Genomics/oncorefiner/pull/160) Updated nftutils from 0.0.3 to 1.0.0.
-  > > > > > > > dev
 
 ### `Fixed`
 
