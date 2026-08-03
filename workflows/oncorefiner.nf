@@ -10,7 +10,7 @@ include { softwareVersionsToYAML } from '../subworkflows/nf-core/utils_nfcore_pi
 include { methodsDescriptionText } from '../subworkflows/local/utils_nfcore_oncorefiner_pipeline'
 include { PROCESS_SNVS           } from '../subworkflows/local/process_snvs/main.nf'
 include { PROCESS_SVS            } from '../subworkflows/local/process_svs/main.nf'
-
+include { PROCESS_CNVS           } from '../subworkflows/local/process_cnvs/main.nf'
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     RUN MAIN WORKFLOW
@@ -25,6 +25,8 @@ workflow ONCOREFINER {
     ch_cadd_header                  // channel: [mandatory] [path(txt)]
     ch_cadd_prescored_indels        // channel: [optional]  [val(meta), path(dir)]
     ch_cadd_resources               // channel: [optional]  [val(meta), path(dir)]
+    ch_cnv_gene_tsv                 // channel: [optional]  [val(meta), path(tsv)]
+    ch_cnv_segment_tsv              // channel: [optional]  [val(meta), path(tsv)]
     ch_genmod_score_config          // channel: [optional]  [val(meta), path(ini)]
     ch_genome_fasta                 // channel: [optional]  [val(meta), path(fasta)]
     ch_genome_fai                   // channel: [optional]  [val(meta), path(fai)]
@@ -90,6 +92,11 @@ workflow ONCOREFINER {
         ch_vep_cache,
         ch_genome_fasta,
         ch_vep_extra_files
+    )
+
+    PROCESS_CNVS(
+        ch_cnv_gene_tsv,
+        ch_cnv_segment_tsv
     )
 
     //
@@ -160,6 +167,7 @@ workflow ONCOREFINER {
     snv_vep_report            = PROCESS_SNVS.out.vep_report                                   // channel: [val(meta), val(process), val(tool), path(html)]
     snv_research_filtered_vcf = PROCESS_SNVS.out.research_filtered_vcf                        // channel: [val(meta), path(vcf)]
     snv_research_filtered_tbi = PROCESS_SNVS.out.research_filtered_tbi                        // channel: [val(meta), path(vcf.tbi)]
+    cnv_report_html           = PROCESS_CNVS.out.html_report                                  // channel: [val(meta), path(html)]
     versions                  = ch_versions                                                   // channel: [ path(versions.yml) ]
 
 }

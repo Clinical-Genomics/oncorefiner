@@ -16,6 +16,9 @@
                 "FILTER_VCF": {
                     "bcftools": "1.23.1"
                 },
+                "RMARKDOWNNOTEBOOK": {
+                    "rmarkdownnotebook": 2.29
+                },
                 "SAMTOOLS_VIEW": {
                     "samtools": "1.23.1"
                 },
@@ -44,6 +47,8 @@
                 "alignments/subject_a_normal.cram.crai",
                 "alignments/subject_a_tumor.cram",
                 "alignments/subject_a_tumor.cram.crai",
+                "cnv",
+                "cnv/test_tumor_normal_case_cnv_report.html",
                 "multiqc",
                 "multiqc/multiqc_data",
                 "multiqc/multiqc_data/.stub",
@@ -74,10 +79,10 @@
                 "vep/test_tumor_normal_case_svdbquery_vep_summary.html"
             ]
         ],
-        "timestamp": "2026-06-22T16:40:15.631533",
+        "timestamp": "2026-06-30T10:40:25.646896",
         "meta": {
             "nf-test": "0.9.5",
-            "nextflow": "26.04.2"
+            "nextflow": "25.10.4"
         }
     },
     "No `vep_plugin_files` with '-profile test' - stub": {
@@ -102,6 +107,9 @@
                 },
                 "GENMOD_SCORE": {
                     "genmod": "3.10.2"
+                },
+                "RMARKDOWNNOTEBOOK": {
+                    "rmarkdownnotebook": 2.29
                 },
                 "SAMTOOLS_VIEW": {
                     "samtools": "1.23.1"
@@ -131,6 +139,8 @@
                 "alignments/subject_a_normal.cram.crai",
                 "alignments/subject_a_tumor.cram",
                 "alignments/subject_a_tumor.cram.crai",
+                "cnv",
+                "cnv/test_tumor_normal_case_cnv_report.html",
                 "multiqc",
                 "multiqc/multiqc_data",
                 "multiqc/multiqc_data/.stub",
@@ -163,10 +173,10 @@
                 "vep/test_tumor_normal_case_svdbquery_vep_summary.html"
             ]
         ],
-        "timestamp": "2026-06-22T16:41:16.320337",
+        "timestamp": "2026-06-30T10:41:24.175037",
         "meta": {
             "nf-test": "0.9.5",
-            "nextflow": "26.04.0"
+            "nextflow": "25.10.4"
         }
     }
 }

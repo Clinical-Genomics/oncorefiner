@@ -22,6 +22,9 @@
                 "GENMOD_SCORE": {
                     "genmod": "3.10.2"
                 },
+                "RMARKDOWNNOTEBOOK": {
+                    "rmarkdownnotebook": 2.29
+                },
                 "SAMTOOLS_VIEW": {
                     "samtools": "1.23.1"
                 },
@@ -48,6 +51,8 @@
                 "alignments",
                 "alignments/subject_a_tumor.cram",
                 "alignments/subject_a_tumor.cram.crai",
+                "cnv",
+                "cnv/test_tumor_only_case_cnv_report.html",
                 "multiqc",
                 "multiqc/multiqc_data",
                 "multiqc/multiqc_data/llms-full.txt",
@@ -146,10 +151,10 @@
                 ]
             ]
         ],
-        "timestamp": "2026-06-22T16:37:50.983616",
+        "timestamp": "2026-06-30T10:45:46.721939",
         "meta": {
             "nf-test": "0.9.5",
-            "nextflow": "26.04.0"
+            "nextflow": "25.10.4"
         }
     },
     "Tumor only analysis with '-profile test_tumor_only' - stub": {
@@ -174,6 +179,9 @@
                 },
                 "GENMOD_SCORE": {
                     "genmod": "3.10.2"
+                },
+                "RMARKDOWNNOTEBOOK": {
+                    "rmarkdownnotebook": 2.29
                 },
                 "SAMTOOLS_VIEW": {
                     "samtools": "1.23.1"
@@ -201,6 +209,8 @@
                 "alignments",
                 "alignments/subject_a_tumor.cram",
                 "alignments/subject_a_tumor.cram.crai",
+                "cnv",
+                "cnv/test_tumor_only_case_cnv_report.html",
                 "multiqc",
                 "multiqc/multiqc_data",
                 "multiqc/multiqc_data/.stub",
@@ -232,10 +242,10 @@
                 "vep/test_tumor_only_case_svdbquery_vep_summary.html"
             ]
         ],
-        "timestamp": "2026-06-22T16:38:54.315531",
+        "timestamp": "2026-06-30T10:47:55.289815",
         "meta": {
             "nf-test": "0.9.5",
-            "nextflow": "26.04.0"
+            "nextflow": "25.10.4"
         }
     }
 }

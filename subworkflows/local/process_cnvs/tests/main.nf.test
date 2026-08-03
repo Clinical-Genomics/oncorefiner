@@ -1,0 +1,73 @@
+nextflow_workflow {
+
+    name "Test subworkflow PROCESS_CNVS"
+    script "../main.nf"
+    workflow "PROCESS_CNVS"
+    tag "subworkflows"
+    tag "subworkflows_local"
+    tag "process_cnvs"
+
+    config "./nextflow.config"
+    topics "versions"
+
+    test("Process CNVs, tumor-normal") {
+
+        when {
+
+            workflow {
+                """
+                input[0] = channel.of([
+                    [id: 'test', case_id: 'test'],
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.cnv.gene.tsv', checkIfExists: true)
+                ])
+                input[1] = channel.of([
+                    [id: 'test', case_id: 'test'],
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.cnv.somatic.tsv', checkIfExists: true)
+                ])
+                """
+            }
+        }
+
+        then {
+            assert workflow.success
+            assertAll(
+                { assert snapshot(
+                    workflow.out.html_report.collect { meta, html -> [ meta, file(html).name]} ,
+                    topics,
+                ).match() }
+            )
+        }
+    }
+
+    test("Process CNVs, tumor-normal - stub") {
+
+        options "-stub"
+
+        when {
+
+            workflow {
+                """
+                input[0] = channel.of([
+                    [id: 'test', case_id: 'test'],
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.cnv.gene.tsv', checkIfExists: true)
+                ])
+                input[1] = channel.of([
+                    [id: 'test', case_id: 'test'],
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.cnv.somatic.tsv', checkIfExists: true)
+                ])
+
+                """
+            }
+        }
+
+        then {
+            assert workflow.success
+            assertAll(
+                { assert snapshot(
+                    workflow.out.html_report.collect { meta, html -> [ meta, file(html).name ]},
+                    topics,
+                ).match() }
+            )
+        }
+    }
+}

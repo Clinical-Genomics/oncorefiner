@@ -1,0 +1,36 @@
+Changes in component 'nf-core/rmarkdownnotebook'
+Changes in 'rmarkdownnotebook/environment.yml':
+--- modules/nf-core/rmarkdownnotebook/environment.yml
++++ modules/nf-core/rmarkdownnotebook/environment.yml
+@@ -4,6 +4,7 @@
+   - conda-forge
+   - bioconda
+ dependencies:
+-  - conda-forge::r-base=4.1.0
+-  - conda-forge::r-rmarkdown=2.9
+-  - conda-forge::r-yaml=2.2.1
++  - conda-forge::r-base=4.4.3
++  - conda-forge::r-dt=0.34.0
++  - conda-forge::r-readr=2.1.5
++  - conda-forge::r-rmarkdown=2.29
+
+'modules/nf-core/rmarkdownnotebook/meta.yml' is unchanged
+Changes in 'rmarkdownnotebook/main.nf':
+--- modules/nf-core/rmarkdownnotebook/main.nf
++++ modules/nf-core/rmarkdownnotebook/main.nf
+@@ -7,8 +7,8 @@
+     //yaml and rmarkdown R packages.
+     conda "${moduleDir}/environment.yml"
+     container "${ workflow.containerEngine in ['singularity', 'apptainer'] && !task.ext.singularity_pull_docker_container ?
+-        'https://depot.galaxyproject.org/singularity/mulled-v2-31ad840d814d356e5f98030a4ee308a16db64ec5:0e852a1e4063fdcbe3f254ac2c7469747a60e361-0' :
+-        'quay.io/biocontainers/mulled-v2-31ad840d814d356e5f98030a4ee308a16db64ec5:0e852a1e4063fdcbe3f254ac2c7469747a60e361-0' }"
++        'oras://community.wave.seqera.io/library/r-base_r-dt_r-readr_r-rmarkdown:8612e5aa5384f180' :
++        'community.wave.seqera.io/library/r-base_r-dt_r-readr_r-rmarkdown:5c3b8868d1024810' }"
+ 
+     input:
+     tuple val(meta), path(notebook)
+
+'modules/nf-core/rmarkdownnotebook/tests/main.nf.test.snap' is unchanged
+'modules/nf-core/rmarkdownnotebook/tests/nextflow.config' is unchanged
+'modules/nf-core/rmarkdownnotebook/tests/main.nf.test' is unchanged
+************************************************************
