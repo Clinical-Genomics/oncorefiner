@@ -3,6 +3,7 @@ nextflow_process {
     name "Test process PREPARE_COBALT_FOR_GENS"
     script "../main.nf"
     process "PREPARE_COBALT_FOR_GENS"
+    config "./nextflow.config"
     tag "modules"
     tag "modules_local"
     tag "prepare_cobalt_for_gens"

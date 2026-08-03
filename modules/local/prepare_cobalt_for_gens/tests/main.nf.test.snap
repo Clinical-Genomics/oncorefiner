@@ -11,7 +11,7 @@
                             "sample_type": "tumor",
                             "sex": "female"
                         },
-                        "test_cobalt_cov.tumor.bed.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                        "test_cobalt_cov_tumor.bed.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
                     ]
                 ],
                 "tbi": [
@@ -23,7 +23,7 @@
                             "sample_type": "tumor",
                             "sex": "female"
                         },
-                        "test_cobalt_cov.tumor.bed.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test_cobalt_cov_tumor.bed.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "versions_bgzip": [
@@ -56,7 +56,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-08-03T11:55:03.815219",
+        "timestamp": "2026-08-03T13:19:18.354483",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.0"
@@ -73,7 +73,7 @@
                         "sample_type": "tumor",
                         "sex": "female"
                     },
-                    "test_cobalt_cov.tumor.bed.gz:md5,5a34fb13829738c0742132bd11ff1219"
+                    "test_cobalt_cov_tumor.bed.gz:md5,5a34fb13829738c0742132bd11ff1219"
                 ]
             ],
             [
@@ -85,7 +85,7 @@
                         "sample_type": "tumor",
                         "sex": "female"
                     },
-                    "test_cobalt_cov.tumor.bed.gz.tbi"
+                    "test_cobalt_cov_tumor.bed.gz.tbi"
                 ]
             ],
             {
@@ -113,7 +113,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-08-03T11:54:53.483615",
+        "timestamp": "2026-08-03T13:19:07.999301",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.0"
@@ -131,7 +131,7 @@
                             "sample_type": "normal",
                             "sex": "female"
                         },
-                        "test_cobalt_cov.normal.bed.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                        "test_cobalt_cov_normal.bed.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
                     ]
                 ],
                 "tbi": [
@@ -143,7 +143,7 @@
                             "sample_type": "normal",
                             "sex": "female"
                         },
-                        "test_cobalt_cov.normal.bed.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test_cobalt_cov_normal.bed.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "versions_bgzip": [
@@ -176,7 +176,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-08-03T11:54:58.661525",
+        "timestamp": "2026-08-03T13:19:13.293319",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.0"
@@ -193,7 +193,7 @@
                         "sample_type": "normal",
                         "sex": "female"
                     },
-                    "test_cobalt_cov.normal.bed.gz:md5,d80e5d2edb1559d3e035c0739a8d172f"
+                    "test_cobalt_cov_normal.bed.gz:md5,d80e5d2edb1559d3e035c0739a8d172f"
                 ]
             ],
             [
@@ -205,7 +205,7 @@
                         "sample_type": "normal",
                         "sex": "female"
                     },
-                    "test_cobalt_cov.normal.bed.gz.tbi"
+                    "test_cobalt_cov_normal.bed.gz.tbi"
                 ]
             ],
             {
@@ -233,7 +233,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-08-03T11:54:40.744501",
+        "timestamp": "2026-08-03T13:18:55.055979",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.0"

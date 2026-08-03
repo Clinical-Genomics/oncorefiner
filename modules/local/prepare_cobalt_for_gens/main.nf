@@ -20,7 +20,7 @@ process PREPARE_COBALT_FOR_GENS {
 
     script:
     def args   = task.ext.args ?: ''
-    def prefix = task.ext.prefix ?: "${meta.id}.${meta.sample_type}"
+    def prefix = task.ext.prefix ?: "${meta.id}"
 
     """
     prepare_cobalt_for_gens.py \\
@@ -33,7 +33,7 @@ process PREPARE_COBALT_FOR_GENS {
     """
 
     stub:
-    prefix = task.ext.prefix ?: "${meta.id}.${meta.sample_type}"
+    prefix = task.ext.prefix ?: "${meta.id}"
     """
     echo | gzip >  ${prefix}.bed.gz
     touch ${prefix}.bed.gz.tbi
