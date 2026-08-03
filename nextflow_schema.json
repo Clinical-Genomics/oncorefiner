@@ -2,7 +2,7 @@
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "$id": "https://raw.githubusercontent.com/Clinical-Genomics/oncorefiner/master/nextflow_schema.json",
     "title": "Clinical-Genomics/oncorefiner pipeline parameters",
-    "description": "Customizable post-processing and extension layer built on top of Oncoanalyser that adapts its outputs to clinical and operational needs, adds missing analyses, and ensures flexibility for evolving standards while retaining Oncoanalyser robust core",
+    "description": "Customizable post-processing and extension layer for Oncoanalyser that adapts its outputs according to clinical and operational needs, adds missing analyses, and ensures flexibility for evolving standards while retaining Oncoanalyser's robust core.",
     "type": "object",
     "$defs": {
         "input_output_options": {

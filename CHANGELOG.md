@@ -41,6 +41,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#124](https://github.com/Clinical-Genomics/oncorefiner/pull/124) Added metadata parameters `case_id`, `sample_id_tumor` and `sample_id_normal`.
 - [#124](https://github.com/Clinical-Genomics/oncorefiner/pull/124) Added `channelFromMetaAndPath` custom channel factory.
 - [#136](https://github.com/Clinical-Genomics/oncorefiner/pull/136) Added nf-schema validation to SVDB database inputs (`svdb_query_dbs`)
+- [#84](https://github.com/Clinical-Genomics/oncorefiner/pull/84) Added arguments to VEP keeping invalid variants in output VCF
 
 ### `Changed`
 
@@ -79,6 +80,8 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#145](https://github.com/Clinical-Genomics/oncorefiner/pull/145) Small fixes to `GENERATE_CYTOSURE_FILES` tests from #135: updated config regex to include the fully qualified name of the process in order for the settings to be applied with the highest priority and removed parameter dependency from each test by moving the values to the config file instead.
 - [#149](https://github.com/Clinical-Genomics/oncorefiner/pull/149) Updated test data base path to remove unused column in SVDB files
 - [#151](https://github.com/Clinical-Genomics/oncorefiner/pull/151) Updated test data base path to include CNV files
+- [#161](https://github.com/Clinical-Genomics/oncorefiner/pull/161) Template update for nf-core tools 4.0.3.
+- [#160](https://github.com/Clinical-Genomics/oncorefiner/pull/160) Updated nftutils from 0.0.3 to 1.0.0.
 
 ### `Fixed`
 
@@ -120,6 +123,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#131](https://github.com/Clinical-Genomics/oncorefiner/pull/131) Fixed strict Nextflow syntax compatibility in `ANNOTATE_CADD`
 - [#137](https://github.com/Clinical-Genomics/oncorefiner/pull/134) Fixed VEP able to run without `vep_plugin_files` parameter.
 - [#135](https://github.com/Clinical-Genomics/oncorefiner/pull/135) Fixed test for `GENERATE_CYTOSURE_FILES` so that it states the necessary parameters for the test, uses configurations from the test config and is independent from pipeline wide configuration.
+- [#162](https://github.com/Clinical-Genomics/oncorefiner/pull/162) Updated pipeline test snapshot following update of VEP arguments in #84.
 
 ### `Dependencies`
 
