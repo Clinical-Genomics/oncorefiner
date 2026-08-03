@@ -122,6 +122,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#137](https://github.com/Clinical-Genomics/oncorefiner/pull/134) Fixed VEP able to run without `vep_plugin_files` parameter.
 - [#135](https://github.com/Clinical-Genomics/oncorefiner/pull/135) Fixed test for `GENERATE_CYTOSURE_FILES` so that it states the necessary parameters for the test, uses configurations from the test config and is independent from pipeline wide configuration.
 - [#162](https://github.com/Clinical-Genomics/oncorefiner/pull/162) Updated pipeline test snapshot following update of VEP arguments in #84.
+- [#93](https://github.com/Clinical-Genomics/oncorefiner/pull/93) Refactored the publishing strategy for `GENERATE_CYTOSURE_FILES` and `PROCESS_SVS` to use output blocks.
 
 ### `Dependencies`
 
