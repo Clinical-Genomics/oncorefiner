@@ -5,6 +5,8 @@ import pandas as pd
 
 ### tumor and normal baf take tumor/normal parameter to know which file to check.
 
+__version__ = "1.0"
+
 DEFAULT_LEVELS = {
     "o": 135,
     "a": 30,
@@ -70,6 +72,8 @@ def write_baf_file(
     help="Output file prefix for BAF",
 )
 
+@click.version_option(__version__, prog_name="prepare_amber_for_gens")
+
 def main(
     input_file: click.Path,
     output_file_prefix: click.STRING,
@@ -107,6 +111,8 @@ def main(
             levels=DEFAULT_LEVELS,
         )
         click.echo(f"Wrote normal output: {output_file_prefix}.normal.baf.zoom.tsv")
+
+    click.echo(f"prepare_amber_for_gens {__version__}")
 
 
 if __name__ == "__main__":

@@ -16,7 +16,10 @@ process PREPARE_AMBER_FOR_GENS {
     tuple val(meta), path("*normal.baf.zoom.tsv.gz"), emit: normal_tsv, optional: true
     tuple val(meta), path("*tumor.baf.zoom.tsv.gz.tbi"), emit: tumor_tbi
     tuple val(meta), path("*normal.baf.zoom.tsv.gz.tbi"), emit: normal_tbi, optional: true
-    tuple val("${task.process}"), val('prepare_amber_for_gens'), val('1.0'), topic: versions, emit: versions_amber_for_gens
+    tuple val("${task.process}"), val('python'), eval("python --version | sed '1!d; s/^.*python //'"), topic: versions, emit: versions_python
+    tuple val("${task.process}"), val('bgzip'), eval("bgzip --version | sed '1!d; s/^.*bgzip //'"), topic: versions, emit: versions_bgzip
+    tuple val("${task.process}"), val('tabix'), eval("tabix --version | sed '1!d; s/^.*tabix //'"), topic: versions, emit: versions_tabix
+    tuple val("${task.process}"), val('prepare_amber_for_gens'), eval("prepare_amber_for_gens.py --version | sed '1!d; s/^.*prepare_amber_for_gens //'"), topic: versions, emit: versions_amber_for_gens
     // WARN: Version information not provided by tool on CLI. Please update version string above when bumping container versions.
 
     script:

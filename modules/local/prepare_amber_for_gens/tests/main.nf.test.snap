@@ -41,8 +41,29 @@
                 "4": [
                     [
                         "PREPARE_AMBER_FOR_GENS",
+                        "python",
+                        "Python 3.14.6"
+                    ]
+                ],
+                "5": [
+                    [
+                        "PREPARE_AMBER_FOR_GENS",
+                        "bgzip",
+                        "(htslib) 1.23.1"
+                    ]
+                ],
+                "6": [
+                    [
+                        "PREPARE_AMBER_FOR_GENS",
+                        "tabix",
+                        "(htslib) 1.23.1"
+                    ]
+                ],
+                "7": [
+                    [
+                        "PREPARE_AMBER_FOR_GENS",
                         "prepare_amber_for_gens",
-                        "1.0"
+                        "prepare_amber_for_gens, version 1.0"
                     ]
                 ],
                 "normal_tbi": [
@@ -85,12 +106,33 @@
                     [
                         "PREPARE_AMBER_FOR_GENS",
                         "prepare_amber_for_gens",
-                        "1.0"
+                        "prepare_amber_for_gens, version 1.0"
+                    ]
+                ],
+                "versions_bgzip": [
+                    [
+                        "PREPARE_AMBER_FOR_GENS",
+                        "bgzip",
+                        "(htslib) 1.23.1"
+                    ]
+                ],
+                "versions_python": [
+                    [
+                        "PREPARE_AMBER_FOR_GENS",
+                        "python",
+                        "Python 3.14.6"
+                    ]
+                ],
+                "versions_tabix": [
+                    [
+                        "PREPARE_AMBER_FOR_GENS",
+                        "tabix",
+                        "(htslib) 1.23.1"
                     ]
                 ]
             }
         ],
-        "timestamp": "2026-07-28T10:26:56.37487",
+        "timestamp": "2026-08-03T11:35:26.066588",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.0"
@@ -134,13 +176,28 @@
                 "versions": [
                     [
                         "PREPARE_AMBER_FOR_GENS",
+                        "bgzip",
+                        "(htslib) 1.23.1"
+                    ],
+                    [
+                        "PREPARE_AMBER_FOR_GENS",
                         "prepare_amber_for_gens",
-                        "1.0"
+                        "prepare_amber_for_gens, version 1.0"
+                    ],
+                    [
+                        "PREPARE_AMBER_FOR_GENS",
+                        "python",
+                        "Python 3.14.6"
+                    ],
+                    [
+                        "PREPARE_AMBER_FOR_GENS",
+                        "tabix",
+                        "(htslib) 1.23.1"
                     ]
                 ]
             }
         ],
-        "timestamp": "2026-07-28T11:09:16.113865",
+        "timestamp": "2026-08-03T11:35:22.416189",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.0"
@@ -170,13 +227,28 @@
                 "versions": [
                     [
                         "PREPARE_AMBER_FOR_GENS",
+                        "bgzip",
+                        "(htslib) 1.23.1"
+                    ],
+                    [
+                        "PREPARE_AMBER_FOR_GENS",
                         "prepare_amber_for_gens",
-                        "1.0"
+                        "prepare_amber_for_gens, version 1.0"
+                    ],
+                    [
+                        "PREPARE_AMBER_FOR_GENS",
+                        "python",
+                        "Python 3.14.6"
+                    ],
+                    [
+                        "PREPARE_AMBER_FOR_GENS",
+                        "tabix",
+                        "(htslib) 1.23.1"
                     ]
                 ]
             }
         ],
-        "timestamp": "2026-07-28T11:10:07.575104",
+        "timestamp": "2026-08-03T11:35:30.46791",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.0"
@@ -212,8 +284,29 @@
                 "4": [
                     [
                         "PREPARE_AMBER_FOR_GENS",
+                        "python",
+                        "Python 3.14.6"
+                    ]
+                ],
+                "5": [
+                    [
+                        "PREPARE_AMBER_FOR_GENS",
+                        "bgzip",
+                        "(htslib) 1.23.1"
+                    ]
+                ],
+                "6": [
+                    [
+                        "PREPARE_AMBER_FOR_GENS",
+                        "tabix",
+                        "(htslib) 1.23.1"
+                    ]
+                ],
+                "7": [
+                    [
+                        "PREPARE_AMBER_FOR_GENS",
                         "prepare_amber_for_gens",
-                        "1.0"
+                        "prepare_amber_for_gens, version 1.0"
                     ]
                 ],
                 "normal_tbi": [
@@ -244,12 +337,33 @@
                     [
                         "PREPARE_AMBER_FOR_GENS",
                         "prepare_amber_for_gens",
-                        "1.0"
+                        "prepare_amber_for_gens, version 1.0"
+                    ]
+                ],
+                "versions_bgzip": [
+                    [
+                        "PREPARE_AMBER_FOR_GENS",
+                        "bgzip",
+                        "(htslib) 1.23.1"
+                    ]
+                ],
+                "versions_python": [
+                    [
+                        "PREPARE_AMBER_FOR_GENS",
+                        "python",
+                        "Python 3.14.6"
+                    ]
+                ],
+                "versions_tabix": [
+                    [
+                        "PREPARE_AMBER_FOR_GENS",
+                        "tabix",
+                        "(htslib) 1.23.1"
                     ]
                 ]
             }
         ],
-        "timestamp": "2026-07-28T10:27:03.252189",
+        "timestamp": "2026-08-03T11:35:34.275712",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.0"
