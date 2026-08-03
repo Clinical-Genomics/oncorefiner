@@ -21,7 +21,7 @@
                 ]
             },
             {
-                "0": [
+                "cgh": [
                     [
                         {
                             "id": "subject_a"
@@ -31,10 +31,10 @@
                 ]
             }
         ],
-        "timestamp": "2026-06-22T12:51:33.95931",
+        "timestamp": "2026-08-03T15:47:37.66426",
         "meta": {
             "nf-test": "0.9.5",
-            "nextflow": "26.04.2"
+            "nextflow": "26.04.6"
         }
     },
     "Alignment files from Tumor sample and somatic SV vcf files from TN test data": {
@@ -59,7 +59,7 @@
                 ]
             },
             {
-                "0": [
+                "cgh": [
                     [
                         {
                             "id": "subject_a"
@@ -69,10 +69,10 @@
                 ]
             }
         ],
-        "timestamp": "2026-06-22T12:51:23.158033",
+        "timestamp": "2026-08-03T15:47:29.239822",
         "meta": {
             "nf-test": "0.9.5",
-            "nextflow": "26.04.2"
+            "nextflow": "26.04.6"
         }
     }
 }
