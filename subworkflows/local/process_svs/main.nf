@@ -62,7 +62,6 @@ workflow PROCESS_SVS {
         []
     )
 
-
     // Quality Filtering
     SVDB_QUERY.out.vcf
         .map { meta, vcf ->
@@ -120,7 +119,6 @@ workflow PROCESS_SVS {
     clinical_filtered_tbi = BCFTOOLS_VIEW_CLINICAL.out.tbi  // channel: [val(meta), path(tbi)]
     research_filtered_vcf = BCFTOOLS_VIEW_RESEARCH.out.vcf  // channel: [val(meta), path(vcf)]
     research_filtered_tbi = BCFTOOLS_VIEW_RESEARCH.out.tbi  // channel: [val(meta), path(tbi)]
-    svdb_vcf              = SVDB_QUERY.out.vcf              // channel: [val(meta), path(vcf)]
     vcf2cytosure_cgh      = GENERATE_CYTOSURE_FILES.out.cgh // channel: [val(meta), path(cgh)]
     vep_annotated_vcf     = ENSEMBLVEP_VEP.out.vcf          // channel: [val(meta), path(vcf)]
     vep_annotated_tbi     = ENSEMBLVEP_VEP.out.tbi          // channel: [val(meta), path(tbi)]

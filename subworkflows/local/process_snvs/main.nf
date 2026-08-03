@@ -45,7 +45,7 @@ workflow PROCESS_SNVS {
     ch_vep_extra_files       // channel: [optional]  [path(plugin_file1), path(plugin_file2), ...]
     val_cadd_resources       // string:  [optional]  path to CADD resources directory
     val_genome               // string:  [optional]  genome assembly (e.g. "GRCh38")
-        val_run_genmod_score    // boolean: [mandatory] whether to skip VCF_ANNOTATE_SCORE_GENMOD process
+    val_run_genmod_score    // boolean: [mandatory] whether to skip VCF_ANNOTATE_SCORE_GENMOD process
     val_species              // string:  [optional]  species (e.g. "homo_sapiens")
     val_vep_cache_version    // string:  [optional]  version of vep cache to use (e.g. "107")
 
@@ -148,8 +148,8 @@ workflow PROCESS_SNVS {
             .join(ch_research_filtered_tbi)
     }
 
-        // Clinical Filtering
-        BCFTOOLS_VIEW_CLINICAL(ch_clinical_filtering_in, [], [], [])
+    // Clinical Filtering
+    BCFTOOLS_VIEW_CLINICAL(ch_clinical_filtering_in, [], [], [])
 
     emit:
     cadd_annotated_vcf    = ch_cadd_vcf                    // channel: [val(meta), path(vcf)]

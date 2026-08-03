@@ -206,6 +206,14 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     snv_vep_report            = ONCOREFINER.out.snv_vep_report            // channel: [val(meta), val(process), val(tool), path(html)]
     snv_research_filtered_vcf = ONCOREFINER.out.snv_research_filtered_vcf // channel: [val(meta), path(vcf)]
     snv_research_filtered_tbi = ONCOREFINER.out.snv_research_filtered_tbi // channel: [val(meta), path(vcf.tbi)]
+    sv_clinical_filtered_vcf  = ONCOREFINER.out.sv_clinical_filtered_vcf  // channel: [val(meta), path(vcf)]
+    sv_clinical_filtered_tbi  = ONCOREFINER.out.sv_clinical_filtered_tbi  // channel: [val(meta), path(tbi)]
+    sv_research_filtered_vcf  = ONCOREFINER.out.sv_research_filtered_vcf  // channel: [val(meta), path(vcf)]
+    sv_research_filtered_tbi  = ONCOREFINER.out.sv_research_filtered_tbi  // channel: [val(meta), path(vcf.tbi)]
+    sv_vcf2cytosure_cgh       = ONCOREFINER.out.sv_vcf2cytosure_cgh       // channel: [val(meta), path(cgh)]
+    sv_vep_annotated_vcf      = ONCOREFINER.out.sv_vep_annotated_vcf      // channel: [val(meta), path(vcf)]
+    sv_vep_annotated_tbi      = ONCOREFINER.out.sv_vep_annotated_tbi      // channel: [val(meta), path(tbi)]
+    sv_vep_report             = ONCOREFINER.out.sv_vep_report             // channel: [val(meta), val(process), val(tool), path(html)]
 }
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -292,13 +300,28 @@ workflow {
         .mix(CLINICALGENOMICS_ONCOREFINER.out.snv_research_filtered_vcf)
         .mix(CLINICALGENOMICS_ONCOREFINER.out.snv_research_filtered_tbi)
 
+    ch_sv_publish = CLINICALGENOMICS_ONCOREFINER.out.sv_clinical_filtered_vcf
+        .mix(CLINICALGENOMICS_ONCOREFINER.out.sv_clinical_filtered_tbi)
+        .mix(CLINICALGENOMICS_ONCOREFINER.out.sv_research_filtered_vcf)
+        .mix(CLINICALGENOMICS_ONCOREFINER.out.sv_research_filtered_tbi)
+        .mix(CLINICALGENOMICS_ONCOREFINER.out.sv_vcf2cytosure_cgh)
+        .mix(CLINICALGENOMICS_ONCOREFINER.out.sv_vep_annotated_vcf)
+        .mix(CLINICALGENOMICS_ONCOREFINER.out.sv_vep_annotated_tbi)
+        .mix(CLINICALGENOMICS_ONCOREFINER.out.sv_vep_report)
+
+
     publish:
     snv = ch_snv_publish
+    sv  = ch_sv_publish
 }
 
 output {
     snv {
         path "snv"
+    }
+
+    sv {
+        path "sv"
     }
 }
 

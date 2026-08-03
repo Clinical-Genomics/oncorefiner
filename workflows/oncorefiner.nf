@@ -147,6 +147,7 @@ workflow ONCOREFINER {
             ]
         }
     )
+
     emit:
     cadd_annotated_vcf        = PROCESS_SNVS.out.cadd_annotated_vcf                           // channel: [val(meta), path(vcf)]
     cadd_annotated_tbi        = PROCESS_SNVS.out.cadd_annotated_tbi                           // channel: [val(meta), path(tbi)]
@@ -160,6 +161,14 @@ workflow ONCOREFINER {
     snv_vep_report            = PROCESS_SNVS.out.vep_report                                   // channel: [val(meta), val(process), val(tool), path(html)]
     snv_research_filtered_vcf = PROCESS_SNVS.out.research_filtered_vcf                        // channel: [val(meta), path(vcf)]
     snv_research_filtered_tbi = PROCESS_SNVS.out.research_filtered_tbi                        // channel: [val(meta), path(vcf.tbi)]
+    sv_clinical_filtered_vcf  = PROCESS_SVS.out.clinical_filtered_vcf                         // channel: [val(meta), path(vcf)]
+    sv_clinical_filtered_tbi  = PROCESS_SVS.out.clinical_filtered_tbi                         // channel: [val(meta), path(tbi)]
+    sv_research_filtered_vcf  = PROCESS_SVS.out.research_filtered_vcf                         // channel: [val(meta), path(vcf)]
+    sv_research_filtered_tbi  = PROCESS_SVS.out.research_filtered_tbi                         // channel: [val(meta), path(vcf.tbi)]
+    sv_vcf2cytosure_cgh       = PROCESS_SVS.out.vcf2cytosure_cgh                              // channel: [val(meta), path(cgh)]
+    sv_vep_annotated_vcf      = PROCESS_SVS.out.vep_annotated_vcf                             // channel: [val(meta), path(vcf)]
+    sv_vep_annotated_tbi      = PROCESS_SVS.out.vep_annotated_tbi                             // channel: [val(meta), path(tbi)]
+    sv_vep_report             = PROCESS_SVS.out.vep_report                                    // channel: [val(meta), val(process), val(tool), path(html)]
     versions                  = ch_versions                                                   // channel: [ path(versions.yml) ]
 
 }
