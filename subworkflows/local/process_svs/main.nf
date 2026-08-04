@@ -29,21 +29,21 @@ include { VCF_ANNOTATE_LINX_FUSIONS } from '../../../subworkflows/local/vcf_anno
 workflow PROCESS_SVS {
 
     take:
-        ch_bam_bai_normal     // channel: [optional]  [val(meta), path(bam), path(bai)]
-        ch_bam_bai_tumor      // channel: [required]  [val(meta), path(bam), path(bai)]
-        ch_linx_breakends_tsv // channel: [required]  [val(meta), path(tsv)]
-        ch_linx_fusion_tsv    // channel: [required]  [val(meta), path(tsv)]
-        ch_linx_sv_tsv        // channel: [required]  [val(meta), path(tsv)]
-        ch_sv_header          // channel: [required]  [val(meta), path(txt)]
-        ch_sv_vcf             // channel: [required]  [val(meta), path(vcf)]
-        ch_sv_vcf_tbi         // channel: [required]  [val(meta), path(vcf.tbi)]
-        ch_sv_dbs             // channel: [required]  path(svdb_dbs_csv)
-        val_genome            // value:   [required]  Genome build (e.g. GRCh38)
-        val_species           // value:   [required]  Species
-        val_vep_cache_version // value:   [required]  VEP cache
-        ch_vep_cache          // channel: [optional]  [val(meta), path(vep_cache)]
-        ch_genome_fasta       // channel: [optional]  [val(meta), path(fasta)]
-        ch_vep_extra_files    // channel: [optional]  [val(meta), path(vep_extra_files)]
+    ch_bam_bai_normal     // channel: [optional]  [val(meta), path(bam), path(bai)]
+    ch_bam_bai_tumor      // channel: [required]  [val(meta), path(bam), path(bai)]
+    ch_linx_breakends_tsv // channel: [required]  [val(meta), path(tsv)]
+    ch_linx_fusion_tsv    // channel: [required]  [val(meta), path(tsv)]
+    ch_linx_sv_tsv        // channel: [required]  [val(meta), path(tsv)]
+    ch_sv_header          // channel: [required]  [val(meta), path(txt)]
+    ch_sv_vcf             // channel: [required]  [val(meta), path(vcf)]
+    ch_sv_vcf_tbi         // channel: [required]  [val(meta), path(vcf.tbi)]
+    ch_sv_dbs             // channel: [required]  path(svdb_dbs_csv)
+    val_genome            // value:   [required]  Genome build (e.g. GRCh38)
+    val_species           // value:   [required]  Species
+    val_vep_cache_version // value:   [required]  VEP cache
+    ch_vep_cache          // channel: [optional]  [val(meta), path(vep_cache)]
+    ch_genome_fasta       // channel: [optional]  [val(meta), path(fasta)]
+    ch_vep_extra_files    // channel: [optional]  [val(meta), path(vep_extra_files)]
 
     main:
     // Annotate VCF with LINX TSVs
@@ -128,4 +128,14 @@ workflow PROCESS_SVS {
         ch_vcf2cytosure_in.tbi,
         ch_vcf2cytosure_in.vcf
     )
+
+    emit:
+    clinical_filtered_vcf = BCFTOOLS_VIEW_CLINICAL.out.vcf  // channel: [val(meta), path(vcf)]
+    clinical_filtered_tbi = BCFTOOLS_VIEW_CLINICAL.out.tbi  // channel: [val(meta), path(tbi)]
+    research_filtered_vcf = BCFTOOLS_VIEW_RESEARCH.out.vcf  // channel: [val(meta), path(vcf)]
+    research_filtered_tbi = BCFTOOLS_VIEW_RESEARCH.out.tbi  // channel: [val(meta), path(tbi)]
+    vcf2cytosure_cgh      = GENERATE_CYTOSURE_FILES.out.cgh // channel: [val(meta), path(cgh)]
+    vep_annotated_vcf     = ENSEMBLVEP_VEP.out.vcf          // channel: [val(meta), path(vcf)]
+    vep_annotated_tbi     = ENSEMBLVEP_VEP.out.tbi          // channel: [val(meta), path(tbi)]
+    vep_report            = ENSEMBLVEP_VEP.out.report       // channel: [val(meta), val(process), val(tool), path(html)]
 }
