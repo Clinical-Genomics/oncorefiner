@@ -2,6 +2,9 @@
     "Tumor Normal analysis with '-profile test' - stub": {
         "content": [
             {
+                "ANNOTATE_VCF_BY_ID": {
+                    "annotate_vcf_by_id": 1.0
+                },
                 "BCFTOOLS_VIEW": {
                     "bcftools": "1.23.1"
                 },
@@ -10,6 +13,9 @@
                 },
                 "BCFTOOLS_VIEW_RESEARCH": {
                     "bcftools": "1.23.1"
+                },
+                "COMBINE_LINX_TSV": {
+                    "combine_linx_tsv": 1.0
                 },
                 "ENSEMBLVEP_VEP": {
                     "ensemblvep": 115.2,
@@ -80,7 +86,7 @@
                 "sv/tumor.cgh"
             ]
         ],
-        "timestamp": "2026-08-03T15:29:10.316145",
+        "timestamp": "2026-08-04T11:49:29.222814",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
@@ -89,6 +95,9 @@
     "Tumor Normal analysis with '-profile test'": {
         "content": [
             {
+                "ANNOTATE_VCF_BY_ID": {
+                    "annotate_vcf_by_id": 1.0
+                },
                 "BCFTOOLS_VIEW": {
                     "bcftools": "1.23.1"
                 },
@@ -97,6 +106,9 @@
                 },
                 "BCFTOOLS_VIEW_RESEARCH": {
                     "bcftools": "1.23.1"
+                },
+                "COMBINE_LINX_TSV": {
+                    "combine_linx_tsv": 1.0
                 },
                 "ENSEMBLVEP_VEP": {
                     "ensemblvep": 115.2,
@@ -223,19 +235,19 @@
                 ],
                 [
                     "test_tumor_normal_case_clinical.vcf.gz",
-                    "19c4e9b367a1917c49b878d3134b09b5"
+                    "f92bc125c747cdbce5e5c6c2ff8b023a"
                 ],
                 [
                     "test_tumor_normal_case_research.vcf.gz",
-                    "5555fa260ad068c6b0c1704ac6ac933"
+                    "da36427a37c150dc78ef322d3841f4a1"
                 ],
                 [
                     "test_tumor_normal_case_svdbquery_vep.vcf.gz",
-                    "19c4e9b367a1917c49b878d3134b09b5"
+                    "f92bc125c747cdbce5e5c6c2ff8b023a"
                 ]
             ]
         ],
-        "timestamp": "2026-08-03T15:28:18.375011",
+        "timestamp": "2026-08-04T11:48:38.286063",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"

@@ -2,11 +2,17 @@
     "No `genmod_score_config` with '-profile test' - stub": {
         "content": [
             {
+                "ANNOTATE_VCF_BY_ID": {
+                    "annotate_vcf_by_id": 1.0
+                },
                 "BCFTOOLS_VIEW_CLINICAL": {
                     "bcftools": "1.23.1"
                 },
                 "BCFTOOLS_VIEW_RESEARCH": {
                     "bcftools": "1.23.1"
+                },
+                "COMBINE_LINX_TSV": {
+                    "combine_linx_tsv": 1.0
                 },
                 "ENSEMBLVEP_VEP": {
                     "ensemblvep": 115.2,
@@ -72,7 +78,7 @@
                 "sv/tumor.cgh"
             ]
         ],
-        "timestamp": "2026-08-03T15:26:21.257812",
+        "timestamp": "2026-08-04T11:46:33.398742",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
@@ -81,6 +87,9 @@
     "No `vep_plugin_files` with '-profile test' - stub": {
         "content": [
             {
+                "ANNOTATE_VCF_BY_ID": {
+                    "annotate_vcf_by_id": 1.0
+                },
                 "BCFTOOLS_VIEW": {
                     "bcftools": "1.23.1"
                 },
@@ -89,6 +98,9 @@
                 },
                 "BCFTOOLS_VIEW_RESEARCH": {
                     "bcftools": "1.23.1"
+                },
+                "COMBINE_LINX_TSV": {
+                    "combine_linx_tsv": 1.0
                 },
                 "ENSEMBLVEP_VEP": {
                     "ensemblvep": 115.2,
@@ -159,7 +171,7 @@
                 "sv/tumor.cgh"
             ]
         ],
-        "timestamp": "2026-08-03T15:27:06.926819",
+        "timestamp": "2026-08-04T11:47:22.792551",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
