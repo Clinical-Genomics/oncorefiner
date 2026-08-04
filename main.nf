@@ -308,6 +308,8 @@ workflow {
     //
     // WORKFLOW OUTPUTS: Group files by publish directory
     //
+    ch_cnv_publish = CLINICALGENOMICS_ONCOREFINER.out.cnv_report_html
+
     ch_snv_publish = CLINICALGENOMICS_ONCOREFINER.out.cadd_annotated_vcf
         .mix(CLINICALGENOMICS_ONCOREFINER.out.cadd_annotated_tbi)
         .mix(CLINICALGENOMICS_ONCOREFINER.out.snv_clinical_filtered_vcf)
@@ -320,19 +322,17 @@ workflow {
         .mix(CLINICALGENOMICS_ONCOREFINER.out.snv_research_filtered_vcf)
         .mix(CLINICALGENOMICS_ONCOREFINER.out.snv_research_filtered_tbi)
 
-    ch_cnv_publish = CLINICALGENOMICS_ONCOREFINER.out.cnv_report_html
-
     publish:
-    snv = ch_snv_publish
     cnv = ch_cnv_publish
+    snv = ch_snv_publish
 }
 
 output {
-    snv {
-        path "snv"
-    }
     cnv {
         path "cnv"
+    }
+    snv {
+        path "snv"
     }
 }
 
