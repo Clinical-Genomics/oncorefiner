@@ -87,7 +87,6 @@ workflow ONCOREFINER {
     PROCESS_SVS(
         ch_bam_bai_normal,
         ch_bam_bai_tumor,
-        ch_genmod_score_config_sv,
         ch_linx_breakends_tsv,
         ch_linx_fusion_tsv,
         ch_linx_sv_tsv,
@@ -96,7 +95,6 @@ workflow ONCOREFINER {
         ch_sv_vcf_tbi,
         ch_sv_dbs,
         val_genome,
-        val_run_genmod_score_sv,
         val_species,
         val_vep_cache_version,
         ch_vep_cache,
