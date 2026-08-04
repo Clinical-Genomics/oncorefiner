@@ -127,13 +127,6 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     ch_linx_sv_tsv        = channelFromMetaAndPath(metadata_case_file, val_linx_sv_tsv)
     ch_sv_header          = channelFromMetaAndPath(metadata_case_file, "$projectDir/assets/sv_annotation_header.txt")
 
-    // Input for VCF annotation with LINX
-    ch_linx_breakends_tsv = channel.fromPath(val_linx_breakends_tsv).map { tsv -> [[id:tsv.simpleName], tsv] }.collect()
-    ch_linx_fusion_tsv    = channel.fromPath(val_linx_fusion_tsv).map { tsv -> [[id:tsv.simpleName], tsv] }.collect()
-    ch_linx_sv_tsv        = channel.fromPath(val_linx_sv_tsv).map { tsv -> [[id:tsv.simpleName], tsv] }.collect()
-
-    ch_sv_header = channel.fromPath("$projectDir/assets/sv_annotation_header.txt", checkIfExists: true).collect()
-
     // CADD input files
     def ch_cadd_header           = channelFromMetaAndPath(metadata_case_file, "$projectDir/assets/cadd_to_vcf_header.txt")
     def ch_cadd_resources        = channelFromMetaAndPath(metadata_case_file, val_cadd_resources)
