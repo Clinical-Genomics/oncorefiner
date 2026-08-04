@@ -136,7 +136,7 @@ nextflow_workflow {
                 input[4] = null
                 input[5] = channel.of([
                     [id:'subject_a'],
-                    file(params.pipelines_testdata_base_path + 'reference/genmod_score_config.ini', checkIfExists: true)
+                    file(params.pipelines_testdata_base_path + 'reference/genmod_score_config_snv.ini', checkIfExists: true)
                 ])
                 input[6] = channel.of([
                     [id:'subject_a'],
