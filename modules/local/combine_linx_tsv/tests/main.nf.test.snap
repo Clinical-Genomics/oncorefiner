@@ -1,16 +1,69 @@
 {
-    "Combine LINX TSVs, tumor-normal": {
+    "Test combining the LINX TSVs into annotation compatible TSV, tumor-normal - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test_linx",
+                            "case_id": "subject_a"
+                        },
+                        "test_linx.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    [
+                        "COMBINE_LINX_TSV",
+                        "combine_linx_tsv",
+                        "1.0"
+                    ]
+                ],
+                "tsv": [
+                    [
+                        {
+                            "id": "test_linx",
+                            "case_id": "subject_a"
+                        },
+                        "test_linx.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions_combine_linx_tsv": [
+                    [
+                        "COMBINE_LINX_TSV",
+                        "combine_linx_tsv",
+                        "1.0"
+                    ]
+                ]
+            }
+        ],
+        "timestamp": "2026-06-30T13:10:26.844311",
+        "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "25.10.4"
+        }
+    },
+    "Test combining the LINX TSVs into annotation compatible TSV, tumor-normal": {
         "content": [
             [
                 [
                     {
-                        "id": "test_tsv"
+                        "id": "test_linx",
+                        "case_id": "subject_a"
                     },
-                    "test_tsv_linxcombined.tsv:md5,ae1e0ecb9111096ff27545f03af70cc0"
+                    "test_linx.tsv:md5,ae1e0ecb9111096ff27545f03af70cc0"
                 ]
-            ]
+            ],
+            {
+                "versions": [
+                    [
+                        "COMBINE_LINX_TSV",
+                        "combine_linx_tsv",
+                        "1.0"
+                    ]
+                ]
+            }
         ],
-        "timestamp": "2026-06-22T15:23:48.285684",
+        "timestamp": "2026-06-30T13:10:23.473197",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "25.10.4"

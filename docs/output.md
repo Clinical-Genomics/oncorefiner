@@ -18,6 +18,19 @@ The pipeline is built using [Nextflow](https://www.nextflow.io/) and processes d
 
 <!-- TODO: Add information for each step. Added "Vcfanno" as an example. -->
 
+### SV annotation using LINX fusion information
+
+<details markdown="1">
+<summary>Output files</summary>
+
+- `process_svs/`
+  - `linxannotated.vcf.gz`: a gzipped vcf containing SVs annotated with information from LINX fusions, ie. fields FUSION_NAME and REPORTED. Will be used for downstream analysis.
+  - `linxannotated.vcf.gz.tbi`: a index file for the gzipped VCF file.
+
+</details>
+
+[`LINX`](https://github.com/hartwigmedical/hmftools/tree/master/linx) The VCF displays the SVs as two instances, where only one will be annotated with the LINX information. The two can be connected using the `SVID` in the INFO field.
+
 ### Vcfanno
 
 <details markdown="1">

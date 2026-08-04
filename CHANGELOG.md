@@ -36,6 +36,16 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#103](https://github.com/Clinical-Genomics/oncorefiner/pull/103) Added `genmod_score_config` parameter.
 - [#103](https://github.com/Clinical-Genomics/oncorefiner/pull/103) Added `genomic-medicine-sweden/vcf_annotate_score_genmod` subworkflow to `PROCESS_SNVS`.
 - [#103](https://github.com/Clinical-Genomics/oncorefiner/pull/103) Added `tests/optional_inputs_stub.nf.test` to test running the pipeline without optional inputs. Includes stub test for running the pipeline without providing the `genmod_score_config` parameter.
+- [#135](https://github.com/Clinical-Genomics/oncorefiner/pull/135) Added test config for `GENERATE_CYTOSURE_FILES`.
+- [#124](https://github.com/Clinical-Genomics/oncorefiner/pull/124) Added metadata parameters `case_id`, `sample_id_tumor` and `sample_id_normal`.
+- [#124](https://github.com/Clinical-Genomics/oncorefiner/pull/124) Added `channelFromMetaAndPath` custom channel factory.
+- [#136](https://github.com/Clinical-Genomics/oncorefiner/pull/136) Added nf-schema validation to SVDB database inputs (`svdb_query_dbs`)
+- [#114](https://github.com/Clinical-Genomics/oncorefiner/pull/114) Added local python scipts to `/bin`, to be used in modules `COMBINE_LINX_TSV` and `ANNOTATE_VCF_BY_ID`.
+- [#140](https://github.com/Clinical-Genomics/oncorefiner/pull/140) Added local module `COMBINE_LINX_TSV` for combining LINX TSV files into one TSV for use in annotation of VCF file and tests.
+- [#140](https://github.com/Clinical-Genomics/oncorefiner/pull/140) Added local module `ANNOTATE_VCF_BY_ID` for annotating a VCF by using the VCF ID and a TSV annotation file and tests.
+- [#143](https://github.com/Clinical-Genomics/oncorefiner/pull/143) Added local subworkflow `VCF_ANNOTATE_LINX_FUSIONS` for annotating VCF file with LINX TSV file, using modules `annotate_vcf_by_id` and `combine_linx_tsv`, and tests.
+- [#143](https://github.com/Clinical-Genomics/oncorefiner/pull/143) Added local subworkflow `VCF_ANNOTATE_LINX_FUSIONS` to subworkflow `PROCESS_SVS`, and updated tests.
+- [#84](https://github.com/Clinical-Genomics/oncorefiner/pull/84) Added arguments to VEP keeping invalid variants in output VCF
 
 ### `Changed`
 
@@ -53,6 +63,8 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#87](https://github.com/Clinical-Genomics/oncorefiner/pull/87) Updated all testdata file paths to GRCh38 files, updated snapshot.
 - [#100](https://github.com/Clinical-Genomics/oncorefiner/pull/100) Template update for nf-core tools 4.0.2.
 - [#100](https://github.com/Clinical-Genomics/oncorefiner/pull/100) Changed minimum required nextflow version to 25.10.4.
+- [#103](https://github.com/Clinical-Genomics/oncorefiner/pull/108) Updated `bcftools/view` module, also included in `genomic-medicine-sweden/vcf_annotate_score_genmod` subworkflow.
+- [#103](https://github.com/Clinical-Genomics/oncorefiner/pull/103) Changed `PROCESS_SNVS` output logic to return `ch_research_filtered_vcf/tbi` after scoring if this step is run. The file names for these outputs are then given by `VCF_ANNOTATE_SCORE_GENMOD:BCFTOOLS_VIEW`, i.e. with prefix `${meta.id}_genmod_score` as specified in the config file.
 - [#106](https://github.com/Clinical-Genomics/oncorefiner/pull/106) Changed logic for `stable_path` in pipeline tests to exclude all vcf and index files by default. Removed individual entries for these files in `tests/.nftignore`.
 - [#108](https://github.com/Clinical-Genomics/oncorefiner/pull/108) Update `pipelines_testdata_base_path` to reflect the latest commit to `Clinical-Genomics/test-datasets/` that includes the genmod score config file.
 - [#81](https://github.com/Clinical-Genomics/oncorefiner/pull/81) Update publishing strategy for `PROCESS_SNVS` subworkflow to use output blocks. Removed publishing settings from the subworkflow config file.
@@ -60,10 +72,20 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#127](https://github.com/Clinical-Genomics/oncorefiner/pull/127) Update `pipelines_testdata_base_path` to reflect the latest commit to `Clinical-Genomics/test-datasets/oncorefiner` that removes `testdata/samplesheet_test.csv`.
 - [#128](https://github.com/Clinical-Genomics/oncorefiner/pull/128) Upgraded nf-test version to 0.9.5 so that the CI check supports topic channel tests.
 - [#138](https://github.com/Clinical-Genomics/oncorefiner/pull/138) Changed indentation to consistently match the nf-core template.
+- [#139](https://github.com/Clinical-Genomics/oncorefiner/pull/139) Changed `tests/.nftignore` to not include `process_svs/*.{vcf}`, since uncompressed VCF files are no longer output
 - [#103](https://github.com/Clinical-Genomics/oncorefiner/pull/108) Updated `bcftools/view` module, also included in `genomic-medicine-sweden/vcf_annotate_score_genmod` subworkflow.
 - [#103](https://github.com/Clinical-Genomics/oncorefiner/pull/103) Changed `PROCESS_SNVS` output logic to return `ch_research_filtered_vcf/tbi` after scoring if this step is run. The file names for these outputs are then given by `VCF_ANNOTATE_SCORE_GENMOD:BCFTOOLS_VIEW`, i.e. with prefix `${meta.id}_genmod_score` as specified in the config file.
 - [#142](https://github.com/Clinical-Genomics/oncorefiner/pull/142) Update `pipelines_testdata_base_path` to reflect the latest commit to `Clinical-Genomics/test-datasets/oncorefiner` that adds LINX TSV files.
 - [#141](https://github.com/Clinical-Genomics/oncorefiner/pull/141) Refactored `GENERATE_CYTOSURE_FILES` to emit output from `VCF2CYTOSURE`.
+- [#124](https://github.com/Clinical-Genomics/oncorefiner/pull/124) Refactored input channel initialisation to update meta according to new metadata parameters for: Case specific file channels - `ch_snv_vcf`, `ch_snv_vcf_tbi`, `ch_sv_vcf`, `ch_sv_vcf_tbi`; and Sample specific file channel - `ch_bam_bai_normal`, `ch_bam_bai_tumor`, `ch_genome_fasta`, `ch_genome_fai`.
+- [#124](https://github.com/Clinical-Genomics/oncorefiner/pull/124) Update configuration settings to use `meta.sample_type` instead of the previous `meta.type`.
+- [#124](https://github.com/Clinical-Genomics/oncorefiner/pull/124) Update `generate_cytosure_files` and `process_svs` test and snapshots to accommodate to changes in pipeline configuration.
+- [#124](https://github.com/Clinical-Genomics/oncorefiner/pull/124) Update documentation in `docs/usage.md` and `README.md` on how to start a pipeline run given the necessary metadata input parameters.
+- [#145](https://github.com/Clinical-Genomics/oncorefiner/pull/145) Small fixes to `GENERATE_CYTOSURE_FILES` tests from #135: updated config regex to include the fully qualified name of the process in order for the settings to be applied with the highest priority and removed parameter dependency from each test by moving the values to the config file instead.
+- [#149](https://github.com/Clinical-Genomics/oncorefiner/pull/149) Updated test data base path to remove unused column in SVDB files
+- [#118](https://github.com/Clinical-Genomics/oncorefiner/pull/118) Added parameters for LINX files and a header file to assets.
+- [#161](https://github.com/Clinical-Genomics/oncorefiner/pull/161) Template update for nf-core tools 4.0.3.
+- [#160](https://github.com/Clinical-Genomics/oncorefiner/pull/160) Updated nftutils from 0.0.3 to 1.0.0.
 
 ### `Fixed`
 
@@ -104,6 +126,8 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#130](https://github.com/Clinical-Genomics/oncorefiner/pull/130) Changed output logic for `PROCESS_SNVS` to output the `research_filtered_vcf` file after annotation with vep.
 - [#131](https://github.com/Clinical-Genomics/oncorefiner/pull/131) Fixed strict Nextflow syntax compatibility in `ANNOTATE_CADD`
 - [#137](https://github.com/Clinical-Genomics/oncorefiner/pull/134) Fixed VEP able to run without `vep_plugin_files` parameter.
+- [#135](https://github.com/Clinical-Genomics/oncorefiner/pull/135) Fixed test for `GENERATE_CYTOSURE_FILES` so that it states the necessary parameters for the test, uses configurations from the test config and is independent from pipeline wide configuration.
+- [#162](https://github.com/Clinical-Genomics/oncorefiner/pull/162) Updated pipeline test snapshot following update of VEP arguments in #84.
 
 ### `Dependencies`
 
@@ -114,3 +138,5 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#18](https://github.com/Clinical-Genomics/oncorefiner/pull/18) Removed CI checks `awstest` and `awsfulltest`.
 - [#51](https://github.com/Clinical-Genomics/oncorefiner/pull/51) Removed unused parameter `custom_extra_files`.
 - [#125](https://github.com/Clinical-Genomics/oncorefiner/pull/125) Removed `input` parameter and samplesheet logic and documentation.
+- [#139](https://github.com/Clinical-Genomics/oncorefiner/pull/139) Removed SVDB output file, since it's an intermediary file not useful to have in the outputs.
+- [#152](https://github.com/Clinical-Genomics/oncorefiner/pull/152) Removed publishDir directive for `PREPARE_REFERENCES`.

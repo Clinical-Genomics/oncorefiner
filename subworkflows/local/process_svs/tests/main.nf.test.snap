@@ -10,9 +10,8 @@
                 "process_svs/subject_a_linxcombined.tsv",
                 "process_svs/subject_a_research.vcf.gz",
                 "process_svs/subject_a_research.vcf.gz.tbi",
-                "process_svs/subject_a_vcfdb_query.vcf",
                 "vcf2cytosure",
-                "vcf2cytosure/tumor.cgh",
+                "vcf2cytosure/null.cgh",
                 "vep",
                 "vep/subject_a_svdbquery_vep.vcf.gz",
                 "vep/subject_a_svdbquery_vep.vcf.gz.tbi",
@@ -21,7 +20,7 @@
             [
                 [
                     "subject_a_clinical.vcf.gz",
-                    "37e41e9f40fafde247690f6b053df866"
+                    "f92bc125c747cdbce5e5c6c2ff8b023a"
                 ],
                 [
                     "subject_a_linxannotated.vcf.gz",
@@ -33,20 +32,17 @@
                 ],
                 [
                     "subject_a_svdbquery_vep.vcf.gz",
-                    "37e41e9f40fafde247690f6b053df866"
+                    "f92bc125c747cdbce5e5c6c2ff8b023a"
                 ]
             ],
             [
-                [
-                    "subject_a_vcfdb_query.vcf",
-                    "da36427a37c150dc78ef322d3841f4a1"
-                ]
+                
             ]
         ],
-        "timestamp": "2026-06-18T11:53:45.128521",
+        "timestamp": "2026-07-31T11:47:40.789259",
         "meta": {
             "nf-test": "0.9.5",
-            "nextflow": "25.10.4"
+            "nextflow": "26.04.0"
         }
     },
     "with tumor-normal data - stub": {
@@ -55,21 +51,23 @@
                 "process_svs",
                 "process_svs/subject_a_clinical.vcf.gz",
                 "process_svs/subject_a_clinical.vcf.gz.tbi",
+                "process_svs/subject_a_linxannotated.vcf.gz",
+                "process_svs/subject_a_linxannotated.vcf.gz.tbi",
+                "process_svs/subject_a_linxcombined.tsv",
                 "process_svs/subject_a_research.vcf.gz",
                 "process_svs/subject_a_research.vcf.gz.tbi",
-                "process_svs/subject_a_vcfdb_query.vcf",
                 "vcf2cytosure",
-                "vcf2cytosure/tumor.cgh",
+                "vcf2cytosure/null.cgh",
                 "vep",
                 "vep/subject_a_svdbquery_vep.vcf.gz",
                 "vep/subject_a_svdbquery_vep.vcf.gz.tbi",
                 "vep/subject_a_svdbquery_vep_summary.html"
             ]
         ],
-        "timestamp": "2026-06-01T15:11:38.518539",
+        "timestamp": "2026-07-03T11:25:16.646746",
         "meta": {
             "nf-test": "0.9.5",
-            "nextflow": "26.04.2"
+            "nextflow": "26.04.0"
         }
     }
 }
