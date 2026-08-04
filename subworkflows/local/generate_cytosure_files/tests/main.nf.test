@@ -12,11 +12,6 @@ nextflow_workflow {
     test("Alignment files from Tumor sample and somatic SV vcf files from TN test data") {
 
         when {
-            params {
-                genome_version_number = 38
-                sex                   = 'female'
-            }
-
             workflow {
                 """
                 input[0] = channel.of([
@@ -52,11 +47,6 @@ nextflow_workflow {
         options "-stub"
 
         when {
-            params {
-                genome_version_number = 38
-                sex                   = 'female'
-            }
-
             workflow {
                 """
                 input[0] = channel.of([

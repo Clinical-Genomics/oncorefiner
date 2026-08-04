@@ -2,7 +2,7 @@
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "$id": "https://raw.githubusercontent.com/Clinical-Genomics/oncorefiner/master/nextflow_schema.json",
     "title": "Clinical-Genomics/oncorefiner pipeline parameters",
-    "description": "Customizable post-processing and extension layer built on top of Oncoanalyser that adapts its outputs to clinical and operational needs, adds missing analyses, and ensures flexibility for evolving standards while retaining Oncoanalyser robust core",
+    "description": "Customizable post-processing and extension layer for Oncoanalyser that adapts its outputs according to clinical and operational needs, adds missing analyses, and ensures flexibility for evolving standards while retaining Oncoanalyser's robust core.",
     "type": "object",
     "$defs": {
         "input_output_options": {
@@ -18,6 +18,52 @@
                     "description": "The output directory where the results will be saved. You have to use absolute paths to storage on Cloud infrastructure.",
                     "fa_icon": "fas fa-folder-open"
                 },
+                "email": {
+                    "type": "string",
+                    "description": "Email address for completion summary.",
+                    "fa_icon": "fas fa-envelope",
+                    "help_text": "Set this parameter to your e-mail address to get a summary e-mail with details of the run sent to you when the workflow exits. If set in your user config file (`~/.nextflow/config`) then you don't need to specify this on the command line for every run.",
+                    "pattern": "^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$"
+                },
+                "multiqc_title": {
+                    "type": "string",
+                    "description": "MultiQC report title. Printed as page header, used for filename if not otherwise specified.",
+                    "fa_icon": "fas fa-file-signature"
+                }
+            }
+        },
+        "metadata": {
+            "title": "Metadata",
+            "type": "object",
+            "description": "",
+            "default": "",
+            "properties": {
+                "case_id": {
+                    "type": "string",
+                    "description": "Case ID."
+                },
+                "sex": {
+                    "type": "string",
+                    "enum": ["female", "male", "unknown"],
+                    "description": "Sex of the patient."
+                },
+                "sample_id_tumor": {
+                    "type": "string",
+                    "description": "Sample id of the tumor sample."
+                },
+                "sample_id_normal": {
+                    "type": "string",
+                    "description": "Sample id of the normal sample."
+                }
+            },
+            "required": ["case_id", "sex", "sample_id_tumor"]
+        },
+        "input_files": {
+            "title": "Input files",
+            "type": "object",
+            "description": "",
+            "default": "",
+            "properties": {
                 "snv_vcf": {
                     "type": "string",
                     "fa_icon": "fas fa-file",
@@ -66,22 +112,26 @@
                     "format": "file-path",
                     "exists": true
                 },
-                "sex": {
+                "linx_fusion_tsv": {
                     "type": "string",
-                    "enum": ["female", "male", "unknown"],
-                    "description": "Sex of the patient."
+                    "description": "Path to fusion linx tsv file for the sample.",
+                    "pattern": "^\\S+\\.tsv$",
+                    "format": "file-path",
+                    "exists": true
                 },
-                "email": {
+                "linx_breakends_tsv": {
                     "type": "string",
-                    "description": "Email address for completion summary.",
-                    "fa_icon": "fas fa-envelope",
-                    "help_text": "Set this parameter to your e-mail address to get a summary e-mail with details of the run sent to you when the workflow exits. If set in your user config file (`~/.nextflow/config`) then you don't need to specify this on the command line for every run.",
-                    "pattern": "^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$"
+                    "description": "Path to breakend linx tsv file for the sample.",
+                    "pattern": "^\\S+\\.tsv$",
+                    "format": "file-path",
+                    "exists": true
                 },
-                "multiqc_title": {
+                "linx_sv_tsv": {
                     "type": "string",
-                    "description": "MultiQC report title. Printed as page header, used for filename if not otherwise specified.",
-                    "fa_icon": "fas fa-file-signature"
+                    "description": "Path to sv linx tsv file for the sample.",
+                    "pattern": "^\\S+\\.tsv$",
+                    "format": "file-path",
+                    "exists": true
                 }
             }
         },
@@ -216,7 +266,7 @@
                     "format": "file-path",
                     "description": "Databases used for structural variant annotation in vcf format.",
                     "fa_icon": "fas fa-file-csv",
-                    "help_text": "Path to comma-separated file containing information about the databases used for structural variant annotation.",
+                    "help_text": "Path to CSV, TSV, JSON or YAML file containing information about the databases used for structural variant annotation.",
                     "pattern": "^\\S+\\.(csv|tsv|json|yaml|yml)$",
                     "schema": "assets/svdb_query_vcf_schema.json"
                 },
@@ -383,7 +433,7 @@
                     "type": "string",
                     "fa_icon": "far fa-check-circle",
                     "description": "Base URL or local path to location of pipeline test dataset files",
-                    "default": "https://raw.githubusercontent.com/Clinical-Genomics/test-datasets/ccc8bf4dcbe6a3e1a4975331f830d53fa655d8c1/",
+                    "default": "https://raw.githubusercontent.com/Clinical-Genomics/test-datasets/b9c2328ab3fb456efb079a953a7620af5e15aa8d/",
                     "hidden": true
                 },
                 "trace_report_suffix": {
@@ -410,6 +460,12 @@
     "allOf": [
         {
             "$ref": "#/$defs/input_output_options"
+        },
+        {
+            "$ref": "#/$defs/metadata"
+        },
+        {
+            "$ref": "#/$defs/input_files"
         },
         {
             "$ref": "#/$defs/reference_genome_options"
