@@ -35,6 +35,9 @@ Define where the pipeline should find input data and save output data.
 | `bai_tumor` | Path to BAM index file for the tumor sample. | `string` |  |  |  |
 | `bam_normal` | Path to alignment BAM file for the normal sample. | `string` |  |  |  |
 | `bai_normal` | Path to BAM index file for the normal sample. | `string` |  |  |  |
+| `linx_fusion_tsv` | Path to fusion linx tsv file for the sample. | `string` |  |  |  |
+| `linx_breakends_tsv` | Path to breakend linx tsv file for the sample. | `string` |  |  |  |
+| `linx_sv_tsv` | Path to sv linx tsv file for the sample. | `string` |  |  |  |
 
 ## Reference genome options
 

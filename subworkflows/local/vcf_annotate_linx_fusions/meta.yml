@@ -1,0 +1,62 @@
+name: "annotate_vcf_with_linx"
+description: Annotate VCF files with LINX
+keywords:
+  - combine_linx_tsv
+  - annotate_vcf_by_id
+components:
+  - combine_linx_tsv
+  - annotate_vcf_by_id
+input:
+  - ch_linx_breakends_tsv:
+      type: file
+      description: |
+        The input channel containing the LINX breakends TSV files
+        Structure: [ val(meta), path(tsv) ]
+      pattern: "*.tsv"
+  - ch_linx_fusion_tsv:
+      type: file
+      description: |
+        The input channel containing the LINX fusion TSV files
+        Structure: [ val(meta), path(tsv) ]
+      pattern: "*.tsv"
+  - ch_linx_sv_tsv:
+      type: file
+      description: |
+        The input channel containing the LINX SV TSV files
+        Structure: [ val(meta), path(tsv) ]
+      pattern: "*.tsv"
+  - ch_sv_header:
+      type: file
+      description: |
+        The input channel containing the SV annotation header file
+        Structure: [ val(meta), path(header) ]
+      pattern: "*.txt"
+  - ch_sv_vcf:
+      type: file
+      description: |
+        The input channel containing the SV VCF files
+        Structure: [ val(meta), path(vcf) ]
+      pattern: "*.vcf"
+  - ch_sv_tbi:
+      type: file
+      description: |
+        The input channel containing the SV TBI files
+        Structure: [ val(meta), path(tbi) ]
+      pattern: "*.tbi"
+output:
+  - vcf:
+      type: file
+      description: |
+        Channel containing annotated VCF file
+        Structure: [ val(meta), path(vcf) ]
+      pattern: "*.vcf"
+  - tbi:
+      type: file
+      description: |
+        Channel containing indexed VCF (TBI) file
+        Structure: [ val(meta), path(tbi) ]
+      pattern: "*.tbi"
+authors:
+  - "kristinebilgrav"
+maintainers:
+  - "kristinebilgrav"

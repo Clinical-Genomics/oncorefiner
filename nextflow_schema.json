@@ -111,6 +111,27 @@
                     "pattern": "^\\S+\\.bai$",
                     "format": "file-path",
                     "exists": true
+                },
+                "linx_fusion_tsv": {
+                    "type": "string",
+                    "description": "Path to fusion linx tsv file for the sample.",
+                    "pattern": "^\\S+\\.tsv$",
+                    "format": "file-path",
+                    "exists": true
+                },
+                "linx_breakends_tsv": {
+                    "type": "string",
+                    "description": "Path to breakend linx tsv file for the sample.",
+                    "pattern": "^\\S+\\.tsv$",
+                    "format": "file-path",
+                    "exists": true
+                },
+                "linx_sv_tsv": {
+                    "type": "string",
+                    "description": "Path to sv linx tsv file for the sample.",
+                    "pattern": "^\\S+\\.tsv$",
+                    "format": "file-path",
+                    "exists": true
                 }
             }
         },

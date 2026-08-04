@@ -2,6 +2,9 @@
     "Tumor only analysis with '-profile test_tumor_only'": {
         "content": [
             {
+                "ANNOTATE_VCF_BY_ID": {
+                    "annotate_vcf_by_id": 1.0
+                },
                 "BCFTOOLS_VIEW": {
                     "bcftools": "1.23.1"
                 },
@@ -10,6 +13,9 @@
                 },
                 "BCFTOOLS_VIEW_RESEARCH": {
                     "bcftools": "1.23.1"
+                },
+                "COMBINE_LINX_TSV": {
+                    "combine_linx_tsv": 1.0
                 },
                 "ENSEMBLVEP_VEP": {
                     "ensemblvep": 115.2,
@@ -61,8 +67,11 @@
                 "pipeline_info",
                 "pipeline_info/oncorefiner_software_mqc_versions.yml",
                 "process_svs",
+                "process_svs/test_tumor_only_case.tsv",
                 "process_svs/test_tumor_only_case_clinical.vcf.gz",
                 "process_svs/test_tumor_only_case_clinical.vcf.gz.tbi",
+                "process_svs/test_tumor_only_case_linxannotated.vcf.gz",
+                "process_svs/test_tumor_only_case_linxannotated.vcf.gz.tbi",
                 "process_svs/test_tumor_only_case_research.vcf.gz",
                 "process_svs/test_tumor_only_case_research.vcf.gz.tbi",
                 "snv",
@@ -83,11 +92,16 @@
                 "vep/test_tumor_only_case_svdbquery_vep.vcf.gz_summary.html"
             ],
             [
+                "test_tumor_only_case.tsv:md5,ae1e0ecb9111096ff27545f03af70cc0",
                 "tumor.cgh:md5,22c058183d93a767ee61d5319513dc39"
             ],
             [
                 [
                     "test_tumor_only_case_clinical.vcf.gz",
+                    "VcfFile [chromosomes=[chr19, chr9, chr11], sampleCount=1, variantCount=6, phased=false, phasedAutodetect=false]"
+                ],
+                [
+                    "test_tumor_only_case_linxannotated.vcf.gz",
                     "VcfFile [chromosomes=[chr19, chr9, chr11], sampleCount=1, variantCount=6, phased=false, phasedAutodetect=false]"
                 ],
                 [
@@ -118,11 +132,15 @@
             [
                 [
                     "test_tumor_only_case_clinical.vcf.gz",
-                    "c4a240376672ae2adc490e3ccc31f317"
+                    "dc2bd710b86bb2e20399e35e8b6a0d6d"
+                ],
+                [
+                    "test_tumor_only_case_linxannotated.vcf.gz",
+                    "740d24979f0598e569785305b7aadfb8"
                 ],
                 [
                     "test_tumor_only_case_research.vcf.gz",
-                    "b9cb38b8cd9294ba4aa110592c5133e"
+                    "740d24979f0598e569785305b7aadfb8"
                 ],
                 [
                     "test_tumor_only_case_clinical.vcf.gz",
@@ -142,11 +160,11 @@
                 ],
                 [
                     "test_tumor_only_case_svdbquery_vep.vcf.gz",
-                    "c4a240376672ae2adc490e3ccc31f317"
+                    "dc2bd710b86bb2e20399e35e8b6a0d6d"
                 ]
             ]
         ],
-        "timestamp": "2026-07-29T14:51:36.683029",
+        "timestamp": "2026-07-31T11:35:17.446409",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.0"
@@ -155,6 +173,9 @@
     "Tumor only analysis with '-profile test_tumor_only' - stub": {
         "content": [
             {
+                "ANNOTATE_VCF_BY_ID": {
+                    "annotate_vcf_by_id": 1.0
+                },
                 "BCFTOOLS_VIEW": {
                     "bcftools": "1.23.1"
                 },
@@ -163,6 +184,9 @@
                 },
                 "BCFTOOLS_VIEW_RESEARCH": {
                     "bcftools": "1.23.1"
+                },
+                "COMBINE_LINX_TSV": {
+                    "combine_linx_tsv": 1.0
                 },
                 "ENSEMBLVEP_VEP": {
                     "ensemblvep": 115.2,
@@ -210,8 +234,11 @@
                 "pipeline_info",
                 "pipeline_info/oncorefiner_software_mqc_versions.yml",
                 "process_svs",
+                "process_svs/test_tumor_only_case.tsv",
                 "process_svs/test_tumor_only_case_clinical.vcf.gz",
                 "process_svs/test_tumor_only_case_clinical.vcf.gz.tbi",
+                "process_svs/test_tumor_only_case_linxannotated.vcf.gz",
+                "process_svs/test_tumor_only_case_linxannotated.vcf.gz.tbi",
                 "process_svs/test_tumor_only_case_research.vcf.gz",
                 "process_svs/test_tumor_only_case_research.vcf.gz.tbi",
                 "snv",
@@ -232,7 +259,7 @@
                 "vep/test_tumor_only_case_svdbquery_vep_summary.html"
             ]
         ],
-        "timestamp": "2026-06-22T16:38:54.315531",
+        "timestamp": "2026-07-03T11:03:22.621881",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.0"
