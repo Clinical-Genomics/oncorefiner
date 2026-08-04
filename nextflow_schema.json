@@ -129,6 +129,27 @@
                     "fa_icon": "fas fa-file-csv",
                     "pattern": "^\\S+\\.tsv$",
                     "help_text": "This file should be a tab-separated file with a header row. Typically *.purple.cnv.somatic.tsv file from Oncoanalyser."
+                },
+                "linx_fusion_tsv": {
+                    "type": "string",
+                    "description": "Path to fusion linx tsv file for the sample.",
+                    "pattern": "^\\S+\\.tsv$",
+                    "format": "file-path",
+                    "exists": true
+                },
+                "linx_breakends_tsv": {
+                    "type": "string",
+                    "description": "Path to breakend linx tsv file for the sample.",
+                    "pattern": "^\\S+\\.tsv$",
+                    "format": "file-path",
+                    "exists": true
+                },
+                "linx_sv_tsv": {
+                    "type": "string",
+                    "description": "Path to sv linx tsv file for the sample.",
+                    "pattern": "^\\S+\\.tsv$",
+                    "format": "file-path",
+                    "exists": true
                 }
             }
         },

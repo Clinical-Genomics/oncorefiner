@@ -2,6 +2,9 @@
     "Tumor Normal analysis with '-profile test' - stub": {
         "content": [
             {
+                "ANNOTATE_VCF_BY_ID": {
+                    "annotate_vcf_by_id": 1.0
+                },
                 "BCFTOOLS_VIEW": {
                     "bcftools": "1.23.1"
                 },
@@ -10,6 +13,9 @@
                 },
                 "BCFTOOLS_VIEW_RESEARCH": {
                     "bcftools": "1.23.1"
+                },
+                "COMBINE_LINX_TSV": {
+                    "combine_linx_tsv": 1.0
                 },
                 "ENSEMBLVEP_VEP": {
                     "ensemblvep": 115.2,
@@ -64,8 +70,11 @@
                 "pipeline_info",
                 "pipeline_info/oncorefiner_software_mqc_versions.yml",
                 "process_svs",
+                "process_svs/test_tumor_normal_case.tsv",
                 "process_svs/test_tumor_normal_case_clinical.vcf.gz",
                 "process_svs/test_tumor_normal_case_clinical.vcf.gz.tbi",
+                "process_svs/test_tumor_normal_case_linxannotated.vcf.gz",
+                "process_svs/test_tumor_normal_case_linxannotated.vcf.gz.tbi",
                 "process_svs/test_tumor_normal_case_research.vcf.gz",
                 "process_svs/test_tumor_normal_case_research.vcf.gz.tbi",
                 "snv",
@@ -87,7 +96,7 @@
                 "vep/test_tumor_normal_case_svdbquery_vep_summary.html"
             ]
         ],
-        "timestamp": "2026-06-30T10:44:19.563215",
+        "timestamp": "2026-07-03T11:01:46.700834",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "25.10.4"
@@ -96,6 +105,9 @@
     "Tumor Normal analysis with '-profile test'": {
         "content": [
             {
+                "ANNOTATE_VCF_BY_ID": {
+                    "annotate_vcf_by_id": 1.0
+                },
                 "BCFTOOLS_VIEW": {
                     "bcftools": "1.23.1"
                 },
@@ -104,6 +116,9 @@
                 },
                 "BCFTOOLS_VIEW_RESEARCH": {
                     "bcftools": "1.23.1"
+                },
+                "COMBINE_LINX_TSV": {
+                    "combine_linx_tsv": 1.0
                 },
                 "ENSEMBLVEP_VEP": {
                     "ensemblvep": 115.2,
@@ -162,8 +177,11 @@
                 "pipeline_info",
                 "pipeline_info/oncorefiner_software_mqc_versions.yml",
                 "process_svs",
+                "process_svs/test_tumor_normal_case.tsv",
                 "process_svs/test_tumor_normal_case_clinical.vcf.gz",
                 "process_svs/test_tumor_normal_case_clinical.vcf.gz.tbi",
+                "process_svs/test_tumor_normal_case_linxannotated.vcf.gz",
+                "process_svs/test_tumor_normal_case_linxannotated.vcf.gz.tbi",
                 "process_svs/test_tumor_normal_case_research.vcf.gz",
                 "process_svs/test_tumor_normal_case_research.vcf.gz.tbi",
                 "snv",
@@ -185,12 +203,17 @@
                 "vep/test_tumor_normal_case_svdbquery_vep.vcf.gz_summary.html"
             ],
             [
+                "test_tumor_normal_case.tsv:md5,ae1e0ecb9111096ff27545f03af70cc0",
                 "normal.cgh:md5,4d969b296e558f0fc911844f35fad6e9",
                 "tumor.cgh:md5,dd4ac501252ca74cb364ae447ec6b3eb"
             ],
             [
                 [
                     "test_tumor_normal_case_clinical.vcf.gz",
+                    "VcfFile [chromosomes=[chr19, chr9, chr11], sampleCount=2, variantCount=6, phased=false, phasedAutodetect=false]"
+                ],
+                [
+                    "test_tumor_normal_case_linxannotated.vcf.gz",
                     "VcfFile [chromosomes=[chr19, chr9, chr11], sampleCount=2, variantCount=6, phased=false, phasedAutodetect=false]"
                 ],
                 [
@@ -221,11 +244,15 @@
             [
                 [
                     "test_tumor_normal_case_clinical.vcf.gz",
-                    "19c4e9b367a1917c49b878d3134b09b5"
+                    "f92bc125c747cdbce5e5c6c2ff8b023a"
+                ],
+                [
+                    "test_tumor_normal_case_linxannotated.vcf.gz",
+                    "da36427a37c150dc78ef322d3841f4a1"
                 ],
                 [
                     "test_tumor_normal_case_research.vcf.gz",
-                    "5555fa260ad068c6b0c1704ac6ac933"
+                    "da36427a37c150dc78ef322d3841f4a1"
                 ],
                 [
                     "test_tumor_normal_case_clinical.vcf.gz",
@@ -245,11 +272,11 @@
                 ],
                 [
                     "test_tumor_normal_case_svdbquery_vep.vcf.gz",
-                    "19c4e9b367a1917c49b878d3134b09b5"
+                    "f92bc125c747cdbce5e5c6c2ff8b023a"
                 ]
             ]
         ],
-        "timestamp": "2026-06-30T10:43:20.807803",
+        "timestamp": "2026-07-31T11:32:36.304753",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "25.10.4"
