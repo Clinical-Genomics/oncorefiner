@@ -53,7 +53,14 @@
                         "id": "subject_a",
                         "case_id": "test_tumor_normal_case"
                     },
-                    "null.cgh"
+                    "normal.cgh"
+                ],
+                [
+                    {
+                        "id": "subject_a",
+                        "case_id": "test_tumor_normal_case"
+                    },
+                    "tumor.cgh"
                 ]
             ],
             [
@@ -98,9 +105,24 @@
                         "1.23.1"
                     ],
                     [
+                        "PROCESS_SVS:GENERATE_CYTOSURE_FILES:FILTER_VCF",
+                        "bcftools",
+                        "1.23.1"
+                    ],
+                    [
                         "PROCESS_SVS:GENERATE_CYTOSURE_FILES:TIDDIT_COV",
                         "tiddit",
                         "3.9.5"
+                    ],
+                    [
+                        "PROCESS_SVS:GENERATE_CYTOSURE_FILES:TIDDIT_COV",
+                        "tiddit",
+                        "3.9.5"
+                    ],
+                    [
+                        "PROCESS_SVS:GENERATE_CYTOSURE_FILES:VCF2CYTOSURE",
+                        "vcf2cytosure",
+                        "0.9.3"
                     ],
                     [
                         "PROCESS_SVS:GENERATE_CYTOSURE_FILES:VCF2CYTOSURE",
@@ -140,7 +162,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-08-05T10:36:31.5376",
+        "timestamp": "2026-08-04T16:00:06.091891",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
@@ -191,7 +213,14 @@
                             "id": "subject_a",
                             "case_id": "test_tumor_normal_case"
                         },
-                        "null.cgh:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "normal.cgh:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ],
+                    [
+                        {
+                            "id": "subject_a",
+                            "case_id": "test_tumor_normal_case"
+                        },
+                        "tumor.cgh:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "vep_annotated_tbi": [
@@ -257,9 +286,24 @@
                         "1.23.1"
                     ],
                     [
+                        "PROCESS_SVS:GENERATE_CYTOSURE_FILES:FILTER_VCF",
+                        "bcftools",
+                        "1.23.1"
+                    ],
+                    [
                         "PROCESS_SVS:GENERATE_CYTOSURE_FILES:TIDDIT_COV",
                         "tiddit",
                         "3.9.5"
+                    ],
+                    [
+                        "PROCESS_SVS:GENERATE_CYTOSURE_FILES:TIDDIT_COV",
+                        "tiddit",
+                        "3.9.5"
+                    ],
+                    [
+                        "PROCESS_SVS:GENERATE_CYTOSURE_FILES:VCF2CYTOSURE",
+                        "vcf2cytosure",
+                        "0.9.3"
                     ],
                     [
                         "PROCESS_SVS:GENERATE_CYTOSURE_FILES:VCF2CYTOSURE",
@@ -299,7 +343,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-08-05T10:37:05.11151",
+        "timestamp": "2026-08-04T16:00:42.588833",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"

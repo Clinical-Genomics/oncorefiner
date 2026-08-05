@@ -132,6 +132,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#135](https://github.com/Clinical-Genomics/oncorefiner/pull/135) Fixed test for `GENERATE_CYTOSURE_FILES` so that it states the necessary parameters for the test, uses configurations from the test config and is independent from pipeline wide configuration.
 - [#162](https://github.com/Clinical-Genomics/oncorefiner/pull/162) Updated pipeline test snapshot following update of VEP arguments in #84.
 - [#93](https://github.com/Clinical-Genomics/oncorefiner/pull/93) Refactored the publishing strategy for `GENERATE_CYTOSURE_FILES` and `PROCESS_SVS` to use output blocks.
+- [#169](https://github.com/Clinical-Genomics/oncorefiner/pull/169/) Populated the `ch_bam_bai_normal` in `PROCESS_SVS` tumor-normal test and updated the meta structure of the two bam channels, which also updated the naming of the .cgh file.
 
 ### `Dependencies`
 
