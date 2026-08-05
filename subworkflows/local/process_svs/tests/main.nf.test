@@ -39,30 +39,34 @@ nextflow_workflow {
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/subject_a.tumor.redux.bam.bai', checkIfExists: true)
                 ])
                 input[2] = channel.of([
-                    [id: 'subject_a', case_id: 'test_tumor_normal_case'],
-                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.linx.breakend.tsv', checkIfExists: true)
+                    [id:'subject_a'],
+                    file(params.pipelines_testdata_base_path + 'reference/genmod_score_config_sv.ini', checkIfExists: true)
                 ])
                 input[3] = channel.of([
                     [id: 'subject_a', case_id: 'test_tumor_normal_case'],
-                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.linx.fusion.tsv', checkIfExists: true)
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.linx.breakend.tsv', checkIfExists: true)
                 ])
                 input[4] = channel.of([
                     [id: 'subject_a', case_id: 'test_tumor_normal_case'],
-                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.linx.svs.tsv', checkIfExists: true)
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.linx.fusion.tsv', checkIfExists: true)
                 ])
                 input[5] = channel.of([
                     [id: 'subject_a', case_id: 'test_tumor_normal_case'],
-                    file('$projectDir/assets/sv_annotation_header.txt', checkIfExists: true)
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.linx.svs.tsv', checkIfExists: true)
                 ])
                 input[6] = channel.of([
                     [id: 'subject_a', case_id: 'test_tumor_normal_case'],
-                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.sv.vcf.gz', checkIfExists: true)
+                    file('$projectDir/assets/sv_annotation_header.txt', checkIfExists: true)
                 ])
                 input[7] = channel.of([
                     [id: 'subject_a', case_id: 'test_tumor_normal_case'],
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.sv.vcf.gz', checkIfExists: true)
+                ])
+                input[8] = channel.of([
+                    [id: 'subject_a', case_id: 'test_tumor_normal_case'],
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.sv.vcf.gz.tbi', checkIfExists: true)
                 ])
-                input[8] = channel.of(
+                input[9] = channel.of(
                     [
                         params.pipelines_testdata_base_path + 'reference/GRCh38/grch38_gnomad_reformated_sv_v4.1_subset.vcf.gz',
                         'AF',
@@ -78,15 +82,16 @@ nextflow_workflow {
                         'swegenOCC',
                     ]
                 )
-                input[9] = "GRCh38"
-                input[10] = "homo_sapiens"
-                input[11] = 115
-                input[12] = UNTAR_VEP_CACHE.out.untar.map{ _meta, files -> [files]}.collect()
-                input[13] = channel.of([
+                input[10] = "GRCh38"
+                input[11] = true
+                input[12] = "homo_sapiens"
+                input[13] = 115
+                input[14] = UNTAR_VEP_CACHE.out.untar.map{ _meta, files -> [files]}.collect()
+                input[15] = channel.of([
                     [id:'reference'],
                     file(params.pipelines_testdata_base_path + 'reference/GRCh38/GRCh38_masked_exclusions_alts_hlas_subset.fasta', checkIfExists: true)
                 ])
-                input[14] = channel.of([
+                input[16] = channel.of([
                     file(params.pipelines_testdata_base_path + 'reference/GRCh38/LoFtool_scores.txt', checkIfExists: true),
                     file(params.pipelines_testdata_base_path + 'reference/GRCh38/pLI_values.txt', checkIfExists: true)
                 ])
@@ -148,30 +153,34 @@ nextflow_workflow {
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/subject_a.tumor.redux.bam.bai', checkIfExists: true)
                 ])
                 input[2] = channel.of([
-                    [id: 'subject_a', case_id: 'test_tumor_normal_case'],
-                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.linx.breakend.tsv', checkIfExists: true)
+                    [id:'subject_a'],
+                    file(params.pipelines_testdata_base_path + 'reference/genmod_score_config_sv.ini', checkIfExists: true)
                 ])
                 input[3] = channel.of([
                     [id: 'subject_a', case_id: 'test_tumor_normal_case'],
-                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.linx.fusion.tsv', checkIfExists: true)
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.linx.breakend.tsv', checkIfExists: true)
                 ])
                 input[4] = channel.of([
                     [id: 'subject_a', case_id: 'test_tumor_normal_case'],
-                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.linx.svs.tsv', checkIfExists: true)
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.linx.fusion.tsv', checkIfExists: true)
                 ])
                 input[5] = channel.of([
                     [id: 'subject_a', case_id: 'test_tumor_normal_case'],
-                    file('$projectDir/assets/sv_annotation_header.txt', checkIfExists: true)
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.linx.svs.tsv', checkIfExists: true)
                 ])
                 input[6] = channel.of([
                     [id: 'subject_a', case_id: 'test_tumor_normal_case'],
-                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.sv.vcf.gz', checkIfExists: true)
+                    file('$projectDir/assets/sv_annotation_header.txt', checkIfExists: true)
                 ])
                 input[7] = channel.of([
                     [id: 'subject_a', case_id: 'test_tumor_normal_case'],
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.sv.vcf.gz', checkIfExists: true)
+                ])
+                input[8] = channel.of([
+                    [id: 'subject_a', case_id: 'test_tumor_normal_case'],
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.sv.vcf.gz.tbi', checkIfExists: true)
                 ])
-                input[8] = channel.of(
+                input[9] = channel.of(
                     [
                         params.pipelines_testdata_base_path + 'reference/GRCh38/grch38_gnomad_reformated_sv_v4.1_subset.vcf.gz',
                         'AF',
@@ -187,15 +196,16 @@ nextflow_workflow {
                         'swegenOCC',
                     ]
                 )
-                input[9] = "GRCh38"
-                input[10] = "homo_sapiens"
-                input[11] = 115
-                input[12] = UNTAR_VEP_CACHE.out.untar.map{ _meta, files -> [files]}.collect()
-                input[13] = channel.of([
+                input[10] = "GRCh38"
+                input[11] = true
+                input[12] = "homo_sapiens"
+                input[13] = 115
+                input[14] = UNTAR_VEP_CACHE.out.untar.map{ _meta, files -> [files]}.collect()
+                input[15] = channel.of([
                     [id:'reference'],
                     file(params.pipelines_testdata_base_path + 'reference/GRCh38/GRCh38_masked_exclusions_alts_hlas_subset.fasta', checkIfExists: true)
                 ])
-                input[14] = channel.of([
+                input[16] = channel.of([
                     file(params.pipelines_testdata_base_path + 'reference/GRCh38/LoFtool_scores.txt', checkIfExists: true),
                     file(params.pipelines_testdata_base_path + 'reference/GRCh38/pLI_values.txt', checkIfExists: true)
                 ])
