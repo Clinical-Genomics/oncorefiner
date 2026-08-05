@@ -20,13 +20,16 @@ lint:
     - assets/sendmail_template.txt
     - docs/README.md
   multiqc_config: false
-nf_core_version: 4.0.2
+  nextflow_config:
+    - params.input
+nf_core_version: 4.0.3
 repository_type: pipeline
 template:
   author: Clinical Genomics Stockholm
-  description: Customizable post-processing and extension layer for Oncoanalyser that adapts
-    its outputs according to clinical and operational needs, adds missing analyses, and
-    ensures flexibility for evolving standards while retaining Oncoanalyser's robust core.
+  description: Customizable post-processing and extension layer for Oncoanalyser that
+    adapts its outputs according to clinical and operational needs, adds missing analyses,
+    and ensures flexibility for evolving standards while retaining Oncoanalyser's
+    robust core.
   force: false
   is_nfcore: false
   name: oncorefiner

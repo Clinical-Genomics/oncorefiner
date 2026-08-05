@@ -2,7 +2,7 @@
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "$id": "https://raw.githubusercontent.com/Clinical-Genomics/oncorefiner/master/nextflow_schema.json",
     "title": "Clinical-Genomics/oncorefiner pipeline parameters",
-    "description": "Customizable post-processing and extension layer built on top of Oncoanalyser that adapts its outputs to clinical and operational needs, adds missing analyses, and ensures flexibility for evolving standards while retaining Oncoanalyser robust core",
+    "description": "Customizable post-processing and extension layer for Oncoanalyser that adapts its outputs according to clinical and operational needs, adds missing analyses, and ensures flexibility for evolving standards while retaining Oncoanalyser's robust core.",
     "type": "object",
     "$defs": {
         "input_output_options": {
@@ -10,25 +10,60 @@
             "type": "object",
             "fa_icon": "fas fa-terminal",
             "description": "Define where the pipeline should find input data and save output data.",
-            "required": ["input", "outdir"],
+            "required": ["outdir"],
             "properties": {
-                "input": {
-                    "type": "string",
-                    "format": "file-path",
-                    "exists": true,
-                    "schema": "assets/schema_input.json",
-                    "mimetype": "text/csv",
-                    "pattern": "^\\S+\\.csv$",
-                    "description": "Path to comma-separated file containing information about the samples in the experiment.",
-                    "help_text": "You will need to create a design file with information about the samples in your experiment before running the pipeline. Use this parameter to specify its location. It has to be a comma-separated file with 3 columns, and a header row.",
-                    "fa_icon": "fas fa-file-csv"
-                },
                 "outdir": {
                     "type": "string",
                     "format": "directory-path",
                     "description": "The output directory where the results will be saved. You have to use absolute paths to storage on Cloud infrastructure.",
                     "fa_icon": "fas fa-folder-open"
                 },
+                "email": {
+                    "type": "string",
+                    "description": "Email address for completion summary.",
+                    "fa_icon": "fas fa-envelope",
+                    "help_text": "Set this parameter to your e-mail address to get a summary e-mail with details of the run sent to you when the workflow exits. If set in your user config file (`~/.nextflow/config`) then you don't need to specify this on the command line for every run.",
+                    "pattern": "^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$"
+                },
+                "multiqc_title": {
+                    "type": "string",
+                    "description": "MultiQC report title. Printed as page header, used for filename if not otherwise specified.",
+                    "fa_icon": "fas fa-file-signature"
+                }
+            }
+        },
+        "metadata": {
+            "title": "Metadata",
+            "type": "object",
+            "description": "",
+            "default": "",
+            "properties": {
+                "case_id": {
+                    "type": "string",
+                    "description": "Case ID."
+                },
+                "sex": {
+                    "type": "string",
+                    "enum": ["female", "male", "unknown"],
+                    "description": "Sex of the patient."
+                },
+                "sample_id_tumor": {
+                    "type": "string",
+                    "description": "Sample id of the tumor sample."
+                },
+                "sample_id_normal": {
+                    "type": "string",
+                    "description": "Sample id of the normal sample."
+                }
+            },
+            "required": ["case_id", "sex", "sample_id_tumor"]
+        },
+        "input_files": {
+            "title": "Input files",
+            "type": "object",
+            "description": "",
+            "default": "",
+            "properties": {
                 "snv_vcf": {
                     "type": "string",
                     "fa_icon": "fas fa-file",
@@ -77,22 +112,26 @@
                     "format": "file-path",
                     "exists": true
                 },
-                "sex": {
+                "linx_fusion_tsv": {
                     "type": "string",
-                    "enum": ["female", "male", "unknown"],
-                    "description": "Sex of the patient."
+                    "description": "Path to fusion linx tsv file for the sample.",
+                    "pattern": "^\\S+\\.tsv$",
+                    "format": "file-path",
+                    "exists": true
                 },
-                "email": {
+                "linx_breakends_tsv": {
                     "type": "string",
-                    "description": "Email address for completion summary.",
-                    "fa_icon": "fas fa-envelope",
-                    "help_text": "Set this parameter to your e-mail address to get a summary e-mail with details of the run sent to you when the workflow exits. If set in your user config file (`~/.nextflow/config`) then you don't need to specify this on the command line for every run.",
-                    "pattern": "^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$"
+                    "description": "Path to breakend linx tsv file for the sample.",
+                    "pattern": "^\\S+\\.tsv$",
+                    "format": "file-path",
+                    "exists": true
                 },
-                "multiqc_title": {
+                "linx_sv_tsv": {
                     "type": "string",
-                    "description": "MultiQC report title. Printed as page header, used for filename if not otherwise specified.",
-                    "fa_icon": "fas fa-file-signature"
+                    "description": "Path to sv linx tsv file for the sample.",
+                    "pattern": "^\\S+\\.tsv$",
+                    "format": "file-path",
+                    "exists": true
                 }
             }
         },
@@ -109,6 +148,13 @@
                     "help_text": "Use this parameter to specify the ID for the reference genome used. This is then used to annotate the SV and SNV files e.g. `--genome GRCh38`.",
                     "default": "GRCh38",
                     "enum": ["GRCh38", "GRCh37"]
+                },
+                "genome_version_number": {
+                    "type": "integer",
+                    "default": 38,
+                    "hidden": true,
+                    "description": "Genome version number. By default parsed from `params.genome` by removing \"GRCh\" from genome name to obtain only the version number (e.g. \"GRCh38\" -> \"38\").",
+                    "enum": [37, 38]
                 },
                 "fasta": {
                     "type": "string",
@@ -178,8 +224,8 @@
                     "format": "file-path",
                     "description": "Databases used by both named and custom plugins to annotate variants.",
                     "fa_icon": "fas fa-file-csv",
-                    "help_text": "Path to a file containing the absolute paths to databases and their indices used by VEP's custom and named plugins resources defined within the vcfanno toml file. One line per resource.",
-                    "pattern": "^\\S+\\.csv$",
+                    "help_text": "Path to a CSV/TSV/JSON/YAML file with vep_files as header, and then the absolute paths to databases and their indices used by VEP's custom and named plugins resources defined within the vcfanno toml file.",
+                    "pattern": "^\\S+\\.(csv|tsv|json|ya?ml)$",
                     "mimetype": "text/csv",
                     "schema": "assets/vep_plugin_files_schema.json"
                 },
@@ -220,33 +266,36 @@
                     "format": "file-path",
                     "description": "Databases used for structural variant annotation in vcf format.",
                     "fa_icon": "fas fa-file-csv",
-                    "help_text": "Path to comma-separated file containing information about the databases used for structural variant annotation.",
+                    "help_text": "Path to CSV, TSV, JSON or YAML file containing information about the databases used for structural variant annotation.",
                     "pattern": "^\\S+\\.(csv|tsv|json|yaml|yml)$",
                     "schema": "assets/svdb_query_vcf_schema.json"
                 },
-                "extra_cadd_annotate_args": {
+                "extra_args_cadd_annotate": {
                     "type": "string",
-                    "description": "extra filtering arguments for `ANNOTATE_CADD:BCFTOOLS_ANNOTATE_INDELS`"
+                    "description": "Extra arguments for `ANNOTATE_CADD:BCFTOOLS_ANNOTATE_INDELS`."
                 },
-                "extra_cytosure_filter_args": {
+                "extra_args_snv_clinical_filter": {
                     "type": "string",
-                    "description": "extra filtering arguments for `GENERATE_CYTOSURE_FILES:FILTER_VCF`"
+                    "description": "Extra arguments for `PROCESS_SNVS:BCFTOOLS_VIEW_CLINICAL`."
                 },
-                "extra_snv_clinical_filter_args": {
+                "extra_args_snv_research_filter": {
                     "type": "string",
-                    "description": "extra filtering arguments for `PROCESS_SNVS:BCFTOOLS_VIEW_CLINICAL`"
+                    "description": "Extra arguments for `PROCESS_SNVS:BCFTOOLS_VIEW_RESEARCH`."
                 },
-                "extra_snv_research_filter_args": {
+                "extra_args_snv_vep": {
                     "type": "string",
-                    "description": "extra filtering arguments for `PROCESS_SNVS:BCFTOOLS_VIEW_RESEARCH`"
+                    "description": "Extra arguments for `PROCESS_SNVS:ENSEMBLVEP_VEP`."
                 },
-                "extra_vep_snv_args": {
+                "extra_args_sv_vep": {
                     "type": "string",
-                    "description": "extra arguments for `PROCESS_SNVS:ENSEMBLVEP_VEP`"
+                    "description": "Extra arguments for `PROCESS_SVS:ENSEMBLVEP_VEP`."
                 },
-                "extra_sv_vep_args": {
+                "genmod_score_config": {
                     "type": "string",
-                    "description": "extra arguments for `PROCESS_SVS:ENSEMBLVEP_VEP`"
+                    "description": "Path to genmod score configuration file (rank model).",
+                    "format": "file-path",
+                    "pattern": "^\\S+\\.(ini)$",
+                    "exists": true
                 }
             }
         },
@@ -377,7 +426,7 @@
                     "type": "string",
                     "fa_icon": "far fa-check-circle",
                     "description": "Base URL or local path to location of pipeline test dataset files",
-                    "default": "https://raw.githubusercontent.com/Clinical-Genomics/test-datasets/60a4ba9429f86a715fd07000b348cc6433c1c5d4/",
+                    "default": "https://raw.githubusercontent.com/Clinical-Genomics/test-datasets/b9c2328ab3fb456efb079a953a7620af5e15aa8d/",
                     "hidden": true
                 },
                 "trace_report_suffix": {
@@ -404,6 +453,12 @@
     "allOf": [
         {
             "$ref": "#/$defs/input_output_options"
+        },
+        {
+            "$ref": "#/$defs/metadata"
+        },
+        {
+            "$ref": "#/$defs/input_files"
         },
         {
             "$ref": "#/$defs/reference_genome_options"

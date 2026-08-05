@@ -1,17 +1,78 @@
 {
+    "Alignment files from Tumor sample and somatic SV vcf files from TN test data - stub": {
+        "content": [
+            {
+                "versions": [
+                    [
+                        "GENERATE_CYTOSURE_FILES:FILTER_VCF",
+                        "bcftools",
+                        "1.23.1"
+                    ],
+                    [
+                        "GENERATE_CYTOSURE_FILES:TIDDIT_COV",
+                        "tiddit",
+                        "3.9.5"
+                    ],
+                    [
+                        "GENERATE_CYTOSURE_FILES:VCF2CYTOSURE",
+                        "vcf2cytosure",
+                        "0.9.3"
+                    ]
+                ]
+            },
+            {
+                "cgh": [
+                    [
+                        {
+                            "id": "subject_a"
+                        },
+                        "tumor_vcf2cytosure.cgh:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ]
+            }
+        ],
+        "timestamp": "2026-08-03T15:47:37.66426",
+        "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "26.04.6"
+        }
+    },
     "Alignment files from Tumor sample and somatic SV vcf files from TN test data": {
         "content": [
-            [
-                "vcf2cytosure",
-                "vcf2cytosure/tumor.cgh"
-            ],
-            "tumor.cgh",
-            "2dfa8fdd26448127347045837c7cbf7c"
+            {
+                "versions": [
+                    [
+                        "GENERATE_CYTOSURE_FILES:FILTER_VCF",
+                        "bcftools",
+                        "1.23.1"
+                    ],
+                    [
+                        "GENERATE_CYTOSURE_FILES:TIDDIT_COV",
+                        "tiddit",
+                        "3.9.5"
+                    ],
+                    [
+                        "GENERATE_CYTOSURE_FILES:VCF2CYTOSURE",
+                        "vcf2cytosure",
+                        "0.9.3"
+                    ]
+                ]
+            },
+            {
+                "cgh": [
+                    [
+                        {
+                            "id": "subject_a"
+                        },
+                        "tumor_vcf2cytosure.cgh:md5,09c4fba0b534f86fc176fe2ccf00820d"
+                    ]
+                ]
+            }
         ],
+        "timestamp": "2026-08-03T15:47:29.239822",
         "meta": {
-            "nf-test": "0.9.3",
-            "nextflow": "25.10.4"
-        },
-        "timestamp": "2026-05-20T10:15:09.743924"
+            "nf-test": "0.9.5",
+            "nextflow": "26.04.6"
+        }
     }
 }

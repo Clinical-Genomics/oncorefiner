@@ -124,7 +124,7 @@ In order to run the pipeline, develop and test your changes locally, we recommen
 
 Make sure to [test your setup](https://nf-co.re/docs/usage/introduction#how-to-run-a-pipeline) with `-profile test` before running the workflow on actual data.
 
-Additionally, pre-commit hooks are set up to automatically check the code and generate parameters documentation when committing. To install the pre-commit hooks, run `pre-commit install` in the root of the repository. Note that, other than the default pre-commit hooks from the nf-core template, there is an additional hook - [`nf-core pipelines schema docs` pre-commit hook](https://github.com/genomic-medicine-sweden/nf-core-schema-docs) - set up in this codebase for automatically generating parameters documentation if there are any changes to parameters in your commit.
+Additionally, pre-commit hooks are set up to automatically check the code and generate parameters documentation when committing. We recommend using `prek` to run these pre-commit hooks automatically. For this, install `prek` with `conda install prek` and run `prek install` in the root of the repository. Note that, other than the default pre-commit hooks from the nf-core template, there is an additional hook - [`nf-core pipelines schema docs` pre-commit hook](https://github.com/genomic-medicine-sweden/nf-core-schema-docs) - set up in this codebase for automatically generating parameters documentation if there are any changes to parameters in your commit.
 
 #### GitHub Codespaces
 
@@ -210,8 +210,6 @@ qc_bam_text = [
 ]
 ```
 
-For tools that run only when the input samplesheet contains a particular file type, use a helper function rather than a param check — see `hasSpringInput()` as an example.
-
 #### 3. `README.md`
 
 Add the tool to the relevant numbered section in the **Pipeline summary**. If the tool belongs to a new category not yet represented, add a new numbered section in the appropriate position.
@@ -275,7 +273,8 @@ Please use the following naming schemes, to make it easy to understand what is g
 ### Configuration
 
 - Process-level options go in `conf/subworkflows/<subworkflow_name>.config`, not inline in the subworkflow `.nf` file.
-- Use module configs strictly for defining `ext.args`, `ext.args2`, and `ext.prefix`. Do not place complex decision-making, conditions or workflow behaviour logic there. Place test or dataset specific arguments as parameters (ex. in `test_base.config` or `nextflow.config`) that can be accessed by `conf/*`.
+- Use module configs strictly for defining `ext.args`, `ext.args2`, and `ext.prefix`. Do not place complex decision-making, conditions or workflow behaviour logic there.
+- Config files should only contain settings that are relevant for all runs. If there are specific extra arguments for certain tools that are only relevant for test runs, consider creating dedicated parameters for these and define them in the test config files (see `extra_args_cadd_annotate` for an example).
 - Conditional behavior (e.g. save as CRAM vs BAM) is handled in the subworkflow via `channel.empty()` gating — not via config-level flags.
 - Process resource requirements (CPUs / memory / time) go in `conf/base.config` using `withLabel:` selectors so they can be shared across processes. Use `${task.cpus}` and `${task.memory}` in `script:` blocks to apply them dynamically.
 
@@ -288,20 +287,28 @@ Please use the following naming schemes, to make it easy to understand what is g
 
 ### Style
 
+- Sort `include` statements alphabetically by the name inside the brackets. Right-pad each name with spaces so all closing `}` align to the same column (the longest name in the block sets the width):
+
+  ```groovy
+  include { BCFTOOLS_VIEW as FILTER_VCF } from '../../../modules/nf-core/bcftools/view/main'
+  include { TIDDIT_COV                  } from '../../../modules/nf-core/tiddit/cov/main'
+  include { VCF2CYTOSURE                } from '../../../modules/nf-core/vcf2cytosure/main'
+  ```
+
+- Sort items in the `take`, `emit` and `publish` blocks, alphabetically (see example below).
+
 - Both `take:` and `emit:` block entries require an inline type comment. Use `name // type: [mandatory|optional] description` for `take:` and `name = value // channel: [type description]` for `emit:`. Always include the comment — never leave an entry uncommented.
 
   ```groovy
   take:
-      ch_vcf                // channel: [mandatory] [ val(meta), path(vcf) ]
-      ch_reduced_penetrance // channel: [optional]  [ path(penetrance) ]
-      val_aligner           // string:  [mandatory] aligner name (bwa/bwamem2/bwameme)
-      process_with_sort     // Boolean
+  ch_vep_cache       // channel: [optional]  [path(vep_cache)]
+  ch_vep_extra_files // channel: [optional]  [path(plugin_file1), path(plugin_file2), ...]
+  val_cadd_resources // string:  [optional]  path to CADD resources directory
+  val_genome         // string:  [optional]  genome assembly (e.g. "GRCh38")
 
   emit:
-      vcf     = ch_vcf      // channel: [ val(meta), path(vcf) ]
-      publish = ch_publish  // channel: [ val(destination), val(value) ]
+  vcf   = ch_vcf             // channel: [ val(meta), path(vcf) ]
+  index = ch_tbi.mix(ch_csi) // channel: [ val(meta), path(index) ]
   ```
 
-- Avoid using the `.set {ch_*}` operator to create new channels. Use `ch_* = <...>` whenever possible.
-- Intermediate publish channels in `workflows/oncorefiner.nf` follow the `ch_<subworkflow_name>_publish` naming convention and are assigned immediately after the subworkflow call, not inline in the emit block.
-- Initialize all `ch_*_publish` variables at the top of the `main:` block alongside `ch_multiqc_files`.
+- Use `ch_* = <...>` whenever possible. Avoid using the `.set {ch_*}` operator to create new channels.
