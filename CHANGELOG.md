@@ -47,6 +47,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#143](https://github.com/Clinical-Genomics/oncorefiner/pull/143) Added local subworkflow `VCF_ANNOTATE_LINX_FUSIONS` to subworkflow `PROCESS_SVS`, and updated tests.
 - [#84](https://github.com/Clinical-Genomics/oncorefiner/pull/84) Added arguments to VEP keeping invalid variants in output VCF
 - [#144](https://github.com/Clinical-Genomics/oncorefiner/pull/144) Added the parameters `ch_genmod_score_config_sv` & `val_run_genmod_score_sv` for GENMOD scoring of SVs.
+- [#146](https://github.com/Clinical-Genomics/oncorefiner/pull/146) Added the workflow `VCF_ANNOTATE_SCORE_GENMOD` to `PROCESS_SVS`.
 
 ### `Changed`
 
