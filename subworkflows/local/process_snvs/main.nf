@@ -148,8 +148,8 @@ workflow PROCESS_SNVS {
             .join(ch_research_filtered_tbi)
     }
 
-        // Clinical Filtering
-        BCFTOOLS_VIEW_CLINICAL(ch_clinical_filtering_in, [], [], [])
+    // Clinical Filtering
+    BCFTOOLS_VIEW_CLINICAL(ch_clinical_filtering_in, [], [], [])
 
     emit:
     cadd_annotated_vcf    = ch_cadd_vcf                    // channel: [val(meta), path(vcf)]
