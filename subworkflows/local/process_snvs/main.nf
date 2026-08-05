@@ -43,9 +43,9 @@ workflow PROCESS_SNVS {
     ch_vcfanno_toml            // channel: [optional]  [path(toml_file)]
     ch_vep_cache               // channel: [optional]  [path(vep_cache)]
     ch_vep_extra_files         // channel: [optional]  [path(plugin_file1), path(plugin_file2), ...]
-    val_cadd_resources_snv     // string:  [optional]  path to CADD resources directory
+    val_cadd_resources         // string:  [optional]  path to CADD resources directory
     val_genome                 // string:  [optional]  genome assembly (e.g. "GRCh38")
-    val_run_genmod_score       // boolean: [mandatory] whether to skip VCF_ANNOTATE_SCORE_GENMOD process
+    val_run_genmod_score_snv   // boolean: [mandatory] whether to skip VCF_ANNOTATE_SCORE_GENMOD process for SNVs
     val_species                // string:  [optional]  species (e.g. "homo_sapiens")
     val_vep_cache_version      // string:  [optional]  version of vep cache to use (e.g. "107")
 
@@ -79,7 +79,7 @@ workflow PROCESS_SNVS {
             .set { ch_vep_snv }
 
     // ANNOTATE WITH CADD - currently depends on val_cadd_resources - could be improved?
-    if (val_cadd_resources_snv) {
+    if (val_cadd_resources) {
 
         ch_cadd_in = BCFTOOLS_VIEW_RESEARCH.out.vcf
 
@@ -115,13 +115,13 @@ workflow PROCESS_SNVS {
         ch_vep_extra_files
     )
 
-    if (val_run_genmod_score) {
+    if (val_run_genmod_score_snv) {
         // Rank and add score annotation with genmod score
         ch_annotate_score_genmod_in = ENSEMBLVEP_VEP.out.vcf
             .combine(ch_genmod_score_config_snv)
-            .multiMap { meta_vcf, vcf, _meta_genmod_score_config, genmod_score_config ->
+            .multiMap { meta_vcf, vcf, _meta_genmod_score_config_snv, genmod_score_config_snv ->
                 vcf: tuple(meta_vcf, vcf)
-                score_config: tuple(meta_vcf, genmod_score_config)
+                score_config: tuple(meta_vcf, genmod_score_config_snv)
             }
 
         VCF_ANNOTATE_SCORE_GENMOD (
