@@ -5,7 +5,7 @@ nextflow_pipeline {
     tag "pipeline"
     tag "conditional_inputs_stub"
 
-    test("No `genmod_score_config` with '-profile test' - stub") {
+    test("No `genmod_score_config_*` with '-profile test' - stub") {
 
         options "-stub"
 
@@ -13,6 +13,7 @@ nextflow_pipeline {
             params {
                 outdir = "$outputDir"
                 genmod_score_config_snv = null
+                genmod_score_config_sv  = null
             }
         }
 

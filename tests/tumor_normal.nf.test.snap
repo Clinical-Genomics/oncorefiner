@@ -235,7 +235,7 @@
                 ],
                 [
                     "test_tumor_normal_case_clinical.vcf.gz",
-                    "f92bc125c747cdbce5e5c6c2ff8b023a"
+                    "4c1869cefec5fbfc81c2b827dcf51387"
                 ],
                 [
                     "test_tumor_normal_case_research.vcf.gz",
@@ -247,7 +247,7 @@
                 ]
             ]
         ],
-        "timestamp": "2026-08-04T11:48:38.286063",
+        "timestamp": "2026-08-05T10:46:59.197129",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
