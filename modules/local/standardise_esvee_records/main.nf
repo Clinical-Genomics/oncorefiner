@@ -4,8 +4,8 @@ process STANDARDISE_ESVEE_RECORDS {
     conda "${moduleDir}/environment.yml"
 
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/91/91b47b3490e3993dbca42c06d76edbb65b887ac5f9a72bcb31f63471fbdcdecf/data' :
-        'community.wave.seqera.io/library/python_click:7a177b12e71d4c56' }"
+        'https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/02/02f777287b58f5abc9a3748d6d33d83d52e83e3afdf424b1b9009a5511789995/data' :
+        'community.wave.seqera.io/library/python_click_pysam:5794ef2a03d1ee5e' }"
 
     input:
     tuple val(meta), path(sv_vcf)
@@ -39,7 +39,7 @@ process STANDARDISE_ESVEE_RECORDS {
     ##contig=<ID=chr1,length=1000000>
     ##INFO=<ID=SVTYPE,Number=1,Type=String,Description="Structural variant type">
     ##INFO=<ID=END,Number=1,Type=Integer,Description="End coordinate">
-    ##INFO=<ID=INSSEQ,Number=1,Type=String,Description="Inserted sequence">
+    ##INFO=<ID=JUNCTIONSEQ,Number=1,Type=String,Description="Non-anchor sequence retained from the canonical ESVEE breakend ALT allele; may include reference-derived assembly sequence and does not necessarily represent a novel insertion">
     #CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO
     EOF
 
@@ -50,7 +50,7 @@ process STANDARDISE_ESVEE_RECORDS {
     summary	records_removed_by_merging	0
     summary	merged_pairs	0
     summary	sgl_converted_to_bnd	0
-    summary	symbolic_records_with_insseq	0
+    summary	symbolic_records_with_junctionseq	0
     summary	unchanged_records	0
     summary	warnings	0
     EOF

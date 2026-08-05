@@ -13,9 +13,11 @@ Conversion rules
   - ALT becomes <DEL>, <DUP>, <INV> or <INS>;
   - END is set to the partner coordinate;
   - MATEID is removed;
-  - SVID and the template record's other annotations are retained;
-  - non-reference junction sequence is extracted from the canonical
-    lower-coordinate record and stored in INSSEQ.
+  - SVID and the canonical record's other annotations are retained;
+  - non-anchor sequence from the canonical ESVEE breakend ALT is stored
+    in JUNCTIONSEQ. This sequence may contain reference-derived assembly
+    sequence and must not be interpreted as necessarily representing a
+    novel insertion.
 * Structurally unsafe pairs are retained unchanged and reported.
 
 The program reads the whole VCF before transforming it. This permits reliable
@@ -24,16 +26,15 @@ mate pairing and complete conversion statistics.
 
 from __future__ import annotations
 
-import gzip
 import re
 import sys
 from collections import Counter
-from contextlib import nullcontext
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import ContextManager, Iterable, TextIO
+from typing import Iterable
 
 import click
+import pysam
 
 
 COLLAPSIBLE_TYPES = {"DEL", "DUP", "INV", "INS"}
@@ -45,93 +46,6 @@ BREAKEND_ALT_RE = re.compile(
     r"(?P=bracket)"
     r"(?P<right>[^\[\]]*)$"
 )
-
-
-@dataclass
-class VcfRecord:
-    fields: list[str]
-    input_index: int
-
-    @classmethod
-    def from_line(cls, line: str, input_index: int) -> "VcfRecord":
-        fields = line.rstrip("\n").split("\t")
-        if len(fields) < 8:
-            raise click.ClickException(
-                f"Malformed VCF record {input_index + 1}: expected at least "
-                f"8 columns, found {len(fields)}"
-            )
-        try:
-            int(fields[1])
-        except ValueError as error:
-            raise click.ClickException(
-                f"Malformed POS in record {input_index + 1}: {fields[1]!r}"
-            ) from error
-        return cls(fields=fields, input_index=input_index)
-
-    def copy(self) -> "VcfRecord":
-        return VcfRecord(self.fields.copy(), self.input_index)
-
-    def to_line(self) -> str:
-        return "\t".join(self.fields) + "\n"
-
-    @property
-    def chrom(self) -> str:
-        return self.fields[0]
-
-    @property
-    def pos(self) -> int:
-        return int(self.fields[1])
-
-    @property
-    def record_id(self) -> str:
-        return self.fields[2]
-
-    @property
-    def ref(self) -> str:
-        return self.fields[3]
-
-    @property
-    def alt(self) -> str:
-        return self.fields[4]
-
-    @alt.setter
-    def alt(self, value: str) -> None:
-        self.fields[4] = value
-
-    @property
-    def info(self) -> list[str]:
-        value = self.fields[7]
-        return [] if value in {"", "."} else value.split(";")
-
-    @info.setter
-    def info(self, entries: Iterable[str]) -> None:
-        items = list(entries)
-        self.fields[7] = ";".join(items) if items else "."
-
-    def info_value(self, key: str) -> str | None:
-        prefix = f"{key}="
-        for entry in self.info:
-            if entry.startswith(prefix):
-                return entry[len(prefix):]
-        return None
-
-    def set_info(self, key: str, value: str) -> None:
-        prefix = f"{key}="
-        entries = [
-            entry
-            for entry in self.info
-            if entry != key and not entry.startswith(prefix)
-        ]
-        entries.append(f"{key}={value}")
-        self.info = entries
-
-    def remove_info(self, key: str) -> None:
-        prefix = f"{key}="
-        self.info = [
-            entry
-            for entry in self.info
-            if entry != key and not entry.startswith(prefix)
-        ]
 
 
 @dataclass(frozen=True)
@@ -147,7 +61,7 @@ class ParsedBreakendAlt:
 
     @property
     def remote_first(self) -> bool:
-        """True when the bracketed remote locus appears before local sequence."""
+        """Return True when the bracketed remote locus precedes local sequence."""
         return not self.left_sequence
 
 
@@ -157,7 +71,7 @@ class Report:
     output_records: int = 0
     sgl_to_bnd: int = 0
     merged_pairs: int = 0
-    symbolic_with_insseq: int = 0
+    symbolic_with_junctionseq: int = 0
     unchanged_records: int = 0
     input_svtypes: Counter[str] = field(default_factory=Counter)
     output_svtypes: Counter[str] = field(default_factory=Counter)
@@ -182,14 +96,38 @@ class Report:
         self.details.append(("action", record_label, message))
 
 
-def normalize_svtype(value: str | None) -> str:
-    return value if value else "MISSING"
+def normalize_svtype(value: object | None) -> str:
+    return str(value) if value is not None else "MISSING"
+
+
+def scalar_info(record: pysam.VariantRecord, key: str) -> str | None:
+    """
+    Return a single INFO value as a string.
+
+    MATEID and SVTYPE are expected to be scalar in the ESVEE VCF. A one-item
+    tuple is accepted for robustness, while multi-valued fields are rejected.
+    """
+    value = record.info.get(key)
+    if value is None:
+        return None
+
+    if isinstance(value, tuple):
+        if len(value) != 1:
+            return None
+        value = value[0]
+
+    return str(value)
+
+
+def record_label(record: pysam.VariantRecord) -> str:
+    return f"ID={record.id}"
 
 
 def parse_breakend_alt(alt: str) -> ParsedBreakendAlt | None:
     match = BREAKEND_ALT_RE.fullmatch(alt)
     if match is None:
         return None
+
     return ParsedBreakendAlt(
         remote_chrom=match.group("chrom"),
         remote_pos=int(match.group("pos")),
@@ -198,21 +136,34 @@ def parse_breakend_alt(alt: str) -> ParsedBreakendAlt | None:
     )
 
 
-def extract_non_anchor_sequence(record: VcfRecord) -> str | None:
-    """
-    Extract sequence beyond the local REF anchor from a breakend ALT.
+def get_single_alt(record: pysam.VariantRecord) -> str | None:
+    if record.alts is None or len(record.alts) != 1:
+        return None
+    return record.alts[0]
 
-    VCF breakend placement determines which side contains the local anchor:
+
+def extract_non_anchor_sequence(
+    record: pysam.VariantRecord,
+) -> str | None:
+    """
+    Extract the non-anchor sequence from a breakend ALT.
+
+    VCF breakend placement determines which side contains the local REF anchor:
 
     * local sequence before the bracket, e.g. A[chr1:100[
       -> REF anchor is at the beginning;
     * bracketed remote locus before local sequence, e.g. ]chr1:100]ACGT
       -> REF anchor is at the end.
 
-    Using bracket placement avoids ambiguity when the local sequence happens
-    to begin and end with the same base.
+    The returned sequence is retained as JUNCTIONSEQ. It may include
+    reference-derived ESVEE assembly sequence and is not asserted to be a
+    novel insertion.
     """
-    parsed = parse_breakend_alt(record.alt)
+    alt = get_single_alt(record)
+    if alt is None:
+        return None
+
+    parsed = parse_breakend_alt(alt)
     if parsed is None:
         return None
 
@@ -229,26 +180,29 @@ def extract_non_anchor_sequence(record: VcfRecord) -> str | None:
     return sequence[len(ref):]
 
 
-def choose_insert_sequence(
-    canonical: VcfRecord,
+def choose_junction_sequence(
+    canonical: pysam.VariantRecord,
 ) -> tuple[str | None, str | None]:
     """
-    Extract INSSEQ from the canonical record only.
+    Extract JUNCTIONSEQ from the canonical record only.
 
-    The mate's junction sequence is deliberately not compared. ESVEE may
-    represent or assemble the two breakend alleles differently, and this
-    converter is intended to preserve a deterministic sequence annotation,
-    not validate assembly agreement between mates.
+    The mate sequence is deliberately not compared. ESVEE may represent or
+    assemble the two breakend alleles differently; this converter preserves
+    one deterministic sequence annotation rather than validating agreement
+    between mates.
     """
-    sequence = extract_non_anchor_sequence(canonical)
-    if sequence is None:
+    junction_sequence = extract_non_anchor_sequence(canonical)
+    if junction_sequence is None:
         return None, "anchor_not_identified"
-    return sequence, None
+    return junction_sequence, None
 
 
-def validate_pair(first: VcfRecord, second: VcfRecord) -> tuple[bool, str, str]:
-    svtype1 = first.info_value("SVTYPE")
-    svtype2 = second.info_value("SVTYPE")
+def validate_pair(
+    first: pysam.VariantRecord,
+    second: pysam.VariantRecord,
+) -> tuple[bool, str, str]:
+    svtype1 = scalar_info(first, "SVTYPE")
+    svtype2 = scalar_info(second, "SVTYPE")
 
     if svtype1 != svtype2:
         return False, "different_svtype", (
@@ -258,240 +212,309 @@ def validate_pair(first: VcfRecord, second: VcfRecord) -> tuple[bool, str, str]:
     if svtype1 not in COLLAPSIBLE_TYPES:
         return False, "not_collapsible", f"SVTYPE {svtype1!r} is not collapsible"
 
-    if first.chrom != second.chrom:
+    if first.contig != second.contig:
         return False, "interchromosomal_pair", "mates are on different chromosomes"
 
     if (
-        first.info_value("MATEID") != second.record_id
-        or second.info_value("MATEID") != first.record_id
+        scalar_info(first, "MATEID") != second.id
+        or scalar_info(second, "MATEID") != first.id
     ):
         return False, "nonreciprocal_mateid", "MATEID links are not reciprocal"
 
-    alt1 = parse_breakend_alt(first.alt)
-    alt2 = parse_breakend_alt(second.alt)
+    alt1_string = get_single_alt(first)
+    alt2_string = get_single_alt(second)
+    if alt1_string is None or alt2_string is None:
+        return False, "alt_count_invalid", (
+            "one or both records do not have exactly one ALT allele"
+        )
+
+    alt1 = parse_breakend_alt(alt1_string)
+    alt2 = parse_breakend_alt(alt2_string)
     if alt1 is None or alt2 is None:
         return False, "alt_parse_failure", (
             "one or both ALT alleles are not parseable breakends"
         )
 
-    if alt1.remote_chrom != second.chrom or alt1.remote_pos != second.pos:
+    if alt1.remote_chrom != second.contig or alt1.remote_pos != second.pos:
         return False, "alt_mate_mismatch", "first ALT does not point to its mate"
 
-    if alt2.remote_chrom != first.chrom or alt2.remote_pos != first.pos:
+    if alt2.remote_chrom != first.contig or alt2.remote_pos != first.pos:
         return False, "alt_mate_mismatch", "second ALT does not point to its mate"
 
     return True, "", ""
 
 
 def collapse_pair(
-    first: VcfRecord,
-    second: VcfRecord,
-) -> tuple[VcfRecord | None, str | None, str | None]:
+    first: pysam.VariantRecord,
+    second: pysam.VariantRecord,
+) -> tuple[pysam.VariantRecord | None, str | None, str | None]:
     valid, reason, message = validate_pair(first, second)
     if not valid:
         return None, reason, message
 
     canonical, partner = sorted(
         (first, second),
-        key=lambda record: (record.chrom, record.pos, record.input_index),
+        key=lambda record: (record.contig, record.pos),
     )
 
-    insert_sequence, sequence_error = choose_insert_sequence(canonical)
+    junction_sequence, sequence_error = choose_junction_sequence(canonical)
     if sequence_error:
         return (
             None,
             sequence_error,
             "the local REF anchor could not be identified in the canonical ALT allele",
         )
-    svtype = canonical.info_value("SVTYPE")
+
+    svtype = scalar_info(canonical, "SVTYPE")
     assert svtype is not None
 
     output = canonical.copy()
-    output.input_index = min(first.input_index, second.input_index)
-    output.alt = f"<{svtype}>"
-    output.remove_info("MATEID")
-    output.set_info("END", str(partner.pos))
+    output.alts = (f"<{svtype}>",)
 
-    if insert_sequence:
-        output.set_info("INSSEQ", insert_sequence)
-    else:
-        output.remove_info("INSSEQ")
+    if "MATEID" in output.info:
+        del output.info["MATEID"]
+
+    # pysam/HTSlib exposes INFO/END through VariantRecord.stop rather than
+    # VariantRecord.info. Assigning the one-based partner position here causes
+    # the VCF writer to emit END=<partner.pos>.
+    output.stop = partner.pos
+
+    if junction_sequence:
+        output.info["JUNCTIONSEQ"] = junction_sequence
+    elif "JUNCTIONSEQ" in output.info:
+        del output.info["JUNCTIONSEQ"]
 
     return output, None, None
 
 
 def build_record_index(
-    records: list[VcfRecord],
+    records: Iterable[pysam.VariantRecord],
     report: Report,
-) -> dict[str, VcfRecord]:
-    by_id: dict[str, VcfRecord] = {}
+) -> dict[str, pysam.VariantRecord]:
+    by_id: dict[str, pysam.VariantRecord] = {}
     duplicate_ids: set[str] = set()
 
     for record in records:
-        record_id = record.record_id
-        if record_id in {"", "."}:
+        record_id = record.id
+        if record_id in {None, "", "."}:
             continue
+
         if record_id in by_id:
             duplicate_ids.add(record_id)
         else:
             by_id[record_id] = record
 
-    for record_id in duplicate_ids:
-        by_id.pop(record_id, None)
+    for duplicate_id in duplicate_ids:
+        by_id.pop(duplicate_id, None)
         report.warn(
             "duplicate_record_id",
-            f"ID={record_id}",
+            f"ID={duplicate_id}",
             "duplicate record ID; records with this ID cannot be paired safely",
         )
 
     return by_id
 
 
-def transform_records(records: list[VcfRecord], report: Report) -> list[VcfRecord]:
+def transform_records(
+    records: list[pysam.VariantRecord],
+    report: Report,
+) -> list[pysam.VariantRecord]:
     """
-    Two-pass transformation.
+    Transform each record or reciprocal mate pair exactly once.
 
-    Pass 1 builds the ID index. Pass 2 classifies and transforms each record or
-    mate pair exactly once.
+    Record object identity is used to track consumed input records because
+    pysam VariantRecord objects do not carry the original line index.
     """
     report.input_records = len(records)
     report.input_svtypes.update(
-        normalize_svtype(record.info_value("SVTYPE")) for record in records
+        normalize_svtype(scalar_info(record, "SVTYPE")) for record in records
     )
 
     by_id = build_record_index(records, report)
+    input_order = {id(record): index for index, record in enumerate(records)}
     consumed: set[int] = set()
-    output: list[VcfRecord] = []
+    output_with_order: list[tuple[int, pysam.VariantRecord]] = []
 
     for record in records:
-        if record.input_index in consumed:
+        record_key = id(record)
+        if record_key in consumed:
             continue
 
-        svtype = record.info_value("SVTYPE")
+        svtype = scalar_info(record, "SVTYPE")
 
         if svtype == "SGL":
             converted = record.copy()
-            converted.set_info("SVTYPE", "BND")
-            output.append(converted)
-            consumed.add(record.input_index)
+            converted.info["SVTYPE"] = "BND"
+            output_with_order.append((input_order[record_key], converted))
+            consumed.add(record_key)
             report.sgl_to_bnd += 1
             report.action(
-                f"ID={record.record_id}",
+                record_label(record),
                 "converted SVTYPE=SGL to SVTYPE=BND",
             )
             continue
 
         if svtype == "BND" or svtype not in COLLAPSIBLE_TYPES:
-            output.append(record)
-            consumed.add(record.input_index)
+            output_with_order.append((input_order[record_key], record))
+            consumed.add(record_key)
             report.unchanged_records += 1
             continue
 
-        mate_id = record.info_value("MATEID")
+        mate_id = scalar_info(record, "MATEID")
         mate = by_id.get(mate_id) if mate_id else None
 
         if mate is None:
             report.warn(
                 "mate_not_available",
-                f"ID={record.record_id}",
+                record_label(record),
                 f"mate {mate_id!r} was not available",
             )
-            output.append(record)
-            consumed.add(record.input_index)
+            output_with_order.append((input_order[record_key], record))
+            consumed.add(record_key)
             report.unchanged_records += 1
             continue
 
-        if mate.input_index in consumed:
+        mate_key = id(mate)
+        if mate_key in consumed:
             report.warn(
                 "mate_already_consumed",
-                f"ID={record.record_id}",
+                record_label(record),
                 f"mate {mate_id!r} was already processed",
             )
-            output.append(record)
-            consumed.add(record.input_index)
+            output_with_order.append((input_order[record_key], record))
+            consumed.add(record_key)
             report.unchanged_records += 1
             continue
 
         collapsed, reason, message = collapse_pair(record, mate)
-        pair_label = f"ID={record.record_id}/{mate.record_id}"
+        pair_label = f"ID={record.id}/{mate.id}"
+        pair_order = min(input_order[record_key], input_order[mate_key])
 
         if collapsed is None:
             assert reason is not None and message is not None
             report.warn(reason, pair_label, message)
-            output.extend(sorted((record, mate), key=lambda item: item.input_index))
+            output_with_order.extend(
+                sorted(
+                    (
+                        (input_order[record_key], record),
+                        (input_order[mate_key], mate),
+                    ),
+                    key=lambda item: item[0],
+                )
+            )
             report.unchanged_records += 2
         else:
-            output.append(collapsed)
-            merged_svtype = normalize_svtype(collapsed.info_value("SVTYPE"))
+            output_with_order.append((pair_order, collapsed))
+            merged_svtype = normalize_svtype(
+                scalar_info(collapsed, "SVTYPE")
+            )
             report.merged_pairs += 1
             report.merged_by_svtype[merged_svtype] += 1
-            if collapsed.info_value("INSSEQ"):
-                report.symbolic_with_insseq += 1
+            if scalar_info(collapsed, "JUNCTIONSEQ"):
+                report.symbolic_with_junctionseq += 1
             report.action(
                 pair_label,
                 f"merged as {merged_svtype} at "
-                f"{collapsed.chrom}:{collapsed.pos}-{collapsed.info_value('END')}",
+                f"{collapsed.contig}:{collapsed.pos}-{collapsed.stop}",
             )
 
-        consumed.add(record.input_index)
-        consumed.add(mate.input_index)
+        consumed.add(record_key)
+        consumed.add(mate_key)
 
-    output.sort(key=lambda record: record.input_index)
+    output_with_order.sort(key=lambda item: item[0])
+    output = [record for _, record in output_with_order]
+
     report.output_records = len(output)
     report.output_svtypes.update(
-        normalize_svtype(record.info_value("SVTYPE")) for record in output
+        normalize_svtype(scalar_info(record, "SVTYPE")) for record in output
     )
     return output
 
 
-def open_text_input(path: Path | None) -> ContextManager[TextIO]:
-    if path is None:
-        return nullcontext(sys.stdin)
-    if path.suffix == ".gz":
-        return gzip.open(path, "rt")
-    return path.open("r")
+def add_required_headers(
+    header: pysam.VariantHeader,
+) -> pysam.VariantHeader:
+    output_header = header.copy()
 
-
-def open_text_output(path: Path | None) -> ContextManager[TextIO]:
-    if path is None:
-        return nullcontext(sys.stdout)
-    if path.suffix == ".gz":
-        return gzip.open(path, "wt")
-    return path.open("w")
-
-
-def add_required_headers(headers: list[str]) -> list[str]:
-    has_end = any(line.startswith("##INFO=<ID=END,") for line in headers)
-    has_insseq = any(line.startswith("##INFO=<ID=INSSEQ,") for line in headers)
-
-    additions: list[str] = []
-    if not has_end:
-        additions.append(
-            '##INFO=<ID=END,Number=1,Type=Integer,'
-            'Description="End coordinate of the symbolic structural variant">\n'
-        )
-    if not has_insseq:
-        additions.append(
-            '##INFO=<ID=INSSEQ,Number=1,Type=String,'
-            'Description="Non-reference junction sequence extracted from the '
-            'original ESVEE breakend ALT allele">\n'
+    if "END" not in output_header.info:
+        output_header.info.add(
+            "END",
+            number=1,
+            type="Integer",
+            description="End coordinate of the symbolic structural variant",
         )
 
-    result: list[str] = []
-    inserted = False
-    for line in headers:
-        if line.startswith("#CHROM") and not inserted:
-            result.extend(additions)
-            inserted = True
-        result.append(line)
+    if "JUNCTIONSEQ" not in output_header.info:
+        output_header.info.add(
+            "JUNCTIONSEQ",
+            number=1,
+            type="String",
+            description=(
+                "Non-anchor sequence retained from the canonical ESVEE "
+                "breakend ALT allele; may include reference-derived assembly "
+                "sequence and does not necessarily represent a novel insertion"
+            ),
+        )
 
-    if not inserted:
-        raise click.ClickException("VCF header does not contain a #CHROM line")
-
-    return result
+    return output_header
 
 
-def write_report(path: Path, report: Report, include_details: bool) -> None:
+def read_records(
+    input_path: Path | None,
+) -> tuple[pysam.VariantHeader, list[pysam.VariantRecord]]:
+    filename = "-" if input_path is None else str(input_path)
+
+    try:
+        with pysam.VariantFile(filename, "r") as reader:
+            output_header = add_required_headers(reader.header)
+            records: list[pysam.VariantRecord] = []
+
+            for record in reader:
+                copied = record.copy()
+                copied.translate(output_header)
+                records.append(copied)
+
+            return output_header, records
+    except (OSError, ValueError) as error:
+        source = "stdin" if input_path is None else str(input_path)
+        raise click.ClickException(
+            f"Failed to read VCF from {source}: {error}"
+        ) from error
+
+
+def output_mode(path: Path | None) -> str:
+    if path is None:
+        return "w"
+    return "wz" if path.suffix == ".gz" else "w"
+
+
+def write_records(
+    output_path: Path | None,
+    header: pysam.VariantHeader,
+    records: Iterable[pysam.VariantRecord],
+) -> None:
+    filename = "-" if output_path is None else str(output_path)
+
+    try:
+        with pysam.VariantFile(
+            filename,
+            output_mode(output_path),
+            header=header,
+        ) as writer:
+            for record in records:
+                writer.write(record)
+    except (OSError, ValueError) as error:
+        destination = "stdout" if output_path is None else str(output_path)
+        raise click.ClickException(
+            f"Failed to write VCF to {destination}: {error}"
+        ) from error
+
+
+def write_report(
+    path: Path,
+    report: Report,
+    include_details: bool,
+) -> None:
     rows: list[tuple[str, str, str]] = [
         ("summary", "input_records", str(report.input_records)),
         ("summary", "output_records", str(report.output_records)),
@@ -504,8 +527,8 @@ def write_report(path: Path, report: Report, include_details: bool) -> None:
         ("summary", "sgl_converted_to_bnd", str(report.sgl_to_bnd)),
         (
             "summary",
-            "symbolic_records_with_insseq",
-            str(report.symbolic_with_insseq),
+            "symbolic_records_with_junctionseq",
+            str(report.symbolic_with_junctionseq),
         ),
         ("summary", "unchanged_records", str(report.unchanged_records)),
         ("summary", "warnings", str(report.warning_count)),
@@ -523,15 +546,20 @@ def write_report(path: Path, report: Report, include_details: bool) -> None:
     for reason, count in sorted(report.warnings_by_reason.items()):
         rows.append(("warnings_by_reason", reason, str(count)))
 
-    with path.open("w") as handle:
-        handle.write("section\tname\tvalue\n")
-        for section, name, value in rows:
-            handle.write(f"{section}\t{name}\t{value}\n")
+    try:
+        with path.open("w") as handle:
+            handle.write("section\tname\tvalue\n")
+            for section, name, value in rows:
+                handle.write(f"{section}\t{name}\t{value}\n")
 
-        if include_details:
-            handle.write("\nkind\trecords\tdescription\n")
-            for kind, records, description in report.details:
-                handle.write(f"{kind}\t{records}\t{description}\n")
+            if include_details:
+                handle.write("\nkind\trecords\tdescription\n")
+                for kind, records, description in report.details:
+                    handle.write(f"{kind}\t{records}\t{description}\n")
+    except OSError as error:
+        raise click.ClickException(
+            f"Failed to write report to {path}: {error}"
+        ) from error
 
 
 @click.command(context_settings={"help_option_names": ["-h", "--help"]})
@@ -550,7 +578,7 @@ def write_report(path: Path, report: Report, include_details: bool) -> None:
     "--output",
     "output_vcf",
     type=click.Path(path_type=Path, dir_okay=False),
-    help="Output .vcf or .vcf.gz. Defaults to stdout.",
+    help="Output .vcf or BGZF-compressed .vcf.gz. Defaults to stdout.",
 )
 @click.option(
     "--report",
@@ -575,40 +603,17 @@ def main(
     """
     Collapse paired ESVEE DEL/DUP/INV/INS breakends into symbolic VCF records.
 
-    INPUT_VCF may be plain text or gzip-compressed. When omitted, input is
-    read from stdin.
+    INPUT_VCF may be plain text or BGZF/gzip-compressed. When omitted, input
+    is read from stdin.
     """
     if verbose_report and report_path is None:
         raise click.UsageError("--verbose-report requires --report")
 
-    headers: list[str] = []
-    records: list[VcfRecord] = []
-    seen_column_header = False
-
-    with open_text_input(input_vcf) as input_handle:
-        for line in input_handle:
-            if line.startswith("#"):
-                headers.append(line)
-                if line.startswith("#CHROM"):
-                    seen_column_header = True
-                continue
-
-            if not seen_column_header:
-                raise click.ClickException(
-                    "Encountered a VCF record before the #CHROM header"
-                )
-
-            if line.strip():
-                records.append(VcfRecord.from_line(line, len(records)))
+    header, records = read_records(input_vcf)
 
     report = Report()
     transformed = transform_records(records, report)
-    output_headers = add_required_headers(headers)
-
-    with open_text_output(output_vcf) as output_handle:
-        output_handle.writelines(output_headers)
-        for record in transformed:
-            output_handle.write(record.to_line())
+    write_records(output_vcf, header, transformed)
 
     if report_path is not None:
         write_report(report_path, report, verbose_report)
