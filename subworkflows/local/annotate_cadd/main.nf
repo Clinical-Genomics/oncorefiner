@@ -18,7 +18,7 @@ workflow ANNOTATE_CADD {
     ch_vcf                   // channel: [mandatory] [val(meta), path(vcf)]
     val_genome               // string:  [mandatory] GRCh37 or GRCh38
     ch_fai                   // channel: [mandatory] [val(meta), path(fai)]
-    ch_header                // channel: [mandatory] [path(txt)]
+    ch_header                // channel: [mandatory] [val(meta), path(header)]
     ch_cadd_resources        // channel: [mandatory] [val(meta), path(dir)]
     ch_cadd_prescored_indels // channel: [mandatory] [val(meta), path(dir)]
 

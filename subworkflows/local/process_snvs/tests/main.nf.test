@@ -36,7 +36,12 @@ nextflow_workflow {
                     file(params.pipelines_testdata_base_path + 'reference/GRCh38/GRCh38_masked_exclusions_alts_hlas_subset.fasta', checkIfExists: true)
                 ])
                 input[1] = channel.fromPath(params.pipelines_testdata_base_path + 'reference/GRCh38/GRCh38_masked_exclusions_alts_hlas_subset.fasta.fai', checkIfExists: true).map {it -> [[id:it.simpleName], it]  }.collect()
-                input[2] = channel.fromPath("$projectDir/assets/cadd_to_vcf_header.txt", checkIfExists: true).collect()
+                input[2] = channel.of(
+                    tuple(
+                        [id: 'subject_a', case_id: 'subject_a'],
+                        file("$projectDir/assets/cadd_to_vcf_header.txt", checkIfExists: true)
+                    )
+                )
                 input[3] = null
                 input[4] = null
                 input[5] = channel.of([
