@@ -86,6 +86,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#118](https://github.com/Clinical-Genomics/oncorefiner/pull/118) Added parameters for LINX files and a header file to assets.
 - [#161](https://github.com/Clinical-Genomics/oncorefiner/pull/161) Template update for nf-core tools 4.0.3.
 - [#160](https://github.com/Clinical-Genomics/oncorefiner/pull/160) Updated nftutils from 0.0.3 to 1.0.0.
+- [#105](https://github.com/Clinical-Genomics/oncorefiner/pull/105/) Decoupled subworkflow tests (`PROCESS_SNVS`, `PROCESS_SVS` and `PREPARE_REFERENCES`) from config files in `conf/subworkflows` and added necessary config settings to local `*/tests/nextflow.config`.
 
 ### `Fixed`
 
