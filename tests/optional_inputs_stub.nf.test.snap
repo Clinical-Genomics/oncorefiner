@@ -50,14 +50,15 @@
                 "alignments/subject_a_normal.cram.crai",
                 "alignments/subject_a_tumor.cram",
                 "alignments/subject_a_tumor.cram.crai",
-                "multiqc",
-                "multiqc/multiqc_data",
-                "multiqc/multiqc_data/.stub",
-                "multiqc/multiqc_plots",
-                "multiqc/multiqc_plots/.stub",
-                "multiqc/multiqc_report.html",
                 "pipeline_info",
                 "pipeline_info/oncorefiner_software_mqc_versions.yml",
+                "qc",
+                "qc/multiqc",
+                "qc/multiqc/multiqc_data",
+                "qc/multiqc/multiqc_data/.stub",
+                "qc/multiqc/multiqc_plots",
+                "qc/multiqc/multiqc_plots/.stub",
+                "qc/multiqc/multiqc_report.html",
                 "snv",
                 "snv/test_tumor_normal_case_clinical.vcf.gz",
                 "snv/test_tumor_normal_case_clinical.vcf.gz.tbi",
@@ -78,7 +79,7 @@
                 "sv/tumor.cgh"
             ]
         ],
-        "timestamp": "2026-08-04T11:46:33.398742",
+        "timestamp": "2026-08-06T10:44:41.553337",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
@@ -141,14 +142,15 @@
                 "alignments/subject_a_normal.cram.crai",
                 "alignments/subject_a_tumor.cram",
                 "alignments/subject_a_tumor.cram.crai",
-                "multiqc",
-                "multiqc/multiqc_data",
-                "multiqc/multiqc_data/.stub",
-                "multiqc/multiqc_plots",
-                "multiqc/multiqc_plots/.stub",
-                "multiqc/multiqc_report.html",
                 "pipeline_info",
                 "pipeline_info/oncorefiner_software_mqc_versions.yml",
+                "qc",
+                "qc/multiqc",
+                "qc/multiqc/multiqc_data",
+                "qc/multiqc/multiqc_data/.stub",
+                "qc/multiqc/multiqc_plots",
+                "qc/multiqc/multiqc_plots/.stub",
+                "qc/multiqc/multiqc_report.html",
                 "snv",
                 "snv/test_tumor_normal_case_clinical.vcf.gz",
                 "snv/test_tumor_normal_case_clinical.vcf.gz.tbi",
@@ -171,7 +173,7 @@
                 "sv/tumor.cgh"
             ]
         ],
-        "timestamp": "2026-08-04T11:47:22.792551",
+        "timestamp": "2026-08-06T10:45:33.963877",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"

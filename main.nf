@@ -211,8 +211,8 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     cadd_annotated_tbi        = ONCOREFINER.out.cadd_annotated_tbi        // channel: [val(meta), path(tbi)]
     cram                      = SAMTOOLS_VIEW.out.cram                    // channel: [val(meta), path(cram)]
     crai                      = SAMTOOLS_VIEW.out.crai                    // channel: [val(meta), path(crai)]
-    multiqc_data               = ONCOREFINER.out.multiqc_data               // channel: [val(meta), path(multiqc_data)]
-    multiqc_plots              = ONCOREFINER.out.multiqc_plots              // channel: [val(meta), path(multiqc_plots)]
+    multiqc_data              = ONCOREFINER.out.multiqc_data              // channel: [val(meta), path(multiqc_data)]
+    multiqc_plots             = ONCOREFINER.out.multiqc_plots             // channel: [val(meta), path(multiqc_plots)]
     multiqc_report            = ONCOREFINER.out.multiqc_report            // channel: /path/to/multiqc_report.html
     snv_clinical_filtered_vcf = ONCOREFINER.out.snv_clinical_filtered_vcf // channel: [val(meta), path(vcf)]
     snv_clinical_filtered_tbi = ONCOREFINER.out.snv_clinical_filtered_tbi // channel: [val(meta), path(tbi)]
