@@ -70,10 +70,10 @@
                 ]
             ]
         ],
-        "timestamp": "2026-06-15T16:01:56.128354",
+        "timestamp": "2026-08-05T13:48:42.074485",
         "meta": {
             "nf-test": "0.9.5",
-            "nextflow": "26.04.2"
+            "nextflow": "26.04.6"
         }
     },
     "with tumor-normal data - stub": {
@@ -139,10 +139,10 @@
                 ]
             ]
         ],
-        "timestamp": "2026-06-15T16:02:42.212231",
+        "timestamp": "2026-08-05T13:49:16.660724",
         "meta": {
             "nf-test": "0.9.5",
-            "nextflow": "26.04.2"
+            "nextflow": "26.04.6"
         }
     }
 }
