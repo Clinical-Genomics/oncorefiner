@@ -93,7 +93,7 @@
             },
             "mentions": [
                 {
-                    "@id": "#8c58712e-99db-4770-8372-e2f0ad006fb6"
+                    "@id": "#4dddd56f-d3c2-4917-8c9f-e16107d5c0c9"
                 }
             ],
             "name": "Clinical-Genomics/oncorefiner"
@@ -122,11 +122,11 @@
             ],
             "contributor": [
                 {
-                    "@id": "#ae4f0d4d-a660-43ef-8da1-2b12013ae017"
+                    "@id": "#a2648411-a3af-4831-a7c9-a2ac88a8bd7f"
                 }
             ],
             "dateCreated": "",
-            "dateModified": "2026-07-29T09:57:09Z",
+            "dateModified": "2026-07-29T11:04:57Z",
             "dct:conformsTo": "https://bioschemas.org/profiles/ComputationalWorkflow/1.0-RELEASE/",
             "keywords": [
                 "nf-core",
@@ -165,11 +165,11 @@
             "version": "!>=25.10.4"
         },
         {
-            "@id": "#8c58712e-99db-4770-8372-e2f0ad006fb6",
+            "@id": "#4dddd56f-d3c2-4917-8c9f-e16107d5c0c9",
             "@type": "TestSuite",
             "instance": [
                 {
-                    "@id": "#718270da-fa5f-49a7-90b9-6697095e91e8"
+                    "@id": "#919b8afd-7a1f-4bd0-b0bc-9a3066d4aaf9"
                 }
             ],
             "mainEntity": {
@@ -178,7 +178,7 @@
             "name": "Test suite for Clinical-Genomics/oncorefiner"
         },
         {
-            "@id": "#718270da-fa5f-49a7-90b9-6697095e91e8",
+            "@id": "#919b8afd-7a1f-4bd0-b0bc-9a3066d4aaf9",
             "@type": "TestInstance",
             "name": "GitHub Actions workflow for testing Clinical-Genomics/oncorefiner",
             "resource": "repos/Clinical-Genomics/oncorefiner/actions/workflows/nf-test.yml",
