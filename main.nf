@@ -222,6 +222,10 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     emit:
     cadd_annotated_vcf        = ONCOREFINER.out.cadd_annotated_vcf        // channel: [val(meta), path(vcf)]
     cadd_annotated_tbi        = ONCOREFINER.out.cadd_annotated_tbi        // channel: [val(meta), path(tbi)]
+    cram                      = SAMTOOLS_VIEW.out.cram                    // channel: [val(meta), path(cram)]
+    crai                      = SAMTOOLS_VIEW.out.crai                    // channel: [val(meta), path(crai)]
+    multiqc_data              = ONCOREFINER.out.multiqc_data              // channel: [val(meta), path(multiqc_data)]
+    multiqc_plots             = ONCOREFINER.out.multiqc_plots             // channel: [val(meta), path(multiqc_plots)]
     multiqc_report            = ONCOREFINER.out.multiqc_report            // channel: /path/to/multiqc_report.html
     snv_clinical_filtered_vcf = ONCOREFINER.out.snv_clinical_filtered_vcf // channel: [val(meta), path(vcf)]
     snv_clinical_filtered_tbi = ONCOREFINER.out.snv_clinical_filtered_tbi // channel: [val(meta), path(tbi)]
@@ -318,6 +322,13 @@ workflow {
     //
     // WORKFLOW OUTPUTS: Group files by publish directory
     //
+    ch_alignments_publish = CLINICALGENOMICS_ONCOREFINER.out.cram
+        .mix(CLINICALGENOMICS_ONCOREFINER.out.crai)
+
+    ch_multiqc_publish = CLINICALGENOMICS_ONCOREFINER.out.multiqc_data
+        .mix(CLINICALGENOMICS_ONCOREFINER.out.multiqc_report)
+        .mix(CLINICALGENOMICS_ONCOREFINER.out.multiqc_plots)
+
     ch_snv_publish = CLINICALGENOMICS_ONCOREFINER.out.cadd_annotated_vcf
         .mix(CLINICALGENOMICS_ONCOREFINER.out.cadd_annotated_tbi)
         .mix(CLINICALGENOMICS_ONCOREFINER.out.snv_clinical_filtered_vcf)
@@ -341,11 +352,21 @@ workflow {
 
 
     publish:
-    snv = ch_snv_publish
-    sv  = ch_sv_publish
+    alignments = ch_alignments_publish
+    multiqc    = ch_multiqc_publish
+    snv        = ch_snv_publish
+    sv         = ch_sv_publish
 }
 
 output {
+    alignments {
+        path "alignments"
+    }
+
+    multiqc {
+        path "qc/multiqc"
+    }
+
     snv {
         path "snv"
     }
