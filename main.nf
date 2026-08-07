@@ -129,7 +129,9 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     ch_sv_header          = channelFromMetaAndPath(metadata_case_file, "$projectDir/assets/sv_annotation_header.txt")
 
     // CADD input files
-    def ch_cadd_header           = channelFromMetaAndPath(metadata_case_file, "$projectDir/assets/cadd_to_vcf_header.txt")
+    def ch_cadd_header = Channel.value(
+        file("$projectDir/assets/cadd_to_vcf_header.txt", checkIfExists: true)
+    )
     def ch_cadd_resources        = channelFromMetaAndPath(metadata_case_file, val_cadd_resources)
     def ch_cadd_prescored_indels = channelFromMetaAndPath(metadata_case_file, val_cadd_prescored_indels)
 

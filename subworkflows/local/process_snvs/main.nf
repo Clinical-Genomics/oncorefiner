@@ -31,7 +31,7 @@ workflow PROCESS_SNVS {
     take:
     ch_genome_fasta            // channel: [optional]  [val(meta), path(fasta)]
     ch_genome_fai              // channel: [optional]  [val(meta), path(fai)]
-    ch_cadd_header             // channel: [optional]  [val(meta), path(header_file)]
+    ch_cadd_header             // channel: [mandatory] [path(txt)]
     ch_cadd_prescored_indels   // channel: [optional]  [val(meta), path(dir)]
     ch_cadd_resources          // channel: [optional]  [val(meta), path(dir)]
     ch_genmod_score_config_snv // channel: [optional]  [val(meta), path(ini)]
