@@ -7,7 +7,7 @@
                         "id": "subject_a",
                         "case_id": "test_tumor_normal_case"
                     },
-                    "subject_a_clinical.vcf.gz:variantsMD5,f92bc125c747cdbce5e5c6c2ff8b023a"
+                    "subject_a_clinical.vcf.gz:variantsMD5,234479e5f991b276da480ba96eb607af"
                 ],
                 [
                     {
@@ -143,6 +143,16 @@
                         "PROCESS_SVS:VCF_ANNOTATE_LINX_FUSIONS:COMBINE_LINX_TSV",
                         "combine_linx_tsv",
                         "1.0"
+                    ],
+                    [
+                        "PROCESS_SVS:VCF_ANNOTATE_SCORE_GENMOD:BCFTOOLS_VIEW",
+                        "bcftools",
+                        "1.23.1"
+                    ],
+                    [
+                        "PROCESS_SVS:VCF_ANNOTATE_SCORE_GENMOD:GENMOD_SCORE",
+                        "genmod",
+                        "3.10.2"
                     ],
                     [
                         "UNTAR_VEP_CACHE",
@@ -314,6 +324,16 @@
                         "PROCESS_SVS:VCF_ANNOTATE_LINX_FUSIONS:COMBINE_LINX_TSV",
                         "combine_linx_tsv",
                         "1.0"
+                    ],
+                    [
+                        "PROCESS_SVS:VCF_ANNOTATE_SCORE_GENMOD:BCFTOOLS_VIEW",
+                        "bcftools",
+                        "1.23.1"
+                    ],
+                    [
+                        "PROCESS_SVS:VCF_ANNOTATE_SCORE_GENMOD:GENMOD_SCORE",
+                        "genmod",
+                        "3.10.2"
                     ],
                     [
                         "UNTAR_VEP_CACHE",
