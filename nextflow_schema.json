@@ -136,9 +136,9 @@
                     "format": "file-path",
                     "exists": true
                 },
-                "sampletype": {
+                "analysis_type": {
                     "type": "string",
-                    "description": "Type of the sample.",
+                    "description": "Analysis type of the case.",
                     "enum": ["tumor_only", "tumor_normal"]
                 }
             }
