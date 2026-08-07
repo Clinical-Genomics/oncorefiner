@@ -32,9 +32,13 @@ nextflow_workflow {
 
             workflow {
                 """
-                input[0] = channel.empty()
+                input[0] = channel.of([
+                    [id: 'subject_a', case_id: 'test_tumor_normal_case', sample_id: 'test_tumor_sample', sample_type: 'normal', sex: 'female'],
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/subject_a.normal.redux.bam', checkIfExists: true),
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/subject_a.normal.redux.bam.bai', checkIfExists: true)
+                ])
                 input[1] = channel.of([
-                    ['type':'tumor'],
+                    [id: 'subject_a', case_id: 'test_tumor_normal_case', sample_id: 'test_tumor_sample', sample_type: 'tumor', sex: 'female'],
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/subject_a.tumor.redux.bam', checkIfExists: true),
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/subject_a.tumor.redux.bam.bai', checkIfExists: true)
                 ])
@@ -141,9 +145,13 @@ nextflow_workflow {
 
             workflow {
                 """
-                input[0] = channel.empty()
+                input[0] = channel.of([
+                    [id: 'subject_a', case_id: 'test_tumor_normal_case', sample_id: 'test_tumor_sample', sample_type: 'normal', sex: 'female'],
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/subject_a.normal.redux.bam', checkIfExists: true),
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/subject_a.normal.redux.bam.bai', checkIfExists: true)
+                ])
                 input[1] = channel.of([
-                    ['type':'tumor'],
+                    [id: 'subject_a', case_id: 'test_tumor_normal_case', sample_id: 'test_tumor_sample', sample_type: 'tumor', sex: 'female'],
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/subject_a.tumor.redux.bam', checkIfExists: true),
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/subject_a.tumor.redux.bam.bai', checkIfExists: true)
                 ])
