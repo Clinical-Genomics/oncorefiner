@@ -42,7 +42,8 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     val_cadd_prescored_indels       // string:  [optional]  path to CADD prescored indels file
     val_cadd_resources              // string:  [optional]  path to CADD resources directory
     val_case_id                     // string:  [mandatory] case ID (used in channel metadata)
-    val_genmod_score_config         // string:  [optional]  path to Genmod score config file
+    val_genmod_score_config_snv     // string:  [optional]  path to Genmod score config file for SNVs
+    val_genmod_score_config_sv      // string:  [optional]  path to Genmod score config file for SVs
     val_genome                      // string:  [optional]  genome assembly (e.g. "GRCh38")
     val_genome_fasta                // string:  [optional]  path to genome fasta file
     val_genome_fai                  // string:  [optional]  path to genome fasta index file
@@ -151,12 +152,20 @@ workflow CLINICALGENOMICS_ONCOREFINER {
                                                  : channel.empty()
 
     // Input for genmod_score
-    if (val_genmod_score_config) {
-        ch_genmod_score_config = channel.fromPath(val_genmod_score_config).map { it -> [[id:it.simpleName], it] }.collect()
-        val_run_genmod_score = true
+    if (val_genmod_score_config_snv) {
+        ch_genmod_score_config_snv = channel.fromPath(val_genmod_score_config_snv).map { it -> [[id:it.simpleName], it] }.collect()
+        val_run_genmod_score_snv = true
     } else {
-        ch_genmod_score_config = channel.empty()
-        val_run_genmod_score = false
+        ch_genmod_score_config_snv = channel.empty()
+        val_run_genmod_score_snv = false
+    }
+
+    if (val_genmod_score_config_sv) {
+        ch_genmod_score_config_sv = channel.fromPath(val_genmod_score_config_sv).map { it -> [[id:it.simpleName], it] }.collect()
+        val_run_genmod_score_sv = true
+    } else {
+        ch_genmod_score_config_sv = channel.empty()
+        val_run_genmod_score_sv = false
     }
 
     ONCOREFINER (
@@ -165,7 +174,8 @@ workflow CLINICALGENOMICS_ONCOREFINER {
         ch_cadd_header,
         ch_cadd_prescored_indels,
         ch_cadd_resources,
-        ch_genmod_score_config,
+        ch_genmod_score_config_snv,
+        ch_genmod_score_config_sv,
         ch_genome_fasta,
         ch_genome_fai,
         ch_linx_breakends_tsv,
@@ -189,7 +199,8 @@ workflow CLINICALGENOMICS_ONCOREFINER {
         val_multiqc_logo,
         val_multiqc_methods_description,
         val_outdir,
-        val_run_genmod_score,
+        val_run_genmod_score_snv,
+        val_run_genmod_score_sv,
         val_species,
         val_vep_cache_version,
     )
@@ -266,7 +277,8 @@ workflow {
         params.cadd_prescored_indels,
         params.cadd_resources,
         params.case_id,
-        params.genmod_score_config,
+        params.genmod_score_config_snv,
+        params.genmod_score_config_sv,
         params.genome,
         params.fasta,
         params.fai,
