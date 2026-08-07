@@ -2,7 +2,7 @@
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "$id": "https://raw.githubusercontent.com/Clinical-Genomics/oncorefiner/master/nextflow_schema.json",
     "title": "Clinical-Genomics/oncorefiner pipeline parameters",
-    "description": "Customizable post-processing and extension layer built on top of Oncoanalyser that adapts its outputs to clinical and operational needs, adds missing analyses, and ensures flexibility for evolving standards while retaining Oncoanalyser robust core",
+    "description": "Customizable post-processing and extension layer for Oncoanalyser that adapts its outputs according to clinical and operational needs, adds missing analyses, and ensures flexibility for evolving standards while retaining Oncoanalyser's robust core.",
     "type": "object",
     "$defs": {
         "input_output_options": {
@@ -109,6 +109,27 @@
                     "description": "Path to BAM index file for the normal sample.",
                     "fa_icon": "fas fa-file",
                     "pattern": "^\\S+\\.bai$",
+                    "format": "file-path",
+                    "exists": true
+                },
+                "linx_fusion_tsv": {
+                    "type": "string",
+                    "description": "Path to fusion linx tsv file for the sample.",
+                    "pattern": "^\\S+\\.tsv$",
+                    "format": "file-path",
+                    "exists": true
+                },
+                "linx_breakends_tsv": {
+                    "type": "string",
+                    "description": "Path to breakend linx tsv file for the sample.",
+                    "pattern": "^\\S+\\.tsv$",
+                    "format": "file-path",
+                    "exists": true
+                },
+                "linx_sv_tsv": {
+                    "type": "string",
+                    "description": "Path to sv linx tsv file for the sample.",
+                    "pattern": "^\\S+\\.tsv$",
                     "format": "file-path",
                     "exists": true
                 }
@@ -269,9 +290,16 @@
                     "type": "string",
                     "description": "Extra arguments for `PROCESS_SVS:ENSEMBLVEP_VEP`."
                 },
-                "genmod_score_config": {
+                "genmod_score_config_snv": {
                     "type": "string",
-                    "description": "Path to genmod score configuration file (rank model).",
+                    "description": "Path to genmod score configuration file for SNVs (rank model).",
+                    "format": "file-path",
+                    "pattern": "^\\S+\\.(ini)$",
+                    "exists": true
+                },
+                "genmod_score_config_sv": {
+                    "type": "string",
+                    "description": "Path to genmod score configuration file for SVs (rank model).",
                     "format": "file-path",
                     "pattern": "^\\S+\\.(ini)$",
                     "exists": true
@@ -405,7 +433,7 @@
                     "type": "string",
                     "fa_icon": "far fa-check-circle",
                     "description": "Base URL or local path to location of pipeline test dataset files",
-                    "default": "https://raw.githubusercontent.com/Clinical-Genomics/test-datasets/b9c2328ab3fb456efb079a953a7620af5e15aa8d/",
+                    "default": "https://raw.githubusercontent.com/Clinical-Genomics/test-datasets/61dce843b868caaee4135d33509af38aaa80724b/",
                     "hidden": true
                 },
                 "trace_report_suffix": {

@@ -25,12 +25,17 @@ workflow ONCOREFINER {
     ch_cadd_header                  // channel: [mandatory] [path(txt)]
     ch_cadd_prescored_indels        // channel: [optional]  [val(meta), path(dir)]
     ch_cadd_resources               // channel: [optional]  [val(meta), path(dir)]
-    ch_genmod_score_config          // channel: [optional]  [val(meta), path(ini)]
+    ch_genmod_score_config_snv      // channel: [optional]  [val(meta), path(ini)]
+    ch_genmod_score_config_sv       // channel: [optional]  [val(meta), path(ini)]
     ch_genome_fasta                 // channel: [optional]  [val(meta), path(fasta)]
     ch_genome_fai                   // channel: [optional]  [val(meta), path(fai)]
+    ch_linx_breakends_tsv           // channel: [optional]  [val(meta), path(tsv)]
+    ch_linx_fusion_tsv              // channel: [optional]  [val(meta), path(tsv)]
+    ch_linx_sv_tsv                  // channel: [optional]  [val(meta), path(tsv)]
     ch_snv_vcf                      // channel: [optional]  [val(meta), path(vcf)]
     ch_snv_vcf_tbi                  // channel: [optional]  [val(meta), path(vcf.tbi)]
     ch_sv_dbs                       // channel: [optional]  [path(csv)]
+    ch_sv_header                    // channel: [optional]  [path(txt)]
     ch_sv_vcf                       // channel: [optional]  [val(meta), path(vcf)]
     ch_sv_vcf_tbi                   // channel: [optional]  [val(meta), path(vcf.tbi)]
     ch_vcfanno_extra                // channel: [optional]  [path(extra_file1), path(extra_file2), ...]
@@ -45,7 +50,8 @@ workflow ONCOREFINER {
     val_multiqc_logo                // string:  [optional]  path to image file to be used as logo in multiqc report
     val_multiqc_methods_description // string:  [optional]  path to text file containing methods description to be included in multiqc report
     val_outdir                      // string:  [mandatory] path to output directory (default: ./results)
-    val_run_genmod_score           // boolean: [mandatory] whether to skip PROCESS_SNVS:VCF_ANNOTATE_SCORE_GENMOD process
+    val_run_genmod_score_snv        // boolean: [mandatory] whether to skip PROCESS_SNVS:VCF_ANNOTATE_SCORE_GENMOD process for SNVs
+    val_run_genmod_score_sv         // boolean: [mandatory] whether to skip PROCESS_SVS:VCF_ANNOTATE_SCORE_GENMOD process for SVs
     val_species                     // string:  [optional]  species (e.g. "homo_sapiens")
     val_vep_cache_version           // string:  [optional]  version of vep cache to use (e.g. "107")
 
@@ -61,7 +67,7 @@ workflow ONCOREFINER {
         ch_cadd_header,
         ch_cadd_prescored_indels,
         ch_cadd_resources,
-        ch_genmod_score_config,
+        ch_genmod_score_config_snv,
         ch_snv_vcf,
         ch_snv_vcf_tbi,
         ch_vcfanno_extra,
@@ -72,7 +78,7 @@ workflow ONCOREFINER {
         ch_vep_extra_files,
         val_cadd_resources,
         val_genome,
-        val_run_genmod_score,
+        val_run_genmod_score_snv,
         val_species,
         val_vep_cache_version
     )
@@ -81,10 +87,16 @@ workflow ONCOREFINER {
     PROCESS_SVS(
         ch_bam_bai_normal,
         ch_bam_bai_tumor,
+        ch_genmod_score_config_sv,
+        ch_linx_breakends_tsv,
+        ch_linx_fusion_tsv,
+        ch_linx_sv_tsv,
+        ch_sv_header,
         ch_sv_vcf,
         ch_sv_vcf_tbi,
         ch_sv_dbs,
         val_genome,
+        val_run_genmod_score_sv,
         val_species,
         val_vep_cache_version,
         ch_vep_cache,
@@ -147,9 +159,12 @@ workflow ONCOREFINER {
             ]
         }
     )
+
     emit:
     cadd_annotated_vcf        = PROCESS_SNVS.out.cadd_annotated_vcf                           // channel: [val(meta), path(vcf)]
     cadd_annotated_tbi        = PROCESS_SNVS.out.cadd_annotated_tbi                           // channel: [val(meta), path(tbi)]
+    multiqc_data              = MULTIQC.out.data                                              // channel: /path/to/multiqc_data/
+    multiqc_plots             = MULTIQC.out.plots                                             // channel: /path/to/multiqc_plots/
     multiqc_report            = MULTIQC.out.report.map { _meta, report -> [report] }.toList() // channel: /path/to/multiqc_report.html
     snv_clinical_filtered_vcf = PROCESS_SNVS.out.clinical_filtered_vcf                        // channel: [val(meta), path(vcf)]
     snv_clinical_filtered_tbi = PROCESS_SNVS.out.clinical_filtered_tbi                        // channel: [val(meta), path(tbi)]
@@ -160,6 +175,14 @@ workflow ONCOREFINER {
     snv_vep_report            = PROCESS_SNVS.out.vep_report                                   // channel: [val(meta), val(process), val(tool), path(html)]
     snv_research_filtered_vcf = PROCESS_SNVS.out.research_filtered_vcf                        // channel: [val(meta), path(vcf)]
     snv_research_filtered_tbi = PROCESS_SNVS.out.research_filtered_tbi                        // channel: [val(meta), path(vcf.tbi)]
+    sv_clinical_filtered_vcf  = PROCESS_SVS.out.clinical_filtered_vcf                         // channel: [val(meta), path(vcf)]
+    sv_clinical_filtered_tbi  = PROCESS_SVS.out.clinical_filtered_tbi                         // channel: [val(meta), path(tbi)]
+    sv_research_filtered_vcf  = PROCESS_SVS.out.research_filtered_vcf                         // channel: [val(meta), path(vcf)]
+    sv_research_filtered_tbi  = PROCESS_SVS.out.research_filtered_tbi                         // channel: [val(meta), path(vcf.tbi)]
+    sv_vcf2cytosure_cgh       = PROCESS_SVS.out.vcf2cytosure_cgh                              // channel: [val(meta), path(cgh)]
+    sv_vep_annotated_vcf      = PROCESS_SVS.out.vep_annotated_vcf                             // channel: [val(meta), path(vcf)]
+    sv_vep_annotated_tbi      = PROCESS_SVS.out.vep_annotated_tbi                             // channel: [val(meta), path(tbi)]
+    sv_vep_report             = PROCESS_SVS.out.vep_report                                    // channel: [val(meta), val(process), val(tool), path(html)]
     versions                  = ch_versions                                                   // channel: [ path(versions.yml) ]
 
 }
