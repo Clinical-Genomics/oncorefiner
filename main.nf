@@ -42,10 +42,14 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     val_cadd_prescored_indels       // string:  [optional]  path to CADD prescored indels file
     val_cadd_resources              // string:  [optional]  path to CADD resources directory
     val_case_id                     // string:  [mandatory] case ID (used in channel metadata)
-    val_genmod_score_config         // string:  [optional]  path to Genmod score config file
+    val_genmod_score_config_snv     // string:  [optional]  path to Genmod score config file for SNVs
+    val_genmod_score_config_sv      // string:  [optional]  path to Genmod score config file for SVs
     val_genome                      // string:  [optional]  genome assembly (e.g. "GRCh38")
     val_genome_fasta                // string:  [optional]  path to genome fasta file
     val_genome_fai                  // string:  [optional]  path to genome fasta index file
+    val_linx_breakends_tsv          // string:  [optional]  path to LINX breakends tsv file
+    val_linx_fusion_tsv             // string:  [optional]  path to LINX fusion tsv file
+    val_linx_sv_tsv                 // string:  [optional]  path to LINX sv tsv file
     val_multiqc_config              // string:  [optional]  path to multiqc config file
     val_multiqc_logo                // string:  [optional]  path to image file to be used as logo in multiqc report
     val_multiqc_methods_description // string:  [optional]  path to text file containing methods description to be included in multiqc report
@@ -118,8 +122,16 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     def ch_genome_fai       = channelFromMetaAndPath(metadata_case_file, val_genome_fai)
     def ch_genome_fasta_fai = ch_genome_fasta.join(ch_genome_fai, failOnMismatch: true, failOnDuplicate: true)
 
+    // Input for VCF annotation with LINX
+    ch_linx_breakends_tsv = channelFromMetaAndPath(metadata_case_file, val_linx_breakends_tsv)
+    ch_linx_fusion_tsv    = channelFromMetaAndPath(metadata_case_file, val_linx_fusion_tsv)
+    ch_linx_sv_tsv        = channelFromMetaAndPath(metadata_case_file, val_linx_sv_tsv)
+    ch_sv_header          = channelFromMetaAndPath(metadata_case_file, "$projectDir/assets/sv_annotation_header.txt")
+
     // CADD input files
-    def ch_cadd_header           = channelFromMetaAndPath(metadata_case_file, "$projectDir/assets/cadd_to_vcf_header.txt")
+    def ch_cadd_header = Channel.value(
+        file("$projectDir/assets/cadd_to_vcf_header.txt", checkIfExists: true)
+    )
     def ch_cadd_resources        = channelFromMetaAndPath(metadata_case_file, val_cadd_resources)
     def ch_cadd_prescored_indels = channelFromMetaAndPath(metadata_case_file, val_cadd_prescored_indels)
 
@@ -142,12 +154,20 @@ workflow CLINICALGENOMICS_ONCOREFINER {
                                                  : channel.empty()
 
     // Input for genmod_score
-    if (val_genmod_score_config) {
-        ch_genmod_score_config = channel.fromPath(val_genmod_score_config).map { it -> [[id:it.simpleName], it] }.collect()
-        val_run_genmod_score = true
+    if (val_genmod_score_config_snv) {
+        ch_genmod_score_config_snv = channel.fromPath(val_genmod_score_config_snv).map { it -> [[id:it.simpleName], it] }.collect()
+        val_run_genmod_score_snv = true
     } else {
-        ch_genmod_score_config = channel.empty()
-        val_run_genmod_score = false
+        ch_genmod_score_config_snv = channel.empty()
+        val_run_genmod_score_snv = false
+    }
+
+    if (val_genmod_score_config_sv) {
+        ch_genmod_score_config_sv = channel.fromPath(val_genmod_score_config_sv).map { it -> [[id:it.simpleName], it] }.collect()
+        val_run_genmod_score_sv = true
+    } else {
+        ch_genmod_score_config_sv = channel.empty()
+        val_run_genmod_score_sv = false
     }
 
     ONCOREFINER (
@@ -156,12 +176,17 @@ workflow CLINICALGENOMICS_ONCOREFINER {
         ch_cadd_header,
         ch_cadd_prescored_indels,
         ch_cadd_resources,
-        ch_genmod_score_config,
+        ch_genmod_score_config_snv,
+        ch_genmod_score_config_sv,
         ch_genome_fasta,
         ch_genome_fai,
+        ch_linx_breakends_tsv,
+        ch_linx_fusion_tsv,
+        ch_linx_sv_tsv,
         ch_snv_vcf,
         ch_snv_vcf_tbi,
         ch_sv_dbs,
+        ch_sv_header,
         ch_sv_vcf,
         ch_sv_vcf_tbi,
         ch_vcfanno_extra,
@@ -176,7 +201,8 @@ workflow CLINICALGENOMICS_ONCOREFINER {
         val_multiqc_logo,
         val_multiqc_methods_description,
         val_outdir,
-        val_run_genmod_score,
+        val_run_genmod_score_snv,
+        val_run_genmod_score_sv,
         val_species,
         val_vep_cache_version,
     )
@@ -196,6 +222,10 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     emit:
     cadd_annotated_vcf        = ONCOREFINER.out.cadd_annotated_vcf        // channel: [val(meta), path(vcf)]
     cadd_annotated_tbi        = ONCOREFINER.out.cadd_annotated_tbi        // channel: [val(meta), path(tbi)]
+    cram                      = SAMTOOLS_VIEW.out.cram                    // channel: [val(meta), path(cram)]
+    crai                      = SAMTOOLS_VIEW.out.crai                    // channel: [val(meta), path(crai)]
+    multiqc_data              = ONCOREFINER.out.multiqc_data              // channel: [val(meta), path(multiqc_data)]
+    multiqc_plots             = ONCOREFINER.out.multiqc_plots             // channel: [val(meta), path(multiqc_plots)]
     multiqc_report            = ONCOREFINER.out.multiqc_report            // channel: /path/to/multiqc_report.html
     snv_clinical_filtered_vcf = ONCOREFINER.out.snv_clinical_filtered_vcf // channel: [val(meta), path(vcf)]
     snv_clinical_filtered_tbi = ONCOREFINER.out.snv_clinical_filtered_tbi // channel: [val(meta), path(tbi)]
@@ -206,6 +236,14 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     snv_vep_report            = ONCOREFINER.out.snv_vep_report            // channel: [val(meta), val(process), val(tool), path(html)]
     snv_research_filtered_vcf = ONCOREFINER.out.snv_research_filtered_vcf // channel: [val(meta), path(vcf)]
     snv_research_filtered_tbi = ONCOREFINER.out.snv_research_filtered_tbi // channel: [val(meta), path(vcf.tbi)]
+    sv_clinical_filtered_vcf  = ONCOREFINER.out.sv_clinical_filtered_vcf  // channel: [val(meta), path(vcf)]
+    sv_clinical_filtered_tbi  = ONCOREFINER.out.sv_clinical_filtered_tbi  // channel: [val(meta), path(tbi)]
+    sv_research_filtered_vcf  = ONCOREFINER.out.sv_research_filtered_vcf  // channel: [val(meta), path(vcf)]
+    sv_research_filtered_tbi  = ONCOREFINER.out.sv_research_filtered_tbi  // channel: [val(meta), path(vcf.tbi)]
+    sv_vcf2cytosure_cgh       = ONCOREFINER.out.sv_vcf2cytosure_cgh       // channel: [val(meta), path(cgh)]
+    sv_vep_annotated_vcf      = ONCOREFINER.out.sv_vep_annotated_vcf      // channel: [val(meta), path(vcf)]
+    sv_vep_annotated_tbi      = ONCOREFINER.out.sv_vep_annotated_tbi      // channel: [val(meta), path(tbi)]
+    sv_vep_report             = ONCOREFINER.out.sv_vep_report             // channel: [val(meta), val(process), val(tool), path(html)]
 }
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -241,10 +279,14 @@ workflow {
         params.cadd_prescored_indels,
         params.cadd_resources,
         params.case_id,
-        params.genmod_score_config,
+        params.genmod_score_config_snv,
+        params.genmod_score_config_sv,
         params.genome,
         params.fasta,
         params.fai,
+        params.linx_breakends_tsv,
+        params.linx_fusion_tsv,
+        params.linx_sv_tsv,
         params.multiqc_config,
         params.multiqc_logo,
         params.multiqc_methods_description,
@@ -280,6 +322,13 @@ workflow {
     //
     // WORKFLOW OUTPUTS: Group files by publish directory
     //
+    ch_alignments_publish = CLINICALGENOMICS_ONCOREFINER.out.cram
+        .mix(CLINICALGENOMICS_ONCOREFINER.out.crai)
+
+    ch_multiqc_publish = CLINICALGENOMICS_ONCOREFINER.out.multiqc_data
+        .mix(CLINICALGENOMICS_ONCOREFINER.out.multiqc_report)
+        .mix(CLINICALGENOMICS_ONCOREFINER.out.multiqc_plots)
+
     ch_snv_publish = CLINICALGENOMICS_ONCOREFINER.out.cadd_annotated_vcf
         .mix(CLINICALGENOMICS_ONCOREFINER.out.cadd_annotated_tbi)
         .mix(CLINICALGENOMICS_ONCOREFINER.out.snv_clinical_filtered_vcf)
@@ -292,13 +341,38 @@ workflow {
         .mix(CLINICALGENOMICS_ONCOREFINER.out.snv_research_filtered_vcf)
         .mix(CLINICALGENOMICS_ONCOREFINER.out.snv_research_filtered_tbi)
 
+    ch_sv_publish = CLINICALGENOMICS_ONCOREFINER.out.sv_clinical_filtered_vcf
+        .mix(CLINICALGENOMICS_ONCOREFINER.out.sv_clinical_filtered_tbi)
+        .mix(CLINICALGENOMICS_ONCOREFINER.out.sv_research_filtered_vcf)
+        .mix(CLINICALGENOMICS_ONCOREFINER.out.sv_research_filtered_tbi)
+        .mix(CLINICALGENOMICS_ONCOREFINER.out.sv_vcf2cytosure_cgh)
+        .mix(CLINICALGENOMICS_ONCOREFINER.out.sv_vep_annotated_vcf)
+        .mix(CLINICALGENOMICS_ONCOREFINER.out.sv_vep_annotated_tbi)
+        .mix(CLINICALGENOMICS_ONCOREFINER.out.sv_vep_report)
+
+
     publish:
-    snv = ch_snv_publish
+    alignments = ch_alignments_publish
+    multiqc    = ch_multiqc_publish
+    snv        = ch_snv_publish
+    sv         = ch_sv_publish
 }
 
 output {
+    alignments {
+        path "alignments"
+    }
+
+    multiqc {
+        path "qc/multiqc"
+    }
+
     snv {
         path "snv"
+    }
+
+    sv {
+        path "sv"
     }
 }
 

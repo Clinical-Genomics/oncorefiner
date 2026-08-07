@@ -36,7 +36,7 @@ nextflow_workflow {
                 { assert workflow.success },
                 { assert snapshot(
                     topics,
-                    workflow.out
+                    sanitizeOutput(workflow.out)
                 ).match() }
             )
         }
@@ -71,7 +71,7 @@ nextflow_workflow {
                 { assert workflow.success },
                 { assert snapshot(
                     topics,
-                    workflow.out
+                    sanitizeOutput(workflow.out)
                 ).match() }
             )
         }
