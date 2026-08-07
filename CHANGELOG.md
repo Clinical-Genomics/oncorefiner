@@ -48,6 +48,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#84](https://github.com/Clinical-Genomics/oncorefiner/pull/84) Added arguments to VEP keeping invalid variants in output VCF
 - [#144](https://github.com/Clinical-Genomics/oncorefiner/pull/144) Added the parameters `ch_genmod_score_config_sv` & `val_run_genmod_score_sv` for GENMOD scoring of SVs.
 - [#146](https://github.com/Clinical-Genomics/oncorefiner/pull/146) Added the workflow `VCF_ANNOTATE_SCORE_GENMOD` to `PROCESS_SVS`.
+- [#172](https://github.com/Clinical-Genomics/oncorefiner/pull/172) Added CRAM, CRAI and MULTIQC files to new publishing strategy.
 
 ### `Changed`
 
@@ -90,6 +91,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#160](https://github.com/Clinical-Genomics/oncorefiner/pull/160) Updated nftutils from 0.0.3 to 1.0.0.
 - [#144](https://github.com/Clinical-Genomics/oncorefiner/pull/144) Renamed the parameters `ch_genmod_score_config` & `val_run_genmod_score` to `ch_genmod_score_config_snv` & `val_run_genmod_score_snv`, and updated the `pipelines_testdata_base_path` to reflect the seperation of config files to SNV and SVs.
 - [#105](https://github.com/Clinical-Genomics/oncorefiner/pull/105/) Decoupled subworkflow tests (`PROCESS_SNVS`, `PROCESS_SVS` and `PREPARE_REFERENCES`) from config files in `conf/subworkflows` and added necessary config settings to local `*/tests/nextflow.config`.
+- [#172](https://github.com/Clinical-Genomics/oncorefiner/pull/172) Updated the path of multiqc files in `.nftignore`
 
 ### `Fixed`
 
@@ -146,3 +148,4 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#125](https://github.com/Clinical-Genomics/oncorefiner/pull/125) Removed `input` parameter and samplesheet logic and documentation.
 - [#139](https://github.com/Clinical-Genomics/oncorefiner/pull/139) Removed SVDB output file, since it's an intermediary file not useful to have in the outputs.
 - [#152](https://github.com/Clinical-Genomics/oncorefiner/pull/152) Removed publishDir directive for `PREPARE_REFERENCES`.
+- [#172](https://github.com/Clinical-Genomics/oncorefiner/pull/172) Removed publishDir from `annotate_cadd.config` and `modules.config`
