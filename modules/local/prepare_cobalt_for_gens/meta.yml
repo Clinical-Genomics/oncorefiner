@@ -24,7 +24,7 @@ input:
   - meta:
       type: map
       description: |
-        Groovy Map containing case information
+        Groovy Map containing sample meta information
         e.g. `[id: 'test', case_id: 'test', sample_id: 'subject_a', sample_type: 'tumor [or] normal', sex: 'female']`
   - cobalt_pcf:
       type: file
@@ -34,8 +34,8 @@ output:
   - meta:
       type: map
       description: |
-        Groovy Map containing case information
-        e.g. `[id: 'test', case_id: 'test', sample_id: 'subject_a', sample_type: 'tumor,normal', sex: 'female']`
+        Groovy Map containing sample meta information
+        e.g. `[id: 'test', case_id: 'test', sample_id: 'subject_a', sample_type: 'tumor [or] normal', sex: 'female']`
   - bed:
       type: file
       description: bgzipped and tabix-indexed COBALT coverage zoom files
