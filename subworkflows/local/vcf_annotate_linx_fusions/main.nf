@@ -39,6 +39,18 @@ workflow VCF_ANNOTATE_LINX_FUSIONS {
 
     COMBINE_LINX_TSV(ch_combine_linx_tsv_in)
 
+    ch_sv_vcf.view {
+    "SV VCF >>> ${it}"
+    }
+
+    ch_sv_header.view {
+    "SV HEADER >>> ${it}"
+    }
+    
+    COMBINE_LINX_TSV.out.tsv.view {
+    "COMBINED LINX >>> ${it}"
+    }
+
     def ch_annotate_vcf_by_id_in = ch_sv_vcf
         .join(COMBINE_LINX_TSV.out.tsv, failOnMismatch: true)
         .join(ch_sv_header, failOnMismatch: true)
