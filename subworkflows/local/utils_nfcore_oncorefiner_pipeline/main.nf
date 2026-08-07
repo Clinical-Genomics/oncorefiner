@@ -158,7 +158,13 @@ def toolCitationText() {
                 citations_list = citations_list + cadd
             }
 
-        if (params.genmod_score_config) {
+        if (params.genmod_score_config_snv) {
+            citations_list =
+                citations_list +
+                genmod
+        }
+
+        if (params.genmod_score_config_sv) {
             citations_list =
                 citations_list +
                 genmod
