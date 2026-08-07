@@ -1,6 +1,6 @@
 process PREPARE_AMBER_FOR_GENS {
     tag "$meta.id"
-    tag "process_single"
+    label "process_single"
 
     conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
@@ -10,7 +10,7 @@ process PREPARE_AMBER_FOR_GENS {
 
     input:
     tuple val(meta), path(amber_baf_tsv)
-    val(sampletype)
+    val(analysis_type)
 
     output:
     tuple val(meta), path("*tumor.baf.zoom.tsv.gz"), emit: tumor_tsv
@@ -28,8 +28,8 @@ process PREPARE_AMBER_FOR_GENS {
     """
     prepare_amber_for_gens.py \\
         --input-file ${amber_baf_tsv} \\
-        --sample-type ${sampletype} \\
-        --output-file-prefix ${prefix}.${sampletype}
+        --analysis-type ${analysis_type} \\
+        --output-file-prefix ${prefix}
 
     for f in *.baf.zoom.tsv; do
         if [[ -s "\$f" ]]; then
@@ -42,12 +42,11 @@ process PREPARE_AMBER_FOR_GENS {
     stub:
     prefix = task.ext.prefix ?: "${meta.id}"
     """
-    sampletype=${sampletype}
-    if [[ $sampletype == *"normal"* ]]; then
-        echo | gzip > ${prefix}.${sampletype}.normal.baf.zoom.tsv.gz
-        touch ${prefix}.${sampletype}.normal.baf.zoom.tsv.gz.tbi
+    if [[ $analysis_type == *"normal"* ]]; then
+        echo | gzip > ${prefix}.normal.baf.zoom.tsv.gz
+        touch ${prefix}.normal.baf.zoom.tsv.gz.tbi
     fi
-    echo | gzip > ${prefix}.${sampletype}.tumor.baf.zoom.tsv.gz
-    touch ${prefix}.${sampletype}.tumor.baf.zoom.tsv.gz.tbi
+    echo | gzip > ${prefix}.tumor.baf.zoom.tsv.gz
+    touch ${prefix}.tumor.baf.zoom.tsv.gz.tbi
     """
 }

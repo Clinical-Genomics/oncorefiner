@@ -61,9 +61,10 @@ def write_baf_file(
     help="Input BAF TSV file",
 )
 @click.option(
-    "--sample-type",
+    "--analysis-type",
     show_default=True,
-    help="Sample type (e.g., tumor_only or tumor_normal)",
+    type=click.Choice(["tumor_only", "tumor_normal"]),
+    help="Analysis type (e.g., tumor_only or tumor_normal)",
 )
 @click.option(
     "--output-file-prefix",
@@ -77,7 +78,7 @@ def write_baf_file(
 def main(
     input_file: click.Path,
     output_file_prefix: click.STRING,
-    sample_type: click.STRING,
+    analysis_type: click.STRING,
 ) -> None:
     """Convert BAF table into zoom-level files."""
 
@@ -103,7 +104,7 @@ def main(
     )
     click.echo(f"Wrote tumor output: {output_file_prefix}.tumor.baf.zoom.tsv")
 
-    if "normal" in sample_type:
+    if "normal" in analysis_type:
         write_baf_file(
             df=df,
             baf_column="normalBAF",
