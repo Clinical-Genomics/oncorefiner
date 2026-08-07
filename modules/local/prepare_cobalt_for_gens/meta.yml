@@ -6,7 +6,7 @@ keywords:
   - tabix
   - bgzip
 tools:
-  - "python":
+  - "prepare_cobalt_for_gens.py":
       description: "Converts COBALT coverage files into GENS zoom-level data."
       homepage: "https://www.python.org/"
       documentation: "https://docs.python.org/3/"

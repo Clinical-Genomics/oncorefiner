@@ -74,7 +74,7 @@ def write_segment_zoom_file(
     "--input-file",
     required=True,
     type=click.Path(exists=True),
-    help="Input segment PCF file from Cobolt. Can be plain text or .gz.",
+    help="Input segment PCF file from Cobalt. Can be plain text or .gz.",
 )
 @click.option(
     "--output-file",

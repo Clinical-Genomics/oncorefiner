@@ -1,6 +1,6 @@
 process PREPARE_COBALT_FOR_GENS {
     tag "$meta.id"
-    tag "process_single"
+    label "process_single"
 
     conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
@@ -19,7 +19,6 @@ process PREPARE_COBALT_FOR_GENS {
     tuple val("${task.process}"), val('prepare_cobalt_for_gens'), eval("prepare_cobalt_for_gens.py --version | sed '1!d; s/^.*prepare_cobalt_for_gens //'"), topic: versions, emit: versions_cobalt_for_gens
 
     script:
-    def args   = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
 
     """
