@@ -25,9 +25,6 @@ jobs:
       - name: Setup uv
         uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
 
-      - name: Run prek
-        uses: j178/prek-action@5337cb91e0fa35a7ff31b9ca345126d8bbbcdf16 # v2
-
       - name: read .nf-core.yml
         uses: pietrobolcato/action-read-yaml@9f13718d61111b69f30ab4ac683e67a56d254e1d # 1.1.0
         id: read_yml
@@ -36,6 +33,9 @@ jobs:
 
       - name: Install dependencies
         run: uv tool install nf-core==${{ steps.read_yml.outputs['nf_core_version'] }}
+
+      - name: Run prek
+        uses: j178/prek-action@5337cb91e0fa35a7ff31b9ca345126d8bbbcdf16 # v2
 
       - name: Run nf-core pipelines lint
         if: ${{ github.base_ref != 'master' && github.base_ref != 'main' }}
