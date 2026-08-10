@@ -50,6 +50,9 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#126](https://github.com/Clinical-Genomics/oncorefiner/pull/126) Added the nf-core module `rmarkdownnotebook`.
 - [#126](https://github.com/Clinical-Genomics/oncorefiner/pull/126) Added the subworkflow `PROCESS_CNVS` along with subworkflow test.
 - [#136](https://github.com/Clinical-Genomics/oncorefiner/pull/136) Added nf-schema validation to SVDB database inputs.(`svdb_query_dbs`)
+- [#144](https://github.com/Clinical-Genomics/oncorefiner/pull/144) Added the parameters `ch_genmod_score_config_sv` & `val_run_genmod_score_sv` for GENMOD scoring of SVs.
+- [#146](https://github.com/Clinical-Genomics/oncorefiner/pull/146) Added the workflow `VCF_ANNOTATE_SCORE_GENMOD` to `PROCESS_SVS`.
+- [#172](https://github.com/Clinical-Genomics/oncorefiner/pull/172) Added CRAM, CRAI and MULTIQC files to new publishing strategy.
 
 ### `Changed`
 
@@ -92,6 +95,10 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#161](https://github.com/Clinical-Genomics/oncorefiner/pull/161) Template update for nf-core tools 4.0.3.
 - [#160](https://github.com/Clinical-Genomics/oncorefiner/pull/160) Updated nftutils from 0.0.3 to 1.0.0.
 - [#126](https://github.com/Clinical-Genomics/oncorefiner/pull/126) Added the CNV html file to the tests/.nftignore
+- [#144](https://github.com/Clinical-Genomics/oncorefiner/pull/144) Renamed the parameters `ch_genmod_score_config` & `val_run_genmod_score` to `ch_genmod_score_config_snv` & `val_run_genmod_score_snv`, and updated the `pipelines_testdata_base_path` to reflect the seperation of config files to SNV and SVs.
+- [#105](https://github.com/Clinical-Genomics/oncorefiner/pull/105/) Decoupled subworkflow tests (`PROCESS_SNVS`, `PROCESS_SVS` and `PREPARE_REFERENCES`) from config files in `conf/subworkflows` and added necessary config settings to local `*/tests/nextflow.config`.
+- [#172](https://github.com/Clinical-Genomics/oncorefiner/pull/172) Updated the path of multiqc files in `.nftignore`
+- [#175](https://github.com/Clinical-Genomics/oncorefiner/pull/175) Update publishing guidelines in `docs/contributing.md` to reflect the new publishing strategy for output files.
 
 ### `Fixed`
 
@@ -134,6 +141,9 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#137](https://github.com/Clinical-Genomics/oncorefiner/pull/134) Fixed VEP able to run without `vep_plugin_files` parameter.
 - [#135](https://github.com/Clinical-Genomics/oncorefiner/pull/135) Fixed test for `GENERATE_CYTOSURE_FILES` so that it states the necessary parameters for the test, uses configurations from the test config and is independent from pipeline wide configuration.
 - [#162](https://github.com/Clinical-Genomics/oncorefiner/pull/162) Updated pipeline test snapshot following update of VEP arguments in #84.
+- [#93](https://github.com/Clinical-Genomics/oncorefiner/pull/93) Refactored the publishing strategy for `GENERATE_CYTOSURE_FILES` and `PROCESS_SVS` to use output blocks.
+- [#169](https://github.com/Clinical-Genomics/oncorefiner/pull/169/) Populated the `ch_bam_bai_normal` in `PROCESS_SVS` tumor-normal test and updated the meta structure of the two bam channels, which also updated the naming of the .cgh file.
+- [#171](https://github.com/Clinical-Genomics/oncorefiner/pull/171) Remove metadata from static CADD header file
 
 ### `Dependencies`
 
@@ -146,3 +156,4 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#125](https://github.com/Clinical-Genomics/oncorefiner/pull/125) Removed `input` parameter and samplesheet logic and documentation.
 - [#139](https://github.com/Clinical-Genomics/oncorefiner/pull/139) Removed SVDB output file, since it's an intermediary file not useful to have in the outputs.
 - [#152](https://github.com/Clinical-Genomics/oncorefiner/pull/152) Removed publishDir directive for `PREPARE_REFERENCES`.
+- [#172](https://github.com/Clinical-Genomics/oncorefiner/pull/172) Removed publishDir from `annotate_cadd.config` and `modules.config`

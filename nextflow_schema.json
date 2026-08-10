@@ -308,9 +308,16 @@
                     "type": "string",
                     "description": "Extra arguments for `PROCESS_SVS:ENSEMBLVEP_VEP`."
                 },
-                "genmod_score_config": {
+                "genmod_score_config_snv": {
                     "type": "string",
-                    "description": "Path to genmod score configuration file (rank model).",
+                    "description": "Path to genmod score configuration file for SNVs (rank model).",
+                    "format": "file-path",
+                    "pattern": "^\\S+\\.(ini)$",
+                    "exists": true
+                },
+                "genmod_score_config_sv": {
+                    "type": "string",
+                    "description": "Path to genmod score configuration file for SVs (rank model).",
                     "format": "file-path",
                     "pattern": "^\\S+\\.(ini)$",
                     "exists": true
@@ -444,7 +451,7 @@
                     "type": "string",
                     "fa_icon": "far fa-check-circle",
                     "description": "Base URL or local path to location of pipeline test dataset files",
-                    "default": "https://raw.githubusercontent.com/Clinical-Genomics/test-datasets/31900a796fd1990d3cb1a63988b33afb08dbfe79/",
+                    "default": "https://raw.githubusercontent.com/Clinical-Genomics/test-datasets/61dce843b868caaee4135d33509af38aaa80724b/",
                     "hidden": true
                 },
                 "trace_report_suffix": {

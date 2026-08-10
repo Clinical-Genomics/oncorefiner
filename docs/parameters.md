@@ -74,7 +74,8 @@ Annotation related files and options required for the workflow.
 | `extra_args_snv_research_filter` | Extra arguments for `PROCESS_SNVS:BCFTOOLS_VIEW_RESEARCH`. | `string` |  |  |  |
 | `extra_args_snv_vep` | Extra arguments for `PROCESS_SNVS:ENSEMBLVEP_VEP`. | `string` |  |  |  |
 | `extra_args_sv_vep` | Extra arguments for `PROCESS_SVS:ENSEMBLVEP_VEP`. | `string` |  |  |  |
-| `genmod_score_config` | Path to genmod score configuration file (rank model). | `string` |  |  |  |
+| `genmod_score_config_snv` | Path to genmod score configuration file for SNVs (rank model). | `string` |  |  |  |
+| `genmod_score_config_sv` | Path to genmod score configuration file for SVs (rank model). | `string` |  |  |  |
 
 ## Institutional config options
 
@@ -105,7 +106,7 @@ Less common options for the pipeline, typically set in a config file.
 | `multiqc_logo` | Custom logo file to supply to MultiQC. File name must also be set in the MultiQC config file | `string` |  |  | True |
 | `multiqc_methods_description` | Custom MultiQC yaml file containing HTML including a methods description. | `string` |  |  |  |
 | `validate_params` | Boolean whether to validate parameters against the schema at runtime | `boolean` | True |  | True |
-| `pipelines_testdata_base_path` | Base URL or local path to location of pipeline test dataset files | `string` | https://raw.githubusercontent.com/Clinical-Genomics/test-datasets/31900a796fd1990d3cb1a63988b33afb08dbfe79/ |  | True |
+| `pipelines_testdata_base_path` | Base URL or local path to location of pipeline test dataset files | `string` | https://raw.githubusercontent.com/Clinical-Genomics/test-datasets/61dce843b868caaee4135d33509af38aaa80724b/ |  | True |
 | `trace_report_suffix` | Suffix to add to the trace report filename. Default is the date and time in the format yyyy-MM-dd_HH-mm-ss. | `string` |  |  | True |
 | `help` | Display the help message. | `['boolean', 'string']` |  |  |  |
 | `help_full` | Display the full detailed help message. | `boolean` |  |  |  |

@@ -8,6 +8,7 @@ include { VCF2CYTOSURE                } from '../../../modules/nf-core/vcf2cytos
 
 
 workflow GENERATE_CYTOSURE_FILES {
+
     take:
     ch_bam_bai // channel: [optional]  [val(meta), path(bam), path(bai)]
     ch_tbi     // channel: [mandatory] [val(meta), path(tbi)]
@@ -39,5 +40,5 @@ workflow GENERATE_CYTOSURE_FILES {
     )
 
     emit:
-    VCF2CYTOSURE.out.cgh // channel: [val(meta), path(cgh)]
+    cgh = VCF2CYTOSURE.out.cgh // channel: [val(meta), path(cgh)]
 }
