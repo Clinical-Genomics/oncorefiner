@@ -266,7 +266,7 @@ Please use the following naming schemes, to make it easy to understand what is g
 
 - All workflows and subworkflows must include an `emit` block including all publishable outputs (e.g. files), with explanatory names and ordered alphabetically.
 - The main workflow includes logic to mix together all outputs that should be published in the same output directory (i.e. one item per output directory).
-- The `publish` block includes all items above, with the explanatory names and ordered alphabetically.
+- The `publish` block includes all items above, with explanatory names and ordered alphabetically.
 - The `output` block lists all the publishable items and specifies the output directory corresponding to each item.
 
 ### Configuration
