@@ -264,11 +264,10 @@ Please use the following naming schemes, to make it easy to understand what is g
 
 ### Publishing
 
-- Build a single `ch_publish` channel inside each subworkflow by mixing all publishable outputs into `[destination, value]` tuples.
-- The emit name must always be `publish = ch_publish` — never the bare shorthand.
-- Group channels that share a destination with `mix` first, then apply **one** `.map` per destination group — never one map per channel.
-- If your subworkflow calls inner subworkflows, always mix their `.out.publish` into the outer `ch_publish`. Never discard it.
-- Remove the corresponding `publishDir` entry from `conf/modules/` when adding a process to `ch_publish`.
+- All workflows and subworkflows must include an `emit` block including all publishable outputs (e.g. files), with explanatory names and ordered alphabetically.
+- The main workflow includes logic to mix together all outputs that should be published in the same output directory (i.e. one item per output directory).
+- The `publish` block includes all items above, with the explanatory names and ordered alphabetically.
+- The `output` block lists all the publishable items and specifies the output directory corresponding to each item.
 
 ### Configuration
 
