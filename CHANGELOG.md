@@ -92,6 +92,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#144](https://github.com/Clinical-Genomics/oncorefiner/pull/144) Renamed the parameters `ch_genmod_score_config` & `val_run_genmod_score` to `ch_genmod_score_config_snv` & `val_run_genmod_score_snv`, and updated the `pipelines_testdata_base_path` to reflect the seperation of config files to SNV and SVs.
 - [#105](https://github.com/Clinical-Genomics/oncorefiner/pull/105/) Decoupled subworkflow tests (`PROCESS_SNVS`, `PROCESS_SVS` and `PREPARE_REFERENCES`) from config files in `conf/subworkflows` and added necessary config settings to local `*/tests/nextflow.config`.
 - [#172](https://github.com/Clinical-Genomics/oncorefiner/pull/172) Updated the path of multiqc files in `.nftignore`
+- [#175](https://github.com/Clinical-Genomics/oncorefiner/pull/175) Update publishing guidelines in `docs/contributing.md` to reflect the new publishing strategy for output files.
 
 ### `Fixed`
 
