@@ -7,41 +7,41 @@
             [
                 [
                     {
-                        "id": "test_gens",
+                        "id": "test",
                         "case_id": "subject_a"
                     },
-                    "test_gens.tumor.baf.zoom.tsv.gz:md5,ccb0b5ad7111f53c6d660e608af438ce"
+                    "test.tumor.baf.zoom.tsv.gz:md5,ccb0b5ad7111f53c6d660e608af438ce"
                 ]
             ],
             [
                 [
                     {
-                        "id": "test_gens",
+                        "id": "test",
                         "case_id": "subject_a",
                         "sample_id": "subject_a",
                         "sample_type": "tumor",
                         "sex": "female"
                     },
-                    "test_gens_tumor.bed.gz:md5,1a22ba6f7f24087f1c7fbb51c73a3b9d"
+                    "test_tumor.bed.gz:md5,1a22ba6f7f24087f1c7fbb51c73a3b9d"
                 ]
             ],
             [
                 [
                     {
-                        "id": "test_gens",
+                        "id": "test",
                         "case_id": "subject_a"
                     },
-                    "test_gens.tumor.baf.zoom.tsv.gz.tbi"
+                    "test.tumor.baf.zoom.tsv.gz.tbi"
                 ],
                 [
                     {
-                        "id": "test_gens",
+                        "id": "test",
                         "case_id": "subject_a",
                         "sample_id": "subject_a",
                         "sample_type": "tumor",
                         "sex": "female"
                     },
-                    "test_gens_tumor.bed.gz.tbi"
+                    "test_tumor.bed.gz.tbi"
                 ]
             ],
             {
@@ -89,7 +89,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-08-11T13:19:24.276376",
+        "timestamp": "2026-08-11T13:56:29.752265",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
@@ -101,86 +101,86 @@
                 "gens_baf_normal_tbi": [
                     [
                         {
-                            "id": "test_gens",
+                            "id": "test",
                             "case_id": "subject_a"
                         },
-                        "test_gens.normal.baf.zoom.tsv.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test.normal.baf.zoom.tsv.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "gens_baf_normal_tsv": [
                     [
                         {
-                            "id": "test_gens",
+                            "id": "test",
                             "case_id": "subject_a"
                         },
-                        "test_gens.normal.baf.zoom.tsv.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                        "test.normal.baf.zoom.tsv.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
                     ]
                 ],
                 "gens_baf_tumor_tbi": [
                     [
                         {
-                            "id": "test_gens",
+                            "id": "test",
                             "case_id": "subject_a"
                         },
-                        "test_gens.tumor.baf.zoom.tsv.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test.tumor.baf.zoom.tsv.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "gens_baf_tumor_tsv": [
                     [
                         {
-                            "id": "test_gens",
+                            "id": "test",
                             "case_id": "subject_a"
                         },
-                        "test_gens.tumor.baf.zoom.tsv.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                        "test.tumor.baf.zoom.tsv.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
                     ]
                 ],
                 "gens_cov_bed": [
                     [
                         {
-                            "id": "test_gens",
+                            "id": "test",
                             "case_id": "subject_a",
                             "sample_id": "subject_a",
                             "sample_type": "normal",
                             "sex": "female"
                         },
-                        "test_gens_normal.bed.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                        "test_normal.bed.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
                     ],
                     [
                         {
-                            "id": "test_gens",
+                            "id": "test",
                             "case_id": "subject_a",
                             "sample_id": "subject_a",
                             "sample_type": "tumor",
                             "sex": "female"
                         },
-                        "test_gens_tumor.bed.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                        "test_tumor.bed.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
                     ]
                 ],
                 "gens_cov_bed_tbi": [
                     [
                         {
-                            "id": "test_gens",
+                            "id": "test",
                             "case_id": "subject_a",
                             "sample_id": "subject_a",
                             "sample_type": "normal",
                             "sex": "female"
                         },
-                        "test_gens_normal.bed.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test_normal.bed.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ],
                     [
                         {
-                            "id": "test_gens",
+                            "id": "test",
                             "case_id": "subject_a",
                             "sample_id": "subject_a",
                             "sample_type": "tumor",
                             "sex": "female"
                         },
-                        "test_gens_tumor.bed.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test_tumor.bed.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ]
             }
         ],
-        "timestamp": "2026-08-11T13:19:08.403733",
+        "timestamp": "2026-08-11T13:56:15.470102",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
@@ -191,77 +191,77 @@
             [
                 [
                     {
-                        "id": "test_gens",
+                        "id": "test",
                         "case_id": "subject_a"
                     },
-                    "test_gens.normal.baf.zoom.tsv.gz:md5,cb7c9d7281611c8e7138ded59a681412"
+                    "test.normal.baf.zoom.tsv.gz:md5,cb7c9d7281611c8e7138ded59a681412"
                 ]
             ],
             [
                 [
                     {
-                        "id": "test_gens",
+                        "id": "test",
                         "case_id": "subject_a"
                     },
-                    "test_gens.tumor.baf.zoom.tsv.gz:md5,87317df569141e8908d318197fc075af"
+                    "test.tumor.baf.zoom.tsv.gz:md5,87317df569141e8908d318197fc075af"
                 ]
             ],
             [
                 [
                     {
-                        "id": "test_gens",
+                        "id": "test",
                         "case_id": "subject_a",
                         "sample_id": "subject_a",
                         "sample_type": "normal",
                         "sex": "female"
                     },
-                    "test_gens_normal.bed.gz:md5,d80e5d2edb1559d3e035c0739a8d172f"
+                    "test_normal.bed.gz:md5,d80e5d2edb1559d3e035c0739a8d172f"
                 ],
                 [
                     {
-                        "id": "test_gens",
+                        "id": "test",
                         "case_id": "subject_a",
                         "sample_id": "subject_a",
                         "sample_type": "tumor",
                         "sex": "female"
                     },
-                    "test_gens_tumor.bed.gz:md5,5a34fb13829738c0742132bd11ff1219"
+                    "test_tumor.bed.gz:md5,5a34fb13829738c0742132bd11ff1219"
                 ]
             ],
             [
                 [
                     {
-                        "id": "test_gens",
+                        "id": "test",
                         "case_id": "subject_a"
                     },
-                    "test_gens.normal.baf.zoom.tsv.gz.tbi"
+                    "test.normal.baf.zoom.tsv.gz.tbi"
                 ],
                 [
                     {
-                        "id": "test_gens",
+                        "id": "test",
                         "case_id": "subject_a"
                     },
-                    "test_gens.tumor.baf.zoom.tsv.gz.tbi"
+                    "test.tumor.baf.zoom.tsv.gz.tbi"
                 ],
                 [
                     {
-                        "id": "test_gens",
+                        "id": "test",
                         "case_id": "subject_a",
                         "sample_id": "subject_a",
                         "sample_type": "normal",
                         "sex": "female"
                     },
-                    "test_gens_normal.bed.gz.tbi"
+                    "test_normal.bed.gz.tbi"
                 ],
                 [
                     {
-                        "id": "test_gens",
+                        "id": "test",
                         "case_id": "subject_a",
                         "sample_id": "subject_a",
                         "sample_type": "tumor",
                         "sex": "female"
                     },
-                    "test_gens_tumor.bed.gz.tbi"
+                    "test_tumor.bed.gz.tbi"
                 ]
             ],
             {
@@ -329,7 +329,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-08-11T13:19:01.517759",
+        "timestamp": "2026-08-11T13:56:08.819674",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
@@ -347,48 +347,48 @@
                 "gens_baf_tumor_tbi": [
                     [
                         {
-                            "id": "test_gens",
+                            "id": "test",
                             "case_id": "subject_a"
                         },
-                        "test_gens.tumor.baf.zoom.tsv.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test.tumor.baf.zoom.tsv.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "gens_baf_tumor_tsv": [
                     [
                         {
-                            "id": "test_gens",
+                            "id": "test",
                             "case_id": "subject_a"
                         },
-                        "test_gens.tumor.baf.zoom.tsv.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                        "test.tumor.baf.zoom.tsv.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
                     ]
                 ],
                 "gens_cov_bed": [
                     [
                         {
-                            "id": "test_gens",
+                            "id": "test",
                             "case_id": "subject_a",
                             "sample_id": "subject_a",
                             "sample_type": "tumor",
                             "sex": "female"
                         },
-                        "test_gens_tumor.bed.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                        "test_tumor.bed.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
                     ]
                 ],
                 "gens_cov_bed_tbi": [
                     [
                         {
-                            "id": "test_gens",
+                            "id": "test",
                             "case_id": "subject_a",
                             "sample_id": "subject_a",
                             "sample_type": "tumor",
                             "sex": "female"
                         },
-                        "test_gens_tumor.bed.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test_tumor.bed.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ]
             }
         ],
-        "timestamp": "2026-08-11T13:19:30.17212",
+        "timestamp": "2026-08-11T13:56:35.259162",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
