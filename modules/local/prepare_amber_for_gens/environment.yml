@@ -1,0 +1,9 @@
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - bioconda::tabix=1.11
+  - conda-forge::python=3.14.6
+  - conda-forge::pandas=3.0.3
+  - conda-forge::py-bgzip=0.5.1
+  - conda-forge::click=8.4.1
