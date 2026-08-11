@@ -1,0 +1,152 @@
+nextflow_workflow {
+
+    name "Test subworkflow PROCESS_CNVS"
+    script "../main.nf"
+    workflow "PROCESS_CNVS"
+    config "./nextflow.config"
+    tag "subworkflows"
+    tag "subworkflows_local"
+    tag "process_cnvs"
+
+    topics "versions"
+
+    test("Process PROCESS_CNVS, tumor-normal") {
+
+        when {
+            workflow {
+                """
+                input[0] = channel.of([
+                    [id: 'test_gens', case_id: 'subject_a'],
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.amber.baf.tsv.gz', checkIfExists: true),
+                ])
+                input[1] = channel.of([
+                    [id: 'test_gens', case_id: 'subject_a', sample_id: 'subject_a', sample_type: 'normal', sex: 'female'],
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.normal.cobalt.ratio.pcf', checkIfExists: true)
+                ])
+                input[2] = channel.of([
+                    [id: 'test_gens', case_id: 'subject_a', sample_id: 'subject_a', sample_type: 'tumor', sex: 'female'],
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.cobalt.ratio.pcf', checkIfExists: true)
+                ])
+                input[3] = "tumor_normal"
+                """
+            }
+        }
+
+        then {
+            def output_tbis = workflow.out.findAll { key, value -> key.endsWith('_tbi') }
+                .collectMany { key, value -> value }
+
+            assert workflow.success
+            assertAll(
+                { assert snapshot(
+                    workflow.out.gens_baf_normal_tsv,
+                    workflow.out.gens_baf_tumor_tsv,
+                    workflow.out.gens_cov_bed,
+                    output_tbis.collect { meta, tbi -> [meta, file(tbi).name] },
+                    topics,
+                ).match() }
+            )
+        }
+    }
+
+    test("Process PROCESS_CNVS, tumor-normal - stub") {
+
+        options "-stub"
+
+        when {
+            workflow {
+                """
+                input[0] = channel.of([
+                    [id: 'test_gens', case_id: 'subject_a'],
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.amber.baf.tsv.gz', checkIfExists: true),
+                ])
+                input[1] = channel.of([
+                    [id: 'test_gens', case_id: 'subject_a', sample_id: 'subject_a', sample_type: 'normal', sex: 'female'],
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.normal.cobalt.ratio.pcf', checkIfExists: true)
+                ])
+                input[2] = channel.of([
+                    [id: 'test_gens', case_id: 'subject_a', sample_id: 'subject_a', sample_type: 'tumor', sex: 'female'],
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.cobalt.ratio.pcf', checkIfExists: true)
+                ])
+                input[3] = 'tumor_normal'
+                """
+            }
+        }
+
+        then {
+            assert workflow.success
+            assertAll(
+                { assert snapshot(
+                    sanitizeOutput(workflow.out),
+                ).match() }
+            )
+        }
+    }
+
+    test("Process PROCESS_CNVS, tumor-only") {
+
+        when {
+            workflow {
+                """
+                input[0] = channel.of([
+                    [id: 'test_gens', case_id: 'subject_a'],
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_only/subject_a.tumor.amber.baf.tsv.gz', checkIfExists: true),
+                ])
+                input[1] = channel.empty()
+                input[2] = channel.of([
+                    [id: 'test_gens', case_id: 'subject_a', sample_id: 'subject_a', sample_type: 'tumor', sex: 'female'],
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_only/subject_a.tumor.cobalt.ratio.pcf', checkIfExists: true)
+                ])
+                input[3] = "tumor_only"
+                """
+            }
+        }
+
+        then {
+            def output_tbis = workflow.out.findAll { key, value -> key.endsWith('_tbi') }
+                .collectMany { key, value -> value }
+
+            assert workflow.success
+            assertAll(
+                { assert snapshot(
+                    workflow.out.gens_baf_normal_tsv,
+                    workflow.out.gens_baf_tumor_tsv,
+                    workflow.out.gens_cov_bed,
+                    output_tbis.collect { meta, tbi -> [meta, file(tbi).name] },
+                    topics,
+                ).match() }
+            )
+        }
+    }
+
+    test("Process PROCESS_CNVS, tumor-only - stub") {
+
+        options "-stub"
+
+        when {
+            workflow {
+                """
+                input[0] = channel.of([
+                    [id: 'test_gens', case_id: 'subject_a'],
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_only/subject_a.tumor.amber.baf.tsv.gz', checkIfExists: true),
+                ])
+                input[1] = channel.empty()
+                input[2] = channel.of([
+                    [id: 'test_gens', case_id: 'subject_a', sample_id: 'subject_a', sample_type: 'tumor', sex: 'female'],
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_only/subject_a.tumor.cobalt.ratio.pcf', checkIfExists: true)
+                ])
+                input[3] = "tumor_only"
+                """
+            }
+        }
+
+        then {
+            assert workflow.success
+            assertAll(
+                { assert snapshot(
+                    sanitizeOutput(workflow.out),
+                ).match() }
+            )
+        }
+    }
+}

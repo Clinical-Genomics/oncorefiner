@@ -10,6 +10,7 @@ include { softwareVersionsToYAML } from '../subworkflows/nf-core/utils_nfcore_pi
 include { methodsDescriptionText } from '../subworkflows/local/utils_nfcore_oncorefiner_pipeline'
 include { PROCESS_SNVS           } from '../subworkflows/local/process_snvs/main.nf'
 include { PROCESS_SVS            } from '../subworkflows/local/process_svs/main.nf'
+include { PROCESS_CNVS           } from '../subworkflows/local/process_cnvs/main.nf'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -20,11 +21,14 @@ include { PROCESS_SVS            } from '../subworkflows/local/process_svs/main.
 workflow ONCOREFINER {
 
     take:
+    ch_amber_baf_tsv_gz              // channel: [optional]  [val(meta), path(tsv.gz)]
     ch_bam_bai_normal               // channel: [optional]  [val(meta), path(bam), path(bai)]
     ch_bam_bai_tumor                // channel: [mandatory] [val(meta), path(bam), path(bai)]
     ch_cadd_header                  // channel: [mandatory] [path(txt)]
     ch_cadd_prescored_indels        // channel: [optional]  [val(meta), path(dir)]
     ch_cadd_resources               // channel: [optional]  [val(meta), path(dir)]
+    ch_cobalt_ratio_pcf_normal      // channel: [optional]  [val(meta), path(pcf)]
+    ch_cobalt_ratio_pcf_tumor       // channel: [optional]  [val(meta), path(pcf)]
     ch_genmod_score_config          // channel: [optional]  [val(meta), path(ini)]
     ch_genome_fasta                 // channel: [optional]  [val(meta), path(fasta)]
     ch_genome_fai                   // channel: [optional]  [val(meta), path(fai)]
@@ -40,6 +44,7 @@ workflow ONCOREFINER {
     ch_vep_cache                    // channel: [optional]  [vep_cache_files]
     ch_vep_extra_files              // channel: [optional]  [path(plugin_file1), path(plugin_file2), ...]
     val_cadd_resources              // string:  [optional]  path to CADD resources directory
+    val_analysis_type               // string:  [optional]  analysis type, e.g. "tumor_only" or "tumor_normal"
     val_genome                      // string:  [optional]  genome assembly (e.g. "GRCh38")
     val_multiqc_config              // string:  [optional]  path to multiqc config file
     val_multiqc_logo                // string:  [optional]  path to image file to be used as logo in multiqc report
@@ -90,6 +95,14 @@ workflow ONCOREFINER {
         ch_vep_cache,
         ch_genome_fasta,
         ch_vep_extra_files
+    )
+
+    // Process CNV input files
+    PROCESS_CNVS(
+        ch_amber_baf_tsv_gz,
+        ch_cobalt_ratio_pcf_normal,
+        ch_cobalt_ratio_pcf_tumor,
+        val_analysis_type
     )
 
     //
@@ -150,6 +163,12 @@ workflow ONCOREFINER {
     emit:
     cadd_annotated_vcf        = PROCESS_SNVS.out.cadd_annotated_vcf                           // channel: [val(meta), path(vcf)]
     cadd_annotated_tbi        = PROCESS_SNVS.out.cadd_annotated_tbi                           // channel: [val(meta), path(tbi)]
+    cnv_baf_normal_tsv        = PROCESS_CNVS.out.gens_baf_normal_tsv                          // channel: [val(meta), path(tsv.gz)]
+    cnv_baf_normal_tbi        = PROCESS_CNVS.out.gens_baf_normal_tbi                          // channel: [val(meta), path(tsv.gz.tbi)]
+    cnv_baf_tumor_tsv         = PROCESS_CNVS.out.gens_baf_tumor_tsv                           // channel: [val(meta), path(tsv.gz)]
+    cnv_baf_tumor_tbi         = PROCESS_CNVS.out.gens_baf_tumor_tbi                           // channel: [val(meta), path(tsv.gz.tbi)]
+    cnv_cov_bed               = PROCESS_CNVS.out.gens_cov_bed                                 // channel: [val(meta), path(bed.gz)]
+    cnv_cov_bed_tbi           = PROCESS_CNVS.out.gens_cov_bed_tbi                             // channel: [val(meta), path(bed.gz.tbi)]
     multiqc_report            = MULTIQC.out.report.map { _meta, report -> [report] }.toList() // channel: /path/to/multiqc_report.html
     snv_clinical_filtered_vcf = PROCESS_SNVS.out.clinical_filtered_vcf                        // channel: [val(meta), path(vcf)]
     snv_clinical_filtered_tbi = PROCESS_SNVS.out.clinical_filtered_tbi                        // channel: [val(meta), path(tbi)]

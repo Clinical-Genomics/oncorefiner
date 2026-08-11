@@ -35,13 +35,17 @@ include { samplesheetToList       } from 'plugin/nf-schema'
 workflow CLINICALGENOMICS_ONCOREFINER {
 
     take:
+    val_amber_baf_tsv_gz            // string:  [optional]  path to amber baf tsv.gz file
     val_bam_normal                  // string:  [optional]  path to BAM file for the normal sample
     val_bai_normal                  // string:  [optional]  path to BAI file for the normal sample
+    val_analysis_type               // string:  [optional]  analysis type, e.g. "tumor_only" or "tumor_normal"
     val_bam_tumor                   // string:  [optional]  path to BAM file for the tumor sample
     val_bai_tumor                   // string:  [optional]  path to BAI file for the tumor sample
     val_cadd_prescored_indels       // string:  [optional]  path to CADD prescored indels file
     val_cadd_resources              // string:  [optional]  path to CADD resources directory
     val_case_id                     // string:  [mandatory] case ID (used in channel metadata)
+    val_cobalt_ratio_pcf_normal     // string:  [optional]  path to cobalt pcf file for normal sample
+    val_cobalt_ratio_pcf_tumor      // string:  [optional]  path to cobalt pcf file for tumor sample
     val_genmod_score_config         // string:  [optional]  path to Genmod score config file
     val_genome                      // string:  [optional]  genome assembly (e.g. "GRCh38")
     val_genome_fasta                // string:  [optional]  path to genome fasta file
@@ -102,6 +106,9 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     ch_snv_vcf_tbi     = channelFromMetaAndPath(metadata_case_file, val_snv_vcf + '.tbi')
     ch_sv_vcf          = channelFromMetaAndPath(metadata_case_file, val_sv_vcf)
     ch_sv_vcf_tbi      = channelFromMetaAndPath(metadata_case_file, val_sv_vcf + '.tbi')
+    ch_amber_baf_tsv_gz = channelFromMetaAndPath(metadata_case_file, val_amber_baf_tsv_gz)
+    ch_cobalt_ratio_pcf_tumor = channelFromMetaAndPath(metadata_tumor_sample_file, val_cobalt_ratio_pcf_tumor)
+    ch_cobalt_ratio_pcf_normal = channelFromMetaAndPath(metadata_normal_sample_file, val_cobalt_ratio_pcf_normal)
     ch_vep_extra_files = channel.empty()
 
     // Alignment files
@@ -151,11 +158,14 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     }
 
     ONCOREFINER (
+        ch_amber_baf_tsv_gz,
         ch_bam_bai_normal,
         ch_bam_bai_tumor,
         ch_cadd_header,
         ch_cadd_prescored_indels,
         ch_cadd_resources,
+        ch_cobalt_ratio_pcf_normal,
+        ch_cobalt_ratio_pcf_tumor,
         ch_genmod_score_config,
         ch_genome_fasta,
         ch_genome_fai,
@@ -171,6 +181,7 @@ workflow CLINICALGENOMICS_ONCOREFINER {
         PREPARE_REFERENCES.out.vep_resources,
         ch_vep_extra_files,
         val_cadd_resources,
+        val_analysis_type,
         val_genome,
         val_multiqc_config,
         val_multiqc_logo,
@@ -196,6 +207,12 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     emit:
     cadd_annotated_vcf        = ONCOREFINER.out.cadd_annotated_vcf        // channel: [val(meta), path(vcf)]
     cadd_annotated_tbi        = ONCOREFINER.out.cadd_annotated_tbi        // channel: [val(meta), path(tbi)]
+    cnv_baf_normal_tsv        = ONCOREFINER.out.cnv_baf_normal_tsv        // channel: [val(meta), path(tsv.gz)]
+    cnv_baf_normal_tbi        = ONCOREFINER.out.cnv_baf_normal_tbi        // channel: [val(meta), path(tsv.gz.tbi)]
+    cnv_baf_tumor_tsv         = ONCOREFINER.out.cnv_baf_tumor_tsv         // channel: [val(meta), path(tsv.gz)]
+    cnv_baf_tumor_tbi         = ONCOREFINER.out.cnv_baf_tumor_tbi         // channel: [val(meta), path(tsv.gz.tbi)]
+    cnv_cov_bed               = ONCOREFINER.out.cnv_cov_bed               // channel: [val(meta), path(bed.gz)]
+    cnv_cov_bed_tbi           = ONCOREFINER.out.cnv_cov_bed_tbi           // channel: [val(meta), path(bed.gz.tbi)]
     multiqc_report            = ONCOREFINER.out.multiqc_report            // channel: /path/to/multiqc_report.html
     snv_clinical_filtered_vcf = ONCOREFINER.out.snv_clinical_filtered_vcf // channel: [val(meta), path(vcf)]
     snv_clinical_filtered_tbi = ONCOREFINER.out.snv_clinical_filtered_tbi // channel: [val(meta), path(tbi)]
@@ -234,13 +251,17 @@ workflow {
     // WORKFLOW: Run main workflow
     //
     CLINICALGENOMICS_ONCOREFINER (
+        params.amber_baf_tsv_gz,
         params.bam_normal,
         params.bai_normal,
+        params.analysis_type,
         params.bam_tumor,
         params.bai_tumor,
         params.cadd_prescored_indels,
         params.cadd_resources,
         params.case_id,
+        params.cobalt_ratio_pcf_normal,
+        params.cobalt_ratio_pcf_tumor,
         params.genmod_score_config,
         params.genome,
         params.fasta,
@@ -292,11 +313,22 @@ workflow {
         .mix(CLINICALGENOMICS_ONCOREFINER.out.snv_research_filtered_vcf)
         .mix(CLINICALGENOMICS_ONCOREFINER.out.snv_research_filtered_tbi)
 
+    ch_cnv_publish = CLINICALGENOMICS_ONCOREFINER.out.cnv_baf_normal_tsv
+        .mix(CLINICALGENOMICS_ONCOREFINER.out.cnv_baf_normal_tbi)
+        .mix(CLINICALGENOMICS_ONCOREFINER.out.cnv_baf_tumor_tsv)
+        .mix(CLINICALGENOMICS_ONCOREFINER.out.cnv_baf_tumor_tbi)
+        .mix(CLINICALGENOMICS_ONCOREFINER.out.cnv_cov_bed)
+        .mix(CLINICALGENOMICS_ONCOREFINER.out.cnv_cov_bed_tbi)
+
     publish:
+    cnv = ch_cnv_publish
     snv = ch_snv_publish
 }
 
 output {
+    cnv {
+        path "cnv"
+    }
     snv {
         path "snv"
     }
