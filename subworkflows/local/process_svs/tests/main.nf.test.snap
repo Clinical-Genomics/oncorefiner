@@ -7,21 +7,21 @@
                         "id": "subject_a",
                         "case_id": "test_tumor_normal_case"
                     },
-                    "subject_a_clinical.vcf.gz:variantsMD5,234479e5f991b276da480ba96eb607af"
+                    "subject_a_SV_clinical_filtered_bcftools.vcf.gz:variantsMD5,234479e5f991b276da480ba96eb607af"
                 ],
                 [
                     {
                         "id": "subject_a",
                         "case_id": "test_tumor_normal_case"
                     },
-                    "subject_a_research.vcf.gz:variantsMD5,da36427a37c150dc78ef322d3841f4a1"
+                    "subject_a_SV_research_filtered_bcftools.vcf.gz:variantsMD5,da36427a37c150dc78ef322d3841f4a1"
                 ],
                 [
                     {
                         "id": "subject_a",
                         "case_id": "test_tumor_normal_case"
                     },
-                    "subject_a_svdbquery_vep.vcf.gz:variantsMD5,f92bc125c747cdbce5e5c6c2ff8b023a"
+                    "subject_a_SV_annotated_vep.vcf.gz:variantsMD5,f92bc125c747cdbce5e5c6c2ff8b023a"
                 ]
             ],
             [
@@ -30,21 +30,21 @@
                         "id": "subject_a",
                         "case_id": "test_tumor_normal_case"
                     },
-                    "subject_a_clinical.vcf.gz.tbi"
+                    "subject_a_SV_clinical_filtered_bcftools.vcf.gz.tbi"
                 ],
                 [
                     {
                         "id": "subject_a",
                         "case_id": "test_tumor_normal_case"
                     },
-                    "subject_a_research.vcf.gz.tbi"
+                    "subject_a_SV_research_filtered_bcftools.vcf.gz.tbi"
                 ],
                 [
                     {
                         "id": "subject_a",
                         "case_id": "test_tumor_normal_case"
                     },
-                    "subject_a_svdbquery_vep.vcf.gz.tbi"
+                    "subject_a_SV_annotated_vep.vcf.gz.tbi"
                 ]
             ],
             [
@@ -53,14 +53,14 @@
                         "id": "subject_a",
                         "case_id": "test_tumor_normal_case"
                     },
-                    "normal.cgh"
+                    "normal_SV_vcf2cytosure.cgh"
                 ],
                 [
                     {
                         "id": "subject_a",
                         "case_id": "test_tumor_normal_case"
                     },
-                    "tumor.cgh"
+                    "tumor_SV_vcf2cytosure.cgh"
                 ]
             ],
             [
@@ -69,7 +69,7 @@
                         "id": "subject_a",
                         "case_id": "test_tumor_normal_case"
                     },
-                    "subject_a_svdbquery_vep.vcf.gz_summary.html"
+                    "subject_a_SV_annotated_vep.vcf.gz_summary.html"
                 ]
             ],
             {
@@ -162,7 +162,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-08-05T13:08:42.939",
+        "timestamp": "2026-08-11T14:28:05.648852",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
@@ -177,7 +177,7 @@
                             "id": "subject_a",
                             "case_id": "test_tumor_normal_case"
                         },
-                        "subject_a_clinical.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "subject_a_SV_clinical_filtered_bcftools.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "clinical_filtered_vcf": [
@@ -186,7 +186,7 @@
                             "id": "subject_a",
                             "case_id": "test_tumor_normal_case"
                         },
-                        "subject_a_clinical.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                        "subject_a_SV_clinical_filtered_bcftools.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
                     ]
                 ],
                 "research_filtered_tbi": [
@@ -195,7 +195,7 @@
                             "id": "subject_a",
                             "case_id": "test_tumor_normal_case"
                         },
-                        "subject_a_research.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "subject_a_SV_research_filtered_bcftools.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "research_filtered_vcf": [
@@ -204,7 +204,7 @@
                             "id": "subject_a",
                             "case_id": "test_tumor_normal_case"
                         },
-                        "subject_a_research.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                        "subject_a_SV_research_filtered_bcftools.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
                     ]
                 ],
                 "vcf2cytosure_cgh": [
@@ -213,14 +213,14 @@
                             "id": "subject_a",
                             "case_id": "test_tumor_normal_case"
                         },
-                        "normal.cgh:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "normal_SV_vcf2cytosure.cgh:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ],
                     [
                         {
                             "id": "subject_a",
                             "case_id": "test_tumor_normal_case"
                         },
-                        "tumor.cgh:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "tumor_SV_vcf2cytosure.cgh:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "vep_annotated_tbi": [
@@ -229,7 +229,7 @@
                             "id": "subject_a",
                             "case_id": "test_tumor_normal_case"
                         },
-                        "subject_a_svdbquery_vep.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "subject_a_SV_annotated_vep.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "vep_annotated_vcf": [
@@ -238,7 +238,7 @@
                             "id": "subject_a",
                             "case_id": "test_tumor_normal_case"
                         },
-                        "subject_a_svdbquery_vep.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                        "subject_a_SV_annotated_vep.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
                     ]
                 ],
                 "vep_report": [
@@ -249,7 +249,7 @@
                         },
                         "PROCESS_SVS:ENSEMBLVEP_VEP",
                         "ensemblvep",
-                        "subject_a_svdbquery_vep_summary.html:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "subject_a_SV_annotated_vep_summary.html:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ]
             },
@@ -343,7 +343,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-08-05T13:09:16.711187",
+        "timestamp": "2026-08-11T14:28:43.301594",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
