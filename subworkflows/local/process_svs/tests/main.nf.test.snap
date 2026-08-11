@@ -53,14 +53,14 @@
                         "id": "subject_a",
                         "case_id": "test_tumor_normal_case"
                     },
-                    "normal_SV_vcf2cytosure.cgh"
+                    "subject_a_normal_SV_vcf2cytosure.cgh"
                 ],
                 [
                     {
                         "id": "subject_a",
                         "case_id": "test_tumor_normal_case"
                     },
-                    "tumor_SV_vcf2cytosure.cgh"
+                    "subject_a_tumor_SV_vcf2cytosure.cgh"
                 ]
             ],
             [
@@ -162,7 +162,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-08-11T14:28:05.648852",
+        "timestamp": "2026-08-11T16:25:25.051734",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
@@ -213,14 +213,14 @@
                             "id": "subject_a",
                             "case_id": "test_tumor_normal_case"
                         },
-                        "normal_SV_vcf2cytosure.cgh:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "subject_a_normal_SV_vcf2cytosure.cgh:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ],
                     [
                         {
                             "id": "subject_a",
                             "case_id": "test_tumor_normal_case"
                         },
-                        "tumor_SV_vcf2cytosure.cgh:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "subject_a_tumor_SV_vcf2cytosure.cgh:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "vep_annotated_tbi": [
@@ -343,7 +343,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-08-11T14:28:43.301594",
+        "timestamp": "2026-08-11T16:26:00.809571",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
