@@ -10,20 +10,13 @@ process PREPARE_AMBER_FOR_GENS {
 
     input:
     tuple val(meta), path(amber_baf_tsv)
-<<<<<<< HEAD
-    val(sampletype)
-=======
+    val(analysis_type)
+
     output:
+    tuple val(meta), path("*tumor.baf.zoom.tsv.gz"), emit: tumor_tsv
     tuple val(meta), path("*normal.baf.zoom.tsv.gz"), emit: normal_tsv, optional: true
     tuple val(meta), path("*tumor.baf.zoom.tsv.gz.tbi"), emit: tumor_tbi
     tuple val(meta), path("*normal.baf.zoom.tsv.gz.tbi"), emit: normal_tbi, optional: true
-<<<<<<< HEAD
-    tuple val("${task.process}"), val('prepare_amber_for_gens'), val('1.0'), topic: versions, emit: versions_amber_for_gens
-    // WARN: Version information not provided by tool on CLI. Please update version string above when bumping container versions.
-
-    script:
-    def prefix = meta.id ?: "sample"
-=======
     tuple val("${task.process}"), val('python'), eval("python --version | sed '1!d; s/^.*python //'"), topic: versions, emit: versions_python
     tuple val("${task.process}"), val('bgzip'), eval("bgzip --version | sed '1!d; s/^.*bgzip //'"), topic: versions, emit: versions_bgzip
     tuple val("${task.process}"), val('tabix'), eval("tabix --version | sed '1!d; s/^.*tabix //'"), topic: versions, emit: versions_tabix
@@ -31,18 +24,12 @@ process PREPARE_AMBER_FOR_GENS {
 
     script:
     def prefix = task.ext.prefix ?: "${meta.id}"
->>>>>>> add_gens
 
     """
     prepare_amber_for_gens.py \\
         --input-file ${amber_baf_tsv} \\
-<<<<<<< HEAD
-        --sample-type ${sampletype} \\
-        --output-file-prefix ${prefix}.${sampletype}
-=======
         --analysis-type ${analysis_type} \\
         --output-file-prefix ${prefix}
->>>>>>> add_gens
 
     for f in *.baf.zoom.tsv; do
         if [[ -s "\$f" ]]; then
@@ -55,21 +42,11 @@ process PREPARE_AMBER_FOR_GENS {
     stub:
     prefix = task.ext.prefix ?: "${meta.id}"
     """
-<<<<<<< HEAD
-    sampletype=${sampletype}
-    if [[ $sampletype == *"normal"* ]]; then
-        echo | gzip > ${prefix}.${sampletype}.normal.baf.zoom.tsv.gz
-        touch ${prefix}.${sampletype}.normal.baf.zoom.tsv.gz.tbi
-    fi
-    echo | gzip > ${prefix}.${sampletype}.tumor.baf.zoom.tsv.gz
-    touch ${prefix}.${sampletype}.tumor.baf.zoom.tsv.gz.tbi
-=======
     if [[ $analysis_type == *normal* ]]; then
         echo | gzip > ${prefix}.normal.baf.zoom.tsv.gz
         touch ${prefix}.normal.baf.zoom.tsv.gz.tbi
     fi
     echo | gzip > ${prefix}.tumor.baf.zoom.tsv.gz
     touch ${prefix}.tumor.baf.zoom.tsv.gz.tbi
->>>>>>> add_gens
     """
 }
