@@ -38,7 +38,7 @@ Define where the pipeline should find input data and save output data.
 | `amber_baf_tsv_gz` | Path to a gzipped TSV file containing amber BAF values for the sample. | `string` |  |  |  |
 | `cobalt_ratio_pcf_tumor` | Path to a TSV file containing cobalt segment coverage ratios for the tumor sample. | `string` |  |  |  |
 | `cobalt_ratio_pcf_normal` | Path to a TSV file containing cobalt segment coverage ratios for the normal sample. | `string` |  |  |  |
-| `sampletype` | Type of the sample. (accepted: `tumor_only`\|`tumor_normal`) | `string` |  |  |  |
+| `analysis_type` | Analysis type of the case. (accepted: `tumor_only`\|`tumor_normal`) | `string` |  |  |  |
 
 ## Reference genome options
 

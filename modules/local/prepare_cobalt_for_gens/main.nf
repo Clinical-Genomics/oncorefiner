@@ -1,5 +1,6 @@
 process PREPARE_COBALT_FOR_GENS {
     tag "$meta.id"
+    label "process_single"
 
     conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
@@ -10,29 +11,31 @@ process PREPARE_COBALT_FOR_GENS {
     tuple val(meta), path(cobalt_pcf)
 
     output:
-    tuple val(meta), path("*${meta.sample_type}.bed.gz"),  emit: bed
-    tuple val(meta), path("*${meta.sample_type}.bed.gz.tbi"), emit: tbi
-    tuple val("${task.process}"), val('prepare_cobalt_for_gens'), val('1.0'), topic: versions, emit: versions_cobalt_for_gens
-    // WARN: Version information not provided by tool on CLI. Please update version string above when bumping container versions.
+    tuple val(meta), path("*.bed.gz"),  emit: bed
+    tuple val(meta), path("*.bed.gz.tbi"), emit: tbi
+    tuple val("${task.process}"), val('python'), eval("python --version | sed '1!d; s/^.*python //'"), topic: versions, emit: versions_python
+    tuple val("${task.process}"), val('bgzip'), eval("bgzip --version | sed '1!d; s/^.*bgzip //'"), topic: versions, emit: versions_bgzip
+    tuple val("${task.process}"), val('tabix'), eval("tabix --version | sed '1!d; s/^.*tabix //'"), topic: versions, emit: versions_tabix
+    tuple val("${task.process}"), val('prepare_cobalt_for_gens'), eval("prepare_cobalt_for_gens.py --version | sed '1!d; s/^.*prepare_cobalt_for_gens //'"), topic: versions, emit: versions_cobalt_for_gens
 
     script:
-    def prefix = meta.id ?: "sample"
+    def prefix = task.ext.prefix ?: "${meta.id}"
 
     """
     prepare_cobalt_for_gens.py \\
         --input-file ${cobalt_pcf} \\
-        --output-file ${prefix}.${meta.sample_type}.bed
+        --output-file ${prefix}.bed
 
-    bgzip ${prefix}.${meta.sample_type}.bed
+    bgzip ${prefix}.bed
 
-    tabix ${prefix}.${meta.sample_type}.bed.gz
+    tabix ${prefix}.bed.gz
     """
 
     stub:
     prefix = task.ext.prefix ?: "${meta.id}"
     """
-    echo | gzip >  ${prefix}.${meta.sample_type}.bed.gz
-    touch ${prefix}.${meta.sample_type}.bed.gz.tbi
+    echo | gzip >  ${prefix}.bed.gz
+    touch ${prefix}.bed.gz.tbi
     """
 
 }
