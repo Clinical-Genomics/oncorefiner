@@ -22,13 +22,13 @@ workflow GENS {
     ch_amber_baf_tsv     // channel: [required]  [val(meta), path(amber_baf_tsv)]
     ch_cobalt_pcf_normal // channel: [required]  [val(meta), path(cobalt_pcf_normal)]
     ch_cobalt_pcf_tumor  // channel: [required]  [val(meta), path(cobalt_pcf_tumor)]
-    val_sampletype       // string:  [required]  sample type, e.g. "tumor_only" or "tumor_normal"
+    val_analysistype     // string:  [required]  analysis type, e.g. "tumor_only" or "tumor_normal"
 
     main:
 
     PREPARE_AMBER_FOR_GENS (
         ch_amber_baf_tsv,
-        val_sampletype
+        val_analysistype
     )
 
     def ch_cobalt_pcf_tumor_normal = channel.empty().mix(
