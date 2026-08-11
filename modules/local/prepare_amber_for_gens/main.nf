@@ -42,7 +42,7 @@ process PREPARE_AMBER_FOR_GENS {
     stub:
     prefix = task.ext.prefix ?: "${meta.id}"
     """
-    if [[ $analysis_type == *"normal"* ]]; then
+    if [[ $analysis_type == *normal* ]]; then
         echo | gzip > ${prefix}.normal.baf.zoom.tsv.gz
         touch ${prefix}.normal.baf.zoom.tsv.gz.tbi
     fi
