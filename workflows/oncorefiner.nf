@@ -43,8 +43,8 @@ workflow ONCOREFINER {
     ch_vcfanno_toml                 // channel: [optional]  [path(toml_file)]
     ch_vep_cache                    // channel: [optional]  [vep_cache_files]
     ch_vep_extra_files              // channel: [optional]  [path(plugin_file1), path(plugin_file2), ...]
-    val_cadd_resources              // string:  [optional]  path to CADD resources directory
     val_analysis_type               // string:  [optional]  analysis type, e.g. "tumor_only" or "tumor_normal"
+    val_cadd_resources              // string:  [optional]  path to CADD resources directory
     val_genome                      // string:  [optional]  genome assembly (e.g. "GRCh38")
     val_multiqc_config              // string:  [optional]  path to multiqc config file
     val_multiqc_logo                // string:  [optional]  path to image file to be used as logo in multiqc report
@@ -58,6 +58,14 @@ workflow ONCOREFINER {
 
     def ch_versions = channel.empty()
     def ch_multiqc_files = channel.empty()
+
+    // Process CNV input files
+    PROCESS_CNVS (
+        ch_amber_baf_tsv_gz,
+        ch_cobalt_ratio_pcf_normal,
+        ch_cobalt_ratio_pcf_tumor,
+        val_analysis_type
+    )
 
     // Process SNV VCF files
     PROCESS_SNVS (
@@ -95,14 +103,6 @@ workflow ONCOREFINER {
         ch_vep_cache,
         ch_genome_fasta,
         ch_vep_extra_files
-    )
-
-    // Process CNV input files
-    PROCESS_CNVS(
-        ch_amber_baf_tsv_gz,
-        ch_cobalt_ratio_pcf_normal,
-        ch_cobalt_ratio_pcf_tumor,
-        val_analysis_type
     )
 
     //

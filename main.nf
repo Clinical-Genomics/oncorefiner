@@ -36,9 +36,9 @@ workflow CLINICALGENOMICS_ONCOREFINER {
 
     take:
     val_amber_baf_tsv_gz            // string:  [optional]  path to amber baf tsv.gz file
+    val_analysis_type               // string:  [optional]  analysis type, e.g. "tumor_only" or "tumor_normal"
     val_bam_normal                  // string:  [optional]  path to BAM file for the normal sample
     val_bai_normal                  // string:  [optional]  path to BAI file for the normal sample
-    val_analysis_type               // string:  [optional]  analysis type, e.g. "tumor_only" or "tumor_normal"
     val_bam_tumor                   // string:  [optional]  path to BAM file for the tumor sample
     val_bai_tumor                   // string:  [optional]  path to BAI file for the tumor sample
     val_cadd_prescored_indels       // string:  [optional]  path to CADD prescored indels file
@@ -106,9 +106,6 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     ch_snv_vcf_tbi     = channelFromMetaAndPath(metadata_case_file, val_snv_vcf + '.tbi')
     ch_sv_vcf          = channelFromMetaAndPath(metadata_case_file, val_sv_vcf)
     ch_sv_vcf_tbi      = channelFromMetaAndPath(metadata_case_file, val_sv_vcf + '.tbi')
-    ch_amber_baf_tsv_gz = channelFromMetaAndPath(metadata_case_file, val_amber_baf_tsv_gz)
-    ch_cobalt_ratio_pcf_tumor = channelFromMetaAndPath(metadata_tumor_sample_file, val_cobalt_ratio_pcf_tumor)
-    ch_cobalt_ratio_pcf_normal = channelFromMetaAndPath(metadata_normal_sample_file, val_cobalt_ratio_pcf_normal)
     ch_vep_extra_files = channel.empty()
 
     // Alignment files
@@ -129,6 +126,11 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     def ch_cadd_header           = channelFromMetaAndPath(metadata_case_file, "$projectDir/assets/cadd_to_vcf_header.txt")
     def ch_cadd_resources        = channelFromMetaAndPath(metadata_case_file, val_cadd_resources)
     def ch_cadd_prescored_indels = channelFromMetaAndPath(metadata_case_file, val_cadd_prescored_indels)
+
+    // Input for GENS 
+    ch_amber_baf_tsv_gz = channelFromMetaAndPath(metadata_case_file, val_amber_baf_tsv_gz)
+    ch_cobalt_ratio_pcf_tumor = channelFromMetaAndPath(metadata_tumor_sample_file, val_cobalt_ratio_pcf_tumor)
+    ch_cobalt_ratio_pcf_normal = channelFromMetaAndPath(metadata_normal_sample_file, val_cobalt_ratio_pcf_normal)
 
     // Input for VEP
     ch_vep_extra_files = val_vep_plugin_files ? channel.fromList(samplesheetToList(val_vep_plugin_files, 'assets/vep_plugin_files_schema.json')).collect()
@@ -180,8 +182,8 @@ workflow CLINICALGENOMICS_ONCOREFINER {
         ch_vcfanno_toml,
         PREPARE_REFERENCES.out.vep_resources,
         ch_vep_extra_files,
-        val_cadd_resources,
         val_analysis_type,
+        val_cadd_resources,
         val_genome,
         val_multiqc_config,
         val_multiqc_logo,
@@ -252,9 +254,9 @@ workflow {
     //
     CLINICALGENOMICS_ONCOREFINER (
         params.amber_baf_tsv_gz,
+        params.analysis_type,
         params.bam_normal,
         params.bai_normal,
-        params.analysis_type,
         params.bam_tumor,
         params.bai_tumor,
         params.cadd_prescored_indels,
@@ -301,6 +303,13 @@ workflow {
     //
     // WORKFLOW OUTPUTS: Group files by publish directory
     //
+    ch_cnv_publish = CLINICALGENOMICS_ONCOREFINER.out.cnv_baf_normal_tsv
+        .mix(CLINICALGENOMICS_ONCOREFINER.out.cnv_baf_normal_tbi)
+        .mix(CLINICALGENOMICS_ONCOREFINER.out.cnv_baf_tumor_tsv)
+        .mix(CLINICALGENOMICS_ONCOREFINER.out.cnv_baf_tumor_tbi)
+        .mix(CLINICALGENOMICS_ONCOREFINER.out.cnv_cov_bed)
+        .mix(CLINICALGENOMICS_ONCOREFINER.out.cnv_cov_bed_tbi)
+
     ch_snv_publish = CLINICALGENOMICS_ONCOREFINER.out.cadd_annotated_vcf
         .mix(CLINICALGENOMICS_ONCOREFINER.out.cadd_annotated_tbi)
         .mix(CLINICALGENOMICS_ONCOREFINER.out.snv_clinical_filtered_vcf)
@@ -313,12 +322,6 @@ workflow {
         .mix(CLINICALGENOMICS_ONCOREFINER.out.snv_research_filtered_vcf)
         .mix(CLINICALGENOMICS_ONCOREFINER.out.snv_research_filtered_tbi)
 
-    ch_cnv_publish = CLINICALGENOMICS_ONCOREFINER.out.cnv_baf_normal_tsv
-        .mix(CLINICALGENOMICS_ONCOREFINER.out.cnv_baf_normal_tbi)
-        .mix(CLINICALGENOMICS_ONCOREFINER.out.cnv_baf_tumor_tsv)
-        .mix(CLINICALGENOMICS_ONCOREFINER.out.cnv_baf_tumor_tbi)
-        .mix(CLINICALGENOMICS_ONCOREFINER.out.cnv_cov_bed)
-        .mix(CLINICALGENOMICS_ONCOREFINER.out.cnv_cov_bed_tbi)
 
     publish:
     cnv = ch_cnv_publish
