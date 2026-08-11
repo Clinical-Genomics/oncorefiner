@@ -22,6 +22,18 @@
                 "GENMOD_SCORE": {
                     "genmod": "3.10.2"
                 },
+                "PREPARE_AMBER_FOR_GENS": {
+                    "bgzip": "(htslib) 1.23.1",
+                    "prepare_amber_for_gens": "prepare_amber_for_gens, version 1.0",
+                    "python": "Python 3.14.6",
+                    "tabix": "(htslib) 1.23.1"
+                },
+                "PREPARE_COBALT_FOR_GENS": {
+                    "bgzip": "(htslib) 1.23.1",
+                    "prepare_cobalt_for_gens": "prepare_cobalt_for_gens, version 1.0",
+                    "python": "Python 3.14.6",
+                    "tabix": "(htslib) 1.23.1"
+                },
                 "SAMTOOLS_VIEW": {
                     "samtools": "1.23.1"
                 },
@@ -50,6 +62,15 @@
                 "alignments/subject_a_normal.cram.crai",
                 "alignments/subject_a_tumor.cram",
                 "alignments/subject_a_tumor.cram.crai",
+                "cnv",
+                "cnv/test_normal_sample_cobalt.bed.gz",
+                "cnv/test_normal_sample_cobalt.bed.gz.tbi",
+                "cnv/test_tumor_normal_case_amber.normal.baf.zoom.tsv.gz",
+                "cnv/test_tumor_normal_case_amber.normal.baf.zoom.tsv.gz.tbi",
+                "cnv/test_tumor_normal_case_amber.tumor.baf.zoom.tsv.gz",
+                "cnv/test_tumor_normal_case_amber.tumor.baf.zoom.tsv.gz.tbi",
+                "cnv/test_tumor_sample_cobalt.bed.gz",
+                "cnv/test_tumor_sample_cobalt.bed.gz.tbi",
                 "multiqc",
                 "multiqc/multiqc_data",
                 "multiqc/multiqc_data/.stub",
@@ -82,10 +103,10 @@
                 "vep/test_tumor_normal_case_svdbquery_vep_summary.html"
             ]
         ],
-        "timestamp": "2026-06-22T16:34:07.010459",
+        "timestamp": "2026-08-11T13:37:19.564146",
         "meta": {
             "nf-test": "0.9.5",
-            "nextflow": "26.04.0"
+            "nextflow": "26.04.6"
         }
     },
     "Tumor Normal analysis with '-profile test'": {
@@ -110,6 +131,18 @@
                 },
                 "GENMOD_SCORE": {
                     "genmod": "3.10.2"
+                },
+                "PREPARE_AMBER_FOR_GENS": {
+                    "bgzip": "(htslib) 1.23.1",
+                    "prepare_amber_for_gens": "prepare_amber_for_gens, version 1.0",
+                    "python": "Python 3.14.6",
+                    "tabix": "(htslib) 1.23.1"
+                },
+                "PREPARE_COBALT_FOR_GENS": {
+                    "bgzip": "(htslib) 1.23.1",
+                    "prepare_cobalt_for_gens": "prepare_cobalt_for_gens, version 1.0",
+                    "python": "Python 3.14.6",
+                    "tabix": "(htslib) 1.23.1"
                 },
                 "SAMTOOLS_VIEW": {
                     "samtools": "1.23.1"
@@ -139,6 +172,15 @@
                 "alignments/subject_a_normal.cram.crai",
                 "alignments/subject_a_tumor.cram",
                 "alignments/subject_a_tumor.cram.crai",
+                "cnv",
+                "cnv/test_normal_sample_cobalt.bed.gz",
+                "cnv/test_normal_sample_cobalt.bed.gz.tbi",
+                "cnv/test_tumor_normal_case_amber.normal.baf.zoom.tsv.gz",
+                "cnv/test_tumor_normal_case_amber.normal.baf.zoom.tsv.gz.tbi",
+                "cnv/test_tumor_normal_case_amber.tumor.baf.zoom.tsv.gz",
+                "cnv/test_tumor_normal_case_amber.tumor.baf.zoom.tsv.gz.tbi",
+                "cnv/test_tumor_sample_cobalt.bed.gz",
+                "cnv/test_tumor_sample_cobalt.bed.gz.tbi",
                 "multiqc",
                 "multiqc/multiqc_data",
                 "multiqc/multiqc_data/llms-full.txt",
@@ -175,6 +217,14 @@
                 "vep/test_tumor_normal_case_svdbquery_vep.vcf.gz_summary.html"
             ],
             [
+                "test_normal_sample_cobalt.bed.gz:md5,d80e5d2edb1559d3e035c0739a8d172f",
+                "test_normal_sample_cobalt.bed.gz.tbi:md5,e62a830a3200cb6494dbb70d1c8ce166",
+                "test_tumor_normal_case_amber.normal.baf.zoom.tsv.gz:md5,cb7c9d7281611c8e7138ded59a681412",
+                "test_tumor_normal_case_amber.normal.baf.zoom.tsv.gz.tbi:md5,d54ee75db6836f8851340d3761d3d7e6",
+                "test_tumor_normal_case_amber.tumor.baf.zoom.tsv.gz:md5,87317df569141e8908d318197fc075af",
+                "test_tumor_normal_case_amber.tumor.baf.zoom.tsv.gz.tbi:md5,b3b3d37cfa2318d1a8d70dfcd2bf15ce",
+                "test_tumor_sample_cobalt.bed.gz:md5,5a34fb13829738c0742132bd11ff1219",
+                "test_tumor_sample_cobalt.bed.gz.tbi:md5,436297c281deec1aa371e78b53e7e207",
                 "normal.cgh:md5,4d969b296e558f0fc911844f35fad6e9",
                 "tumor.cgh:md5,dd4ac501252ca74cb364ae447ec6b3eb"
             ],
@@ -239,10 +289,10 @@
                 ]
             ]
         ],
-        "timestamp": "2026-07-29T14:41:08.478851",
+        "timestamp": "2026-08-11T13:36:27.11869",
         "meta": {
             "nf-test": "0.9.5",
-            "nextflow": "26.04.0"
+            "nextflow": "26.04.6"
         }
     }
 }

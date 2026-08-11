@@ -16,6 +16,18 @@
                 "FILTER_VCF": {
                     "bcftools": "1.23.1"
                 },
+                "PREPARE_AMBER_FOR_GENS": {
+                    "bgzip": "(htslib) 1.23.1",
+                    "prepare_amber_for_gens": "prepare_amber_for_gens, version 1.0",
+                    "python": "Python 3.14.6",
+                    "tabix": "(htslib) 1.23.1"
+                },
+                "PREPARE_COBALT_FOR_GENS": {
+                    "bgzip": "(htslib) 1.23.1",
+                    "prepare_cobalt_for_gens": "prepare_cobalt_for_gens, version 1.0",
+                    "python": "Python 3.14.6",
+                    "tabix": "(htslib) 1.23.1"
+                },
                 "SAMTOOLS_VIEW": {
                     "samtools": "1.23.1"
                 },
@@ -44,6 +56,15 @@
                 "alignments/subject_a_normal.cram.crai",
                 "alignments/subject_a_tumor.cram",
                 "alignments/subject_a_tumor.cram.crai",
+                "cnv",
+                "cnv/test_normal_sample_cobalt.bed.gz",
+                "cnv/test_normal_sample_cobalt.bed.gz.tbi",
+                "cnv/test_tumor_normal_case_amber.normal.baf.zoom.tsv.gz",
+                "cnv/test_tumor_normal_case_amber.normal.baf.zoom.tsv.gz.tbi",
+                "cnv/test_tumor_normal_case_amber.tumor.baf.zoom.tsv.gz",
+                "cnv/test_tumor_normal_case_amber.tumor.baf.zoom.tsv.gz.tbi",
+                "cnv/test_tumor_sample_cobalt.bed.gz",
+                "cnv/test_tumor_sample_cobalt.bed.gz.tbi",
                 "multiqc",
                 "multiqc/multiqc_data",
                 "multiqc/multiqc_data/.stub",
@@ -74,10 +95,10 @@
                 "vep/test_tumor_normal_case_svdbquery_vep_summary.html"
             ]
         ],
-        "timestamp": "2026-06-22T16:40:15.631533",
+        "timestamp": "2026-08-11T13:34:09.481322",
         "meta": {
             "nf-test": "0.9.5",
-            "nextflow": "26.04.2"
+            "nextflow": "26.04.6"
         }
     },
     "No `vep_plugin_files` with '-profile test' - stub": {
@@ -102,6 +123,18 @@
                 },
                 "GENMOD_SCORE": {
                     "genmod": "3.10.2"
+                },
+                "PREPARE_AMBER_FOR_GENS": {
+                    "bgzip": "(htslib) 1.23.1",
+                    "prepare_amber_for_gens": "prepare_amber_for_gens, version 1.0",
+                    "python": "Python 3.14.6",
+                    "tabix": "(htslib) 1.23.1"
+                },
+                "PREPARE_COBALT_FOR_GENS": {
+                    "bgzip": "(htslib) 1.23.1",
+                    "prepare_cobalt_for_gens": "prepare_cobalt_for_gens, version 1.0",
+                    "python": "Python 3.14.6",
+                    "tabix": "(htslib) 1.23.1"
                 },
                 "SAMTOOLS_VIEW": {
                     "samtools": "1.23.1"
@@ -131,6 +164,15 @@
                 "alignments/subject_a_normal.cram.crai",
                 "alignments/subject_a_tumor.cram",
                 "alignments/subject_a_tumor.cram.crai",
+                "cnv",
+                "cnv/test_normal_sample_cobalt.bed.gz",
+                "cnv/test_normal_sample_cobalt.bed.gz.tbi",
+                "cnv/test_tumor_normal_case_amber.normal.baf.zoom.tsv.gz",
+                "cnv/test_tumor_normal_case_amber.normal.baf.zoom.tsv.gz.tbi",
+                "cnv/test_tumor_normal_case_amber.tumor.baf.zoom.tsv.gz",
+                "cnv/test_tumor_normal_case_amber.tumor.baf.zoom.tsv.gz.tbi",
+                "cnv/test_tumor_sample_cobalt.bed.gz",
+                "cnv/test_tumor_sample_cobalt.bed.gz.tbi",
                 "multiqc",
                 "multiqc/multiqc_data",
                 "multiqc/multiqc_data/.stub",
@@ -163,10 +205,10 @@
                 "vep/test_tumor_normal_case_svdbquery_vep_summary.html"
             ]
         ],
-        "timestamp": "2026-06-22T16:41:16.320337",
+        "timestamp": "2026-08-11T13:34:59.240218",
         "meta": {
             "nf-test": "0.9.5",
-            "nextflow": "26.04.0"
+            "nextflow": "26.04.6"
         }
     }
 }
