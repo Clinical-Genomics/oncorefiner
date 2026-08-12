@@ -41,7 +41,7 @@ RankResult
 ```
 
 [`bcftools`](https://github.com/samtools/bcftools) - This tool can filter VCFs using custom settings. In step 2 it applies quality and population level filtering, whilst in step 6 applies clinically relevant filters as defined in the configuration settings. 
-[`CADD`](https://github.com/kircherlab/CADD-scripts/)
+[`CADD`](https://github.com/kircherlab/CADD-scripts/) - This tool will annotate indels with a deleteriousness score based on the tools resources and calculations.
 [`Ensembl VEP`](https://www.ensembl.org/info/docs/tools/vep/index.html) - Annotation using the Ensembk VEP resources.
 
 ### PROCESS_SVS
