@@ -27,6 +27,7 @@
 1. Process SNV VCF files
    1. Annotate with [`Vcfanno`](https://github.com/brentp/vcfanno). Intended for local/custom annotation.
    1. Filter with [`bcftools`](https://github.com/samtools/bcftools). This step aims to apply quality, population-level filtering and/or other general criteria as defined in the configuration settings.
+   1. Annotate with [`CADD`](https://github.com/kircherlab/CADD-scripts/). This step annotates indels with CADD resources.
    1. Annotate with [`Ensembl VEP`](https://www.ensembl.org/info/docs/tools/vep/index.html)
    1. Rank variants and annotate with [`Genmod score`](https://github.com/Clinical-Genomics/genmod). A score is assigned to each variant based on the genmod score config file provided. Annotation with the score is added to the output vcf file.
    1. Filter with [`bcftools`](https://github.com/samtools/bcftools). This step applies clinically relevant filters as defined in the configuration settings. For example, it may involve subsetting variants based on a a list of clinically relevant genes.
@@ -36,11 +37,13 @@
    1. Annotate VCF with external database (params) using [`SVDB`](https://github.com/J35P312/SVDB).
    1. Filter with [`bcftools`](https://github.com/samtools/bcftools). This step aims to apply quality, population-level filtering and/or other general criteria as defined in the configuration settings.
    1. Annotate with [`Ensembl VEP`](https://www.ensembl.org/info/docs/tools/vep/index.html).
+   1. Rank variants and annotate with [`Genmod score`](https://github.com/Clinical-Genomics/genmod). A score is assigned to each variant based on the genmod score config file provided. Annotation with the score is added to the output vcf file.
    1. Filter with [`bcftools`](https://github.com/samtools/bcftools). This step applies clinically relevant filters as defined in the configuration settings. For example, it may involve subsetting variants based on a a list of clinically relevant genes.
+   1. Generate vcf2cytosure files with [`vcf2cytosure`](https://github.com/NBISweden/vcf2cytosure) for visualization in Cytosure. 
 
 1. Present QC for raw reads ([`MultiQC`](http://multiqc.info/)).
 
-For further information about the each step and output files, please refer to the [output documentation](.github/docs/output.md).
+For further information about each step and output files, please refer to the [output documentation](.github/docs/output.md).
 
 ## Usage
 
