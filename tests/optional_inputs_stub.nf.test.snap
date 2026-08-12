@@ -157,8 +157,8 @@
                 "snv/test_tumor_normal_case_SNV_annotated_vep_summary.html",
                 "snv/test_tumor_normal_case_SNV_clinical_filtered_bcftools.vcf.gz",
                 "snv/test_tumor_normal_case_SNV_clinical_filtered_bcftools.vcf.gz.tbi",
-                "snv/test_tumor_normal_case_genmod_score.vcf.gz",
-                "snv/test_tumor_normal_case_genmod_score.vcf.gz.tbi",
+                "snv/test_tumor_normal_case_SNV_genmod_score.vcf.gz",
+                "snv/test_tumor_normal_case_SNV_genmod_score.vcf.gz.tbi",
                 "sv",
                 "sv/test_tumor_normal_case_SV_annotated_vep.vcf.gz",
                 "sv/test_tumor_normal_case_SV_annotated_vep.vcf.gz.tbi",
@@ -171,7 +171,7 @@
                 "sv/test_tumor_normal_case_tumor_SV_vcf2cytosure.cgh"
             ]
         ],
-        "timestamp": "2026-08-11T16:34:52.815554",
+        "timestamp": "2026-08-12T15:24:00.779017",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"

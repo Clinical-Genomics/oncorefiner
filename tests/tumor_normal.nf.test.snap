@@ -72,8 +72,8 @@
                 "snv/test_tumor_normal_case_SNV_annotated_vep_summary.html",
                 "snv/test_tumor_normal_case_SNV_clinical_filtered_bcftools.vcf.gz",
                 "snv/test_tumor_normal_case_SNV_clinical_filtered_bcftools.vcf.gz.tbi",
-                "snv/test_tumor_normal_case_genmod_score.vcf.gz",
-                "snv/test_tumor_normal_case_genmod_score.vcf.gz.tbi",
+                "snv/test_tumor_normal_case_SNV_genmod_score.vcf.gz",
+                "snv/test_tumor_normal_case_SNV_genmod_score.vcf.gz.tbi",
                 "sv",
                 "sv/test_tumor_normal_case_SV_annotated_vep.vcf.gz",
                 "sv/test_tumor_normal_case_SV_annotated_vep.vcf.gz.tbi",
@@ -86,7 +86,7 @@
                 "sv/test_tumor_normal_case_tumor_SV_vcf2cytosure.cgh"
             ]
         ],
-        "timestamp": "2026-08-11T16:36:02.616818",
+        "timestamp": "2026-08-12T15:30:42.488384",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
@@ -169,8 +169,8 @@
                 "snv/test_tumor_normal_case_SNV_annotated_vep.vcf.gz_summary.html",
                 "snv/test_tumor_normal_case_SNV_clinical_filtered_bcftools.vcf.gz",
                 "snv/test_tumor_normal_case_SNV_clinical_filtered_bcftools.vcf.gz.tbi",
-                "snv/test_tumor_normal_case_genmod_score.vcf.gz",
-                "snv/test_tumor_normal_case_genmod_score.vcf.gz.tbi",
+                "snv/test_tumor_normal_case_SNV_genmod_score.vcf.gz",
+                "snv/test_tumor_normal_case_SNV_genmod_score.vcf.gz.tbi",
                 "sv",
                 "sv/test_tumor_normal_case_SV_annotated_vep.vcf.gz",
                 "sv/test_tumor_normal_case_SV_annotated_vep.vcf.gz.tbi",
@@ -200,7 +200,7 @@
                     "VcfFile [chromosomes=[chr9, chr7, chr8, chrX, chr5, chr6, chr3, chr21, chr4, chr11, chr22, chr1, chr12, chr2, chr13, chr20, chr18, chr19, chr15, chr16, chr17], sampleCount=2, variantCount=103, phased=false, phasedAutodetect=false]"
                 ],
                 [
-                    "test_tumor_normal_case_genmod_score.vcf.gz",
+                    "test_tumor_normal_case_SNV_genmod_score.vcf.gz",
                     "VcfFile [chromosomes=[chr9, chr7, chr8, chrX, chr5, chr6, chr3, chr21, chr4, chr11, chr22, chr1, chr12, chr2, chr13, chr20, chr18, chr19, chr15, chr16, chr17], sampleCount=2, variantCount=103, phased=false, phasedAutodetect=false]"
                 ],
                 [
@@ -230,7 +230,7 @@
                     "b3f08a4bb466307cfdb8b06231798637"
                 ],
                 [
-                    "test_tumor_normal_case_genmod_score.vcf.gz",
+                    "test_tumor_normal_case_SNV_genmod_score.vcf.gz",
                     "b3f08a4bb466307cfdb8b06231798637"
                 ],
                 [
@@ -247,7 +247,7 @@
                 ]
             ]
         ],
-        "timestamp": "2026-08-11T16:39:40.98129",
+        "timestamp": "2026-08-12T15:25:27.377273",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
