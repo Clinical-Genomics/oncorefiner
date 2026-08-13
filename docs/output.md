@@ -20,10 +20,10 @@ This process annotates, filters and ranks single nucleotide variants.
 - `snv`
   - `<meta.id>_SNV_annotated_vcfanno.vcf.gz`: a gzipped VCF containing annotated SNVs.
   - `<meta.id>_SNV_annotated_vcfanno.vcf.gz.tbi`: an index file for the gzipped VCF.
-  - `<meta.id>_SNV_annotated_vep.vcf.gz`: a gzipped VCF from step 4 with annotated and filtered variants. 
+  - `<meta.id>_SNV_annotated_vep.vcf.gz`: a gzipped VCF from step 4 with annotated and filtered variants.
   - `<meta.id>_SNV_annotated_vep.vcf.gz.tbi`: an index file for the gzipped VCF.
-  - `<meta.id>_SNV_annotated_vep.vcf.gz_summary.html`: a html summary file produced by VEP. 
-  - `<meta.id>_SNV_clinical_filtered_bcftools.vcf.gz`: a gzipped VCF from step 6 with annotated, ranked and clinically filtered variants. 
+  - `<meta.id>_SNV_annotated_vep.vcf.gz_summary.html`: a html summary file produced by VEP.
+  - `<meta.id>_SNV_clinical_filtered_bcftools.vcf.gz`: a gzipped VCF from step 6 with annotated, ranked and clinically filtered variants.
   - `<meta.id>_SNV_clinical_filtered_bcftools.vcf.gz.tbi`: an index file for the gzipped VCF.
   - `<meta.id>_SNV_genmod_score.vcf.gz`: a gzipped VCF from step 5 with annotated, filtered and ranked variants. Only produced if GENMOD config is provided. If not provided, the corresponding file would be the `_SNV_annotated_vep.vcf.gz`.
   - `<meta.id>_SNV_genmod_score.vcf.gz.tbi`: an index file for the gzipped VCF.
@@ -40,7 +40,7 @@ RankScoreMinMax
 RankResult
 ```
 
-[`bcftools`](https://github.com/samtools/bcftools) - This tool can filter VCFs using custom settings. In step 2 it applies quality and population level filtering, whilst in step 6 applies clinically relevant filters as defined in the configuration settings. 
+[`bcftools`](https://github.com/samtools/bcftools) - This tool can filter VCFs using custom settings. In step 2 it applies quality and population level filtering, whilst in step 6 applies clinically relevant filters as defined in the configuration settings.
 [`CADD`](https://github.com/kircherlab/CADD-scripts/) - This tool will annotate indels with a deleteriousness score based on the tools resources and calculations.
 [`Ensembl VEP`](https://www.ensembl.org/info/docs/tools/vep/index.html) - Annotation using the Ensembk VEP resources.
 
@@ -48,25 +48,24 @@ RankResult
 
 This process annotates, ranks and filters structural variants
 
-
 <details markdown="1">
 <summary>Output files</summary>
 
 - `sv/`
-  - `<meta.id>_SV_research_filtered_bcftools.vcf.gz`: a gzipped VCF containing LINX fusion and SVDB annotated variants filtered with bcftools from step 3 in README.md. 
+  - `<meta.id>_SV_research_filtered_bcftools.vcf.gz`: a gzipped VCF containing LINX fusion and SVDB annotated variants filtered with bcftools from step 3 in README.md.
   - `<meta.id>_SV_research_filtered_bcftools.vcf.gz.tbi`: an index file for the gzipped VCF.
-  - `<meta.id>_SV_annotated_vep.vcf.gz`: a gzipped VCF containing the variants from the file above, annotated with VEP from step 4. 
-  - `<meta.id>_SV_annotated_vep.vcf.gz.tbi`: an index file for the above gzipped VCF. 
-  - `<meta.id>_SV_annotated_vep.vcf.gz_summary.html`: a html summary file produced by VEP. 
-  - `<meta.id>_SV_clinical_filtered_bcftools.vcf.gz`: a gzipped VCF containing variants annoated by VEP, ranked using GENMOD and filtered using bcftools from step 6. 
-  - `<meta.id>_SV_clinical_filtered_bcftools.vcf.gz.tbi`: an index file for the above gzipped VCF. 
-  - `<meta.id>_[tumor/normal]_SV_vcf2cytosure.cgh`: cgh file produced from step 7 to use for visualization in Cytosure. 
+  - `<meta.id>_SV_annotated_vep.vcf.gz`: a gzipped VCF containing the variants from the file above, annotated with VEP from step 4.
+  - `<meta.id>_SV_annotated_vep.vcf.gz.tbi`: an index file for the above gzipped VCF.
+  - `<meta.id>_SV_annotated_vep.vcf.gz_summary.html`: a html summary file produced by VEP.
+  - `<meta.id>_SV_clinical_filtered_bcftools.vcf.gz`: a gzipped VCF containing variants annoated by VEP, ranked using GENMOD and filtered using bcftools from step 6.
+  - `<meta.id>_SV_clinical_filtered_bcftools.vcf.gz.tbi`: an index file for the above gzipped VCF.
+  - `<meta.id>_[tumor/normal]_SV_vcf2cytosure.cgh`: cgh file produced from step 7 to use for visualization in Cytosure.
 
 </details>
 
 `vcf_annotate_linx_fusions` - Annotation of fusions from [`LINX`](https://github.com/hartwigmedical/hmftools/tree/master/linx) to the VCF using cutom scripts. The VCF from LINX in Oncoanalyser displays the SVs as two instances, where only one entry will be annotated with the LINX information in Oncorefiner. The two instances can be connected manually using the `SVID` in the INFO field.  
 [`SVDB`](https://github.com/J35P312/SVDB) - The tool applies annotation from external databases to the VCF.
-[`bcftools`](https://github.com/samtools/bcftools) - This tool can filter VCFs using custom settings. In step 3 above it applies quality and population level filtering, whilst in step 6, applies clinically relevant filters as defined in configuration settings. 
+[`bcftools`](https://github.com/samtools/bcftools) - This tool can filter VCFs using custom settings. In step 3 above it applies quality and population level filtering, whilst in step 6, applies clinically relevant filters as defined in configuration settings.
 [`Ensembl VEP`](https://www.ensembl.org/info/docs/tools/vep/index.html) - Annotation using the Ensembk VEP resources.
 [`Genmod score`](https://github.com/Clinical-Genomics/genmod) assigns a score to each variant based on the genmod score config file provided. The output VCF file is annotated with the following INFO fields which reflect the assigned score:
 
@@ -76,7 +75,8 @@ RankScoreNormalized
 RankScoreMinMax
 RankResult
 ```
-[`vcf2cytosure`](https://github.com/NBISweden/vcf2cytosure) - Generation of cytosure files for visualization in Cytosure. 
+
+[`vcf2cytosure`](https://github.com/NBISweden/vcf2cytosure) - Generation of cytosure files for visualization in Cytosure.
 
 ### MultiQC
 
@@ -119,7 +119,4 @@ Results generated by MultiQC collate pipeline QC from supported tools e.g. FastQ
 
 </details>
 
-- [Pipeline information](#pipeline-information) - Report metrics generated during the workflow execution
-
-
-[Nextflow](https://www.nextflow.io/docs/latest/tracing.html) provides excellent functionality for generating various reports relevant to the running and execution of the pipeline. This will allow you to troubleshoot errors with the running of the pipeline, and also provide you with other information such as launch commands, run times and resource usage.
+[Nextflow](https://docs.seqera.io/platform-cloud/reports/overview) provides excellent functionality for generating various reports relevant to the running and execution of the pipeline. This will allow you to troubleshoot errors with the running of the pipeline, and also provide you with other information such as launch commands, run times and resource usage.
