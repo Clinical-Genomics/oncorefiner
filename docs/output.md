@@ -18,6 +18,17 @@ The pipeline is built using [Nextflow](https://www.nextflow.io/) and processes d
 
 <!-- TODO: Add information for each step. Added "Vcfanno" as an example. -->
 
+### PROCESS_CNVS
+
+- `cnvs/`
+  - `<meta.id>_CNV_BAF_GENS.<tumor or normal>.baf.zoom.tsv.gz`: a gzipped tsv containing b-allele frequency (BAF) for visualization using GENS, produced from Oncoanalysers AMBER files.
+  - `<meta.id>_CNV_BAF_GENS.<tumor or normal>.baf.zoom.tsv.gz.tbi`: index file for the gzipped tsv with BAF.
+  - `<meta.id>_<meta.sample_type>_CNV_COV_GENS.bed.gz`: a gzipped bed file with genomic coverage levels for visualization using GENS, produced from Oncoanalysers COBALT files.
+  - `<meta.id>_<meta.sample_type>_CNV_COV_GENS.bed.gz.tbi`: index file for the gzipped bed with coverage levels.
+
+`PREPARE_AMBER_FOR_GENS` - Custom script that takes output from Oncoanalysers [`AMBER`](https://github.com/hartwigmedical/hmftools/tree/master/amber) VCF and converts the B-allele frequency levels into a GENS compatible zoom level.
+`PREPARE_COBALT_FOR_GENS` - Custom script that takes output from Oncoanalysers [`COBALT`](https://github.com/hartwigmedical/hmftools/tree/master/cobalt) VCF and converts the coverage levels into GENS compatible levels.
+
 ### SV annotation using LINX fusion information
 
 <details markdown="1">
