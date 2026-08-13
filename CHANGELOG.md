@@ -52,7 +52,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#172](https://github.com/Clinical-Genomics/oncorefiner/pull/172) Added CRAM, CRAI and MULTIQC files to new publishing strategy.
 - [#122](https://github.com/Clinical-Genomics/oncorefiner/pull/122) Added local module `prepare_cobalt_for_gens` using python script in `/bin`, along with tests.
 - [#120](https://github.com/Clinical-Genomics/oncorefiner/pull/120) Added local module `PREPARE_AMBER_FOR_GENS`, using script in `/bin`, along with tests.
-- [#158](https://github.com/Clinical-Genomics/oncorefiner/pull/158) Added the local subworkflow `GENS`
+- [#158](https://github.com/Clinical-Genomics/oncorefiner/pull/158) Added the local subworkflow `GENS` to `PROCESS_CNVS`.
 
 ### `Changed`
 
