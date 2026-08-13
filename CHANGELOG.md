@@ -94,7 +94,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#172](https://github.com/Clinical-Genomics/oncorefiner/pull/172) Updated the path of multiqc files in `.nftignore`
 - [#175](https://github.com/Clinical-Genomics/oncorefiner/pull/175) Update publishing guidelines in `docs/contributing.md` to reflect the new publishing strategy for output files.
 - [#174](https://github.com/Clinical-Genomics/oncorefiner/pull/174) Updated template for nf-core tools to 4.1.0
-- [#179](https://github.com/Clinical-Genomics/oncorefiner/pull/179) Added the deleted logo image files to the files_exist section of .nf-core.yml. 
+- [#179](https://github.com/Clinical-Genomics/oncorefiner/pull/179) Added the deleted logo image files to the files_exist section of .nf-core.yml.
 
 ### `Fixed`
 
