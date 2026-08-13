@@ -63,14 +63,14 @@
                 "alignments/subject_a_tumor.cram",
                 "alignments/subject_a_tumor.cram.crai",
                 "cnv",
-                "cnv/test_normal_sample_cobalt.bed.gz",
-                "cnv/test_normal_sample_cobalt.bed.gz.tbi",
-                "cnv/test_tumor_normal_case_amber.normal.baf.zoom.tsv.gz",
-                "cnv/test_tumor_normal_case_amber.normal.baf.zoom.tsv.gz.tbi",
-                "cnv/test_tumor_normal_case_amber.tumor.baf.zoom.tsv.gz",
-                "cnv/test_tumor_normal_case_amber.tumor.baf.zoom.tsv.gz.tbi",
-                "cnv/test_tumor_sample_cobalt.bed.gz",
-                "cnv/test_tumor_sample_cobalt.bed.gz.tbi",
+                "cnv/test_normal_sample_normal_CNV_COV_GENS.bed.gz",
+                "cnv/test_normal_sample_normal_CNV_COV_GENS.bed.gz.tbi",
+                "cnv/test_tumor_normal_case_CNV_BAF_GENS.normal.baf.zoom.tsv.gz",
+                "cnv/test_tumor_normal_case_CNV_BAF_GENS.normal.baf.zoom.tsv.gz.tbi",
+                "cnv/test_tumor_normal_case_CNV_BAF_GENS.tumor.baf.zoom.tsv.gz",
+                "cnv/test_tumor_normal_case_CNV_BAF_GENS.tumor.baf.zoom.tsv.gz.tbi",
+                "cnv/test_tumor_sample_tumor_CNV_COV_GENS.bed.gz",
+                "cnv/test_tumor_sample_tumor_CNV_COV_GENS.bed.gz.tbi",
                 "pipeline_info",
                 "pipeline_info/oncorefiner_software_mqc_versions.yml",
                 "qc",
@@ -100,7 +100,7 @@
                 "sv/tumor.cgh"
             ]
         ],
-        "timestamp": "2026-08-13T13:27:51.534612",
+        "timestamp": "2026-08-13T14:21:18.34097",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
@@ -176,14 +176,14 @@
                 "alignments/subject_a_tumor.cram",
                 "alignments/subject_a_tumor.cram.crai",
                 "cnv",
-                "cnv/test_normal_sample_cobalt.bed.gz",
-                "cnv/test_normal_sample_cobalt.bed.gz.tbi",
-                "cnv/test_tumor_normal_case_amber.normal.baf.zoom.tsv.gz",
-                "cnv/test_tumor_normal_case_amber.normal.baf.zoom.tsv.gz.tbi",
-                "cnv/test_tumor_normal_case_amber.tumor.baf.zoom.tsv.gz",
-                "cnv/test_tumor_normal_case_amber.tumor.baf.zoom.tsv.gz.tbi",
-                "cnv/test_tumor_sample_cobalt.bed.gz",
-                "cnv/test_tumor_sample_cobalt.bed.gz.tbi",
+                "cnv/test_normal_sample_normal_CNV_COV_GENS.bed.gz",
+                "cnv/test_normal_sample_normal_CNV_COV_GENS.bed.gz.tbi",
+                "cnv/test_tumor_normal_case_CNV_BAF_GENS.normal.baf.zoom.tsv.gz",
+                "cnv/test_tumor_normal_case_CNV_BAF_GENS.normal.baf.zoom.tsv.gz.tbi",
+                "cnv/test_tumor_normal_case_CNV_BAF_GENS.tumor.baf.zoom.tsv.gz",
+                "cnv/test_tumor_normal_case_CNV_BAF_GENS.tumor.baf.zoom.tsv.gz.tbi",
+                "cnv/test_tumor_sample_tumor_CNV_COV_GENS.bed.gz",
+                "cnv/test_tumor_sample_tumor_CNV_COV_GENS.bed.gz.tbi",
                 "pipeline_info",
                 "pipeline_info/oncorefiner_software_mqc_versions.yml",
                 "qc",
@@ -215,7 +215,7 @@
                 "sv/tumor.cgh"
             ]
         ],
-        "timestamp": "2026-08-13T13:28:46.910963",
+        "timestamp": "2026-08-13T14:22:12.87695",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
