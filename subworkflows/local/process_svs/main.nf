@@ -14,10 +14,18 @@ include { ENSEMBLVEP_VEP                           } from '../../../modules/nf-c
 include { SVDB_QUERY                               } from '../../../modules/nf-core/svdb/query/main'
 
 //
+// SUBWORKFLOW: Installed directly from genomic-medicine-sweden/subworkflows
+//
+
+include { VCF_ANNOTATE_SCORE_GENMOD } from '../../../subworkflows/genomic-medicine-sweden/vcf_annotate_score_genmod/main'
+
+
+//
 // LOCAL SUBWORKFLOWS
 //
 
-include { GENERATE_CYTOSURE_FILES } from '../../../subworkflows/local/generate_cytosure_files/main'
+include { GENERATE_CYTOSURE_FILES   } from '../../../subworkflows/local/generate_cytosure_files/main'
+include { VCF_ANNOTATE_LINX_FUSIONS } from '../../../subworkflows/local/vcf_annotate_linx_fusions/main'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -28,19 +36,35 @@ include { GENERATE_CYTOSURE_FILES } from '../../../subworkflows/local/generate_c
 workflow PROCESS_SVS {
 
     take:
-    ch_bam_bai_normal     // channel: [optional]  [val(meta), path(bam), path(bai)]
-    ch_bam_bai_tumor      // channel: [mandatory]  [val(meta), path(bam), path(bai)]
-    ch_sv_vcf             // channel: [required]  [val(meta), path(vcf)]
-    ch_sv_vcf_tbi         // channel: [required]  [val(meta), path(vcf.tbi)]
-    ch_sv_dbs             // channel: [required]  path(svdb_dbs_csv)
-    val_genome            // value:   [required]  Genome build (e.g. GRCh38)
-    val_species           // value:   [required]  Species
-    val_vep_cache_version // value:   [required]  VEP cache
-    ch_vep_cache          // channel: [optional]  [val(meta), path(vep_cache)]
-    ch_genome_fasta       // channel: [optional]  [val(meta), path(fasta)]
-    ch_vep_extra_files    // channel: [optional]  [val(meta), path(vep_extra_files)]
+    ch_bam_bai_normal         // channel: [optional]  [val(meta), path(bam), path(bai)]
+    ch_bam_bai_tumor          // channel: [required]  [val(meta), path(bam), path(bai)]
+    ch_genmod_score_config_sv // channel: [optional]  [val(meta), path(ini)]
+    ch_linx_breakends_tsv     // channel: [required]  [val(meta), path(tsv)]
+    ch_linx_fusion_tsv        // channel: [required]  [val(meta), path(tsv)]
+    ch_linx_sv_tsv            // channel: [required]  [val(meta), path(tsv)]
+    ch_sv_header              // channel: [required]  [val(meta), path(txt)]
+    ch_sv_vcf                 // channel: [required]  [val(meta), path(vcf)]
+    ch_sv_vcf_tbi             // channel: [required]  [val(meta), path(vcf.tbi)]
+    ch_sv_dbs                 // channel: [required]  path(svdb_dbs_csv)
+    val_genome                // value:   [required]  Genome build (e.g. GRCh38)
+    val_run_genmod_score_sv   // boolean: [required] whether to skip VCF_ANNOTATE_SCORE_GENMOD process
+    val_species               // value:   [required]  Species
+    val_vep_cache_version     // value:   [required]  VEP cache
+    ch_vep_cache              // channel: [optional]  [val(meta), path(vep_cache)]
+    ch_genome_fasta           // channel: [optional]  [val(meta), path(fasta)]
+    ch_vep_extra_files        // channel: [optional]  [val(meta), path(vep_extra_files)]
 
     main:
+    // Annotate VCF with LINX TSVs
+    VCF_ANNOTATE_LINX_FUSIONS(
+        ch_linx_breakends_tsv,
+        ch_linx_fusion_tsv,
+        ch_linx_sv_tsv,
+        ch_sv_header,
+        ch_sv_vcf,
+        ch_sv_vcf_tbi
+    )
+
     // SVDB QUERY
     ch_sv_dbs
         .multiMap { filename, in_freq_info_key, in_allele_count_info_key, out_freq_info_key, out_allele_count_info_key ->
@@ -53,7 +77,7 @@ workflow PROCESS_SVS {
         .set { ch_svdb_dbs }
 
     SVDB_QUERY (
-        ch_sv_vcf,
+        VCF_ANNOTATE_LINX_FUSIONS.out.vcf,
         ch_svdb_dbs.in_occs.toList(),
         ch_svdb_dbs.in_frqs.toList(),
         ch_svdb_dbs.out_occs.toList(),
@@ -61,7 +85,6 @@ workflow PROCESS_SVS {
         ch_svdb_dbs.vcf_dbs.toList(),
         []
     )
-
 
     // Quality Filtering
     SVDB_QUERY.out.vcf
@@ -89,13 +112,40 @@ workflow PROCESS_SVS {
         ch_vep_extra_files
     )
 
-    // Clinical Filtering
-    ENSEMBLVEP_VEP.out.vcf
-        .join(ENSEMBLVEP_VEP.out.tbi)
-        .map { meta, vcf, tbi ->
-            tuple(meta, vcf, tbi)
+    // Rank score
+    if (val_run_genmod_score_sv) {
+        // Rank and add score annotation with genmod score
+        ch_annotate_score_genmod_in = ENSEMBLVEP_VEP.out.vcf
+            .combine(ch_genmod_score_config_sv)
+            .multiMap { meta_vcf, vcf, _meta_genmod_score_config, genmod_score_config ->
+                vcf: tuple(meta_vcf, vcf)
+                score_config: tuple(meta_vcf, genmod_score_config)
             }
-        .set { ch_clinical_filtering_sv_in }
+
+        VCF_ANNOTATE_SCORE_GENMOD (
+            ch_annotate_score_genmod_in.vcf,
+            channel.empty(),
+            channel.empty(),
+            ch_annotate_score_genmod_in.score_config,
+            true,
+        )
+
+        // Output research vcf channel after scoring
+        ch_research_filtered_vcf = VCF_ANNOTATE_SCORE_GENMOD.out.vcf
+        ch_research_filtered_tbi = VCF_ANNOTATE_SCORE_GENMOD.out.index
+
+        ch_clinical_filtering_sv_in = ch_research_filtered_vcf
+            .join(ch_research_filtered_tbi)
+
+    } else {
+        // Output research vcf channel after annotation
+        ch_research_filtered_vcf = ENSEMBLVEP_VEP.out.vcf
+        ch_research_filtered_tbi = ENSEMBLVEP_VEP.out.tbi
+
+        ch_clinical_filtering_sv_in = ch_research_filtered_vcf
+            .join(ch_research_filtered_tbi)
+    }
+
     BCFTOOLS_VIEW_CLINICAL(ch_clinical_filtering_sv_in, [], [], [])
 
     // VCF2CYTOSURE
@@ -114,4 +164,14 @@ workflow PROCESS_SVS {
         ch_vcf2cytosure_in.tbi,
         ch_vcf2cytosure_in.vcf
     )
+
+    emit:
+    clinical_filtered_vcf = BCFTOOLS_VIEW_CLINICAL.out.vcf  // channel: [val(meta), path(vcf)]
+    clinical_filtered_tbi = BCFTOOLS_VIEW_CLINICAL.out.tbi  // channel: [val(meta), path(tbi)]
+    research_filtered_vcf = BCFTOOLS_VIEW_RESEARCH.out.vcf  // channel: [val(meta), path(vcf)]
+    research_filtered_tbi = BCFTOOLS_VIEW_RESEARCH.out.tbi  // channel: [val(meta), path(tbi)]
+    vcf2cytosure_cgh      = GENERATE_CYTOSURE_FILES.out.cgh // channel: [val(meta), path(cgh)]
+    vep_annotated_vcf     = ENSEMBLVEP_VEP.out.vcf          // channel: [val(meta), path(vcf)]
+    vep_annotated_tbi     = ENSEMBLVEP_VEP.out.tbi          // channel: [val(meta), path(tbi)]
+    vep_report            = ENSEMBLVEP_VEP.out.report       // channel: [val(meta), val(process), val(tool), path(html)]
 }
