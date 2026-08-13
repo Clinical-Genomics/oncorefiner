@@ -93,6 +93,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#105](https://github.com/Clinical-Genomics/oncorefiner/pull/105/) Decoupled subworkflow tests (`PROCESS_SNVS`, `PROCESS_SVS` and `PREPARE_REFERENCES`) from config files in `conf/subworkflows` and added necessary config settings to local `*/tests/nextflow.config`.
 - [#172](https://github.com/Clinical-Genomics/oncorefiner/pull/172) Updated the path of multiqc files in `.nftignore`
 - [#175](https://github.com/Clinical-Genomics/oncorefiner/pull/175) Update publishing guidelines in `docs/contributing.md` to reflect the new publishing strategy for output files.
+- [#179](https://github.com/Clinical-Genomics/oncorefiner/pull/179) Added the deleted logo image files to the files_exist section of .nf-core.yml. 
 
 ### `Fixed`
 
@@ -151,3 +152,4 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#139](https://github.com/Clinical-Genomics/oncorefiner/pull/139) Removed SVDB output file, since it's an intermediary file not useful to have in the outputs.
 - [#152](https://github.com/Clinical-Genomics/oncorefiner/pull/152) Removed publishDir directive for `PREPARE_REFERENCES`.
 - [#172](https://github.com/Clinical-Genomics/oncorefiner/pull/172) Removed publishDir from `annotate_cadd.config` and `modules.config`
+- [#179](https://github.com/Clinical-Genomics/oncorefiner/pull/179) Removed logo images `assets/nf-core-oncorefiner_logo_light.png`, `docs/images/nf-core-oncorefiner_logo_dark.png` and `docs/images/nf-core-oncorefiner_logo_light.png`
