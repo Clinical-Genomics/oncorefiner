@@ -10,6 +10,22 @@ The directories listed below will be created in the results directory after the 
 
 The pipeline is built using [Nextflow](https://www.nextflow.io/) and processes data using the following steps:
 
+### PROCESS_CNVS
+
+This process generates an interactive CNV report and files compatible with visualization in GENS.
+
+<details markdown="1">
+<summary>Output files</summary>
+
+- `cnv/`
+  - `<meta.id>.cnv_report.html`: interactive CNV report.
+  - `<meta.id>_CNV_BAF_GENS.<tumor or normal>.baf.zoom.tsv`:
+  - `<meta.id>_CNV_BAF_GENS.<tumor or normal>.baf.zoom.tsv.gz.tbi`:
+  - `<meta.id>_<meta.sample_type>_CNV_COV_GENS.bed.gz`:
+  - `<meta.id>_<meta.sample_type>_CNV_COV_GENS.bed.gz.tbi`:
+
+</details>
+
 ### PROCESS_SNVS
 
 This process annotates, filters and ranks single nucleotide variants.
