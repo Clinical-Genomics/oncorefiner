@@ -1,12 +1,18 @@
 {
-    "No `genmod_score_config` with '-profile test' - stub": {
+    "No `genmod_score_config_*` with '-profile test' - stub": {
         "content": [
             {
+                "ANNOTATE_VCF_BY_ID": {
+                    "annotate_vcf_by_id": 1.0
+                },
                 "BCFTOOLS_VIEW_CLINICAL": {
                     "bcftools": "1.23.1"
                 },
                 "BCFTOOLS_VIEW_RESEARCH": {
                     "bcftools": "1.23.1"
+                },
+                "COMBINE_LINX_TSV": {
+                    "combine_linx_tsv": 1.0
                 },
                 "ENSEMBLVEP_VEP": {
                     "ensemblvep": 115.2,
@@ -65,19 +71,15 @@
                 "cnv/test_tumor_normal_case_amber.tumor.baf.zoom.tsv.gz.tbi",
                 "cnv/test_tumor_sample_cobalt.bed.gz",
                 "cnv/test_tumor_sample_cobalt.bed.gz.tbi",
-                "multiqc",
-                "multiqc/multiqc_data",
-                "multiqc/multiqc_data/.stub",
-                "multiqc/multiqc_plots",
-                "multiqc/multiqc_plots/.stub",
-                "multiqc/multiqc_report.html",
                 "pipeline_info",
                 "pipeline_info/oncorefiner_software_mqc_versions.yml",
-                "process_svs",
-                "process_svs/test_tumor_normal_case_clinical.vcf.gz",
-                "process_svs/test_tumor_normal_case_clinical.vcf.gz.tbi",
-                "process_svs/test_tumor_normal_case_research.vcf.gz",
-                "process_svs/test_tumor_normal_case_research.vcf.gz.tbi",
+                "qc",
+                "qc/multiqc",
+                "qc/multiqc/multiqc_data",
+                "qc/multiqc/multiqc_data/.stub",
+                "qc/multiqc/multiqc_plots",
+                "qc/multiqc/multiqc_plots/.stub",
+                "qc/multiqc/multiqc_report.html",
                 "snv",
                 "snv/test_tumor_normal_case_clinical.vcf.gz",
                 "snv/test_tumor_normal_case_clinical.vcf.gz.tbi",
@@ -86,16 +88,19 @@
                 "snv/test_tumor_normal_case_vep.vcf.gz",
                 "snv/test_tumor_normal_case_vep.vcf.gz.tbi",
                 "snv/test_tumor_normal_case_vep_summary.html",
-                "vcf2cytosure",
-                "vcf2cytosure/normal.cgh",
-                "vcf2cytosure/tumor.cgh",
-                "vep",
-                "vep/test_tumor_normal_case_svdbquery_vep.vcf.gz",
-                "vep/test_tumor_normal_case_svdbquery_vep.vcf.gz.tbi",
-                "vep/test_tumor_normal_case_svdbquery_vep_summary.html"
+                "sv",
+                "sv/normal.cgh",
+                "sv/test_tumor_normal_case_clinical.vcf.gz",
+                "sv/test_tumor_normal_case_clinical.vcf.gz.tbi",
+                "sv/test_tumor_normal_case_research.vcf.gz",
+                "sv/test_tumor_normal_case_research.vcf.gz.tbi",
+                "sv/test_tumor_normal_case_svdbquery_vep.vcf.gz",
+                "sv/test_tumor_normal_case_svdbquery_vep.vcf.gz.tbi",
+                "sv/test_tumor_normal_case_svdbquery_vep_summary.html",
+                "sv/tumor.cgh"
             ]
         ],
-        "timestamp": "2026-08-11T13:34:09.481322",
+        "timestamp": "2026-08-13T13:27:51.534612",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
@@ -104,6 +109,9 @@
     "No `vep_plugin_files` with '-profile test' - stub": {
         "content": [
             {
+                "ANNOTATE_VCF_BY_ID": {
+                    "annotate_vcf_by_id": 1.0
+                },
                 "BCFTOOLS_VIEW": {
                     "bcftools": "1.23.1"
                 },
@@ -112,6 +120,9 @@
                 },
                 "BCFTOOLS_VIEW_RESEARCH": {
                     "bcftools": "1.23.1"
+                },
+                "COMBINE_LINX_TSV": {
+                    "combine_linx_tsv": 1.0
                 },
                 "ENSEMBLVEP_VEP": {
                     "ensemblvep": 115.2,
@@ -173,19 +184,15 @@
                 "cnv/test_tumor_normal_case_amber.tumor.baf.zoom.tsv.gz.tbi",
                 "cnv/test_tumor_sample_cobalt.bed.gz",
                 "cnv/test_tumor_sample_cobalt.bed.gz.tbi",
-                "multiqc",
-                "multiqc/multiqc_data",
-                "multiqc/multiqc_data/.stub",
-                "multiqc/multiqc_plots",
-                "multiqc/multiqc_plots/.stub",
-                "multiqc/multiqc_report.html",
                 "pipeline_info",
                 "pipeline_info/oncorefiner_software_mqc_versions.yml",
-                "process_svs",
-                "process_svs/test_tumor_normal_case_clinical.vcf.gz",
-                "process_svs/test_tumor_normal_case_clinical.vcf.gz.tbi",
-                "process_svs/test_tumor_normal_case_research.vcf.gz",
-                "process_svs/test_tumor_normal_case_research.vcf.gz.tbi",
+                "qc",
+                "qc/multiqc",
+                "qc/multiqc/multiqc_data",
+                "qc/multiqc/multiqc_data/.stub",
+                "qc/multiqc/multiqc_plots",
+                "qc/multiqc/multiqc_plots/.stub",
+                "qc/multiqc/multiqc_report.html",
                 "snv",
                 "snv/test_tumor_normal_case_clinical.vcf.gz",
                 "snv/test_tumor_normal_case_clinical.vcf.gz.tbi",
@@ -196,16 +203,19 @@
                 "snv/test_tumor_normal_case_vep.vcf.gz",
                 "snv/test_tumor_normal_case_vep.vcf.gz.tbi",
                 "snv/test_tumor_normal_case_vep_summary.html",
-                "vcf2cytosure",
-                "vcf2cytosure/normal.cgh",
-                "vcf2cytosure/tumor.cgh",
-                "vep",
-                "vep/test_tumor_normal_case_svdbquery_vep.vcf.gz",
-                "vep/test_tumor_normal_case_svdbquery_vep.vcf.gz.tbi",
-                "vep/test_tumor_normal_case_svdbquery_vep_summary.html"
+                "sv",
+                "sv/normal.cgh",
+                "sv/test_tumor_normal_case_clinical.vcf.gz",
+                "sv/test_tumor_normal_case_clinical.vcf.gz.tbi",
+                "sv/test_tumor_normal_case_research.vcf.gz",
+                "sv/test_tumor_normal_case_research.vcf.gz.tbi",
+                "sv/test_tumor_normal_case_svdbquery_vep.vcf.gz",
+                "sv/test_tumor_normal_case_svdbquery_vep.vcf.gz.tbi",
+                "sv/test_tumor_normal_case_svdbquery_vep_summary.html",
+                "sv/tumor.cgh"
             ]
         ],
-        "timestamp": "2026-08-11T13:34:59.240218",
+        "timestamp": "2026-08-13T13:28:46.910963",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"

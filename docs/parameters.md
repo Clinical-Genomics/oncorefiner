@@ -1,6 +1,6 @@
 # Clinical-Genomics/oncorefiner pipeline parameters
 
-Customizable post-processing and extension layer built on top of Oncoanalyser that adapts its outputs to clinical and operational needs, adds missing analyses, and ensures flexibility for evolving standards while retaining Oncoanalyser robust core
+Customizable post-processing and extension layer for Oncoanalyser that adapts its outputs according to clinical and operational needs, adds missing analyses, and ensures flexibility for evolving standards while retaining Oncoanalyser's robust core.
 
 ## Input/output options
 
@@ -39,6 +39,9 @@ Define where the pipeline should find input data and save output data.
 | `cobalt_ratio_pcf_tumor` | Path to a TSV file containing cobalt segment coverage ratios for the tumor sample. | `string` |  |  |  |
 | `cobalt_ratio_pcf_normal` | Path to a TSV file containing cobalt segment coverage ratios for the normal sample. | `string` |  |  |  |
 | `analysis_type` | Analysis type of the case. (accepted: `tumor_only`\|`tumor_normal`) | `string` |  |  |  |
+| `linx_fusion_tsv` | Path to fusion linx tsv file for the sample. | `string` |  |  |  |
+| `linx_breakends_tsv` | Path to breakend linx tsv file for the sample. | `string` |  |  |  |
+| `linx_sv_tsv` | Path to sv linx tsv file for the sample. | `string` |  |  |  |
 
 ## Reference genome options
 
@@ -73,7 +76,8 @@ Annotation related files and options required for the workflow.
 | `extra_args_snv_research_filter` | Extra arguments for `PROCESS_SNVS:BCFTOOLS_VIEW_RESEARCH`. | `string` |  |  |  |
 | `extra_args_snv_vep` | Extra arguments for `PROCESS_SNVS:ENSEMBLVEP_VEP`. | `string` |  |  |  |
 | `extra_args_sv_vep` | Extra arguments for `PROCESS_SVS:ENSEMBLVEP_VEP`. | `string` |  |  |  |
-| `genmod_score_config` | Path to genmod score configuration file (rank model). | `string` |  |  |  |
+| `genmod_score_config_snv` | Path to genmod score configuration file for SNVs (rank model). | `string` |  |  |  |
+| `genmod_score_config_sv` | Path to genmod score configuration file for SVs (rank model). | `string` |  |  |  |
 
 ## Institutional config options
 
@@ -104,7 +108,7 @@ Less common options for the pipeline, typically set in a config file.
 | `multiqc_logo` | Custom logo file to supply to MultiQC. File name must also be set in the MultiQC config file | `string` |  |  | True |
 | `multiqc_methods_description` | Custom MultiQC yaml file containing HTML including a methods description. | `string` |  |  |  |
 | `validate_params` | Boolean whether to validate parameters against the schema at runtime | `boolean` | True |  | True |
-| `pipelines_testdata_base_path` | Base URL or local path to location of pipeline test dataset files | `string` | https://raw.githubusercontent.com/Clinical-Genomics/test-datasets/f8d0341fa3e50bc9b349172dff8b77cf2f915047/ |  | True |
+| `pipelines_testdata_base_path` | Base URL or local path to location of pipeline test dataset files | `string` | https://raw.githubusercontent.com/Clinical-Genomics/test-datasets/61dce843b868caaee4135d33509af38aaa80724b/ |  | True |
 | `trace_report_suffix` | Suffix to add to the trace report filename. Default is the date and time in the format yyyy-MM-dd_HH-mm-ss. | `string` |  |  | True |
 | `help` | Display the help message. | `['boolean', 'string']` |  |  |  |
 | `help_full` | Display the full detailed help message. | `boolean` |  |  |  |
