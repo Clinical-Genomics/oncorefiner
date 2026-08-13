@@ -93,6 +93,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#105](https://github.com/Clinical-Genomics/oncorefiner/pull/105/) Decoupled subworkflow tests (`PROCESS_SNVS`, `PROCESS_SVS` and `PREPARE_REFERENCES`) from config files in `conf/subworkflows` and added necessary config settings to local `*/tests/nextflow.config`.
 - [#172](https://github.com/Clinical-Genomics/oncorefiner/pull/172) Updated the path of multiqc files in `.nftignore`
 - [#175](https://github.com/Clinical-Genomics/oncorefiner/pull/175) Update publishing guidelines in `docs/contributing.md` to reflect the new publishing strategy for output files.
+- [#174](https://github.com/Clinical-Genomics/oncorefiner/pull/174) Updated template for nf-core tools to 4.1.0
 
 ### `Fixed`
 
