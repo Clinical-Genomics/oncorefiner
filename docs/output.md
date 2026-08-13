@@ -70,7 +70,7 @@ RankResult
 <summary>Output files</summary>
 
 - `cnv`
-  - `<meta.id>.cnv_report.html`
+  - `<meta.id>_cnv_report.html`
 
 ### MultiQC
 

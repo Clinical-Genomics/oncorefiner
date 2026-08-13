@@ -11,7 +11,7 @@ include { RMARKDOWNNOTEBOOK } from '../../../modules/nf-core/rmarkdownnotebook/m
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    RUN PROCESS_SNVS WORKFLOW
+    RUN PROCESS_CNVS WORKFLOW
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
