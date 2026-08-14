@@ -1,13 +1,13 @@
 {
-    "Process CNVs, tumor-normal - stub": {
+    "with tumor-normal data": {
         "content": [
             [
                 [
                     {
-                        "id": "test",
-                        "case_id": "test"
+                        "id": "subject_a",
+                        "case_id": "test_tumor_normal_case"
                     },
-                    "test_cnv_report.html"
+                    "subject_a_cnv_report.html"
                 ]
             ],
             {
@@ -20,21 +20,21 @@
                 ]
             }
         ],
-        "timestamp": "2026-06-30T15:34:02.678044",
+        "timestamp": "2026-08-14T13:35:19.83326",
         "meta": {
             "nf-test": "0.9.5",
-            "nextflow": "25.10.4"
+            "nextflow": "26.04.6"
         }
     },
-    "Process CNVs, tumor-normal": {
+    "with tumor-normal data - stub": {
         "content": [
             [
                 [
                     {
-                        "id": "test",
-                        "case_id": "test"
+                        "id": "subject_a",
+                        "case_id": "test_tumor_normal_case"
                     },
-                    "test_cnv_report.html"
+                    "subject_a_cnv_report.html"
                 ]
             ],
             {
@@ -47,10 +47,10 @@
                 ]
             }
         ],
-        "timestamp": "2026-06-30T15:33:57.158372",
+        "timestamp": "2026-08-14T13:35:23.998908",
         "meta": {
             "nf-test": "0.9.5",
-            "nextflow": "25.10.4"
+            "nextflow": "26.04.6"
         }
     }
 }
