@@ -94,6 +94,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#172](https://github.com/Clinical-Genomics/oncorefiner/pull/172) Updated the path of multiqc files in `.nftignore`
 - [#175](https://github.com/Clinical-Genomics/oncorefiner/pull/175) Update publishing guidelines in `docs/contributing.md` to reflect the new publishing strategy for output files.
 - [#174](https://github.com/Clinical-Genomics/oncorefiner/pull/174) Updated template for nf-core tools to 4.1.0
+- [#179](https://github.com/Clinical-Genomics/oncorefiner/pull/179) Added the deleted logo image files to the files_exist section of .nf-core.yml.
 - [#177](https://github.com/Clinical-Genomics/oncorefiner/pull/177) Update output name for subworkflows `PROCESS_SNVS`, `PROCESS_SVS`, `GENERATE_CYTOSURE_FILES`, `GENERATE_CYTOSURE_FILES`, updated output path for `MULTIQC`. Updated `docs/output.md` and `README.md` to reflect new output structure.
 
 ### `Fixed`
@@ -140,6 +141,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#93](https://github.com/Clinical-Genomics/oncorefiner/pull/93) Refactored the publishing strategy for `GENERATE_CYTOSURE_FILES` and `PROCESS_SVS` to use output blocks.
 - [#169](https://github.com/Clinical-Genomics/oncorefiner/pull/169/) Populated the `ch_bam_bai_normal` in `PROCESS_SVS` tumor-normal test and updated the meta structure of the two bam channels, which also updated the naming of the .cgh file.
 - [#171](https://github.com/Clinical-Genomics/oncorefiner/pull/171) Remove metadata from static CADD header file
+- [#178](https://github.com/Clinical-Genomics/oncorefiner/pull/178) Updated the emit files for `research_filtered_vcf` in `PROCESS_SVS` to be the channel `ch_research_filtered_vcf` which will either be the GENMOD scored VCF or the VEP annotated VCF.
 
 ### `Dependencies`
 
@@ -153,3 +155,4 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#139](https://github.com/Clinical-Genomics/oncorefiner/pull/139) Removed SVDB output file, since it's an intermediary file not useful to have in the outputs.
 - [#152](https://github.com/Clinical-Genomics/oncorefiner/pull/152) Removed publishDir directive for `PREPARE_REFERENCES`.
 - [#172](https://github.com/Clinical-Genomics/oncorefiner/pull/172) Removed publishDir from `annotate_cadd.config` and `modules.config`
+- [#179](https://github.com/Clinical-Genomics/oncorefiner/pull/179) Removed logo images `assets/nf-core-oncorefiner_logo_light.png`, `docs/images/nf-core-oncorefiner_logo_dark.png` and `docs/images/nf-core-oncorefiner_logo_light.png`

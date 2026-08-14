@@ -10,6 +10,9 @@ lint:
     - tests/default.config
     - tests/default.nf.test
     - CODE_OF_CONDUCT.md
+    - assets/nf-core-oncorefiner_logo_light.png
+    - docs/images/nf-core-oncorefiner_logo_light.png
+    - docs/images/nf-core-oncorefiner_logo_dark.png
   files_unchanged:
     - .github/ISSUE_TEMPLATE/config.yml
     - .github/ISSUE_TEMPLATE/bug_report.yml
