@@ -10,18 +10,18 @@ nextflow_workflow {
     config "./nextflow.config"
     topics "versions"
 
-    test("Process CNVs, tumor-normal") {
+    test("with tumor-normal data") {
 
         when {
 
             workflow {
                 """
                 input[0] = channel.of([
-                    [id: 'test', case_id: 'test'],
+                    [id: 'subject_a', case_id: 'test_tumor_normal_case'],
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.cnv.gene.tsv', checkIfExists: true)
                 ])
                 input[1] = channel.of([
-                    [id: 'test', case_id: 'test'],
+                    [id: 'subject_a', case_id: 'test_tumor_normal_case'],
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.cnv.somatic.tsv', checkIfExists: true)
                 ])
                 """
@@ -32,6 +32,7 @@ nextflow_workflow {
             assert workflow.success
             assertAll(
                 { assert snapshot(
+                    // only snapshot name as md5sum will change with every run.
                     workflow.out.html_report.collect { meta, html -> [ meta, file(html).name]} ,
                     topics,
                 ).match() }
@@ -39,7 +40,7 @@ nextflow_workflow {
         }
     }
 
-    test("Process CNVs, tumor-normal - stub") {
+    test("with tumor-normal data - stub") {
 
         options "-stub"
 
@@ -48,11 +49,11 @@ nextflow_workflow {
             workflow {
                 """
                 input[0] = channel.of([
-                    [id: 'test', case_id: 'test'],
+                    [id: 'subject_a', case_id: 'test_tumor_normal_case'],
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.cnv.gene.tsv', checkIfExists: true)
                 ])
                 input[1] = channel.of([
-                    [id: 'test', case_id: 'test'],
+                    [id: 'subject_a', case_id: 'test_tumor_normal_case'],
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.cnv.somatic.tsv', checkIfExists: true)
                 ])
 

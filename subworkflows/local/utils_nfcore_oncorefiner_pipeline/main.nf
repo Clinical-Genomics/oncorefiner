@@ -141,13 +141,13 @@ workflow PIPELINE_COMPLETION {
 def toolCitationText() {
 
     def citations_list = []
-    def vcfanno        = "vcfanno (Pedersen et al. 2016)"
-    def bcftools_view  = "bcftools (Danecek et al. 2021)"
-    def cadd           = "CADD (Rentzsch et al. 2019)"
-    def ensemblvep_vep = "Ensembl VEP (McLaren et al. 2016)"
-    def svdb           = "svdb"
-    def genmod         = "Genmod"
-    def multiqc        = "MultiQC (Ewels et al. 2016)"
+    def vcfanno           = "vcfanno (Pedersen et al. 2016)"
+    def bcftools_view     = "bcftools (Danecek et al. 2021)"
+    def cadd              = "CADD (Rentzsch et al. 2019)"
+    def ensemblvep_vep    = "Ensembl VEP (McLaren et al. 2016)"
+    def svdb              = "svdb"
+    def genmod            = "Genmod"
+    def multiqc           = "MultiQC (Ewels et al. 2016)"
     def rmarkdownnotebook = "R Markdown Notebook"
 
     if (params.snv_vcf) {

@@ -29,7 +29,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#69](https://github.com/Clinical-Genomics/oncorefiner/pull/69) Added `tumor_normal` config file, used by the default test profile.
 - [#69](https://github.com/Clinical-Genomics/oncorefiner/pull/69) Added `tumor_only` config file, profile and pipeline test and snapshot.
 - [#101](https://github.com/Clinical-Genomics/oncorefiner/pull/101) Added parameters for arguments in processes `PROCESS_SNVS:BCFTOOLS_VIEW_*`, `PROCESS_*:ENSEMBLVEP_VEP` and `ANNOTATE_CADD:BCFTOOLS_ANNOTATE_INDELS`.
-- [#104](https://github.com/Clinical-Genomics/oncorefiner/pull/104) Added parameters for cnv report generation (`cnv_gene_tsv`, `cnv_segment_tsv`)
+- [#104](https://github.com/Clinical-Genomics/oncorefiner/pull/104) Added parameters for cnv report generation (`cnv_gene_tsv`, `cnv_segment_tsv`).
 - [#111](https://github.com/Clinical-Genomics/oncorefiner/pull/111) Added hidden `genome_version_number` parameter, parsed by default from `params.genome`.
 - [#117](https://github.com/Clinical-Genomics/oncorefiner/pull/117) Added stub version for all pipeline and local subworkflow tests.
 - [#133](https://github.com/Clinical-Genomics/oncorefiner/pull/133) Added pipeline stub test without `vep_plugin_files` parameter.
@@ -47,9 +47,9 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#143](https://github.com/Clinical-Genomics/oncorefiner/pull/143) Added local subworkflow `VCF_ANNOTATE_LINX_FUSIONS` for annotating VCF file with LINX TSV file, using modules `annotate_vcf_by_id` and `combine_linx_tsv`, and tests.
 - [#143](https://github.com/Clinical-Genomics/oncorefiner/pull/143) Added local subworkflow `VCF_ANNOTATE_LINX_FUSIONS` to subworkflow `PROCESS_SVS`, and updated tests.
 - [#84](https://github.com/Clinical-Genomics/oncorefiner/pull/84) Added arguments to VEP keeping invalid variants in output VCF
-- [#126](https://github.com/Clinical-Genomics/oncorefiner/pull/126) Added the nf-core module `rmarkdownnotebook`.
-- [#126](https://github.com/Clinical-Genomics/oncorefiner/pull/126) Added the subworkflow `PROCESS_CNVS` along with subworkflow test.
 - [#136](https://github.com/Clinical-Genomics/oncorefiner/pull/136) Added nf-schema validation to SVDB database inputs.(`svdb_query_dbs`)
+- [#126](https://github.com/Clinical-Genomics/oncorefiner/pull/126) Added the nf-core module `rmarkdownnotebook` including a patch with a custom container with tools for our needs.
+- [#126](https://github.com/Clinical-Genomics/oncorefiner/pull/126) Added the subworkflow `PROCESS_CNVS` along with subworkflow test.
 - [#144](https://github.com/Clinical-Genomics/oncorefiner/pull/144) Added the parameters `ch_genmod_score_config_sv` & `val_run_genmod_score_sv` for GENMOD scoring of SVs.
 - [#146](https://github.com/Clinical-Genomics/oncorefiner/pull/146) Added the workflow `VCF_ANNOTATE_SCORE_GENMOD` to `PROCESS_SVS`.
 - [#172](https://github.com/Clinical-Genomics/oncorefiner/pull/172) Added CRAM, CRAI and MULTIQC files to new publishing strategy.
@@ -90,7 +90,6 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#124](https://github.com/Clinical-Genomics/oncorefiner/pull/124) Update documentation in `docs/usage.md` and `README.md` on how to start a pipeline run given the necessary metadata input parameters.
 - [#145](https://github.com/Clinical-Genomics/oncorefiner/pull/145) Small fixes to `GENERATE_CYTOSURE_FILES` tests from #135: updated config regex to include the fully qualified name of the process in order for the settings to be applied with the highest priority and removed parameter dependency from each test by moving the values to the config file instead.
 - [#149](https://github.com/Clinical-Genomics/oncorefiner/pull/149) Updated test data base path to remove unused column in SVDB files
-- [#151](https://github.com/Clinical-Genomics/oncorefiner/pull/151) Updated test data base path to include CNV files
 - [#118](https://github.com/Clinical-Genomics/oncorefiner/pull/118) Added parameters for LINX files and a header file to assets.
 - [#161](https://github.com/Clinical-Genomics/oncorefiner/pull/161) Template update for nf-core tools 4.0.3.
 - [#160](https://github.com/Clinical-Genomics/oncorefiner/pull/160) Updated nftutils from 0.0.3 to 1.0.0.
