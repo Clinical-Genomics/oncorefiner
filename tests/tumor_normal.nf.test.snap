@@ -79,15 +79,15 @@
                 "sv/normal.cgh",
                 "sv/test_tumor_normal_case_clinical.vcf.gz",
                 "sv/test_tumor_normal_case_clinical.vcf.gz.tbi",
-                "sv/test_tumor_normal_case_research.vcf.gz",
-                "sv/test_tumor_normal_case_research.vcf.gz.tbi",
+                "sv/test_tumor_normal_case_genmod_score.vcf.gz",
+                "sv/test_tumor_normal_case_genmod_score.vcf.gz.tbi",
                 "sv/test_tumor_normal_case_svdbquery_vep.vcf.gz",
                 "sv/test_tumor_normal_case_svdbquery_vep.vcf.gz.tbi",
                 "sv/test_tumor_normal_case_svdbquery_vep_summary.html",
                 "sv/tumor.cgh"
             ]
         ],
-        "timestamp": "2026-08-06T10:46:55.611327",
+        "timestamp": "2026-08-12T16:53:28.070111",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
@@ -177,8 +177,8 @@
                 "sv/normal.cgh",
                 "sv/test_tumor_normal_case_clinical.vcf.gz",
                 "sv/test_tumor_normal_case_clinical.vcf.gz.tbi",
-                "sv/test_tumor_normal_case_research.vcf.gz",
-                "sv/test_tumor_normal_case_research.vcf.gz.tbi",
+                "sv/test_tumor_normal_case_genmod_score.vcf.gz",
+                "sv/test_tumor_normal_case_genmod_score.vcf.gz.tbi",
                 "sv/test_tumor_normal_case_svdbquery_vep.vcf.gz",
                 "sv/test_tumor_normal_case_svdbquery_vep.vcf.gz.tbi",
                 "sv/test_tumor_normal_case_svdbquery_vep.vcf.gz_summary.html",
@@ -210,7 +210,7 @@
                     "VcfFile [chromosomes=[chr19, chr9, chr11], sampleCount=2, variantCount=6, phased=false, phasedAutodetect=false]"
                 ],
                 [
-                    "test_tumor_normal_case_research.vcf.gz",
+                    "test_tumor_normal_case_genmod_score.vcf.gz",
                     "VcfFile [chromosomes=[chr19, chr9, chr11], sampleCount=2, variantCount=6, phased=false, phasedAutodetect=false]"
                 ],
                 [
@@ -240,8 +240,8 @@
                     "4c1869cefec5fbfc81c2b827dcf51387"
                 ],
                 [
-                    "test_tumor_normal_case_research.vcf.gz",
-                    "da36427a37c150dc78ef322d3841f4a1"
+                    "test_tumor_normal_case_genmod_score.vcf.gz",
+                    "4c1869cefec5fbfc81c2b827dcf51387"
                 ],
                 [
                     "test_tumor_normal_case_svdbquery_vep.vcf.gz",
@@ -249,7 +249,7 @@
                 ]
             ]
         ],
-        "timestamp": "2026-08-05T10:46:59.197129",
+        "timestamp": "2026-08-12T16:52:33.634326",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"

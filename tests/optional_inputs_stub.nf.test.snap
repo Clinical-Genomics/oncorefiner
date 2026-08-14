@@ -71,15 +71,13 @@
                 "sv/normal.cgh",
                 "sv/test_tumor_normal_case_clinical.vcf.gz",
                 "sv/test_tumor_normal_case_clinical.vcf.gz.tbi",
-                "sv/test_tumor_normal_case_research.vcf.gz",
-                "sv/test_tumor_normal_case_research.vcf.gz.tbi",
                 "sv/test_tumor_normal_case_svdbquery_vep.vcf.gz",
                 "sv/test_tumor_normal_case_svdbquery_vep.vcf.gz.tbi",
                 "sv/test_tumor_normal_case_svdbquery_vep_summary.html",
                 "sv/tumor.cgh"
             ]
         ],
-        "timestamp": "2026-08-05T10:44:50.513343",
+        "timestamp": "2026-08-12T16:50:08.895121",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
@@ -165,15 +163,15 @@
                 "sv/normal.cgh",
                 "sv/test_tumor_normal_case_clinical.vcf.gz",
                 "sv/test_tumor_normal_case_clinical.vcf.gz.tbi",
-                "sv/test_tumor_normal_case_research.vcf.gz",
-                "sv/test_tumor_normal_case_research.vcf.gz.tbi",
+                "sv/test_tumor_normal_case_genmod_score.vcf.gz",
+                "sv/test_tumor_normal_case_genmod_score.vcf.gz.tbi",
                 "sv/test_tumor_normal_case_svdbquery_vep.vcf.gz",
                 "sv/test_tumor_normal_case_svdbquery_vep.vcf.gz.tbi",
                 "sv/test_tumor_normal_case_svdbquery_vep_summary.html",
                 "sv/tumor.cgh"
             ]
         ],
-        "timestamp": "2026-08-06T10:45:33.963877",
+        "timestamp": "2026-08-12T16:51:02.765522",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
