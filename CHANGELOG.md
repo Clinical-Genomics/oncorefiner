@@ -47,7 +47,6 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#143](https://github.com/Clinical-Genomics/oncorefiner/pull/143) Added local subworkflow `VCF_ANNOTATE_LINX_FUSIONS` for annotating VCF file with LINX TSV file, using modules `annotate_vcf_by_id` and `combine_linx_tsv`, and tests.
 - [#143](https://github.com/Clinical-Genomics/oncorefiner/pull/143) Added local subworkflow `VCF_ANNOTATE_LINX_FUSIONS` to subworkflow `PROCESS_SVS`, and updated tests.
 - [#84](https://github.com/Clinical-Genomics/oncorefiner/pull/84) Added arguments to VEP keeping invalid variants in output VCF
-- [#136](https://github.com/Clinical-Genomics/oncorefiner/pull/136) Added nf-schema validation to SVDB database inputs.(`svdb_query_dbs`)
 - [#126](https://github.com/Clinical-Genomics/oncorefiner/pull/126) Added the nf-core module `rmarkdownnotebook` including a patch with a custom container with tools for our needs.
 - [#126](https://github.com/Clinical-Genomics/oncorefiner/pull/126) Added the subworkflow `PROCESS_CNVS` along with subworkflow test.
 - [#144](https://github.com/Clinical-Genomics/oncorefiner/pull/144) Added the parameters `ch_genmod_score_config_sv` & `val_run_genmod_score_sv` for GENMOD scoring of SVs.
@@ -93,7 +92,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#118](https://github.com/Clinical-Genomics/oncorefiner/pull/118) Added parameters for LINX files and a header file to assets.
 - [#161](https://github.com/Clinical-Genomics/oncorefiner/pull/161) Template update for nf-core tools 4.0.3.
 - [#160](https://github.com/Clinical-Genomics/oncorefiner/pull/160) Updated nftutils from 0.0.3 to 1.0.0.
-- [#126](https://github.com/Clinical-Genomics/oncorefiner/pull/126) Added the CNV html file to the tests/.nftignore
+- [#126](https://github.com/Clinical-Genomics/oncorefiner/pull/126) Added the CNV html file to the `tests/.nftignore`.
 - [#144](https://github.com/Clinical-Genomics/oncorefiner/pull/144) Renamed the parameters `ch_genmod_score_config` & `val_run_genmod_score` to `ch_genmod_score_config_snv` & `val_run_genmod_score_snv`, and updated the `pipelines_testdata_base_path` to reflect the seperation of config files to SNV and SVs.
 - [#105](https://github.com/Clinical-Genomics/oncorefiner/pull/105/) Decoupled subworkflow tests (`PROCESS_SNVS`, `PROCESS_SVS` and `PREPARE_REFERENCES`) from config files in `conf/subworkflows` and added necessary config settings to local `*/tests/nextflow.config`.
 - [#172](https://github.com/Clinical-Genomics/oncorefiner/pull/172) Updated the path of multiqc files in `.nftignore`
