@@ -85,8 +85,8 @@
                 "sv",
                 "sv/test_tumor_only_case_clinical.vcf.gz",
                 "sv/test_tumor_only_case_clinical.vcf.gz.tbi",
-                "sv/test_tumor_only_case_research.vcf.gz",
-                "sv/test_tumor_only_case_research.vcf.gz.tbi",
+                "sv/test_tumor_only_case_genmod_score.vcf.gz",
+                "sv/test_tumor_only_case_genmod_score.vcf.gz.tbi",
                 "sv/test_tumor_only_case_svdbquery_vep.vcf.gz",
                 "sv/test_tumor_only_case_svdbquery_vep.vcf.gz.tbi",
                 "sv/test_tumor_only_case_svdbquery_vep.vcf.gz_summary.html",
@@ -117,7 +117,7 @@
                     "VcfFile [chromosomes=[chr19, chr9, chr11], sampleCount=1, variantCount=6, phased=false, phasedAutodetect=false]"
                 ],
                 [
-                    "test_tumor_only_case_research.vcf.gz",
+                    "test_tumor_only_case_genmod_score.vcf.gz",
                     "VcfFile [chromosomes=[chr19, chr9, chr11], sampleCount=1, variantCount=6, phased=false, phasedAutodetect=false]"
                 ],
                 [
@@ -147,8 +147,8 @@
                     "df683be784634d933773203d555672df"
                 ],
                 [
-                    "test_tumor_only_case_research.vcf.gz",
-                    "740d24979f0598e569785305b7aadfb8"
+                    "test_tumor_only_case_genmod_score.vcf.gz",
+                    "df683be784634d933773203d555672df"
                 ],
                 [
                     "test_tumor_only_case_svdbquery_vep.vcf.gz",
@@ -156,7 +156,7 @@
                 ]
             ]
         ],
-        "timestamp": "2026-08-10T15:08:26.812777",
+        "timestamp": "2026-08-12T16:54:31.891181",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
@@ -244,15 +244,15 @@
                 "sv",
                 "sv/test_tumor_only_case_clinical.vcf.gz",
                 "sv/test_tumor_only_case_clinical.vcf.gz.tbi",
-                "sv/test_tumor_only_case_research.vcf.gz",
-                "sv/test_tumor_only_case_research.vcf.gz.tbi",
+                "sv/test_tumor_only_case_genmod_score.vcf.gz",
+                "sv/test_tumor_only_case_genmod_score.vcf.gz.tbi",
                 "sv/test_tumor_only_case_svdbquery_vep.vcf.gz",
                 "sv/test_tumor_only_case_svdbquery_vep.vcf.gz.tbi",
                 "sv/test_tumor_only_case_svdbquery_vep_summary.html",
                 "sv/tumor.cgh"
             ]
         ],
-        "timestamp": "2026-08-10T15:09:17.096079",
+        "timestamp": "2026-08-12T16:55:26.789445",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
