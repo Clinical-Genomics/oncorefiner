@@ -14,7 +14,7 @@
                         "id": "subject_a",
                         "case_id": "test_tumor_normal_case"
                     },
-                    "subject_a_SV_genmod_score.vcf.gz:variantsMD5,234479e5f991b276da480ba96eb607af"
+                    "subject_a_SV_score_genmod.vcf.gz:variantsMD5,234479e5f991b276da480ba96eb607af"
                 ],
                 [
                     {
@@ -37,7 +37,7 @@
                         "id": "subject_a",
                         "case_id": "test_tumor_normal_case"
                     },
-                    "subject_a_SV_genmod_score.vcf.gz.tbi"
+                    "subject_a_SV_score_genmod.vcf.gz.tbi"
                 ],
                 [
                     {
@@ -162,7 +162,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-08-14T16:11:53.680537",
+        "timestamp": "2026-08-17T13:09:59.320809",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
@@ -195,7 +195,7 @@
                             "id": "subject_a",
                             "case_id": "test_tumor_normal_case"
                         },
-                        "subject_a_SV_genmod_score.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "subject_a_SV_score_genmod.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "research_filtered_vcf": [
@@ -204,7 +204,7 @@
                             "id": "subject_a",
                             "case_id": "test_tumor_normal_case"
                         },
-                        "subject_a_SV_genmod_score.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                        "subject_a_SV_score_genmod.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
                     ]
                 ],
                 "vcf2cytosure_cgh": [
@@ -343,7 +343,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-08-14T16:12:25.986691",
+        "timestamp": "2026-08-17T13:10:34.493977",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
