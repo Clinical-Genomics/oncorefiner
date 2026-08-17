@@ -19,12 +19,16 @@ This process generates an interactive CNV report and files compatible with visua
 
 - `cnv/`
   - `<meta.id>.cnv_report.html`: interactive CNV report.
-  - `<meta.id>_CNV_BAF_GENS.<tumor or normal>.baf.zoom.tsv`:
-  - `<meta.id>_CNV_BAF_GENS.<tumor or normal>.baf.zoom.tsv.gz.tbi`:
-  - `<meta.id>_<meta.sample_type>_CNV_COV_GENS.bed.gz`:
-  - `<meta.id>_<meta.sample_type>_CNV_COV_GENS.bed.gz.tbi`:
+  - `<meta.id>_CNV_BAF_GENS.<tumor or normal>.baf.zoom.tsv.gz`: a gzipped tsv containing b-allele frequency (BAF) for visualization using GENS, produced from Oncoanalysers AMBER files.
+  - `<meta.id>_CNV_BAF_GENS.<tumor or normal>.baf.zoom.tsv.gz.tbi`: index file for the gzipped tsv with BAF.
+  - `<meta.id>_<meta.sample_type>_CNV_COV_GENS.bed.gz`: a gzipped bed file with genomic coverage levels for visualization using GENS, produced from Oncoanalysers COBALT files.
+  - `<meta.id>_<meta.sample_type>_CNV_COV_GENS.bed.gz.tbi`: index file for the gzipped bed with coverage levels.
 
 </details>
+
+[`RMARKDOWNNOTEBOOK`](https://github.com/rstudio/rmarkdown) - used to generate a custom interactive CNV report.
+`PREPARE_AMBER_FOR_GENS` - Custom script that takes output from Oncoanalysers [`AMBER`](https://github.com/hartwigmedical/hmftools/tree/master/amber) VCF and converts the B-allele frequency levels into a GENS compatible zoom level.
+`PREPARE_COBALT_FOR_GENS` - Custom script that takes output from Oncoanalysers [`COBALT`](https://github.com/hartwigmedical/hmftools/tree/master/cobalt) VCF and converts the coverage levels into GENS compatible levels.
 
 ### PROCESS_SNVS
 
