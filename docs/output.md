@@ -72,13 +72,13 @@ This process annotates, ranks and filters structural variants
 <summary>Output files</summary>
 
 - `sv/`
-  - `<meta.id>_SV_genmod_score.vcf.gz`: a gzipped VCF containing LINX fusion and SVDB annotated variants filtered with bcftools and ranked with GENMOD from step 5 in README.md. Only produced if GENMOD config is provided. If not provided, the corresponding file would be the `_SV_annotated_vep.vcf.gz`.
-  - `<meta.id>_SV_genmod_score.vcf.gz.tbi`: an index file for the gzipped VCF.
   - `<meta.id>_SV_annotated_vep.vcf.gz`: a gzipped VCF containing the variants from the file above, annotated with VEP from step 4.
   - `<meta.id>_SV_annotated_vep.vcf.gz.tbi`: an index file for the above gzipped VCF.
   - `<meta.id>_SV_annotated_vep.vcf.gz_summary.html`: a html summary file produced by VEP.
   - `<meta.id>_SV_clinical_filtered_bcftools.vcf.gz`: a gzipped VCF from step 6 with annotated, ranked and clinically filtered variants.
   - `<meta.id>_SV_clinical_filtered_bcftools.vcf.gz.tbi`: an index file for the above gzipped VCF.
+  - `<meta.id>_SV_genmod_score.vcf.gz`: a gzipped VCF containing LINX fusion and SVDB annotated variants filtered with bcftools and ranked with GENMOD from step 5 in README.md. Only produced if GENMOD config is provided. If not provided, the corresponding file would be the `_SV_annotated_vep.vcf.gz`.
+  - `<meta.id>_SV_genmod_score.vcf.gz.tbi`: an index file for the gzipped VCF.
   - `<meta.id>_[tumor/normal]_SV_vcf2cytosure.cgh`: cgh file produced from step 7 to use for visualization in Cytosure.
 
 </details>
