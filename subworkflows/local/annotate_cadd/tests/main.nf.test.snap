@@ -2,22 +2,6 @@
     "ANNOTATE_CADD - GRCh37, stub": {
         "content": [
             {
-                "0": [
-                    [
-                        {
-                            "id": "test"
-                        },
-                        "subject_a_ann.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
-                    ]
-                ],
-                "1": [
-                    [
-                        {
-                            "id": "test"
-                        },
-                        "subject_a_ann.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ]
-                ],
                 "tbi": [
                     [
                         {
@@ -65,7 +49,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-08-18T13:41:19.646825",
+        "timestamp": "2026-08-18T14:00:40.456368",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
@@ -74,22 +58,6 @@
     "ANNOTATE_CADD - GRCh38, stub": {
         "content": [
             {
-                "0": [
-                    [
-                        {
-                            "id": "test"
-                        },
-                        "subject_a_renamed_ann.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
-                    ]
-                ],
-                "1": [
-                    [
-                        {
-                            "id": "test"
-                        },
-                        "subject_a_renamed_ann.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ]
-                ],
                 "tbi": [
                     [
                         {
@@ -152,7 +120,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-08-18T13:41:30.015985",
+        "timestamp": "2026-08-18T14:01:08.099875",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
