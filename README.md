@@ -18,7 +18,6 @@
 
 <!-- TODO: Add information about the processes and the output when the architecture of the pipeline is decided and the information is clear.
 
-
 ### Workflow diagram
 
 <!-- TODO nf-core: Include a figure that guides the user through the major workflow steps. Many nf-core
