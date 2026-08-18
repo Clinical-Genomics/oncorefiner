@@ -7,6 +7,8 @@ nextflow_workflow {
     tag "annotate_cadd"
     config "./nextflow.config"
 
+    topics "versions"
+
     test("ANNOTATE_CADD - GRCh37, stub") {
 
         options "-stub"
@@ -36,7 +38,10 @@ nextflow_workflow {
 
             assertAll(
                 { assert workflow.success },
-                { assert snapshot(workflow.out).match() }
+                { assert snapshot(
+                    workflow.out,
+                    topics
+                ).match() }
             )
         }
     }
@@ -70,7 +75,10 @@ nextflow_workflow {
 
             assertAll(
                 { assert workflow.success },
-                { assert snapshot(workflow.out).match() }
+                { assert snapshot(
+                    workflow.out,
+                    topics
+                ).match() }
             )
         }
     }

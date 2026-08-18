@@ -5,6 +5,8 @@ nextflow_pipeline {
     tag "pipeline"
     tag "tumor_normal"
 
+    topics "versions"
+
     test("Tumor Normal analysis with '-profile test'") {
 
         when {
@@ -35,6 +37,7 @@ nextflow_pipeline {
                     all_vcf_files.collect{ file -> [ file.getName(), path(file.toString()).vcf.summary ] },
                     // VCFs with stable variants
                     vcfs_with_stable_variants.collect{ file -> [ file.getName(), path(file.toString()).vcf.variantsMD5 ] }
+                    topics
                 ).match() }
             )
         }
@@ -60,6 +63,7 @@ nextflow_pipeline {
                     removeNextflowVersion("$outputDir/pipeline_info/oncorefiner_software_mqc_versions.yml"),
                     // All stable path name, with a relative path
                     stable_name,
+                    topics,
                 ).match() }
             )
         }

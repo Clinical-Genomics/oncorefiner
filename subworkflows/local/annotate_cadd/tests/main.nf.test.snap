@@ -34,13 +34,42 @@
                         "subject_a_ann.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
                     ]
                 ]
+            },
+            {
+                "versions": [
+                    [
+                        "ANNOTATE_CADD:BCFTOOLS_ANNOTATE_INDELS",
+                        "bcftools",
+                        "1.22"
+                    ],
+                    [
+                        "ANNOTATE_CADD:BCFTOOLS_VIEW",
+                        "bcftools",
+                        "1.23.1"
+                    ],
+                    [
+                        "ANNOTATE_CADD:CADD",
+                        "cadd",
+                        "1.7.3"
+                    ],
+                    [
+                        "ANNOTATE_CADD:TABIX_CADD",
+                        "tabix",
+                        "1.21"
+                    ],
+                    [
+                        "ANNOTATE_CADD:TABIX_INPUT",
+                        "tabix",
+                        "1.21"
+                    ]
+                ]
             }
         ],
+        "timestamp": "2026-08-18T13:41:19.646825",
         "meta": {
-            "nf-test": "0.9.3",
-            "nextflow": "25.10.4"
-        },
-        "timestamp": "2026-05-05T11:49:15.64576"
+            "nf-test": "0.9.5",
+            "nextflow": "26.04.6"
+        }
     },
     "ANNOTATE_CADD - GRCh38, stub": {
         "content": [
@@ -77,12 +106,56 @@
                         "subject_a_renamed_ann.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
                     ]
                 ]
+            },
+            {
+                "versions": [
+                    [
+                        "ANNOTATE_CADD:BCFTOOLS_ANNOTATE_INDELS",
+                        "bcftools",
+                        "1.22"
+                    ],
+                    [
+                        "ANNOTATE_CADD:BCFTOOLS_RENAME_CHR_CADD",
+                        "bcftools",
+                        "1.22"
+                    ],
+                    [
+                        "ANNOTATE_CADD:BCFTOOLS_VIEW",
+                        "bcftools",
+                        "1.23.1"
+                    ],
+                    [
+                        "ANNOTATE_CADD:CADD",
+                        "cadd",
+                        "1.7.3"
+                    ],
+                    [
+                        "ANNOTATE_CADD:GAWK_CADD_TO_REF_CHRNAMES",
+                        "gawk",
+                        "5.3.1"
+                    ],
+                    [
+                        "ANNOTATE_CADD:GAWK_REF_TO_CADD_CHRNAMES",
+                        "gawk",
+                        "5.3.1"
+                    ],
+                    [
+                        "ANNOTATE_CADD:TABIX_CADD",
+                        "tabix",
+                        "1.21"
+                    ],
+                    [
+                        "ANNOTATE_CADD:TABIX_INPUT",
+                        "tabix",
+                        "1.21"
+                    ]
+                ]
             }
         ],
+        "timestamp": "2026-08-18T13:41:30.015985",
         "meta": {
-            "nf-test": "0.9.3",
-            "nextflow": "25.10.4"
-        },
-        "timestamp": "2026-05-05T11:42:53.541199"
+            "nf-test": "0.9.5",
+            "nextflow": "26.04.6"
+        }
     }
 }
