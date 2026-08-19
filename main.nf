@@ -158,6 +158,9 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     // Input for CNV report
     ch_cnv_gene_tsv      = channelFromMetaAndPath(metadata_case_file, val_cnv_gene_tsv)
     ch_cnv_segment_tsv   = channelFromMetaAndPath(metadata_case_file, val_cnv_segment_tsv)
+    ch_cnv_gene_tsv.view()
+    ch_cnv_segment_tsv.view()
+
 
     // Input for genmod_score
     if (val_genmod_score_config_snv) {

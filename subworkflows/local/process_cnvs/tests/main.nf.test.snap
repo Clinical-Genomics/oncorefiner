@@ -4,10 +4,10 @@
             [
                 [
                     {
-                        "id": "subject_a",
+                        "id": "test_tumor_normal_case",
                         "case_id": "test_tumor_normal_case"
                     },
-                    "subject_a_cnv_report.html"
+                    "test_tumor_normal_case_cnv_report.html"
                 ]
             ],
             {
@@ -20,7 +20,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-08-14T13:35:19.83326",
+        "timestamp": "2026-08-19T14:27:31.577609",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
@@ -31,10 +31,10 @@
             [
                 [
                     {
-                        "id": "subject_a",
+                        "id": "test_tumor_normal_case",
                         "case_id": "test_tumor_normal_case"
                     },
-                    "subject_a_cnv_report.html"
+                    "test_tumor_normal_case_cnv_report.html"
                 ]
             ],
             {
@@ -47,7 +47,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-08-14T13:35:23.998908",
+        "timestamp": "2026-08-19T14:27:36.122372",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"

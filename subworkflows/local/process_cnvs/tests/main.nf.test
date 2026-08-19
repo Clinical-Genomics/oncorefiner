@@ -17,11 +17,11 @@ nextflow_workflow {
             workflow {
                 """
                 input[0] = channel.of([
-                    [id: 'subject_a', case_id: 'test_tumor_normal_case'],
+                    [id: 'test_tumor_normal_case', case_id: 'test_tumor_normal_case'],
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.cnv.gene.tsv', checkIfExists: true)
                 ])
                 input[1] = channel.of([
-                    [id: 'subject_a', case_id: 'test_tumor_normal_case'],
+                    [id: 'test_tumor_normal_case', case_id: 'test_tumor_normal_case'],
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.cnv.somatic.tsv', checkIfExists: true)
                 ])
                 """
@@ -32,7 +32,7 @@ nextflow_workflow {
             assert workflow.success
             assertAll(
                 { assert snapshot(
-                    // only snapshot name as md5sum will change with every run.
+                    // only snapshot name as md5sum will change with every run due to presence of timestamps.
                     workflow.out.html_report.collect { meta, html -> [ meta, file(html).name]} ,
                     topics,
                 ).match() }
@@ -49,11 +49,11 @@ nextflow_workflow {
             workflow {
                 """
                 input[0] = channel.of([
-                    [id: 'subject_a', case_id: 'test_tumor_normal_case'],
+                    [id: 'test_tumor_normal_case', case_id: 'test_tumor_normal_case'],
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.cnv.gene.tsv', checkIfExists: true)
                 ])
                 input[1] = channel.of([
-                    [id: 'subject_a', case_id: 'test_tumor_normal_case'],
+                    [id: 'test_tumor_normal_case', case_id: 'test_tumor_normal_case'],
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.cnv.somatic.tsv', checkIfExists: true)
                 ])
 
@@ -65,6 +65,7 @@ nextflow_workflow {
             assert workflow.success
             assertAll(
                 { assert snapshot(
+                    // only snapshot name as md5sum will change with every run due to presence of timestamps.
                     workflow.out.html_report.collect { meta, html -> [ meta, file(html).name ]},
                     topics,
                 ).match() }

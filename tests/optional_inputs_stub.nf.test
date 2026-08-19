@@ -84,7 +84,7 @@ nextflow_pipeline {
             def versions = removeNextflowVersion("$outputDir/pipeline_info/oncorefiner_software_mqc_versions.yml")
             assertAll(
                 { assert workflow.success},
-                // Assert that "GENMODE_SCORE" is not run
+                // Assert that "RMARKDOWNNOTEBOOK" is not run
                 { assert "RMARKDOWNNOTEBOOK" !in versions.keySet()},
                 { assert snapshot(
                     // List of software versions run in the pipeline

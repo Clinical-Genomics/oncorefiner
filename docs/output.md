@@ -76,7 +76,7 @@ This process produce an interactive CNV report.
 
 </details>
 
-[`RMARKDOWNNOTEBOOK`](https://github.com/rstudio/rmarkdown) - used to generate a custom interactive CNV report.
+[`RMARKDOWNNOTEBOOK`](https://github.com/rstudio/rmarkdown) - used to generate a custom interactive CNV report using the RMARKDOWN script `assets/cnv_report.Rmd`.
 
 ### MultiQC
 

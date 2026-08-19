@@ -28,7 +28,7 @@ workflow PROCESS_CNVS {
     def cnv_report_notebook = file("${projectDir}/assets/cnv_report.Rmd", checkIfExists: true)
 
     // Join the two distinct file channels together based on the meta.id
-    ch_rmarkdown_in = ch_cnv_gene_tsv
+    ch_rmarkdownnotebook_in = ch_cnv_gene_tsv
         .join(ch_cnv_segment_tsv)
         .multiMap { meta, cnv_gene_tsv, cnv_segment_tsv ->
         notebook   : [meta, cnv_report_notebook]
@@ -38,9 +38,9 @@ workflow PROCESS_CNVS {
 
 
     RMARKDOWNNOTEBOOK(
-    ch_rmarkdown_in.notebook,
-    ch_rmarkdown_in.parameters,
-    ch_rmarkdown_in.input_files,
+    ch_rmarkdownnotebook_in.notebook,
+    ch_rmarkdownnotebook_in.parameters,
+    ch_rmarkdownnotebook_in.input_files,
     )
 
     emit:
