@@ -35,8 +35,8 @@ include { samplesheetToList       } from 'plugin/nf-schema'
 workflow CLINICALGENOMICS_ONCOREFINER {
 
     take:
-    val_amber_baf_tsv_gz            // string:  [optional]  path to amber baf tsv.gz file
     val_analysis_type               // string:  [optional]  analysis type, e.g. "tumor_only" or "tumor_normal"
+    val_amber_baf_tsv_gz            // string:  [optional]  path to amber baf tsv.gz file
     val_bam_normal                  // string:  [optional]  path to BAM file for the normal sample
     val_bai_normal                  // string:  [optional]  path to BAI file for the normal sample
     val_bam_tumor                   // string:  [optional]  path to BAM file for the tumor sample
@@ -303,8 +303,8 @@ workflow {
     // WORKFLOW: Run main workflow
     //
     CLINICALGENOMICS_ONCOREFINER (
-        params.amber_baf_tsv_gz,
         params.analysis_type,
+        params.amber_baf_tsv_gz,
         params.bam_normal,
         params.bai_normal,
         params.bam_tumor,
