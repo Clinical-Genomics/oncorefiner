@@ -36,13 +36,13 @@ workflow GENS {
         ch_cobalt_pcf_tumor
     )
 
-    def ch_cobalt_pcf_in = ch_cobalt_pcf_tumor_normal
+    def ch_prepare_cobalt_for_gens_in = ch_cobalt_pcf_tumor_normal
         .multiMap { meta, cobalt_pcf ->
             pcf: tuple(meta, cobalt_pcf)
         }
 
     PREPARE_COBALT_FOR_GENS (
-        ch_cobalt_pcf_in.pcf
+        ch_prepare_cobalt_for_gens_in.pcf
     )
 
     emit:

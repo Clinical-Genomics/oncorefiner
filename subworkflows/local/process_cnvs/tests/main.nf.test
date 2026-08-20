@@ -10,24 +10,32 @@ nextflow_workflow {
 
     topics "versions"
 
-    test("Process PROCESS_CNVS, tumor-normal") {
+    test("with tumor-normal data") {
 
         when {
             workflow {
                 """
                 input[0] = channel.of([
-                    [id: 'test', case_id: 'subject_a'],
+                    [id: 'test_tumor_normal_case', case_id: 'test_tumor_normal_case'],
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.amber.baf.tsv.gz', checkIfExists: true),
                 ])
                 input[1] = channel.of([
-                    [id: 'test', case_id: 'subject_a', sample_id: 'subject_a', sample_type: 'normal', sex: 'female'],
-                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.normal.cobalt.ratio.pcf', checkIfExists: true)
+                    [id: 'test_tumor_normal_case', case_id: 'test_tumor_normal_case'],
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.cnv.gene.tsv', checkIfExists: true)
                 ])
                 input[2] = channel.of([
-                    [id: 'test', case_id: 'subject_a', sample_id: 'subject_a', sample_type: 'tumor', sex: 'female'],
+                    [id: 'test_tumor_normal_case', case_id: 'test_tumor_normal_case'],
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.cnv.somatic.tsv', checkIfExists: true)
+                ])
+                input[3] = channel.of([
+                    [id: 'test_tumor_normal_case', case_id: 'test_tumor_normal_case', sample_id: 'subject_a', sample_type: 'normal', sex: 'female'],
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.normal.cobalt.ratio.pcf', checkIfExists: true)
+                ])
+                input[4] = channel.of([
+                    [id: 'test_tumor_normal_case', case_id: 'test_tumor_normal_case', sample_id: 'subject_a', sample_type: 'tumor', sex: 'female'],
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.cobalt.ratio.pcf', checkIfExists: true)
                 ])
-                input[3] = "tumor_normal"
+                input[5] = "tumor_normal"
                 """
             }
         }
@@ -43,13 +51,15 @@ nextflow_workflow {
                     workflow.out.gens_baf_tumor_tsv,
                     workflow.out.gens_cov_bed,
                     output_tbis.collect { meta, tbi -> [meta, file(tbi).name] },
+                    // only snapshot name as md5sum will change with every run due to presence of timestamps.
+                    workflow.out.html_report.collect { meta, html -> [ meta, file(html).name]} ,
                     topics,
                 ).match() }
             )
         }
     }
 
-    test("Process PROCESS_CNVS, tumor-normal - stub") {
+    test("with tumor-normal data - stub") {
 
         options "-stub"
 
@@ -57,18 +67,26 @@ nextflow_workflow {
             workflow {
                 """
                 input[0] = channel.of([
-                    [id: 'test', case_id: 'subject_a'],
+                    [id: 'test_tumor_normal_case', case_id: 'test_tumor_normal_case'],
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.amber.baf.tsv.gz', checkIfExists: true),
                 ])
                 input[1] = channel.of([
-                    [id: 'test', case_id: 'subject_a', sample_id: 'subject_a', sample_type: 'normal', sex: 'female'],
-                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.normal.cobalt.ratio.pcf', checkIfExists: true)
+                    [id: 'test_tumor_normal_case', case_id: 'test_tumor_normal_case'],
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.cnv.gene.tsv', checkIfExists: true)
                 ])
                 input[2] = channel.of([
-                    [id: 'test', case_id: 'subject_a', sample_id: 'subject_a', sample_type: 'tumor', sex: 'female'],
+                    [id: 'test_tumor_normal_case', case_id: 'test_tumor_normal_case'],
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.cnv.somatic.tsv', checkIfExists: true)
+                ])
+                input[3] = channel.of([
+                    [id: 'test_tumor_normal_case', case_id: 'test_tumor_normal_case', sample_id: 'subject_a', sample_type: 'normal', sex: 'female'],
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.normal.cobalt.ratio.pcf', checkIfExists: true)
+                ])
+                input[4] = channel.of([
+                    [id: 'test_tumor_normal_case', case_id: 'test_tumor_normal_case', sample_id: 'subject_a', sample_type: 'tumor', sex: 'female'],
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.cobalt.ratio.pcf', checkIfExists: true)
                 ])
-                input[3] = 'tumor_normal'
+                input[5] = "tumor_normal"
                 """
             }
         }
@@ -78,26 +96,38 @@ nextflow_workflow {
             assertAll(
                 { assert snapshot(
                     sanitizeOutput(workflow.out),
+
                 ).match() }
             )
         }
     }
 
-    test("Process PROCESS_CNVS, tumor-only") {
+    test("with tumor-only data") {
 
         when {
             workflow {
                 """
                 input[0] = channel.of([
-                    [id: 'test', case_id: 'subject_a'],
-                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_only/subject_a.tumor.amber.baf.tsv.gz', checkIfExists: true),
+                    [id: 'test_tumor_normal_case', case_id: 'test_tumor_normal_case'],
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.amber.baf.tsv.gz', checkIfExists: true),
                 ])
-                input[1] = channel.empty()
+                input[1] = channel.of([
+                    [id: 'test_tumor_normal_case', case_id: 'test_tumor_normal_case'],
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.cnv.gene.tsv', checkIfExists: true)
+                ])
                 input[2] = channel.of([
-                    [id: 'test', case_id: 'subject_a', sample_id: 'subject_a', sample_type: 'tumor', sex: 'female'],
-                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_only/subject_a.tumor.cobalt.ratio.pcf', checkIfExists: true)
+                    [id: 'test_tumor_normal_case', case_id: 'test_tumor_normal_case'],
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.cnv.somatic.tsv', checkIfExists: true)
                 ])
-                input[3] = "tumor_only"
+                input[3] = channel.of([
+                    [id: 'test_tumor_normal_case', case_id: 'test_tumor_normal_case', sample_id: 'subject_a', sample_type: 'normal', sex: 'female'],
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.normal.cobalt.ratio.pcf', checkIfExists: true)
+                ])
+                input[4] = channel.of([
+                    [id: 'test_tumor_normal_case', case_id: 'test_tumor_normal_case', sample_id: 'subject_a', sample_type: 'tumor', sex: 'female'],
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.cobalt.ratio.pcf', checkIfExists: true)
+                ])
+                input[5] = "tumor_only"
                 """
             }
         }
@@ -113,13 +143,15 @@ nextflow_workflow {
                     workflow.out.gens_baf_tumor_tsv,
                     workflow.out.gens_cov_bed,
                     output_tbis.collect { meta, tbi -> [meta, file(tbi).name] },
+                    // only snapshot name as md5sum will change with every run due to presence of timestamps.
+                    workflow.out.html_report.collect { meta, html -> [ meta, file(html).name ]},
                     topics,
                 ).match() }
             )
         }
     }
 
-    test("Process PROCESS_CNVS, tumor-only - stub") {
+    test("with tumor-only data - stub") {
 
         options "-stub"
 
@@ -127,15 +159,26 @@ nextflow_workflow {
             workflow {
                 """
                 input[0] = channel.of([
-                    [id: 'test', case_id: 'subject_a'],
-                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_only/subject_a.tumor.amber.baf.tsv.gz', checkIfExists: true),
+                    [id: 'test_tumor_normal_case', case_id: 'test_tumor_normal_case'],
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.amber.baf.tsv.gz', checkIfExists: true),
                 ])
-                input[1] = channel.empty()
+                input[1] = channel.of([
+                    [id: 'test_tumor_normal_case', case_id: 'test_tumor_normal_case'],
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.cnv.gene.tsv', checkIfExists: true)
+                ])
                 input[2] = channel.of([
-                    [id: 'test', case_id: 'subject_a', sample_id: 'subject_a', sample_type: 'tumor', sex: 'female'],
-                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_only/subject_a.tumor.cobalt.ratio.pcf', checkIfExists: true)
+                    [id: 'test_tumor_normal_case', case_id: 'test_tumor_normal_case'],
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.cnv.somatic.tsv', checkIfExists: true)
                 ])
-                input[3] = "tumor_only"
+                input[3] = channel.of([
+                    [id: 'test_tumor_normal_case', case_id: 'test_tumor_normal_case', sample_id: 'subject_a', sample_type: 'normal', sex: 'female'],
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.normal.cobalt.ratio.pcf', checkIfExists: true)
+                ])
+                input[4] = channel.of([
+                    [id: 'test_tumor_normal_case', case_id: 'test_tumor_normal_case', sample_id: 'subject_a', sample_type: 'tumor', sex: 'female'],
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.cobalt.ratio.pcf', checkIfExists: true)
+                ])
+                input[5] = "tumor_only"
                 """
             }
         }

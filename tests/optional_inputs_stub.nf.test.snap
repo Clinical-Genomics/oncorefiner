@@ -1,112 +1,5 @@
 {
-    "No `genmod_score_config_*` with '-profile test' - stub": {
-        "content": [
-            {
-                "ANNOTATE_VCF_BY_ID": {
-                    "annotate_vcf_by_id": 1.0
-                },
-                "BCFTOOLS_VIEW_CLINICAL": {
-                    "bcftools": "1.23.1"
-                },
-                "BCFTOOLS_VIEW_RESEARCH": {
-                    "bcftools": "1.23.1"
-                },
-                "COMBINE_LINX_TSV": {
-                    "combine_linx_tsv": 1.0
-                },
-                "ENSEMBLVEP_VEP": {
-                    "ensemblvep": 115.2,
-                    "perl-math-cdf": 0.1,
-                    "tabix": 1.21
-                },
-                "FILTER_VCF": {
-                    "bcftools": "1.23.1"
-                },
-                "PREPARE_AMBER_FOR_GENS": {
-                    "bgzip": "(htslib) 1.23.1",
-                    "prepare_amber_for_gens": "prepare_amber_for_gens, version 1.0",
-                    "python": "Python 3.14.6",
-                    "tabix": "(htslib) 1.23.1"
-                },
-                "PREPARE_COBALT_FOR_GENS": {
-                    "bgzip": "(htslib) 1.23.1",
-                    "prepare_cobalt_for_gens": "prepare_cobalt_for_gens, version 1.0",
-                    "python": "Python 3.14.6",
-                    "tabix": "(htslib) 1.23.1"
-                },
-                "SAMTOOLS_VIEW": {
-                    "samtools": "1.23.1"
-                },
-                "SVDB_QUERY": {
-                    "svdb": "2.8.4"
-                },
-                "TIDDIT_COV": {
-                    "tiddit": "3.9.5"
-                },
-                "UNTAR_VEP_CACHE": {
-                    "untar": 1.34
-                },
-                "VCF2CYTOSURE": {
-                    "vcf2cytosure": "0.9.3"
-                },
-                "VCFANNO": {
-                    "vcfanno": "0.3.7"
-                },
-                "Workflow": {
-                    "Clinical-Genomics/oncorefiner": "v1.0.0dev"
-                }
-            },
-            [
-                "alignments",
-                "alignments/subject_a_normal.cram",
-                "alignments/subject_a_normal.cram.crai",
-                "alignments/subject_a_tumor.cram",
-                "alignments/subject_a_tumor.cram.crai",
-                "cnv",
-                "cnv/test_normal_sample_normal_CNV_COV_GENS.bed.gz",
-                "cnv/test_normal_sample_normal_CNV_COV_GENS.bed.gz.tbi",
-                "cnv/test_tumor_normal_case_CNV_BAF_GENS.normal.baf.zoom.tsv.gz",
-                "cnv/test_tumor_normal_case_CNV_BAF_GENS.normal.baf.zoom.tsv.gz.tbi",
-                "cnv/test_tumor_normal_case_CNV_BAF_GENS.tumor.baf.zoom.tsv.gz",
-                "cnv/test_tumor_normal_case_CNV_BAF_GENS.tumor.baf.zoom.tsv.gz.tbi",
-                "cnv/test_tumor_sample_tumor_CNV_COV_GENS.bed.gz",
-                "cnv/test_tumor_sample_tumor_CNV_COV_GENS.bed.gz.tbi",
-                "pipeline_info",
-                "pipeline_info/oncorefiner_software_mqc_versions.yml",
-                "qc",
-                "qc/multiqc",
-                "qc/multiqc/multiqc_data",
-                "qc/multiqc/multiqc_data/.stub",
-                "qc/multiqc/multiqc_plots",
-                "qc/multiqc/multiqc_plots/.stub",
-                "qc/multiqc/multiqc_report.html",
-                "snv",
-                "snv/test_tumor_normal_case_clinical.vcf.gz",
-                "snv/test_tumor_normal_case_clinical.vcf.gz.tbi",
-                "snv/test_tumor_normal_case_vcfanno.vcf.gz",
-                "snv/test_tumor_normal_case_vcfanno.vcf.gz.tbi",
-                "snv/test_tumor_normal_case_vep.vcf.gz",
-                "snv/test_tumor_normal_case_vep.vcf.gz.tbi",
-                "snv/test_tumor_normal_case_vep_summary.html",
-                "sv",
-                "sv/normal.cgh",
-                "sv/test_tumor_normal_case_clinical.vcf.gz",
-                "sv/test_tumor_normal_case_clinical.vcf.gz.tbi",
-                "sv/test_tumor_normal_case_research.vcf.gz",
-                "sv/test_tumor_normal_case_research.vcf.gz.tbi",
-                "sv/test_tumor_normal_case_svdbquery_vep.vcf.gz",
-                "sv/test_tumor_normal_case_svdbquery_vep.vcf.gz.tbi",
-                "sv/test_tumor_normal_case_svdbquery_vep_summary.html",
-                "sv/tumor.cgh"
-            ]
-        ],
-        "timestamp": "2026-08-13T14:21:18.34097",
-        "meta": {
-            "nf-test": "0.9.5",
-            "nextflow": "26.04.6"
-        }
-    },
-    "No `vep_plugin_files` with '-profile test' - stub": {
+    "No `cnv_gene_tsv` and `cnv_segment_tsv` with '-profile test' - stub": {
         "content": [
             {
                 "ANNOTATE_VCF_BY_ID": {
@@ -207,15 +100,342 @@
                 "sv/normal.cgh",
                 "sv/test_tumor_normal_case_clinical.vcf.gz",
                 "sv/test_tumor_normal_case_clinical.vcf.gz.tbi",
-                "sv/test_tumor_normal_case_research.vcf.gz",
-                "sv/test_tumor_normal_case_research.vcf.gz.tbi",
+                "sv/test_tumor_normal_case_genmod_score.vcf.gz",
+                "sv/test_tumor_normal_case_genmod_score.vcf.gz.tbi",
                 "sv/test_tumor_normal_case_svdbquery_vep.vcf.gz",
                 "sv/test_tumor_normal_case_svdbquery_vep.vcf.gz.tbi",
                 "sv/test_tumor_normal_case_svdbquery_vep_summary.html",
                 "sv/tumor.cgh"
             ]
         ],
-        "timestamp": "2026-08-13T14:22:12.87695",
+        "timestamp": "2026-08-20T14:30:21.527036",
+        "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "26.04.6"
+        }
+    },
+    "No `genmod_score_config_*` with '-profile test' - stub": {
+        "content": [
+            {
+                "ANNOTATE_VCF_BY_ID": {
+                    "annotate_vcf_by_id": 1.0
+                },
+                "BCFTOOLS_VIEW_CLINICAL": {
+                    "bcftools": "1.23.1"
+                },
+                "BCFTOOLS_VIEW_RESEARCH": {
+                    "bcftools": "1.23.1"
+                },
+                "COMBINE_LINX_TSV": {
+                    "combine_linx_tsv": 1.0
+                },
+                "ENSEMBLVEP_VEP": {
+                    "ensemblvep": 115.2,
+                    "perl-math-cdf": 0.1,
+                    "tabix": 1.21
+                },
+                "FILTER_VCF": {
+                    "bcftools": "1.23.1"
+                },
+                "PREPARE_AMBER_FOR_GENS": {
+                    "bgzip": "(htslib) 1.23.1",
+                    "prepare_amber_for_gens": "prepare_amber_for_gens, version 1.0",
+                    "python": "Python 3.14.6",
+                    "tabix": "(htslib) 1.23.1"
+                },
+                "PREPARE_COBALT_FOR_GENS": {
+                    "bgzip": "(htslib) 1.23.1",
+                    "prepare_cobalt_for_gens": "prepare_cobalt_for_gens, version 1.0",
+                    "python": "Python 3.14.6",
+                    "tabix": "(htslib) 1.23.1"
+                },
+                "RMARKDOWNNOTEBOOK": {
+                    "rmarkdownnotebook": 2.29
+                },
+                "SAMTOOLS_VIEW": {
+                    "samtools": "1.23.1"
+                },
+                "SVDB_QUERY": {
+                    "svdb": "2.8.4"
+                },
+                "TIDDIT_COV": {
+                    "tiddit": "3.9.5"
+                },
+                "UNTAR_VEP_CACHE": {
+                    "untar": 1.34
+                },
+                "VCF2CYTOSURE": {
+                    "vcf2cytosure": "0.9.3"
+                },
+                "VCFANNO": {
+                    "vcfanno": "0.3.7"
+                },
+                "Workflow": {
+                    "Clinical-Genomics/oncorefiner": "v1.0.0dev"
+                }
+            },
+            [
+                "alignments",
+                "alignments/subject_a_normal.cram",
+                "alignments/subject_a_normal.cram.crai",
+                "alignments/subject_a_tumor.cram",
+                "alignments/subject_a_tumor.cram.crai",
+                "cnv",
+                "cnv/test_normal_sample_normal_CNV_COV_GENS.bed.gz",
+                "cnv/test_normal_sample_normal_CNV_COV_GENS.bed.gz.tbi",
+                "cnv/test_tumor_normal_case_CNV_BAF_GENS.normal.baf.zoom.tsv.gz",
+                "cnv/test_tumor_normal_case_CNV_BAF_GENS.normal.baf.zoom.tsv.gz.tbi",
+                "cnv/test_tumor_normal_case_CNV_BAF_GENS.tumor.baf.zoom.tsv.gz",
+                "cnv/test_tumor_normal_case_CNV_BAF_GENS.tumor.baf.zoom.tsv.gz.tbi",
+                "cnv/test_tumor_normal_case_cnv_report.html",
+                "cnv/test_tumor_sample_tumor_CNV_COV_GENS.bed.gz",
+                "cnv/test_tumor_sample_tumor_CNV_COV_GENS.bed.gz.tbi",
+                "pipeline_info",
+                "pipeline_info/oncorefiner_software_mqc_versions.yml",
+                "qc",
+                "qc/multiqc",
+                "qc/multiqc/multiqc_data",
+                "qc/multiqc/multiqc_data/.stub",
+                "qc/multiqc/multiqc_plots",
+                "qc/multiqc/multiqc_plots/.stub",
+                "qc/multiqc/multiqc_report.html",
+                "snv",
+                "snv/test_tumor_normal_case_clinical.vcf.gz",
+                "snv/test_tumor_normal_case_clinical.vcf.gz.tbi",
+                "snv/test_tumor_normal_case_vcfanno.vcf.gz",
+                "snv/test_tumor_normal_case_vcfanno.vcf.gz.tbi",
+                "snv/test_tumor_normal_case_vep.vcf.gz",
+                "snv/test_tumor_normal_case_vep.vcf.gz.tbi",
+                "snv/test_tumor_normal_case_vep_summary.html",
+                "sv",
+                "sv/normal.cgh",
+                "sv/test_tumor_normal_case_clinical.vcf.gz",
+                "sv/test_tumor_normal_case_clinical.vcf.gz.tbi",
+                "sv/test_tumor_normal_case_svdbquery_vep.vcf.gz",
+                "sv/test_tumor_normal_case_svdbquery_vep.vcf.gz.tbi",
+                "sv/test_tumor_normal_case_svdbquery_vep_summary.html",
+                "sv/tumor.cgh"
+            ]
+        ],
+        "timestamp": "2026-08-20T14:37:33.301126",
+        "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "26.04.6"
+        }
+    },
+    "No GENS support with '-profile test' - stub": {
+        "content": [
+            {
+                "ANNOTATE_VCF_BY_ID": {
+                    "annotate_vcf_by_id": 1.0
+                },
+                "BCFTOOLS_VIEW": {
+                    "bcftools": "1.23.1"
+                },
+                "BCFTOOLS_VIEW_CLINICAL": {
+                    "bcftools": "1.23.1"
+                },
+                "BCFTOOLS_VIEW_RESEARCH": {
+                    "bcftools": "1.23.1"
+                },
+                "COMBINE_LINX_TSV": {
+                    "combine_linx_tsv": 1.0
+                },
+                "ENSEMBLVEP_VEP": {
+                    "ensemblvep": 115.2,
+                    "perl-math-cdf": 0.1,
+                    "tabix": 1.21
+                },
+                "FILTER_VCF": {
+                    "bcftools": "1.23.1"
+                },
+                "GENMOD_SCORE": {
+                    "genmod": "3.10.2"
+                },
+                "RMARKDOWNNOTEBOOK": {
+                    "rmarkdownnotebook": 2.29
+                },
+                "SAMTOOLS_VIEW": {
+                    "samtools": "1.23.1"
+                },
+                "SVDB_QUERY": {
+                    "svdb": "2.8.4"
+                },
+                "TIDDIT_COV": {
+                    "tiddit": "3.9.5"
+                },
+                "UNTAR_VEP_CACHE": {
+                    "untar": 1.34
+                },
+                "VCF2CYTOSURE": {
+                    "vcf2cytosure": "0.9.3"
+                },
+                "VCFANNO": {
+                    "vcfanno": "0.3.7"
+                },
+                "Workflow": {
+                    "Clinical-Genomics/oncorefiner": "v1.0.0dev"
+                }
+            },
+            [
+                "alignments",
+                "alignments/subject_a_normal.cram",
+                "alignments/subject_a_normal.cram.crai",
+                "alignments/subject_a_tumor.cram",
+                "alignments/subject_a_tumor.cram.crai",
+                "cnv",
+                "cnv/test_tumor_normal_case_cnv_report.html",
+                "pipeline_info",
+                "pipeline_info/oncorefiner_software_mqc_versions.yml",
+                "qc",
+                "qc/multiqc",
+                "qc/multiqc/multiqc_data",
+                "qc/multiqc/multiqc_data/.stub",
+                "qc/multiqc/multiqc_plots",
+                "qc/multiqc/multiqc_plots/.stub",
+                "qc/multiqc/multiqc_report.html",
+                "snv",
+                "snv/test_tumor_normal_case_clinical.vcf.gz",
+                "snv/test_tumor_normal_case_clinical.vcf.gz.tbi",
+                "snv/test_tumor_normal_case_genmod_score.vcf.gz",
+                "snv/test_tumor_normal_case_genmod_score.vcf.gz.tbi",
+                "snv/test_tumor_normal_case_vcfanno.vcf.gz",
+                "snv/test_tumor_normal_case_vcfanno.vcf.gz.tbi",
+                "snv/test_tumor_normal_case_vep.vcf.gz",
+                "snv/test_tumor_normal_case_vep.vcf.gz.tbi",
+                "snv/test_tumor_normal_case_vep_summary.html",
+                "sv",
+                "sv/normal.cgh",
+                "sv/test_tumor_normal_case_clinical.vcf.gz",
+                "sv/test_tumor_normal_case_clinical.vcf.gz.tbi",
+                "sv/test_tumor_normal_case_genmod_score.vcf.gz",
+                "sv/test_tumor_normal_case_genmod_score.vcf.gz.tbi",
+                "sv/test_tumor_normal_case_svdbquery_vep.vcf.gz",
+                "sv/test_tumor_normal_case_svdbquery_vep.vcf.gz.tbi",
+                "sv/test_tumor_normal_case_svdbquery_vep_summary.html",
+                "sv/tumor.cgh"
+            ]
+        ],
+        "timestamp": "2026-08-20T14:40:28.693467",
+        "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "26.04.6"
+        }
+    },
+    "No `vep_plugin_files` with '-profile test' - stub": {
+        "content": [
+            {
+                "ANNOTATE_VCF_BY_ID": {
+                    "annotate_vcf_by_id": 1.0
+                },
+                "BCFTOOLS_VIEW": {
+                    "bcftools": "1.23.1"
+                },
+                "BCFTOOLS_VIEW_CLINICAL": {
+                    "bcftools": "1.23.1"
+                },
+                "BCFTOOLS_VIEW_RESEARCH": {
+                    "bcftools": "1.23.1"
+                },
+                "COMBINE_LINX_TSV": {
+                    "combine_linx_tsv": 1.0
+                },
+                "ENSEMBLVEP_VEP": {
+                    "ensemblvep": 115.2,
+                    "perl-math-cdf": 0.1,
+                    "tabix": 1.21
+                },
+                "FILTER_VCF": {
+                    "bcftools": "1.23.1"
+                },
+                "GENMOD_SCORE": {
+                    "genmod": "3.10.2"
+                },
+                "PREPARE_AMBER_FOR_GENS": {
+                    "bgzip": "(htslib) 1.23.1",
+                    "prepare_amber_for_gens": "prepare_amber_for_gens, version 1.0",
+                    "python": "Python 3.14.6",
+                    "tabix": "(htslib) 1.23.1"
+                },
+                "PREPARE_COBALT_FOR_GENS": {
+                    "bgzip": "(htslib) 1.23.1",
+                    "prepare_cobalt_for_gens": "prepare_cobalt_for_gens, version 1.0",
+                    "python": "Python 3.14.6",
+                    "tabix": "(htslib) 1.23.1"
+                },
+                "RMARKDOWNNOTEBOOK": {
+                    "rmarkdownnotebook": 2.29
+                },
+                "SAMTOOLS_VIEW": {
+                    "samtools": "1.23.1"
+                },
+                "SVDB_QUERY": {
+                    "svdb": "2.8.4"
+                },
+                "TIDDIT_COV": {
+                    "tiddit": "3.9.5"
+                },
+                "UNTAR_VEP_CACHE": {
+                    "untar": 1.34
+                },
+                "VCF2CYTOSURE": {
+                    "vcf2cytosure": "0.9.3"
+                },
+                "VCFANNO": {
+                    "vcfanno": "0.3.7"
+                },
+                "Workflow": {
+                    "Clinical-Genomics/oncorefiner": "v1.0.0dev"
+                }
+            },
+            [
+                "alignments",
+                "alignments/subject_a_normal.cram",
+                "alignments/subject_a_normal.cram.crai",
+                "alignments/subject_a_tumor.cram",
+                "alignments/subject_a_tumor.cram.crai",
+                "cnv",
+                "cnv/test_normal_sample_normal_CNV_COV_GENS.bed.gz",
+                "cnv/test_normal_sample_normal_CNV_COV_GENS.bed.gz.tbi",
+                "cnv/test_tumor_normal_case_CNV_BAF_GENS.normal.baf.zoom.tsv.gz",
+                "cnv/test_tumor_normal_case_CNV_BAF_GENS.normal.baf.zoom.tsv.gz.tbi",
+                "cnv/test_tumor_normal_case_CNV_BAF_GENS.tumor.baf.zoom.tsv.gz",
+                "cnv/test_tumor_normal_case_CNV_BAF_GENS.tumor.baf.zoom.tsv.gz.tbi",
+                "cnv/test_tumor_normal_case_cnv_report.html",
+                "cnv/test_tumor_sample_tumor_CNV_COV_GENS.bed.gz",
+                "cnv/test_tumor_sample_tumor_CNV_COV_GENS.bed.gz.tbi",
+                "pipeline_info",
+                "pipeline_info/oncorefiner_software_mqc_versions.yml",
+                "qc",
+                "qc/multiqc",
+                "qc/multiqc/multiqc_data",
+                "qc/multiqc/multiqc_data/.stub",
+                "qc/multiqc/multiqc_plots",
+                "qc/multiqc/multiqc_plots/.stub",
+                "qc/multiqc/multiqc_report.html",
+                "snv",
+                "snv/test_tumor_normal_case_clinical.vcf.gz",
+                "snv/test_tumor_normal_case_clinical.vcf.gz.tbi",
+                "snv/test_tumor_normal_case_genmod_score.vcf.gz",
+                "snv/test_tumor_normal_case_genmod_score.vcf.gz.tbi",
+                "snv/test_tumor_normal_case_vcfanno.vcf.gz",
+                "snv/test_tumor_normal_case_vcfanno.vcf.gz.tbi",
+                "snv/test_tumor_normal_case_vep.vcf.gz",
+                "snv/test_tumor_normal_case_vep.vcf.gz.tbi",
+                "snv/test_tumor_normal_case_vep_summary.html",
+                "sv",
+                "sv/normal.cgh",
+                "sv/test_tumor_normal_case_clinical.vcf.gz",
+                "sv/test_tumor_normal_case_clinical.vcf.gz.tbi",
+                "sv/test_tumor_normal_case_genmod_score.vcf.gz",
+                "sv/test_tumor_normal_case_genmod_score.vcf.gz.tbi",
+                "sv/test_tumor_normal_case_svdbquery_vep.vcf.gz",
+                "sv/test_tumor_normal_case_svdbquery_vep.vcf.gz.tbi",
+                "sv/test_tumor_normal_case_svdbquery_vep_summary.html",
+                "sv/tumor.cgh"
+            ]
+        ],
+        "timestamp": "2026-08-20T14:29:26.447979",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"

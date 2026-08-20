@@ -76,6 +76,12 @@
                         "git_sha": "98403d15b0e50edae1f3fec5eae5e24982f1fade",
                         "installed_by": ["modules"]
                     },
+                    "rmarkdownnotebook": {
+                        "branch": "master",
+                        "git_sha": "dac2bed56715da57b91fb7a503f20ca43acc5cbf",
+                        "installed_by": ["modules"],
+                        "patch": "modules/nf-core/rmarkdownnotebook/rmarkdownnotebook.diff"
+                    },
                     "samtools/view": {
                         "branch": "master",
                         "git_sha": "2057a0a8dbd67000d08613a556570aa7184a7c89",

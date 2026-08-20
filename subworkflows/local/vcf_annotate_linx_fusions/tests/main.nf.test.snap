@@ -2,24 +2,6 @@
     "Annotate VCF with LINX tsv - stub": {
         "content": [
             {
-                "0": [
-                    [
-                        {
-                            "id": "test",
-                            "case_id": "subject_a"
-                        },
-                        "test_linxannotated.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
-                    ]
-                ],
-                "1": [
-                    [
-                        {
-                            "id": "test",
-                            "case_id": "subject_a"
-                        },
-                        "test_linxannotated.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ]
-                ],
                 "tbi": [
                     [
                         {
@@ -38,12 +20,26 @@
                         "test_linxannotated.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
                     ]
                 ]
+            },
+            {
+                "versions": [
+                    [
+                        "VCF_ANNOTATE_LINX_FUSIONS:ANNOTATE_VCF_BY_ID",
+                        "annotate_vcf_by_id",
+                        "1.0"
+                    ],
+                    [
+                        "VCF_ANNOTATE_LINX_FUSIONS:COMBINE_LINX_TSV",
+                        "combine_linx_tsv",
+                        "1.0"
+                    ]
+                ]
             }
         ],
-        "timestamp": "2026-07-02T10:44:29.628788",
+        "timestamp": "2026-08-18T13:59:10.129319",
         "meta": {
             "nf-test": "0.9.5",
-            "nextflow": "26.04.0"
+            "nextflow": "26.04.6"
         }
     },
     "Annotate VCF with LINX tsv": {

@@ -7,6 +7,7 @@ nextflow_workflow {
     tag "subworkflows"
     tag "process_snvs"
 
+    topics "versions"
 
     test("with tumor-normal data") {
 
@@ -96,6 +97,7 @@ nextflow_workflow {
                     output_vcfs.collect { meta, vcf -> [meta, file(vcf).name, ":variantsMD5,", path(vcf).vcf.variantsMD5 ]},
                     output_tbis.collect { meta, tbi -> [meta, file(tbi).name] },
                     workflow.out.vep_report.collect { meta, _process, _tool, report -> [meta, file(report).name] },
+                    topics,
                 ).match() }
             )
         }
@@ -191,6 +193,7 @@ nextflow_workflow {
                     output_vcfs.collect { meta, vcf -> [meta, file(vcf).name ]},
                     output_tbis.collect { meta, tbi -> [meta, file(tbi).name] },
                     workflow.out.vep_report.collect { meta, _process, _tool, report -> [meta, file(report).name] },
+                    topics,
                 ).match() }
             )
         }

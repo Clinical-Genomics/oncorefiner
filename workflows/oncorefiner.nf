@@ -21,12 +21,14 @@ include { PROCESS_CNVS           } from '../subworkflows/local/process_cnvs/main
 workflow ONCOREFINER {
 
     take:
-    ch_amber_baf_tsv_gz              // channel: [optional]  [val(meta), path(tsv.gz)]
+    ch_amber_baf_tsv_gz             // channel: [optional]  [val(meta), path(tsv.gz)]
     ch_bam_bai_normal               // channel: [optional]  [val(meta), path(bam), path(bai)]
     ch_bam_bai_tumor                // channel: [mandatory] [val(meta), path(bam), path(bai)]
     ch_cadd_header                  // channel: [mandatory] [path(txt)]
     ch_cadd_prescored_indels        // channel: [optional]  [val(meta), path(dir)]
     ch_cadd_resources               // channel: [optional]  [val(meta), path(dir)]
+    ch_cnv_gene_tsv                 // channel: [optional]  [val(meta), path(tsv)]
+    ch_cnv_segment_tsv              // channel: [optional]  [val(meta), path(tsv)]
     ch_cobalt_ratio_pcf_normal      // channel: [optional]  [val(meta), path(pcf)]
     ch_cobalt_ratio_pcf_tumor       // channel: [optional]  [val(meta), path(pcf)]
     ch_genmod_score_config_snv      // channel: [optional]  [val(meta), path(ini)]
@@ -68,6 +70,8 @@ workflow ONCOREFINER {
     // Process CNV input files
     PROCESS_CNVS (
         ch_amber_baf_tsv_gz,
+        ch_cnv_gene_tsv,
+        ch_cnv_segment_tsv,
         ch_cobalt_ratio_pcf_normal,
         ch_cobalt_ratio_pcf_tumor,
         val_analysis_type
@@ -182,6 +186,7 @@ workflow ONCOREFINER {
     cnv_baf_tumor_tbi         = PROCESS_CNVS.out.gens_baf_tumor_tbi                           // channel: [val(meta), path(tsv.gz.tbi)]
     cnv_cov_bed               = PROCESS_CNVS.out.gens_cov_bed                                 // channel: [val(meta), path(bed.gz)]
     cnv_cov_bed_tbi           = PROCESS_CNVS.out.gens_cov_bed_tbi                             // channel: [val(meta), path(bed.gz.tbi)]
+    cnv_report_html           = PROCESS_CNVS.out.html_report                                  // channel: [val(meta), path(html)]
     multiqc_data              = MULTIQC.out.data                                              // channel: /path/to/multiqc_data/
     multiqc_plots             = MULTIQC.out.plots                                             // channel: /path/to/multiqc_plots/
     multiqc_report            = MULTIQC.out.report.map { _meta, report -> [report] }.toList() // channel: /path/to/multiqc_report.html

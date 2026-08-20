@@ -40,9 +40,13 @@
 
   > doi: 10.5281/zenodo.591885.
 
+- [`RMARKDOWNNOTEBOOK`](https://github.com/rstudio/rmarkdown)
+
+  > Allaire JJ, Xie Y, McPherson J, Luraschi J, Ushey K, Atkins A, Wickham H, Cheng J, Chang W, Iannone R. rmarkdown: Dynamic Documents for R. 2020. Available from: https://github.com/rstudio/rmarkdown
+
 ## Software packaging/containerisation tools
 
-- [Anaconda](https://anaconda.com)
+- [`Anaconda`](https://anaconda.com)
 
   > Anaconda Software Distribution. Computer software. Vers. 2-2.4.0. Anaconda, Nov. 2016. Web.
 
