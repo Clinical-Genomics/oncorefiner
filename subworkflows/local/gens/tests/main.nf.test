@@ -146,9 +146,6 @@ nextflow_workflow {
         }
 
         then {
-            // All output tbi files
-            def output_tbis = workflow.out.findAll { key, value -> key.endsWith('_tbi')}
-                .collectMany { key, value -> value}
 
             assert workflow.success
             assertAll(

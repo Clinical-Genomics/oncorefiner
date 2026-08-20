@@ -13,6 +13,7 @@ nextflow_workflow {
     test("with tumor-normal data") {
 
         when {
+
             workflow {
                 """
                 input[0] = channel.of([
@@ -64,6 +65,7 @@ nextflow_workflow {
         options "-stub"
 
         when {
+
             workflow {
                 """
                 input[0] = channel.of([
