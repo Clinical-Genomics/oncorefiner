@@ -49,6 +49,9 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#144](https://github.com/Clinical-Genomics/oncorefiner/pull/144) Added the parameters `ch_genmod_score_config_sv` & `val_run_genmod_score_sv` for GENMOD scoring of SVs.
 - [#146](https://github.com/Clinical-Genomics/oncorefiner/pull/146) Added the workflow `VCF_ANNOTATE_SCORE_GENMOD` to `PROCESS_SVS`.
 - [#172](https://github.com/Clinical-Genomics/oncorefiner/pull/172) Added CRAM, CRAI and MULTIQC files to new publishing strategy.
+- [#147](https://github.com/Clinical-Genomics/oncorefiner/pull/147) Added parameters for cnv report generation (`cnv_gene_tsv`, `cnv_segment_tsv`).
+- [#147](https://github.com/Clinical-Genomics/oncorefiner/pull/147) Added the nf-core module `rmarkdownnotebook` including a patch with a custom container with tools for our needs.
+- [#147](https://github.com/Clinical-Genomics/oncorefiner/pull/147) Added the subworkflow `PROCESS_CNVS` along with subworkflow test.
 
 ### `Changed`
 
@@ -96,6 +99,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#174](https://github.com/Clinical-Genomics/oncorefiner/pull/174) Updated template for nf-core tools to 4.1.0
 - [#179](https://github.com/Clinical-Genomics/oncorefiner/pull/179) Added the deleted logo image files to the files_exist section of .nf-core.yml.
 - [#180](https://github.com/Clinical-Genomics/oncorefiner/pull/180) Addded topic versions to tests in `ANNOTATE_CADD, PROCESS_SNVS, VCF_ANNOTATE_LINX_FUSIONS, ANNOTATE_VCF_BY_ID` and `COMBINE_LINX`.
+- [#147](https://github.com/Clinical-Genomics/oncorefiner/pull/147) Added the CNV html file to the `tests/.nftignore`.
 
 ### `Fixed`
 

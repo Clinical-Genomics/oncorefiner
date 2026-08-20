@@ -64,6 +64,20 @@ RankScoreMinMax
 RankResult
 ```
 
+### PROCESS_CNVS
+
+This process produce an interactive CNV report.
+
+<details markdown="1">
+<summary>Output files</summary>
+
+- `cnv`
+  - `<meta.id>_cnv_report.html`: an interactive CNV report in html format.
+
+</details>
+
+[`RMARKDOWNNOTEBOOK`](https://github.com/rstudio/rmarkdown) - used to generate a custom interactive CNV report using the RMARKDOWN script `assets/cnv_report.Rmd`.
+
 ### MultiQC
 
 <details markdown="1">

@@ -42,6 +42,8 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     val_cadd_prescored_indels       // string:  [optional]  path to CADD prescored indels file
     val_cadd_resources              // string:  [optional]  path to CADD resources directory
     val_case_id                     // string:  [mandatory] case ID (used in channel metadata)
+    val_cnv_gene_tsv                // string:  [optional]  path to CNV gene TSV file
+    val_cnv_segment_tsv             // string:  [optional]  path to CNV segment TSV file
     val_genmod_score_config_snv     // string:  [optional]  path to Genmod score config file for SNVs
     val_genmod_score_config_sv      // string:  [optional]  path to Genmod score config file for SVs
     val_genome                      // string:  [optional]  genome assembly (e.g. "GRCh38")
@@ -153,6 +155,13 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     ch_sv_dbs            = val_svdb_query_dbs    ? channel.fromList(samplesheetToList(val_svdb_query_dbs, 'assets/svdb_query_vcf_schema.json'))
                                                  : channel.empty()
 
+    // Input for CNV report
+    ch_cnv_gene_tsv      = channelFromMetaAndPath(metadata_case_file, val_cnv_gene_tsv)
+    ch_cnv_segment_tsv   = channelFromMetaAndPath(metadata_case_file, val_cnv_segment_tsv)
+    ch_cnv_gene_tsv.view()
+    ch_cnv_segment_tsv.view()
+
+
     // Input for genmod_score
     if (val_genmod_score_config_snv) {
         ch_genmod_score_config_snv = channel.fromPath(val_genmod_score_config_snv).map { it -> [[id:it.simpleName], it] }.collect()
@@ -176,6 +185,8 @@ workflow CLINICALGENOMICS_ONCOREFINER {
         ch_cadd_header,
         ch_cadd_prescored_indels,
         ch_cadd_resources,
+        ch_cnv_gene_tsv,
+        ch_cnv_segment_tsv,
         ch_genmod_score_config_snv,
         ch_genmod_score_config_sv,
         ch_genome_fasta,
@@ -224,6 +235,7 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     cadd_annotated_tbi        = ONCOREFINER.out.cadd_annotated_tbi        // channel: [val(meta), path(tbi)]
     cram                      = SAMTOOLS_VIEW.out.cram                    // channel: [val(meta), path(cram)]
     crai                      = SAMTOOLS_VIEW.out.crai                    // channel: [val(meta), path(crai)]
+    cnv_report_html           = ONCOREFINER.out.cnv_report_html           // channel: [val(meta), path(html)]
     multiqc_data              = ONCOREFINER.out.multiqc_data              // channel: [val(meta), path(multiqc_data)]
     multiqc_plots             = ONCOREFINER.out.multiqc_plots             // channel: [val(meta), path(multiqc_plots)]
     multiqc_report            = ONCOREFINER.out.multiqc_report            // channel: /path/to/multiqc_report.html
@@ -279,6 +291,8 @@ workflow {
         params.cadd_prescored_indels,
         params.cadd_resources,
         params.case_id,
+        params.cnv_gene_tsv,
+        params.cnv_segment_tsv,
         params.genmod_score_config_snv,
         params.genmod_score_config_sv,
         params.genome,
@@ -325,6 +339,8 @@ workflow {
     ch_alignments_publish = CLINICALGENOMICS_ONCOREFINER.out.cram
         .mix(CLINICALGENOMICS_ONCOREFINER.out.crai)
 
+    ch_cnv_publish = CLINICALGENOMICS_ONCOREFINER.out.cnv_report_html
+
     ch_multiqc_publish = CLINICALGENOMICS_ONCOREFINER.out.multiqc_data
         .mix(CLINICALGENOMICS_ONCOREFINER.out.multiqc_report)
         .mix(CLINICALGENOMICS_ONCOREFINER.out.multiqc_plots)
@@ -353,6 +369,7 @@ workflow {
 
     publish:
     alignments = ch_alignments_publish
+    cnv        = ch_cnv_publish
     multiqc    = ch_multiqc_publish
     snv        = ch_snv_publish
     sv         = ch_sv_publish
@@ -361,6 +378,10 @@ workflow {
 output {
     alignments {
         path "alignments"
+    }
+
+    cnv {
+        path "cnv"
     }
 
     multiqc {
