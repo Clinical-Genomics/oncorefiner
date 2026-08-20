@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="1024" height="768" viewBox="0 0 1024 768">
+<defs>
+</defs>
+<style>@media (prefers-color-scheme: dark) {
+    .nf-metro-section-label { fill: #d0d0d0; }
+    .nf-metro-section-num-circle { fill: #777777; }
+    .nf-metro-title { fill: #ffffff; }
+}
+</style>
+<text x="60.0" y="30.0" font-size="26.0" fill="#111111" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-weight="bold" class="nf-metro-title">Clinical-Genomics/oncorefiner</text>
+<path d="M327.5,183.0 L447.5,183.0" stroke="#2db572" stroke-width="4.0" stroke-linecap="round" />
+<path d="M447.5,183.0 L567.5,183.0" stroke="#2db572" stroke-width="4.0" stroke-linecap="round" />
+<path d="M567.5,183.0 L687.5,183.0" stroke="#2db572" stroke-width="4.0" stroke-linecap="round" />
+<path d="M687.5,183.0 L807.5,183.0" stroke="#2db572" stroke-width="4.0" stroke-linecap="round" />
+<path d="M807.5,183.0 L927.5,183.0" stroke="#2db572" stroke-width="4.0" stroke-linecap="round" />
+<path d="M80.0,132.0 L155.5,132.0 Q165.5,132.0,166.3304547985374,141.9654575824488 L194.6695452014626,482.0345424175512 Q195.5,492.0,205.5,492.0 L327.5,492.0" stroke="#7b2d3b" stroke-width="4.0" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M80.0,129.0 L155.5,129.0 Q165.5,129.0,166.74034734589208,138.92277876713666 L194.25965265410792,359.07722123286334 Q195.5,369.0,205.5,369.0 L327.5,369.0" stroke="#e63946" stroke-width="4.0" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M80.0,129.0 L155.5,129.0 Q165.5,129.0,166.49503719020998,138.9503719020999 L194.50496280979002,419.0496280979001 Q195.5,429.0,205.5,429.0 L327.5,429.0" stroke="#e63946" stroke-width="4.0" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M80.0,126.0 L155.5,126.0 Q165.5,126.0,167.92535625036334,135.70142500145332 L193.07464374963666,236.29857499854668 Q195.5,246.0,205.5,246.0 L327.5,246.0" stroke="#f5c542" stroke-width="4.0" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M80.0,126.0 L155.5,126.0 Q165.5,126.0,167.14398987305358,135.86393923832145 L193.85601012694642,296.13606076167855 Q195.5,306.0,205.5,306.0 L327.5,306.0" stroke="#f5c542" stroke-width="4.0" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M80.0,123.0 L155.5,123.0 Q165.5,123.0,169.97213595499957,131.94427190999915 L191.02786404500043,174.05572809000085 Q195.5,183.0,205.5,183.0 L327.5,183.0" stroke="#2db572" stroke-width="4.0" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+<path d="M80.0,120.0 L327.5,120.0" stroke="#0570b0" stroke-width="4.0" stroke-linecap="round" />
+<path d="M327.5,120.0 L447.5,120.0" stroke="#0570b0" stroke-width="4.0" stroke-linecap="round" />
+<path d="M447.5,120.0 L567.5,120.0" stroke="#0570b0" stroke-width="4.0" stroke-linecap="round" />
+<path d="M567.5,120.0 L687.5,120.0" stroke="#0570b0" stroke-width="4.0" stroke-linecap="round" />
+<path d="M687.5,120.0 L807.5,120.0" stroke="#0570b0" stroke-width="4.0" stroke-linecap="round" />
+<path d="M807.5,120.0 L927.5,120.0" stroke="#0570b0" stroke-width="4.0" stroke-linecap="round" />
+<rect x="74.0" y="114.0" width="12.0" height="24.0" rx="6.0" ry="6.0" fill="#ffffff" stroke="#333333" stroke-width="2.0" />
+<rect x="321.5" y="114.0" width="12.0" height="12.0" rx="6.0" ry="6.0" fill="#ffffff" stroke="#333333" stroke-width="2.0" />
+<rect x="441.5" y="114.0" width="12.0" height="12.0" rx="6.0" ry="6.0" fill="#ffffff" stroke="#333333" stroke-width="2.0" />
+<rect x="561.5" y="114.0" width="12.0" height="12.0" rx="6.0" ry="6.0" fill="#ffffff" stroke="#333333" stroke-width="2.0" />
+<rect x="681.5" y="114.0" width="12.0" height="12.0" rx="6.0" ry="6.0" fill="#ffffff" stroke="#333333" stroke-width="2.0" />
+<rect x="801.5" y="114.0" width="12.0" height="12.0" rx="6.0" ry="6.0" fill="#ffffff" stroke="#333333" stroke-width="2.0" />
+<rect x="921.5" y="114.0" width="12.0" height="12.0" rx="6.0" ry="6.0" fill="#ffffff" stroke="#333333" stroke-width="2.0" />
+<rect x="321.5" y="177.0" width="12.0" height="12.0" rx="6.0" ry="6.0" fill="#ffffff" stroke="#333333" stroke-width="2.0" />
+<rect x="441.5" y="177.0" width="12.0" height="12.0" rx="6.0" ry="6.0" fill="#ffffff" stroke="#333333" stroke-width="2.0" />
+<rect x="561.5" y="177.0" width="12.0" height="12.0" rx="6.0" ry="6.0" fill="#ffffff" stroke="#333333" stroke-width="2.0" />
+<rect x="681.5" y="177.0" width="12.0" height="12.0" rx="6.0" ry="6.0" fill="#ffffff" stroke="#333333" stroke-width="2.0" />
+<rect x="801.5" y="177.0" width="12.0" height="12.0" rx="6.0" ry="6.0" fill="#ffffff" stroke="#333333" stroke-width="2.0" />
+<rect x="921.5" y="177.0" width="12.0" height="12.0" rx="6.0" ry="6.0" fill="#ffffff" stroke="#333333" stroke-width="2.0" />
+<rect x="321.5" y="240.0" width="12.0" height="12.0" rx="6.0" ry="6.0" fill="#ffffff" stroke="#333333" stroke-width="2.0" />
+<rect x="321.5" y="300.0" width="12.0" height="12.0" rx="6.0" ry="6.0" fill="#ffffff" stroke="#333333" stroke-width="2.0" />
+<rect x="321.5" y="363.0" width="12.0" height="12.0" rx="6.0" ry="6.0" fill="#ffffff" stroke="#333333" stroke-width="2.0" />
+<rect x="321.5" y="423.0" width="12.0" height="12.0" rx="6.0" ry="6.0" fill="#ffffff" stroke="#333333" stroke-width="2.0" />
+<rect x="321.5" y="486.0" width="12.0" height="12.0" rx="6.0" ry="6.0" fill="#ffffff" stroke="#333333" stroke-width="2.0" />
+<text x="80.0" y="143.0" font-size="14.0" fill="#333333" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-weight="bold" text-anchor="middle" dominant-baseline="hanging">Oncoanalyser Output</text>
+<text x="327.5" y="106.0" font-size="14.0" fill="#333333" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-weight="bold" text-anchor="middle" dominant-baseline="auto">Custom annotation</text>
+<text x="327.5" y="169.0" font-size="14.0" fill="#333333" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-weight="bold" text-anchor="middle" dominant-baseline="auto">Custom annotation</text>
+<text x="327.5" y="232.0" font-size="14.0" fill="#333333" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-weight="bold" text-anchor="middle" dominant-baseline="auto">GENS support</text>
+<text x="327.5" y="292.0" font-size="14.0" fill="#333333" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-weight="bold" text-anchor="middle" dominant-baseline="auto">CNV report</text>
+<text x="327.5" y="355.0" font-size="14.0" fill="#333333" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-weight="bold" text-anchor="middle" dominant-baseline="auto">MultiQC</text>
+<text x="327.5" y="415.0" font-size="14.0" fill="#333333" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-weight="bold" text-anchor="middle" dominant-baseline="auto">QC thresholds</text>
+<text x="327.5" y="478.0" font-size="14.0" fill="#333333" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-weight="bold" text-anchor="middle" dominant-baseline="auto">BAM to CRAM</text>
+<text x="447.5" y="131.0" font-size="14.0" fill="#333333" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-weight="bold" text-anchor="middle" dominant-baseline="hanging">Ensemble VEP</text>
+<text x="447.5" y="194.0" font-size="14.0" fill="#333333" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-weight="bold" text-anchor="middle" dominant-baseline="hanging">Ensemble VEP</text>
+<text x="567.5" y="106.0" font-size="14.0" fill="#333333" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-weight="bold" text-anchor="middle" dominant-baseline="auto">CADD</text>
+<text x="567.5" y="169.0" font-size="14.0" fill="#333333" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-weight="bold" text-anchor="middle" dominant-baseline="auto">Research Filter</text>
+<text x="687.5" y="131.0" font-size="14.0" fill="#333333" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-weight="bold" text-anchor="middle" dominant-baseline="hanging">Research Filter</text>
+<text x="687.5" y="194.0" font-size="14.0" fill="#333333" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-weight="bold" text-anchor="middle" dominant-baseline="hanging">Clinical Filter</text>
+<text x="807.5" y="106.0" font-size="14.0" fill="#333333" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-weight="bold" text-anchor="middle" dominant-baseline="auto">Clinical Filter</text>
+<text x="807.5" y="169.0" font-size="14.0" fill="#333333" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-weight="bold" text-anchor="middle" dominant-baseline="auto">Variant ranking</text>
+<text x="927.5" y="131.0" font-size="14.0" fill="#333333" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-weight="bold" text-anchor="middle" dominant-baseline="hanging">Variant ranking</text>
+<text x="927.5" y="194.0" font-size="14.0" fill="#333333" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-weight="bold" text-anchor="middle" dominant-baseline="hanging">Cytosure Support</text>
+<rect x="716.7" y="326.0" width="200.8" height="144.0" rx="6" ry="6" fill="rgba(255, 255, 255, 0.8)" />
+<path d="M728.7,350.0 L752.7,350.0" stroke="#0570b0" stroke-width="4.0" stroke-linecap="round" />
+<text x="764.7" y="350.0" font-size="16.0" fill="#333333" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" dy="0.3em">PROCESS SNVs</text>
+<path d="M728.7,374.0 L752.7,374.0" stroke="#2db572" stroke-width="4.0" stroke-linecap="round" />
+<text x="764.7" y="374.0" font-size="16.0" fill="#333333" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" dy="0.3em">PROCESS SVs</text>
+<path d="M728.7,398.0 L752.7,398.0" stroke="#f5c542" stroke-width="4.0" stroke-linecap="round" />
+<text x="764.7" y="398.0" font-size="16.0" fill="#333333" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" dy="0.3em">PROCESS CNVs</text>
+<path d="M728.7,422.0 L752.7,422.0" stroke="#e63946" stroke-width="4.0" stroke-linecap="round" />
+<text x="764.7" y="422.0" font-size="16.0" fill="#333333" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" dy="0.3em">QC</text>
+<path d="M728.7,446.0 L752.7,446.0" stroke="#7b2d3b" stroke-width="4.0" stroke-linecap="round" />
+<text x="764.7" y="446.0" font-size="16.0" fill="#333333" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" dy="0.3em">File compression</text>
+<text x="994.0" y="760.0" font-size="8" fill="rgba(150, 150, 150, 0.6)" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" text-anchor="end">created with nf-metro v0.6.1</text>
+</svg>
