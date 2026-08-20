@@ -322,8 +322,8 @@ Please use the following naming schemes, to make it easy to understand what is g
 - The metro map can be generated using the following command:
 
 ```bash
-nf-metro render assets/metro_map.md -o assets/metro_map_dark.svg --width 1024 --height 768 --x-spacing 120 --y-spacing 60
-nf-metro render assets/metro_map.md -o assets/metro_map_light.svg --width 1024 --height 768 --x-spacing 120 --y-spacing 60 --theme light
+nf-metro render assets/metro_map.md -o docs/images/metro_map_dark.svg --width 1024 --height 768 --x-spacing 120 --y-spacing 60
+nf-metro render assets/metro_map.md -o docs/images/metro_map_light.svg --width 1024 --height 768 --x-spacing 120 --y-spacing 60 --theme light
 ```
 
 The metro map can be made by editing the `assets/metro_map.md` file. Further modifications can be done using the svg file with the appropriate software (e.g. Inkscape, Adobe Illustrator, etc.). 
