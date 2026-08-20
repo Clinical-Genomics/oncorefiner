@@ -8,40 +8,37 @@
 %%metro legend: br
 
 graph LR
-    input[Oncoanalyser Output]
-    snv_custom_annot[Custom annotation]
-    snv_ensembl_vep[Ensemble VEP]
-    cadd[CADD]
-    snv_research_filter[Research Filter]
-    snv_clinical_filter[Clinical Filter]
-    snv_ranking[Variant ranking]
-    sv_custom_annot[Custom annotation]
-    sv_ensembl_vep[Ensemble VEP]
-    sv_research_filter[Research Filter]
-    sv_clinical_filter[Clinical Filter]
-    sv_clinical_filter[Clinical Filter]
-    sv_ranking[Variant ranking]
-    cytosure_support[Cytosure Support]
-    gens[GENS support]
+    input[Oncoanalyser \n output]
+    snv_vcfanno[vcfanno \n custom annotation]
+    snv_vep[VEP]
+    snv_cadd[CADD \n annotation]
+    snv_research_bcftools[bcftools \n filter]
+    snv_clinical_bcftools[bcftools \n clinical filter]
+    snv_genmod[genmod ranking]
+    sv_svdb[SVDB \n custom annotation]
+    sv_vep[VEP]
+    sv_research_bcftools[bcftools \n filter]
+    sv_clinical_bcftools[bcftools \n clinical filter]
+    sv_genmod[genmod ranking]
+    sv_vcf2cytosure[vcf2cytosure]
+    cnv_gens[GENS]
     cnv_report[CNV report]
     qc_report[MultiQC]
-    qc_thresholds[QC thresholds]
     bam2cram[BAM to CRAM]
-
-    input -->|snv| snv_custom_annot
-    snv_custom_annot -->|snv| snv_ensembl_vep
-    snv_ensembl_vep -->|snv| cadd
-    cadd -->|snv| snv_research_filter
-    snv_research_filter -->|snv| snv_clinical_filter
-    snv_clinical_filter -->|snv| snv_ranking
-    input -->|sv| sv_custom_annot
-    sv_custom_annot -->|sv| sv_ensembl_vep
-    sv_ensembl_vep -->|sv| sv_research_filter
-    sv_research_filter -->|sv| sv_clinical_filter
-    sv_clinical_filter -->|sv| sv_ranking
-    sv_ranking -->|sv| cytosure_support
-    input -->|cnv| gens
+    
+    input -->|snv| snv_vcfanno
+    snv_vcfanno -->|snv| snv_research_bcftools
+    snv_research_bcftools -->|snv| snv_cadd
+    snv_cadd -->|snv| snv_vep
+    snv_vep -->|snv| snv_genmod
+    snv_genmod -->|snv| snv_clinical_bcftools
+    input -->|sv| sv_svdb
+    sv_svdb -->|sv| sv_research_bcftools
+    sv_research_bcftools -->|sv| sv_vep
+    sv_vep -->|sv| sv_genmod
+    sv_genmod -->|sv| sv_clinical_bcftools
+    sv_clinical_bcftools -->|sv| sv_vcf2cytosure
+    input -->|cnv| cnv_gens
     input -->|cnv| cnv_report
     input -->|qc| qc_report
-    input -->|qc| qc_thresholds
     input -->|compression| bam2cram
