@@ -11,37 +11,40 @@ Contributions to the code are even more welcome ;)
 
 ## Table of contents
 
-- [General](#general)
-  - [Contribution workflow](#contribution-workflow)
-    - [Pull Requests](#pull-requests)
-      - [PR title conventions](#pr-title-conventions)
-      - [Review](#review)
-  - [Software versioning, changelog and updates](#software-versioning-changelog-and-updates)
-    - [Semantic versioning and changelog](#semantic-versioning-and-changelog)
-      - [Patch](#patch)
-    - [Nextflow version bumping](#nextflow-version-bumping)
-    - [Update nf-core template](#update-nf-core-template)
-  - [Developer setup](#developer-setup)
-    - [Installation and dependencies for development](#installation-and-dependencies-for-development)
-    - [GitHub Codespaces](#github-codespaces)
-  - [Running tests](#running-tests)
-    - [Lint tests](#lint-tests)
-    - [Pipeline tests](#pipeline-tests)
-  - [Adding citations](#adding-citations)
-    - [1. `CITATIONS.md`](#1-citationsmd)
-    - [2. `subworkflows/local/utils_nfcore_oncorefiner_pipeline/main.nf`](#2-subworkflowslocalutils_nfcore_oncorefiner_pipelinemainnf)
-    - [3. `README.md`](#3-readmemd)
-  - [Images and figures](#images-and-figures)
-- [Coding conventions](#coding-conventions)
-  - [Architecture & structure](#architecture--structure)
-  - [Adding a new step](#adding-a-new-step)
-  - [Channels](#channels)
-    - [Naming schemes](#naming-schemes)
-  - [Parameters](#parameters)
-  - [Publishing](#publishing)
-  - [Configuration](#configuration)
-  - [Writing tests](#writing-tests)
-  - [Style](#style)
+- [`Clinical-Genomics/oncorefiner`: Contributing Guidelines](#clinical-genomicsoncorefiner-contributing-guidelines)
+  - [Table of contents](#table-of-contents)
+  - [General](#general)
+    - [Contribution workflow](#contribution-workflow)
+      - [Pull Requests](#pull-requests)
+        - [PR title conventions](#pr-title-conventions)
+        - [Review](#review)
+    - [Software versioning, changelog and updates](#software-versioning-changelog-and-updates)
+      - [Semantic versioning and changelog](#semantic-versioning-and-changelog)
+        - [Patch](#patch)
+      - [Nextflow version bumping](#nextflow-version-bumping)
+      - [Update nf-core template](#update-nf-core-template)
+    - [Developer setup](#developer-setup)
+      - [Installation and dependencies for development](#installation-and-dependencies-for-development)
+      - [GitHub Codespaces](#github-codespaces)
+    - [Running tests](#running-tests)
+      - [Lint tests](#lint-tests)
+      - [Pipeline tests](#pipeline-tests)
+    - [Adding citations](#adding-citations)
+      - [1. `CITATIONS.md`](#1-citationsmd)
+      - [2. `subworkflows/local/utils_nfcore_oncorefiner_pipeline/main.nf`](#2-subworkflowslocalutils_nfcore_oncorefiner_pipelinemainnf)
+      - [3. `README.md`](#3-readmemd)
+    - [Images and figures](#images-and-figures)
+  - [Coding conventions](#coding-conventions)
+    - [Architecture \& structure](#architecture--structure)
+    - [Adding a new step](#adding-a-new-step)
+    - [Channels](#channels)
+      - [Naming conversions](#naming-conversions)
+    - [Parameters](#parameters)
+    - [Publishing](#publishing)
+    - [Configuration](#configuration)
+    - [Writing tests](#writing-tests)
+    - [Style](#style)
+  - [Metro map](#metro-map)
 
 ## General
 
@@ -311,3 +314,16 @@ Please use the following naming schemes, to make it easy to understand what is g
   ```
 
 - Use `ch_* = <...>` whenever possible. Avoid using the `.set {ch_*}` operator to create new channels.
+
+
+## Metro map
+
+- [nf-metro](https://seqeralabs.github.io/nf-metro/latest/) can be used to create a metro map of the pipeline. This is a visual representation of the workflow and subworkflows, showing how they are connected and the flow of data through the pipeline.
+- The metro map can be generated using the following command:
+
+```bash
+nf-metro render assets/metro_map.md -o docs/images/metro_map_dark.svg --width 1024 --height 768 --x-spacing 120 --y-spacing 60
+nf-metro render assets/metro_map.md -o docs/images/metro_map_light.svg --width 1024 --height 768 --x-spacing 120 --y-spacing 60 --theme light
+```
+
+The metro map can be made by editing the `assets/metro_map.md` file. Further modifications can be done using the svg file with the appropriate software (e.g. Inkscape, Adobe Illustrator, etc.). 
