@@ -3,11 +3,11 @@ nextflow_workflow {
     name "Test subworkflow PROCESS_CNVS"
     script "../main.nf"
     workflow "PROCESS_CNVS"
-    config "./nextflow.config"
     tag "subworkflows"
     tag "subworkflows_local"
     tag "process_cnvs"
 
+    config "./nextflow.config"
     topics "versions"
 
     test("with tumor-normal data") {
@@ -96,7 +96,6 @@ nextflow_workflow {
             assertAll(
                 { assert snapshot(
                     sanitizeOutput(workflow.out),
-
                 ).match() }
             )
         }
