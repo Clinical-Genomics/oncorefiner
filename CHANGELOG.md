@@ -50,6 +50,9 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#144](https://github.com/Clinical-Genomics/oncorefiner/pull/144) Added the parameters `ch_genmod_score_config_sv` & `val_run_genmod_score_sv` for GENMOD scoring of SVs.
 - [#146](https://github.com/Clinical-Genomics/oncorefiner/pull/146) Added the workflow `VCF_ANNOTATE_SCORE_GENMOD` to `PROCESS_SVS`.
 - [#172](https://github.com/Clinical-Genomics/oncorefiner/pull/172) Added CRAM, CRAI and MULTIQC files to new publishing strategy.
+- [#147](https://github.com/Clinical-Genomics/oncorefiner/pull/147) Added parameters for cnv report generation (`cnv_gene_tsv`, `cnv_segment_tsv`).
+- [#147](https://github.com/Clinical-Genomics/oncorefiner/pull/147) Added the nf-core module `rmarkdownnotebook` including a patch with a custom container with tools for our needs.
+- [#147](https://github.com/Clinical-Genomics/oncorefiner/pull/147) Added the subworkflow `PROCESS_CNVS` along with subworkflow test.
 - [#122](https://github.com/Clinical-Genomics/oncorefiner/pull/122) Added local module `prepare_cobalt_for_gens` using python script in `/bin`, along with tests.
 - [#120](https://github.com/Clinical-Genomics/oncorefiner/pull/120) Added local module `PREPARE_AMBER_FOR_GENS`, using script in `/bin`, along with tests.
 
@@ -98,6 +101,8 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#175](https://github.com/Clinical-Genomics/oncorefiner/pull/175) Update publishing guidelines in `docs/contributing.md` to reflect the new publishing strategy for output files.
 - [#174](https://github.com/Clinical-Genomics/oncorefiner/pull/174) Updated template for nf-core tools to 4.1.0
 - [#179](https://github.com/Clinical-Genomics/oncorefiner/pull/179) Added the deleted logo image files to the files_exist section of .nf-core.yml.
+- [#180](https://github.com/Clinical-Genomics/oncorefiner/pull/180) Addded topic versions to tests in `ANNOTATE_CADD, PROCESS_SNVS, VCF_ANNOTATE_LINX_FUSIONS, ANNOTATE_VCF_BY_ID` and `COMBINE_LINX`.
+- [#147](https://github.com/Clinical-Genomics/oncorefiner/pull/147) Added the CNV html file to the `tests/.nftignore`.
 
 ### `Fixed`
 
@@ -144,6 +149,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#93](https://github.com/Clinical-Genomics/oncorefiner/pull/93) Refactored the publishing strategy for `GENERATE_CYTOSURE_FILES` and `PROCESS_SVS` to use output blocks.
 - [#169](https://github.com/Clinical-Genomics/oncorefiner/pull/169/) Populated the `ch_bam_bai_normal` in `PROCESS_SVS` tumor-normal test and updated the meta structure of the two bam channels, which also updated the naming of the .cgh file.
 - [#171](https://github.com/Clinical-Genomics/oncorefiner/pull/171) Remove metadata from static CADD header file
+- [#178](https://github.com/Clinical-Genomics/oncorefiner/pull/178) Updated the emit files for `research_filtered_vcf` in `PROCESS_SVS` to be the channel `ch_research_filtered_vcf` which will either be the GENMOD scored VCF or the VEP annotated VCF.
 
 ### `Dependencies`
 

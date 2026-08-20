@@ -10,7 +10,7 @@ include { softwareVersionsToYAML } from '../subworkflows/nf-core/utils_nfcore_pi
 include { methodsDescriptionText } from '../subworkflows/local/utils_nfcore_oncorefiner_pipeline'
 include { PROCESS_SNVS           } from '../subworkflows/local/process_snvs/main.nf'
 include { PROCESS_SVS            } from '../subworkflows/local/process_svs/main.nf'
-
+include { PROCESS_CNVS           } from '../subworkflows/local/process_cnvs/main.nf'
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     RUN MAIN WORKFLOW
@@ -25,6 +25,8 @@ workflow ONCOREFINER {
     ch_cadd_header                  // channel: [mandatory] [path(txt)]
     ch_cadd_prescored_indels        // channel: [optional]  [val(meta), path(dir)]
     ch_cadd_resources               // channel: [optional]  [val(meta), path(dir)]
+    ch_cnv_gene_tsv                 // channel: [optional]  [val(meta), path(tsv)]
+    ch_cnv_segment_tsv              // channel: [optional]  [val(meta), path(tsv)]
     ch_genmod_score_config_snv      // channel: [optional]  [val(meta), path(ini)]
     ch_genmod_score_config_sv       // channel: [optional]  [val(meta), path(ini)]
     ch_genome_fasta                 // channel: [optional]  [val(meta), path(fasta)]
@@ -104,6 +106,11 @@ workflow ONCOREFINER {
         ch_vep_extra_files
     )
 
+    PROCESS_CNVS(
+        ch_cnv_gene_tsv,
+        ch_cnv_segment_tsv
+    )
+
     //
     // Collate and save software versions
     //
@@ -163,6 +170,7 @@ workflow ONCOREFINER {
     emit:
     cadd_annotated_vcf        = PROCESS_SNVS.out.cadd_annotated_vcf                           // channel: [val(meta), path(vcf)]
     cadd_annotated_tbi        = PROCESS_SNVS.out.cadd_annotated_tbi                           // channel: [val(meta), path(tbi)]
+    cnv_report_html           = PROCESS_CNVS.out.html_report                                  // channel: [val(meta), path(html)]
     multiqc_data              = MULTIQC.out.data                                              // channel: /path/to/multiqc_data/
     multiqc_plots             = MULTIQC.out.plots                                             // channel: /path/to/multiqc_plots/
     multiqc_report            = MULTIQC.out.report.map { _meta, report -> [report] }.toList() // channel: /path/to/multiqc_report.html

@@ -68,9 +68,58 @@
                     },
                     "subject_a_vep.vcf.gz_summary.html"
                 ]
-            ]
+            ],
+            {
+                "versions": [
+                    [
+                        "PROCESS_SNVS:BCFTOOLS_VIEW_CLINICAL",
+                        "bcftools",
+                        "1.23.1"
+                    ],
+                    [
+                        "PROCESS_SNVS:BCFTOOLS_VIEW_RESEARCH",
+                        "bcftools",
+                        "1.23.1"
+                    ],
+                    [
+                        "PROCESS_SNVS:ENSEMBLVEP_VEP",
+                        "ensemblvep",
+                        "115.2"
+                    ],
+                    [
+                        "PROCESS_SNVS:ENSEMBLVEP_VEP",
+                        "perl-math-cdf",
+                        "0.1"
+                    ],
+                    [
+                        "PROCESS_SNVS:ENSEMBLVEP_VEP",
+                        "tabix",
+                        "1.21"
+                    ],
+                    [
+                        "PROCESS_SNVS:VCFANNO",
+                        "vcfanno",
+                        "0.3.7"
+                    ],
+                    [
+                        "PROCESS_SNVS:VCF_ANNOTATE_SCORE_GENMOD:BCFTOOLS_VIEW",
+                        "bcftools",
+                        "1.23.1"
+                    ],
+                    [
+                        "PROCESS_SNVS:VCF_ANNOTATE_SCORE_GENMOD:GENMOD_SCORE",
+                        "genmod",
+                        "3.10.2"
+                    ],
+                    [
+                        "UNTAR_VEP_CACHE",
+                        "untar",
+                        "1.34"
+                    ]
+                ]
+            }
         ],
-        "timestamp": "2026-08-05T13:48:42.074485",
+        "timestamp": "2026-08-18T13:42:49.052341",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
@@ -137,9 +186,58 @@
                     },
                     "subject_a_vep_summary.html"
                 ]
-            ]
+            ],
+            {
+                "versions": [
+                    [
+                        "PROCESS_SNVS:BCFTOOLS_VIEW_CLINICAL",
+                        "bcftools",
+                        "1.23.1"
+                    ],
+                    [
+                        "PROCESS_SNVS:BCFTOOLS_VIEW_RESEARCH",
+                        "bcftools",
+                        "1.23.1"
+                    ],
+                    [
+                        "PROCESS_SNVS:ENSEMBLVEP_VEP",
+                        "ensemblvep",
+                        "115.2"
+                    ],
+                    [
+                        "PROCESS_SNVS:ENSEMBLVEP_VEP",
+                        "perl-math-cdf",
+                        "0.1"
+                    ],
+                    [
+                        "PROCESS_SNVS:ENSEMBLVEP_VEP",
+                        "tabix",
+                        "1.21"
+                    ],
+                    [
+                        "PROCESS_SNVS:VCFANNO",
+                        "vcfanno",
+                        "0.3.7"
+                    ],
+                    [
+                        "PROCESS_SNVS:VCF_ANNOTATE_SCORE_GENMOD:BCFTOOLS_VIEW",
+                        "bcftools",
+                        "1.23.1"
+                    ],
+                    [
+                        "PROCESS_SNVS:VCF_ANNOTATE_SCORE_GENMOD:GENMOD_SCORE",
+                        "genmod",
+                        "3.10.2"
+                    ],
+                    [
+                        "UNTAR_VEP_CACHE",
+                        "untar",
+                        "1.34"
+                    ]
+                ]
+            }
         ],
-        "timestamp": "2026-08-05T13:49:16.660724",
+        "timestamp": "2026-08-18T13:43:25.157913",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"

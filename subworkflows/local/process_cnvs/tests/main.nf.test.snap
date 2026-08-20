@@ -1,0 +1,56 @@
+{
+    "with tumor-normal data": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "test_tumor_normal_case",
+                        "case_id": "test_tumor_normal_case"
+                    },
+                    "test_tumor_normal_case_cnv_report.html"
+                ]
+            ],
+            {
+                "versions": [
+                    [
+                        "PROCESS_CNVS:RMARKDOWNNOTEBOOK",
+                        "rmarkdownnotebook",
+                        "2.29"
+                    ]
+                ]
+            }
+        ],
+        "timestamp": "2026-08-19T14:27:31.577609",
+        "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "26.04.6"
+        }
+    },
+    "with tumor-normal data - stub": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "test_tumor_normal_case",
+                        "case_id": "test_tumor_normal_case"
+                    },
+                    "test_tumor_normal_case_cnv_report.html"
+                ]
+            ],
+            {
+                "versions": [
+                    [
+                        "PROCESS_CNVS:RMARKDOWNNOTEBOOK",
+                        "rmarkdownnotebook",
+                        "2.29"
+                    ]
+                ]
+            }
+        ],
+        "timestamp": "2026-08-19T14:27:36.122372",
+        "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "26.04.6"
+        }
+    }
+}

@@ -39,6 +39,8 @@ Define where the pipeline should find input data and save output data.
 | `cobalt_ratio_pcf_tumor` | Path to a TSV file containing cobalt segment coverage ratios for the tumor sample. | `string` |  |  |  |
 | `cobalt_ratio_pcf_normal` | Path to a TSV file containing cobalt segment coverage ratios for the normal sample. | `string` |  |  |  |
 | `analysis_type` | Analysis type of the case. (accepted: `tumor_only`\|`tumor_normal`) | `string` |  |  |  |
+| `cnv_gene_tsv` | Path to a file containing gene-level information of CNV calls. <details><summary>Help</summary><small>This file should be a tab-separated file with a header row. Typically *.purple.cnv.gene.tsv file from Oncoanalyser.</small></details>| `string` |  |  |  |
+| `cnv_segment_tsv` | Path to a file containing segment-level information of CNV calls. <details><summary>Help</summary><small>This file should be a tab-separated file with a header row. Typically *.purple.cnv.somatic.tsv file from Oncoanalyser.</small></details>| `string` |  |  |  |
 | `linx_fusion_tsv` | Path to fusion linx tsv file for the sample. | `string` |  |  |  |
 | `linx_breakends_tsv` | Path to breakend linx tsv file for the sample. | `string` |  |  |  |
 | `linx_sv_tsv` | Path to sv linx tsv file for the sample. | `string` |  |  |  |
