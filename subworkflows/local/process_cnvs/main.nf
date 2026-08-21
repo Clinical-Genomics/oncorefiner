@@ -8,7 +8,7 @@
 // LOCAL SUBWORKFLOWS
 //
 
-include { GENS } from '../../../subworkflows/local/gens/main'
+include { PREPARE_AMBER_COBALT_GENS } from '../../../subworkflows/local/prepare_amber_cobalt_gens/main'
 
 //
 // MODULE: Installed directly from nf-core/modules
@@ -33,8 +33,8 @@ workflow PROCESS_CNVS {
 
     main:
 
-    // Run the GENS subworkflow
-    GENS (
+    // Run the PREPARE_AMBER_COBALT_GENS subworkflow
+    PREPARE_AMBER_COBALT_GENS (
         ch_amber_baf_tsv_gz,
         ch_cobalt_ratio_pcf_normal,
         ch_cobalt_ratio_pcf_tumor,
@@ -62,11 +62,11 @@ workflow PROCESS_CNVS {
     )
 
     emit:
-    gens_baf_normal_tsv = GENS.out.gens_baf_normal_tsv // channel: [val(meta), path(tsv.gz)]
-    gens_baf_normal_tbi = GENS.out.gens_baf_normal_tbi // channel: [val(meta), path(tsv.gz.tbi)]
-    gens_baf_tumor_tsv  = GENS.out.gens_baf_tumor_tsv  // channel: [val(meta), path(tsv.gz)]
-    gens_baf_tumor_tbi  = GENS.out.gens_baf_tumor_tbi  // channel: [val(meta), path(tsv.gz.tbi)]
-    gens_cov_bed        = GENS.out.gens_cov_bed        // channel: [val(meta), path(bed.gz)]
-    gens_cov_bed_tbi    = GENS.out.gens_cov_bed_tbi    // channel: [val(meta), path(bed.gz.tbi)]
+    gens_baf_normal_tsv = PREPARE_AMBER_COBALT_GENS.out.gens_baf_normal_tsv // channel: [val(meta), path(tsv.gz)]
+    gens_baf_normal_tbi = PREPARE_AMBER_COBALT_GENS.out.gens_baf_normal_tbi // channel: [val(meta), path(tsv.gz.tbi)]
+    gens_baf_tumor_tsv  = PREPARE_AMBER_COBALT_GENS.out.gens_baf_tumor_tsv  // channel: [val(meta), path(tsv.gz)]
+    gens_baf_tumor_tbi  = PREPARE_AMBER_COBALT_GENS.out.gens_baf_tumor_tbi  // channel: [val(meta), path(tsv.gz.tbi)]
+    gens_cov_bed        = PREPARE_AMBER_COBALT_GENS.out.gens_cov_bed        // channel: [val(meta), path(bed.gz)]
+    gens_cov_bed_tbi    = PREPARE_AMBER_COBALT_GENS.out.gens_cov_bed_tbi    // channel: [val(meta), path(bed.gz.tbi)]
     html_report = RMARKDOWNNOTEBOOK.out.report         // channel: [val(meta), path(*.html)]
 }

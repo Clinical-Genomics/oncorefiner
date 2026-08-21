@@ -12,11 +12,11 @@ include { PREPARE_COBALT_FOR_GENS } from '../../../modules/local/prepare_cobalt_
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    RUN GENS WORKFLOW
+    RUN PREPARE_AMBER_COBALT_GENS WORKFLOW
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
-workflow GENS {
+workflow PREPARE_AMBER_COBALT_GENS {
 
     take:
     ch_amber_baf_tsv     // channel: [required]  [val(meta), path(tsv)]
