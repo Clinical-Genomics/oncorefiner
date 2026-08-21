@@ -68,5 +68,5 @@ workflow PROCESS_CNVS {
     gens_baf_tumor_tbi  = PREPARE_AMBER_COBALT_GENS.out.gens_baf_tumor_tbi  // channel: [val(meta), path(tsv.gz.tbi)]
     gens_cov_bed        = PREPARE_AMBER_COBALT_GENS.out.gens_cov_bed        // channel: [val(meta), path(bed.gz)]
     gens_cov_bed_tbi    = PREPARE_AMBER_COBALT_GENS.out.gens_cov_bed_tbi    // channel: [val(meta), path(bed.gz.tbi)]
-    html_report = RMARKDOWNNOTEBOOK.out.report         // channel: [val(meta), path(*.html)]
+    html_report         = RMARKDOWNNOTEBOOK.out.report                      // channel: [val(meta), path(html)]
 }
