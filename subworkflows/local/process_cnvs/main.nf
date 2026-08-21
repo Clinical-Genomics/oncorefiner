@@ -31,7 +31,6 @@ workflow PROCESS_CNVS {
     ch_cobalt_ratio_pcf_tumor  // channel: [optional]  [val(meta), path(pcf)]
     val_analysis_type          // string:  [optional]  analysis type, e.g. "tumor_only" or "tumor_normal"
 
-
     main:
 
     // Run the GENS subworkflow
@@ -69,6 +68,5 @@ workflow PROCESS_CNVS {
     gens_baf_tumor_tbi  = GENS.out.gens_baf_tumor_tbi  // channel: [val(meta), path(tsv.gz.tbi)]
     gens_cov_bed        = GENS.out.gens_cov_bed        // channel: [val(meta), path(bed.gz)]
     gens_cov_bed_tbi    = GENS.out.gens_cov_bed_tbi    // channel: [val(meta), path(bed.gz.tbi)]
-    html_report = RMARKDOWNNOTEBOOK.out.report   // channel: [ val(meta), path(*.html) ]
-
+    html_report = RMARKDOWNNOTEBOOK.out.report         // channel: [val(meta), path(*.html)]
 }

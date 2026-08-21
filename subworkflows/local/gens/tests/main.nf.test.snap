@@ -1,5 +1,5 @@
 {
-    "Process GENS, tumor-only - stub": {
+    "with tumor-only data - stub": {
         "content": [
             {
                 "gens_baf_normal_tbi": [
@@ -52,13 +52,13 @@
                 ]
             }
         ],
-        "timestamp": "2026-08-20T14:49:58.684117",
+        "timestamp": "2026-08-21T10:56:51.800696",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
         }
     },
-    "Process GENS, tumor-normal": {
+    "with tumor-normal data": {
         "content": [
             [
                 [
@@ -107,14 +107,18 @@
                         "case_id": "test_tumor_normal_case"
                     },
                     "test_tumor_normal_case_CNV_BAF_GENS.normal.baf.zoom.tsv.gz.tbi"
-                ],
+                ]
+            ],
+            [
                 [
                     {
                         "id": "test_tumor_normal_case",
                         "case_id": "test_tumor_normal_case"
                     },
                     "test_tumor_normal_case_CNV_BAF_GENS.tumor.baf.zoom.tsv.gz.tbi"
-                ],
+                ]
+            ],
+            [
                 [
                     {
                         "id": "test_tumor_normal_case",
@@ -201,13 +205,13 @@
                 ]
             }
         ],
-        "timestamp": "2026-08-20T14:49:29.987256",
+        "timestamp": "2026-08-21T10:56:23.245502",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
         }
     },
-    "Process GENS, tumor-normal - stub": {
+    "with tumor-normal data - stub": {
         "content": [
             {
                 "gens_baf_normal_tbi": [
@@ -292,13 +296,13 @@
                 ]
             }
         ],
-        "timestamp": "2026-08-20T14:49:36.665648",
+        "timestamp": "2026-08-21T10:56:30.126352",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
         }
     },
-    "Process GENS, tumor-only": {
+    "with tumor-only data": {
         "content": [
             [
                 
@@ -325,13 +329,18 @@
                 ]
             ],
             [
+                
+            ],
+            [
                 [
                     {
                         "id": "test_tumor_only_case",
                         "case_id": "test_tumor_only_case"
                     },
                     "test_tumor_only_case_CNV_BAF_GENS.tumor.baf.zoom.tsv.gz.tbi"
-                ],
+                ]
+            ],
+            [
                 [
                     {
                         "id": "test_tumor_only_case",
@@ -388,7 +397,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-08-20T14:49:52.738106",
+        "timestamp": "2026-08-21T10:56:45.879311",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"

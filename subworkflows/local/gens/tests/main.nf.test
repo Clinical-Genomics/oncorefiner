@@ -10,7 +10,7 @@ nextflow_workflow {
 
     topics "versions"
 
-    test("Process GENS, tumor-normal") {
+    test("with tumor-normal data") {
 
         when {
 
@@ -34,9 +34,6 @@ nextflow_workflow {
         }
 
         then {
-            // All output tbi files
-            def output_tbis = workflow.out.findAll { key, value -> key.endsWith('_tbi')}
-                .collectMany { key, value -> value}
 
             assert workflow.success
             assertAll(
@@ -44,14 +41,17 @@ nextflow_workflow {
                     workflow.out.gens_baf_normal_tsv,
                     workflow.out.gens_baf_tumor_tsv,
                     workflow.out.gens_cov_bed,
-                    output_tbis.collect { meta, tbi -> [meta, file(tbi).name ]},
+                    // Only snapshot name as md5sum will change due to virtual offset compression.
+                    workflow.out.gens_baf_normal_tbi.collect { meta, tbi -> [meta, file(tbi).name ]},
+                    workflow.out.gens_baf_tumor_tbi.collect { meta, tbi -> [meta, file(tbi).name ]},
+                    workflow.out.gens_cov_bed_tbi.collect { meta, tbi -> [meta, file(tbi).name ]},
                     topics,
                 ).match() }
             )
         }
     }
 
-    test("Process GENS, tumor-normal - stub") {
+    test("with tumor-normal data - stub") {
 
         options "-stub"
 
@@ -85,7 +85,7 @@ nextflow_workflow {
             )
         }
     }
-    test("Process GENS, tumor-only") {
+    test("with tumor-only data") {
 
         when {
 
@@ -106,9 +106,6 @@ nextflow_workflow {
         }
 
         then {
-            // All output tbi files
-            def output_tbis = workflow.out.findAll { key, value -> key.endsWith('_tbi')}
-                .collectMany { key, value -> value}
 
             assert workflow.success
             assertAll(
@@ -116,14 +113,17 @@ nextflow_workflow {
                     workflow.out.gens_baf_normal_tsv,
                     workflow.out.gens_baf_tumor_tsv,
                     workflow.out.gens_cov_bed,
-                    output_tbis.collect { meta, tbi -> [meta, file(tbi).name ]},
+                    // Only snapshot name as md5sum will change due to virtual offset compression.
+                    workflow.out.gens_baf_normal_tbi.collect { meta, tbi -> [meta, file(tbi).name ]},
+                    workflow.out.gens_baf_tumor_tbi.collect { meta, tbi -> [meta, file(tbi).name ]},
+                    workflow.out.gens_cov_bed_tbi.collect { meta, tbi -> [meta, file(tbi).name ]},
                     topics,
                 ).match() }
             )
         }
     }
 
-    test("Process GENS, tumor-only - stub") {
+    test("with tumor-only data - stub") {
 
         options "-stub"
 
