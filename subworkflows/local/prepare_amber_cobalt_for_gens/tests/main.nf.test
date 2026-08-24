@@ -1,0 +1,158 @@
+nextflow_workflow {
+
+    name "Test subworkflow PREPARE_AMBER_COBALT_FOR_GENS"
+    script "../main.nf"
+    workflow "PREPARE_AMBER_COBALT_FOR_GENS"
+    config "./nextflow.config"
+    tag "subworkflows"
+    tag "subworkflows_local"
+    tag "prepare_amber_cobalt_for_gens"
+
+    topics "versions"
+
+    test("with tumor-normal data") {
+
+        when {
+
+            workflow {
+                """
+                input[0] = channel.of([
+                    [id: 'test_tumor_normal_case', case_id: 'test_tumor_normal_case'],
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.amber.baf.tsv.gz', checkIfExists: true),
+                ])
+                input[1] = channel.of([
+                    [id: 'test_tumor_normal_case', case_id: 'test_tumor_normal_case', sample_id: 'subject_a', sample_type: 'normal', sex: 'female'],
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.normal.cobalt.ratio.pcf', checkIfExists: true)
+                ])
+                input[2] = channel.of([
+                    [id: 'test_tumor_normal_case', case_id: 'test_tumor_normal_case', sample_id: 'subject_a', sample_type: 'tumor', sex: 'female'],
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.cobalt.ratio.pcf', checkIfExists: true)
+                ])
+                input[3] = "tumor_normal"
+                """
+            }
+        }
+
+        then {
+
+            assert workflow.success
+            assertAll(
+                { assert snapshot(
+                    workflow.out.gens_baf_normal_tsv,
+                    workflow.out.gens_baf_tumor_tsv,
+                    workflow.out.gens_cov_bed,
+                    // Only snapshot name as md5sum will change due to virtual offset compression.
+                    workflow.out.gens_baf_normal_tbi.collect { meta, tbi -> [meta, file(tbi).name ]},
+                    workflow.out.gens_baf_tumor_tbi.collect { meta, tbi -> [meta, file(tbi).name ]},
+                    workflow.out.gens_cov_bed_tbi.collect { meta, tbi -> [meta, file(tbi).name ]},
+                    topics,
+                ).match() }
+            )
+        }
+    }
+
+    test("with tumor-normal data - stub") {
+
+        options "-stub"
+
+        when {
+
+            workflow {
+                """
+                input[0] = channel.of([
+                    [id: 'test_tumor_normal_case', case_id: 'test_tumor_normal_case'],
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.amber.baf.tsv.gz', checkIfExists: true),
+                ])
+                input[1] = channel.of([
+                    [id: 'test_tumor_normal_case', case_id: 'test_tumor_normal_case', sample_id: 'subject_a', sample_type: 'normal', sex: 'female'],
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.normal.cobalt.ratio.pcf', checkIfExists: true)
+                ])
+                input[2] = channel.of([
+                    [id: 'test_tumor_normal_case', case_id: 'test_tumor_normal_case', sample_id: 'subject_a', sample_type: 'tumor', sex: 'female'],
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.cobalt.ratio.pcf', checkIfExists: true)
+                ])
+                input[3] = 'tumor_normal'
+                """
+            }
+        }
+
+        then {
+            assert workflow.success
+            assertAll(
+                { assert snapshot(
+                    sanitizeOutput(workflow.out),
+                ).match() }
+            )
+        }
+    }
+    test("with tumor-only data") {
+
+        when {
+
+            workflow {
+                """
+                input[0] = channel.of([
+                    [id: 'test_tumor_only_case', case_id: 'test_tumor_only_case'],
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_only/subject_a.tumor.amber.baf.tsv.gz', checkIfExists: true),
+                ])
+                input[1] = channel.empty()
+                input[2] = channel.of([
+                    [id: 'test_tumor_only_case', case_id: 'test_tumor_only_case', sample_id: 'subject_a', sample_type: 'tumor', sex: 'female'],
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_only/subject_a.tumor.cobalt.ratio.pcf', checkIfExists: true)
+                ])
+                input[3] = "tumor_only"
+                """
+            }
+        }
+
+        then {
+
+            assert workflow.success
+            assertAll(
+                { assert snapshot(
+                    workflow.out.gens_baf_normal_tsv,
+                    workflow.out.gens_baf_tumor_tsv,
+                    workflow.out.gens_cov_bed,
+                    // Only snapshot name as md5sum will change due to virtual offset compression.
+                    workflow.out.gens_baf_normal_tbi.collect { meta, tbi -> [meta, file(tbi).name ]},
+                    workflow.out.gens_baf_tumor_tbi.collect { meta, tbi -> [meta, file(tbi).name ]},
+                    workflow.out.gens_cov_bed_tbi.collect { meta, tbi -> [meta, file(tbi).name ]},
+                    topics,
+                ).match() }
+            )
+        }
+    }
+
+    test("with tumor-only data - stub") {
+
+        options "-stub"
+
+        when {
+
+            workflow {
+                """
+                input[0] = channel.of([
+                    [id: 'test_tumor_only_case', case_id: 'test_tumor_only_case'],
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_only/subject_a.tumor.amber.baf.tsv.gz', checkIfExists: true),
+                ])
+                input[1] = channel.empty()
+                input[2] = channel.of([
+                    [id: 'test_tumor_only_case', case_id: 'test_tumor_only_case', sample_id: 'subject_a', sample_type: 'tumor', sex: 'female'],
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_only/subject_a.tumor.cobalt.ratio.pcf', checkIfExists: true)
+                ])
+                input[3] = "tumor_only"
+                """
+            }
+        }
+
+        then {
+
+            assert workflow.success
+            assertAll(
+                { assert snapshot(
+                    sanitizeOutput(workflow.out),
+                ).match() }
+            )
+        }
+    }
+}

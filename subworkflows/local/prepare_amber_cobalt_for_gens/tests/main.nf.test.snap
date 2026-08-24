@@ -11,77 +11,48 @@
                 "gens_baf_tumor_tbi": [
                     [
                         {
-                            "id": "test_tumor_normal_case",
-                            "case_id": "test_tumor_normal_case"
+                            "id": "test_tumor_only_case",
+                            "case_id": "test_tumor_only_case"
                         },
-                        "test_tumor_normal_case_CNV_BAF_GENS.tumor.baf.zoom.tsv.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test_tumor_only_case_CNV_BAF_GENS.tumor.baf.zoom.tsv.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "gens_baf_tumor_tsv": [
                     [
                         {
-                            "id": "test_tumor_normal_case",
-                            "case_id": "test_tumor_normal_case"
+                            "id": "test_tumor_only_case",
+                            "case_id": "test_tumor_only_case"
                         },
-                        "test_tumor_normal_case_CNV_BAF_GENS.tumor.baf.zoom.tsv.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                        "test_tumor_only_case_CNV_BAF_GENS.tumor.baf.zoom.tsv.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
                     ]
                 ],
                 "gens_cov_bed": [
                     [
                         {
-                            "id": "test_tumor_normal_case",
-                            "case_id": "test_tumor_normal_case",
-                            "sample_id": "subject_a",
-                            "sample_type": "normal",
-                            "sex": "female"
-                        },
-                        "test_tumor_normal_case_normal_CNV_COV_GENS.bed.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
-                    ],
-                    [
-                        {
-                            "id": "test_tumor_normal_case",
-                            "case_id": "test_tumor_normal_case",
+                            "id": "test_tumor_only_case",
+                            "case_id": "test_tumor_only_case",
                             "sample_id": "subject_a",
                             "sample_type": "tumor",
                             "sex": "female"
                         },
-                        "test_tumor_normal_case_tumor_CNV_COV_GENS.bed.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                        "test_tumor_only_case_tumor_CNV_COV_GENS.bed.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
                     ]
                 ],
                 "gens_cov_bed_tbi": [
                     [
                         {
-                            "id": "test_tumor_normal_case",
-                            "case_id": "test_tumor_normal_case",
-                            "sample_id": "subject_a",
-                            "sample_type": "normal",
-                            "sex": "female"
-                        },
-                        "test_tumor_normal_case_normal_CNV_COV_GENS.bed.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ],
-                    [
-                        {
-                            "id": "test_tumor_normal_case",
-                            "case_id": "test_tumor_normal_case",
+                            "id": "test_tumor_only_case",
+                            "case_id": "test_tumor_only_case",
                             "sample_id": "subject_a",
                             "sample_type": "tumor",
                             "sex": "female"
                         },
-                        "test_tumor_normal_case_tumor_CNV_COV_GENS.bed.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ]
-                ],
-                "html_report": [
-                    [
-                        {
-                            "id": "test_tumor_normal_case",
-                            "case_id": "test_tumor_normal_case"
-                        },
-                        "test_tumor_normal_case_cnv_report.html:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test_tumor_only_case_tumor_CNV_COV_GENS.bed.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ]
             }
         ],
-        "timestamp": "2026-08-20T14:48:59.161456",
+        "timestamp": "2026-08-21T10:56:51.800696",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
@@ -136,14 +107,18 @@
                         "case_id": "test_tumor_normal_case"
                     },
                     "test_tumor_normal_case_CNV_BAF_GENS.normal.baf.zoom.tsv.gz.tbi"
-                ],
+                ]
+            ],
+            [
                 [
                     {
                         "id": "test_tumor_normal_case",
                         "case_id": "test_tumor_normal_case"
                     },
                     "test_tumor_normal_case_CNV_BAF_GENS.tumor.baf.zoom.tsv.gz.tbi"
-                ],
+                ]
+            ],
+            [
                 [
                     {
                         "id": "test_tumor_normal_case",
@@ -165,86 +140,72 @@
                     "test_tumor_normal_case_tumor_CNV_COV_GENS.bed.gz.tbi"
                 ]
             ],
-            [
-                [
-                    {
-                        "id": "test_tumor_normal_case",
-                        "case_id": "test_tumor_normal_case"
-                    },
-                    "test_tumor_normal_case_cnv_report.html"
-                ]
-            ],
             {
                 "versions": [
                     [
-                        "PROCESS_CNVS:PREPARE_AMBER_COBALT_FOR_GENS:PREPARE_AMBER_FOR_GENS",
+                        "PREPARE_AMBER_COBALT_FOR_GENS:PREPARE_AMBER_FOR_GENS",
                         "bgzip",
                         "(htslib) 1.23.1"
                     ],
                     [
-                        "PROCESS_CNVS:PREPARE_AMBER_COBALT_FOR_GENS:PREPARE_AMBER_FOR_GENS",
+                        "PREPARE_AMBER_COBALT_FOR_GENS:PREPARE_AMBER_FOR_GENS",
                         "prepare_amber_for_gens",
                         "prepare_amber_for_gens, version 1.0"
                     ],
                     [
-                        "PROCESS_CNVS:PREPARE_AMBER_COBALT_FOR_GENS:PREPARE_AMBER_FOR_GENS",
+                        "PREPARE_AMBER_COBALT_FOR_GENS:PREPARE_AMBER_FOR_GENS",
                         "python",
                         "Python 3.14.6"
                     ],
                     [
-                        "PROCESS_CNVS:PREPARE_AMBER_COBALT_FOR_GENS:PREPARE_AMBER_FOR_GENS",
+                        "PREPARE_AMBER_COBALT_FOR_GENS:PREPARE_AMBER_FOR_GENS",
                         "tabix",
                         "(htslib) 1.23.1"
                     ],
                     [
-                        "PROCESS_CNVS:PREPARE_AMBER_COBALT_FOR_GENS:PREPARE_COBALT_FOR_GENS",
+                        "PREPARE_AMBER_COBALT_FOR_GENS:PREPARE_COBALT_FOR_GENS",
                         "bgzip",
                         "(htslib) 1.23.1"
                     ],
                     [
-                        "PROCESS_CNVS:PREPARE_AMBER_COBALT_FOR_GENS:PREPARE_COBALT_FOR_GENS",
+                        "PREPARE_AMBER_COBALT_FOR_GENS:PREPARE_COBALT_FOR_GENS",
                         "bgzip",
                         "(htslib) 1.23.1"
                     ],
                     [
-                        "PROCESS_CNVS:PREPARE_AMBER_COBALT_FOR_GENS:PREPARE_COBALT_FOR_GENS",
+                        "PREPARE_AMBER_COBALT_FOR_GENS:PREPARE_COBALT_FOR_GENS",
                         "prepare_cobalt_for_gens",
                         "prepare_cobalt_for_gens, version 1.0"
                     ],
                     [
-                        "PROCESS_CNVS:PREPARE_AMBER_COBALT_FOR_GENS:PREPARE_COBALT_FOR_GENS",
+                        "PREPARE_AMBER_COBALT_FOR_GENS:PREPARE_COBALT_FOR_GENS",
                         "prepare_cobalt_for_gens",
                         "prepare_cobalt_for_gens, version 1.0"
                     ],
                     [
-                        "PROCESS_CNVS:PREPARE_AMBER_COBALT_FOR_GENS:PREPARE_COBALT_FOR_GENS",
+                        "PREPARE_AMBER_COBALT_FOR_GENS:PREPARE_COBALT_FOR_GENS",
                         "python",
                         "Python 3.14.6"
                     ],
                     [
-                        "PROCESS_CNVS:PREPARE_AMBER_COBALT_FOR_GENS:PREPARE_COBALT_FOR_GENS",
+                        "PREPARE_AMBER_COBALT_FOR_GENS:PREPARE_COBALT_FOR_GENS",
                         "python",
                         "Python 3.14.6"
                     ],
                     [
-                        "PROCESS_CNVS:PREPARE_AMBER_COBALT_FOR_GENS:PREPARE_COBALT_FOR_GENS",
+                        "PREPARE_AMBER_COBALT_FOR_GENS:PREPARE_COBALT_FOR_GENS",
                         "tabix",
                         "(htslib) 1.23.1"
                     ],
                     [
-                        "PROCESS_CNVS:PREPARE_AMBER_COBALT_FOR_GENS:PREPARE_COBALT_FOR_GENS",
+                        "PREPARE_AMBER_COBALT_FOR_GENS:PREPARE_COBALT_FOR_GENS",
                         "tabix",
                         "(htslib) 1.23.1"
-                    ],
-                    [
-                        "PROCESS_CNVS:RMARKDOWNNOTEBOOK",
-                        "rmarkdownnotebook",
-                        "2.29"
                     ]
                 ]
             }
         ],
-        "timestamp": "2026-08-20T14:48:01.137012",
+        "timestamp": "2026-08-21T10:56:23.245502",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
@@ -332,19 +293,10 @@
                         },
                         "test_tumor_normal_case_tumor_CNV_COV_GENS.bed.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
-                ],
-                "html_report": [
-                    [
-                        {
-                            "id": "test_tumor_normal_case",
-                            "case_id": "test_tumor_normal_case"
-                        },
-                        "test_tumor_normal_case_cnv_report.html:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ]
                 ]
             }
         ],
-        "timestamp": "2026-08-20T14:48:10.253696",
+        "timestamp": "2026-08-21T10:56:30.126352",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
@@ -358,143 +310,94 @@
             [
                 [
                     {
-                        "id": "test_tumor_normal_case",
-                        "case_id": "test_tumor_normal_case"
+                        "id": "test_tumor_only_case",
+                        "case_id": "test_tumor_only_case"
                     },
-                    "test_tumor_normal_case_CNV_BAF_GENS.tumor.baf.zoom.tsv.gz:md5,87317df569141e8908d318197fc075af"
+                    "test_tumor_only_case_CNV_BAF_GENS.tumor.baf.zoom.tsv.gz:md5,ccb0b5ad7111f53c6d660e608af438ce"
                 ]
             ],
             [
                 [
                     {
-                        "id": "test_tumor_normal_case",
-                        "case_id": "test_tumor_normal_case",
-                        "sample_id": "subject_a",
-                        "sample_type": "normal",
-                        "sex": "female"
-                    },
-                    "test_tumor_normal_case_normal_CNV_COV_GENS.bed.gz:md5,d80e5d2edb1559d3e035c0739a8d172f"
-                ],
-                [
-                    {
-                        "id": "test_tumor_normal_case",
-                        "case_id": "test_tumor_normal_case",
+                        "id": "test_tumor_only_case",
+                        "case_id": "test_tumor_only_case",
                         "sample_id": "subject_a",
                         "sample_type": "tumor",
                         "sex": "female"
                     },
-                    "test_tumor_normal_case_tumor_CNV_COV_GENS.bed.gz:md5,5a34fb13829738c0742132bd11ff1219"
+                    "test_tumor_only_case_tumor_CNV_COV_GENS.bed.gz:md5,1a22ba6f7f24087f1c7fbb51c73a3b9d"
+                ]
+            ],
+            [
+                
+            ],
+            [
+                [
+                    {
+                        "id": "test_tumor_only_case",
+                        "case_id": "test_tumor_only_case"
+                    },
+                    "test_tumor_only_case_CNV_BAF_GENS.tumor.baf.zoom.tsv.gz.tbi"
                 ]
             ],
             [
                 [
                     {
-                        "id": "test_tumor_normal_case",
-                        "case_id": "test_tumor_normal_case"
-                    },
-                    "test_tumor_normal_case_CNV_BAF_GENS.tumor.baf.zoom.tsv.gz.tbi"
-                ],
-                [
-                    {
-                        "id": "test_tumor_normal_case",
-                        "case_id": "test_tumor_normal_case",
-                        "sample_id": "subject_a",
-                        "sample_type": "normal",
-                        "sex": "female"
-                    },
-                    "test_tumor_normal_case_normal_CNV_COV_GENS.bed.gz.tbi"
-                ],
-                [
-                    {
-                        "id": "test_tumor_normal_case",
-                        "case_id": "test_tumor_normal_case",
+                        "id": "test_tumor_only_case",
+                        "case_id": "test_tumor_only_case",
                         "sample_id": "subject_a",
                         "sample_type": "tumor",
                         "sex": "female"
                     },
-                    "test_tumor_normal_case_tumor_CNV_COV_GENS.bed.gz.tbi"
-                ]
-            ],
-            [
-                [
-                    {
-                        "id": "test_tumor_normal_case",
-                        "case_id": "test_tumor_normal_case"
-                    },
-                    "test_tumor_normal_case_cnv_report.html"
+                    "test_tumor_only_case_tumor_CNV_COV_GENS.bed.gz.tbi"
                 ]
             ],
             {
                 "versions": [
                     [
-                        "PROCESS_CNVS:PREPARE_AMBER_COBALT_FOR_GENS:PREPARE_AMBER_FOR_GENS",
+                        "PREPARE_AMBER_COBALT_FOR_GENS:PREPARE_AMBER_FOR_GENS",
                         "bgzip",
                         "(htslib) 1.23.1"
                     ],
                     [
-                        "PROCESS_CNVS:PREPARE_AMBER_COBALT_FOR_GENS:PREPARE_AMBER_FOR_GENS",
+                        "PREPARE_AMBER_COBALT_FOR_GENS:PREPARE_AMBER_FOR_GENS",
                         "prepare_amber_for_gens",
                         "prepare_amber_for_gens, version 1.0"
                     ],
                     [
-                        "PROCESS_CNVS:PREPARE_AMBER_COBALT_FOR_GENS:PREPARE_AMBER_FOR_GENS",
+                        "PREPARE_AMBER_COBALT_FOR_GENS:PREPARE_AMBER_FOR_GENS",
                         "python",
                         "Python 3.14.6"
                     ],
                     [
-                        "PROCESS_CNVS:PREPARE_AMBER_COBALT_FOR_GENS:PREPARE_AMBER_FOR_GENS",
+                        "PREPARE_AMBER_COBALT_FOR_GENS:PREPARE_AMBER_FOR_GENS",
                         "tabix",
                         "(htslib) 1.23.1"
                     ],
                     [
-                        "PROCESS_CNVS:PREPARE_AMBER_COBALT_FOR_GENS:PREPARE_COBALT_FOR_GENS",
+                        "PREPARE_AMBER_COBALT_FOR_GENS:PREPARE_COBALT_FOR_GENS",
                         "bgzip",
                         "(htslib) 1.23.1"
                     ],
                     [
-                        "PROCESS_CNVS:PREPARE_AMBER_COBALT_FOR_GENS:PREPARE_COBALT_FOR_GENS",
-                        "bgzip",
-                        "(htslib) 1.23.1"
-                    ],
-                    [
-                        "PROCESS_CNVS:PREPARE_AMBER_COBALT_FOR_GENS:PREPARE_COBALT_FOR_GENS",
+                        "PREPARE_AMBER_COBALT_FOR_GENS:PREPARE_COBALT_FOR_GENS",
                         "prepare_cobalt_for_gens",
                         "prepare_cobalt_for_gens, version 1.0"
                     ],
                     [
-                        "PROCESS_CNVS:PREPARE_AMBER_COBALT_FOR_GENS:PREPARE_COBALT_FOR_GENS",
-                        "prepare_cobalt_for_gens",
-                        "prepare_cobalt_for_gens, version 1.0"
-                    ],
-                    [
-                        "PROCESS_CNVS:PREPARE_AMBER_COBALT_FOR_GENS:PREPARE_COBALT_FOR_GENS",
+                        "PREPARE_AMBER_COBALT_FOR_GENS:PREPARE_COBALT_FOR_GENS",
                         "python",
                         "Python 3.14.6"
                     ],
                     [
-                        "PROCESS_CNVS:PREPARE_AMBER_COBALT_FOR_GENS:PREPARE_COBALT_FOR_GENS",
-                        "python",
-                        "Python 3.14.6"
-                    ],
-                    [
-                        "PROCESS_CNVS:PREPARE_AMBER_COBALT_FOR_GENS:PREPARE_COBALT_FOR_GENS",
+                        "PREPARE_AMBER_COBALT_FOR_GENS:PREPARE_COBALT_FOR_GENS",
                         "tabix",
                         "(htslib) 1.23.1"
-                    ],
-                    [
-                        "PROCESS_CNVS:PREPARE_AMBER_COBALT_FOR_GENS:PREPARE_COBALT_FOR_GENS",
-                        "tabix",
-                        "(htslib) 1.23.1"
-                    ],
-                    [
-                        "PROCESS_CNVS:RMARKDOWNNOTEBOOK",
-                        "rmarkdownnotebook",
-                        "2.29"
                     ]
                 ]
             }
         ],
-        "timestamp": "2026-08-20T14:48:49.112807",
+        "timestamp": "2026-08-21T10:56:45.879311",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
