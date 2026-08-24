@@ -11,7 +11,6 @@ include { methodsDescriptionText } from '../subworkflows/local/utils_nfcore_onco
 include { PROCESS_SNVS           } from '../subworkflows/local/process_snvs/main.nf'
 include { PROCESS_SVS            } from '../subworkflows/local/process_svs/main.nf'
 include { PROCESS_CNVS           } from '../subworkflows/local/process_cnvs/main.nf'
-
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     RUN MAIN WORKFLOW

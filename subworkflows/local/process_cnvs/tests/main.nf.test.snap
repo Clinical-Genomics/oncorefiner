@@ -136,14 +136,18 @@
                         "case_id": "test_tumor_normal_case"
                     },
                     "test_tumor_normal_case_CNV_BAF_GENS.normal.baf.zoom.tsv.gz.tbi"
-                ],
+                ]
+            ],
+            [
                 [
                     {
                         "id": "test_tumor_normal_case",
                         "case_id": "test_tumor_normal_case"
                     },
                     "test_tumor_normal_case_CNV_BAF_GENS.tumor.baf.zoom.tsv.gz.tbi"
-                ],
+                ]
+            ],
+            [
                 [
                     {
                         "id": "test_tumor_normal_case",
@@ -244,7 +248,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-08-20T14:48:01.137012",
+        "timestamp": "2026-08-24T15:41:17.028824",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
@@ -387,13 +391,18 @@
                 ]
             ],
             [
+                
+            ],
+            [
                 [
                     {
                         "id": "test_tumor_normal_case",
                         "case_id": "test_tumor_normal_case"
                     },
                     "test_tumor_normal_case_CNV_BAF_GENS.tumor.baf.zoom.tsv.gz.tbi"
-                ],
+                ]
+            ],
+            [
                 [
                     {
                         "id": "test_tumor_normal_case",
@@ -494,7 +503,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-08-20T14:48:49.112807",
+        "timestamp": "2026-08-24T15:42:04.296701",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"

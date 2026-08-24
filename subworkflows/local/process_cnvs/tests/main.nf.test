@@ -42,8 +42,6 @@ nextflow_workflow {
         }
 
         then {
-            def output_tbis = workflow.out.findAll { key, value -> key.endsWith('_tbi') }
-                .collectMany { key, value -> value }
 
             assert workflow.success
             assertAll(
@@ -51,7 +49,10 @@ nextflow_workflow {
                     workflow.out.gens_baf_normal_tsv,
                     workflow.out.gens_baf_tumor_tsv,
                     workflow.out.gens_cov_bed,
-                    output_tbis.collect { meta, tbi -> [meta, file(tbi).name] },
+                    // Only snapshot name as md5sum will change due to virtual offset compression.
+                    workflow.out.gens_baf_normal_tbi.collect { meta, tbi -> [meta, file(tbi).name ]},
+                    workflow.out.gens_baf_tumor_tbi.collect { meta, tbi -> [meta, file(tbi).name ]},
+                    workflow.out.gens_cov_bed_tbi.collect { meta, tbi -> [meta, file(tbi).name ]},
                     // only snapshot name as md5sum will change with every run due to presence of timestamps.
                     workflow.out.html_report.collect { meta, html -> [ meta, file(html).name]} ,
                     topics,
@@ -134,8 +135,6 @@ nextflow_workflow {
         }
 
         then {
-            def output_tbis = workflow.out.findAll { key, value -> key.endsWith('_tbi') }
-                .collectMany { key, value -> value }
 
             assert workflow.success
             assertAll(
@@ -143,7 +142,10 @@ nextflow_workflow {
                     workflow.out.gens_baf_normal_tsv,
                     workflow.out.gens_baf_tumor_tsv,
                     workflow.out.gens_cov_bed,
-                    output_tbis.collect { meta, tbi -> [meta, file(tbi).name] },
+                    // Only snapshot name as md5sum will change due to virtual offset compression.
+                    workflow.out.gens_baf_normal_tbi.collect { meta, tbi -> [meta, file(tbi).name ]},
+                    workflow.out.gens_baf_tumor_tbi.collect { meta, tbi -> [meta, file(tbi).name ]},
+                    workflow.out.gens_cov_bed_tbi.collect { meta, tbi -> [meta, file(tbi).name ]},
                     // only snapshot name as md5sum will change with every run due to presence of timestamps.
                     workflow.out.html_report.collect { meta, html -> [ meta, file(html).name ]},
                     topics,

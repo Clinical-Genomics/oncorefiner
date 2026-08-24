@@ -80,9 +80,9 @@ This process produce an interactive CNV report.
 
 </details>
 
+[`RMARKDOWNNOTEBOOK`](https://github.com/rstudio/rmarkdown) - used to generate a custom interactive CNV report using the RMARKDOWN script `assets/cnv_report.Rmd`.
 `PREPARE_AMBER_FOR_GENS` - Custom script that takes output from Oncoanalysers [`AMBER`](https://github.com/hartwigmedical/hmftools/tree/master/amber) VCF and converts the B-allele frequency levels into a GENS compatible zoom level.
 `PREPARE_COBALT_FOR_GENS` - Custom script that takes output from Oncoanalysers [`COBALT`](https://github.com/hartwigmedical/hmftools/tree/master/cobalt) VCF and converts the coverage levels into GENS compatible levels.
-[`RMARKDOWNNOTEBOOK`](https://github.com/rstudio/rmarkdown) - used to generate a custom interactive CNV report using the RMARKDOWN script `assets/cnv_report.Rmd`.
 
 ### MultiQC
 
