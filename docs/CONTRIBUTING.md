@@ -34,6 +34,7 @@ Contributions to the code are even more welcome ;)
       - [2. `subworkflows/local/utils_nfcore_oncorefiner_pipeline/main.nf`](#2-subworkflowslocalutils_nfcore_oncorefiner_pipelinemainnf)
       - [3. `README.md`](#3-readmemd)
     - [Images and figures](#images-and-figures)
+      - [Metro map](#metro-map)
   - [Coding conventions](#coding-conventions)
     - [Architecture \& structure](#architecture--structure)
     - [Adding a new step](#adding-a-new-step)
@@ -44,7 +45,6 @@ Contributions to the code are even more welcome ;)
     - [Configuration](#configuration)
     - [Writing tests](#writing-tests)
     - [Style](#style)
-  - [Metro map](#metro-map)
 
 ## General
 
@@ -221,6 +221,19 @@ Add the tool to the relevant numbered section in the **Pipeline summary**. If th
 
 For overview images and other documents we follow the nf-core [style guidelines and examples](https://nf-co.re/developers/design_guidelines).
 
+#### Metro map
+
+- [nf-metro](https://seqeralabs.github.io/nf-metro/latest/) can be used to create a metro map of the pipeline. This is a visual representation of the workflow and subworkflows, showing how they are connected and the flow of data through the pipeline.
+- The metro map can be generated using the following command:
+
+```bash
+nf-metro render assets/metro_map.md -o docs/images/metro_map_dark.svg --width 1024 --height 768 --x-spacing 120 --y-spacing 60
+nf-metro render assets/metro_map.md -o docs/images/metro_map_light.svg --width 1024 --height 768 --x-spacing 120 --y-spacing 60 --theme light
+```
+
+The metro map can be made by editing the `assets/metro_map.md` file. Further modifications can be done using the svg file with the appropriate software (e.g. Inkscape, Adobe Illustrator, etc.). 
+
+
 ## Coding conventions
 
 To make the `Clinical-Genomics/oncorefiner` code and processing logic more understandable for new contributors and to ensure quality, we semi-standardise the way the code and other contributions are written.
@@ -316,14 +329,3 @@ Please use the following naming schemes, to make it easy to understand what is g
 - Use `ch_* = <...>` whenever possible. Avoid using the `.set {ch_*}` operator to create new channels.
 
 
-## Metro map
-
-- [nf-metro](https://seqeralabs.github.io/nf-metro/latest/) can be used to create a metro map of the pipeline. This is a visual representation of the workflow and subworkflows, showing how they are connected and the flow of data through the pipeline.
-- The metro map can be generated using the following command:
-
-```bash
-nf-metro render assets/metro_map.md -o docs/images/metro_map_dark.svg --width 1024 --height 768 --x-spacing 120 --y-spacing 60
-nf-metro render assets/metro_map.md -o docs/images/metro_map_light.svg --width 1024 --height 768 --x-spacing 120 --y-spacing 60 --theme light
-```
-
-The metro map can be made by editing the `assets/metro_map.md` file. Further modifications can be done using the svg file with the appropriate software (e.g. Inkscape, Adobe Illustrator, etc.). 
