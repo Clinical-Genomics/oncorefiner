@@ -9,12 +9,12 @@ Content-Type: text/html; charset=utf-8
 $email_html
 
 --nfcoremimeboundary
-Content-Type: image/png;name="nf-core-oncorefiner_logo.png"
+Content-Type: image/svg;name="metro_map_light.svg"
 Content-Transfer-Encoding: base64
 Content-ID: <nfcorepipelinelogo>
-Content-Disposition: inline; filename="nf-core-oncorefiner_logo_light.png"
+Content-Disposition: inline; filename="metro_map_light.svg"
 
-<% out << new File("$projectDir/assets/nf-core-oncorefiner_logo_light.png").
+<% out << new File("$projectDir/docs/images/metro_map_light.svg").
     bytes.
     encodeBase64().
     toString().
