@@ -136,11 +136,6 @@
                     "format": "file-path",
                     "exists": true
                 },
-                "analysis_type": {
-                    "type": "string",
-                    "description": "Analysis type of the case.",
-                    "enum": ["tumor_only", "tumor_normal"]
-                },
                 "cnv_gene_tsv": {
                     "type": "string",
                     "format": "file-path",
