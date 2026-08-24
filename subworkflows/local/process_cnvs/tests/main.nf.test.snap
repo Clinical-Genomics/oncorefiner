@@ -177,62 +177,62 @@
             {
                 "versions": [
                     [
-                        "PROCESS_CNVS:PREPARE_AMBER_COBALT_GENS:PREPARE_AMBER_FOR_GENS",
+                        "PROCESS_CNVS:PREPARE_AMBER_COBALT_FOR_GENS:PREPARE_AMBER_FOR_GENS",
                         "bgzip",
                         "(htslib) 1.23.1"
                     ],
                     [
-                        "PROCESS_CNVS:PREPARE_AMBER_COBALT_GENS:PREPARE_AMBER_FOR_GENS",
+                        "PROCESS_CNVS:PREPARE_AMBER_COBALT_FOR_GENS:PREPARE_AMBER_FOR_GENS",
                         "prepare_amber_for_gens",
                         "prepare_amber_for_gens, version 1.0"
                     ],
                     [
-                        "PROCESS_CNVS:PREPARE_AMBER_COBALT_GENS:PREPARE_AMBER_FOR_GENS",
+                        "PROCESS_CNVS:PREPARE_AMBER_COBALT_FOR_GENS:PREPARE_AMBER_FOR_GENS",
                         "python",
                         "Python 3.14.6"
                     ],
                     [
-                        "PROCESS_CNVS:PREPARE_AMBER_COBALT_GENS:PREPARE_AMBER_FOR_GENS",
+                        "PROCESS_CNVS:PREPARE_AMBER_COBALT_FOR_GENS:PREPARE_AMBER_FOR_GENS",
                         "tabix",
                         "(htslib) 1.23.1"
                     ],
                     [
-                        "PROCESS_CNVS:PREPARE_AMBER_COBALT_GENS:PREPARE_COBALT_FOR_GENS",
+                        "PROCESS_CNVS:PREPARE_AMBER_COBALT_FOR_GENS:PREPARE_COBALT_FOR_GENS",
                         "bgzip",
                         "(htslib) 1.23.1"
                     ],
                     [
-                        "PROCESS_CNVS:PREPARE_AMBER_COBALT_GENS:PREPARE_COBALT_FOR_GENS",
+                        "PROCESS_CNVS:PREPARE_AMBER_COBALT_FOR_GENS:PREPARE_COBALT_FOR_GENS",
                         "bgzip",
                         "(htslib) 1.23.1"
                     ],
                     [
-                        "PROCESS_CNVS:PREPARE_AMBER_COBALT_GENS:PREPARE_COBALT_FOR_GENS",
+                        "PROCESS_CNVS:PREPARE_AMBER_COBALT_FOR_GENS:PREPARE_COBALT_FOR_GENS",
                         "prepare_cobalt_for_gens",
                         "prepare_cobalt_for_gens, version 1.0"
                     ],
                     [
-                        "PROCESS_CNVS:PREPARE_AMBER_COBALT_GENS:PREPARE_COBALT_FOR_GENS",
+                        "PROCESS_CNVS:PREPARE_AMBER_COBALT_FOR_GENS:PREPARE_COBALT_FOR_GENS",
                         "prepare_cobalt_for_gens",
                         "prepare_cobalt_for_gens, version 1.0"
                     ],
                     [
-                        "PROCESS_CNVS:PREPARE_AMBER_COBALT_GENS:PREPARE_COBALT_FOR_GENS",
+                        "PROCESS_CNVS:PREPARE_AMBER_COBALT_FOR_GENS:PREPARE_COBALT_FOR_GENS",
                         "python",
                         "Python 3.14.6"
                     ],
                     [
-                        "PROCESS_CNVS:PREPARE_AMBER_COBALT_GENS:PREPARE_COBALT_FOR_GENS",
+                        "PROCESS_CNVS:PREPARE_AMBER_COBALT_FOR_GENS:PREPARE_COBALT_FOR_GENS",
                         "python",
                         "Python 3.14.6"
                     ],
                     [
-                        "PROCESS_CNVS:PREPARE_AMBER_COBALT_GENS:PREPARE_COBALT_FOR_GENS",
+                        "PROCESS_CNVS:PREPARE_AMBER_COBALT_FOR_GENS:PREPARE_COBALT_FOR_GENS",
                         "tabix",
                         "(htslib) 1.23.1"
                     ],
                     [
-                        "PROCESS_CNVS:PREPARE_AMBER_COBALT_GENS:PREPARE_COBALT_FOR_GENS",
+                        "PROCESS_CNVS:PREPARE_AMBER_COBALT_FOR_GENS:PREPARE_COBALT_FOR_GENS",
                         "tabix",
                         "(htslib) 1.23.1"
                     ],
@@ -427,62 +427,62 @@
             {
                 "versions": [
                     [
-                        "PROCESS_CNVS:PREPARE_AMBER_COBALT_GENS:PREPARE_AMBER_FOR_GENS",
+                        "PROCESS_CNVS:PREPARE_AMBER_COBALT_FOR_GENS:PREPARE_AMBER_FOR_GENS",
                         "bgzip",
                         "(htslib) 1.23.1"
                     ],
                     [
-                        "PROCESS_CNVS:PREPARE_AMBER_COBALT_GENS:PREPARE_AMBER_FOR_GENS",
+                        "PROCESS_CNVS:PREPARE_AMBER_COBALT_FOR_GENS:PREPARE_AMBER_FOR_GENS",
                         "prepare_amber_for_gens",
                         "prepare_amber_for_gens, version 1.0"
                     ],
                     [
-                        "PROCESS_CNVS:PREPARE_AMBER_COBALT_GENS:PREPARE_AMBER_FOR_GENS",
+                        "PROCESS_CNVS:PREPARE_AMBER_COBALT_FOR_GENS:PREPARE_AMBER_FOR_GENS",
                         "python",
                         "Python 3.14.6"
                     ],
                     [
-                        "PROCESS_CNVS:PREPARE_AMBER_COBALT_GENS:PREPARE_AMBER_FOR_GENS",
+                        "PROCESS_CNVS:PREPARE_AMBER_COBALT_FOR_GENS:PREPARE_AMBER_FOR_GENS",
                         "tabix",
                         "(htslib) 1.23.1"
                     ],
                     [
-                        "PROCESS_CNVS:PREPARE_AMBER_COBALT_GENS:PREPARE_COBALT_FOR_GENS",
+                        "PROCESS_CNVS:PREPARE_AMBER_COBALT_FOR_GENS:PREPARE_COBALT_FOR_GENS",
                         "bgzip",
                         "(htslib) 1.23.1"
                     ],
                     [
-                        "PROCESS_CNVS:PREPARE_AMBER_COBALT_GENS:PREPARE_COBALT_FOR_GENS",
+                        "PROCESS_CNVS:PREPARE_AMBER_COBALT_FOR_GENS:PREPARE_COBALT_FOR_GENS",
                         "bgzip",
                         "(htslib) 1.23.1"
                     ],
                     [
-                        "PROCESS_CNVS:PREPARE_AMBER_COBALT_GENS:PREPARE_COBALT_FOR_GENS",
+                        "PROCESS_CNVS:PREPARE_AMBER_COBALT_FOR_GENS:PREPARE_COBALT_FOR_GENS",
                         "prepare_cobalt_for_gens",
                         "prepare_cobalt_for_gens, version 1.0"
                     ],
                     [
-                        "PROCESS_CNVS:PREPARE_AMBER_COBALT_GENS:PREPARE_COBALT_FOR_GENS",
+                        "PROCESS_CNVS:PREPARE_AMBER_COBALT_FOR_GENS:PREPARE_COBALT_FOR_GENS",
                         "prepare_cobalt_for_gens",
                         "prepare_cobalt_for_gens, version 1.0"
                     ],
                     [
-                        "PROCESS_CNVS:PREPARE_AMBER_COBALT_GENS:PREPARE_COBALT_FOR_GENS",
+                        "PROCESS_CNVS:PREPARE_AMBER_COBALT_FOR_GENS:PREPARE_COBALT_FOR_GENS",
                         "python",
                         "Python 3.14.6"
                     ],
                     [
-                        "PROCESS_CNVS:PREPARE_AMBER_COBALT_GENS:PREPARE_COBALT_FOR_GENS",
+                        "PROCESS_CNVS:PREPARE_AMBER_COBALT_FOR_GENS:PREPARE_COBALT_FOR_GENS",
                         "python",
                         "Python 3.14.6"
                     ],
                     [
-                        "PROCESS_CNVS:PREPARE_AMBER_COBALT_GENS:PREPARE_COBALT_FOR_GENS",
+                        "PROCESS_CNVS:PREPARE_AMBER_COBALT_FOR_GENS:PREPARE_COBALT_FOR_GENS",
                         "tabix",
                         "(htslib) 1.23.1"
                     ],
                     [
-                        "PROCESS_CNVS:PREPARE_AMBER_COBALT_GENS:PREPARE_COBALT_FOR_GENS",
+                        "PROCESS_CNVS:PREPARE_AMBER_COBALT_FOR_GENS:PREPARE_COBALT_FOR_GENS",
                         "tabix",
                         "(htslib) 1.23.1"
                     ],

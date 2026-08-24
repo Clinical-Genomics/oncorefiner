@@ -1,12 +1,12 @@
 nextflow_workflow {
 
-    name "Test subworkflow PREPARE_AMBER_COBALT_GENS"
+    name "Test subworkflow PREPARE_AMBER_COBALT_FOR_GENS"
     script "../main.nf"
-    workflow "PREPARE_AMBER_COBALT_GENS"
+    workflow "PREPARE_AMBER_COBALT_FOR_GENS"
     config "./nextflow.config"
     tag "subworkflows"
     tag "subworkflows_local"
-    tag "prepare_amber_cobalt_gens"
+    tag "prepare_amber_cobalt_for_gens"
 
     topics "versions"
 

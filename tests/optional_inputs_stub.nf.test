@@ -96,7 +96,7 @@ nextflow_pipeline {
         }
     }
 
-    test("No PREPARE_AMBER_COBALT_GENS support with '-profile test' - stub") {
+    test("No PREPARE_AMBER_COBALT_FOR_GENS support with '-profile test' - stub") {
 
         options "-stub"
 

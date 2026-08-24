@@ -25,7 +25,7 @@
      workflows use the "tube map" design for that. See https://nf-co.re/docs/community/brand/workflow-schematics#examples for examples.   -->
 
 1. Process CNV
-   1. Prepare files from Oncoanalysers [`AMBER`](https://github.com/hartwigmedical/hmftools/tree/master/amber) and [`COBALT`](https://github.com/hartwigmedical/hmftools/tree/master/cobalt) for visualization using GENS using cutom scripts `PREPARE_AMBER_FOR_GENS` and `PREPARE_COBALT_FOR_GENS` which is wrapped in the subworkflow `PREPARE_AMBER_COBALT_GENS`.
+   1. Prepare files from Oncoanalysers [`AMBER`](https://github.com/hartwigmedical/hmftools/tree/master/amber) and [`COBALT`](https://github.com/hartwigmedical/hmftools/tree/master/cobalt) for visualization using GENS using cutom scripts `PREPARE_AMBER_FOR_GENS` and `PREPARE_COBALT_FOR_GENS` which is wrapped in the subworkflow `PREPARE_AMBER_COBALT_FOR_GENS`.
 
 1. Process SNV VCF files
    1. Annotate with [`Vcfanno`](https://github.com/brentp/vcfanno). Intended for local/custom annotation.

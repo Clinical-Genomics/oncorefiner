@@ -12,16 +12,16 @@ include { PREPARE_COBALT_FOR_GENS } from '../../../modules/local/prepare_cobalt_
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    RUN PREPARE_AMBER_COBALT_GENS WORKFLOW
+    RUN PREPARE_AMBER_COBALT_FOR_GENS WORKFLOW
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
-workflow PREPARE_AMBER_COBALT_GENS {
+workflow PREPARE_AMBER_COBALT_FOR_GENS {
 
     take:
     ch_amber_baf_tsv     // channel: [required]  [val(meta), path(tsv)]
-    ch_cobalt_pcf_normal // channel: [required]  [val(meta), path(cobalt_pcf_normal)]
-    ch_cobalt_pcf_tumor  // channel: [required]  [val(meta), path(cobalt_pcf_tumor)]
+    ch_cobalt_pcf_normal // channel: [required]  [val(meta), path(pcf)]
+    ch_cobalt_pcf_tumor  // channel: [required]  [val(meta), path(pcf)]
     val_analysis_type    // string:  [required]  analysis type, e.g. "tumor_only" or "tumor_normal"
 
     main:
@@ -31,8 +31,7 @@ workflow PREPARE_AMBER_COBALT_GENS {
         val_analysis_type
     )
 
-    def ch_prepare_cobalt_for_gens_in = channel.empty().mix(
-        ch_cobalt_pcf_normal,
+    def ch_prepare_cobalt_for_gens_in = ch_cobalt_pcf_normal.mix(
         ch_cobalt_pcf_tumor
     )
 

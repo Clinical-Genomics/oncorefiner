@@ -30,7 +30,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#69](https://github.com/Clinical-Genomics/oncorefiner/pull/69) Added `tumor_only` config file, profile and pipeline test and snapshot.
 - [#101](https://github.com/Clinical-Genomics/oncorefiner/pull/101) Added parameters for arguments in processes `PROCESS_SNVS:BCFTOOLS_VIEW_*`, `PROCESS_*:ENSEMBLVEP_VEP` and `ANNOTATE_CADD:BCFTOOLS_ANNOTATE_INDELS`.
 - [#111](https://github.com/Clinical-Genomics/oncorefiner/pull/111) Added hidden `genome_version_number` parameter, parsed by default from `params.genome`.
-- [#112](https://github.com/Clinical-Genomics/oncorefiner/pull/112) Added parameters `amber_baf_tsv_gz`, `cobalt_ratio_pcf_tumor`, `cobalt_ratio_pcf_normal` and `analysis_type` needed for PREPARE_AMBER_COBALT_GENS subworkflow and populated them in the test dataset.
+- [#112](https://github.com/Clinical-Genomics/oncorefiner/pull/112) Added parameters `amber_baf_tsv_gz`, `cobalt_ratio_pcf_tumor`, `cobalt_ratio_pcf_normal` and `analysis_type` needed for PREPARE_AMBER_COBALT_FOR_GENS subworkflow and populated them in the test dataset.
 - [#117](https://github.com/Clinical-Genomics/oncorefiner/pull/117) Added stub version for all pipeline and local subworkflow tests.
 - [#133](https://github.com/Clinical-Genomics/oncorefiner/pull/133) Added pipeline stub test without `vep_plugin_files` parameter.
 - [#137](https://github.com/Clinical-Genomics/oncorefiner/pull/137) Added nf-schema validation to VEP database inputs (`vep_plugin_files`) and support for TSV, JSON and YAML file formats in addition to CSV.
@@ -55,7 +55,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#147](https://github.com/Clinical-Genomics/oncorefiner/pull/147) Added the subworkflow `PROCESS_CNVS` along with subworkflow test.
 - [#122](https://github.com/Clinical-Genomics/oncorefiner/pull/122) Added local module `prepare_cobalt_for_gens` using python script in `/bin`, along with tests.
 - [#120](https://github.com/Clinical-Genomics/oncorefiner/pull/120) Added local module `PREPARE_AMBER_FOR_GENS`, using script in `/bin`, along with tests.
-- [#158](https://github.com/Clinical-Genomics/oncorefiner/pull/158) Added the local subworkflow `PREPARE_AMBER_COBALT_GENS` to `PROCESS_CNVS`.
+- [#158](https://github.com/Clinical-Genomics/oncorefiner/pull/158) Added the local subworkflow `PREPARE_AMBER_COBALT_FOR_GENS` to `PROCESS_CNVS`.
 
 ### `Changed`
 
@@ -145,7 +145,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#131](https://github.com/Clinical-Genomics/oncorefiner/pull/131) Fixed strict Nextflow syntax compatibility in `ANNOTATE_CADD`
 - [#137](https://github.com/Clinical-Genomics/oncorefiner/pull/134) Fixed VEP able to run without `vep_plugin_files` parameter.
 - [#135](https://github.com/Clinical-Genomics/oncorefiner/pull/135) Fixed test for `GENERATE_CYTOSURE_FILES` so that it states the necessary parameters for the test, uses configurations from the test config and is independent from pipeline wide configuration.
-- [#156](https://github.com/Clinical-Genomics/oncorefiner/pull/156) Update `pipelines_testdata_base_path` to reflect the latest commit to `Clinical-Genomics/test-datasets/` with addions of AMBER and COBALT files needed for PREPARE_AMBER_COBALT_GENS subworkflow.
+- [#156](https://github.com/Clinical-Genomics/oncorefiner/pull/156) Update `pipelines_testdata_base_path` to reflect the latest commit to `Clinical-Genomics/test-datasets/` with addions of AMBER and COBALT files needed for PREPARE_AMBER_COBALT_FOR_GENS subworkflow.
 - [#162](https://github.com/Clinical-Genomics/oncorefiner/pull/162) Updated pipeline test snapshot following update of VEP arguments in #84.
 - [#93](https://github.com/Clinical-Genomics/oncorefiner/pull/93) Refactored the publishing strategy for `GENERATE_CYTOSURE_FILES` and `PROCESS_SVS` to use output blocks.
 - [#169](https://github.com/Clinical-Genomics/oncorefiner/pull/169/) Populated the `ch_bam_bai_normal` in `PROCESS_SVS` tumor-normal test and updated the meta structure of the two bam channels, which also updated the naming of the .cgh file.

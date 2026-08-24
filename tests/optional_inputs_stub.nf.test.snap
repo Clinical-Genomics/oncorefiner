@@ -1,5 +1,5 @@
 {
-    "No PREPARE_AMBER_COBALT_GENS support with '-profile test' - stub": {
+    "No PREPARE_AMBER_COBALT_FOR_GENS support with '-profile test' - stub": {
         "content": [
             {
                 "ANNOTATE_VCF_BY_ID": {
