@@ -151,7 +151,7 @@ workflow PROCESS_SVS {
     // VCF2CYTOSURE
     ch_bam_bai = channel.empty().mix(ch_bam_bai_tumor, ch_bam_bai_normal)
     ch_vcf2cytosure_in = ch_bam_bai.combine(
-        BCFTOOLS_VIEW_CLINICAL.out.vcf.join(BCFTOOLS_VIEW_CLINICAL.out.tbi, failOnMismatch: true),
+        BCFTOOLS_VIEW_RESEARCH.out.vcf.join(BCFTOOLS_VIEW_RESEARCH.out.tbi, failOnMismatch: true),
         )
         .multiMap { meta_bam_bai, bam, bai, meta_vcf, vcf, tbi ->
             bam_bai: tuple(meta_bam_bai, bam, bai)
