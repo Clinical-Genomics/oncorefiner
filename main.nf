@@ -140,12 +140,6 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     def ch_cadd_resources        = channelFromMetaAndPath(metadata_case_file, val_cadd_resources)
     def ch_cadd_prescored_indels = channelFromMetaAndPath(metadata_case_file, val_cadd_prescored_indels)
 
-    // Input for PREPARE_AMBER_COBALT_FOR_GENS subworkflow
-    ch_amber_baf_tsv_gz        = channelFromMetaAndPath(metadata_case_file, val_amber_baf_tsv_gz)
-    ch_cobalt_ratio_pcf_tumor  = channelFromMetaAndPath(metadata_tumor_sample_file, val_cobalt_ratio_pcf_tumor)
-    ch_cobalt_ratio_pcf_normal = channelFromMetaAndPath(metadata_normal_sample_file, val_cobalt_ratio_pcf_normal)
-    val_analysis_type = (val_cobalt_ratio_pcf_tumor && val_cobalt_ratio_pcf_normal) ? 'tumor_normal' : 'tumor_only'
-
     // Input for VEP
     ch_vep_extra_files = val_vep_plugin_files ? channel.fromList(samplesheetToList(val_vep_plugin_files, 'assets/vep_plugin_files_schema.json')).collect()
                                               : channel.value([])
@@ -167,6 +161,12 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     // Input for CNV report
     ch_cnv_gene_tsv      = channelFromMetaAndPath(metadata_case_file, val_cnv_gene_tsv)
     ch_cnv_segment_tsv   = channelFromMetaAndPath(metadata_case_file, val_cnv_segment_tsv)
+
+    // Input for PREPARE_AMBER_COBALT_FOR_GENS subworkflow
+    ch_amber_baf_tsv_gz        = channelFromMetaAndPath(metadata_case_file, val_amber_baf_tsv_gz)
+    ch_cobalt_ratio_pcf_tumor  = channelFromMetaAndPath(metadata_tumor_sample_file, val_cobalt_ratio_pcf_tumor)
+    ch_cobalt_ratio_pcf_normal = channelFromMetaAndPath(metadata_normal_sample_file, val_cobalt_ratio_pcf_normal)
+    val_analysis_type = (val_cobalt_ratio_pcf_tumor && val_cobalt_ratio_pcf_normal) ? 'tumor_normal' : 'tumor_only'
 
     // Input for genmod_score
     if (val_genmod_score_config_snv) {
