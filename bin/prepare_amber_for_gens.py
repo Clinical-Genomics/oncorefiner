@@ -68,7 +68,7 @@ def write_baf_file(
 )
 @click.option(
     "--output-file-prefix",
-    default="*_baf_zoom.tsv",
+    default="*.bed",
     show_default=True,
     help="Output file prefix for BAF",
 )
@@ -99,19 +99,19 @@ def main(
     write_baf_file(
         df=df,
         baf_column="tumorBAF",
-        output_path=f"{output_file_prefix}.tumor.baf.zoom.tsv",
+        output_path=f"{output_file_prefix}.tumor.bed",
         levels=DEFAULT_LEVELS,
     )
-    click.echo(f"Wrote tumor output: {output_file_prefix}.tumor.baf.zoom.tsv")
+    click.echo(f"Wrote tumor output: {output_file_prefix}.tumor.bed")
 
     if "normal" in analysis_type:
         write_baf_file(
             df=df,
             baf_column="normalBAF",
-            output_path=f"{output_file_prefix}.normal.baf.zoom.tsv",
+            output_path=f"{output_file_prefix}.normal.bed",
             levels=DEFAULT_LEVELS,
         )
-        click.echo(f"Wrote normal output: {output_file_prefix}.normal.baf.zoom.tsv")
+        click.echo(f"Wrote normal output: {output_file_prefix}.normal.bed")
 
     click.echo(f"prepare_amber_for_gens {__version__}")
 

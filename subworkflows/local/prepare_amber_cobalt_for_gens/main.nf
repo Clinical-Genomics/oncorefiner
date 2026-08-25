@@ -40,11 +40,11 @@ workflow PREPARE_AMBER_COBALT_FOR_GENS {
     )
 
     emit:
-    gens_baf_normal_tsv = PREPARE_AMBER_FOR_GENS.out.normal_tsv // channel: [val(meta), path(tsv.gz)]
+    gens_baf_normal_bed = PREPARE_AMBER_FOR_GENS.out.normal_bed // channel: [val(meta), path(tsv)]
     gens_baf_normal_tbi = PREPARE_AMBER_FOR_GENS.out.normal_tbi // channel: [val(meta), path(tbi)]
-    gens_baf_tumor_tsv  = PREPARE_AMBER_FOR_GENS.out.tumor_tsv  // channel: [val(meta), path(tsv.gz)]
+    gens_baf_tumor_bed  = PREPARE_AMBER_FOR_GENS.out.tumor_bed  // channel: [val(meta), path(tsv)]
     gens_baf_tumor_tbi  = PREPARE_AMBER_FOR_GENS.out.tumor_tbi  // channel: [val(meta), path(tbi)]
-    gens_cov_bed        = PREPARE_COBALT_FOR_GENS.out.bed       // channel: [val(meta), path(bed.gz)]
+    gens_cov_bed        = PREPARE_COBALT_FOR_GENS.out.bed       // channel: [val(meta), path(bed)]
     gens_cov_bed_tbi    = PREPARE_COBALT_FOR_GENS.out.tbi       // channel: [val(meta), path(tbi)]
 
 }

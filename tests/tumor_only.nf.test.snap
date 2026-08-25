@@ -70,8 +70,8 @@
                 "alignments/subject_a_tumor.cram",
                 "alignments/subject_a_tumor.cram.crai",
                 "cnv",
-                "cnv/test_tumor_only_case_CNV_BAF_GENS.tumor.baf.zoom.tsv.gz",
-                "cnv/test_tumor_only_case_CNV_BAF_GENS.tumor.baf.zoom.tsv.gz.tbi",
+                "cnv/test_tumor_only_case_CNV_BAF_GENS.tumor.bed.gz",
+                "cnv/test_tumor_only_case_CNV_BAF_GENS.tumor.bed.gz.tbi",
                 "cnv/test_tumor_only_case_cnv_report.html",
                 "cnv/test_tumor_sample_tumor_CNV_COV_GENS.bed.gz",
                 "cnv/test_tumor_sample_tumor_CNV_COV_GENS.bed.gz.tbi",
@@ -109,8 +109,8 @@
                 "sv/tumor.cgh"
             ],
             [
-                "test_tumor_only_case_CNV_BAF_GENS.tumor.baf.zoom.tsv.gz:md5,ccb0b5ad7111f53c6d660e608af438ce",
-                "test_tumor_only_case_CNV_BAF_GENS.tumor.baf.zoom.tsv.gz.tbi:md5,6928f740f2cd8914f6d9b10607b184ea",
+                "test_tumor_only_case_CNV_BAF_GENS.tumor.bed.gz:md5,ccb0b5ad7111f53c6d660e608af438ce",
+                "test_tumor_only_case_CNV_BAF_GENS.tumor.bed.gz.tbi:md5,6928f740f2cd8914f6d9b10607b184ea",
                 "test_tumor_sample_tumor_CNV_COV_GENS.bed.gz:md5,1a22ba6f7f24087f1c7fbb51c73a3b9d",
                 "test_tumor_sample_tumor_CNV_COV_GENS.bed.gz.tbi:md5,643aa1682219825f40e1071ad684c1ee",
                 "tumor.cgh:md5,22c058183d93a767ee61d5319513dc39"
@@ -176,7 +176,7 @@
                 ]
             ]
         ],
-        "timestamp": "2026-08-24T14:52:24.52179",
+        "timestamp": "2026-08-25T14:38:56.988436",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
@@ -253,8 +253,8 @@
                 "alignments/subject_a_tumor.cram",
                 "alignments/subject_a_tumor.cram.crai",
                 "cnv",
-                "cnv/test_tumor_only_case_CNV_BAF_GENS.tumor.baf.zoom.tsv.gz",
-                "cnv/test_tumor_only_case_CNV_BAF_GENS.tumor.baf.zoom.tsv.gz.tbi",
+                "cnv/test_tumor_only_case_CNV_BAF_GENS.tumor.bed.gz",
+                "cnv/test_tumor_only_case_CNV_BAF_GENS.tumor.bed.gz.tbi",
                 "cnv/test_tumor_only_case_cnv_report.html",
                 "cnv/test_tumor_sample_tumor_CNV_COV_GENS.bed.gz",
                 "cnv/test_tumor_sample_tumor_CNV_COV_GENS.bed.gz.tbi",
@@ -288,7 +288,7 @@
                 "sv/tumor.cgh"
             ]
         ],
-        "timestamp": "2026-08-24T14:53:11.142978",
+        "timestamp": "2026-08-25T14:39:51.432615",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"

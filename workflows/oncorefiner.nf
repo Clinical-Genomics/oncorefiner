@@ -179,9 +179,9 @@ workflow ONCOREFINER {
     emit:
     cadd_annotated_vcf        = PROCESS_SNVS.out.cadd_annotated_vcf                           // channel: [val(meta), path(vcf)]
     cadd_annotated_tbi        = PROCESS_SNVS.out.cadd_annotated_tbi                           // channel: [val(meta), path(tbi)]
-    cnv_baf_normal_tsv        = PROCESS_CNVS.out.gens_baf_normal_tsv                          // channel: [val(meta), path(tsv.gz)]
+    cnv_baf_normal_bed        = PROCESS_CNVS.out.gens_baf_normal_bed                          // channel: [val(meta), path(tsv.gz)]
     cnv_baf_normal_tbi        = PROCESS_CNVS.out.gens_baf_normal_tbi                          // channel: [val(meta), path(tsv.gz.tbi)]
-    cnv_baf_tumor_tsv         = PROCESS_CNVS.out.gens_baf_tumor_tsv                           // channel: [val(meta), path(tsv.gz)]
+    cnv_baf_tumor_bed         = PROCESS_CNVS.out.gens_baf_tumor_bed                           // channel: [val(meta), path(tsv.gz)]
     cnv_baf_tumor_tbi         = PROCESS_CNVS.out.gens_baf_tumor_tbi                           // channel: [val(meta), path(tsv.gz.tbi)]
     cnv_cov_bed               = PROCESS_CNVS.out.gens_cov_bed                                 // channel: [val(meta), path(bed.gz)]
     cnv_cov_bed_tbi           = PROCESS_CNVS.out.gens_cov_bed_tbi                             // channel: [val(meta), path(bed.gz.tbi)]

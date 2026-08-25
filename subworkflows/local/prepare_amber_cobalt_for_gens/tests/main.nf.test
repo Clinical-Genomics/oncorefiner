@@ -38,8 +38,8 @@ nextflow_workflow {
             assert workflow.success
             assertAll(
                 { assert snapshot(
-                    workflow.out.gens_baf_normal_tsv,
-                    workflow.out.gens_baf_tumor_tsv,
+                    workflow.out.gens_baf_normal_bed,
+                    workflow.out.gens_baf_tumor_bed,
                     workflow.out.gens_cov_bed,
                     // Only snapshot name as md5sum will change due to virtual offset compression.
                     workflow.out.gens_baf_normal_tbi.collect { meta, tbi -> [meta, file(tbi).name ]},
@@ -110,8 +110,8 @@ nextflow_workflow {
             assert workflow.success
             assertAll(
                 { assert snapshot(
-                    workflow.out.gens_baf_normal_tsv,
-                    workflow.out.gens_baf_tumor_tsv,
+                    workflow.out.gens_baf_normal_bed,
+                    workflow.out.gens_baf_tumor_bed,
                     workflow.out.gens_cov_bed,
                     // Only snapshot name as md5sum will change due to virtual offset compression.
                     workflow.out.gens_baf_normal_tbi.collect { meta, tbi -> [meta, file(tbi).name ]},

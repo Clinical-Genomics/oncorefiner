@@ -13,10 +13,10 @@ process PREPARE_AMBER_FOR_GENS {
     val(analysis_type)
 
     output:
-    tuple val(meta), path("*tumor.baf.zoom.tsv.gz"), emit: tumor_tsv
-    tuple val(meta), path("*normal.baf.zoom.tsv.gz"), emit: normal_tsv, optional: true
-    tuple val(meta), path("*tumor.baf.zoom.tsv.gz.tbi"), emit: tumor_tbi
-    tuple val(meta), path("*normal.baf.zoom.tsv.gz.tbi"), emit: normal_tbi, optional: true
+    tuple val(meta), path("*tumor.bed.gz"),  emit: tumor_bed
+    tuple val(meta), path("*tumor.bed.gz.tbi"), emit: tumor_tbi
+    tuple val(meta), path("*normal.bed.gz"),  emit: normal_bed, optional: true
+    tuple val(meta), path("*normal.bed.gz.tbi"), emit: normal_tbi, optional: true
     tuple val("${task.process}"), val('python'), eval("python --version | sed '1!d; s/^.*python //'"), topic: versions, emit: versions_python
     tuple val("${task.process}"), val('bgzip'), eval("bgzip --version | sed '1!d; s/^.*bgzip //'"), topic: versions, emit: versions_bgzip
     tuple val("${task.process}"), val('tabix'), eval("tabix --version | sed '1!d; s/^.*tabix //'"), topic: versions, emit: versions_tabix
@@ -31,7 +31,7 @@ process PREPARE_AMBER_FOR_GENS {
         --analysis-type ${analysis_type} \\
         --output-file-prefix ${prefix}
 
-    for f in *.baf.zoom.tsv; do
+    for f in *.bed; do
         if [[ -s "\$f" ]]; then
             bgzip -f "\$f"
             tabix -f -s 1 -b 2 -e 3 "\$f.gz"
@@ -43,10 +43,10 @@ process PREPARE_AMBER_FOR_GENS {
     prefix = task.ext.prefix ?: "${meta.id}"
     """
     if [[ $analysis_type == *normal* ]]; then
-        echo | gzip > ${prefix}.normal.baf.zoom.tsv.gz
-        touch ${prefix}.normal.baf.zoom.tsv.gz.tbi
+        echo | gzip > ${prefix}.normal.bed.gz
+        touch ${prefix}.normal.bed.gz.tbi
     fi
-    echo | gzip > ${prefix}.tumor.baf.zoom.tsv.gz
-    touch ${prefix}.tumor.baf.zoom.tsv.gz.tbi
+    echo | gzip > ${prefix}.tumor.bed.gz
+    touch ${prefix}.tumor.bed.gz.tbi
     """
 }

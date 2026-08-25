@@ -2,11 +2,20 @@
     "with tumor-only data - stub": {
         "content": [
             {
+                "gens_baf_normal_bed": [
+                    
+                ],
                 "gens_baf_normal_tbi": [
                     
                 ],
-                "gens_baf_normal_tsv": [
-                    
+                "gens_baf_tumor_bed": [
+                    [
+                        {
+                            "id": "test_tumor_only_case",
+                            "case_id": "test_tumor_only_case"
+                        },
+                        "test_tumor_only_case_CNV_BAF_GENS.tumor.bed.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                    ]
                 ],
                 "gens_baf_tumor_tbi": [
                     [
@@ -14,16 +23,7 @@
                             "id": "test_tumor_only_case",
                             "case_id": "test_tumor_only_case"
                         },
-                        "test_tumor_only_case_CNV_BAF_GENS.tumor.baf.zoom.tsv.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ]
-                ],
-                "gens_baf_tumor_tsv": [
-                    [
-                        {
-                            "id": "test_tumor_only_case",
-                            "case_id": "test_tumor_only_case"
-                        },
-                        "test_tumor_only_case_CNV_BAF_GENS.tumor.baf.zoom.tsv.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                        "test_tumor_only_case_CNV_BAF_GENS.tumor.bed.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "gens_cov_bed": [
@@ -52,7 +52,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-08-21T10:56:51.800696",
+        "timestamp": "2026-08-25T14:17:28.727586",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
@@ -66,7 +66,7 @@
                         "id": "test_tumor_normal_case",
                         "case_id": "test_tumor_normal_case"
                     },
-                    "test_tumor_normal_case_CNV_BAF_GENS.normal.baf.zoom.tsv.gz:md5,cb7c9d7281611c8e7138ded59a681412"
+                    "test_tumor_normal_case_CNV_BAF_GENS.normal.bed.gz:md5,cb7c9d7281611c8e7138ded59a681412"
                 ]
             ],
             [
@@ -75,7 +75,7 @@
                         "id": "test_tumor_normal_case",
                         "case_id": "test_tumor_normal_case"
                     },
-                    "test_tumor_normal_case_CNV_BAF_GENS.tumor.baf.zoom.tsv.gz:md5,87317df569141e8908d318197fc075af"
+                    "test_tumor_normal_case_CNV_BAF_GENS.tumor.bed.gz:md5,87317df569141e8908d318197fc075af"
                 ]
             ],
             [
@@ -106,7 +106,7 @@
                         "id": "test_tumor_normal_case",
                         "case_id": "test_tumor_normal_case"
                     },
-                    "test_tumor_normal_case_CNV_BAF_GENS.normal.baf.zoom.tsv.gz.tbi"
+                    "test_tumor_normal_case_CNV_BAF_GENS.normal.bed.gz.tbi"
                 ]
             ],
             [
@@ -115,7 +115,7 @@
                         "id": "test_tumor_normal_case",
                         "case_id": "test_tumor_normal_case"
                     },
-                    "test_tumor_normal_case_CNV_BAF_GENS.tumor.baf.zoom.tsv.gz.tbi"
+                    "test_tumor_normal_case_CNV_BAF_GENS.tumor.bed.gz.tbi"
                 ]
             ],
             [
@@ -205,7 +205,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-08-21T10:56:23.245502",
+        "timestamp": "2026-08-25T14:17:01.739144",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
@@ -214,22 +214,31 @@
     "with tumor-normal data - stub": {
         "content": [
             {
+                "gens_baf_normal_bed": [
+                    [
+                        {
+                            "id": "test_tumor_normal_case",
+                            "case_id": "test_tumor_normal_case"
+                        },
+                        "test_tumor_normal_case_CNV_BAF_GENS.normal.bed.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                    ]
+                ],
                 "gens_baf_normal_tbi": [
                     [
                         {
                             "id": "test_tumor_normal_case",
                             "case_id": "test_tumor_normal_case"
                         },
-                        "test_tumor_normal_case_CNV_BAF_GENS.normal.baf.zoom.tsv.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test_tumor_normal_case_CNV_BAF_GENS.normal.bed.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
-                "gens_baf_normal_tsv": [
+                "gens_baf_tumor_bed": [
                     [
                         {
                             "id": "test_tumor_normal_case",
                             "case_id": "test_tumor_normal_case"
                         },
-                        "test_tumor_normal_case_CNV_BAF_GENS.normal.baf.zoom.tsv.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                        "test_tumor_normal_case_CNV_BAF_GENS.tumor.bed.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
                     ]
                 ],
                 "gens_baf_tumor_tbi": [
@@ -238,16 +247,7 @@
                             "id": "test_tumor_normal_case",
                             "case_id": "test_tumor_normal_case"
                         },
-                        "test_tumor_normal_case_CNV_BAF_GENS.tumor.baf.zoom.tsv.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ]
-                ],
-                "gens_baf_tumor_tsv": [
-                    [
-                        {
-                            "id": "test_tumor_normal_case",
-                            "case_id": "test_tumor_normal_case"
-                        },
-                        "test_tumor_normal_case_CNV_BAF_GENS.tumor.baf.zoom.tsv.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                        "test_tumor_normal_case_CNV_BAF_GENS.tumor.bed.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "gens_cov_bed": [
@@ -296,7 +296,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-08-21T10:56:30.126352",
+        "timestamp": "2026-08-25T14:17:08.35522",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
@@ -313,7 +313,7 @@
                         "id": "test_tumor_only_case",
                         "case_id": "test_tumor_only_case"
                     },
-                    "test_tumor_only_case_CNV_BAF_GENS.tumor.baf.zoom.tsv.gz:md5,ccb0b5ad7111f53c6d660e608af438ce"
+                    "test_tumor_only_case_CNV_BAF_GENS.tumor.bed.gz:md5,ccb0b5ad7111f53c6d660e608af438ce"
                 ]
             ],
             [
@@ -337,7 +337,7 @@
                         "id": "test_tumor_only_case",
                         "case_id": "test_tumor_only_case"
                     },
-                    "test_tumor_only_case_CNV_BAF_GENS.tumor.baf.zoom.tsv.gz.tbi"
+                    "test_tumor_only_case_CNV_BAF_GENS.tumor.bed.gz.tbi"
                 ]
             ],
             [
@@ -397,7 +397,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-08-21T10:56:45.879311",
+        "timestamp": "2026-08-25T14:17:22.689278",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"

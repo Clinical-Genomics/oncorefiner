@@ -25,19 +25,15 @@ nextflow_process {
         }
 
         then {
-            def output_tsv = process.out.findAll { key, value -> key.endsWith('_tsv')}
-                .collectMany { key, value -> value}
-
-            // All output tbi files
-            def output_tbis = process.out.findAll { key, value -> key.endsWith('_tbi')}
-                .collectMany { key, value -> value}
 
             assert process.success
             assertAll(
                 { assert snapshot(
-                        output_tsv,
-                        output_tbis.collect { meta, tbi -> [meta, file(tbi).name ]},
-                        topics
+                    process.out.tumor_bed,
+                    process.out.tumor_tbi.collect { meta, tbi -> [meta, file(tbi).name ]},
+                    process.out.normal_bed,
+                    process.out.normal_tbi.collect { meta, tbi -> [meta, file(tbi).name ]},
+                    topics
                 ).match() }
             )
         }
@@ -64,7 +60,7 @@ nextflow_process {
             assert process.success
             assertAll(
                 { assert snapshot(
-                    process.out,
+                    sanitizeOutput(process.out),
                 ).match() }
             )
         }
@@ -86,18 +82,14 @@ nextflow_process {
         }
 
         then {
-            def output_tsv = process.out.findAll { key, value -> key.endsWith('_tsv')}
-                .collectMany { key, value -> value}
-
-            // All output tbi files
-            def output_tbis = process.out.findAll { key, value -> key.endsWith('_tbi')}
-                .collectMany { key, value -> value}
 
             assert process.success
             assertAll(
                 { assert snapshot(
-                    output_tsv,
-                    output_tbis.collect { meta, tbi -> [meta, file(tbi).name ]},
+                    process.out.tumor_bed,
+                    process.out.tumor_tbi.collect { meta, tbi -> [meta, file(tbi).name ]},
+                    process.out.normal_bed,
+                    process.out.normal_tbi.collect { meta, tbi -> [meta, file(tbi).name ]},
                     topics
                 ).match() }
             )
@@ -125,7 +117,7 @@ nextflow_process {
             assert process.success
             assertAll(
                 { assert snapshot(
-                    process.out,
+                    sanitizeOutput(process.out),
                 ).match() }
             )
         }

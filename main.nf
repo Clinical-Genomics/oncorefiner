@@ -243,9 +243,9 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     emit:
     cadd_annotated_vcf        = ONCOREFINER.out.cadd_annotated_vcf        // channel: [val(meta), path(vcf)]
     cadd_annotated_tbi        = ONCOREFINER.out.cadd_annotated_tbi        // channel: [val(meta), path(tbi)]
-    cnv_baf_normal_tsv        = ONCOREFINER.out.cnv_baf_normal_tsv        // channel: [val(meta), path(tsv.gz)]
+    cnv_baf_normal_bed        = ONCOREFINER.out.cnv_baf_normal_bed        // channel: [val(meta), path(tsv.gz)]
     cnv_baf_normal_tbi        = ONCOREFINER.out.cnv_baf_normal_tbi        // channel: [val(meta), path(tsv.gz.tbi)]
-    cnv_baf_tumor_tsv         = ONCOREFINER.out.cnv_baf_tumor_tsv         // channel: [val(meta), path(tsv.gz)]
+    cnv_baf_tumor_bed         = ONCOREFINER.out.cnv_baf_tumor_bed         // channel: [val(meta), path(tsv.gz)]
     cnv_baf_tumor_tbi         = ONCOREFINER.out.cnv_baf_tumor_tbi         // channel: [val(meta), path(tsv.gz.tbi)]
     cnv_cov_bed               = ONCOREFINER.out.cnv_cov_bed               // channel: [val(meta), path(bed.gz)]
     cnv_cov_bed_tbi           = ONCOREFINER.out.cnv_cov_bed_tbi           // channel: [val(meta), path(bed.gz.tbi)]
@@ -358,9 +358,9 @@ workflow {
     ch_alignments_publish = CLINICALGENOMICS_ONCOREFINER.out.cram
         .mix(CLINICALGENOMICS_ONCOREFINER.out.crai)
 
-    ch_cnv_publish = CLINICALGENOMICS_ONCOREFINER.out.cnv_baf_normal_tsv
+    ch_cnv_publish = CLINICALGENOMICS_ONCOREFINER.out.cnv_baf_normal_bed
         .mix(CLINICALGENOMICS_ONCOREFINER.out.cnv_baf_normal_tbi)
-        .mix(CLINICALGENOMICS_ONCOREFINER.out.cnv_baf_tumor_tsv)
+        .mix(CLINICALGENOMICS_ONCOREFINER.out.cnv_baf_tumor_bed)
         .mix(CLINICALGENOMICS_ONCOREFINER.out.cnv_baf_tumor_tbi)
         .mix(CLINICALGENOMICS_ONCOREFINER.out.cnv_cov_bed)
         .mix(CLINICALGENOMICS_ONCOREFINER.out.cnv_cov_bed_tbi)
