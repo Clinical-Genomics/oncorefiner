@@ -497,5 +497,10 @@
         {
             "$ref": "#/$defs/generic_options"
         }
-    ]
+    ],
+    "properties": {
+        "sv_vcf_tbi": {
+            "type": "string"
+        }
+    }
 }
