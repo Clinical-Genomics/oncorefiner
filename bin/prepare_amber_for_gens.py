@@ -3,7 +3,7 @@
 import click
 import pandas as pd
 
-### tumor and normal baf take tumor/normal parameter to know which file to check.
+### tumor and normal baf takes the analysis_type parameter to know if normal analysis is needed.
 
 __version__ = "1.0"
 
@@ -15,18 +15,26 @@ DEFAULT_LEVELS = {
     "d": 1,
 }
 
-
+# Updating chromosome names to be compatible with GENS. For example, chr1 becomes o_1, chrX becomes o_X, etc.
 def chrom_to_output_name(chromosome: str, level: str) -> str:
     chrom = str(chromosome).replace("chr", "")
     return f"{level}_{chrom}"
 
-
-def write_baf_file(
+# Generate a BAF file for GENS from the input DataFrame, converting to the specified levels.
+def generate_baf_file_for_gens(
     df: pd.DataFrame,
     baf_column: str,
     output_path: str,
     levels: dict,
 ) -> None:
+    """
+    Generate a BAF file for GENS from the input DataFrame, converting to the specified levels.
+
+    The input DataFrame is expected to have the following columns:
+    - chromosome: chromosome name
+    - position: genomic position
+    - baf_column: BAF value column specified by the baf_column parameter (ex normalBAF or tumorBAF)
+    """
     rows = []
 
     for level, step in levels.items():
@@ -96,7 +104,7 @@ def main(
             f"Missing required columns: {', '.join(sorted(missing))}"
         )
 
-    write_baf_file(
+    generate_baf_file_for_gens(
         df=df,
         baf_column="tumorBAF",
         output_path=f"{output_file_prefix}.tumor.bed",
@@ -105,7 +113,7 @@ def main(
     click.echo(f"Wrote tumor output: {output_file_prefix}.tumor.bed")
 
     if "normal" in analysis_type:
-        write_baf_file(
+        generate_baf_file_for_gens(
             df=df,
             baf_column="normalBAF",
             output_path=f"{output_file_prefix}.normal.bed",

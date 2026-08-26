@@ -22,10 +22,11 @@ def chrom_to_output_name(chromosome: str, level: str) -> str:
 
 def segment_to_points(start: int, end: int, spacing: int) -> list[int]:
     """
-    Split a segment into chunks of approximately `spacing` bp
+    Split a segment into new segments (chunks) based on the level from the DEFAULT_SPACING dictionary,
     and return the midpoint of each chunk.
 
     Always returns at least one point.
+
     """
     length = end - start + 1
     n_points = max(1, math.ceil(length / spacing))
@@ -46,6 +47,15 @@ def write_segment_zoom_file(
     output_path: str,
     levels: dict[str, int],
 ) -> None:
+    """
+    Write a zoom-level file for GENS from the input DataFrame, converting to the specified levels.
+    The input DataFrame is expected to have the following columns:
+    - chrom: chromosome name
+    - start.pos: start position of the segment
+    - end.pos: end position of the segment
+    - mean: mean value of the segment
+    """
+
     rows = []
 
     for level, spacing in levels.items():
