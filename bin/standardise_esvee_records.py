@@ -24,6 +24,7 @@ import re
 from collections import Counter
 from dataclasses import dataclass, field
 from pathlib import Path
+import sys
 from typing import Iterable
 
 import click
@@ -71,6 +72,7 @@ class Report:
     converted_by_svtype: Counter[str] = field(default_factory=Counter)
     warnings_by_reason: Counter[str] = field(default_factory=Counter)
     details: list[tuple[str, str, str]] = field(default_factory=list)
+    end_overrides: dict[tuple[str, int, str | None], int] = field(default_factory=dict)
 
     @property
     def warning_count(self) -> int:
@@ -105,6 +107,11 @@ def scalar_info(record: pysam.VariantRecord, key: str) -> str | None:
 
 def record_label(record: pysam.VariantRecord) -> str:
     return f"ID={record.id}"
+
+
+def record_key(record: pysam.VariantRecord) -> tuple[str, int, str | None]:
+    """Stable key used to carry a literal END value through serialization."""
+    return (record.contig, record.pos, record.id)
 
 
 def parse_breakend_alt(alt: str) -> ParsedBreakendAlt | None:
@@ -152,25 +159,26 @@ def extract_non_anchor_sequence(
 
 def convert_symbolic_record(
     record: pysam.VariantRecord,
-) -> tuple[pysam.VariantRecord | None, str | None, str | None]:
+) -> tuple[pysam.VariantRecord | None, int | None, str | None, str | None]:
     """Convert one DEL/DUP/INV/INS record without consulting its mate."""
     svtype = scalar_info(record, "SVTYPE")
     if svtype not in CONVERTIBLE_TYPES:
-        return None, "not_convertible", f"SVTYPE {svtype!r} is not convertible"
+        return None, None, "not_convertible", f"SVTYPE {svtype!r} is not convertible"
 
     alt_string = get_single_alt(record)
     if alt_string is None:
-        return None, "alt_count_invalid", "record does not have exactly one ALT allele"
+        return None, None, "alt_count_invalid", "record does not have exactly one ALT allele"
 
     parsed = parse_breakend_alt(alt_string)
     if parsed is None:
-        return None, "alt_parse_failure", "ALT allele is not a parseable breakend"
+        return None, None, "alt_parse_failure", "ALT allele is not a parseable breakend"
 
     # DEL/DUP/INV/INS are expected to describe an intrachromosomal interval.
     # Interchromosomal breakends are left untouched rather than turning them
     # into misleading symbolic interval records.
     if parsed.remote_chrom != record.contig:
         return (
+            None,
             None,
             "interchromosomal_record",
             f"ALT points to {parsed.remote_chrom}:{parsed.remote_pos}",
@@ -179,6 +187,7 @@ def convert_symbolic_record(
     junction_sequence = extract_non_anchor_sequence(record, parsed)
     if junction_sequence is None:
         return (
+            None,
             None,
             "anchor_not_identified",
             "the local REF anchor could not be identified in the ALT allele",
@@ -191,15 +200,17 @@ def convert_symbolic_record(
     # but keeping it preserves the original relationship/provenance between
     # independently emitted ESVEE records.
     #
-    # pysam/HTSlib exposes INFO/END through VariantRecord.stop.
-    output.stop = parsed.remote_pos
+    # Do not assign VariantRecord.stop here. pysam treats stop as an interval
+    # endpoint and cannot faithfully represent a backward-pointing END < POS.
+    # The literal remote coordinate is carried separately and forced into the
+    # INFO/END field when the record is serialized.
 
     if junction_sequence:
         output.info["JUNCTIONSEQ"] = junction_sequence
     elif "JUNCTIONSEQ" in output.info:
         del output.info["JUNCTIONSEQ"]
 
-    return output, None, None
+    return output, parsed.remote_pos, None, None
 
 
 def transform_record(
@@ -220,12 +231,15 @@ def transform_record(
         report.unchanged_records += 1
         return record
 
-    converted, reason, message = convert_symbolic_record(record)
+    converted, end_override, reason, message = convert_symbolic_record(record)
     if converted is None:
         assert reason is not None and message is not None
         report.warn(reason, record_label(record), message)
         report.unchanged_records += 1
         return record
+
+    assert end_override is not None
+    report.end_overrides[record_key(converted)] = end_override
 
     report.symbolic_converted += 1
     report.converted_by_svtype[svtype] += 1
@@ -234,7 +248,7 @@ def transform_record(
 
     report.action(
         record_label(record),
-        f"converted independently to <{svtype}> with END={converted.stop}",
+        f"converted independently to <{svtype}> with END={end_override}",
     )
     return converted
 
@@ -315,21 +329,53 @@ def output_mode(path: Path | None) -> str:
     return "wz" if path.suffix == ".gz" else "w"
 
 
+def force_info_end(record_line: str, end_value: int) -> str:
+    """Replace or append INFO/END in one serialized VCF record line."""
+    newline = "\n" if record_line.endswith("\n") else ""
+    fields = record_line.rstrip("\n").split("\t")
+    if len(fields) < 8:
+        raise ValueError("serialized VCF record has fewer than 8 columns")
+
+    info_fields = [] if fields[7] in {"", "."} else fields[7].split(";")
+    replaced = False
+    for index, item in enumerate(info_fields):
+        if item.startswith("END="):
+            info_fields[index] = f"END={end_value}"
+            replaced = True
+            break
+
+    if not replaced:
+        info_fields.append(f"END={end_value}")
+
+    fields[7] = ";".join(info_fields) if info_fields else f"END={end_value}"
+    return "\t".join(fields) + newline
+
+
 def write_records(
     output_path: Path | None,
     header: pysam.VariantHeader,
     records: Iterable[pysam.VariantRecord],
+    end_overrides: dict[tuple[str, int, str | None], int],
 ) -> None:
-    filename = "-" if output_path is None else str(output_path)
-
+    """Write records while preserving literal END values, including END < POS."""
     try:
-        with pysam.VariantFile(
-            filename,
-            output_mode(output_path),
-            header=header,
-        ) as writer:
-            for record in records:
-                writer.write(record)
+        serialized_records: list[str] = []
+        for record in records:
+            line = str(record)
+            end_override = end_overrides.get(record_key(record))
+            if end_override is not None:
+                line = force_info_end(line, end_override)
+            serialized_records.append(line)
+
+        content = str(header) + "".join(serialized_records)
+
+        if output_path is None:
+            sys.stdout.write(content)
+        elif output_path.suffix == ".gz":
+            with pysam.BGZFile(str(output_path), "w") as handle:
+                handle.write(content.encode())
+        else:
+            output_path.write_text(content)
     except (OSError, ValueError) as error:
         destination = "stdout" if output_path is None else str(output_path)
         raise click.ClickException(
@@ -433,7 +479,7 @@ def main(
 
     report = Report()
     transformed = transform_records(records, report)
-    write_records(output_vcf, header, transformed)
+    write_records(output_vcf, header, transformed, report.end_overrides)
 
     if report_path is not None:
         write_report(report_path, report, verbose_report)
