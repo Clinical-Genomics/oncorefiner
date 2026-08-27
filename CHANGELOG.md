@@ -150,6 +150,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#169](https://github.com/Clinical-Genomics/oncorefiner/pull/169/) Populated the `ch_bam_bai_normal` in `PROCESS_SVS` tumor-normal test and updated the meta structure of the two bam channels, which also updated the naming of the .cgh file.
 - [#171](https://github.com/Clinical-Genomics/oncorefiner/pull/171) Remove metadata from static CADD header file
 - [#178](https://github.com/Clinical-Genomics/oncorefiner/pull/178) Updated the emit files for `research_filtered_vcf` in `PROCESS_SVS` to be the channel `ch_research_filtered_vcf` which will either be the GENMOD scored VCF or the VEP annotated VCF.
+- [#184](https://github.com/Clinical-Genomics/oncorefiner/pull/184) Updated the singularity container in `RMARKDOWNNOTEBOOK` as well as the patch diff file.
 
 ### `Dependencies`
 

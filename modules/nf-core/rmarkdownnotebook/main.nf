@@ -7,7 +7,7 @@ process RMARKDOWNNOTEBOOK {
     //yaml and rmarkdown R packages.
     conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine in ['singularity', 'apptainer'] && !task.ext.singularity_pull_docker_container ?
-        'oras://community.wave.seqera.io/library/r-base_r-dt_r-readr_r-rmarkdown:8612e5aa5384f180' :
+        'https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/ba/bae607029fb5b94bdbe70d10b25870dc663a1b3d08c5a3a6efdb6513ed9608e1/data' :
         'community.wave.seqera.io/library/r-base_r-dt_r-readr_r-rmarkdown:5c3b8868d1024810' }"
 
     input:
