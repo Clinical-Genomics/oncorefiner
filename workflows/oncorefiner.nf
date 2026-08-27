@@ -20,7 +20,7 @@ include { PROCESS_CNVS           } from '../subworkflows/local/process_cnvs/main
 workflow ONCOREFINER {
 
     take:
-    ch_amber_baf_tsv_gz             // channel: [optional]  [val(meta), path(tsv.gz)]
+    ch_amber_baf_tsv_gz             // channel: [optional]  [val(meta), path(tsv)]
     ch_bam_bai_normal               // channel: [optional]  [val(meta), path(bam), path(bai)]
     ch_bam_bai_tumor                // channel: [mandatory] [val(meta), path(bam), path(bai)]
     ch_cadd_header                  // channel: [mandatory] [path(txt)]
@@ -179,12 +179,12 @@ workflow ONCOREFINER {
     emit:
     cadd_annotated_vcf        = PROCESS_SNVS.out.cadd_annotated_vcf                           // channel: [val(meta), path(vcf)]
     cadd_annotated_tbi        = PROCESS_SNVS.out.cadd_annotated_tbi                           // channel: [val(meta), path(tbi)]
-    cnv_baf_normal_bed        = PROCESS_CNVS.out.gens_baf_normal_bed                          // channel: [val(meta), path(tsv.gz)]
-    cnv_baf_normal_tbi        = PROCESS_CNVS.out.gens_baf_normal_tbi                          // channel: [val(meta), path(tsv.gz.tbi)]
-    cnv_baf_tumor_bed         = PROCESS_CNVS.out.gens_baf_tumor_bed                           // channel: [val(meta), path(tsv.gz)]
-    cnv_baf_tumor_tbi         = PROCESS_CNVS.out.gens_baf_tumor_tbi                           // channel: [val(meta), path(tsv.gz.tbi)]
-    cnv_cov_bed               = PROCESS_CNVS.out.gens_cov_bed                                 // channel: [val(meta), path(bed.gz)]
-    cnv_cov_bed_tbi           = PROCESS_CNVS.out.gens_cov_bed_tbi                             // channel: [val(meta), path(bed.gz.tbi)]
+    cnv_baf_normal_bed        = PROCESS_CNVS.out.gens_baf_normal_bed                          // channel: [val(meta), path(bed)]
+    cnv_baf_normal_tbi        = PROCESS_CNVS.out.gens_baf_normal_tbi                          // channel: [val(meta), path(tbi)]
+    cnv_baf_tumor_bed         = PROCESS_CNVS.out.gens_baf_tumor_bed                           // channel: [val(meta), path(bed)]
+    cnv_baf_tumor_tbi         = PROCESS_CNVS.out.gens_baf_tumor_tbi                           // channel: [val(meta), path(tbi)]
+    cnv_cov_bed               = PROCESS_CNVS.out.gens_cov_bed                                 // channel: [val(meta), path(bed)]
+    cnv_cov_bed_tbi           = PROCESS_CNVS.out.gens_cov_bed_tbi                             // channel: [val(meta), path(tbi)]
     cnv_report_html           = PROCESS_CNVS.out.html_report                                  // channel: [val(meta), path(html)]
     multiqc_data              = MULTIQC.out.data                                              // channel: /path/to/multiqc_data/
     multiqc_plots             = MULTIQC.out.plots                                             // channel: /path/to/multiqc_plots/

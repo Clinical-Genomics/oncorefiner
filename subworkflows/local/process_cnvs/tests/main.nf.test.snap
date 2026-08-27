@@ -14,7 +14,7 @@
                             "id": "test_tumor_normal_case",
                             "case_id": "test_tumor_normal_case"
                         },
-                        "test_tumor_normal_case_CNV_BAF_GENS.tumor.bed.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                        "test_tumor_normal_case_CNV_BAF_AMBER_FOR_GENS.tumor.bed.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
                     ]
                 ],
                 "gens_baf_tumor_tbi": [
@@ -23,7 +23,7 @@
                             "id": "test_tumor_normal_case",
                             "case_id": "test_tumor_normal_case"
                         },
-                        "test_tumor_normal_case_CNV_BAF_GENS.tumor.bed.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test_tumor_normal_case_CNV_BAF_AMBER_FOR_GENS.tumor.bed.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "gens_cov_bed": [
@@ -35,7 +35,7 @@
                             "sample_type": "normal",
                             "sex": "female"
                         },
-                        "test_tumor_normal_case_normal_CNV_COV_GENS.bed.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                        "test_tumor_normal_case_normal_CNV_COV_COBALT_FOR_GENS.bed.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
                     ],
                     [
                         {
@@ -45,7 +45,7 @@
                             "sample_type": "tumor",
                             "sex": "female"
                         },
-                        "test_tumor_normal_case_tumor_CNV_COV_GENS.bed.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                        "test_tumor_normal_case_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
                     ]
                 ],
                 "gens_cov_bed_tbi": [
@@ -57,7 +57,7 @@
                             "sample_type": "normal",
                             "sex": "female"
                         },
-                        "test_tumor_normal_case_normal_CNV_COV_GENS.bed.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test_tumor_normal_case_normal_CNV_COV_COBALT_FOR_GENS.bed.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ],
                     [
                         {
@@ -67,7 +67,7 @@
                             "sample_type": "tumor",
                             "sex": "female"
                         },
-                        "test_tumor_normal_case_tumor_CNV_COV_GENS.bed.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test_tumor_normal_case_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "html_report": [
@@ -81,7 +81,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-08-25T14:20:14.686686",
+        "timestamp": "2026-08-27T09:08:11.129597",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
@@ -95,7 +95,7 @@
                         "id": "test_tumor_normal_case",
                         "case_id": "test_tumor_normal_case"
                     },
-                    "test_tumor_normal_case_CNV_BAF_GENS.normal.bed.gz:md5,cb7c9d7281611c8e7138ded59a681412"
+                    "test_tumor_normal_case_CNV_BAF_AMBER_FOR_GENS.normal.bed.gz:md5,cb7c9d7281611c8e7138ded59a681412"
                 ]
             ],
             [
@@ -104,7 +104,7 @@
                         "id": "test_tumor_normal_case",
                         "case_id": "test_tumor_normal_case"
                     },
-                    "test_tumor_normal_case_CNV_BAF_GENS.tumor.bed.gz:md5,87317df569141e8908d318197fc075af"
+                    "test_tumor_normal_case_CNV_BAF_AMBER_FOR_GENS.tumor.bed.gz:md5,87317df569141e8908d318197fc075af"
                 ]
             ],
             [
@@ -116,7 +116,7 @@
                         "sample_type": "normal",
                         "sex": "female"
                     },
-                    "test_tumor_normal_case_normal_CNV_COV_GENS.bed.gz:md5,d80e5d2edb1559d3e035c0739a8d172f"
+                    "test_tumor_normal_case_normal_CNV_COV_COBALT_FOR_GENS.bed.gz:md5,d80e5d2edb1559d3e035c0739a8d172f"
                 ],
                 [
                     {
@@ -126,7 +126,7 @@
                         "sample_type": "tumor",
                         "sex": "female"
                     },
-                    "test_tumor_normal_case_tumor_CNV_COV_GENS.bed.gz:md5,5a34fb13829738c0742132bd11ff1219"
+                    "test_tumor_normal_case_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz:md5,5a34fb13829738c0742132bd11ff1219"
                 ]
             ],
             [
@@ -135,7 +135,7 @@
                         "id": "test_tumor_normal_case",
                         "case_id": "test_tumor_normal_case"
                     },
-                    "test_tumor_normal_case_CNV_BAF_GENS.normal.bed.gz.tbi"
+                    "test_tumor_normal_case_CNV_BAF_AMBER_FOR_GENS.normal.bed.gz.tbi"
                 ]
             ],
             [
@@ -144,7 +144,7 @@
                         "id": "test_tumor_normal_case",
                         "case_id": "test_tumor_normal_case"
                     },
-                    "test_tumor_normal_case_CNV_BAF_GENS.tumor.bed.gz.tbi"
+                    "test_tumor_normal_case_CNV_BAF_AMBER_FOR_GENS.tumor.bed.gz.tbi"
                 ]
             ],
             [
@@ -156,7 +156,7 @@
                         "sample_type": "normal",
                         "sex": "female"
                     },
-                    "test_tumor_normal_case_normal_CNV_COV_GENS.bed.gz.tbi"
+                    "test_tumor_normal_case_normal_CNV_COV_COBALT_FOR_GENS.bed.gz.tbi"
                 ],
                 [
                     {
@@ -166,7 +166,7 @@
                         "sample_type": "tumor",
                         "sex": "female"
                     },
-                    "test_tumor_normal_case_tumor_CNV_COV_GENS.bed.gz.tbi"
+                    "test_tumor_normal_case_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz.tbi"
                 ]
             ],
             [
@@ -248,7 +248,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-08-25T14:19:16.638236",
+        "timestamp": "2026-08-27T09:07:14.16322",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
@@ -263,7 +263,7 @@
                             "id": "test_tumor_normal_case",
                             "case_id": "test_tumor_normal_case"
                         },
-                        "test_tumor_normal_case_CNV_BAF_GENS.normal.bed.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                        "test_tumor_normal_case_CNV_BAF_AMBER_FOR_GENS.normal.bed.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
                     ]
                 ],
                 "gens_baf_normal_tbi": [
@@ -272,7 +272,7 @@
                             "id": "test_tumor_normal_case",
                             "case_id": "test_tumor_normal_case"
                         },
-                        "test_tumor_normal_case_CNV_BAF_GENS.normal.bed.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test_tumor_normal_case_CNV_BAF_AMBER_FOR_GENS.normal.bed.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "gens_baf_tumor_bed": [
@@ -281,7 +281,7 @@
                             "id": "test_tumor_normal_case",
                             "case_id": "test_tumor_normal_case"
                         },
-                        "test_tumor_normal_case_CNV_BAF_GENS.tumor.bed.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                        "test_tumor_normal_case_CNV_BAF_AMBER_FOR_GENS.tumor.bed.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
                     ]
                 ],
                 "gens_baf_tumor_tbi": [
@@ -290,7 +290,7 @@
                             "id": "test_tumor_normal_case",
                             "case_id": "test_tumor_normal_case"
                         },
-                        "test_tumor_normal_case_CNV_BAF_GENS.tumor.bed.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test_tumor_normal_case_CNV_BAF_AMBER_FOR_GENS.tumor.bed.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "gens_cov_bed": [
@@ -302,7 +302,7 @@
                             "sample_type": "normal",
                             "sex": "female"
                         },
-                        "test_tumor_normal_case_normal_CNV_COV_GENS.bed.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                        "test_tumor_normal_case_normal_CNV_COV_COBALT_FOR_GENS.bed.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
                     ],
                     [
                         {
@@ -312,7 +312,7 @@
                             "sample_type": "tumor",
                             "sex": "female"
                         },
-                        "test_tumor_normal_case_tumor_CNV_COV_GENS.bed.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                        "test_tumor_normal_case_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
                     ]
                 ],
                 "gens_cov_bed_tbi": [
@@ -324,7 +324,7 @@
                             "sample_type": "normal",
                             "sex": "female"
                         },
-                        "test_tumor_normal_case_normal_CNV_COV_GENS.bed.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test_tumor_normal_case_normal_CNV_COV_COBALT_FOR_GENS.bed.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ],
                     [
                         {
@@ -334,7 +334,7 @@
                             "sample_type": "tumor",
                             "sex": "female"
                         },
-                        "test_tumor_normal_case_tumor_CNV_COV_GENS.bed.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test_tumor_normal_case_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "html_report": [
@@ -348,7 +348,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-08-25T14:19:25.030139",
+        "timestamp": "2026-08-27T09:07:22.879218",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
@@ -365,7 +365,7 @@
                         "id": "test_tumor_normal_case",
                         "case_id": "test_tumor_normal_case"
                     },
-                    "test_tumor_normal_case_CNV_BAF_GENS.tumor.bed.gz:md5,87317df569141e8908d318197fc075af"
+                    "test_tumor_normal_case_CNV_BAF_AMBER_FOR_GENS.tumor.bed.gz:md5,87317df569141e8908d318197fc075af"
                 ]
             ],
             [
@@ -377,7 +377,7 @@
                         "sample_type": "normal",
                         "sex": "female"
                     },
-                    "test_tumor_normal_case_normal_CNV_COV_GENS.bed.gz:md5,d80e5d2edb1559d3e035c0739a8d172f"
+                    "test_tumor_normal_case_normal_CNV_COV_COBALT_FOR_GENS.bed.gz:md5,d80e5d2edb1559d3e035c0739a8d172f"
                 ],
                 [
                     {
@@ -387,7 +387,7 @@
                         "sample_type": "tumor",
                         "sex": "female"
                     },
-                    "test_tumor_normal_case_tumor_CNV_COV_GENS.bed.gz:md5,5a34fb13829738c0742132bd11ff1219"
+                    "test_tumor_normal_case_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz:md5,5a34fb13829738c0742132bd11ff1219"
                 ]
             ],
             [
@@ -399,7 +399,7 @@
                         "id": "test_tumor_normal_case",
                         "case_id": "test_tumor_normal_case"
                     },
-                    "test_tumor_normal_case_CNV_BAF_GENS.tumor.bed.gz.tbi"
+                    "test_tumor_normal_case_CNV_BAF_AMBER_FOR_GENS.tumor.bed.gz.tbi"
                 ]
             ],
             [
@@ -411,7 +411,7 @@
                         "sample_type": "normal",
                         "sex": "female"
                     },
-                    "test_tumor_normal_case_normal_CNV_COV_GENS.bed.gz.tbi"
+                    "test_tumor_normal_case_normal_CNV_COV_COBALT_FOR_GENS.bed.gz.tbi"
                 ],
                 [
                     {
@@ -421,7 +421,7 @@
                         "sample_type": "tumor",
                         "sex": "female"
                     },
-                    "test_tumor_normal_case_tumor_CNV_COV_GENS.bed.gz.tbi"
+                    "test_tumor_normal_case_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz.tbi"
                 ]
             ],
             [
@@ -503,7 +503,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-08-25T14:20:04.704523",
+        "timestamp": "2026-08-27T09:08:01.011358",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"

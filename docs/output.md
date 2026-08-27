@@ -73,8 +73,8 @@ This process produce an interactive CNV report.
 
 - `cnv`
   - `<meta.id>_cnv_report.html`: an interactive CNV report in html format.
-  - `<meta.id>_CNV_BAF_GENS.<tumor or normal>.baf.zoom.tsv.gz`: a gzipped tsv containing b-allele frequency (BAF) for visualization using GENS, produced from Oncoanalysers AMBER files.
-  - `<meta.id>_CNV_BAF_GENS.<tumor or normal>.baf.zoom.tsv.gz.tbi`: index file for the gzipped tsv with BAF.
+  - `<meta.id>_CNV_BAF_AMBER_FOR_GENS.<tumor or normal>.bed.gz`: a gzipped tsv containing b-allele frequency (BAF) for visualization using GENS, produced from Oncoanalysers AMBER files.
+  - `<meta.id>_CNV_BAF_AMBER_FOR_GENS.<tumor or normal>.bed.gz.tbi`: index file for the gzipped tsv with BAF.
   - `<meta.id>_<meta.sample_type>_CNV_COV_GENS.bed.gz`: a gzipped bed file with genomic coverage levels for visualization using GENS, produced from Oncoanalysers COBALT files.
   - `<meta.id>_<meta.sample_type>_CNV_COV_GENS.bed.gz.tbi`: index file for the gzipped bed with coverage levels.
 

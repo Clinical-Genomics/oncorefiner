@@ -24,7 +24,7 @@ include { RMARKDOWNNOTEBOOK } from '../../../modules/nf-core/rmarkdownnotebook/m
 workflow PROCESS_CNVS {
 
     take:
-    ch_amber_baf_tsv_gz        // channel: [optional]  [val(meta), path(tsv.gz)]
+    ch_amber_baf_tsv_gz        // channel: [optional]  [val(meta), path(tsv)]
     ch_cnv_gene_tsv            // channel: [optional]  [val(meta), path(tsv)]
     ch_cnv_segment_tsv         // channel: [optional]  [val(meta), path(tsv)]
     ch_cobalt_ratio_pcf_normal // channel: [optional]  [val(meta), path(pcf)]
@@ -62,9 +62,9 @@ workflow PROCESS_CNVS {
     )
 
     emit:
-    gens_baf_normal_bed = PREPARE_AMBER_COBALT_FOR_GENS.out.gens_baf_normal_bed // channel: [val(meta), path(tsv.gz)]
+    gens_baf_normal_bed = PREPARE_AMBER_COBALT_FOR_GENS.out.gens_baf_normal_bed // channel: [val(meta), path(bed)]
     gens_baf_normal_tbi = PREPARE_AMBER_COBALT_FOR_GENS.out.gens_baf_normal_tbi // channel: [val(meta), path(tbi)]
-    gens_baf_tumor_bed  = PREPARE_AMBER_COBALT_FOR_GENS.out.gens_baf_tumor_bed  // channel: [val(meta), path(tsv)]
+    gens_baf_tumor_bed  = PREPARE_AMBER_COBALT_FOR_GENS.out.gens_baf_tumor_bed  // channel: [val(meta), path(bed)]
     gens_baf_tumor_tbi  = PREPARE_AMBER_COBALT_FOR_GENS.out.gens_baf_tumor_tbi  // channel: [val(meta), path(tbi)]
     gens_cov_bed        = PREPARE_AMBER_COBALT_FOR_GENS.out.gens_cov_bed        // channel: [val(meta), path(bed)]
     gens_cov_bed_tbi    = PREPARE_AMBER_COBALT_FOR_GENS.out.gens_cov_bed_tbi    // channel: [val(meta), path(tbi)]
