@@ -35,6 +35,7 @@ include { samplesheetToList       } from 'plugin/nf-schema'
 workflow CLINICALGENOMICS_ONCOREFINER {
 
     take:
+    val_amber_baf_tsv_gz            // string:  [optional]  path to amber baf tsv.gz file
     val_bam_normal                  // string:  [optional]  path to BAM file for the normal sample
     val_bai_normal                  // string:  [optional]  path to BAI file for the normal sample
     val_bam_tumor                   // string:  [optional]  path to BAM file for the tumor sample
@@ -44,6 +45,8 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     val_case_id                     // string:  [mandatory] case ID (used in channel metadata)
     val_cnv_gene_tsv                // string:  [optional]  path to CNV gene TSV file
     val_cnv_segment_tsv             // string:  [optional]  path to CNV segment TSV file
+    val_cobalt_ratio_pcf_normal     // string:  [optional]  path to cobalt pcf file for normal sample
+    val_cobalt_ratio_pcf_tumor      // string:  [optional]  path to cobalt pcf file for tumor sample
     val_genmod_score_config_snv     // string:  [optional]  path to Genmod score config file for SNVs
     val_genmod_score_config_sv      // string:  [optional]  path to Genmod score config file for SVs
     val_genome                      // string:  [optional]  genome assembly (e.g. "GRCh38")
@@ -158,9 +161,12 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     // Input for CNV report
     ch_cnv_gene_tsv      = channelFromMetaAndPath(metadata_case_file, val_cnv_gene_tsv)
     ch_cnv_segment_tsv   = channelFromMetaAndPath(metadata_case_file, val_cnv_segment_tsv)
-    ch_cnv_gene_tsv.view()
-    ch_cnv_segment_tsv.view()
 
+    // Input for PREPARE_AMBER_COBALT_FOR_GENS subworkflow
+    ch_amber_baf_tsv_gz        = channelFromMetaAndPath(metadata_case_file, val_amber_baf_tsv_gz)
+    ch_cobalt_ratio_pcf_tumor  = channelFromMetaAndPath(metadata_tumor_sample_file, val_cobalt_ratio_pcf_tumor)
+    ch_cobalt_ratio_pcf_normal = channelFromMetaAndPath(metadata_normal_sample_file, val_cobalt_ratio_pcf_normal)
+    val_analysis_type = (val_cobalt_ratio_pcf_tumor && val_cobalt_ratio_pcf_normal) ? 'tumor_normal' : 'tumor_only'
 
     // Input for genmod_score
     if (val_genmod_score_config_snv) {
@@ -180,6 +186,7 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     }
 
     ONCOREFINER (
+        ch_amber_baf_tsv_gz,
         ch_bam_bai_normal,
         ch_bam_bai_tumor,
         ch_cadd_header,
@@ -187,6 +194,8 @@ workflow CLINICALGENOMICS_ONCOREFINER {
         ch_cadd_resources,
         ch_cnv_gene_tsv,
         ch_cnv_segment_tsv,
+        ch_cobalt_ratio_pcf_normal,
+        ch_cobalt_ratio_pcf_tumor,
         ch_genmod_score_config_snv,
         ch_genmod_score_config_sv,
         ch_genome_fasta,
@@ -206,6 +215,7 @@ workflow CLINICALGENOMICS_ONCOREFINER {
         ch_vcfanno_toml,
         PREPARE_REFERENCES.out.vep_resources,
         ch_vep_extra_files,
+        val_analysis_type,
         val_cadd_resources,
         val_genome,
         val_multiqc_config,
@@ -233,6 +243,12 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     emit:
     cadd_annotated_vcf        = ONCOREFINER.out.cadd_annotated_vcf        // channel: [val(meta), path(vcf)]
     cadd_annotated_tbi        = ONCOREFINER.out.cadd_annotated_tbi        // channel: [val(meta), path(tbi)]
+    cnv_baf_normal_bed        = ONCOREFINER.out.cnv_baf_normal_bed        // channel: [val(meta), path(bed)]
+    cnv_baf_normal_tbi        = ONCOREFINER.out.cnv_baf_normal_tbi        // channel: [val(meta), path(tbi)]
+    cnv_baf_tumor_bed         = ONCOREFINER.out.cnv_baf_tumor_bed         // channel: [val(meta), path(bed)]
+    cnv_baf_tumor_tbi         = ONCOREFINER.out.cnv_baf_tumor_tbi         // channel: [val(meta), path(tbi)]
+    cnv_cov_bed               = ONCOREFINER.out.cnv_cov_bed               // channel: [val(meta), path(bed)]
+    cnv_cov_bed_tbi           = ONCOREFINER.out.cnv_cov_bed_tbi           // channel: [val(meta), path(tbi)]
     cram                      = SAMTOOLS_VIEW.out.cram                    // channel: [val(meta), path(cram)]
     crai                      = SAMTOOLS_VIEW.out.crai                    // channel: [val(meta), path(crai)]
     cnv_report_html           = ONCOREFINER.out.cnv_report_html           // channel: [val(meta), path(html)]
@@ -284,6 +300,7 @@ workflow {
     // WORKFLOW: Run main workflow
     //
     CLINICALGENOMICS_ONCOREFINER (
+        params.amber_baf_tsv_gz,
         params.bam_normal,
         params.bai_normal,
         params.bam_tumor,
@@ -293,6 +310,8 @@ workflow {
         params.case_id,
         params.cnv_gene_tsv,
         params.cnv_segment_tsv,
+        params.cobalt_ratio_pcf_normal,
+        params.cobalt_ratio_pcf_tumor,
         params.genmod_score_config_snv,
         params.genmod_score_config_sv,
         params.genome,
@@ -339,7 +358,13 @@ workflow {
     ch_alignments_publish = CLINICALGENOMICS_ONCOREFINER.out.cram
         .mix(CLINICALGENOMICS_ONCOREFINER.out.crai)
 
-    ch_cnv_publish = CLINICALGENOMICS_ONCOREFINER.out.cnv_report_html
+    ch_cnv_publish = CLINICALGENOMICS_ONCOREFINER.out.cnv_baf_normal_bed
+        .mix(CLINICALGENOMICS_ONCOREFINER.out.cnv_baf_normal_tbi)
+        .mix(CLINICALGENOMICS_ONCOREFINER.out.cnv_baf_tumor_bed)
+        .mix(CLINICALGENOMICS_ONCOREFINER.out.cnv_baf_tumor_tbi)
+        .mix(CLINICALGENOMICS_ONCOREFINER.out.cnv_cov_bed)
+        .mix(CLINICALGENOMICS_ONCOREFINER.out.cnv_cov_bed_tbi)
+        .mix(CLINICALGENOMICS_ONCOREFINER.out.cnv_report_html)
 
     ch_multiqc_publish = CLINICALGENOMICS_ONCOREFINER.out.multiqc_data
         .mix(CLINICALGENOMICS_ONCOREFINER.out.multiqc_report)

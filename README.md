@@ -40,6 +40,8 @@
 
 1. Process CNV TSV files
    1. Generate interactive CNV html report using [`rmarkdownnotebook`](https://rmarkdown.rstudio.com/), and the script `assets/cnv_report.Rmd`, based on the result files from `oncoanalyser`: ` *.purple.cnv.gene.tsv` and `*.purple.cnv.somatic.tsv`.
+   1. Prepare files from Oncoanalysers [`AMBER`](https://github.com/hartwigmedical/hmftools/tree/master/amber) and [`COBALT`](https://github.com/hartwigmedical/hmftools/tree/master/cobalt) for visualization using GENS using cutom scripts `PREPARE_AMBER_FOR_GENS` and `PREPARE_COBALT_FOR_GENS` which is wrapped in the subworkflow `PREPARE_AMBER_COBALT_FOR_GENS`.
+
 1. Present QC for raw reads ([`MultiQC`](http://multiqc.info/)).
 
 For further information about the each step and output files, please refer to the [output documentation](.github/docs/output.md).

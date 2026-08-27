@@ -52,6 +52,10 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#147](https://github.com/Clinical-Genomics/oncorefiner/pull/147) Added parameters for cnv report generation (`cnv_gene_tsv`, `cnv_segment_tsv`).
 - [#147](https://github.com/Clinical-Genomics/oncorefiner/pull/147) Added the nf-core module `rmarkdownnotebook` including a patch with a custom container with tools for our needs.
 - [#147](https://github.com/Clinical-Genomics/oncorefiner/pull/147) Added the subworkflow `PROCESS_CNVS` along with subworkflow test.
+- [#119](https://github.com/Clinical-Genomics/oncorefiner/pull/119/) Added parameters `amber_baf_tsv_gz`, `cobalt_ratio_pcf_tumor`, `cobalt_ratio_pcf_normal` and the value `analysis_type` needed for PREPARE_AMBER_COBALT_FOR_GENS subworkflow and populated them in the test dataset.
+- [#119](https://github.com/Clinical-Genomics/oncorefiner/pull/119/) Added local module `PREPARE_COBALT_FOR_GENS` using python script in `/bin`, along with tests.
+- [#119](https://github.com/Clinical-Genomics/oncorefiner/pull/119/) Added local module `PREPARE_AMBER_FOR_GENS`, using script in `/bin`, along with tests.
+- [#119](https://github.com/Clinical-Genomics/oncorefiner/pull/119/) Added the local subworkflow `PREPARE_AMBER_COBALT_FOR_GENS` to `PROCESS_CNVS`.
 
 ### `Changed`
 

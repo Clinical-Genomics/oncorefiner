@@ -20,6 +20,7 @@ include { PROCESS_CNVS           } from '../subworkflows/local/process_cnvs/main
 workflow ONCOREFINER {
 
     take:
+    ch_amber_baf_tsv_gz             // channel: [optional]  [val(meta), path(tsv)]
     ch_bam_bai_normal               // channel: [optional]  [val(meta), path(bam), path(bai)]
     ch_bam_bai_tumor                // channel: [mandatory] [val(meta), path(bam), path(bai)]
     ch_cadd_header                  // channel: [mandatory] [path(txt)]
@@ -27,6 +28,8 @@ workflow ONCOREFINER {
     ch_cadd_resources               // channel: [optional]  [val(meta), path(dir)]
     ch_cnv_gene_tsv                 // channel: [optional]  [val(meta), path(tsv)]
     ch_cnv_segment_tsv              // channel: [optional]  [val(meta), path(tsv)]
+    ch_cobalt_ratio_pcf_normal      // channel: [optional]  [val(meta), path(pcf)]
+    ch_cobalt_ratio_pcf_tumor       // channel: [optional]  [val(meta), path(pcf)]
     ch_genmod_score_config_snv      // channel: [optional]  [val(meta), path(ini)]
     ch_genmod_score_config_sv       // channel: [optional]  [val(meta), path(ini)]
     ch_genome_fasta                 // channel: [optional]  [val(meta), path(fasta)]
@@ -46,6 +49,7 @@ workflow ONCOREFINER {
     ch_vcfanno_toml                 // channel: [optional]  [path(toml_file)]
     ch_vep_cache                    // channel: [optional]  [vep_cache_files]
     ch_vep_extra_files              // channel: [optional]  [path(plugin_file1), path(plugin_file2), ...]
+    val_analysis_type               // string:  [optional]  analysis type, e.g. "tumor_only" or "tumor_normal"
     val_cadd_resources              // string:  [optional]  path to CADD resources directory
     val_genome                      // string:  [optional]  genome assembly (e.g. "GRCh38")
     val_multiqc_config              // string:  [optional]  path to multiqc config file
@@ -61,6 +65,16 @@ workflow ONCOREFINER {
 
     def ch_versions = channel.empty()
     def ch_multiqc_files = channel.empty()
+
+    // Process CNV input files
+    PROCESS_CNVS (
+        ch_amber_baf_tsv_gz,
+        ch_cnv_gene_tsv,
+        ch_cnv_segment_tsv,
+        ch_cobalt_ratio_pcf_normal,
+        ch_cobalt_ratio_pcf_tumor,
+        val_analysis_type
+    )
 
     // Process SNV VCF files
     PROCESS_SNVS (
@@ -104,11 +118,6 @@ workflow ONCOREFINER {
         ch_vep_cache,
         ch_genome_fasta,
         ch_vep_extra_files
-    )
-
-    PROCESS_CNVS(
-        ch_cnv_gene_tsv,
-        ch_cnv_segment_tsv
     )
 
     //
@@ -170,6 +179,12 @@ workflow ONCOREFINER {
     emit:
     cadd_annotated_vcf        = PROCESS_SNVS.out.cadd_annotated_vcf                           // channel: [val(meta), path(vcf)]
     cadd_annotated_tbi        = PROCESS_SNVS.out.cadd_annotated_tbi                           // channel: [val(meta), path(tbi)]
+    cnv_baf_normal_bed        = PROCESS_CNVS.out.gens_baf_normal_bed                          // channel: [val(meta), path(bed)]
+    cnv_baf_normal_tbi        = PROCESS_CNVS.out.gens_baf_normal_tbi                          // channel: [val(meta), path(tbi)]
+    cnv_baf_tumor_bed         = PROCESS_CNVS.out.gens_baf_tumor_bed                           // channel: [val(meta), path(bed)]
+    cnv_baf_tumor_tbi         = PROCESS_CNVS.out.gens_baf_tumor_tbi                           // channel: [val(meta), path(tbi)]
+    cnv_cov_bed               = PROCESS_CNVS.out.gens_cov_bed                                 // channel: [val(meta), path(bed)]
+    cnv_cov_bed_tbi           = PROCESS_CNVS.out.gens_cov_bed_tbi                             // channel: [val(meta), path(tbi)]
     cnv_report_html           = PROCESS_CNVS.out.html_report                                  // channel: [val(meta), path(html)]
     multiqc_data              = MULTIQC.out.data                                              // channel: /path/to/multiqc_data/
     multiqc_plots             = MULTIQC.out.plots                                             // channel: /path/to/multiqc_plots/
