@@ -16,6 +16,7 @@ DEFAULT_SPACING = {
 
 
 def chrom_to_output_name(chromosome: str, level: str) -> str:
+    """ Change chromosome names to be compatible with GENS. For example, chr1 becomes o_1, chrX becomes o_X, etc."""
     chrom = str(chromosome).replace("chr", "")
     return f"{level}_{chrom}"
 

@@ -3,7 +3,7 @@
 import click
 import pandas as pd
 
-### tumor and normal baf takes the analysis_type parameter to know if normal analysis is needed.
+### takes the analysis_type parameter to know if normal baf analysis is needed, tumor baf is always run.
 
 __version__ = "1.0"
 
@@ -28,7 +28,7 @@ def generate_baf_file_for_gens(
     levels: dict,
 ) -> None:
     """
-    Generate a BAF file for GENS from the input DataFrame, converting to the specified levels.
+    Generate a BAF file for GENS from the input DataFrame, converting to the specified levels in DEFAULT_LEVELS.
 
     The input DataFrame is expected to have the following columns:
     - chromosome: chromosome name
