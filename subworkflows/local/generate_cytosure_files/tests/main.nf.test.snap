@@ -16,7 +16,7 @@
                     [
                         "GENERATE_CYTOSURE_FILES:VCF2CYTOSURE",
                         "vcf2cytosure",
-                        "0.9.3"
+                        "0.10.0"
                     ]
                 ]
             },
@@ -31,7 +31,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-08-03T15:47:37.66426",
+        "timestamp": "2026-08-28T12:34:08.095719",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
@@ -54,7 +54,7 @@
                     [
                         "GENERATE_CYTOSURE_FILES:VCF2CYTOSURE",
                         "vcf2cytosure",
-                        "0.9.3"
+                        "0.10.0"
                     ]
                 ]
             },
@@ -64,12 +64,12 @@
                         {
                             "id": "subject_a"
                         },
-                        "tumor_vcf2cytosure.cgh:md5,09c4fba0b534f86fc176fe2ccf00820d"
+                        "tumor_vcf2cytosure.cgh:md5,ff2b8adc7a6a2b42945b084aeda7679d"
                     ]
                 ]
             }
         ],
-        "timestamp": "2026-08-03T15:47:29.239822",
+        "timestamp": "2026-08-28T12:33:38.527803",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
