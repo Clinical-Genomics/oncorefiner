@@ -3,6 +3,7 @@ nextflow_process {
     name "Test process STANDARDISE_ESVEE_RECORDS"
     script "../main.nf"
     process "STANDARDISE_ESVEE_RECORDS"
+    config "./nextflow.config"
     tag "modules"
     tag "modules_local"
     tag "standardise_esvee_records"
@@ -16,7 +17,7 @@ nextflow_process {
             process {
                 """
                 input[0] = channel.of([
-                    [id: 'test_esvee_sv', case_id: 'subject_a'],
+                    [id: 'test_esvee_reformat', case_id: 'subject_a'],
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.sv.vcf.gz', checkIfExists: true)
                 ])
                 """
@@ -27,7 +28,9 @@ nextflow_process {
             assert process.success
             assertAll(
                 { assert snapshot(
-                    process.out.vcf,
+                    process.out.vcf.collect { meta, vcf ->
+                        [meta, file(vcf).name + ":variantsMD5," + path(vcf).vcf.variantsMD5]
+                    },
                     process.out.report,
                     topics,
                 ).match() }
@@ -42,7 +45,7 @@ nextflow_process {
             process {
                 """
                 input[0] = channel.of([
-                    [id: 'test_esvee_sv', case_id: 'subject_a'],
+                    [id: 'test_esvee_reformat', case_id: 'subject_a'],
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_only/subject_a.tumor.purple.sv.vcf.gz', checkIfExists: true)
                 ])
                 """
@@ -53,7 +56,9 @@ nextflow_process {
             assert process.success
             assertAll(
                 { assert snapshot(
-                    process.out.vcf,
+                    process.out.vcf.collect { meta, vcf ->
+                        [meta, file(vcf).name + ":variantsMD5," + path(vcf).vcf.variantsMD5]
+                    },
                     process.out.report,
                     topics,
                 ).match() }

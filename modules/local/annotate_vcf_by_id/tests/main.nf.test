@@ -9,6 +9,33 @@ nextflow_process {
 
     topics "versions"
 
+    test("Standardise ESVEE records, tumor-normal - stub") {
+
+        options "-stub"
+
+        when {
+
+            process {
+                """
+                input[0] = channel.of([
+                    [id: 'test_esvee', case_id: 'subject_a'],
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.sv.vcf.gz', checkIfExists: true)
+                ])
+                """
+            }
+        }
+
+        then {
+            assert process.success
+            assertAll(
+                { assert snapshot(
+                    sanitizeOutput(process.out),
+                    topics,
+                ).match() }
+            )
+        }
+    }
+
     test("Annotate VCF by ID, tumor-normal") {
 
         setup {
