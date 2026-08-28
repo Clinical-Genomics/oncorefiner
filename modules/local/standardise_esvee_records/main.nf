@@ -38,8 +38,8 @@ process STANDARDISE_ESVEE_RECORDS {
     ##fileformat=VCFv4.2
     ##contig=<ID=chr1,length=1000000>
     ##INFO=<ID=SVTYPE,Number=1,Type=String,Description="Structural variant type">
-    ##INFO=<ID=END,Number=1,Type=Integer,Description="End coordinate">
-    ##INFO=<ID=JUNCTIONSEQ,Number=1,Type=String,Description="Non-anchor sequence retained from the canonical ESVEE breakend ALT allele; may include reference-derived assembly sequence and does not necessarily represent a novel insertion">
+    ##INFO=<ID=END,Number=1,Type=Integer,Description="Remote coordinate parsed from the original breakend ALT">
+    ##INFO=<ID=ALTCOLUMNSEQ,Number=1,Type=String,Description="Sequence retained from this ESVEE breakend ALT allele column">
     #CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO
     EOF
 
@@ -47,12 +47,11 @@ process STANDARDISE_ESVEE_RECORDS {
     section	name	value
     summary	input_records	0
     summary	output_records	0
-    summary	records_removed_by_merging	0
-    summary	merged_pairs	0
-    summary	sgl_converted_to_bnd	0
-    summary	symbolic_records_with_junctionseq	0
+    summary	records_removed	0
+    summary	sgl_reformatted_to_bnd	0
+    summary	reformatted_records	0
+    summary	reformatted_records_with_altcolumnseq	0
     summary	unchanged_records	0
-    summary	warnings	0
     EOF
     """
 }
