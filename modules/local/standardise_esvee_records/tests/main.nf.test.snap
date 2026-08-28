@@ -4,19 +4,19 @@
             [
                 [
                     {
-                        "id": "test_esvee_sv",
+                        "id": "test_esvee_reformat",
                         "case_id": "subject_a"
                     },
-                    "test_esvee_sv.standardised.vcf:md5,44ec2837e12c6ae84dfa37d55e45ec90"
+                    "test_esvee_reformat.standardised.vcf:variantsMD5,e2d11086ea09c9c23b034277dfd02a14"
                 ]
             ],
             [
                 [
                     {
-                        "id": "test_esvee_sv",
+                        "id": "test_esvee_reformat",
                         "case_id": "subject_a"
                     },
-                    "test_esvee_sv.standardised.report.tsv:md5,2d840e602f362cf106e0596313ba2f4b"
+                    "test_esvee_reformat.standardised.report.tsv:md5,2d840e602f362cf106e0596313ba2f4b"
                 ]
             ],
             {
@@ -29,7 +29,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-08-28T14:44:54.364392",
+        "timestamp": "2026-08-28T14:59:57.649492",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
@@ -40,19 +40,19 @@
             [
                 [
                     {
-                        "id": "test_esvee_sv",
+                        "id": "test_esvee_reformat",
                         "case_id": "subject_a"
                     },
-                    "test_esvee_sv.standardised.vcf:md5,adef8ef65b59ca26270308d00ea456dc"
+                    "test_esvee_reformat.standardised.vcf:variantsMD5,8bdbe5f0292b426c631dc07e289b9b41"
                 ]
             ],
             [
                 [
                     {
-                        "id": "test_esvee_sv",
+                        "id": "test_esvee_reformat",
                         "case_id": "subject_a"
                     },
-                    "test_esvee_sv.standardised.report.tsv:md5,2d840e602f362cf106e0596313ba2f4b"
+                    "test_esvee_reformat.standardised.report.tsv:md5,2d840e602f362cf106e0596313ba2f4b"
                 ]
             ],
             {
@@ -65,7 +65,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-08-28T14:45:19.037542",
+        "timestamp": "2026-08-28T15:00:19.458325",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
