@@ -68,7 +68,13 @@ BREAKEND_ALT_RE = re.compile(
 
 @dataclass(frozen=True)
 class ParsedBreakendAlt:
-    """Parsed components of one breakend-style ALT allele."""
+    """Parsed components of one breakend-style ALT allele.
+
+    A breakend ALT combines sequence from the local VCF record with a bracketed
+    reference to the genomic position joined to that record. Here, "remote"
+    refers to that bracketed partner locus, while left_sequence and
+    right_sequence are the ordinary bases surrounding it in the ALT column.
+    """
 
     remote_chrom: str
     remote_pos: int
@@ -77,12 +83,21 @@ class ParsedBreakendAlt:
 
     @property
     def local_sequence(self) -> str:
-        """Return all non-breakend sequence from the ALT allele."""
+        """Return all ordinary sequence surrounding the bracketed remote locus.
+
+        This sequence still includes the local REF allele used to anchor the
+        VCF record, so it is not yet the final ALTCOLUMNSEQ value.
+        """
         return self.left_sequence + self.right_sequence
 
     @property
     def remote_first(self) -> bool:
-        """Return True when the bracketed remote locus precedes local sequence."""
+        """Return True when the bracketed partner locus appears first in ALT.
+
+        For example, ]chr1:200]CA has the remote locus first, whereas
+        AC[chr1:200[ has local sequence first. This orientation determines which
+        end of the local sequence contains the REF allele that must be removed.
+        """
         return not self.left_sequence
 
 
@@ -139,7 +154,12 @@ def get_svtype(record: pysam.VariantRecord) -> str:
 
 
 def parse_breakend_alt(alt: str) -> ParsedBreakendAlt | None:
-    """Parse one breakend ALT allele, returning None when the syntax is invalid."""
+    """Parse one breakend ALT allele, returning None when the syntax is invalid.
+
+    Breakend notation uses matching square brackets around a chromosome and
+    position, for example AC[chr1:200[ or ]chr1:200]CA. The chromosome and
+    position describe the genomic locus connected to the current VCF record.
+    """
     match = BREAKEND_ALT_RE.fullmatch(alt)
     if match is None:
         return None
@@ -163,13 +183,20 @@ def extract_alt_column_sequence(
     record: pysam.VariantRecord,
     parsed: ParsedBreakendAlt,
 ) -> str | None:
-    """Extract sequence added around the breakend after removing the REF anchor."""
+    """Extract ALT-column sequence after removing the local REF allele.
+
+    In VCF, the ALT allele normally contains the REF allele from the current
+    record so that the event is anchored to a concrete reference position.
+    That anchoring sequence is representation rather than additional breakpoint
+    sequence, so it is removed before storing ALTCOLUMNSEQ.
+    """
     sequence = parsed.local_sequence
     ref = record.ref
 
-    # In breakend notation the local REF anchor may occur either before or after
-    # the bracketed remote locus. Which side it occupies determines where it must
-    # be removed from the retained ALT-column sequence.
+    # The local REF allele can occur on either side of the bracketed partner
+    # locus. For example, with REF=A, AC[chr1:200[ starts with the REF allele,
+    # whereas ]chr1:200]CA ends with it. Remove that REF sequence and retain only
+    # the remaining bases for ALTCOLUMNSEQ.
     if parsed.remote_first:
         if not sequence.endswith(ref):
             return None
@@ -202,9 +229,10 @@ def reformat_sv_record(record: pysam.VariantRecord, svtype: str) -> pysam.Varian
             f"cannot be parsed as a breakend: {alt_string!r}"
         )
 
-    # DEL/DUP/INV/INS describe an interval on one chromosome in this input
-    # format. An interchromosomal remote coordinate therefore indicates input
-    # that does not satisfy the assumptions of this reformatter.
+    # In this ESVEE representation, DEL/DUP/INV/INS are interval events whose
+    # two breakpoints lie on the same chromosome. The bracketed locus in ALT is
+    # therefore expected to point back to the current chromosome. A different
+    # chromosome would describe a translocation-like breakend instead.
     if parsed.remote_chrom != record.contig:
         raise click.ClickException(
             f"{record_label(record)}: SVTYPE={svtype} is expected to be "
@@ -222,12 +250,9 @@ def reformat_sv_record(record: pysam.VariantRecord, svtype: str) -> pysam.Varian
     reformatted = record.copy()
     reformatted.alts = (f"<{svtype}>",)
 
-    # MATEID is deliberately retained. It no longer controls reformatting, but
-    # keeping it preserves provenance and the relationship between the two
-    # independently emitted ESVEE records.
-    #
-    # pysam/HTSlib exposes INFO/END through VariantRecord.stop, so assigning
-    # stop updates END in the serialized VCF record.
+    # pysam represents the VCF END coordinate as VariantRecord.stop rather than
+    # as an ordinary INFO value. Assigning stop is therefore the pysam-supported
+    # way of updating INFO/END in the record written to the output VCF.
     reformatted.stop = parsed.remote_pos
 
     if altcolumn_sequence:
@@ -249,8 +274,9 @@ def reformat_record(
     action = SVTYPE_CONFIG[svtype]["action"]
 
     if action == "relabel":
-        # SGL already uses breakend-style ALT notation. Only its SVTYPE label is
-        # changed so the resulting record is represented as BND.
+        # An SGL record already carries a breakend-style ALT, but ESVEE labels it
+        # as a single breakend. Downstream we want the generic VCF BND type, so
+        # only SVTYPE changes; the ALT itself is deliberately left untouched.
         reformatted = record.copy()
         reformatted.info["SVTYPE"] = "BND"
         report.sgl_reformatted_to_bnd += 1
@@ -258,7 +284,8 @@ def reformat_record(
         return reformatted
 
     if action == "retain":
-        # Existing BND records already have the desired representation.
+        # Existing BND records are already expressed in standard breakend
+        # notation, so no ALT, END, or INFO-field reformatting is required.
         report.unchanged_records += 1
         report.action(record_label(record), "retained existing SVTYPE=BND unchanged")
         return record
@@ -293,9 +320,10 @@ def reformat_records(
     report.input_records = len(records)
     report.input_svtypes.update(get_svtype(record) for record in records)
 
-    # Build the complete output list before opening the output VCF. This means
-    # any unsupported or malformed input record aborts the run before a partial
-    # output file can be written.
+    # Reformat every record in memory before opening the output file. Because
+    # this script treats malformed SV records as fatal errors, doing the work
+    # first prevents an apparently valid but incomplete VCF from being left
+    # behind if a later record fails validation.
     reformatted_records = [reformat_record(record, report) for record in records]
 
     report.output_records = len(reformatted_records)
@@ -342,8 +370,10 @@ def read_records(
             records: list[pysam.VariantRecord] = []
 
             for record in reader:
-                # Records must be translated onto the copied header before new
-                # INFO fields such as ALTCOLUMNSEQ can safely be assigned.
+                # Each pysam VariantRecord is tied to the header it was read
+                # with. Because output_header contains newly added INFO
+                # definitions such as ALTCOLUMNSEQ, copied records must first be
+                # translated to that header before those fields can be assigned.
                 copied = record.copy()
                 copied.translate(output_header)
                 records.append(copied)
