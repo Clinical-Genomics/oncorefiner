@@ -28,6 +28,21 @@
                 "GENMOD_SCORE": {
                     "genmod": "3.10.2"
                 },
+                "PREPARE_AMBER_FOR_GENS": {
+                    "bgzip": "(htslib) 1.23.1",
+                    "prepare_amber_for_gens": "prepare_amber_for_gens, version 1.0",
+                    "python": "Python 3.14.6",
+                    "tabix": "(htslib) 1.23.1"
+                },
+                "PREPARE_COBALT_FOR_GENS": {
+                    "bgzip": "(htslib) 1.23.1",
+                    "prepare_cobalt_for_gens": "prepare_cobalt_for_gens, version 1.0",
+                    "python": "Python 3.14.6",
+                    "tabix": "(htslib) 1.23.1"
+                },
+                "RMARKDOWNNOTEBOOK": {
+                    "rmarkdownnotebook": 2.29
+                },
                 "SAMTOOLS_VIEW": {
                     "samtools": "1.23.1"
                 },
@@ -54,6 +69,12 @@
                 "alignments",
                 "alignments/subject_a_tumor.cram",
                 "alignments/subject_a_tumor.cram.crai",
+                "cnv",
+                "cnv/test_tumor_only_case_CNV_BAF_AMBER_FOR_GENS.tumor.bed.gz",
+                "cnv/test_tumor_only_case_CNV_BAF_AMBER_FOR_GENS.tumor.bed.gz.tbi",
+                "cnv/test_tumor_only_case_cnv_report.html",
+                "cnv/test_tumor_sample_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz",
+                "cnv/test_tumor_sample_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz.tbi",
                 "pipeline_info",
                 "pipeline_info/oncorefiner_software_mqc_versions.yml",
                 "qc",
@@ -80,14 +101,18 @@
                 "sv",
                 "sv/test_tumor_only_case_clinical.vcf.gz",
                 "sv/test_tumor_only_case_clinical.vcf.gz.tbi",
-                "sv/test_tumor_only_case_research.vcf.gz",
-                "sv/test_tumor_only_case_research.vcf.gz.tbi",
+                "sv/test_tumor_only_case_genmod_score.vcf.gz",
+                "sv/test_tumor_only_case_genmod_score.vcf.gz.tbi",
                 "sv/test_tumor_only_case_svdbquery_vep.vcf.gz",
                 "sv/test_tumor_only_case_svdbquery_vep.vcf.gz.tbi",
                 "sv/test_tumor_only_case_svdbquery_vep.vcf.gz_summary.html",
                 "sv/tumor.cgh"
             ],
             [
+                "test_tumor_only_case_CNV_BAF_AMBER_FOR_GENS.tumor.bed.gz:md5,ccb0b5ad7111f53c6d660e608af438ce",
+                "test_tumor_only_case_CNV_BAF_AMBER_FOR_GENS.tumor.bed.gz.tbi:md5,6928f740f2cd8914f6d9b10607b184ea",
+                "test_tumor_sample_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz:md5,1a22ba6f7f24087f1c7fbb51c73a3b9d",
+                "test_tumor_sample_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz.tbi:md5,643aa1682219825f40e1071ad684c1ee",
                 "tumor.cgh:md5,22c058183d93a767ee61d5319513dc39"
             ],
             [
@@ -112,7 +137,7 @@
                     "VcfFile [chromosomes=[chr19, chr9, chr11], sampleCount=1, variantCount=6, phased=false, phasedAutodetect=false]"
                 ],
                 [
-                    "test_tumor_only_case_research.vcf.gz",
+                    "test_tumor_only_case_genmod_score.vcf.gz",
                     "VcfFile [chromosomes=[chr19, chr9, chr11], sampleCount=1, variantCount=6, phased=false, phasedAutodetect=false]"
                 ],
                 [
@@ -142,8 +167,8 @@
                     "df683be784634d933773203d555672df"
                 ],
                 [
-                    "test_tumor_only_case_research.vcf.gz",
-                    "740d24979f0598e569785305b7aadfb8"
+                    "test_tumor_only_case_genmod_score.vcf.gz",
+                    "df683be784634d933773203d555672df"
                 ],
                 [
                     "test_tumor_only_case_svdbquery_vep.vcf.gz",
@@ -151,7 +176,7 @@
                 ]
             ]
         ],
-        "timestamp": "2026-08-05T10:48:56.947136",
+        "timestamp": "2026-08-27T09:24:43.072436",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
@@ -186,6 +211,21 @@
                 "GENMOD_SCORE": {
                     "genmod": "3.10.2"
                 },
+                "PREPARE_AMBER_FOR_GENS": {
+                    "bgzip": "(htslib) 1.23.1",
+                    "prepare_amber_for_gens": "prepare_amber_for_gens, version 1.0",
+                    "python": "Python 3.14.6",
+                    "tabix": "(htslib) 1.23.1"
+                },
+                "PREPARE_COBALT_FOR_GENS": {
+                    "bgzip": "(htslib) 1.23.1",
+                    "prepare_cobalt_for_gens": "prepare_cobalt_for_gens, version 1.0",
+                    "python": "Python 3.14.6",
+                    "tabix": "(htslib) 1.23.1"
+                },
+                "RMARKDOWNNOTEBOOK": {
+                    "rmarkdownnotebook": 2.29
+                },
                 "SAMTOOLS_VIEW": {
                     "samtools": "1.23.1"
                 },
@@ -212,6 +252,12 @@
                 "alignments",
                 "alignments/subject_a_tumor.cram",
                 "alignments/subject_a_tumor.cram.crai",
+                "cnv",
+                "cnv/test_tumor_only_case_CNV_BAF_AMBER_FOR_GENS.tumor.bed.gz",
+                "cnv/test_tumor_only_case_CNV_BAF_AMBER_FOR_GENS.tumor.bed.gz.tbi",
+                "cnv/test_tumor_only_case_cnv_report.html",
+                "cnv/test_tumor_sample_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz",
+                "cnv/test_tumor_sample_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz.tbi",
                 "pipeline_info",
                 "pipeline_info/oncorefiner_software_mqc_versions.yml",
                 "qc",
@@ -234,15 +280,15 @@
                 "sv",
                 "sv/test_tumor_only_case_clinical.vcf.gz",
                 "sv/test_tumor_only_case_clinical.vcf.gz.tbi",
-                "sv/test_tumor_only_case_research.vcf.gz",
-                "sv/test_tumor_only_case_research.vcf.gz.tbi",
+                "sv/test_tumor_only_case_genmod_score.vcf.gz",
+                "sv/test_tumor_only_case_genmod_score.vcf.gz.tbi",
                 "sv/test_tumor_only_case_svdbquery_vep.vcf.gz",
                 "sv/test_tumor_only_case_svdbquery_vep.vcf.gz.tbi",
                 "sv/test_tumor_only_case_svdbquery_vep_summary.html",
                 "sv/tumor.cgh"
             ]
         ],
-        "timestamp": "2026-08-06T10:48:42.666399",
+        "timestamp": "2026-08-27T09:25:49.151195",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
