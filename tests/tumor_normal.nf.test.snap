@@ -28,6 +28,21 @@
                 "GENMOD_SCORE": {
                     "genmod": "3.10.2"
                 },
+                "PREPARE_AMBER_FOR_GENS": {
+                    "bgzip": "(htslib) 1.23.1",
+                    "prepare_amber_for_gens": "prepare_amber_for_gens, version 1.0",
+                    "python": "Python 3.14.6",
+                    "tabix": "(htslib) 1.23.1"
+                },
+                "PREPARE_COBALT_FOR_GENS": {
+                    "bgzip": "(htslib) 1.23.1",
+                    "prepare_cobalt_for_gens": "prepare_cobalt_for_gens, version 1.0",
+                    "python": "Python 3.14.6",
+                    "tabix": "(htslib) 1.23.1"
+                },
+                "RMARKDOWNNOTEBOOK": {
+                    "rmarkdownnotebook": 2.29
+                },
                 "SAMTOOLS_VIEW": {
                     "samtools": "1.23.1"
                 },
@@ -56,6 +71,16 @@
                 "alignments/test_normal_sample_normal.cram.crai",
                 "alignments/test_tumor_sample_tumor.cram",
                 "alignments/test_tumor_sample_tumor.cram.crai",
+                "cnv",
+                "cnv/test_normal_sample_normal_CNV_COV_COBALT_FOR_GENS.bed.gz",
+                "cnv/test_normal_sample_normal_CNV_COV_COBALT_FOR_GENS.bed.gz.tbi",
+                "cnv/test_tumor_normal_case_CNV_BAF_AMBER_FOR_GENS.normal.bed.gz",
+                "cnv/test_tumor_normal_case_CNV_BAF_AMBER_FOR_GENS.normal.bed.gz.tbi",
+                "cnv/test_tumor_normal_case_CNV_BAF_AMBER_FOR_GENS.tumor.bed.gz",
+                "cnv/test_tumor_normal_case_CNV_BAF_AMBER_FOR_GENS.tumor.bed.gz.tbi",
+                "cnv/test_tumor_normal_case_cnv_report.html",
+                "cnv/test_tumor_sample_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz",
+                "cnv/test_tumor_sample_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz.tbi",
                 "multiqc",
                 "multiqc/multiqc_data",
                 "multiqc/multiqc_data/.stub",
@@ -86,7 +111,7 @@
                 "sv/test_tumor_normal_case_tumor_SV_vcf2cytosure.cgh"
             ]
         ],
-        "timestamp": "2026-08-17T12:16:17.933174",
+        "timestamp": "2026-08-27T20:06:03.680613",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
@@ -121,6 +146,21 @@
                 "GENMOD_SCORE": {
                     "genmod": "3.10.2"
                 },
+                "PREPARE_AMBER_FOR_GENS": {
+                    "bgzip": "(htslib) 1.23.1",
+                    "prepare_amber_for_gens": "prepare_amber_for_gens, version 1.0",
+                    "python": "Python 3.14.6",
+                    "tabix": "(htslib) 1.23.1"
+                },
+                "PREPARE_COBALT_FOR_GENS": {
+                    "bgzip": "(htslib) 1.23.1",
+                    "prepare_cobalt_for_gens": "prepare_cobalt_for_gens, version 1.0",
+                    "python": "Python 3.14.6",
+                    "tabix": "(htslib) 1.23.1"
+                },
+                "RMARKDOWNNOTEBOOK": {
+                    "rmarkdownnotebook": 2.29
+                },
                 "SAMTOOLS_VIEW": {
                     "samtools": "1.23.1"
                 },
@@ -149,6 +189,16 @@
                 "alignments/test_normal_sample_normal.cram.crai",
                 "alignments/test_tumor_sample_tumor.cram",
                 "alignments/test_tumor_sample_tumor.cram.crai",
+                "cnv",
+                "cnv/test_normal_sample_normal_CNV_COV_COBALT_FOR_GENS.bed.gz",
+                "cnv/test_normal_sample_normal_CNV_COV_COBALT_FOR_GENS.bed.gz.tbi",
+                "cnv/test_tumor_normal_case_CNV_BAF_AMBER_FOR_GENS.normal.bed.gz",
+                "cnv/test_tumor_normal_case_CNV_BAF_AMBER_FOR_GENS.normal.bed.gz.tbi",
+                "cnv/test_tumor_normal_case_CNV_BAF_AMBER_FOR_GENS.tumor.bed.gz",
+                "cnv/test_tumor_normal_case_CNV_BAF_AMBER_FOR_GENS.tumor.bed.gz.tbi",
+                "cnv/test_tumor_normal_case_cnv_report.html",
+                "cnv/test_tumor_sample_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz",
+                "cnv/test_tumor_sample_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz.tbi",
                 "multiqc",
                 "multiqc/multiqc_data",
                 "multiqc/multiqc_data/llms-full.txt",
@@ -183,6 +233,14 @@
                 "sv/test_tumor_normal_case_tumor_SV_vcf2cytosure.cgh"
             ],
             [
+                "test_normal_sample_normal_CNV_COV_COBALT_FOR_GENS.bed.gz:md5,d80e5d2edb1559d3e035c0739a8d172f",
+                "test_normal_sample_normal_CNV_COV_COBALT_FOR_GENS.bed.gz.tbi:md5,e62a830a3200cb6494dbb70d1c8ce166",
+                "test_tumor_normal_case_CNV_BAF_AMBER_FOR_GENS.normal.bed.gz:md5,cb7c9d7281611c8e7138ded59a681412",
+                "test_tumor_normal_case_CNV_BAF_AMBER_FOR_GENS.normal.bed.gz.tbi:md5,d54ee75db6836f8851340d3761d3d7e6",
+                "test_tumor_normal_case_CNV_BAF_AMBER_FOR_GENS.tumor.bed.gz:md5,87317df569141e8908d318197fc075af",
+                "test_tumor_normal_case_CNV_BAF_AMBER_FOR_GENS.tumor.bed.gz.tbi:md5,b3b3d37cfa2318d1a8d70dfcd2bf15ce",
+                "test_tumor_sample_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz:md5,5a34fb13829738c0742132bd11ff1219",
+                "test_tumor_sample_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz.tbi:md5,436297c281deec1aa371e78b53e7e207",
                 "test_tumor_normal_case_normal_SV_vcf2cytosure.cgh:md5,4d969b296e558f0fc911844f35fad6e9",
                 "test_tumor_normal_case_tumor_SV_vcf2cytosure.cgh:md5,dd4ac501252ca74cb364ae447ec6b3eb"
             ],
@@ -247,7 +305,7 @@
                 ]
             ]
         ],
-        "timestamp": "2026-08-17T12:15:06.859546",
+        "timestamp": "2026-08-27T20:04:54.110086",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"

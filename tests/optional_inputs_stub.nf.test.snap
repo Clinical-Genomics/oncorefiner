@@ -1,9 +1,12 @@
 {
-    "No `genmod_score_config_*` with '-profile test' - stub": {
+    "No PREPARE_AMBER_COBALT_FOR_GENS support with '-profile test' - stub": {
         "content": [
             {
                 "ANNOTATE_VCF_BY_ID": {
                     "annotate_vcf_by_id": 1.0
+                },
+                "BCFTOOLS_VIEW": {
+                    "bcftools": "1.23.1"
                 },
                 "BCFTOOLS_VIEW_CLINICAL": {
                     "bcftools": "1.23.1"
@@ -21,6 +24,12 @@
                 },
                 "FILTER_VCF": {
                     "bcftools": "1.23.1"
+                },
+                "GENMOD_SCORE": {
+                    "genmod": "3.10.2"
+                },
+                "RMARKDOWNNOTEBOOK": {
+                    "rmarkdownnotebook": 2.29
                 },
                 "SAMTOOLS_VIEW": {
                     "samtools": "1.23.1"
@@ -50,6 +59,234 @@
                 "alignments/test_normal_sample_normal.cram.crai",
                 "alignments/test_tumor_sample_tumor.cram",
                 "alignments/test_tumor_sample_tumor.cram.crai",
+                "cnv",
+                "cnv/test_tumor_normal_case_cnv_report.html",
+                "multiqc",
+                "multiqc/multiqc_data",
+                "multiqc/multiqc_data/.stub",
+                "multiqc/multiqc_plots",
+                "multiqc/multiqc_plots/.stub",
+                "multiqc/multiqc_report.html",
+                "pipeline_info",
+                "pipeline_info/oncorefiner_software_mqc_versions.yml",
+                "snv",
+                "snv/test_tumor_normal_case_SNV_annotated_vcfanno.vcf.gz",
+                "snv/test_tumor_normal_case_SNV_annotated_vcfanno.vcf.gz.tbi",
+                "snv/test_tumor_normal_case_SNV_annotated_vep.vcf.gz",
+                "snv/test_tumor_normal_case_SNV_annotated_vep.vcf.gz.tbi",
+                "snv/test_tumor_normal_case_SNV_annotated_vep_summary.html",
+                "snv/test_tumor_normal_case_SNV_clinical_filtered_bcftools.vcf.gz",
+                "snv/test_tumor_normal_case_SNV_clinical_filtered_bcftools.vcf.gz.tbi",
+                "snv/test_tumor_normal_case_SNV_score_genmod.vcf.gz",
+                "snv/test_tumor_normal_case_SNV_score_genmod.vcf.gz.tbi",
+                "sv",
+                "sv/test_tumor_normal_case_SV_annotated_vep.vcf.gz",
+                "sv/test_tumor_normal_case_SV_annotated_vep.vcf.gz.tbi",
+                "sv/test_tumor_normal_case_SV_annotated_vep_summary.html",
+                "sv/test_tumor_normal_case_SV_clinical_filtered_bcftools.vcf.gz",
+                "sv/test_tumor_normal_case_SV_clinical_filtered_bcftools.vcf.gz.tbi",
+                "sv/test_tumor_normal_case_SV_score_genmod.vcf.gz",
+                "sv/test_tumor_normal_case_SV_score_genmod.vcf.gz.tbi",
+                "sv/test_tumor_normal_case_normal_SV_vcf2cytosure.cgh",
+                "sv/test_tumor_normal_case_tumor_SV_vcf2cytosure.cgh"
+            ]
+        ],
+        "timestamp": "2026-08-27T20:02:56.297312",
+        "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "26.04.6"
+        }
+    },
+    "No `cnv_gene_tsv` and `cnv_segment_tsv` with '-profile test' - stub": {
+        "content": [
+            {
+                "ANNOTATE_VCF_BY_ID": {
+                    "annotate_vcf_by_id": 1.0
+                },
+                "BCFTOOLS_VIEW": {
+                    "bcftools": "1.23.1"
+                },
+                "BCFTOOLS_VIEW_CLINICAL": {
+                    "bcftools": "1.23.1"
+                },
+                "BCFTOOLS_VIEW_RESEARCH": {
+                    "bcftools": "1.23.1"
+                },
+                "COMBINE_LINX_TSV": {
+                    "combine_linx_tsv": 1.0
+                },
+                "ENSEMBLVEP_VEP": {
+                    "ensemblvep": 115.2,
+                    "perl-math-cdf": 0.1,
+                    "tabix": 1.21
+                },
+                "FILTER_VCF": {
+                    "bcftools": "1.23.1"
+                },
+                "GENMOD_SCORE": {
+                    "genmod": "3.10.2"
+                },
+                "PREPARE_AMBER_FOR_GENS": {
+                    "bgzip": "(htslib) 1.23.1",
+                    "prepare_amber_for_gens": "prepare_amber_for_gens, version 1.0",
+                    "python": "Python 3.14.6",
+                    "tabix": "(htslib) 1.23.1"
+                },
+                "PREPARE_COBALT_FOR_GENS": {
+                    "bgzip": "(htslib) 1.23.1",
+                    "prepare_cobalt_for_gens": "prepare_cobalt_for_gens, version 1.0",
+                    "python": "Python 3.14.6",
+                    "tabix": "(htslib) 1.23.1"
+                },
+                "SAMTOOLS_VIEW": {
+                    "samtools": "1.23.1"
+                },
+                "SVDB_QUERY": {
+                    "svdb": "2.8.4"
+                },
+                "TIDDIT_COV": {
+                    "tiddit": "3.9.5"
+                },
+                "UNTAR_VEP_CACHE": {
+                    "untar": 1.34
+                },
+                "VCF2CYTOSURE": {
+                    "vcf2cytosure": "0.9.3"
+                },
+                "VCFANNO": {
+                    "vcfanno": "0.3.7"
+                },
+                "Workflow": {
+                    "Clinical-Genomics/oncorefiner": "v1.0.0dev"
+                }
+            },
+            [
+                "alignments",
+                "alignments/test_normal_sample_normal.cram",
+                "alignments/test_normal_sample_normal.cram.crai",
+                "alignments/test_tumor_sample_tumor.cram",
+                "alignments/test_tumor_sample_tumor.cram.crai",
+                "cnv",
+                "cnv/test_normal_sample_normal_CNV_COV_COBALT_FOR_GENS.bed.gz",
+                "cnv/test_normal_sample_normal_CNV_COV_COBALT_FOR_GENS.bed.gz.tbi",
+                "cnv/test_tumor_normal_case_CNV_BAF_AMBER_FOR_GENS.normal.bed.gz",
+                "cnv/test_tumor_normal_case_CNV_BAF_AMBER_FOR_GENS.normal.bed.gz.tbi",
+                "cnv/test_tumor_normal_case_CNV_BAF_AMBER_FOR_GENS.tumor.bed.gz",
+                "cnv/test_tumor_normal_case_CNV_BAF_AMBER_FOR_GENS.tumor.bed.gz.tbi",
+                "cnv/test_tumor_sample_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz",
+                "cnv/test_tumor_sample_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz.tbi",
+                "multiqc",
+                "multiqc/multiqc_data",
+                "multiqc/multiqc_data/.stub",
+                "multiqc/multiqc_plots",
+                "multiqc/multiqc_plots/.stub",
+                "multiqc/multiqc_report.html",
+                "pipeline_info",
+                "pipeline_info/oncorefiner_software_mqc_versions.yml",
+                "snv",
+                "snv/test_tumor_normal_case_SNV_annotated_vcfanno.vcf.gz",
+                "snv/test_tumor_normal_case_SNV_annotated_vcfanno.vcf.gz.tbi",
+                "snv/test_tumor_normal_case_SNV_annotated_vep.vcf.gz",
+                "snv/test_tumor_normal_case_SNV_annotated_vep.vcf.gz.tbi",
+                "snv/test_tumor_normal_case_SNV_annotated_vep_summary.html",
+                "snv/test_tumor_normal_case_SNV_clinical_filtered_bcftools.vcf.gz",
+                "snv/test_tumor_normal_case_SNV_clinical_filtered_bcftools.vcf.gz.tbi",
+                "snv/test_tumor_normal_case_SNV_score_genmod.vcf.gz",
+                "snv/test_tumor_normal_case_SNV_score_genmod.vcf.gz.tbi",
+                "sv",
+                "sv/test_tumor_normal_case_SV_annotated_vep.vcf.gz",
+                "sv/test_tumor_normal_case_SV_annotated_vep.vcf.gz.tbi",
+                "sv/test_tumor_normal_case_SV_annotated_vep_summary.html",
+                "sv/test_tumor_normal_case_SV_clinical_filtered_bcftools.vcf.gz",
+                "sv/test_tumor_normal_case_SV_clinical_filtered_bcftools.vcf.gz.tbi",
+                "sv/test_tumor_normal_case_SV_score_genmod.vcf.gz",
+                "sv/test_tumor_normal_case_SV_score_genmod.vcf.gz.tbi",
+                "sv/test_tumor_normal_case_normal_SV_vcf2cytosure.cgh",
+                "sv/test_tumor_normal_case_tumor_SV_vcf2cytosure.cgh"
+            ]
+        ],
+        "timestamp": "2026-08-27T20:01:49.906443",
+        "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "26.04.6"
+        }
+    },
+    "No `genmod_score_config_*` with '-profile test' - stub": {
+        "content": [
+            {
+                "ANNOTATE_VCF_BY_ID": {
+                    "annotate_vcf_by_id": 1.0
+                },
+                "BCFTOOLS_VIEW_CLINICAL": {
+                    "bcftools": "1.23.1"
+                },
+                "BCFTOOLS_VIEW_RESEARCH": {
+                    "bcftools": "1.23.1"
+                },
+                "COMBINE_LINX_TSV": {
+                    "combine_linx_tsv": 1.0
+                },
+                "ENSEMBLVEP_VEP": {
+                    "ensemblvep": 115.2,
+                    "perl-math-cdf": 0.1,
+                    "tabix": 1.21
+                },
+                "FILTER_VCF": {
+                    "bcftools": "1.23.1"
+                },
+                "PREPARE_AMBER_FOR_GENS": {
+                    "bgzip": "(htslib) 1.23.1",
+                    "prepare_amber_for_gens": "prepare_amber_for_gens, version 1.0",
+                    "python": "Python 3.14.6",
+                    "tabix": "(htslib) 1.23.1"
+                },
+                "PREPARE_COBALT_FOR_GENS": {
+                    "bgzip": "(htslib) 1.23.1",
+                    "prepare_cobalt_for_gens": "prepare_cobalt_for_gens, version 1.0",
+                    "python": "Python 3.14.6",
+                    "tabix": "(htslib) 1.23.1"
+                },
+                "RMARKDOWNNOTEBOOK": {
+                    "rmarkdownnotebook": 2.29
+                },
+                "SAMTOOLS_VIEW": {
+                    "samtools": "1.23.1"
+                },
+                "SVDB_QUERY": {
+                    "svdb": "2.8.4"
+                },
+                "TIDDIT_COV": {
+                    "tiddit": "3.9.5"
+                },
+                "UNTAR_VEP_CACHE": {
+                    "untar": 1.34
+                },
+                "VCF2CYTOSURE": {
+                    "vcf2cytosure": "0.9.3"
+                },
+                "VCFANNO": {
+                    "vcfanno": "0.3.7"
+                },
+                "Workflow": {
+                    "Clinical-Genomics/oncorefiner": "v1.0.0dev"
+                }
+            },
+            [
+                "alignments",
+                "alignments/test_normal_sample_normal.cram",
+                "alignments/test_normal_sample_normal.cram.crai",
+                "alignments/test_tumor_sample_tumor.cram",
+                "alignments/test_tumor_sample_tumor.cram.crai",
+                "cnv",
+                "cnv/test_normal_sample_normal_CNV_COV_COBALT_FOR_GENS.bed.gz",
+                "cnv/test_normal_sample_normal_CNV_COV_COBALT_FOR_GENS.bed.gz.tbi",
+                "cnv/test_tumor_normal_case_CNV_BAF_AMBER_FOR_GENS.normal.bed.gz",
+                "cnv/test_tumor_normal_case_CNV_BAF_AMBER_FOR_GENS.normal.bed.gz.tbi",
+                "cnv/test_tumor_normal_case_CNV_BAF_AMBER_FOR_GENS.tumor.bed.gz",
+                "cnv/test_tumor_normal_case_CNV_BAF_AMBER_FOR_GENS.tumor.bed.gz.tbi",
+                "cnv/test_tumor_normal_case_cnv_report.html",
+                "cnv/test_tumor_sample_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz",
+                "cnv/test_tumor_sample_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz.tbi",
                 "multiqc",
                 "multiqc/multiqc_data",
                 "multiqc/multiqc_data/.stub",
@@ -76,7 +313,7 @@
                 "sv/test_tumor_normal_case_tumor_SV_vcf2cytosure.cgh"
             ]
         ],
-        "timestamp": "2026-08-14T15:58:47.908141",
+        "timestamp": "2026-08-27T19:57:37.669388",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
@@ -111,6 +348,21 @@
                 "GENMOD_SCORE": {
                     "genmod": "3.10.2"
                 },
+                "PREPARE_AMBER_FOR_GENS": {
+                    "bgzip": "(htslib) 1.23.1",
+                    "prepare_amber_for_gens": "prepare_amber_for_gens, version 1.0",
+                    "python": "Python 3.14.6",
+                    "tabix": "(htslib) 1.23.1"
+                },
+                "PREPARE_COBALT_FOR_GENS": {
+                    "bgzip": "(htslib) 1.23.1",
+                    "prepare_cobalt_for_gens": "prepare_cobalt_for_gens, version 1.0",
+                    "python": "Python 3.14.6",
+                    "tabix": "(htslib) 1.23.1"
+                },
+                "RMARKDOWNNOTEBOOK": {
+                    "rmarkdownnotebook": 2.29
+                },
                 "SAMTOOLS_VIEW": {
                     "samtools": "1.23.1"
                 },
@@ -139,6 +391,16 @@
                 "alignments/test_normal_sample_normal.cram.crai",
                 "alignments/test_tumor_sample_tumor.cram",
                 "alignments/test_tumor_sample_tumor.cram.crai",
+                "cnv",
+                "cnv/test_normal_sample_normal_CNV_COV_COBALT_FOR_GENS.bed.gz",
+                "cnv/test_normal_sample_normal_CNV_COV_COBALT_FOR_GENS.bed.gz.tbi",
+                "cnv/test_tumor_normal_case_CNV_BAF_AMBER_FOR_GENS.normal.bed.gz",
+                "cnv/test_tumor_normal_case_CNV_BAF_AMBER_FOR_GENS.normal.bed.gz.tbi",
+                "cnv/test_tumor_normal_case_CNV_BAF_AMBER_FOR_GENS.tumor.bed.gz",
+                "cnv/test_tumor_normal_case_CNV_BAF_AMBER_FOR_GENS.tumor.bed.gz.tbi",
+                "cnv/test_tumor_normal_case_cnv_report.html",
+                "cnv/test_tumor_sample_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz",
+                "cnv/test_tumor_sample_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz.tbi",
                 "multiqc",
                 "multiqc/multiqc_data",
                 "multiqc/multiqc_data/.stub",
@@ -169,7 +431,7 @@
                 "sv/test_tumor_normal_case_tumor_SV_vcf2cytosure.cgh"
             ]
         ],
-        "timestamp": "2026-08-17T12:13:33.511446",
+        "timestamp": "2026-08-27T19:58:37.772558",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"

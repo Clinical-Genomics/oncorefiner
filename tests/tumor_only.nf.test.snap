@@ -28,6 +28,21 @@
                 "GENMOD_SCORE": {
                     "genmod": "3.10.2"
                 },
+                "PREPARE_AMBER_FOR_GENS": {
+                    "bgzip": "(htslib) 1.23.1",
+                    "prepare_amber_for_gens": "prepare_amber_for_gens, version 1.0",
+                    "python": "Python 3.14.6",
+                    "tabix": "(htslib) 1.23.1"
+                },
+                "PREPARE_COBALT_FOR_GENS": {
+                    "bgzip": "(htslib) 1.23.1",
+                    "prepare_cobalt_for_gens": "prepare_cobalt_for_gens, version 1.0",
+                    "python": "Python 3.14.6",
+                    "tabix": "(htslib) 1.23.1"
+                },
+                "RMARKDOWNNOTEBOOK": {
+                    "rmarkdownnotebook": 2.29
+                },
                 "SAMTOOLS_VIEW": {
                     "samtools": "1.23.1"
                 },
@@ -54,6 +69,12 @@
                 "alignments",
                 "alignments/test_tumor_sample_tumor.cram",
                 "alignments/test_tumor_sample_tumor.cram.crai",
+                "cnv",
+                "cnv/test_tumor_only_case_CNV_BAF_AMBER_FOR_GENS.tumor.bed.gz",
+                "cnv/test_tumor_only_case_CNV_BAF_AMBER_FOR_GENS.tumor.bed.gz.tbi",
+                "cnv/test_tumor_only_case_cnv_report.html",
+                "cnv/test_tumor_sample_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz",
+                "cnv/test_tumor_sample_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz.tbi",
                 "multiqc",
                 "multiqc/multiqc_data",
                 "multiqc/multiqc_data/llms-full.txt",
@@ -87,6 +108,10 @@
                 "sv/test_tumor_only_case_tumor_SV_vcf2cytosure.cgh"
             ],
             [
+                "test_tumor_only_case_CNV_BAF_AMBER_FOR_GENS.tumor.bed.gz:md5,ccb0b5ad7111f53c6d660e608af438ce",
+                "test_tumor_only_case_CNV_BAF_AMBER_FOR_GENS.tumor.bed.gz.tbi:md5,6928f740f2cd8914f6d9b10607b184ea",
+                "test_tumor_sample_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz:md5,1a22ba6f7f24087f1c7fbb51c73a3b9d",
+                "test_tumor_sample_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz.tbi:md5,643aa1682219825f40e1071ad684c1ee",
                 "test_tumor_only_case_tumor_SV_vcf2cytosure.cgh:md5,22c058183d93a767ee61d5319513dc39"
             ],
             [
@@ -150,7 +175,7 @@
                 ]
             ]
         ],
-        "timestamp": "2026-08-17T12:17:45.055503",
+        "timestamp": "2026-08-27T20:07:44.773996",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
@@ -185,6 +210,21 @@
                 "GENMOD_SCORE": {
                     "genmod": "3.10.2"
                 },
+                "PREPARE_AMBER_FOR_GENS": {
+                    "bgzip": "(htslib) 1.23.1",
+                    "prepare_amber_for_gens": "prepare_amber_for_gens, version 1.0",
+                    "python": "Python 3.14.6",
+                    "tabix": "(htslib) 1.23.1"
+                },
+                "PREPARE_COBALT_FOR_GENS": {
+                    "bgzip": "(htslib) 1.23.1",
+                    "prepare_cobalt_for_gens": "prepare_cobalt_for_gens, version 1.0",
+                    "python": "Python 3.14.6",
+                    "tabix": "(htslib) 1.23.1"
+                },
+                "RMARKDOWNNOTEBOOK": {
+                    "rmarkdownnotebook": 2.29
+                },
                 "SAMTOOLS_VIEW": {
                     "samtools": "1.23.1"
                 },
@@ -211,6 +251,12 @@
                 "alignments",
                 "alignments/test_tumor_sample_tumor.cram",
                 "alignments/test_tumor_sample_tumor.cram.crai",
+                "cnv",
+                "cnv/test_tumor_only_case_CNV_BAF_AMBER_FOR_GENS.tumor.bed.gz",
+                "cnv/test_tumor_only_case_CNV_BAF_AMBER_FOR_GENS.tumor.bed.gz.tbi",
+                "cnv/test_tumor_only_case_cnv_report.html",
+                "cnv/test_tumor_sample_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz",
+                "cnv/test_tumor_sample_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz.tbi",
                 "multiqc",
                 "multiqc/multiqc_data",
                 "multiqc/multiqc_data/.stub",
@@ -240,7 +286,7 @@
                 "sv/test_tumor_only_case_tumor_SV_vcf2cytosure.cgh"
             ]
         ],
-        "timestamp": "2026-08-17T12:18:49.350223",
+        "timestamp": "2026-08-27T20:08:58.260341",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"

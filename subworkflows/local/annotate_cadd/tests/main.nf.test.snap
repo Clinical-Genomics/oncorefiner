@@ -34,6 +34,35 @@
                         "test_SNV_annotated_CADD.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
                     ]
                 ]
+            },
+            {
+                "versions": [
+                    [
+                        "ANNOTATE_CADD:BCFTOOLS_ANNOTATE_INDELS",
+                        "bcftools",
+                        "1.22"
+                    ],
+                    [
+                        "ANNOTATE_CADD:BCFTOOLS_VIEW",
+                        "bcftools",
+                        "1.23.1"
+                    ],
+                    [
+                        "ANNOTATE_CADD:CADD",
+                        "cadd",
+                        "1.7.3"
+                    ],
+                    [
+                        "ANNOTATE_CADD:TABIX_CADD",
+                        "tabix",
+                        "1.21"
+                    ],
+                    [
+                        "ANNOTATE_CADD:TABIX_INPUT",
+                        "tabix",
+                        "1.21"
+                    ]
+                ]
             }
         ],
         "timestamp": "2026-08-12T09:54:47.923483",
@@ -75,6 +104,50 @@
                             "id": "test"
                         },
                         "test_SNV_annotated_CADD.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                    ]
+                ]
+            },
+            {
+                "versions": [
+                    [
+                        "ANNOTATE_CADD:BCFTOOLS_ANNOTATE_INDELS",
+                        "bcftools",
+                        "1.22"
+                    ],
+                    [
+                        "ANNOTATE_CADD:BCFTOOLS_RENAME_CHR_CADD",
+                        "bcftools",
+                        "1.22"
+                    ],
+                    [
+                        "ANNOTATE_CADD:BCFTOOLS_VIEW",
+                        "bcftools",
+                        "1.23.1"
+                    ],
+                    [
+                        "ANNOTATE_CADD:CADD",
+                        "cadd",
+                        "1.7.3"
+                    ],
+                    [
+                        "ANNOTATE_CADD:GAWK_CADD_TO_REF_CHRNAMES",
+                        "gawk",
+                        "5.3.1"
+                    ],
+                    [
+                        "ANNOTATE_CADD:GAWK_REF_TO_CADD_CHRNAMES",
+                        "gawk",
+                        "5.3.1"
+                    ],
+                    [
+                        "ANNOTATE_CADD:TABIX_CADD",
+                        "tabix",
+                        "1.21"
+                    ],
+                    [
+                        "ANNOTATE_CADD:TABIX_INPUT",
+                        "tabix",
+                        "1.21"
                     ]
                 ]
             }

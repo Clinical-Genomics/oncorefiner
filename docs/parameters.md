@@ -35,6 +35,11 @@ Define where the pipeline should find input data and save output data.
 | `bai_tumor` | Path to BAM index file for the tumor sample. | `string` |  |  |  |
 | `bam_normal` | Path to alignment BAM file for the normal sample. | `string` |  |  |  |
 | `bai_normal` | Path to BAM index file for the normal sample. | `string` |  |  |  |
+| `amber_baf_tsv_gz` | Path to a gzipped TSV file containing amber BAF values for the sample. | `string` |  |  |  |
+| `cobalt_ratio_pcf_tumor` | Path to a pcf file containing cobalt segment coverage ratios for the tumor sample. | `string` |  |  |  |
+| `cobalt_ratio_pcf_normal` | Path to a pcf file containing cobalt segment coverage ratios for the normal sample. | `string` |  |  |  |
+| `cnv_gene_tsv` | Path to a file containing gene-level information of CNV calls. <details><summary>Help</summary><small>This file should be a tab-separated file with a header row. Typically *.purple.cnv.gene.tsv file from Oncoanalyser.</small></details>| `string` |  |  |  |
+| `cnv_segment_tsv` | Path to a file containing segment-level information of CNV calls. <details><summary>Help</summary><small>This file should be a tab-separated file with a header row. Typically *.purple.cnv.somatic.tsv file from Oncoanalyser.</small></details>| `string` |  |  |  |
 | `linx_fusion_tsv` | Path to fusion linx tsv file for the sample. | `string` |  |  |  |
 | `linx_breakends_tsv` | Path to breakend linx tsv file for the sample. | `string` |  |  |  |
 | `linx_sv_tsv` | Path to sv linx tsv file for the sample. | `string` |  |  |  |
