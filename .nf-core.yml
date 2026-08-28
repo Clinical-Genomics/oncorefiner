@@ -10,6 +10,9 @@ lint:
     - tests/default.config
     - tests/default.nf.test
     - CODE_OF_CONDUCT.md
+    - assets/nf-core-oncorefiner_logo_light.png
+    - docs/images/nf-core-oncorefiner_logo_light.png
+    - docs/images/nf-core-oncorefiner_logo_dark.png
   files_unchanged:
     - .github/ISSUE_TEMPLATE/config.yml
     - .github/ISSUE_TEMPLATE/bug_report.yml
@@ -22,7 +25,7 @@ lint:
   multiqc_config: false
   nextflow_config:
     - params.input
-nf_core_version: 4.0.3
+nf_core_version: 4.1.0
 repository_type: pipeline
 template:
   author: Clinical Genomics Stockholm
