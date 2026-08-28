@@ -9,7 +9,6 @@ nextflow_process {
 
     topics "versions"
 
-
     test("Annotate VCF by ID, tumor-normal") {
 
         setup {
