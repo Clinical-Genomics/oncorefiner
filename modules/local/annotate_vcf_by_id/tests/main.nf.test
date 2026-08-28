@@ -93,7 +93,8 @@ nextflow_process {
             assert process.success
             assertAll(
                 { assert snapshot(
-                    process.out,
+                    sanitizeOutput(process.out),
+                    topics,
                 ).match() }
             )
         }
