@@ -3,7 +3,6 @@ nextflow_process {
     name "Test process STANDARDISE_ESVEE_RECORDS"
     script "../main.nf"
     process "STANDARDISE_ESVEE_RECORDS"
-    config "./nextflow.config"
     tag "modules"
     tag "modules_local"
     tag "standardise_esvee_records"
