@@ -35,6 +35,51 @@
             "nextflow": "26.04.6"
         }
     },
+    "Standardise ESVEE records, tumor-normal - stub": {
+        "content": [
+            {
+                "report": [
+                    [
+                        {
+                            "id": "test_esvee",
+                            "case_id": "subject_a"
+                        },
+                        "test_esvee.standardised.report.tsv:md5,c25bba014d50cfa3b3d00b2ac8e589ab"
+                    ]
+                ],
+                "vcf": [
+                    [
+                        {
+                            "id": "test_esvee",
+                            "case_id": "subject_a"
+                        },
+                        "test_esvee.standardised.vcf:md5,7e95a6f41bc23a5a9baca2fcaf82acf8"
+                    ]
+                ],
+                "versions_standardise_esvee_records": [
+                    [
+                        "STANDARDISE_ESVEE_RECORDS",
+                        "standardise_esvee_records",
+                        "1.0"
+                    ]
+                ]
+            },
+            {
+                "versions": [
+                    [
+                        "STANDARDISE_ESVEE_RECORDS",
+                        "standardise_esvee_records",
+                        "1.0"
+                    ]
+                ]
+            }
+        ],
+        "timestamp": "2026-08-28T15:20:55.24889",
+        "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "26.04.6"
+        }
+    },
     "Standardise ESVEE records, tumor-only": {
         "content": [
             [
