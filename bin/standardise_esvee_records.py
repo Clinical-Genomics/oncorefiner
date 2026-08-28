@@ -10,8 +10,8 @@ Conversion rules
   - no record lookup or mate pairing is performed;
   - the record's own breakend ALT is parsed to obtain the remote coordinate;
   - ALT becomes <DEL>, <DUP>, <INV> or <INS>;
-  - END is set to the remote coordinate encoded in that same ALT;
-  - non-anchor sequence from that record's own ALT is stored in JUNCTIONSEQ.
+  - END is set to the remote coordinate encoded in that same ALT (this means that for the second record, the END will be the first record's POS which pysam will automatically convert to the second record's start position);
+  - ALT column sequence from the record's ALT column is stored in ALTCOLUMNSEQ.
 * Records that cannot be converted safely are retained unchanged and reported.
 
 Every input record produces exactly one output record. Paired records therefore
@@ -126,16 +126,12 @@ def get_single_alt(record: pysam.VariantRecord) -> str | None:
     return record.alts[0]
 
 
-def extract_non_anchor_sequence(
+def extract_alt_column_sequence(
     record: pysam.VariantRecord,
     parsed: ParsedBreakendAlt,
 ) -> str | None:
     """
-    Extract non-anchor sequence from this record's own breakend ALT.
-
-    If local sequence is before the bracket, the REF anchor is expected at the
-    beginning. If the remote locus comes first, the REF anchor is expected at
-    the end.
+    Extract ALT column sequence from this record's own breakend ALT.
     """
     sequence = parsed.local_sequence
     ref = record.ref
@@ -176,8 +172,8 @@ def convert_symbolic_record(
             f"ALT points to {parsed.remote_chrom}:{parsed.remote_pos}",
         )
 
-    junction_sequence = extract_non_anchor_sequence(record, parsed)
-    if junction_sequence is None:
+    altcolumn_sequence = extract_alt_column_sequence(record, parsed)
+    if altcolumn_sequence is None:
         return (
             None,
             "anchor_not_identified",
@@ -194,10 +190,10 @@ def convert_symbolic_record(
     # pysam/HTSlib exposes INFO/END through VariantRecord.stop.
     output.stop = parsed.remote_pos
 
-    if junction_sequence:
-        output.info["JUNCTIONSEQ"] = junction_sequence
-    elif "JUNCTIONSEQ" in output.info:
-        del output.info["JUNCTIONSEQ"]
+    if altcolumn_sequence:
+        output.info["ALTCOLUMNSEQ"] = altcolumn_sequence
+    elif "ALTCOLUMNSEQ" in output.info:
+        del output.info["ALTCOLUMNSEQ"]
 
     return output, None, None
 
@@ -229,8 +225,8 @@ def transform_record(
 
     report.symbolic_converted += 1
     report.converted_by_svtype[svtype] += 1
-    if scalar_info(converted, "JUNCTIONSEQ"):
-        report.symbolic_with_junctionseq += 1
+    if scalar_info(converted, "ALTCOLUMNSEQ"):
+        report.symbolic_with_altcolumnseq += 1
 
     report.action(
         record_label(record),
@@ -271,15 +267,13 @@ def add_required_headers(
             description="Remote coordinate parsed from the original breakend ALT",
         )
 
-    if "JUNCTIONSEQ" not in output_header.info:
+    if "ALTCOLUMNSEQ" not in output_header.info:
         output_header.info.add(
-            "JUNCTIONSEQ",
+            "ALTCOLUMNSEQ",
             number=1,
             type="String",
             description=(
-                "Non-anchor sequence retained from this ESVEE breakend ALT allele; "
-                "may include reference-derived assembly sequence and does not "
-                "necessarily represent a novel insertion"
+                "Sequence retained from this ESVEE breakend ALT allele column"
             ),
         )
 
@@ -350,8 +344,8 @@ def write_report(
         ("summary", "symbolic_records_converted", str(report.symbolic_converted)),
         (
             "summary",
-            "symbolic_records_with_junctionseq",
-            str(report.symbolic_with_junctionseq),
+            "symbolic_records_with_altcolumnseq",
+            str(report.symbolic_with_altcolumnseq),
         ),
         ("summary", "unchanged_records", str(report.unchanged_records)),
         ("summary", "warnings", str(report.warning_count)),
