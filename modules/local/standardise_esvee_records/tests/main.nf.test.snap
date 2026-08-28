@@ -1,0 +1,74 @@
+{
+    "Standardise ESVEE records, tumor-normal": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "test_esvee_sv",
+                        "case_id": "subject_a"
+                    },
+                    "test_esvee_sv.standardised.vcf:md5,44ec2837e12c6ae84dfa37d55e45ec90"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "test_esvee_sv",
+                        "case_id": "subject_a"
+                    },
+                    "test_esvee_sv.standardised.report.tsv:md5,2d840e602f362cf106e0596313ba2f4b"
+                ]
+            ],
+            {
+                "versions": [
+                    [
+                        "STANDARDISE_ESVEE_RECORDS",
+                        "standardise_esvee_records",
+                        "1.0"
+                    ]
+                ]
+            }
+        ],
+        "timestamp": "2026-08-28T14:44:54.364392",
+        "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "26.04.6"
+        }
+    },
+    "Standardise ESVEE records, tumor-only": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "test_esvee_sv",
+                        "case_id": "subject_a"
+                    },
+                    "test_esvee_sv.standardised.vcf:md5,adef8ef65b59ca26270308d00ea456dc"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "test_esvee_sv",
+                        "case_id": "subject_a"
+                    },
+                    "test_esvee_sv.standardised.report.tsv:md5,2d840e602f362cf106e0596313ba2f4b"
+                ]
+            ],
+            {
+                "versions": [
+                    [
+                        "STANDARDISE_ESVEE_RECORDS",
+                        "standardise_esvee_records",
+                        "1.0"
+                    ]
+                ]
+            }
+        ],
+        "timestamp": "2026-08-28T14:45:19.037542",
+        "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "26.04.6"
+        }
+    }
+}
