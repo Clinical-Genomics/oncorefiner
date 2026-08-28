@@ -104,6 +104,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#179](https://github.com/Clinical-Genomics/oncorefiner/pull/179) Added the deleted logo image files to the files_exist section of .nf-core.yml.
 - [#180](https://github.com/Clinical-Genomics/oncorefiner/pull/180) Addded topic versions to tests in `ANNOTATE_CADD, PROCESS_SNVS, VCF_ANNOTATE_LINX_FUSIONS, ANNOTATE_VCF_BY_ID` and `COMBINE_LINX`.
 - [#147](https://github.com/Clinical-Genomics/oncorefiner/pull/147) Added the CNV html file to the `tests/.nftignore`.
+- [#183](https://github.com/Clinical-Genomics/oncorefiner/pull/183) Changed the input VCF and TBI in `GENERATE_CYTOSURE_FILES` to be the output from `BCFTOOLS_VIEW_CLINICAL`.
 
 ### `Fixed`
 
