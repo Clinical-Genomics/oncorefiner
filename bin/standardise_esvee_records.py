@@ -222,10 +222,6 @@ def reformat_sv_record(record: pysam.VariantRecord, svtype: str) -> pysam.Varian
     reformatted = record.copy()
     reformatted.alts = (f"<{svtype}>",)
 
-    # MATEID is deliberately retained. It no longer controls reformatting, but
-    # keeping it preserves provenance and the relationship between the two
-    # independently emitted ESVEE records.
-    #
     # pysam/HTSlib exposes INFO/END through VariantRecord.stop, so assigning
     # stop updates END in the serialized VCF record.
     reformatted.stop = parsed.remote_pos
