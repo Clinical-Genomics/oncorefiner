@@ -7,7 +7,7 @@
                         "id": "test_esvee_reformat",
                         "case_id": "subject_a"
                     },
-                    "test_esvee_reformat.standardised.vcf:variantsMD5,e2d11086ea09c9c23b034277dfd02a14"
+                    "test_esvee_reformat.vcf:variantsMD5,e2d11086ea09c9c23b034277dfd02a14"
                 ]
             ],
             [
@@ -16,7 +16,7 @@
                         "id": "test_esvee_reformat",
                         "case_id": "subject_a"
                     },
-                    "test_esvee_reformat.standardised.report.tsv:md5,2d840e602f362cf106e0596313ba2f4b"
+                    "test_esvee_reformat.report.tsv:md5,2d840e602f362cf106e0596313ba2f4b"
                 ]
             ],
             {
@@ -29,7 +29,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-08-28T14:59:57.649492",
+        "timestamp": "2026-08-31T10:56:30.047304",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
@@ -44,7 +44,7 @@
                             "id": "test_esvee",
                             "case_id": "subject_a"
                         },
-                        "test_esvee.standardised.report.tsv:md5,c25bba014d50cfa3b3d00b2ac8e589ab"
+                        "test_esvee.report.tsv:md5,c25bba014d50cfa3b3d00b2ac8e589ab"
                     ]
                 ],
                 "vcf": [
@@ -53,7 +53,7 @@
                             "id": "test_esvee",
                             "case_id": "subject_a"
                         },
-                        "test_esvee.standardised.vcf:md5,7e95a6f41bc23a5a9baca2fcaf82acf8"
+                        "test_esvee.vcf:md5,7e95a6f41bc23a5a9baca2fcaf82acf8"
                     ]
                 ],
                 "versions_standardise_esvee_records": [
@@ -74,7 +74,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-08-28T15:20:55.24889",
+        "timestamp": "2026-08-31T10:56:14.203109",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
@@ -88,7 +88,7 @@
                         "id": "test_esvee_reformat",
                         "case_id": "subject_a"
                     },
-                    "test_esvee_reformat.standardised.vcf:variantsMD5,8bdbe5f0292b426c631dc07e289b9b41"
+                    "test_esvee_reformat.vcf:variantsMD5,8bdbe5f0292b426c631dc07e289b9b41"
                 ]
             ],
             [
@@ -97,7 +97,7 @@
                         "id": "test_esvee_reformat",
                         "case_id": "subject_a"
                     },
-                    "test_esvee_reformat.standardised.report.tsv:md5,2d840e602f362cf106e0596313ba2f4b"
+                    "test_esvee_reformat.report.tsv:md5,2d840e602f362cf106e0596313ba2f4b"
                 ]
             ],
             {
@@ -110,7 +110,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-08-28T15:00:19.458325",
+        "timestamp": "2026-08-31T10:56:50.786801",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
