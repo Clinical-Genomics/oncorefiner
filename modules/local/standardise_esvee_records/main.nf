@@ -11,8 +11,8 @@ process STANDARDISE_ESVEE_RECORDS {
     tuple val(meta), path(sv_vcf)
 
     output:
-    tuple val(meta), path("*.standardised.vcf"), emit: vcf
-    tuple val(meta), path("*.standardised.report.tsv"), emit: report
+    tuple val(meta), path("*.vcf"), emit: vcf
+    tuple val(meta), path("*.report.tsv"), emit: report
     tuple val("${task.process}"),
         val('standardise_esvee_records'),
         val('1.0'),
@@ -25,8 +25,8 @@ process STANDARDISE_ESVEE_RECORDS {
     """
     standardise_esvee_records.py \\
         ${sv_vcf} \\
-        --output ${prefix}.standardised.vcf \\
-        --report ${prefix}.standardised.report.tsv \\
+        --output ${prefix}.vcf \\
+        --report ${prefix}.report.tsv \\
         --verbose-report
     """
 
@@ -34,7 +34,7 @@ process STANDARDISE_ESVEE_RECORDS {
     def prefix = task.ext.prefix ?: meta.id
 
     """
-    cat <<'EOF' > ${prefix}.standardised.vcf
+    cat <<'EOF' > ${prefix}.vcf
     ##fileformat=VCFv4.2
     ##contig=<ID=chr1,length=1000000>
     ##INFO=<ID=SVTYPE,Number=1,Type=String,Description="Structural variant type">
@@ -43,7 +43,7 @@ process STANDARDISE_ESVEE_RECORDS {
     #CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO
     EOF
 
-    cat <<'EOF' > ${prefix}.standardised.report.tsv
+    cat <<'EOF' > ${prefix}.report.tsv
     section	name	value
     summary	input_records	0
     summary	output_records	0
