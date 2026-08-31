@@ -16,7 +16,7 @@
                         "id": "test_esvee_reformat",
                         "case_id": "subject_a"
                     },
-                    "test_esvee_reformat.report.tsv:md5,2d840e602f362cf106e0596313ba2f4b"
+                    "test_esvee_reformat.report.tsv:md5,7d8ae977907d3aa2b8080fce6491b8d2"
                 ]
             ],
             {
@@ -29,7 +29,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-08-31T10:56:30.047304",
+        "timestamp": "2026-08-31T14:00:05.60472",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
@@ -97,7 +97,7 @@
                         "id": "test_esvee_reformat",
                         "case_id": "subject_a"
                     },
-                    "test_esvee_reformat.report.tsv:md5,2d840e602f362cf106e0596313ba2f4b"
+                    "test_esvee_reformat.report.tsv:md5,7d8ae977907d3aa2b8080fce6491b8d2"
                 ]
             ],
             {
@@ -110,7 +110,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-08-31T10:56:50.786801",
+        "timestamp": "2026-08-31T14:00:24.353834",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
