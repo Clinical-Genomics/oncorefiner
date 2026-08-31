@@ -11,11 +11,12 @@ process STANDARDISE_ESVEE_RECORDS {
     tuple val(meta), path(sv_vcf)
 
     output:
-    tuple val(meta), path("*.standardised.vcf"), emit: vcf
-    tuple val(meta), path("*.standardised.report.tsv"), emit: report
+    tuple val(meta), path("*.vcf"), emit: vcf
+    tuple val(meta), path("*.report.tsv"), emit: report
     tuple val("${task.process}"),
         val('standardise_esvee_records'),
-        val('1.0'),
+        // keep this in sync with the version in `bin/standardise_esvee_records.py`
+        val('1.0.0'),
         topic: versions,
         emit: versions_standardise_esvee_records
 
@@ -25,8 +26,8 @@ process STANDARDISE_ESVEE_RECORDS {
     """
     standardise_esvee_records.py \\
         ${sv_vcf} \\
-        --output ${prefix}.standardised.vcf \\
-        --report ${prefix}.standardised.report.tsv \\
+        --output ${prefix}.vcf \\
+        --report ${prefix}.report.tsv \\
         --verbose-report
     """
 
@@ -34,24 +35,7 @@ process STANDARDISE_ESVEE_RECORDS {
     def prefix = task.ext.prefix ?: meta.id
 
     """
-    cat <<'EOF' > ${prefix}.standardised.vcf
-    ##fileformat=VCFv4.2
-    ##contig=<ID=chr1,length=1000000>
-    ##INFO=<ID=SVTYPE,Number=1,Type=String,Description="Structural variant type">
-    ##INFO=<ID=END,Number=1,Type=Integer,Description="Remote coordinate parsed from the original breakend ALT">
-    ##INFO=<ID=ALTCOLUMNSEQ,Number=1,Type=String,Description="Sequence retained from this ESVEE breakend ALT allele column">
-    #CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO
-    EOF
-
-    cat <<'EOF' > ${prefix}.standardised.report.tsv
-    section	name	value
-    summary	input_records	0
-    summary	output_records	0
-    summary	records_removed	0
-    summary	sgl_reformatted_to_bnd	0
-    summary	reformatted_records	0
-    summary	reformatted_records_with_altcolumnseq	0
-    summary	unchanged_records	0
-    EOF
+    touch ${prefix}.vcf
+    touch ${prefix}.report.tsv
     """
 }
