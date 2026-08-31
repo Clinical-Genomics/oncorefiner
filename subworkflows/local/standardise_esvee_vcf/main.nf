@@ -11,7 +11,7 @@ workflow STANDARDISE_ESVEE_VCF {
     ch_sv_vcf // channel: [mandatory] [val(meta), path(vcf)]
 
     main:
-    // Convert paired ESVEE breakend records into symbolic SV records
+    // Reformat ESVEE structural variant records into standardised VCF records (do not remove duplicate variant records)
     STANDARDISE_ESVEE_RECORDS(
         ch_sv_vcf
     )

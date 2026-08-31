@@ -9,10 +9,11 @@ nextflow_workflow {
 
     topics "versions"
 
-    test("STANDARDISE_ESVEE_VCF - tumor-normal") {
+    test("STANDARDISE_ESVEE_VCF - stub") {
+
+        options "-stub-run"
 
         when {
-
             workflow {
                 """
                 input[0] = channel.of([
@@ -28,22 +29,53 @@ nextflow_workflow {
         }
 
         then {
-
             assertAll(
                 { assert workflow.success },
-                { assert snapshot(
-                    workflow.out.vcf.collect { meta, vcf ->
-                        [
-                            meta,
-                            file(vcf).name + ":variantsMD5," + path(vcf).vcf.variantsMD5
-                        ]
-                    },
-                    workflow.out.tbi.collect { meta, tbi ->
-                        [meta, file(tbi).name]
-                    },
-                    workflow.out.report,
-                    topics,
-                ).match() }
+                { assert workflow.out.vcf },
+                { assert workflow.out.tbi },
+                { assert workflow.out.report }
+            )
+        }
+    }
+
+    test("STANDARDISE_ESVEE_VCF - tumor-normal") {
+
+        when {
+            workflow {
+                """
+                input[0] = channel.of([
+                    [id: 'test_esvee', case_id: 'subject_a'],
+                    file(
+                        params.pipelines_testdata_base_path +
+                        'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.sv.vcf.gz',
+                        checkIfExists: true
+                    )
+                ])
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert workflow.success },
+                {
+                    assert snapshot(
+                        workflow.out.vcf.collect { meta, vcf ->
+                            [
+                                meta,
+                                file(vcf).name + ":variantsMD5," + path(vcf).vcf.variantsMD5
+                            ]
+                        },
+                        workflow.out.tbi.collect { meta, tbi ->
+                            [
+                                meta,
+                                file(tbi).name
+                            ]
+                        },
+                        workflow.out.report,
+                        topics
+                    ).match()
+                }
             )
         }
     }
@@ -51,7 +83,6 @@ nextflow_workflow {
     test("STANDARDISE_ESVEE_VCF - tumor-only") {
 
         when {
-
             workflow {
                 """
                 input[0] = channel.of([
@@ -67,22 +98,26 @@ nextflow_workflow {
         }
 
         then {
-
             assertAll(
                 { assert workflow.success },
-                { assert snapshot(
-                    workflow.out.vcf.collect { meta, vcf ->
-                        [
-                            meta,
-                            file(vcf).name + ":variantsMD5," + path(vcf).vcf.variantsMD5
-                        ]
-                    },
-                    workflow.out.tbi.collect { meta, tbi ->
-                        [meta, file(tbi).name]
-                    },
-                    workflow.out.report,
-                    topics,
-                ).match() }
+                {
+                    assert snapshot(
+                        workflow.out.vcf.collect { meta, vcf ->
+                            [
+                                meta,
+                                file(vcf).name + ":variantsMD5," + path(vcf).vcf.variantsMD5
+                            ]
+                        },
+                        workflow.out.tbi.collect { meta, tbi ->
+                            [
+                                meta,
+                                file(tbi).name
+                            ]
+                        },
+                        workflow.out.report,
+                        topics
+                    ).match()
+                }
             )
         }
     }
