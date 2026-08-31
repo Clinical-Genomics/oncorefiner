@@ -15,7 +15,8 @@ process STANDARDISE_ESVEE_RECORDS {
     tuple val(meta), path("*.report.tsv"), emit: report
     tuple val("${task.process}"),
         val('standardise_esvee_records'),
-        val('1.0'),
+        // keep this in sync with the version in `bin/standardise_esvee_records.py`
+        val('1.0.0'),
         topic: versions,
         emit: versions_standardise_esvee_records
 
@@ -34,24 +35,7 @@ process STANDARDISE_ESVEE_RECORDS {
     def prefix = task.ext.prefix ?: meta.id
 
     """
-    cat <<'EOF' > ${prefix}.vcf
-    ##fileformat=VCFv4.2
-    ##contig=<ID=chr1,length=1000000>
-    ##INFO=<ID=SVTYPE,Number=1,Type=String,Description="Structural variant type">
-    ##INFO=<ID=END,Number=1,Type=Integer,Description="Remote coordinate parsed from the original breakend ALT">
-    ##INFO=<ID=ALTCOLUMNSEQ,Number=1,Type=String,Description="Sequence retained from this ESVEE breakend ALT allele column">
-    #CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO
-    EOF
-
-    cat <<'EOF' > ${prefix}.report.tsv
-    section	name	value
-    summary	input_records	0
-    summary	output_records	0
-    summary	records_removed	0
-    summary	sgl_reformatted_to_bnd	0
-    summary	reformatted_records	0
-    summary	reformatted_records_with_altcolumnseq	0
-    summary	unchanged_records	0
-    EOF
+    touch ${prefix}.vcf
+    touch ${prefix}.report.tsv
     """
 }

@@ -47,6 +47,8 @@ from typing import Iterable
 import click
 import pysam
 
+# Keep this in sync with the module version
+__version__ = "1.0.0"
 
 SVTYPE_CONFIG = {
     "SGL": {"action": "relabel"},
@@ -470,6 +472,7 @@ def write_report(
 
 
 @click.command(context_settings={"help_option_names": ["-h", "--help"]})
+@click.version_option(version=__version__)
 @click.argument(
     "input_vcf",
     required=False,
