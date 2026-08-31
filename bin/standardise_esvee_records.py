@@ -128,7 +128,7 @@ def variant_record_label(variant_record: pysam.VariantRecord) -> str:
     return f"{variant_record.contig}:{variant_record.pos}"
 
 
-def get_svtype(variant_record: pysam.VariantRecord) -> str:
+def get_and_verify_svtype(variant_record: pysam.VariantRecord) -> str:
     """Return and validate one variant record's required INFO/SVTYPE value."""
     svtype = variant_record.info.get("SVTYPE")
 
@@ -270,7 +270,7 @@ def reformat_variant_record(
     report: Report,
 ) -> pysam.VariantRecord:
     """Reformat exactly one variant record independently of every other variant record."""
-    svtype = get_svtype(variant_record)
+    svtype = get_and_verify_svtype(variant_record)
     action = SVTYPE_CONFIG[svtype]["action"]
 
     if action == "relabel":
@@ -318,7 +318,7 @@ def process_variant_records(
 ) -> list[pysam.VariantRecord]:
     """Reformat every variant record independently while preserving input order."""
     report.input_variant_records = len(variant_records)
-    report.input_svtypes.update(get_svtype(variant_record) for variant_record in variant_records)
+    report.input_svtypes.update(get_and_verify_svtype(variant_record) for variant_record in variant_records)
 
     # Reformat every variant record in memory before opening the output file. Because
     # this script treats malformed SV variant records as fatal errors, doing the work
@@ -328,7 +328,7 @@ def process_variant_records(
 
     report.output_variant_records = len(reformatted_variant_records)
     report.output_svtypes.update(
-        get_svtype(variant_record) for variant_record in reformatted_variant_records
+        get_and_verify_svtype(variant_record) for variant_record in reformatted_variant_records
     )
     return reformatted_variant_records
 
