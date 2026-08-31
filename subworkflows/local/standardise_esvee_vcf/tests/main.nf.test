@@ -1,0 +1,89 @@
+nextflow_workflow {
+
+    name "Test Subworkflow STANDARDISE_ESVEE_VCF"
+    script "../main.nf"
+    workflow "STANDARDISE_ESVEE_VCF"
+    tag "subworkflows"
+    tag "standardise_esvee_vcf"
+    config "./nextflow.config"
+
+    topics "versions"
+
+    test("STANDARDISE_ESVEE_VCF - tumor-normal") {
+
+        when {
+
+            workflow {
+                """
+                input[0] = channel.of([
+                    [id: 'test_esvee', case_id: 'subject_a'],
+                    file(
+                        params.pipelines_testdata_base_path +
+                        'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.sv.vcf.gz',
+                        checkIfExists: true
+                    )
+                ])
+                """
+            }
+        }
+
+        then {
+
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(
+                    workflow.out.vcf.collect { meta, vcf ->
+                        [
+                            meta,
+                            file(vcf).name + ":variantsMD5," + path(vcf).vcf.variantsMD5
+                        ]
+                    },
+                    workflow.out.tbi.collect { meta, tbi ->
+                        [meta, file(tbi).name]
+                    },
+                    workflow.out.report,
+                    topics,
+                ).match() }
+            )
+        }
+    }
+
+    test("STANDARDISE_ESVEE_VCF - tumor-only") {
+
+        when {
+
+            workflow {
+                """
+                input[0] = channel.of([
+                    [id: 'test_esvee', case_id: 'subject_a'],
+                    file(
+                        params.pipelines_testdata_base_path +
+                        'testdata/GRCh38/tumor_only/subject_a.tumor.purple.sv.vcf.gz',
+                        checkIfExists: true
+                    )
+                ])
+                """
+            }
+        }
+
+        then {
+
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(
+                    workflow.out.vcf.collect { meta, vcf ->
+                        [
+                            meta,
+                            file(vcf).name + ":variantsMD5," + path(vcf).vcf.variantsMD5
+                        ]
+                    },
+                    workflow.out.tbi.collect { meta, tbi ->
+                        [meta, file(tbi).name]
+                    },
+                    workflow.out.report,
+                    topics,
+                ).match() }
+            )
+        }
+    }
+}
