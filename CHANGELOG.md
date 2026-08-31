@@ -58,7 +58,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#119](https://github.com/Clinical-Genomics/oncorefiner/pull/119/) Added the local subworkflow `PREPARE_AMBER_COBALT_FOR_GENS` to `PROCESS_CNVS`.
 - [#163](https://github.com/Clinical-Genomics/oncorefiner/pull/163) Added local module script and test for `STANDARDISE_ESVEE_RECORDS`.
 - [#163](https://github.com/Clinical-Genomics/oncorefiner/pull/163) Added nf-core module htslib bgziptabix.
-- [#163](https://github.com/Clinical-Genomics/oncorefiner/pull/163) Added subworkflow `STANDARDISE_ESVEE_VCF` along with tests. 
+- [#163](https://github.com/Clinical-Genomics/oncorefiner/pull/163) Added subworkflow `STANDARDISE_ESVEE_VCF` along with tests.
 
 ### `Changed`
 

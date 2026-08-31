@@ -62,7 +62,7 @@ workflow PROCESS_SVS {
     STANDARDISE_ESVEE_VCF(
         ch_sv_vcf
     )
-    
+
     // Annotate VCF with LINX TSVs
     VCF_ANNOTATE_LINX_FUSIONS(
         ch_linx_breakends_tsv,
