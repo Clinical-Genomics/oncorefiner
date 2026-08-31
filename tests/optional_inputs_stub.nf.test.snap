@@ -44,7 +44,7 @@
                     "untar": 1.34
                 },
                 "VCF2CYTOSURE": {
-                    "vcf2cytosure": "0.9.3"
+                    "vcf2cytosure": "0.10.0"
                 },
                 "VCFANNO": {
                     "vcfanno": "0.3.7"
@@ -91,7 +91,7 @@
                 "sv/test_tumor_normal_case_tumor_SV_vcf2cytosure.cgh"
             ]
         ],
-        "timestamp": "2026-08-27T20:02:56.297312",
+        "timestamp": "2026-08-28T14:25:45.651142",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
@@ -151,7 +151,7 @@
                     "untar": 1.34
                 },
                 "VCF2CYTOSURE": {
-                    "vcf2cytosure": "0.9.3"
+                    "vcf2cytosure": "0.10.0"
                 },
                 "VCFANNO": {
                     "vcfanno": "0.3.7"
@@ -205,7 +205,7 @@
                 "sv/test_tumor_normal_case_tumor_SV_vcf2cytosure.cgh"
             ]
         ],
-        "timestamp": "2026-08-27T20:01:49.906443",
+        "timestamp": "2026-08-28T14:23:07.642057",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
@@ -262,7 +262,7 @@
                     "untar": 1.34
                 },
                 "VCF2CYTOSURE": {
-                    "vcf2cytosure": "0.9.3"
+                    "vcf2cytosure": "0.10.0"
                 },
                 "VCFANNO": {
                     "vcfanno": "0.3.7"
@@ -313,7 +313,7 @@
                 "sv/test_tumor_normal_case_tumor_SV_vcf2cytosure.cgh"
             ]
         ],
-        "timestamp": "2026-08-27T19:57:37.669388",
+        "timestamp": "2026-08-28T14:18:11.000617",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
@@ -376,7 +376,7 @@
                     "untar": 1.34
                 },
                 "VCF2CYTOSURE": {
-                    "vcf2cytosure": "0.9.3"
+                    "vcf2cytosure": "0.10.0"
                 },
                 "VCFANNO": {
                     "vcfanno": "0.3.7"
@@ -431,7 +431,7 @@
                 "sv/test_tumor_normal_case_tumor_SV_vcf2cytosure.cgh"
             ]
         ],
-        "timestamp": "2026-08-27T19:58:37.772558",
+        "timestamp": "2026-08-28T14:20:44.96097",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"

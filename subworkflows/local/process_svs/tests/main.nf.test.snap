@@ -122,12 +122,12 @@
                     [
                         "PROCESS_SVS:GENERATE_CYTOSURE_FILES:VCF2CYTOSURE",
                         "vcf2cytosure",
-                        "0.9.3"
+                        "0.10.0"
                     ],
                     [
                         "PROCESS_SVS:GENERATE_CYTOSURE_FILES:VCF2CYTOSURE",
                         "vcf2cytosure",
-                        "0.9.3"
+                        "0.10.0"
                     ],
                     [
                         "PROCESS_SVS:SVDB_QUERY",
@@ -162,7 +162,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-08-17T13:09:59.320809",
+        "timestamp": "2026-08-31T12:12:26.062845",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
@@ -303,12 +303,12 @@
                     [
                         "PROCESS_SVS:GENERATE_CYTOSURE_FILES:VCF2CYTOSURE",
                         "vcf2cytosure",
-                        "0.9.3"
+                        "0.10.0"
                     ],
                     [
                         "PROCESS_SVS:GENERATE_CYTOSURE_FILES:VCF2CYTOSURE",
                         "vcf2cytosure",
-                        "0.9.3"
+                        "0.10.0"
                     ],
                     [
                         "PROCESS_SVS:SVDB_QUERY",
@@ -343,7 +343,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-08-17T13:10:34.493977",
+        "timestamp": "2026-08-31T12:13:02.451974",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
