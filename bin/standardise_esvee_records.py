@@ -312,7 +312,7 @@ def reformat_variant_record(
     return reformatted
 
 
-def reformat_variant_records(
+def process_variant_records(
     variant_records: list[pysam.VariantRecord],
     report: Report,
 ) -> list[pysam.VariantRecord]:
@@ -516,7 +516,7 @@ def main(
     header, variant_records = read_variant_records(input_vcf)
 
     report = Report()
-    reformatted_variant_records = reformat_variant_records(variant_records, report)
+    reformatted_variant_records = process_variant_records(variant_records, report)
     write_variant_records(output_vcf, header, reformatted_variant_records)
 
     if report_path is not None:
