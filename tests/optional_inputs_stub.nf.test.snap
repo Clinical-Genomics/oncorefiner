@@ -60,7 +60,7 @@
                 "alignments/test_tumor_sample_tumor.cram",
                 "alignments/test_tumor_sample_tumor.cram.crai",
                 "cnv",
-                "cnv/test_tumor_normal_case_cnv_report.html",
+                "cnv/test_tumor_normal_case_CNV_report.html",
                 "multiqc",
                 "multiqc/multiqc_data",
                 "multiqc/multiqc_data/.stub",
@@ -87,11 +87,11 @@
                 "sv/test_tumor_normal_case_SV_clinical_filtered_bcftools.vcf.gz.tbi",
                 "sv/test_tumor_normal_case_SV_score_genmod.vcf.gz",
                 "sv/test_tumor_normal_case_SV_score_genmod.vcf.gz.tbi",
-                "sv/test_tumor_normal_case_normal_SV_vcf2cytosure.cgh",
-                "sv/test_tumor_normal_case_tumor_SV_vcf2cytosure.cgh"
+                "sv/test_tumor_normal_case_null_normal_SV_vcf2cytosure.cgh",
+                "sv/test_tumor_normal_case_null_tumor_SV_vcf2cytosure.cgh"
             ]
         ],
-        "timestamp": "2026-08-28T14:25:45.651142",
+        "timestamp": "2026-09-01T10:05:28.608293",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
@@ -167,14 +167,14 @@
                 "alignments/test_tumor_sample_tumor.cram",
                 "alignments/test_tumor_sample_tumor.cram.crai",
                 "cnv",
-                "cnv/test_normal_sample_normal_CNV_COV_COBALT_FOR_GENS.bed.gz",
-                "cnv/test_normal_sample_normal_CNV_COV_COBALT_FOR_GENS.bed.gz.tbi",
                 "cnv/test_tumor_normal_case_CNV_BAF_AMBER_FOR_GENS.normal.bed.gz",
                 "cnv/test_tumor_normal_case_CNV_BAF_AMBER_FOR_GENS.normal.bed.gz.tbi",
                 "cnv/test_tumor_normal_case_CNV_BAF_AMBER_FOR_GENS.tumor.bed.gz",
                 "cnv/test_tumor_normal_case_CNV_BAF_AMBER_FOR_GENS.tumor.bed.gz.tbi",
-                "cnv/test_tumor_sample_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz",
-                "cnv/test_tumor_sample_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz.tbi",
+                "cnv/test_tumor_normal_case_test_normal_sample_normal_CNV_COV_COBALT_FOR_GENS.bed.gz",
+                "cnv/test_tumor_normal_case_test_normal_sample_normal_CNV_COV_COBALT_FOR_GENS.bed.gz.tbi",
+                "cnv/test_tumor_normal_case_test_tumor_sample_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz",
+                "cnv/test_tumor_normal_case_test_tumor_sample_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz.tbi",
                 "multiqc",
                 "multiqc/multiqc_data",
                 "multiqc/multiqc_data/.stub",
@@ -201,11 +201,11 @@
                 "sv/test_tumor_normal_case_SV_clinical_filtered_bcftools.vcf.gz.tbi",
                 "sv/test_tumor_normal_case_SV_score_genmod.vcf.gz",
                 "sv/test_tumor_normal_case_SV_score_genmod.vcf.gz.tbi",
-                "sv/test_tumor_normal_case_normal_SV_vcf2cytosure.cgh",
-                "sv/test_tumor_normal_case_tumor_SV_vcf2cytosure.cgh"
+                "sv/test_tumor_normal_case_null_normal_SV_vcf2cytosure.cgh",
+                "sv/test_tumor_normal_case_null_tumor_SV_vcf2cytosure.cgh"
             ]
         ],
-        "timestamp": "2026-08-28T14:23:07.642057",
+        "timestamp": "2026-09-01T10:04:29.862275",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
@@ -278,15 +278,15 @@
                 "alignments/test_tumor_sample_tumor.cram",
                 "alignments/test_tumor_sample_tumor.cram.crai",
                 "cnv",
-                "cnv/test_normal_sample_normal_CNV_COV_COBALT_FOR_GENS.bed.gz",
-                "cnv/test_normal_sample_normal_CNV_COV_COBALT_FOR_GENS.bed.gz.tbi",
                 "cnv/test_tumor_normal_case_CNV_BAF_AMBER_FOR_GENS.normal.bed.gz",
                 "cnv/test_tumor_normal_case_CNV_BAF_AMBER_FOR_GENS.normal.bed.gz.tbi",
                 "cnv/test_tumor_normal_case_CNV_BAF_AMBER_FOR_GENS.tumor.bed.gz",
                 "cnv/test_tumor_normal_case_CNV_BAF_AMBER_FOR_GENS.tumor.bed.gz.tbi",
-                "cnv/test_tumor_normal_case_cnv_report.html",
-                "cnv/test_tumor_sample_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz",
-                "cnv/test_tumor_sample_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz.tbi",
+                "cnv/test_tumor_normal_case_CNV_report.html",
+                "cnv/test_tumor_normal_case_test_normal_sample_normal_CNV_COV_COBALT_FOR_GENS.bed.gz",
+                "cnv/test_tumor_normal_case_test_normal_sample_normal_CNV_COV_COBALT_FOR_GENS.bed.gz.tbi",
+                "cnv/test_tumor_normal_case_test_tumor_sample_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz",
+                "cnv/test_tumor_normal_case_test_tumor_sample_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz.tbi",
                 "multiqc",
                 "multiqc/multiqc_data",
                 "multiqc/multiqc_data/.stub",
@@ -309,11 +309,11 @@
                 "sv/test_tumor_normal_case_SV_annotated_vep_summary.html",
                 "sv/test_tumor_normal_case_SV_clinical_filtered_bcftools.vcf.gz",
                 "sv/test_tumor_normal_case_SV_clinical_filtered_bcftools.vcf.gz.tbi",
-                "sv/test_tumor_normal_case_normal_SV_vcf2cytosure.cgh",
-                "sv/test_tumor_normal_case_tumor_SV_vcf2cytosure.cgh"
+                "sv/test_tumor_normal_case_null_normal_SV_vcf2cytosure.cgh",
+                "sv/test_tumor_normal_case_null_tumor_SV_vcf2cytosure.cgh"
             ]
         ],
-        "timestamp": "2026-08-28T14:18:11.000617",
+        "timestamp": "2026-09-01T10:01:52.887743",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
@@ -392,15 +392,15 @@
                 "alignments/test_tumor_sample_tumor.cram",
                 "alignments/test_tumor_sample_tumor.cram.crai",
                 "cnv",
-                "cnv/test_normal_sample_normal_CNV_COV_COBALT_FOR_GENS.bed.gz",
-                "cnv/test_normal_sample_normal_CNV_COV_COBALT_FOR_GENS.bed.gz.tbi",
                 "cnv/test_tumor_normal_case_CNV_BAF_AMBER_FOR_GENS.normal.bed.gz",
                 "cnv/test_tumor_normal_case_CNV_BAF_AMBER_FOR_GENS.normal.bed.gz.tbi",
                 "cnv/test_tumor_normal_case_CNV_BAF_AMBER_FOR_GENS.tumor.bed.gz",
                 "cnv/test_tumor_normal_case_CNV_BAF_AMBER_FOR_GENS.tumor.bed.gz.tbi",
-                "cnv/test_tumor_normal_case_cnv_report.html",
-                "cnv/test_tumor_sample_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz",
-                "cnv/test_tumor_sample_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz.tbi",
+                "cnv/test_tumor_normal_case_CNV_report.html",
+                "cnv/test_tumor_normal_case_test_normal_sample_normal_CNV_COV_COBALT_FOR_GENS.bed.gz",
+                "cnv/test_tumor_normal_case_test_normal_sample_normal_CNV_COV_COBALT_FOR_GENS.bed.gz.tbi",
+                "cnv/test_tumor_normal_case_test_tumor_sample_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz",
+                "cnv/test_tumor_normal_case_test_tumor_sample_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz.tbi",
                 "multiqc",
                 "multiqc/multiqc_data",
                 "multiqc/multiqc_data/.stub",
@@ -427,11 +427,11 @@
                 "sv/test_tumor_normal_case_SV_clinical_filtered_bcftools.vcf.gz.tbi",
                 "sv/test_tumor_normal_case_SV_score_genmod.vcf.gz",
                 "sv/test_tumor_normal_case_SV_score_genmod.vcf.gz.tbi",
-                "sv/test_tumor_normal_case_normal_SV_vcf2cytosure.cgh",
-                "sv/test_tumor_normal_case_tumor_SV_vcf2cytosure.cgh"
+                "sv/test_tumor_normal_case_null_normal_SV_vcf2cytosure.cgh",
+                "sv/test_tumor_normal_case_null_tumor_SV_vcf2cytosure.cgh"
             ]
         ],
-        "timestamp": "2026-08-28T14:20:44.96097",
+        "timestamp": "2026-09-01T10:03:09.244243",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"

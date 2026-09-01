@@ -6,23 +6,23 @@
                     {
                         "id": "subject_a"
                     },
-                    "subject_a_SNV_clinical_filtered_bcftools.vcf.gz",
+                    "null_SNV_clinical_filtered_bcftools.vcf.gz",
                     ":variantsMD5,",
-                    "c4e094059322ba88b5e53d7b4913cceb"
+                    "f48b29cbdabe7b20cc4e5374b6b87ed2"
                 ],
                 [
                     {
                         "id": "subject_a"
                     },
-                    "subject_a_SNV_score_genmod.vcf.gz",
+                    "null_SNV_score_genmod.vcf.gz",
                     ":variantsMD5,",
-                    "c4e094059322ba88b5e53d7b4913cceb"
+                    "f48b29cbdabe7b20cc4e5374b6b87ed2"
                 ],
                 [
                     {
                         "id": "subject_a"
                     },
-                    "subject_a_SNV_annotated_vcfanno.vcf.gz",
+                    "null_SNV_annotated_vcfanno.vcf.gz",
                     ":variantsMD5,",
                     "f79b3dd00e3a53231a4bbd52ebcc6d1d"
                 ],
@@ -30,7 +30,7 @@
                     {
                         "id": "subject_a"
                     },
-                    "subject_a_SNV_annotated_vep.vcf.gz",
+                    "null_SNV_annotated_vep.vcf.gz",
                     ":variantsMD5,",
                     "c7dae0b238f6b5f4bf91c0682824f474"
                 ]
@@ -40,25 +40,25 @@
                     {
                         "id": "subject_a"
                     },
-                    "subject_a_SNV_clinical_filtered_bcftools.vcf.gz.tbi"
+                    "null_SNV_clinical_filtered_bcftools.vcf.gz.tbi"
                 ],
                 [
                     {
                         "id": "subject_a"
                     },
-                    "subject_a_SNV_score_genmod.vcf.gz.tbi"
+                    "null_SNV_score_genmod.vcf.gz.tbi"
                 ],
                 [
                     {
                         "id": "subject_a"
                     },
-                    "subject_a_SNV_annotated_vcfanno.vcf.gz.tbi"
+                    "null_SNV_annotated_vcfanno.vcf.gz.tbi"
                 ],
                 [
                     {
                         "id": "subject_a"
                     },
-                    "subject_a_SNV_annotated_vep.vcf.gz.tbi"
+                    "null_SNV_annotated_vep.vcf.gz.tbi"
                 ]
             ],
             [
@@ -66,7 +66,7 @@
                     {
                         "id": "subject_a"
                     },
-                    "subject_a_SNV_annotated_vep.vcf.gz_summary.html"
+                    "null_SNV_annotated_vep.vcf.gz_summary.html"
                 ]
             ],
             {
@@ -119,7 +119,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-08-18T13:42:49.052341",
+        "timestamp": "2026-09-01T09:36:57.999291",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
@@ -132,25 +132,25 @@
                     {
                         "id": "subject_a"
                     },
-                    "subject_a_SNV_clinical_filtered_bcftools.vcf.gz"
+                    "null_SNV_clinical_filtered_bcftools.vcf.gz"
                 ],
                 [
                     {
                         "id": "subject_a"
                     },
-                    "subject_a_SNV_score_genmod.vcf.gz"
+                    "null_SNV_score_genmod.vcf.gz"
                 ],
                 [
                     {
                         "id": "subject_a"
                     },
-                    "subject_a_SNV_annotated_vcfanno.vcf.gz"
+                    "null_SNV_annotated_vcfanno.vcf.gz"
                 ],
                 [
                     {
                         "id": "subject_a"
                     },
-                    "subject_a_SNV_annotated_vep.vcf.gz"
+                    "null_SNV_annotated_vep.vcf.gz"
                 ]
             ],
             [
@@ -158,25 +158,25 @@
                     {
                         "id": "subject_a"
                     },
-                    "subject_a_SNV_clinical_filtered_bcftools.vcf.gz.tbi"
+                    "null_SNV_clinical_filtered_bcftools.vcf.gz.tbi"
                 ],
                 [
                     {
                         "id": "subject_a"
                     },
-                    "subject_a_SNV_score_genmod.vcf.gz.tbi"
+                    "null_SNV_score_genmod.vcf.gz.tbi"
                 ],
                 [
                     {
                         "id": "subject_a"
                     },
-                    "subject_a_SNV_annotated_vcfanno.vcf.gz.tbi"
+                    "null_SNV_annotated_vcfanno.vcf.gz.tbi"
                 ],
                 [
                     {
                         "id": "subject_a"
                     },
-                    "subject_a_SNV_annotated_vep.vcf.gz.tbi"
+                    "null_SNV_annotated_vep.vcf.gz.tbi"
                 ]
             ],
             [
@@ -184,7 +184,7 @@
                     {
                         "id": "subject_a"
                     },
-                    "subject_a_SNV_annotated_vep_summary.html"
+                    "null_SNV_annotated_vep_summary.html"
                 ]
             ],
             {
@@ -237,7 +237,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-08-18T13:43:25.157913",
+        "timestamp": "2026-09-01T09:37:24.493124",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"

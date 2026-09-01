@@ -67,14 +67,20 @@
             },
             [
                 "alignments",
+                "alignments/test_normal_sample_normal.cram",
+                "alignments/test_normal_sample_normal.cram.crai",
                 "alignments/test_tumor_sample_tumor.cram",
                 "alignments/test_tumor_sample_tumor.cram.crai",
                 "cnv",
-                "cnv/test_tumor_only_case_CNV_BAF_AMBER_FOR_GENS.tumor.bed.gz",
-                "cnv/test_tumor_only_case_CNV_BAF_AMBER_FOR_GENS.tumor.bed.gz.tbi",
-                "cnv/test_tumor_only_case_cnv_report.html",
-                "cnv/test_tumor_sample_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz",
-                "cnv/test_tumor_sample_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz.tbi",
+                "cnv/test_tumor_normal_case_CNV_BAF_AMBER_FOR_GENS.normal.bed.gz",
+                "cnv/test_tumor_normal_case_CNV_BAF_AMBER_FOR_GENS.normal.bed.gz.tbi",
+                "cnv/test_tumor_normal_case_CNV_BAF_AMBER_FOR_GENS.tumor.bed.gz",
+                "cnv/test_tumor_normal_case_CNV_BAF_AMBER_FOR_GENS.tumor.bed.gz.tbi",
+                "cnv/test_tumor_normal_case_CNV_report.html",
+                "cnv/test_tumor_normal_case_test_normal_sample_normal_CNV_COV_COBALT_FOR_GENS.bed.gz",
+                "cnv/test_tumor_normal_case_test_normal_sample_normal_CNV_COV_COBALT_FOR_GENS.bed.gz.tbi",
+                "cnv/test_tumor_normal_case_test_tumor_sample_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz",
+                "cnv/test_tumor_normal_case_test_tumor_sample_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz.tbi",
                 "multiqc",
                 "multiqc/multiqc_data",
                 "multiqc/multiqc_data/llms-full.txt",
@@ -88,94 +94,100 @@
                 "pipeline_info",
                 "pipeline_info/oncorefiner_software_mqc_versions.yml",
                 "snv",
-                "snv/test_tumor_only_case_SNV_annotated_vcfanno.vcf.gz",
-                "snv/test_tumor_only_case_SNV_annotated_vcfanno.vcf.gz.tbi",
-                "snv/test_tumor_only_case_SNV_annotated_vep.vcf.gz",
-                "snv/test_tumor_only_case_SNV_annotated_vep.vcf.gz.tbi",
-                "snv/test_tumor_only_case_SNV_annotated_vep.vcf.gz_summary.html",
-                "snv/test_tumor_only_case_SNV_clinical_filtered_bcftools.vcf.gz",
-                "snv/test_tumor_only_case_SNV_clinical_filtered_bcftools.vcf.gz.tbi",
-                "snv/test_tumor_only_case_SNV_score_genmod.vcf.gz",
-                "snv/test_tumor_only_case_SNV_score_genmod.vcf.gz.tbi",
+                "snv/test_tumor_normal_case_SNV_annotated_vcfanno.vcf.gz",
+                "snv/test_tumor_normal_case_SNV_annotated_vcfanno.vcf.gz.tbi",
+                "snv/test_tumor_normal_case_SNV_annotated_vep.vcf.gz",
+                "snv/test_tumor_normal_case_SNV_annotated_vep.vcf.gz.tbi",
+                "snv/test_tumor_normal_case_SNV_annotated_vep.vcf.gz_summary.html",
+                "snv/test_tumor_normal_case_SNV_clinical_filtered_bcftools.vcf.gz",
+                "snv/test_tumor_normal_case_SNV_clinical_filtered_bcftools.vcf.gz.tbi",
+                "snv/test_tumor_normal_case_SNV_score_genmod.vcf.gz",
+                "snv/test_tumor_normal_case_SNV_score_genmod.vcf.gz.tbi",
                 "sv",
-                "sv/test_tumor_only_case_SV_annotated_vep.vcf.gz",
-                "sv/test_tumor_only_case_SV_annotated_vep.vcf.gz.tbi",
-                "sv/test_tumor_only_case_SV_annotated_vep.vcf.gz_summary.html",
-                "sv/test_tumor_only_case_SV_clinical_filtered_bcftools.vcf.gz",
-                "sv/test_tumor_only_case_SV_clinical_filtered_bcftools.vcf.gz.tbi",
-                "sv/test_tumor_only_case_SV_score_genmod.vcf.gz",
-                "sv/test_tumor_only_case_SV_score_genmod.vcf.gz.tbi",
-                "sv/test_tumor_only_case_tumor_SV_vcf2cytosure.cgh"
+                "sv/test_tumor_normal_case_SV_annotated_vep.vcf.gz",
+                "sv/test_tumor_normal_case_SV_annotated_vep.vcf.gz.tbi",
+                "sv/test_tumor_normal_case_SV_annotated_vep.vcf.gz_summary.html",
+                "sv/test_tumor_normal_case_SV_clinical_filtered_bcftools.vcf.gz",
+                "sv/test_tumor_normal_case_SV_clinical_filtered_bcftools.vcf.gz.tbi",
+                "sv/test_tumor_normal_case_SV_score_genmod.vcf.gz",
+                "sv/test_tumor_normal_case_SV_score_genmod.vcf.gz.tbi",
+                "sv/test_tumor_normal_case_null_normal_SV_vcf2cytosure.cgh",
+                "sv/test_tumor_normal_case_null_tumor_SV_vcf2cytosure.cgh"
             ],
             [
-                "test_tumor_only_case_CNV_BAF_AMBER_FOR_GENS.tumor.bed.gz:md5,ccb0b5ad7111f53c6d660e608af438ce",
-                "test_tumor_only_case_CNV_BAF_AMBER_FOR_GENS.tumor.bed.gz.tbi:md5,6928f740f2cd8914f6d9b10607b184ea",
-                "test_tumor_sample_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz:md5,1a22ba6f7f24087f1c7fbb51c73a3b9d",
-                "test_tumor_sample_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz.tbi:md5,643aa1682219825f40e1071ad684c1ee",
-                "test_tumor_only_case_tumor_SV_vcf2cytosure.cgh:md5,e808e85bea4ce6838a53f53fcdcb22cf"
+                "test_tumor_normal_case_CNV_BAF_AMBER_FOR_GENS.normal.bed.gz:md5,cb7c9d7281611c8e7138ded59a681412",
+                "test_tumor_normal_case_CNV_BAF_AMBER_FOR_GENS.normal.bed.gz.tbi:md5,d54ee75db6836f8851340d3761d3d7e6",
+                "test_tumor_normal_case_CNV_BAF_AMBER_FOR_GENS.tumor.bed.gz:md5,87317df569141e8908d318197fc075af",
+                "test_tumor_normal_case_CNV_BAF_AMBER_FOR_GENS.tumor.bed.gz.tbi:md5,b3b3d37cfa2318d1a8d70dfcd2bf15ce",
+                "test_tumor_normal_case_test_normal_sample_normal_CNV_COV_COBALT_FOR_GENS.bed.gz:md5,d80e5d2edb1559d3e035c0739a8d172f",
+                "test_tumor_normal_case_test_normal_sample_normal_CNV_COV_COBALT_FOR_GENS.bed.gz.tbi:md5,e62a830a3200cb6494dbb70d1c8ce166",
+                "test_tumor_normal_case_test_tumor_sample_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz:md5,5a34fb13829738c0742132bd11ff1219",
+                "test_tumor_normal_case_test_tumor_sample_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz.tbi:md5,436297c281deec1aa371e78b53e7e207",
+                "test_tumor_normal_case_null_normal_SV_vcf2cytosure.cgh:md5,b8176da0ae8c06271ab66dc3fee4295c",
+                "test_tumor_normal_case_null_tumor_SV_vcf2cytosure.cgh:md5,00306daf543f8e93184ec08c6a70e922"
             ],
             [
                 [
-                    "test_tumor_only_case_SNV_annotated_vcfanno.vcf.gz",
-                    "VcfFile [chromosomes=[chr9, chr7, chr8, chrX, chr5, chr6, chr3, chr21, chr4, chr11, chr22, chr1, chr12, chr2, chr13, chr20, chr18, chr19, chr15, chr16, chr17], sampleCount=1, variantCount=104, phased=false, phasedAutodetect=false]"
+                    "test_tumor_normal_case_SNV_annotated_vcfanno.vcf.gz",
+                    "VcfFile [chromosomes=[chr9, chr7, chr8, chrX, chr5, chr6, chr3, chr21, chr4, chr11, chr22, chr1, chr12, chr2, chr13, chr20, chr18, chr19, chr15, chr16, chr17], sampleCount=2, variantCount=103, phased=false, phasedAutodetect=false]"
                 ],
                 [
-                    "test_tumor_only_case_SNV_annotated_vep.vcf.gz",
-                    "VcfFile [chromosomes=[chr9, chr7, chr8, chrX, chr5, chr6, chr3, chr21, chr4, chr11, chr22, chr1, chr12, chr2, chr13, chr20, chr18, chr19, chr15, chr16, chr17], sampleCount=1, variantCount=104, phased=false, phasedAutodetect=false]"
+                    "test_tumor_normal_case_SNV_annotated_vep.vcf.gz",
+                    "VcfFile [chromosomes=[chr9, chr7, chr8, chrX, chr5, chr6, chr3, chr21, chr4, chr11, chr22, chr1, chr12, chr2, chr13, chr20, chr18, chr19, chr15, chr16, chr17], sampleCount=2, variantCount=103, phased=false, phasedAutodetect=false]"
                 ],
                 [
-                    "test_tumor_only_case_SNV_clinical_filtered_bcftools.vcf.gz",
-                    "VcfFile [chromosomes=[chr9, chr7, chr8, chrX, chr5, chr6, chr3, chr21, chr4, chr11, chr22, chr1, chr12, chr2, chr13, chr20, chr18, chr19, chr15, chr16, chr17], sampleCount=1, variantCount=104, phased=false, phasedAutodetect=false]"
+                    "test_tumor_normal_case_SNV_clinical_filtered_bcftools.vcf.gz",
+                    "VcfFile [chromosomes=[chr9, chr7, chr8, chrX, chr5, chr6, chr3, chr21, chr4, chr11, chr22, chr1, chr12, chr2, chr13, chr20, chr18, chr19, chr15, chr16, chr17], sampleCount=2, variantCount=103, phased=false, phasedAutodetect=false]"
                 ],
                 [
-                    "test_tumor_only_case_SNV_score_genmod.vcf.gz",
-                    "VcfFile [chromosomes=[chr9, chr7, chr8, chrX, chr5, chr6, chr3, chr21, chr4, chr11, chr22, chr1, chr12, chr2, chr13, chr20, chr18, chr19, chr15, chr16, chr17], sampleCount=1, variantCount=104, phased=false, phasedAutodetect=false]"
+                    "test_tumor_normal_case_SNV_score_genmod.vcf.gz",
+                    "VcfFile [chromosomes=[chr9, chr7, chr8, chrX, chr5, chr6, chr3, chr21, chr4, chr11, chr22, chr1, chr12, chr2, chr13, chr20, chr18, chr19, chr15, chr16, chr17], sampleCount=2, variantCount=103, phased=false, phasedAutodetect=false]"
                 ],
                 [
-                    "test_tumor_only_case_SV_annotated_vep.vcf.gz",
-                    "VcfFile [chromosomes=[chr19, chr9, chr11], sampleCount=1, variantCount=6, phased=false, phasedAutodetect=false]"
+                    "test_tumor_normal_case_SV_annotated_vep.vcf.gz",
+                    "VcfFile [chromosomes=[chr19, chr9, chr11], sampleCount=2, variantCount=6, phased=false, phasedAutodetect=false]"
                 ],
                 [
-                    "test_tumor_only_case_SV_clinical_filtered_bcftools.vcf.gz",
-                    "VcfFile [chromosomes=[chr19, chr9, chr11], sampleCount=1, variantCount=6, phased=false, phasedAutodetect=false]"
+                    "test_tumor_normal_case_SV_clinical_filtered_bcftools.vcf.gz",
+                    "VcfFile [chromosomes=[chr19, chr9, chr11], sampleCount=2, variantCount=6, phased=false, phasedAutodetect=false]"
                 ],
                 [
-                    "test_tumor_only_case_SV_score_genmod.vcf.gz",
-                    "VcfFile [chromosomes=[chr19, chr9, chr11], sampleCount=1, variantCount=6, phased=false, phasedAutodetect=false]"
+                    "test_tumor_normal_case_SV_score_genmod.vcf.gz",
+                    "VcfFile [chromosomes=[chr19, chr9, chr11], sampleCount=2, variantCount=6, phased=false, phasedAutodetect=false]"
                 ]
             ],
             [
                 [
-                    "test_tumor_only_case_SNV_annotated_vcfanno.vcf.gz",
-                    "e99aee3237070db74efee69d7a5d4be2"
+                    "test_tumor_normal_case_SNV_annotated_vcfanno.vcf.gz",
+                    "f79b3dd00e3a53231a4bbd52ebcc6d1d"
                 ],
                 [
-                    "test_tumor_only_case_SNV_annotated_vep.vcf.gz",
-                    "96afd20d30255284c06a3fd505a1d466"
+                    "test_tumor_normal_case_SNV_annotated_vep.vcf.gz",
+                    "c7dae0b238f6b5f4bf91c0682824f474"
                 ],
                 [
-                    "test_tumor_only_case_SNV_clinical_filtered_bcftools.vcf.gz",
-                    "86368653579fc08f5fe7b47a6212053f"
+                    "test_tumor_normal_case_SNV_clinical_filtered_bcftools.vcf.gz",
+                    "b3f08a4bb466307cfdb8b06231798637"
                 ],
                 [
-                    "test_tumor_only_case_SNV_score_genmod.vcf.gz",
-                    "86368653579fc08f5fe7b47a6212053f"
+                    "test_tumor_normal_case_SNV_score_genmod.vcf.gz",
+                    "b3f08a4bb466307cfdb8b06231798637"
                 ],
                 [
-                    "test_tumor_only_case_SV_annotated_vep.vcf.gz",
-                    "dc2bd710b86bb2e20399e35e8b6a0d6d"
+                    "test_tumor_normal_case_SV_annotated_vep.vcf.gz",
+                    "f92bc125c747cdbce5e5c6c2ff8b023a"
                 ],
                 [
-                    "test_tumor_only_case_SV_clinical_filtered_bcftools.vcf.gz",
-                    "df683be784634d933773203d555672df"
+                    "test_tumor_normal_case_SV_clinical_filtered_bcftools.vcf.gz",
+                    "4c1869cefec5fbfc81c2b827dcf51387"
                 ],
                 [
-                    "test_tumor_only_case_SV_score_genmod.vcf.gz",
-                    "df683be784634d933773203d555672df"
+                    "test_tumor_normal_case_SV_score_genmod.vcf.gz",
+                    "4c1869cefec5fbfc81c2b827dcf51387"
                 ]
             ]
         ],
-        "timestamp": "2026-08-31T12:36:12.653688",
+        "timestamp": "2026-09-01T10:10:50.516427",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
@@ -249,14 +261,20 @@
             },
             [
                 "alignments",
+                "alignments/test_normal_sample_normal.cram",
+                "alignments/test_normal_sample_normal.cram.crai",
                 "alignments/test_tumor_sample_tumor.cram",
                 "alignments/test_tumor_sample_tumor.cram.crai",
                 "cnv",
-                "cnv/test_tumor_only_case_CNV_BAF_AMBER_FOR_GENS.tumor.bed.gz",
-                "cnv/test_tumor_only_case_CNV_BAF_AMBER_FOR_GENS.tumor.bed.gz.tbi",
-                "cnv/test_tumor_only_case_cnv_report.html",
-                "cnv/test_tumor_sample_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz",
-                "cnv/test_tumor_sample_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz.tbi",
+                "cnv/test_tumor_normal_case_CNV_BAF_AMBER_FOR_GENS.normal.bed.gz",
+                "cnv/test_tumor_normal_case_CNV_BAF_AMBER_FOR_GENS.normal.bed.gz.tbi",
+                "cnv/test_tumor_normal_case_CNV_BAF_AMBER_FOR_GENS.tumor.bed.gz",
+                "cnv/test_tumor_normal_case_CNV_BAF_AMBER_FOR_GENS.tumor.bed.gz.tbi",
+                "cnv/test_tumor_normal_case_CNV_report.html",
+                "cnv/test_tumor_normal_case_test_normal_sample_normal_CNV_COV_COBALT_FOR_GENS.bed.gz",
+                "cnv/test_tumor_normal_case_test_normal_sample_normal_CNV_COV_COBALT_FOR_GENS.bed.gz.tbi",
+                "cnv/test_tumor_normal_case_test_tumor_sample_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz",
+                "cnv/test_tumor_normal_case_test_tumor_sample_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz.tbi",
                 "multiqc",
                 "multiqc/multiqc_data",
                 "multiqc/multiqc_data/.stub",
@@ -266,27 +284,28 @@
                 "pipeline_info",
                 "pipeline_info/oncorefiner_software_mqc_versions.yml",
                 "snv",
-                "snv/test_tumor_only_case_SNV_annotated_vcfanno.vcf.gz",
-                "snv/test_tumor_only_case_SNV_annotated_vcfanno.vcf.gz.tbi",
-                "snv/test_tumor_only_case_SNV_annotated_vep.vcf.gz",
-                "snv/test_tumor_only_case_SNV_annotated_vep.vcf.gz.tbi",
-                "snv/test_tumor_only_case_SNV_annotated_vep_summary.html",
-                "snv/test_tumor_only_case_SNV_clinical_filtered_bcftools.vcf.gz",
-                "snv/test_tumor_only_case_SNV_clinical_filtered_bcftools.vcf.gz.tbi",
-                "snv/test_tumor_only_case_SNV_score_genmod.vcf.gz",
-                "snv/test_tumor_only_case_SNV_score_genmod.vcf.gz.tbi",
+                "snv/test_tumor_normal_case_SNV_annotated_vcfanno.vcf.gz",
+                "snv/test_tumor_normal_case_SNV_annotated_vcfanno.vcf.gz.tbi",
+                "snv/test_tumor_normal_case_SNV_annotated_vep.vcf.gz",
+                "snv/test_tumor_normal_case_SNV_annotated_vep.vcf.gz.tbi",
+                "snv/test_tumor_normal_case_SNV_annotated_vep_summary.html",
+                "snv/test_tumor_normal_case_SNV_clinical_filtered_bcftools.vcf.gz",
+                "snv/test_tumor_normal_case_SNV_clinical_filtered_bcftools.vcf.gz.tbi",
+                "snv/test_tumor_normal_case_SNV_score_genmod.vcf.gz",
+                "snv/test_tumor_normal_case_SNV_score_genmod.vcf.gz.tbi",
                 "sv",
-                "sv/test_tumor_only_case_SV_annotated_vep.vcf.gz",
-                "sv/test_tumor_only_case_SV_annotated_vep.vcf.gz.tbi",
-                "sv/test_tumor_only_case_SV_annotated_vep_summary.html",
-                "sv/test_tumor_only_case_SV_clinical_filtered_bcftools.vcf.gz",
-                "sv/test_tumor_only_case_SV_clinical_filtered_bcftools.vcf.gz.tbi",
-                "sv/test_tumor_only_case_SV_score_genmod.vcf.gz",
-                "sv/test_tumor_only_case_SV_score_genmod.vcf.gz.tbi",
-                "sv/test_tumor_only_case_tumor_SV_vcf2cytosure.cgh"
+                "sv/test_tumor_normal_case_SV_annotated_vep.vcf.gz",
+                "sv/test_tumor_normal_case_SV_annotated_vep.vcf.gz.tbi",
+                "sv/test_tumor_normal_case_SV_annotated_vep_summary.html",
+                "sv/test_tumor_normal_case_SV_clinical_filtered_bcftools.vcf.gz",
+                "sv/test_tumor_normal_case_SV_clinical_filtered_bcftools.vcf.gz.tbi",
+                "sv/test_tumor_normal_case_SV_score_genmod.vcf.gz",
+                "sv/test_tumor_normal_case_SV_score_genmod.vcf.gz.tbi",
+                "sv/test_tumor_normal_case_null_normal_SV_vcf2cytosure.cgh",
+                "sv/test_tumor_normal_case_null_tumor_SV_vcf2cytosure.cgh"
             ]
         ],
-        "timestamp": "2026-08-28T14:52:35.985189",
+        "timestamp": "2026-09-01T10:12:08.014487",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
