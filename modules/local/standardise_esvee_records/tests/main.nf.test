@@ -17,7 +17,7 @@ nextflow_process {
             process {
                 """
                 input[0] = channel.of([
-                    [id: 'test_esvee', case_id: 'subject_a'],
+                    [id: 'test_esvee_reformat', case_id: 'subject_a'],
                     file(
                         params.pipelines_testdata_base_path +
                         'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.sv.vcf.gz',

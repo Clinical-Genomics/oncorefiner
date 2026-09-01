@@ -1,7 +1,7 @@
 name: standardise_esvee_records
 description: >
-  Convert paired ESVEE breakend-style structural variant records into
-  single symbolic VCF records suitable for downstream annotation and filtering.
+  Convert ESVEE breakend-style structural variant records into
+  VCF records compatible with tools used in downstream processes.
 
 keywords:
   - structural variants
@@ -41,12 +41,12 @@ output:
   - vcf:
       type: file
       description: Uncompressed standardised structural variant VCF.
-      pattern: "*.standardised.vcf"
+      pattern: "*.vcf"
 
   - report:
       type: file
       description: TSV conversion report.
-      pattern: "*.standardised.report.tsv"
+      pattern: "*.report.tsv"
 
   - versions_standardise_esvee_records:
       type: tuple
