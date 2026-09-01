@@ -47,7 +47,6 @@ from typing import Iterable
 import click
 import pysam
 
-# Keep this in sync with the module version
 __version__ = "1.0.0"
 
 SVTYPE_CONFIG = {

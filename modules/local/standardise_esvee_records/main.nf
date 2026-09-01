@@ -15,8 +15,7 @@ process STANDARDISE_ESVEE_RECORDS {
     tuple val(meta), path("*.report.tsv"), emit: report
     tuple val("${task.process}"),
         val('standardise_esvee_records'),
-        // keep this in sync with the version in `bin/standardise_esvee_records.py`
-        val('1.0.0'),
+        eval("standardise_esvee_records.py --version | sed 's/^.*version //'"),
         topic: versions,
         emit: versions_standardise_esvee_records
 
