@@ -4,72 +4,72 @@
             [
                 [
                     {
-                        "id": "subject_a",
+                        "id": "test_tumor_normal_case",
                         "case_id": "test_tumor_normal_case"
                     },
-                    "subject_a_clinical.vcf.gz:variantsMD5,234479e5f991b276da480ba96eb607af"
+                    "test_tumor_normal_case_SV_clinical_filtered_bcftools.vcf.gz:variantsMD5,4c1869cefec5fbfc81c2b827dcf51387"
                 ],
                 [
                     {
-                        "id": "subject_a",
+                        "id": "test_tumor_normal_case",
                         "case_id": "test_tumor_normal_case"
                     },
-                    "subject_a_genmod_score.vcf.gz:variantsMD5,234479e5f991b276da480ba96eb607af"
+                    "test_tumor_normal_case_SV_score_genmod.vcf.gz:variantsMD5,4c1869cefec5fbfc81c2b827dcf51387"
                 ],
                 [
                     {
-                        "id": "subject_a",
+                        "id": "test_tumor_normal_case",
                         "case_id": "test_tumor_normal_case"
                     },
-                    "subject_a_svdbquery_vep.vcf.gz:variantsMD5,f92bc125c747cdbce5e5c6c2ff8b023a"
+                    "test_tumor_normal_case_SV_annotated_vep.vcf.gz:variantsMD5,f92bc125c747cdbce5e5c6c2ff8b023a"
                 ]
             ],
             [
                 [
                     {
-                        "id": "subject_a",
+                        "id": "test_tumor_normal_case",
                         "case_id": "test_tumor_normal_case"
                     },
-                    "subject_a_clinical.vcf.gz.tbi"
+                    "test_tumor_normal_case_SV_clinical_filtered_bcftools.vcf.gz.tbi"
                 ],
                 [
                     {
-                        "id": "subject_a",
+                        "id": "test_tumor_normal_case",
                         "case_id": "test_tumor_normal_case"
                     },
-                    "subject_a_genmod_score.vcf.gz.tbi"
+                    "test_tumor_normal_case_SV_score_genmod.vcf.gz.tbi"
                 ],
                 [
                     {
-                        "id": "subject_a",
+                        "id": "test_tumor_normal_case",
                         "case_id": "test_tumor_normal_case"
                     },
-                    "subject_a_svdbquery_vep.vcf.gz.tbi"
+                    "test_tumor_normal_case_SV_annotated_vep.vcf.gz.tbi"
                 ]
             ],
             [
                 [
                     {
-                        "id": "subject_a",
+                        "id": "test_tumor_normal_case",
                         "case_id": "test_tumor_normal_case"
                     },
-                    "normal.cgh"
+                    "test_tumor_normal_case_test_tumor_sample_normal_SV_vcf2cytosure.cgh"
                 ],
                 [
                     {
-                        "id": "subject_a",
+                        "id": "test_tumor_normal_case",
                         "case_id": "test_tumor_normal_case"
                     },
-                    "tumor.cgh"
+                    "test_tumor_normal_case_test_tumor_sample_tumor_SV_vcf2cytosure.cgh"
                 ]
             ],
             [
                 [
                     {
-                        "id": "subject_a",
+                        "id": "test_tumor_normal_case",
                         "case_id": "test_tumor_normal_case"
                     },
-                    "subject_a_svdbquery_vep.vcf.gz_summary.html"
+                    "test_tumor_normal_case_SV_annotated_vep.vcf.gz_summary.html"
                 ]
             ],
             {
@@ -122,12 +122,12 @@
                     [
                         "PROCESS_SVS:GENERATE_CYTOSURE_FILES:VCF2CYTOSURE",
                         "vcf2cytosure",
-                        "0.9.3"
+                        "0.10.0"
                     ],
                     [
                         "PROCESS_SVS:GENERATE_CYTOSURE_FILES:VCF2CYTOSURE",
                         "vcf2cytosure",
-                        "0.9.3"
+                        "0.10.0"
                     ],
                     [
                         "PROCESS_SVS:SVDB_QUERY",
@@ -162,7 +162,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-08-13T09:37:42.783279",
+        "timestamp": "2026-09-01T13:32:11.343544",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
@@ -174,82 +174,82 @@
                 "clinical_filtered_tbi": [
                     [
                         {
-                            "id": "subject_a",
+                            "id": "test_tumor_normal_case",
                             "case_id": "test_tumor_normal_case"
                         },
-                        "subject_a_clinical.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test_tumor_normal_case_SV_clinical_filtered_bcftools.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "clinical_filtered_vcf": [
                     [
                         {
-                            "id": "subject_a",
+                            "id": "test_tumor_normal_case",
                             "case_id": "test_tumor_normal_case"
                         },
-                        "subject_a_clinical.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                        "test_tumor_normal_case_SV_clinical_filtered_bcftools.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
                     ]
                 ],
                 "research_filtered_tbi": [
                     [
                         {
-                            "id": "subject_a",
+                            "id": "test_tumor_normal_case",
                             "case_id": "test_tumor_normal_case"
                         },
-                        "subject_a_genmod_score.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test_tumor_normal_case_SV_score_genmod.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "research_filtered_vcf": [
                     [
                         {
-                            "id": "subject_a",
+                            "id": "test_tumor_normal_case",
                             "case_id": "test_tumor_normal_case"
                         },
-                        "subject_a_genmod_score.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                        "test_tumor_normal_case_SV_score_genmod.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
                     ]
                 ],
                 "vcf2cytosure_cgh": [
                     [
                         {
-                            "id": "subject_a",
+                            "id": "test_tumor_normal_case",
                             "case_id": "test_tumor_normal_case"
                         },
-                        "normal.cgh:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test_tumor_normal_case_test_tumor_sample_normal_SV_vcf2cytosure.cgh:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ],
                     [
                         {
-                            "id": "subject_a",
+                            "id": "test_tumor_normal_case",
                             "case_id": "test_tumor_normal_case"
                         },
-                        "tumor.cgh:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test_tumor_normal_case_test_tumor_sample_tumor_SV_vcf2cytosure.cgh:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "vep_annotated_tbi": [
                     [
                         {
-                            "id": "subject_a",
+                            "id": "test_tumor_normal_case",
                             "case_id": "test_tumor_normal_case"
                         },
-                        "subject_a_svdbquery_vep.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test_tumor_normal_case_SV_annotated_vep.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "vep_annotated_vcf": [
                     [
                         {
-                            "id": "subject_a",
+                            "id": "test_tumor_normal_case",
                             "case_id": "test_tumor_normal_case"
                         },
-                        "subject_a_svdbquery_vep.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                        "test_tumor_normal_case_SV_annotated_vep.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
                     ]
                 ],
                 "vep_report": [
                     [
                         {
-                            "id": "subject_a",
+                            "id": "test_tumor_normal_case",
                             "case_id": "test_tumor_normal_case"
                         },
                         "PROCESS_SVS:ENSEMBLVEP_VEP",
                         "ensemblvep",
-                        "subject_a_svdbquery_vep_summary.html:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test_tumor_normal_case_SV_annotated_vep_summary.html:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ]
             },
@@ -303,12 +303,12 @@
                     [
                         "PROCESS_SVS:GENERATE_CYTOSURE_FILES:VCF2CYTOSURE",
                         "vcf2cytosure",
-                        "0.9.3"
+                        "0.10.0"
                     ],
                     [
                         "PROCESS_SVS:GENERATE_CYTOSURE_FILES:VCF2CYTOSURE",
                         "vcf2cytosure",
-                        "0.9.3"
+                        "0.10.0"
                     ],
                     [
                         "PROCESS_SVS:SVDB_QUERY",
@@ -343,7 +343,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-08-13T09:38:20.016232",
+        "timestamp": "2026-09-01T13:33:04.526122",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
