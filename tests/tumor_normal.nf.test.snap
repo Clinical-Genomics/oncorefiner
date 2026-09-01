@@ -107,11 +107,11 @@
                 "sv/test_tumor_normal_case_SV_clinical_filtered_bcftools.vcf.gz.tbi",
                 "sv/test_tumor_normal_case_SV_score_genmod.vcf.gz",
                 "sv/test_tumor_normal_case_SV_score_genmod.vcf.gz.tbi",
-                "sv/test_tumor_normal_case_null_normal_SV_vcf2cytosure.cgh",
-                "sv/test_tumor_normal_case_null_tumor_SV_vcf2cytosure.cgh"
+                "sv/test_tumor_normal_case_test_normal_sample_normal_SV_vcf2cytosure.cgh",
+                "sv/test_tumor_normal_case_test_tumor_sample_tumor_SV_vcf2cytosure.cgh"
             ]
         ],
-        "timestamp": "2026-09-01T10:08:40.400025",
+        "timestamp": "2026-09-01T12:09:06.275746",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
@@ -229,8 +229,8 @@
                 "sv/test_tumor_normal_case_SV_clinical_filtered_bcftools.vcf.gz.tbi",
                 "sv/test_tumor_normal_case_SV_score_genmod.vcf.gz",
                 "sv/test_tumor_normal_case_SV_score_genmod.vcf.gz.tbi",
-                "sv/test_tumor_normal_case_null_normal_SV_vcf2cytosure.cgh",
-                "sv/test_tumor_normal_case_null_tumor_SV_vcf2cytosure.cgh"
+                "sv/test_tumor_normal_case_test_normal_sample_normal_SV_vcf2cytosure.cgh",
+                "sv/test_tumor_normal_case_test_tumor_sample_tumor_SV_vcf2cytosure.cgh"
             ],
             [
                 "test_tumor_normal_case_CNV_BAF_AMBER_FOR_GENS.normal.bed.gz:md5,cb7c9d7281611c8e7138ded59a681412",
@@ -241,8 +241,8 @@
                 "test_tumor_normal_case_test_normal_sample_normal_CNV_COV_COBALT_FOR_GENS.bed.gz.tbi:md5,e62a830a3200cb6494dbb70d1c8ce166",
                 "test_tumor_normal_case_test_tumor_sample_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz:md5,5a34fb13829738c0742132bd11ff1219",
                 "test_tumor_normal_case_test_tumor_sample_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz.tbi:md5,436297c281deec1aa371e78b53e7e207",
-                "test_tumor_normal_case_null_normal_SV_vcf2cytosure.cgh:md5,b8176da0ae8c06271ab66dc3fee4295c",
-                "test_tumor_normal_case_null_tumor_SV_vcf2cytosure.cgh:md5,00306daf543f8e93184ec08c6a70e922"
+                "test_tumor_normal_case_test_normal_sample_normal_SV_vcf2cytosure.cgh:md5,b8176da0ae8c06271ab66dc3fee4295c",
+                "test_tumor_normal_case_test_tumor_sample_tumor_SV_vcf2cytosure.cgh:md5,00306daf543f8e93184ec08c6a70e922"
             ],
             [
                 [
@@ -305,7 +305,7 @@
                 ]
             ]
         ],
-        "timestamp": "2026-09-01T10:07:35.309299",
+        "timestamp": "2026-09-01T12:03:36.653634",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"

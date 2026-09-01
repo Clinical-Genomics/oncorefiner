@@ -24,15 +24,15 @@
                 "cgh": [
                     [
                         {
-                            "id": "subject_a",
+                            "id": "test_tumor_normal_case",
                             "case_id": "test_tumor_normal_case"
                         },
-                        "test_tumor_normal_case_null_tumor_SV_vcf2cytosure.cgh:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test_tumor_normal_case_test_tumor_sample_tumor_SV_vcf2cytosure.cgh:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ]
             }
         ],
-        "timestamp": "2026-09-01T09:25:23.382474",
+        "timestamp": "2026-09-01T12:17:49.5413",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
@@ -63,14 +63,15 @@
                 "cgh": [
                     [
                         {
-                            "id": "subject_a"
+                            "id": "test_tumor_normal_case",
+                            "case_id": "test_tumor_normal_case"
                         },
-                        "null_null_tumor_SV_vcf2cytosure.cgh:md5,dd49b786a27edd3584deceb0704b505f"
+                        "test_tumor_normal_case_test_tumor_sample_tumor_SV_vcf2cytosure.cgh:md5,00306daf543f8e93184ec08c6a70e922"
                     ]
                 ]
             }
         ],
-        "timestamp": "2026-09-01T09:25:15.39957",
+        "timestamp": "2026-09-01T12:17:42.632268",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"

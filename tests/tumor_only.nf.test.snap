@@ -105,14 +105,14 @@
                 "sv/test_tumor_only_case_SV_clinical_filtered_bcftools.vcf.gz.tbi",
                 "sv/test_tumor_only_case_SV_score_genmod.vcf.gz",
                 "sv/test_tumor_only_case_SV_score_genmod.vcf.gz.tbi",
-                "sv/test_tumor_only_case_null_tumor_SV_vcf2cytosure.cgh"
+                "sv/test_tumor_only_case_test_tumor_sample_tumor_SV_vcf2cytosure.cgh"
             ],
             [
                 "test_tumor_only_case_CNV_BAF_AMBER_FOR_GENS.tumor.bed.gz:md5,ccb0b5ad7111f53c6d660e608af438ce",
                 "test_tumor_only_case_CNV_BAF_AMBER_FOR_GENS.tumor.bed.gz.tbi:md5,6928f740f2cd8914f6d9b10607b184ea",
                 "test_tumor_only_case_test_tumor_sample_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz:md5,1a22ba6f7f24087f1c7fbb51c73a3b9d",
                 "test_tumor_only_case_test_tumor_sample_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz.tbi:md5,643aa1682219825f40e1071ad684c1ee",
-                "test_tumor_only_case_null_tumor_SV_vcf2cytosure.cgh:md5,e808e85bea4ce6838a53f53fcdcb22cf"
+                "test_tumor_only_case_test_tumor_sample_tumor_SV_vcf2cytosure.cgh:md5,e808e85bea4ce6838a53f53fcdcb22cf"
             ],
             [
                 [
@@ -175,7 +175,7 @@
                 ]
             ]
         ],
-        "timestamp": "2026-09-01T10:51:57.187099",
+        "timestamp": "2026-09-01T12:10:47.49976",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
@@ -283,10 +283,10 @@
                 "sv/test_tumor_only_case_SV_clinical_filtered_bcftools.vcf.gz.tbi",
                 "sv/test_tumor_only_case_SV_score_genmod.vcf.gz",
                 "sv/test_tumor_only_case_SV_score_genmod.vcf.gz.tbi",
-                "sv/test_tumor_only_case_null_tumor_SV_vcf2cytosure.cgh"
+                "sv/test_tumor_only_case_test_tumor_sample_tumor_SV_vcf2cytosure.cgh"
             ]
         ],
-        "timestamp": "2026-09-01T10:52:52.660031",
+        "timestamp": "2026-09-01T12:11:52.914345",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
