@@ -1,0 +1,119 @@
+{
+    "Standardise ESVEE records, tumor-normal": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "test_esvee_reformat",
+                        "case_id": "subject_a"
+                    },
+                    "test_esvee_reformat.vcf:variantsMD5,e2d11086ea09c9c23b034277dfd02a14"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "test_esvee_reformat",
+                        "case_id": "subject_a"
+                    },
+                    "test_esvee_reformat.report.tsv:md5,7d8ae977907d3aa2b8080fce6491b8d2"
+                ]
+            ],
+            {
+                "versions": [
+                    [
+                        "STANDARDISE_ESVEE_RECORDS",
+                        "standardise_esvee_records",
+                        "1.0.0"
+                    ]
+                ]
+            }
+        ],
+        "timestamp": "2026-08-31T14:44:12.432383",
+        "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "26.04.6"
+        }
+    },
+    "Standardise ESVEE records, tumor-normal - stub": {
+        "content": [
+            {
+                "report": [
+                    [
+                        {
+                            "id": "test_esvee_reformat",
+                            "case_id": "subject_a"
+                        },
+                        "test_esvee_reformat.report.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "vcf": [
+                    [
+                        {
+                            "id": "test_esvee_reformat",
+                            "case_id": "subject_a"
+                        },
+                        "test_esvee_reformat.vcf:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions_standardise_esvee_records": [
+                    [
+                        "STANDARDISE_ESVEE_RECORDS",
+                        "standardise_esvee_records",
+                        "1.0.0"
+                    ]
+                ]
+            },
+            {
+                "versions": [
+                    [
+                        "STANDARDISE_ESVEE_RECORDS",
+                        "standardise_esvee_records",
+                        "1.0.0"
+                    ]
+                ]
+            }
+        ],
+        "timestamp": "2026-09-01T09:48:09.360179",
+        "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "26.04.6"
+        }
+    },
+    "Standardise ESVEE records, tumor-only": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "test_esvee_reformat",
+                        "case_id": "subject_a"
+                    },
+                    "test_esvee_reformat.vcf:variantsMD5,8bdbe5f0292b426c631dc07e289b9b41"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "test_esvee_reformat",
+                        "case_id": "subject_a"
+                    },
+                    "test_esvee_reformat.report.tsv:md5,7d8ae977907d3aa2b8080fce6491b8d2"
+                ]
+            ],
+            {
+                "versions": [
+                    [
+                        "STANDARDISE_ESVEE_RECORDS",
+                        "standardise_esvee_records",
+                        "1.0.0"
+                    ]
+                ]
+            }
+        ],
+        "timestamp": "2026-08-31T14:44:29.111491",
+        "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "26.04.6"
+        }
+    }
+}
