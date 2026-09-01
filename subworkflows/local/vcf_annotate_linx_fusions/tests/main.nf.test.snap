@@ -5,19 +5,19 @@
                 "tbi": [
                     [
                         {
-                            "id": "test",
-                            "case_id": "subject_a"
+                            "id": "test_tumor_normal_case",
+                            "case_id": "test_tumor_normal_case"
                         },
-                        "subject_a_linxannotated.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test_tumor_normal_case_linxannotated.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "vcf": [
                     [
                         {
-                            "id": "test",
-                            "case_id": "subject_a"
+                            "id": "test_tumor_normal_case",
+                            "case_id": "test_tumor_normal_case"
                         },
-                        "subject_a_linxannotated.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                        "test_tumor_normal_case_linxannotated.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
                     ]
                 ]
             },
@@ -36,7 +36,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-09-01T09:43:22.959708",
+        "timestamp": "2026-09-01T13:45:55.078667",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
@@ -47,19 +47,19 @@
             [
                 [
                     {
-                        "id": "test",
-                        "case_id": "subject_a"
+                        "id": "test_tumor_normal_case",
+                        "case_id": "test_tumor_normal_case"
                     },
-                    "subject_a_linxannotated.vcf.gz:variantsMD5,da36427a37c150dc78ef322d3841f4a1"
+                    "test_tumor_normal_case_linxannotated.vcf.gz:variantsMD5,da36427a37c150dc78ef322d3841f4a1"
                 ]
             ],
             [
                 [
                     {
-                        "id": "test",
-                        "case_id": "subject_a"
+                        "id": "test_tumor_normal_case",
+                        "case_id": "test_tumor_normal_case"
                     },
-                    "subject_a_linxannotated.vcf.gz.tbi"
+                    "test_tumor_normal_case_linxannotated.vcf.gz.tbi"
                 ]
             ],
             {
@@ -77,7 +77,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-09-01T09:43:18.777552",
+        "timestamp": "2026-09-01T13:45:50.592522",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"

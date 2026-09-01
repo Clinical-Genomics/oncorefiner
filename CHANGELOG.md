@@ -105,7 +105,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#180](https://github.com/Clinical-Genomics/oncorefiner/pull/180) Addded topic versions to tests in `ANNOTATE_CADD, PROCESS_SNVS, VCF_ANNOTATE_LINX_FUSIONS, ANNOTATE_VCF_BY_ID` and `COMBINE_LINX`.
 - [#147](https://github.com/Clinical-Genomics/oncorefiner/pull/147) Added the CNV html file to the `tests/.nftignore`.
 - [#185](https://github.com/Clinical-Genomics/oncorefiner/pull/185) Update Vcf2cytosure nf-core module to 0.10.0.
-- [#177](https://github.com/Clinical-Genomics/oncorefiner/pull/177) Update output name for subworkflows `ANNOTATE_CADD`, `PROCESS_SNVS`, `PROCESS_SVS`, `GENERATE_CYTOSURE_FILES`, `VCF_ANNOTATE_SCORE_GENMOD:BCFTOOLS_VIEW`, updated output path for `MULTIQC`. Updated `docs/output.md` and `README.md` to reflect new output structure.
+- [#177](https://github.com/Clinical-Genomics/oncorefiner/pull/177) Update output name for subworkflows `ANNOTATE_CADD`, `PROCESS_SNVS`, `PROCESS_SVS`, `GENERATE_CYTOSURE_FILES`, `VCF_ANNOTATE_SCORE_GENMOD:BCFTOOLS_VIEW` and `VCF_ANNOTATE_LINX_FUSIONS`, updated output path for `MULTIQC`. Updated `docs/output.md` and `README.md` to reflect new output structure.
 
 ### `Fixed`
 
