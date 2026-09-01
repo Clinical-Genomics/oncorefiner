@@ -7,21 +7,21 @@
                         "id": "subject_a",
                         "case_id": "test_tumor_normal_case"
                     },
-                    "subject_a_clinical.vcf.gz:variantsMD5,234479e5f991b276da480ba96eb607af"
+                    "subject_a_clinical.vcf.gz:variantsMD5,81d732d0c0fe70abfbea010dae0507ac"
                 ],
                 [
                     {
                         "id": "subject_a",
                         "case_id": "test_tumor_normal_case"
                     },
-                    "subject_a_genmod_score.vcf.gz:variantsMD5,234479e5f991b276da480ba96eb607af"
+                    "subject_a_genmod_score.vcf.gz:variantsMD5,81d732d0c0fe70abfbea010dae0507ac"
                 ],
                 [
                     {
                         "id": "subject_a",
                         "case_id": "test_tumor_normal_case"
                     },
-                    "subject_a_svdbquery_vep.vcf.gz:variantsMD5,f92bc125c747cdbce5e5c6c2ff8b023a"
+                    "subject_a_svdbquery_vep.vcf.gz:variantsMD5,e03c908f0bc0b9d69ffceebd4a527429"
                 ]
             ],
             [
@@ -122,12 +122,27 @@
                     [
                         "PROCESS_SVS:GENERATE_CYTOSURE_FILES:VCF2CYTOSURE",
                         "vcf2cytosure",
-                        "0.9.3"
+                        "0.10.0"
                     ],
                     [
                         "PROCESS_SVS:GENERATE_CYTOSURE_FILES:VCF2CYTOSURE",
                         "vcf2cytosure",
-                        "0.9.3"
+                        "0.10.0"
+                    ],
+                    [
+                        "PROCESS_SVS:STANDARDISE_ESVEE_VCF:HTSLIB_BGZIPTABIX",
+                        "htslib",
+                        "1.24"
+                    ],
+                    [
+                        "PROCESS_SVS:STANDARDISE_ESVEE_VCF:HTSLIB_BGZIPTABIX",
+                        "xz",
+                        "5.8.3"
+                    ],
+                    [
+                        "PROCESS_SVS:STANDARDISE_ESVEE_VCF:STANDARDISE_ESVEE_RECORDS",
+                        "standardise_esvee_records",
+                        "1.0.0"
                     ],
                     [
                         "PROCESS_SVS:SVDB_QUERY",
@@ -162,7 +177,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-08-13T09:37:42.783279",
+        "timestamp": "2026-09-01T10:57:43.485433",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
@@ -303,12 +318,27 @@
                     [
                         "PROCESS_SVS:GENERATE_CYTOSURE_FILES:VCF2CYTOSURE",
                         "vcf2cytosure",
-                        "0.9.3"
+                        "0.10.0"
                     ],
                     [
                         "PROCESS_SVS:GENERATE_CYTOSURE_FILES:VCF2CYTOSURE",
                         "vcf2cytosure",
-                        "0.9.3"
+                        "0.10.0"
+                    ],
+                    [
+                        "PROCESS_SVS:STANDARDISE_ESVEE_VCF:HTSLIB_BGZIPTABIX",
+                        "htslib",
+                        "1.24"
+                    ],
+                    [
+                        "PROCESS_SVS:STANDARDISE_ESVEE_VCF:HTSLIB_BGZIPTABIX",
+                        "xz",
+                        "5.8.3"
+                    ],
+                    [
+                        "PROCESS_SVS:STANDARDISE_ESVEE_VCF:STANDARDISE_ESVEE_RECORDS",
+                        "standardise_esvee_records",
+                        "1.0.0"
                     ],
                     [
                         "PROCESS_SVS:SVDB_QUERY",
@@ -343,7 +373,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-08-13T09:38:20.016232",
+        "timestamp": "2026-09-01T10:59:10.437579",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
