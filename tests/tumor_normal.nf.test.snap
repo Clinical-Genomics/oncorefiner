@@ -56,7 +56,7 @@
                     "untar": 1.34
                 },
                 "VCF2CYTOSURE": {
-                    "vcf2cytosure": "0.9.3"
+                    "vcf2cytosure": "0.10.0"
                 },
                 "VCFANNO": {
                     "vcfanno": "0.3.7"
@@ -112,7 +112,7 @@
                 "sv/tumor.cgh"
             ]
         ],
-        "timestamp": "2026-08-27T09:22:59.797715",
+        "timestamp": "2026-08-28T14:40:00.490049",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
@@ -175,7 +175,7 @@
                     "untar": 1.34
                 },
                 "VCF2CYTOSURE": {
-                    "vcf2cytosure": "0.9.3"
+                    "vcf2cytosure": "0.10.0"
                 },
                 "VCFANNO": {
                     "vcfanno": "0.3.7"
@@ -243,8 +243,8 @@
                 "test_tumor_normal_case_CNV_BAF_AMBER_FOR_GENS.tumor.bed.gz.tbi:md5,b3b3d37cfa2318d1a8d70dfcd2bf15ce",
                 "test_tumor_sample_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz:md5,5a34fb13829738c0742132bd11ff1219",
                 "test_tumor_sample_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz.tbi:md5,436297c281deec1aa371e78b53e7e207",
-                "normal.cgh:md5,4d969b296e558f0fc911844f35fad6e9",
-                "tumor.cgh:md5,dd4ac501252ca74cb364ae447ec6b3eb"
+                "normal.cgh:md5,b8176da0ae8c06271ab66dc3fee4295c",
+                "tumor.cgh:md5,00306daf543f8e93184ec08c6a70e922"
             ],
             [
                 [
@@ -307,7 +307,7 @@
                 ]
             ]
         ],
-        "timestamp": "2026-08-27T09:21:52.971859",
+        "timestamp": "2026-08-28T14:37:17.402086",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
