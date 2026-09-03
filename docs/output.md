@@ -31,11 +31,11 @@ This process generates an interactive CNV report and files compatible with visua
 <summary>Output files</summary>
 
 - `cnv`
-  - `<meta.id>_cnv_report.html`: an interactive CNV report in html format.
-  - `<meta.id>_CNV_BAF_AMBER_FOR_GENS.<tumor or normal>.bed.gz`: a gzipped tsv containing b-allele frequency (BAF) for visualization using GENS, produced from Oncoanalysers AMBER files.
-  - `<meta.id>_CNV_BAF_AMBER_FOR_GENS.<tumor or normal>.bed.gz.tbi`: index file for the gzipped tsv with BAF.
-  - `<meta.id>_<meta.sample_type>_CNV_COV_GENS.bed.gz`: a gzipped bed file with genomic coverage levels for visualization using GENS, produced from Oncoanalysers COBALT files.
-  - `<meta.id>_<meta.sample_type>_CNV_COV_GENS.bed.gz.tbi`: index file for the gzipped bed with coverage levels.
+  - `<meta.case_id>_CNV_report.html`: an interactive CNV report in html format.
+  - `<meta.case_id>_CNV_BAF_AMBER_FOR_GENS.<tumor or normal>.bed.gz`: a gzipped tsv containing b-allele frequency (BAF) for visualization using GENS, produced from Oncoanalysers AMBER files.
+  - `<meta.case_id>_CNV_BAF_AMBER_FOR_GENS.<tumor or normal>.bed.gz.tbi`: index file for the gzipped tsv with BAF.
+  - `<meta.case_id>_<meta.sample_id>_<meta.sample_type>_CNV_COV_GENS.bed.gz`: a gzipped bed file with genomic coverage levels for visualization using GENS, produced from Oncoanalysers COBALT files.
+  - `<meta.case_id>_<meta.sample_id>_<meta.sample_type>_CNV_COV_GENS.bed.gz.tbi`: index file for the gzipped bed with coverage levels.
 
 </details>
 
@@ -51,15 +51,15 @@ This process annotates, filters and ranks single nucleotide variants.
 <summary>Output files</summary>
 
 - `snv`
-  - `<meta.id>_SNV_annotated_vcfanno.vcf.gz`: a gzipped VCF containing annotated SNVs.
-  - `<meta.id>_SNV_annotated_vcfanno.vcf.gz.tbi`: an index file for the gzipped VCF.
-  - `<meta.id>_SNV_annotated_vep.vcf.gz`: a gzipped VCF from step 4 with annotated and filtered variants.
-  - `<meta.id>_SNV_annotated_vep.vcf.gz.tbi`: an index file for the gzipped VCF.
-  - `<meta.id>_SNV_annotated_vep.vcf.gz_summary.html`: a html summary file produced by VEP.
-  - `<meta.id>_SNV_clinical_filtered_bcftools.vcf.gz`: a gzipped VCF from step 6 with annotated, ranked and clinically filtered variants.
-  - `<meta.id>_SNV_clinical_filtered_bcftools.vcf.gz.tbi`: an index file for the gzipped VCF.
-  - `<meta.id>_SNV_genmod_score.vcf.gz`: a gzipped VCF from step 5 with annotated, filtered and ranked variants. Only produced if GENMOD config is provided. If not provided, the corresponding file would be the `_SNV_annotated_vep.vcf.gz`.
-  - `<meta.id>_SNV_genmod_score.vcf.gz.tbi`: an index file for the gzipped VCF.
+  - `<meta.case_id>_SNV_annotated_vcfanno.vcf.gz`: a gzipped VCF containing annotated SNVs.
+  - `<meta.case_id>_SNV_annotated_vcfanno.vcf.gz.tbi`: an index file for the gzipped VCF.
+  - `<meta.case_id>_SNV_annotated_vep.vcf.gz`: a gzipped VCF from step 4 with annotated and filtered variants.
+  - `<meta.case_id>_SNV_annotated_vep.vcf.gz.tbi`: an index file for the gzipped VCF.
+  - `<meta.case_id>_SNV_annotated_vep.vcf.gz_summary.html`: a html summary file produced by VEP.
+  - `<meta.case_id>_SNV_clinical_filtered_bcftools.vcf.gz`: a gzipped VCF from step 6 with annotated, ranked and clinically filtered variants.
+  - `<meta.case_id>_SNV_clinical_filtered_bcftools.vcf.gz.tbi`: an index file for the gzipped VCF.
+  - `<meta.case_id>_SNV_genmod_score.vcf.gz`: a gzipped VCF from step 5 with annotated, filtered and ranked variants. Only produced if GENMOD config is provided. If not provided, the corresponding file would be the `_SNV_annotated_vep.vcf.gz`.
+  - `<meta.case_id>_SNV_genmod_score.vcf.gz.tbi`: an index file for the gzipped VCF.
 
 </details>
 
@@ -85,14 +85,14 @@ This process annotates, ranks and filters structural variants
 <summary>Output files</summary>
 
 - `sv/`
-  - `<meta.id>_SV_annotated_vep.vcf.gz`: a gzipped VCF containing the variants from the file above, annotated with VEP from step 4.
-  - `<meta.id>_SV_annotated_vep.vcf.gz.tbi`: an index file for the above gzipped VCF.
-  - `<meta.id>_SV_annotated_vep.vcf.gz_summary.html`: a html summary file produced by VEP.
-  - `<meta.id>_SV_clinical_filtered_bcftools.vcf.gz`: a gzipped VCF from step 6 with annotated, ranked and clinically filtered variants.
-  - `<meta.id>_SV_clinical_filtered_bcftools.vcf.gz.tbi`: an index file for the above gzipped VCF.
-  - `<meta.id>_SV_genmod_score.vcf.gz`: a gzipped VCF containing LINX fusion and SVDB annotated variants filtered with bcftools and ranked with GENMOD from step 5 in README.md. Only produced if GENMOD config is provided. If not provided, the corresponding file would be the `_SV_annotated_vep.vcf.gz`.
-  - `<meta.id>_SV_genmod_score.vcf.gz.tbi`: an index file for the gzipped VCF.
-  - `<meta.id>_[tumor/normal]_SV_vcf2cytosure.cgh`: cgh file produced from step 7 to use for visualization in Cytosure.
+  - `<meta.case_id>_SV_annotated_vep.vcf.gz`: a gzipped VCF containing the variants from the file above, annotated with VEP from step 4.
+  - `<meta.case_id>_SV_annotated_vep.vcf.gz.tbi`: an index file for the above gzipped VCF.
+  - `<meta.case_id>_SV_annotated_vep.vcf.gz_summary.html`: a html summary file produced by VEP.
+  - `<meta.case_id>_SV_clinical_filtered_bcftools.vcf.gz`: a gzipped VCF from step 6 with annotated, ranked and clinically filtered variants.
+  - `<meta.case_id>_SV_clinical_filtered_bcftools.vcf.gz.tbi`: an index file for the above gzipped VCF.
+  - `<meta.case_id>_SV_genmod_score.vcf.gz`: a gzipped VCF containing LINX fusion and SVDB annotated variants filtered with bcftools and ranked with GENMOD from step 5 in README.md. Only produced if GENMOD config is provided. If not provided, the corresponding file would be the `_SV_annotated_vep.vcf.gz`.
+  - `<meta.case_id>_SV_genmod_score.vcf.gz.tbi`: an index file for the gzipped VCF.
+  - `<meta.case_id>_<meta.sample_id>_<meta.sample_type>_SV_vcf2cytosure.cgh`: cgh file produced from step 7 to use for visualization in Cytosure.
 
 </details>
 
