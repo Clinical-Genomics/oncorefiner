@@ -13,7 +13,6 @@ include { BCFTOOLS_VIEW as BCFTOOLS_VIEW_CLINICAL   } from '../../../modules/nf-
 include { ENSEMBLVEP_VEP                           } from '../../../modules/nf-core/ensemblvep/vep/main'
 include { SVDB_QUERY                               } from '../../../modules/nf-core/svdb/query/main'
 
-
 //
 // SUBWORKFLOW: Installed directly from genomic-medicine-sweden/subworkflows
 //

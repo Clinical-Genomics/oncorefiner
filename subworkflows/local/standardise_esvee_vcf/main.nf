@@ -32,7 +32,7 @@ workflow STANDARDISE_ESVEE_VCF {
     )
 
     emit:
-    vcf    = HTSLIB_BGZIPTABIX.out.output          // channel: [val(meta), path(vcf.gz)]
-    tbi    = HTSLIB_BGZIPTABIX.out.index           // channel: [val(meta), path(vcf.gz.tbi)]
-    report = STANDARDISE_ESVEE_RECORDS.out.report  // channel: [val(meta), path(report.tsv)]
+    vcf    = HTSLIB_BGZIPTABIX.out.output          // channel: [val(meta), path(vcf)]
+    tbi    = HTSLIB_BGZIPTABIX.out.index           // channel: [val(meta), path(tbi)]
+    report = STANDARDISE_ESVEE_RECORDS.out.report  // channel: [val(meta), path(tsv)]
 }
