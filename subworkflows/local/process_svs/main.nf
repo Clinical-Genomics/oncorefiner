@@ -25,6 +25,7 @@ include { VCF_ANNOTATE_SCORE_GENMOD } from '../../../subworkflows/genomic-medici
 //
 
 include { GENERATE_CYTOSURE_FILES   } from '../../../subworkflows/local/generate_cytosure_files/main'
+include { STANDARDISE_ESVEE_VCF     } from '../../../subworkflows/local/standardise_esvee_vcf/main'
 include { VCF_ANNOTATE_LINX_FUSIONS } from '../../../subworkflows/local/vcf_annotate_linx_fusions/main'
 
 /*
@@ -55,14 +56,20 @@ workflow PROCESS_SVS {
     ch_vep_extra_files        // channel: [optional]  [val(meta), path(vep_extra_files)]
 
     main:
+
+    // Standardise Esvee VCF
+    STANDARDISE_ESVEE_VCF(
+        ch_sv_vcf
+    )
+
     // Annotate VCF with LINX TSVs
     VCF_ANNOTATE_LINX_FUSIONS(
         ch_linx_breakends_tsv,
         ch_linx_fusion_tsv,
         ch_linx_sv_tsv,
         ch_sv_header,
-        ch_sv_vcf,
-        ch_sv_vcf_tbi
+        STANDARDISE_ESVEE_VCF.out.vcf,
+        STANDARDISE_ESVEE_VCF.out.tbi
     )
 
     // SVDB QUERY
@@ -151,7 +158,7 @@ workflow PROCESS_SVS {
     // VCF2CYTOSURE
     ch_bam_bai = channel.empty().mix(ch_bam_bai_tumor, ch_bam_bai_normal)
     ch_vcf2cytosure_in = ch_bam_bai.combine(
-        ch_sv_vcf.join(ch_sv_vcf_tbi, failOnMismatch: true),
+        STANDARDISE_ESVEE_VCF.out.vcf.join(STANDARDISE_ESVEE_VCF.out.tbi, failOnMismatch: true),
         )
         .multiMap { meta_bam_bai, bam, bai, meta_vcf, vcf, tbi ->
             bam_bai: tuple(meta_bam_bai, bam, bai)

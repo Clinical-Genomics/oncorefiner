@@ -1,0 +1,167 @@
+{
+    "with tumor-normal": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "test_tumor_normal_case",
+                        "case_id": "test_tumor_normal_case"
+                    },
+                    "test_tumor_normal_case.standardised.vcf.gz:variantsMD5,e2d11086ea09c9c23b034277dfd02a14"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "test_tumor_normal_case",
+                        "case_id": "test_tumor_normal_case"
+                    },
+                    "test_tumor_normal_case.standardised.vcf.gz.tbi"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "test_tumor_normal_case",
+                        "case_id": "test_tumor_normal_case"
+                    },
+                    "test_tumor_normal_case.standardised.report.tsv:md5,7d8ae977907d3aa2b8080fce6491b8d2"
+                ]
+            ],
+            {
+                "versions": [
+                    [
+                        "STANDARDISE_ESVEE_VCF:HTSLIB_BGZIPTABIX",
+                        "htslib",
+                        "1.24"
+                    ],
+                    [
+                        "STANDARDISE_ESVEE_VCF:HTSLIB_BGZIPTABIX",
+                        "xz",
+                        "5.8.3"
+                    ],
+                    [
+                        "STANDARDISE_ESVEE_VCF:STANDARDISE_ESVEE_RECORDS",
+                        "standardise_esvee_records",
+                        "1.0.0"
+                    ]
+                ]
+            }
+        ],
+        "timestamp": "2026-09-04T10:46:50.1485",
+        "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "26.04.6"
+        }
+    },
+    "STANDARDISE_ESVEE_VCF - tumor-normal": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "test_esvee",
+                        "case_id": "subject_a"
+                    },
+                    "test_esvee.standardised.vcf.gz:variantsMD5,e2d11086ea09c9c23b034277dfd02a14"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "test_esvee",
+                        "case_id": "subject_a"
+                    },
+                    "test_esvee.standardised.vcf.gz.tbi"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "test_esvee",
+                        "case_id": "subject_a"
+                    },
+                    "test_esvee.standardised.report.tsv:md5,7d8ae977907d3aa2b8080fce6491b8d2"
+                ]
+            ],
+            {
+                "versions": [
+                    [
+                        "STANDARDISE_ESVEE_VCF:HTSLIB_BGZIPTABIX",
+                        "htslib",
+                        "1.24"
+                    ],
+                    [
+                        "STANDARDISE_ESVEE_VCF:HTSLIB_BGZIPTABIX",
+                        "xz",
+                        "5.8.3"
+                    ],
+                    [
+                        "STANDARDISE_ESVEE_VCF:STANDARDISE_ESVEE_RECORDS",
+                        "standardise_esvee_records",
+                        "1.0.0"
+                    ]
+                ]
+            }
+        ],
+        "timestamp": "2026-08-31T15:48:55.331968",
+        "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "26.04.6"
+        }
+    },
+    "STANDARDISE_ESVEE_VCF - tumor-only": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "test_esvee",
+                        "case_id": "subject_a"
+                    },
+                    "test_esvee.standardised.vcf.gz:variantsMD5,8bdbe5f0292b426c631dc07e289b9b41"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "test_esvee",
+                        "case_id": "subject_a"
+                    },
+                    "test_esvee.standardised.vcf.gz.tbi"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "test_esvee",
+                        "case_id": "subject_a"
+                    },
+                    "test_esvee.standardised.report.tsv:md5,7d8ae977907d3aa2b8080fce6491b8d2"
+                ]
+            ],
+            {
+                "versions": [
+                    [
+                        "STANDARDISE_ESVEE_VCF:HTSLIB_BGZIPTABIX",
+                        "htslib",
+                        "1.24"
+                    ],
+                    [
+                        "STANDARDISE_ESVEE_VCF:HTSLIB_BGZIPTABIX",
+                        "xz",
+                        "5.8.3"
+                    ],
+                    [
+                        "STANDARDISE_ESVEE_VCF:STANDARDISE_ESVEE_RECORDS",
+                        "standardise_esvee_records",
+                        "1.0.0"
+                    ]
+                ]
+            }
+        ],
+        "timestamp": "2026-08-31T15:49:13.544943",
+        "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "26.04.6"
+        }
+    }
+}

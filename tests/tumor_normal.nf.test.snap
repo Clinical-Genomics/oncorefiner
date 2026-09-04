@@ -28,6 +28,10 @@
                 "GENMOD_SCORE": {
                     "genmod": "3.10.2"
                 },
+                "HTSLIB_BGZIPTABIX": {
+                    "htslib": 1.24,
+                    "xz": "5.8.3"
+                },
                 "PREPARE_AMBER_FOR_GENS": {
                     "bgzip": "(htslib) 1.23.1",
                     "prepare_amber_for_gens": "prepare_amber_for_gens, version 1.0",
@@ -45,6 +49,9 @@
                 },
                 "SAMTOOLS_VIEW": {
                     "samtools": "1.23.1"
+                },
+                "STANDARDISE_ESVEE_RECORDS": {
+                    "standardise_esvee_records": "1.0.0"
                 },
                 "SVDB_QUERY": {
                     "svdb": "2.8.4"
@@ -112,7 +119,7 @@
                 "sv/tumor.cgh"
             ]
         ],
-        "timestamp": "2026-08-28T14:40:00.490049",
+        "timestamp": "2026-09-04T14:22:36.230844",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
@@ -147,6 +154,10 @@
                 "GENMOD_SCORE": {
                     "genmod": "3.10.2"
                 },
+                "HTSLIB_BGZIPTABIX": {
+                    "htslib": 1.24,
+                    "xz": "5.8.3"
+                },
                 "PREPARE_AMBER_FOR_GENS": {
                     "bgzip": "(htslib) 1.23.1",
                     "prepare_amber_for_gens": "prepare_amber_for_gens, version 1.0",
@@ -164,6 +175,9 @@
                 },
                 "SAMTOOLS_VIEW": {
                     "samtools": "1.23.1"
+                },
+                "STANDARDISE_ESVEE_RECORDS": {
+                    "standardise_esvee_records": "1.0.0"
                 },
                 "SVDB_QUERY": {
                     "svdb": "2.8.4"
@@ -295,19 +309,19 @@
                 ],
                 [
                     "test_tumor_normal_case_clinical.vcf.gz",
-                    "4c1869cefec5fbfc81c2b827dcf51387"
+                    "d6e654216381aac2f9b9332b71998fc8"
                 ],
                 [
                     "test_tumor_normal_case_genmod_score.vcf.gz",
-                    "4c1869cefec5fbfc81c2b827dcf51387"
+                    "d6e654216381aac2f9b9332b71998fc8"
                 ],
                 [
                     "test_tumor_normal_case_svdbquery_vep.vcf.gz",
-                    "f92bc125c747cdbce5e5c6c2ff8b023a"
+                    "e03c908f0bc0b9d69ffceebd4a527429"
                 ]
             ]
         ],
-        "timestamp": "2026-08-28T14:37:17.402086",
+        "timestamp": "2026-09-04T14:19:48.856359",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
