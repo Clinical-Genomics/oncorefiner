@@ -30,11 +30,12 @@ nextflow_workflow {
         then {
             assert workflow.success
             assertAll(
-                { assert snapshot(
-                    sanitizeOutput(process.out),
-                ).match() }
+                {
+                    assert snapshot(
+                        sanitizeOutput(workflow.out),
+                    ).match()
+                }
             )
-        }
     }
 
     test("with tumor-normal") {
@@ -79,4 +80,3 @@ nextflow_workflow {
         }
     }
 }
-
