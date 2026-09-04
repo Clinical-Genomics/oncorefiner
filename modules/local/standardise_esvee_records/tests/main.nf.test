@@ -1,0 +1,115 @@
+nextflow_process {
+
+    name "Test process STANDARDISE_ESVEE_RECORDS"
+    script "../main.nf"
+    process "STANDARDISE_ESVEE_RECORDS"
+    tag "modules"
+    tag "modules_local"
+    tag "standardise_esvee_records"
+
+    topics "versions"
+
+    test("Standardise ESVEE records, tumor-normal - stub") {
+
+        options "-stub"
+
+        when {
+            process {
+                """
+                input[0] = channel.of([
+                    [id: 'test_esvee_reformat', case_id: 'subject_a'],
+                    file(
+                        params.pipelines_testdata_base_path +
+                        'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.sv.vcf.gz',
+                        checkIfExists: true
+                    )
+                ])
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                {
+                    assert snapshot(
+                        sanitizeOutput(process.out),
+                        topics
+                    ).match()
+                }
+            )
+        }
+    }
+
+    test("Standardise ESVEE records, tumor-normal") {
+
+        when {
+            process {
+                """
+                input[0] = channel.of([
+                    [id: 'test_esvee_reformat', case_id: 'subject_a'],
+                    file(
+                        params.pipelines_testdata_base_path +
+                        'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.sv.vcf.gz',
+                        checkIfExists: true
+                    )
+                ])
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                {
+                    assert snapshot(
+                        process.out.vcf.collect { meta, vcf ->
+                            [
+                                meta,
+                                file(vcf).name + ":variantsMD5," + path(vcf).vcf.variantsMD5
+                            ]
+                        },
+                        process.out.report,
+                        topics
+                    ).match()
+                }
+            )
+        }
+    }
+
+    test("Standardise ESVEE records, tumor-only") {
+
+        when {
+            process {
+                """
+                input[0] = channel.of([
+                    [id: 'test_esvee_reformat', case_id: 'subject_a'],
+                    file(
+                        params.pipelines_testdata_base_path +
+                        'testdata/GRCh38/tumor_only/subject_a.tumor.purple.sv.vcf.gz',
+                        checkIfExists: true
+                    )
+                ])
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                {
+                    assert snapshot(
+                        process.out.vcf.collect { meta, vcf ->
+                            [
+                                meta,
+                                file(vcf).name + ":variantsMD5," + path(vcf).vcf.variantsMD5
+                            ]
+                        },
+                        process.out.report,
+                        topics
+                    ).match()
+                }
+            )
+        }
+    }
+}
