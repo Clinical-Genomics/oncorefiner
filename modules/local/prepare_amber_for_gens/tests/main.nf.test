@@ -1,0 +1,125 @@
+nextflow_process {
+
+    name "Test Process PREPARE_AMBER_FOR_GENS"
+    script "../main.nf"
+    process "PREPARE_AMBER_FOR_GENS"
+    tag "modules"
+    tag "modules_local"
+    tag "prepare_amber_for_gens"
+
+    topics "versions"
+
+    test("Prepare AMBER files for GENS, tumor-normal") {
+
+        when {
+
+            process {
+                """
+                input[0] = channel.of([
+                    [id: 'test_amber_gens', case_id: 'subject_a'],
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.amber.baf.tsv.gz', checkIfExists: true),
+                    ])
+                input[1] = 'tumor_normal'
+                """
+            }
+        }
+
+        then {
+
+            assert process.success
+            assertAll(
+                { assert snapshot(
+                    process.out.tumor_bed,
+                    process.out.tumor_tbi.collect { meta, tbi -> [meta, file(tbi).name ]},
+                    process.out.normal_bed,
+                    process.out.normal_tbi.collect { meta, tbi -> [meta, file(tbi).name ]},
+                    topics
+                ).match() }
+            )
+        }
+    }
+
+    test("Prepare AMBER files for GENS, tumor-normal - stub") {
+
+        options "-stub"
+
+        when {
+
+            process {
+                """
+                input[0] = channel.of([
+                    [id: 'test_amber_gens', case_id: 'subject_a'],
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.amber.baf.tsv.gz', checkIfExists: true),
+                    ])
+                input[1] = 'tumor_normal'
+                """
+            }
+        }
+
+        then {
+            assert process.success
+            assertAll(
+                { assert snapshot(
+                    sanitizeOutput(process.out),
+                ).match() }
+            )
+        }
+    }
+
+    test("Prepare AMBER files for GENS, tumor-only") {
+
+        when {
+
+            process {
+                """
+                input[0] = channel.of([
+                    [id: 'test_amber_gens', case_id: 'subject_a'],
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_only/subject_a.tumor.amber.baf.tsv.gz', checkIfExists: true),
+                    ])
+                input[1] = 'tumor_only'
+                """
+            }
+        }
+
+        then {
+
+            assert process.success
+            assertAll(
+                { assert snapshot(
+                    process.out.tumor_bed,
+                    process.out.tumor_tbi.collect { meta, tbi -> [meta, file(tbi).name ]},
+                    process.out.normal_bed,
+                    process.out.normal_tbi.collect { meta, tbi -> [meta, file(tbi).name ]},
+                    topics
+                ).match() }
+            )
+        }
+    }
+
+    test("Prepare AMBER files for GENS, tumor-only - stub") {
+
+        options "-stub"
+
+        when {
+
+            process {
+                """
+                input[0] = channel.of([
+                    [id: 'test_amber_gens', case_id: 'subject_a'],
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_only/subject_a.tumor.amber.baf.tsv.gz', checkIfExists: true),
+                ])
+                input[1] = 'tumor_only'
+                """
+            }
+        }
+
+        then {
+            assert process.success
+            assertAll(
+                { assert snapshot(
+                    sanitizeOutput(process.out),
+                ).match() }
+            )
+        }
+    }
+}

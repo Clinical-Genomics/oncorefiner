@@ -141,13 +141,14 @@ workflow PIPELINE_COMPLETION {
 def toolCitationText() {
 
     def citations_list = []
-    def vcfanno        = "vcfanno (Pedersen et al. 2016)"
-    def bcftools_view  = "bcftools (Danecek et al. 2021)"
-    def cadd           = "CADD (Rentzsch et al. 2019)"
-    def ensemblvep_vep = "Ensembl VEP (McLaren et al. 2016)"
-    def svdb           = "svdb"
-    def genmod         = "Genmod"
-    def multiqc        = "MultiQC (Ewels et al. 2016)"
+    def vcfanno           = "vcfanno (Pedersen et al. 2016)"
+    def bcftools_view     = "bcftools (Danecek et al. 2021)"
+    def cadd              = "CADD (Rentzsch et al. 2019)"
+    def ensemblvep_vep    = "Ensembl VEP (McLaren et al. 2016)"
+    def svdb              = "svdb"
+    def genmod            = "Genmod"
+    def multiqc           = "MultiQC (Ewels et al. 2016)"
+    def rmarkdownnotebook = "R Markdown Notebook"
 
     if (params.snv_vcf) {
         citations_list =
@@ -181,6 +182,12 @@ def toolCitationText() {
             ensemblvep_vep
     }
 
+    if (params.cnv_gene_tsv || params.cnv_segment_tsv) {
+        citations_list =
+            citations_list +
+            rmarkdownnotebook
+    }
+
     // always run
     citations_list =
         citations_list +
@@ -203,6 +210,7 @@ def toolBibliographyText() {
     def ensemblvep_vep      = "<li>McLaren W, Gil L, Hunt SE, Riat HS, Ritchie GR, Thormann A, Flicek P, Cunningham F. The Ensembl Variant Effect Predictor. Genome Biol. 2016 Jun 6;17(1):122. doi: 10.1186/s13059-016-0974-4. PMID: 27268795; PMCID: PMC4893825.</li>"
     def svdb                = "<li>svdb. https://github.com/J35P312/svdb.</li>"
     def multiqc             = "<li>Ewels, P., Magnusson, M., Lundin, S., & Käller, M. (2016). MultiQC: summarize analysis results for multiple tools and samples in a single report. Bioinformatics , 32(19), 3047–3048. doi: /10.1093/bioinformatics/btw354</li>"
+    def rmarkdownnotebook   = "<li>R Markdown Notebook. https://github.com/rstudio/rmarkdown.</li>"
 
     if (params.snv_vcf) {
         bibliography_list =
@@ -221,6 +229,12 @@ def toolBibliographyText() {
             svdb           +
             bcftools_view  +
             ensemblvep_vep
+    }
+
+    if (params.cnv_gene_tsv || params.cnv_segment_tsv) {
+        bibliography_list =
+            bibliography_list +
+            rmarkdownnotebook
     }
 
     // always run

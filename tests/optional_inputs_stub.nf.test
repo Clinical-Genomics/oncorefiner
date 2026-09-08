@@ -65,4 +65,67 @@ nextflow_pipeline {
             )
         }
     }
+    test("No `cnv_gene_tsv` and `cnv_segment_tsv` with '-profile test' - stub") {
+
+        options "-stub"
+
+        when {
+            params {
+                outdir = "$outputDir"
+                cnv_segment_tsv = null
+                cnv_gene_tsv = null
+            }
+        }
+
+        then {
+            // stable_name: All files + folders in ${params.outdir}/ with a stable name
+            def stable_name = getAllFilesFromDir(params.outdir, relative: true, includeDir: true, ignore: ['pipeline_info/*.{html,json,txt}'])
+            // pipeline versions.yml file for multiqc from which Nextflow version is removed because we test pipelines on multiple Nextflow versions
+            def versions = removeNextflowVersion("$outputDir/pipeline_info/oncorefiner_software_mqc_versions.yml")
+            assertAll(
+                { assert workflow.success},
+                // Assert that "RMARKDOWNNOTEBOOK" is not run
+                { assert "RMARKDOWNNOTEBOOK" !in versions.keySet()},
+                { assert snapshot(
+                    // List of software versions run in the pipeline
+                    versions,
+                    // All stable file names, with a relative path
+                    stable_name,
+                ).match() }
+            )
+        }
+    }
+
+    test("No PREPARE_AMBER_COBALT_FOR_GENS support with '-profile test' - stub") {
+
+        options "-stub"
+
+        when {
+            params {
+                outdir = "$outputDir"
+                amber_baf_tsv_gz = null
+                cobalt_ratio_pcf_normal = null
+                cobalt_ratio_pcf_tumor = null
+            }
+        }
+
+        then {
+            // stable_name: All files + folders in ${params.outdir}/ with a stable name
+            def stable_name = getAllFilesFromDir(params.outdir, relative: true, includeDir: true, ignore: ['pipeline_info/*.{html,json,txt}'])
+            // pipeline versions.yml file for multiqc from which Nextflow version is removed because we test pipelines on multiple Nextflow versions
+            def versions = removeNextflowVersion("$outputDir/pipeline_info/oncorefiner_software_mqc_versions.yml")
+            assertAll(
+                { assert workflow.success},
+                // Assert that "PREPARE_AMBER_FOR_GENS" and "PREPARE_COBALT_FOR_GENS" are not run
+                { assert "PREPARE_AMBER_FOR_GENS" && "PREPARE_COBALT_FOR_GENS" !in versions.keySet()},
+                { assert snapshot(
+                    // List of software versions run in the pipeline
+                    versions,
+                    // All stable file names, with a relative path
+                    stable_name,
+                ).match() }
+            )
+        }
+    }
+
 }

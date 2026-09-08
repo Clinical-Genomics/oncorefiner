@@ -112,6 +112,48 @@
                     "format": "file-path",
                     "exists": true
                 },
+                "amber_baf_tsv_gz": {
+                    "type": "string",
+                    "description": "Path to a gzipped TSV file containing amber BAF values for the sample.",
+                    "fa_icon": "fas fa-file",
+                    "pattern": "^\\S+\\.tsv\\.gz$",
+                    "format": "file-path",
+                    "exists": true
+                },
+                "cobalt_ratio_pcf_tumor": {
+                    "type": "string",
+                    "description": "Path to a pcf file containing cobalt segment coverage ratios for the tumor sample.",
+                    "fa_icon": "fas fa-file",
+                    "pattern": "^\\S+\\.pcf$",
+                    "format": "file-path",
+                    "exists": true
+                },
+                "cobalt_ratio_pcf_normal": {
+                    "type": "string",
+                    "description": "Path to a pcf file containing cobalt segment coverage ratios for the normal sample.",
+                    "fa_icon": "fas fa-file",
+                    "pattern": "^\\S+\\.pcf$",
+                    "format": "file-path",
+                    "exists": true
+                },
+                "cnv_gene_tsv": {
+                    "type": "string",
+                    "format": "file-path",
+                    "exists": true,
+                    "description": "Path to a file containing gene-level information of CNV calls.",
+                    "fa_icon": "fas fa-file-csv",
+                    "pattern": "^\\S+\\.tsv$",
+                    "help_text": "This file should be a tab-separated file with a header row. Typically *.purple.cnv.gene.tsv file from Oncoanalyser."
+                },
+                "cnv_segment_tsv": {
+                    "type": "string",
+                    "format": "file-path",
+                    "exists": true,
+                    "description": "Path to a file containing segment-level information of CNV calls.",
+                    "fa_icon": "fas fa-file-csv",
+                    "pattern": "^\\S+\\.tsv$",
+                    "help_text": "This file should be a tab-separated file with a header row. Typically *.purple.cnv.somatic.tsv file from Oncoanalyser."
+                },
                 "linx_fusion_tsv": {
                     "type": "string",
                     "description": "Path to fusion linx tsv file for the sample.",
