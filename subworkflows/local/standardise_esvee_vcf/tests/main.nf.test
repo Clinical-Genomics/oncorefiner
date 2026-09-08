@@ -27,6 +27,7 @@ nextflow_workflow {
                 """
             }
         }
+
         then {
             assert workflow.success
             assertAll(
@@ -36,6 +37,7 @@ nextflow_workflow {
                     ).match()
                 }
             )
+        }
     }
 
     test("with tumor-normal") {
