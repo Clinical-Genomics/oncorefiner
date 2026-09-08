@@ -163,5 +163,43 @@
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
         }
+    },
+    "with tumor normal - stub": {
+        "content": [
+            {
+                "report": [
+                    [
+                        {
+                            "id": "test_tumor_normal_case",
+                            "case_id": "test_tumor_normal_case"
+                        },
+                        "test_tumor_normal_case.standardised.report.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "tbi": [
+                    [
+                        {
+                            "id": "test_tumor_normal_case",
+                            "case_id": "test_tumor_normal_case"
+                        },
+                        "test_tumor_normal_case.standardised.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "vcf": [
+                    [
+                        {
+                            "id": "test_tumor_normal_case",
+                            "case_id": "test_tumor_normal_case"
+                        },
+                        "test_tumor_normal_case.standardised.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                    ]
+                ]
+            }
+        ],
+        "timestamp": "2026-09-08T09:38:49.535887",
+        "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "26.04.6"
+        }
     }
 }
