@@ -56,6 +56,8 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#119](https://github.com/Clinical-Genomics/oncorefiner/pull/119/) Added local module `PREPARE_COBALT_FOR_GENS` using python script in `/bin`, along with tests.
 - [#119](https://github.com/Clinical-Genomics/oncorefiner/pull/119/) Added local module `PREPARE_AMBER_FOR_GENS`, using script in `/bin`, along with tests.
 - [#119](https://github.com/Clinical-Genomics/oncorefiner/pull/119/) Added the local subworkflow `PREPARE_AMBER_COBALT_FOR_GENS` to `PROCESS_CNVS`.
+- [#182](https://github.com/Clinical-Genomics/oncorefiner/pull/182) Added metro map images, markdown file and instructions to generate it
+
 
 ### `Changed`
 
