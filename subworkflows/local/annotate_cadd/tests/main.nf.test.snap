@@ -5,17 +5,19 @@
                 "tbi": [
                     [
                         {
-                            "id": "test"
+                            "id": "test_tumor_normal_case",
+                            "case_id": "test_tumor_normal_case"
                         },
-                        "subject_a_ann.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test_tumor_normal_case_SNV_annotated_CADD.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "vcf": [
                     [
                         {
-                            "id": "test"
+                            "id": "test_tumor_normal_case",
+                            "case_id": "test_tumor_normal_case"
                         },
-                        "subject_a_ann.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                        "test_tumor_normal_case_SNV_annotated_CADD.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
                     ]
                 ]
             },
@@ -49,7 +51,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-08-18T14:00:40.456368",
+        "timestamp": "2026-09-01T09:56:39.747497",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
@@ -61,17 +63,19 @@
                 "tbi": [
                     [
                         {
-                            "id": "test"
+                            "id": "test_tumor_normal_case",
+                            "case_id": "test_tumor_normal_case"
                         },
-                        "subject_a_renamed_ann.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test_tumor_normal_case_SNV_annotated_CADD.vcf.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "vcf": [
                     [
                         {
-                            "id": "test"
+                            "id": "test_tumor_normal_case",
+                            "case_id": "test_tumor_normal_case"
                         },
-                        "subject_a_renamed_ann.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                        "test_tumor_normal_case_SNV_annotated_CADD.vcf.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
                     ]
                 ]
             },
@@ -120,7 +124,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-08-18T14:01:08.099875",
+        "timestamp": "2026-09-01T09:56:49.384731",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"

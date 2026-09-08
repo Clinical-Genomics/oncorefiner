@@ -4,33 +4,37 @@
             [
                 [
                     {
-                        "id": "subject_a"
+                        "id": "test_tumor_normal_case",
+                        "case_id": "test_tumor_normal_case"
                     },
-                    "subject_a_clinical.vcf.gz",
+                    "test_tumor_normal_case_SNV_clinical_filtered_bcftools.vcf.gz",
                     ":variantsMD5,",
-                    "c4e094059322ba88b5e53d7b4913cceb"
+                    "b3f08a4bb466307cfdb8b06231798637"
                 ],
                 [
                     {
-                        "id": "subject_a"
+                        "id": "test_tumor_normal_case",
+                        "case_id": "test_tumor_normal_case"
                     },
-                    "subject_a_genmod_score.vcf.gz",
+                    "test_tumor_normal_case_SNV_score_genmod.vcf.gz",
                     ":variantsMD5,",
-                    "c4e094059322ba88b5e53d7b4913cceb"
+                    "b3f08a4bb466307cfdb8b06231798637"
                 ],
                 [
                     {
-                        "id": "subject_a"
+                        "id": "test_tumor_normal_case",
+                        "case_id": "test_tumor_normal_case"
                     },
-                    "subject_a_vcfanno.vcf.gz",
+                    "test_tumor_normal_case_SNV_annotated_vcfanno.vcf.gz",
                     ":variantsMD5,",
                     "f79b3dd00e3a53231a4bbd52ebcc6d1d"
                 ],
                 [
                     {
-                        "id": "subject_a"
+                        "id": "test_tumor_normal_case",
+                        "case_id": "test_tumor_normal_case"
                     },
-                    "subject_a_vep.vcf.gz",
+                    "test_tumor_normal_case_SNV_annotated_vep.vcf.gz",
                     ":variantsMD5,",
                     "c7dae0b238f6b5f4bf91c0682824f474"
                 ]
@@ -38,35 +42,40 @@
             [
                 [
                     {
-                        "id": "subject_a"
+                        "id": "test_tumor_normal_case",
+                        "case_id": "test_tumor_normal_case"
                     },
-                    "subject_a_clinical.vcf.gz.tbi"
+                    "test_tumor_normal_case_SNV_clinical_filtered_bcftools.vcf.gz.tbi"
                 ],
                 [
                     {
-                        "id": "subject_a"
+                        "id": "test_tumor_normal_case",
+                        "case_id": "test_tumor_normal_case"
                     },
-                    "subject_a_genmod_score.vcf.gz.tbi"
+                    "test_tumor_normal_case_SNV_score_genmod.vcf.gz.tbi"
                 ],
                 [
                     {
-                        "id": "subject_a"
+                        "id": "test_tumor_normal_case",
+                        "case_id": "test_tumor_normal_case"
                     },
-                    "subject_a_vcfanno.vcf.gz.tbi"
+                    "test_tumor_normal_case_SNV_annotated_vcfanno.vcf.gz.tbi"
                 ],
                 [
                     {
-                        "id": "subject_a"
+                        "id": "test_tumor_normal_case",
+                        "case_id": "test_tumor_normal_case"
                     },
-                    "subject_a_vep.vcf.gz.tbi"
+                    "test_tumor_normal_case_SNV_annotated_vep.vcf.gz.tbi"
                 ]
             ],
             [
                 [
                     {
-                        "id": "subject_a"
+                        "id": "test_tumor_normal_case",
+                        "case_id": "test_tumor_normal_case"
                     },
-                    "subject_a_vep.vcf.gz_summary.html"
+                    "test_tumor_normal_case_SNV_annotated_vep.vcf.gz_summary.html"
                 ]
             ],
             {
@@ -119,7 +128,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-08-18T13:42:49.052341",
+        "timestamp": "2026-09-01T13:29:13.005888",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
@@ -130,61 +139,70 @@
             [
                 [
                     {
-                        "id": "subject_a"
+                        "id": "test_tumor_normal_case",
+                        "case_id": "test_tumor_normal_case"
                     },
-                    "subject_a_clinical.vcf.gz"
+                    "test_tumor_normal_case_SNV_clinical_filtered_bcftools.vcf.gz"
                 ],
                 [
                     {
-                        "id": "subject_a"
+                        "id": "test_tumor_normal_case",
+                        "case_id": "test_tumor_normal_case"
                     },
-                    "subject_a_genmod_score.vcf.gz"
+                    "test_tumor_normal_case_SNV_score_genmod.vcf.gz"
                 ],
                 [
                     {
-                        "id": "subject_a"
+                        "id": "test_tumor_normal_case",
+                        "case_id": "test_tumor_normal_case"
                     },
-                    "subject_a_vcfanno.vcf.gz"
+                    "test_tumor_normal_case_SNV_annotated_vcfanno.vcf.gz"
                 ],
                 [
                     {
-                        "id": "subject_a"
+                        "id": "test_tumor_normal_case",
+                        "case_id": "test_tumor_normal_case"
                     },
-                    "subject_a_vep.vcf.gz"
+                    "test_tumor_normal_case_SNV_annotated_vep.vcf.gz"
                 ]
             ],
             [
                 [
                     {
-                        "id": "subject_a"
+                        "id": "test_tumor_normal_case",
+                        "case_id": "test_tumor_normal_case"
                     },
-                    "subject_a_clinical.vcf.gz.tbi"
+                    "test_tumor_normal_case_SNV_clinical_filtered_bcftools.vcf.gz.tbi"
                 ],
                 [
                     {
-                        "id": "subject_a"
+                        "id": "test_tumor_normal_case",
+                        "case_id": "test_tumor_normal_case"
                     },
-                    "subject_a_genmod_score.vcf.gz.tbi"
+                    "test_tumor_normal_case_SNV_score_genmod.vcf.gz.tbi"
                 ],
                 [
                     {
-                        "id": "subject_a"
+                        "id": "test_tumor_normal_case",
+                        "case_id": "test_tumor_normal_case"
                     },
-                    "subject_a_vcfanno.vcf.gz.tbi"
+                    "test_tumor_normal_case_SNV_annotated_vcfanno.vcf.gz.tbi"
                 ],
                 [
                     {
-                        "id": "subject_a"
+                        "id": "test_tumor_normal_case",
+                        "case_id": "test_tumor_normal_case"
                     },
-                    "subject_a_vep.vcf.gz.tbi"
+                    "test_tumor_normal_case_SNV_annotated_vep.vcf.gz.tbi"
                 ]
             ],
             [
                 [
                     {
-                        "id": "subject_a"
+                        "id": "test_tumor_normal_case",
+                        "case_id": "test_tumor_normal_case"
                     },
-                    "subject_a_vep_summary.html"
+                    "test_tumor_normal_case_SNV_annotated_vep_summary.html"
                 ]
             ],
             {
@@ -237,7 +255,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-08-18T13:43:25.157913",
+        "timestamp": "2026-09-01T13:29:40.103018",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"

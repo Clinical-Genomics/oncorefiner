@@ -14,37 +14,43 @@
 
 ## Introduction
 
-**Clinical-Genomics/oncorefiner** is a customizable post-processing and extension layer for [nf-core/Oncoanalyser](https://github.com/nf-core/oncoanalyser) that adapts its outputs according to clinical and operational needs, adds missing analyses, and ensures flexibility for evolving standards while retaining Oncoanalyser's robust core.
+**Clinical-Genomics/oncorefiner** is a customizable post-processing and extension layer for [nf-core/Oncoanalyser](https://github.com/nf-core/oncoanalyser) that adapts its outputs according to clinical and operational needs, adds missing analyses, and ensures flexibility for evolving standards while retaining Oncoanalyser's robust core. The pipeline can be split into processes for CNVs, SNVs, SVs, QC and BAM compression.
 
 <!-- TODO: Add information about the processes and the output when the architecture of the pipeline is decided and the information is clear.
-
 
 ### Workflow diagram
 
 <!-- TODO nf-core: Include a figure that guides the user through the major workflow steps. Many nf-core
      workflows use the "tube map" design for that. See https://nf-co.re/docs/community/brand/workflow-schematics#examples for examples.   -->
 
-1. Process SNV VCF files
-   1. Annotate with [`Vcfanno`](https://github.com/brentp/vcfanno). Intended for local/custom annotation.
-   1. Filter with [`bcftools`](https://github.com/samtools/bcftools). This step aims to apply quality, population-level filtering and/or other general criteria as defined in the configuration settings.
-   1. Annotate with [`Ensembl VEP`](https://www.ensembl.org/info/docs/tools/vep/index.html)
-   1. Rank variants and annotate with [`Genmod score`](https://github.com/Clinical-Genomics/genmod). A score is assigned to each variant based on the genmod score config file provided. Annotation with the score is added to the output vcf file.
-   1. Filter with [`bcftools`](https://github.com/samtools/bcftools). This step applies clinically relevant filters as defined in the configuration settings. For example, it may involve subsetting variants based on a a list of clinically relevant genes.
+- CNVs
+  1. Generate interactive CNV html report using [`rmarkdownnotebook`](https://rmarkdown.rstudio.com/), and the script `assets/cnv_report.Rmd`, based on the result files from `oncoanalyser`: ` *.purple.cnv.gene.tsv` and `*.purple.cnv.somatic.tsv`.
+  1. Prepare files from Oncoanalysers [`AMBER`](https://github.com/hartwigmedical/hmftools/tree/master/amber) and [`COBALT`](https://github.com/hartwigmedical/hmftools/tree/master/cobalt) for visualization using GENS using cutom scripts `PREPARE_AMBER_FOR_GENS` and `PREPARE_COBALT_FOR_GENS` which is wrapped in the subworkflow `PREPARE_AMBER_COBALT_FOR_GENS`.
 
-1. Process SV VCF files
-   1. Add annotation of fusions from LINX files using custom script `vcf_annotate_linx_fusions`.
-   1. Annotate VCF with external database (params) using [`SVDB`](https://github.com/J35P312/SVDB).
-   1. Filter with [`bcftools`](https://github.com/samtools/bcftools). This step aims to apply quality, population-level filtering and/or other general criteria as defined in the configuration settings.
-   1. Annotate with [`Ensembl VEP`](https://www.ensembl.org/info/docs/tools/vep/index.html).
-   1. Filter with [`bcftools`](https://github.com/samtools/bcftools). This step applies clinically relevant filters as defined in the configuration settings. For example, it may involve subsetting variants based on a a list of clinically relevant genes.
+- SNVs
+  1.  Annotate the SNV output from Oncoanalyser's [`PURPLE`](https://github.com/hartwigmedical/hmftools/tree/master/purple) `*.tumor.purple.somatic.vcf.gz` using [`Vcfanno`](https://github.com/brentp/vcfanno). Intended for local/custom annotation using external databases such as for example GNOMAD, CADD or SweGen (custom configuration settings).
+  1.  Filter with [`bcftools`](https://github.com/samtools/bcftools). This step aims to apply quality, population-level filtering and/or other general criteria as defined in the configuration settings.
+  1.  Annotate with [`CADD`](https://github.com/kircherlab/CADD-scripts/). This step annotates indels using CADD resources.
+  1.  Annotate with [`Ensembl VEP`](https://www.ensembl.org/info/docs/tools/vep/index.html).
+  1.  Rank variants and annotate with [`Genmod score`](https://github.com/Clinical-Genomics/genmod). A score is assigned to each variant based on the genmod score config file provided. Annotation with the score is added to the output vcf file.
+  1.  Filter with [`bcftools`](https://github.com/samtools/bcftools). This step applies clinically relevant filters as defined in the configuration settings. For example, it may involve subsetting variants based on a a list of clinically relevant genes.
 
-1. Process CNV TSV files
-   1. Generate interactive CNV html report using [`rmarkdownnotebook`](https://rmarkdown.rstudio.com/), and the script `assets/cnv_report.Rmd`, based on the result files from `oncoanalyser`: ` *.purple.cnv.gene.tsv` and `*.purple.cnv.somatic.tsv`.
-   1. Prepare files from Oncoanalysers [`AMBER`](https://github.com/hartwigmedical/hmftools/tree/master/amber) and [`COBALT`](https://github.com/hartwigmedical/hmftools/tree/master/cobalt) for visualization using GENS using cutom scripts `PREPARE_AMBER_FOR_GENS` and `PREPARE_COBALT_FOR_GENS` which is wrapped in the subworkflow `PREPARE_AMBER_COBALT_FOR_GENS`.
+- SVs
+  1.  Annotate the SV output from Oncoanalyser's [`PURPLE`](https://github.com/hartwigmedical/hmftools/tree/master/purple): `*.tumor.purple.sv.vcf.gz` with fusions from LINX files using custom scripts in `vcf_annotate_linx_fusions`.
+  1.  Annotate VCF with external databases such as for example GNOMAD or SweGen (custom configuration settings) using [`SVDB`](https://github.com/J35P312/SVDB).
+  1.  Filter with [`bcftools`](https://github.com/samtools/bcftools). This step aims to apply quality, population-level filtering and/or other general criteria as defined in the configuration settings.
+  1.  Annotate with [`Ensembl VEP`](https://www.ensembl.org/info/docs/tools/vep/index.html).
+  1.  Rank variants and annotate with [`Genmod score`](https://github.com/Clinical-Genomics/genmod). A score is assigned to each variant based on the genmod score config file provided. Annotation with the score is added to the output vcf file.
+  1.  Filter with [`bcftools`](https://github.com/samtools/bcftools). This step applies clinically relevant filters as defined in the configuration settings. For example, it may involve subsetting variants based on a a list of clinically relevant genes.
+  1.  Generate Cytosure files with [`vcf2cytosure`](https://github.com/NBISweden/vcf2cytosure) for visualization in Cytosure.
 
 1. Present QC for raw reads ([`MultiQC`](http://multiqc.info/)).
 
-For further information about the each step and output files, please refer to the [output documentation](.github/docs/output.md).
+- Present QC using [`MultiQC`](http://multiqc.info/).
+
+- Compress BAM and BAI files to CRAM and CRAI files using [`SAMTOOLS_VIEW`](https://www.htslib.org/doc/samtools-view.html).
+
+For further information about each step and output files, please refer to the [output documentation](.github/docs/output.md).
 
 ## Usage
 
