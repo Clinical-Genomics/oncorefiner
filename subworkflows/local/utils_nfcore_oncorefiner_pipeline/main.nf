@@ -11,10 +11,12 @@
 include { UTILS_NFSCHEMA_PLUGIN     } from '../../nf-core/utils_nfschema_plugin'
 include { paramsSummaryMap          } from 'plugin/nf-schema'
 include { paramsHelp                } from 'plugin/nf-schema'
+include { samplesheetToList         } from 'plugin/nf-schema'
 include { completionEmail           } from '../../nf-core/utils_nfcore_pipeline'
 include { completionSummary         } from '../../nf-core/utils_nfcore_pipeline'
 include { UTILS_NFCORE_PIPELINE     } from '../../nf-core/utils_nfcore_pipeline'
 include { UTILS_NEXTFLOW_PIPELINE   } from '../../nf-core/utils_nextflow_pipeline'
+
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -312,4 +314,26 @@ def channelFromMetaAndPath(meta, filePath) {
         error "Metadata must be provided when a file path is given. Please provide metadata for the file: ${filePath}"
     }
     return channel.empty()
+}
+
+/**
+*Creates a channel from a tabular file and a JSON schema.
+*@param tabular_file The path to the tabular file 
+*@param json_schema_path The path to the JSON schema 
+*@param collect_bool A boolean indicating whether to collect the channel or not, depending on the use case.
+*@param fallback_channel The channel to return if the tabular file is not provided or is invalid.
+*@return A channel with the data from the tabular file validated against the JSON schema.
+*/
+
+def channelFromTabularFile(tabular_filePath, json_schema_path, collect_bool, fallback_channel) {
+    if (tabular_filePath && json_schema_path && collect_bool == true) {
+        return channel.fromList(samplesheetToList(tabular_filePath, json_schema_path)).collect()
+    }
+    if (tabular_filePath && json_schema_path && collect_bool == false) {
+        return channel.fromList(samplesheetToList(tabular_filePath, json_schema_path))
+    }
+    if (tabular_filePath && !json_schema_path) {    
+        error "JSON schema path must be provided to validate the given tabular file. Please provide a JSON schema for the tabular file: ${tabular_filePath}"
+    }
+    return fallback_channel 
 }
