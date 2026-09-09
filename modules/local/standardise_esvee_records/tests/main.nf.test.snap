@@ -1,5 +1,5 @@
 {
-    "Standardise ESVEE records, tumor-normal": {
+    "with tumor-normal": {
         "content": [
             [
                 [
@@ -29,13 +29,13 @@
                 ]
             }
         ],
-        "timestamp": "2026-08-31T14:44:12.432383",
+        "timestamp": "2026-09-09T12:33:09.298047",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
         }
     },
-    "Standardise ESVEE records, tumor-normal - stub": {
+    "with tumor-normal - stub": {
         "content": [
             {
                 "report": [
@@ -74,13 +74,13 @@
                 ]
             }
         ],
-        "timestamp": "2026-09-01T09:48:09.360179",
+        "timestamp": "2026-09-09T12:32:49.264805",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
         }
     },
-    "Standardise ESVEE records, tumor-only": {
+    "with tumor-only": {
         "content": [
             [
                 [
@@ -110,7 +110,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-08-31T14:44:29.111491",
+        "timestamp": "2026-09-09T12:33:29.956621",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
