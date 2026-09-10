@@ -28,6 +28,10 @@
                 "GENMOD_SCORE": {
                     "genmod": "3.10.2"
                 },
+                "HTSLIB_BGZIPTABIX": {
+                    "htslib": 1.24,
+                    "xz": "5.8.3"
+                },
                 "PREPARE_AMBER_FOR_GENS": {
                     "bgzip": "(htslib) 1.23.1",
                     "prepare_amber_for_gens": "prepare_amber_for_gens, version 1.0",
@@ -45,6 +49,9 @@
                 },
                 "SAMTOOLS_VIEW": {
                     "samtools": "1.23.1"
+                },
+                "STANDARDISE_ESVEE_RECORDS": {
+                    "standardise_esvee_records": "1.0.0"
                 },
                 "SVDB_QUERY": {
                     "svdb": "2.8.4"
@@ -164,19 +171,19 @@
                 ],
                 [
                     "test_tumor_only_case_clinical.vcf.gz",
-                    "df683be784634d933773203d555672df"
+                    "1d79acb9bec40c047006a5a36c161c37"
                 ],
                 [
                     "test_tumor_only_case_genmod_score.vcf.gz",
-                    "df683be784634d933773203d555672df"
+                    "1d79acb9bec40c047006a5a36c161c37"
                 ],
                 [
                     "test_tumor_only_case_svdbquery_vep.vcf.gz",
-                    "dc2bd710b86bb2e20399e35e8b6a0d6d"
+                    "8e31adcf1b796628fddac097b4e24cff"
                 ]
             ]
         ],
-        "timestamp": "2026-08-28T14:50:01.902381",
+        "timestamp": "2026-09-04T14:31:59.152023",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
@@ -211,6 +218,10 @@
                 "GENMOD_SCORE": {
                     "genmod": "3.10.2"
                 },
+                "HTSLIB_BGZIPTABIX": {
+                    "htslib": 1.24,
+                    "xz": "5.8.3"
+                },
                 "PREPARE_AMBER_FOR_GENS": {
                     "bgzip": "(htslib) 1.23.1",
                     "prepare_amber_for_gens": "prepare_amber_for_gens, version 1.0",
@@ -228,6 +239,9 @@
                 },
                 "SAMTOOLS_VIEW": {
                     "samtools": "1.23.1"
+                },
+                "STANDARDISE_ESVEE_RECORDS": {
+                    "standardise_esvee_records": "1.0.0"
                 },
                 "SVDB_QUERY": {
                     "svdb": "2.8.4"
@@ -288,7 +302,7 @@
                 "sv/tumor.cgh"
             ]
         ],
-        "timestamp": "2026-08-28T14:52:35.985189",
+        "timestamp": "2026-09-02T10:20:46.767615",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
