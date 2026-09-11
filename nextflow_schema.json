@@ -284,7 +284,8 @@
                     "exists": true,
                     "description": "Path to a file containing the absolute paths to resources defined within the vcfanno toml file. One line per resource.",
                     "help_text": "If no file is passed, default configurations will be used according to genome build within the context of the pipeline.",
-                    "fa_icon": "fas fa-file"
+                    "fa_icon": "fas fa-file",
+                    "schema": "assets/vcfanno_resources_schema.json"
                 },
                 "vcfanno_toml": {
                     "type": "string",
