@@ -112,7 +112,6 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     ch_snv_vcf_tbi     = channelFromMetaAndPath(metadata_case_file, val_snv_vcf + '.tbi')
     ch_sv_vcf          = channelFromMetaAndPath(metadata_case_file, val_sv_vcf)
     ch_sv_vcf_tbi      = channelFromMetaAndPath(metadata_case_file, val_sv_vcf + '.tbi')
-    //ch_vep_extra_files = channel.empty()
 
     // Alignment files
     def ch_bam_normal     = channelFromMetaAndPath(metadata_normal_sample_file, val_bam_normal)
