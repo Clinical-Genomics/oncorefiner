@@ -317,8 +317,8 @@ def channelFromMetaAndPath(meta, filePath) {
 
 /**
 *Creates a channel from a tabular file and a JSON schema.
-*@param tabular_file The path to the tabular file 
-*@param json_schema_path The path to the JSON schema 
+*@param tabular_file The path to the tabular file.
+*@param json_schema_path The path to the JSON schema.
 *@param collect_bool A boolean indicating whether to collect the channel or not, depending on the use case.
 *@param fallback_channel The channel to return if the tabular file is not provided or is invalid.
 *@return A channel with the data from the tabular file validated against the JSON schema.
@@ -331,8 +331,8 @@ def channelFromTabularFile(tabular_filePath, json_schema_path, collect_bool, fal
     if (tabular_filePath && json_schema_path && collect_bool == false) {
         return channel.fromList(samplesheetToList(tabular_filePath, json_schema_path))
     }
-    if (tabular_filePath && !json_schema_path) {    
+    if (tabular_filePath && !json_schema_path) {
         error "JSON schema path must be provided to validate the given tabular file. Please provide a JSON schema for the tabular file: ${tabular_filePath}"
     }
-    return fallback_channel 
+    return fallback_channel
 }
