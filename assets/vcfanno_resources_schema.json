@@ -4,9 +4,10 @@
   "description": "Schema for the vcfanno resources input. One line per resource file.",
   "type": "array",
   "items": {
-    "type": "string",
     "format": "file-path",
+    "type": "string",
     "exists": true,
-    "pattern": "^\\S+\\.(vcf\\.gz|tsv\\.gz|bed\\.gz|vcf\\.gz\\.tbi|tsv\\.gz\\.tbi|bed\\.gz\\.tbi|csi)$"
+    "pattern": "^\\S+\\.(vcf\\.gz|bed\\.gz|vcf\\.gz\\.tbi|bed\\.gz\\.tbi|csi)$",
+    "errorMessage": "grch38 vcfanno resources must be existing file paths with vcf.gz, bed.gz, vcf.gz.tbi, bed.gz.tbi, or csi extensions."
     }
   }
