@@ -13,3 +13,4 @@ bin/
 ro-crate-metadata.json
 modules/nf-core/
 subworkflows/nf-core/
+assets/metro_map.md

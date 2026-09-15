@@ -59,6 +59,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#163](https://github.com/Clinical-Genomics/oncorefiner/pull/163) Added local module script and test for `STANDARDISE_ESVEE_RECORDS`.
 - [#163](https://github.com/Clinical-Genomics/oncorefiner/pull/163) Added nf-core module htslib bgziptabix.
 - [#163](https://github.com/Clinical-Genomics/oncorefiner/pull/163) Added subworkflow `STANDARDISE_ESVEE_VCF` along with tests.
+- [#182](https://github.com/Clinical-Genomics/oncorefiner/pull/182) Added metro map images, markdown file and instructions to generate it
 
 ### `Changed`
 
