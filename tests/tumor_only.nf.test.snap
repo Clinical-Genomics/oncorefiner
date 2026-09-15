@@ -28,6 +28,10 @@
                 "GENMOD_SCORE": {
                     "genmod": "3.10.2"
                 },
+                "HTSLIB_BGZIPTABIX": {
+                    "htslib": 1.24,
+                    "xz": "5.8.3"
+                },
                 "PREPARE_AMBER_FOR_GENS": {
                     "bgzip": "(htslib) 1.23.1",
                     "prepare_amber_for_gens": "prepare_amber_for_gens, version 1.0",
@@ -45,6 +49,9 @@
                 },
                 "SAMTOOLS_VIEW": {
                     "samtools": "1.23.1"
+                },
+                "STANDARDISE_ESVEE_RECORDS": {
+                    "standardise_esvee_records": "1.0.0"
                 },
                 "SVDB_QUERY": {
                     "svdb": "2.8.4"
@@ -210,6 +217,10 @@
                 "GENMOD_SCORE": {
                     "genmod": "3.10.2"
                 },
+                "HTSLIB_BGZIPTABIX": {
+                    "htslib": 1.24,
+                    "xz": "5.8.3"
+                },
                 "PREPARE_AMBER_FOR_GENS": {
                     "bgzip": "(htslib) 1.23.1",
                     "prepare_amber_for_gens": "prepare_amber_for_gens, version 1.0",
@@ -227,6 +238,9 @@
                 },
                 "SAMTOOLS_VIEW": {
                     "samtools": "1.23.1"
+                },
+                "STANDARDISE_ESVEE_RECORDS": {
+                    "standardise_esvee_records": "1.0.0"
                 },
                 "SVDB_QUERY": {
                     "svdb": "2.8.4"

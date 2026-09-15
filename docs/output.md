@@ -96,6 +96,7 @@ This process annotates, ranks and filters structural variants
 
 </details>
 
+`standardize_esvee_records` - Converts SV records in the input VCF from Oncoanalysers Purple and ESVEE tool (https://github.com/hartwigmedical/hmftools/tree/master/purple) into records with an END in the info field and a sVTYPE in the ALT column.  
 `vcf_annotate_linx_fusions` - Annotation of fusions from [`LINX`](https://github.com/hartwigmedical/hmftools/tree/master/linx) to the VCF using cutom scripts. The VCF from LINX in Oncoanalyser displays the SVs as two instances, where only one entry will be annotated with the LINX information in Oncorefiner. The two instances can be connected manually using the `SVID` in the INFO field.  
 [SVDB](https://github.com/J35P312/SVDB) - The tool applies annotation from external databases to the VCF.  
 [bcftools](https://github.com/samtools/bcftools) - This tool can filter VCFs using custom settings. In step 3 above it applies quality and population level filtering, whilst in step 6, applies clinically relevant filters as defined in configuration settings.  

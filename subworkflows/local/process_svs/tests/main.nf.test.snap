@@ -7,21 +7,21 @@
                         "id": "test_tumor_normal_case",
                         "case_id": "test_tumor_normal_case"
                     },
-                    "test_tumor_normal_case_SV_clinical_filtered_bcftools.vcf.gz:variantsMD5,4c1869cefec5fbfc81c2b827dcf51387"
+                    "test_tumor_normal_case_SV_clinical_filtered_bcftools.vcf.gz:variantsMD5,d6e654216381aac2f9b9332b71998fc8"
                 ],
                 [
                     {
                         "id": "test_tumor_normal_case",
                         "case_id": "test_tumor_normal_case"
                     },
-                    "test_tumor_normal_case_SV_score_genmod.vcf.gz:variantsMD5,4c1869cefec5fbfc81c2b827dcf51387"
+                    "test_tumor_normal_case_SV_score_genmod.vcf.gz:variantsMD5,d6e654216381aac2f9b9332b71998fc8"
                 ],
                 [
                     {
                         "id": "test_tumor_normal_case",
                         "case_id": "test_tumor_normal_case"
                     },
-                    "test_tumor_normal_case_SV_annotated_vep.vcf.gz:variantsMD5,f92bc125c747cdbce5e5c6c2ff8b023a"
+                    "test_tumor_normal_case_SV_annotated_vep.vcf.gz:variantsMD5,e03c908f0bc0b9d69ffceebd4a527429"
                 ]
             ],
             [
@@ -130,6 +130,21 @@
                         "0.10.0"
                     ],
                     [
+                        "PROCESS_SVS:STANDARDISE_ESVEE_VCF:HTSLIB_BGZIPTABIX",
+                        "htslib",
+                        "1.24"
+                    ],
+                    [
+                        "PROCESS_SVS:STANDARDISE_ESVEE_VCF:HTSLIB_BGZIPTABIX",
+                        "xz",
+                        "5.8.3"
+                    ],
+                    [
+                        "PROCESS_SVS:STANDARDISE_ESVEE_VCF:STANDARDISE_ESVEE_RECORDS",
+                        "standardise_esvee_records",
+                        "1.0.0"
+                    ],
+                    [
                         "PROCESS_SVS:SVDB_QUERY",
                         "svdb",
                         "2.8.4"
@@ -162,7 +177,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-09-03T17:54:33.37404",
+        "timestamp": "2026-09-14T09:56:15.824415",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
@@ -311,6 +326,21 @@
                         "0.10.0"
                     ],
                     [
+                        "PROCESS_SVS:STANDARDISE_ESVEE_VCF:HTSLIB_BGZIPTABIX",
+                        "htslib",
+                        "1.24"
+                    ],
+                    [
+                        "PROCESS_SVS:STANDARDISE_ESVEE_VCF:HTSLIB_BGZIPTABIX",
+                        "xz",
+                        "5.8.3"
+                    ],
+                    [
+                        "PROCESS_SVS:STANDARDISE_ESVEE_VCF:STANDARDISE_ESVEE_RECORDS",
+                        "standardise_esvee_records",
+                        "1.0.0"
+                    ],
+                    [
                         "PROCESS_SVS:SVDB_QUERY",
                         "svdb",
                         "2.8.4"
@@ -343,7 +373,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-09-03T17:56:04.088071",
+        "timestamp": "2026-09-01T10:59:10.437579",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"

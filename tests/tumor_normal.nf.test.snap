@@ -28,6 +28,10 @@
                 "GENMOD_SCORE": {
                     "genmod": "3.10.2"
                 },
+                "HTSLIB_BGZIPTABIX": {
+                    "htslib": 1.24,
+                    "xz": "5.8.3"
+                },
                 "PREPARE_AMBER_FOR_GENS": {
                     "bgzip": "(htslib) 1.23.1",
                     "prepare_amber_for_gens": "prepare_amber_for_gens, version 1.0",
@@ -45,6 +49,9 @@
                 },
                 "SAMTOOLS_VIEW": {
                     "samtools": "1.23.1"
+                },
+                "STANDARDISE_ESVEE_RECORDS": {
+                    "standardise_esvee_records": "1.0.0"
                 },
                 "SVDB_QUERY": {
                     "svdb": "2.8.4"
@@ -111,7 +118,7 @@
                 "sv/test_tumor_normal_case_test_tumor_sample_tumor_SV_vcf2cytosure.cgh"
             ]
         ],
-        "timestamp": "2026-09-01T12:09:06.275746",
+        "timestamp": "2026-09-04T14:22:36.230844",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
@@ -146,6 +153,10 @@
                 "GENMOD_SCORE": {
                     "genmod": "3.10.2"
                 },
+                "HTSLIB_BGZIPTABIX": {
+                    "htslib": 1.24,
+                    "xz": "5.8.3"
+                },
                 "PREPARE_AMBER_FOR_GENS": {
                     "bgzip": "(htslib) 1.23.1",
                     "prepare_amber_for_gens": "prepare_amber_for_gens, version 1.0",
@@ -163,6 +174,9 @@
                 },
                 "SAMTOOLS_VIEW": {
                     "samtools": "1.23.1"
+                },
+                "STANDARDISE_ESVEE_RECORDS": {
+                    "standardise_esvee_records": "1.0.0"
                 },
                 "SVDB_QUERY": {
                     "svdb": "2.8.4"
