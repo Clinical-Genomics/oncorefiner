@@ -111,7 +111,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#185](https://github.com/Clinical-Genomics/oncorefiner/pull/185) Update Vcf2cytosure nf-core module to 0.10.0.
 - [#163](https://github.com/Clinical-Genomics/oncorefiner/pull/163) Changed input to Vcf2cytosure to standardised ESVEE variants Purple VCF.
 - [#191](https://github.com/Clinical-Genomics/oncorefiner/pull/191) Added `channelFromTabularFile` utils function to refactor the way reference files input channels are created, and wrote `vcfanno_resources_schema.json` for validation. Also updated the `pipelines_testdata_base_path` to reflect the changing of the reference file names as a requirement for nf-schema validation.
-  
+
 ### `Fixed`
 
 - [#9](https://github.com/Clinical-Genomics/oncorefiner/pull/9) Removed snv_vcf_tbi and sv_vcf_tbi parameter. VCF indexes are now automatically detected.
