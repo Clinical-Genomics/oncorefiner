@@ -1,0 +1,56 @@
+name: standardise_esvee_records
+description: >
+  Convert ESVEE breakend-style structural variant records into
+  VCF records compatible with tools used in downstream processes.
+
+keywords:
+  - structural variants
+  - esvee
+  - purple
+  - vcf
+  - breakend
+
+tools:
+  - python:
+      description: >
+        Runs the local ESVEE structural variant standardisation script.
+      homepage: "https://www.python.org/"
+      documentation: "https://docs.python.org/3/"
+      tool_dev_url: "https://github.com/python/cpython"
+      identifier: standardise_esvee_records
+
+input:
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing sample information.
+        For example: `[id: 'subject_a']`
+
+  - sv_vcf:
+      type: file
+      description: PURPLE structural variant VCF.
+      pattern: "*.{vcf,vcf.gz}"
+
+output:
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing sample information.
+        For example: `[id: 'subject_a']`
+
+  - vcf:
+      type: file
+      description: Uncompressed standardised structural variant VCF.
+      pattern: "*.vcf"
+
+  - report:
+      type: file
+      description: TSV conversion report.
+      pattern: "*.report.tsv"
+
+  - versions_standardise_esvee_records:
+      type: tuple
+      description: Script version information emitted through the versions topic.
+
+authors:
+  - "@math.joh.bio"
