@@ -61,10 +61,10 @@ def write_segment_zoom_file(
 
     for level, spacing in levels.items():
         for _, row in df.iterrows():
-            chrom = row["chrom"]
-            start = int(row["start.pos"])
-            end = int(row["end.pos"])
-            value = float(row["mean"])
+            chrom = row["Chromosome"]
+            start = int(row["Start"])
+            end = int(row["End"])
+            value = float(row["MeanRatio"])
 
             for pos in segment_to_points(start, end, spacing):
                 rows.append(
@@ -106,10 +106,10 @@ def main(input_file: str, output_file: str) -> None:
     )
 
     required_columns = {
-        "chrom",
-        "start.pos",
-        "end.pos",
-        "mean",
+        "Chromosome",
+        "Start",
+        "End",
+        "MeanRatio",
     }
 
     missing = required_columns - set(df.columns)
@@ -119,7 +119,7 @@ def main(input_file: str, output_file: str) -> None:
             f"Missing required columns: {', '.join(sorted(missing))}"
         )
 
-    df = df.sort_values(["chrom", "start.pos", "end.pos"])
+    df = df.sort_values(["Chromosome", "Start", "End"])
 
     write_segment_zoom_file(
         df=df,
