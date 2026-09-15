@@ -18,7 +18,6 @@
 
 <img alt="nf-metro" src="docs/images/metro_map_light.svg">
 
-
 <!-- TODO: Add information about the processes and the output when the architecture of the pipeline is decided and the information is clear.
 
 

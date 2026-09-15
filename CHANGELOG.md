@@ -61,7 +61,6 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#163](https://github.com/Clinical-Genomics/oncorefiner/pull/163) Added subworkflow `STANDARDISE_ESVEE_VCF` along with tests.
 - [#182](https://github.com/Clinical-Genomics/oncorefiner/pull/182) Added metro map images, markdown file and instructions to generate it
 
-
 ### `Changed`
 
 - [#24](https://github.com/Clinical-Genomics/oncorefiner/pull/24) Updated PR template, PR checklist, feature request template, bug report template and issue template chooser.
