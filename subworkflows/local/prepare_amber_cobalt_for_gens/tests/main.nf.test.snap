@@ -35,7 +35,7 @@
                             "sample_type": "tumor",
                             "sex": "female"
                         },
-                        "test_tumor_only_case_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                        "test_tumor_only_case_subject_a_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
                     ]
                 ],
                 "gens_cov_bed_tbi": [
@@ -47,12 +47,12 @@
                             "sample_type": "tumor",
                             "sex": "female"
                         },
-                        "test_tumor_only_case_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test_tumor_only_case_subject_a_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ]
             }
         ],
-        "timestamp": "2026-08-27T09:09:59.153195",
+        "timestamp": "2026-09-01T09:26:17.001635",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
@@ -87,7 +87,7 @@
                         "sample_type": "normal",
                         "sex": "female"
                     },
-                    "test_tumor_normal_case_normal_CNV_COV_COBALT_FOR_GENS.bed.gz:md5,d80e5d2edb1559d3e035c0739a8d172f"
+                    "test_tumor_normal_case_subject_a_normal_CNV_COV_COBALT_FOR_GENS.bed.gz:md5,d80e5d2edb1559d3e035c0739a8d172f"
                 ],
                 [
                     {
@@ -97,7 +97,7 @@
                         "sample_type": "tumor",
                         "sex": "female"
                     },
-                    "test_tumor_normal_case_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz:md5,5a34fb13829738c0742132bd11ff1219"
+                    "test_tumor_normal_case_subject_a_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz:md5,5a34fb13829738c0742132bd11ff1219"
                 ]
             ],
             [
@@ -127,7 +127,7 @@
                         "sample_type": "normal",
                         "sex": "female"
                     },
-                    "test_tumor_normal_case_normal_CNV_COV_COBALT_FOR_GENS.bed.gz.tbi"
+                    "test_tumor_normal_case_subject_a_normal_CNV_COV_COBALT_FOR_GENS.bed.gz.tbi"
                 ],
                 [
                     {
@@ -137,7 +137,7 @@
                         "sample_type": "tumor",
                         "sex": "female"
                     },
-                    "test_tumor_normal_case_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz.tbi"
+                    "test_tumor_normal_case_subject_a_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz.tbi"
                 ]
             ],
             {
@@ -205,7 +205,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-08-27T09:09:28.997654",
+        "timestamp": "2026-09-01T09:25:46.303421",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
@@ -259,7 +259,7 @@
                             "sample_type": "normal",
                             "sex": "female"
                         },
-                        "test_tumor_normal_case_normal_CNV_COV_COBALT_FOR_GENS.bed.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                        "test_tumor_normal_case_subject_a_normal_CNV_COV_COBALT_FOR_GENS.bed.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
                     ],
                     [
                         {
@@ -269,7 +269,7 @@
                             "sample_type": "tumor",
                             "sex": "female"
                         },
-                        "test_tumor_normal_case_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                        "test_tumor_normal_case_subject_a_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
                     ]
                 ],
                 "gens_cov_bed_tbi": [
@@ -281,7 +281,7 @@
                             "sample_type": "normal",
                             "sex": "female"
                         },
-                        "test_tumor_normal_case_normal_CNV_COV_COBALT_FOR_GENS.bed.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test_tumor_normal_case_subject_a_normal_CNV_COV_COBALT_FOR_GENS.bed.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ],
                     [
                         {
@@ -291,12 +291,12 @@
                             "sample_type": "tumor",
                             "sex": "female"
                         },
-                        "test_tumor_normal_case_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test_tumor_normal_case_subject_a_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz.tbi:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ]
             }
         ],
-        "timestamp": "2026-08-27T09:09:36.622286",
+        "timestamp": "2026-09-01T09:25:53.677789",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
@@ -325,7 +325,7 @@
                         "sample_type": "tumor",
                         "sex": "female"
                     },
-                    "test_tumor_only_case_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz:md5,1a22ba6f7f24087f1c7fbb51c73a3b9d"
+                    "test_tumor_only_case_subject_a_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz:md5,1a22ba6f7f24087f1c7fbb51c73a3b9d"
                 ]
             ],
             [
@@ -349,7 +349,7 @@
                         "sample_type": "tumor",
                         "sex": "female"
                     },
-                    "test_tumor_only_case_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz.tbi"
+                    "test_tumor_only_case_subject_a_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz.tbi"
                 ]
             ],
             {
@@ -397,7 +397,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-08-27T09:09:52.329906",
+        "timestamp": "2026-09-01T09:26:10.660645",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
