@@ -170,19 +170,19 @@
                 ],
                 [
                     "test_tumor_only_case_SV_annotated_vep.vcf.gz",
-                    "dc2bd710b86bb2e20399e35e8b6a0d6d"
+                    "8e31adcf1b796628fddac097b4e24cff"
                 ],
                 [
                     "test_tumor_only_case_SV_clinical_filtered_bcftools.vcf.gz",
-                    "df683be784634d933773203d555672df"
+                    "1d79acb9bec40c047006a5a36c161c37"
                 ],
                 [
                     "test_tumor_only_case_SV_score_genmod.vcf.gz",
-                    "df683be784634d933773203d555672df"
+                    "1d79acb9bec40c047006a5a36c161c37"
                 ]
             ]
         ],
-        "timestamp": "2026-09-01T12:10:47.49976",
+        "timestamp": "2026-09-16T12:10:29.208316",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
