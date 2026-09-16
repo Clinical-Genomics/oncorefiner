@@ -410,7 +410,7 @@ output {
     }
 
     multiqc {
-        path "qc/multiqc"
+        path "multiqc"
     }
 
     snv {

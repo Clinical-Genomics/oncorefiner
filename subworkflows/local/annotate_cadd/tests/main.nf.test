@@ -21,7 +21,7 @@ nextflow_workflow {
             workflow {
                 """
                 input[0] = channel.of([
-                    [id:'test'],
+                    [id: 'test_tumor_normal_case', case_id: 'test_tumor_normal_case'],
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh37/tumor_normal/subject_a.tumor.purple.somatic.vcf.gz', checkIfExists: true)
                     ])
                 input[1] = 'GRCh37'
@@ -58,7 +58,7 @@ nextflow_workflow {
             workflow {
                 """
                 input[0] = channel.of([
-                    [id:'test'],
+                    [id: 'test_tumor_normal_case', case_id: 'test_tumor_normal_case'],
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.somatic.vcf.gz', checkIfExists: true)
                     ])
                 input[1] = 'GRCh38'
