@@ -15,6 +15,7 @@
 
 include { channelFromMetaAndPath  } from './subworkflows/local/utils_nfcore_oncorefiner_pipeline'
 include { makeMetadata            } from './subworkflows/local/utils_nfcore_oncorefiner_pipeline'
+include { channelFromTabularFile  } from './subworkflows/local/utils_nfcore_oncorefiner_pipeline'
 include { ONCOREFINER             } from './workflows/oncorefiner'
 include { PIPELINE_INITIALISATION } from './subworkflows/local/utils_nfcore_oncorefiner_pipeline'
 include { PIPELINE_COMPLETION     } from './subworkflows/local/utils_nfcore_oncorefiner_pipeline'
@@ -111,7 +112,6 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     ch_snv_vcf_tbi     = channelFromMetaAndPath(metadata_case_file, val_snv_vcf + '.tbi')
     ch_sv_vcf          = channelFromMetaAndPath(metadata_case_file, val_sv_vcf)
     ch_sv_vcf_tbi      = channelFromMetaAndPath(metadata_case_file, val_sv_vcf + '.tbi')
-    ch_vep_extra_files = channel.empty()
 
     // Alignment files
     def ch_bam_normal     = channelFromMetaAndPath(metadata_normal_sample_file, val_bam_normal)
@@ -141,22 +141,20 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     def ch_cadd_prescored_indels = channelFromMetaAndPath(metadata_case_file, val_cadd_prescored_indels)
 
     // Input for VEP
-    ch_vep_extra_files = val_vep_plugin_files ? channel.fromList(samplesheetToList(val_vep_plugin_files, 'assets/vep_plugin_files_schema.json')).collect()
-                                              : channel.value([])
+    ch_vep_extra_files   = channelFromTabularFile(val_vep_plugin_files, 'assets/vep_plugin_files_schema.json', true, channel.value([]))
+
     // Input for Vcfanno
     ch_vcfanno_extra     = val_vcfanno_extra     ? channel.fromPath(val_vcfanno_extra).collect()
                                                  : []
     ch_vcfanno_lua       = val_vcfanno_lua       ? channel.fromPath(val_vcfanno_lua).collect()
                                                  : channel.value([])
-    ch_vcfanno_resources = val_vcfanno_resources ? channel.fromPath(val_vcfanno_resources).splitText().map{it -> it.trim()}.collect()
-                                                 : channel.value([])
+    ch_vcfanno_resources = channelFromTabularFile(val_vcfanno_resources, 'assets/vcfanno_resources_schema.json', true, channel.value([]))
+
     ch_vcfanno_toml      = val_vcfanno_toml      ? channel.fromPath(val_vcfanno_toml).collect()
                                                  : channel.value([])
 
-
     // Input for SVDB
-    ch_sv_dbs            = val_svdb_query_dbs    ? channel.fromList(samplesheetToList(val_svdb_query_dbs, 'assets/svdb_query_vcf_schema.json'))
-                                                 : channel.empty()
+    ch_sv_dbs            = channelFromTabularFile(val_svdb_query_dbs, 'assets/svdb_query_vcf_schema.json', false, channel.empty())
 
     // Input for CNV report
     ch_cnv_gene_tsv      = channelFromMetaAndPath(metadata_case_file, val_cnv_gene_tsv)

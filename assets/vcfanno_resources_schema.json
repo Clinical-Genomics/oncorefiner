@@ -1,0 +1,13 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://raw.githubusercontent.com/Clinical-Genomics/oncorefiner/refs/heads/dev/assets/vcfanno_resources_schema.json",
+    "description": "Schema for the vcfanno resources input. One line per resource file.",
+    "type": "array",
+    "items": {
+        "format": "file-path",
+        "type": "string",
+        "exists": true,
+        "pattern": "^\\S+\\.(vcf\\.gz|bed\\.gz|vcf\\.gz\\.tbi|bed\\.gz\\.tbi|csi)$",
+        "errorMessage": "grch38 vcfanno resources must be existing file paths with vcf.gz, bed.gz, vcf.gz.tbi, bed.gz.tbi, or csi extensions."
+    }
+}

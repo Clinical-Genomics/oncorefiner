@@ -112,6 +112,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#163](https://github.com/Clinical-Genomics/oncorefiner/pull/163) Changed input to Vcf2cytosure to standardised ESVEE variants Purple VCF.
 - [#193](https://github.com/Clinical-Genomics/oncorefiner/pull/193) Updated the `pipelines_testdata_base_path` to reflect the change in the reference file names as a requirement for nf-schema validation.
 - [#177](https://github.com/Clinical-Genomics/oncorefiner/pull/177) Update output name for subworkflows `ANNOTATE_CADD`, `PROCESS_SNVS`, `PROCESS_SVS`, `GENERATE_CYTOSURE_FILES`, `VCF_ANNOTATE_SCORE_GENMOD:BCFTOOLS_VIEW` and `VCF_ANNOTATE_LINX_FUSIONS`, updated output path for `MULTIQC`. Updated `docs/output.md` and `README.md` to reflect new output structure.
+- [#191](https://github.com/Clinical-Genomics/oncorefiner/pull/191) Added `channelFromTabularFile` utils function to refactor the way reference files input channels are created, and wrote `vcfanno_resources_schema.json` for validation.
 
 ### `Fixed`
 
