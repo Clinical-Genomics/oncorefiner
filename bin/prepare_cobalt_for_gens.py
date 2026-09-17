@@ -2,7 +2,6 @@
 
 from enum import StrEnum
 import math
-
 import click
 import pandas as pd
 
@@ -21,7 +20,6 @@ class Column(StrEnum):
     START = "Start"
     END = "End"
     MEAN_RATIO = "MeanRatio"
-
 
 def chrom_to_output_name(chromosome: str, level: str) -> str:
     """ Change chromosome names to be compatible with GENS. For example, chr1 becomes o_1, chrX becomes o_X, etc."""
@@ -113,9 +111,9 @@ def main(input_file: str, output_file: str) -> None:
         compression="infer",
     )
 
-    required_columns = [column.value for column in Column]
+    required_columns = {column.value for column in Column}
 
-    missing = set(required_columns) - set(df.columns)
+    missing = required_columns - set(df.columns)
 
     if missing:
         raise click.ClickException(
