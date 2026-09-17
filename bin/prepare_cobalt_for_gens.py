@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
+from enum import StrEnum
 import math
+
 import click
 import pandas as pd
 
@@ -13,6 +15,12 @@ DEFAULT_SPACING = {
     "c": 5_000,
     "d": 1_000,
 }
+
+class Column(StrEnum):
+    CHROMOSOME = "Chromosome"
+    START = "Start"
+    END = "End"
+    MEAN_RATIO = "MeanRatio"
 
 
 def chrom_to_output_name(chromosome: str, level: str) -> str:
@@ -61,10 +69,10 @@ def write_segment_zoom_file(
 
     for level, spacing in levels.items():
         for _, row in df.iterrows():
-            chrom = row["Chromosome"]
-            start = int(row["Start"])
-            end = int(row["End"])
-            value = float(row["MeanRatio"])
+            chrom = row[Column.CHROMOSOME]
+            start = int(row[Column.START])
+            end = int(row[Column.END])
+            value = float(row[Column.MEAN_RATIO])
 
             for pos in segment_to_points(start, end, spacing):
                 rows.append(
@@ -105,21 +113,16 @@ def main(input_file: str, output_file: str) -> None:
         compression="infer",
     )
 
-    required_columns = {
-        "Chromosome",
-        "Start",
-        "End",
-        "MeanRatio",
-    }
+    required_columns = [column.value for column in Column]
 
-    missing = required_columns - set(df.columns)
+    missing = set(required_columns) - set(df.columns)
 
     if missing:
         raise click.ClickException(
             f"Missing required columns: {', '.join(sorted(missing))}"
         )
 
-    df = df.sort_values(["Chromosome", "Start", "End"])
+    df = df.sort_values([Column.CHROMOSOME, Column.START, Column.END])
 
     write_segment_zoom_file(
         df=df,
