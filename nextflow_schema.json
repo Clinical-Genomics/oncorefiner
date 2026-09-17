@@ -175,7 +175,20 @@
                     "format": "file-path",
                     "exists": true
                 }
-            }
+            },
+            "required": [
+                "snv_vcf",
+                "sv_vcf",
+                "bam_tumor",
+                "bai_tumor",
+                "amber_baf_tsv_gz",
+                "cobalt_ratio_pcf_tumor",
+                "cnv_gene_tsv",
+                "cnv_segment_tsv",
+                "linx_fusion_tsv",
+                "linx_breakends_tsv",
+                "linx_sv_tsv"
+            ]
         },
         "reference_genome_options": {
             "title": "Reference genome options",
@@ -239,7 +252,8 @@
                     "enum": ["homo_sapiens"],
                     "description": "Species of the reference genome. E.g. `--species homo_sapiens`."
                 }
-            }
+            },
+            "required": ["genome", "fasta", "fai", "species"]
         },
         "annotation_options": {
             "title": "Annotation options",
@@ -346,7 +360,17 @@
                     "pattern": "^\\S+\\.(ini)$",
                     "exists": true
                 }
-            }
+            },
+            "required": [
+                "vep_cache_version",
+                "vep_cache",
+                "vcfanno_resources",
+                "vcfanno_toml",
+                "vcfanno_lua",
+                "svdb_query_dbs",
+                "genmod_score_config_snv",
+                "genmod_score_config_sv"
+            ]
         },
         "institutional_config_options": {
             "title": "Institutional config options",
