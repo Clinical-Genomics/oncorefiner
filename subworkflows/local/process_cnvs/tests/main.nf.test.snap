@@ -116,7 +116,7 @@
                         "sample_type": "normal",
                         "sex": "female"
                     },
-                    "test_tumor_normal_case_subject_a_normal_CNV_COV_COBALT_FOR_GENS.bed.gz:md5,d80e5d2edb1559d3e035c0739a8d172f"
+                    "test_tumor_normal_case_subject_a_normal_CNV_COV_COBALT_FOR_GENS.bed.gz:md5,1bdfa3fb3fc326829f8bbf742006f794"
                 ],
                 [
                     {
@@ -126,7 +126,7 @@
                         "sample_type": "tumor",
                         "sex": "female"
                     },
-                    "test_tumor_normal_case_subject_a_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz:md5,5a34fb13829738c0742132bd11ff1219"
+                    "test_tumor_normal_case_subject_a_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz:md5,0e03cd4aa6e53375e0ea8529afd7acc6"
                 ]
             ],
             [
@@ -248,7 +248,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-09-01T09:32:38.687981",
+        "timestamp": "2026-09-16T16:46:20.946552",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
@@ -377,7 +377,7 @@
                         "sample_type": "normal",
                         "sex": "female"
                     },
-                    "test_tumor_normal_case_subject_a_normal_CNV_COV_COBALT_FOR_GENS.bed.gz:md5,d80e5d2edb1559d3e035c0739a8d172f"
+                    "test_tumor_normal_case_subject_a_normal_CNV_COV_COBALT_FOR_GENS.bed.gz:md5,1bdfa3fb3fc326829f8bbf742006f794"
                 ],
                 [
                     {
@@ -387,7 +387,7 @@
                         "sample_type": "tumor",
                         "sex": "female"
                     },
-                    "test_tumor_normal_case_subject_a_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz:md5,5a34fb13829738c0742132bd11ff1219"
+                    "test_tumor_normal_case_subject_a_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz:md5,0e03cd4aa6e53375e0ea8529afd7acc6"
                 ]
             ],
             [
@@ -503,7 +503,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-09-01T09:33:28.48949",
+        "timestamp": "2026-09-16T16:47:10.699075",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
