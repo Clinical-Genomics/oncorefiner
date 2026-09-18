@@ -24,12 +24,12 @@ include { RMARKDOWNNOTEBOOK } from '../../../modules/nf-core/rmarkdownnotebook/m
 workflow PROCESS_CNVS {
 
     take:
-    ch_amber_baf_tsv_gz        // channel: [optional]  [val(meta), path(tsv)]
-    ch_cnv_gene_tsv            // channel: [optional]  [val(meta), path(tsv)]
-    ch_cnv_segment_tsv         // channel: [optional]  [val(meta), path(tsv)]
-    ch_cobalt_ratio_pcf_normal // channel: [optional]  [val(meta), path(pcf)]
-    ch_cobalt_ratio_pcf_tumor  // channel: [optional]  [val(meta), path(pcf)]
-    val_analysis_type          // string:  [optional]  analysis type, e.g. "tumor_only" or "tumor_normal"
+    ch_amber_baf_tsv_gz        // channel: [mandatory]  [val(meta), path(tsv)]
+    ch_cnv_gene_tsv            // channel: [mandatory]  [val(meta), path(tsv)]
+    ch_cnv_segment_tsv         // channel: [mandatory]  [val(meta), path(tsv)]
+    ch_cobalt_ratio_pcf_normal // channel: [optional]   [val(meta), path(pcf)]
+    ch_cobalt_ratio_pcf_tumor  // channel: [mandatory]  [val(meta), path(pcf)]
+    val_analysis_type          // string:  [mandatory]  [analysis type, e.g. "tumor_only" or "tumor_normal"]
 
     main:
 

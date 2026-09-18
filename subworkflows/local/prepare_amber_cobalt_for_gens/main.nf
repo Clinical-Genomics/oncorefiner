@@ -19,10 +19,10 @@ include { PREPARE_COBALT_FOR_GENS } from '../../../modules/local/prepare_cobalt_
 workflow PREPARE_AMBER_COBALT_FOR_GENS {
 
     take:
-    ch_amber_baf_tsv     // channel: [required]  [val(meta), path(tsv)]
-    ch_cobalt_pcf_normal // channel: [required]  [val(meta), path(pcf)]
-    ch_cobalt_pcf_tumor  // channel: [required]  [val(meta), path(pcf)]
-    val_analysis_type    // string:  [required]  analysis type, e.g. "tumor_only" or "tumor_normal"
+    ch_amber_baf_tsv     // channel: [mandatory]  [val(meta), path(tsv)]
+    ch_cobalt_pcf_normal // channel: [mandatory]  [val(meta), path(pcf)]
+    ch_cobalt_pcf_tumor  // channel: [mandatory]  [val(meta), path(pcf)]
+    val_analysis_type    // string:  [mandatory]  analysis type, e.g. "tumor_only" or "tumor_normal"
 
     main:
 

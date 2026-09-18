@@ -29,20 +29,20 @@ Define where the pipeline should find input data and save output data.
 
 | Parameter | Description | Type | Default | Required | Hidden |
 |-----------|-----------|-----------|-----------|-----------|-----------|
-| `snv_vcf` | Path to a VCF file containing somatic SNV/INDEL variants to be processed by the pipeline. The VCF may include one or multiple samples. Typically, this is a single tumor sample for tumor-only analyses, or both tumor and matched normal samples for tumor-normal analyses. | `string` |  |  |  |
-| `sv_vcf` | Path to a VCF file containing somatic structural variants (SVs) to be processed by the pipeline. The VCF may include one or multiple samples. Typically, this is a single tumor sample for tumor-only analyses, or both tumor and matched normal samples for tumor-normal analyses. | `string` |  |  |  |
-| `bam_tumor` | Path to alignment BAM file for the tumor sample. | `string` |  |  |  |
-| `bai_tumor` | Path to BAM index file for the tumor sample. | `string` |  |  |  |
+| `snv_vcf` | Path to a VCF file containing somatic SNV/INDEL variants to be processed by the pipeline. The VCF may include one or multiple samples. Typically, this is a single tumor sample for tumor-only analyses, or both tumor and matched normal samples for tumor-normal analyses. | `string` |  | True |  |
+| `sv_vcf` | Path to a VCF file containing somatic structural variants (SVs) to be processed by the pipeline. The VCF may include one or multiple samples. Typically, this is a single tumor sample for tumor-only analyses, or both tumor and matched normal samples for tumor-normal analyses. | `string` |  | True |  |
+| `bam_tumor` | Path to alignment BAM file for the tumor sample. | `string` |  | True |  |
+| `bai_tumor` | Path to BAM index file for the tumor sample. | `string` |  | True |  |
 | `bam_normal` | Path to alignment BAM file for the normal sample. | `string` |  |  |  |
 | `bai_normal` | Path to BAM index file for the normal sample. | `string` |  |  |  |
-| `amber_baf_tsv_gz` | Path to a gzipped TSV file containing amber BAF values for the sample. | `string` |  |  |  |
-| `cobalt_ratio_pcf_tumor` | Path to a pcf file containing cobalt segment coverage ratios for the tumor sample. | `string` |  |  |  |
+| `amber_baf_tsv_gz` | Path to a gzipped TSV file containing amber BAF values for the sample. | `string` |  | True |  |
+| `cobalt_ratio_pcf_tumor` | Path to a pcf file containing cobalt segment coverage ratios for the tumor sample. | `string` |  | True |  |
 | `cobalt_ratio_pcf_normal` | Path to a pcf file containing cobalt segment coverage ratios for the normal sample. | `string` |  |  |  |
-| `cnv_gene_tsv` | Path to a file containing gene-level information of CNV calls. <details><summary>Help</summary><small>This file should be a tab-separated file with a header row. Typically *.purple.cnv.gene.tsv file from Oncoanalyser.</small></details>| `string` |  |  |  |
-| `cnv_segment_tsv` | Path to a file containing segment-level information of CNV calls. <details><summary>Help</summary><small>This file should be a tab-separated file with a header row. Typically *.purple.cnv.somatic.tsv file from Oncoanalyser.</small></details>| `string` |  |  |  |
-| `linx_fusion_tsv` | Path to fusion linx tsv file for the sample. | `string` |  |  |  |
-| `linx_breakends_tsv` | Path to breakend linx tsv file for the sample. | `string` |  |  |  |
-| `linx_sv_tsv` | Path to sv linx tsv file for the sample. | `string` |  |  |  |
+| `cnv_gene_tsv` | Path to a file containing gene-level information of CNV calls. <details><summary>Help</summary><small>This file should be a tab-separated file with a header row. Typically *.purple.cnv.gene.tsv file from Oncoanalyser.</small></details>| `string` |  | True |  |
+| `cnv_segment_tsv` | Path to a file containing segment-level information of CNV calls. <details><summary>Help</summary><small>This file should be a tab-separated file with a header row. Typically *.purple.cnv.somatic.tsv file from Oncoanalyser.</small></details>| `string` |  | True |  |
+| `linx_fusion_tsv` | Path to fusion linx tsv file for the sample. | `string` |  | True |  |
+| `linx_breakends_tsv` | Path to breakend linx tsv file for the sample. | `string` |  | True |  |
+| `linx_sv_tsv` | Path to sv linx tsv file for the sample. | `string` |  | True |  |
 
 ## Reference genome options
 
@@ -50,13 +50,13 @@ Reference genome related files and options required for the workflow.
 
 | Parameter | Description | Type | Default | Required | Hidden |
 |-----------|-----------|-----------|-----------|-----------|-----------|
-| `genome` | Name of the genome reference. (accepted: `GRCh38`\|`GRCh37`) <details><summary>Help</summary><small>Use this parameter to specify the ID for the reference genome used. This is then used to annotate the SV and SNV files e.g. `--genome GRCh38`.</small></details>| `string` | GRCh38 |  |  |
+| `genome` | Name of the genome reference. (accepted: `GRCh38`\|`GRCh37`) <details><summary>Help</summary><small>Use this parameter to specify the ID for the reference genome used. This is then used to annotate the SV and SNV files e.g. `--genome GRCh38`.</small></details>| `string` | GRCh38 | True |  |
 | `genome_version_number` | Genome version number. By default parsed from `params.genome` by removing "GRCh" from genome name to obtain only the version number (e.g. "GRCh38" -> "38"). (accepted: `37`\|`38`) | `integer` | 38 |  | True |
-| `fasta` | Path to FASTA genome file. <details><summary>Help</summary><small>If you don't have a BWA index available this will be generated for you automatically. Combine with `--save_reference` to save BWA index for future runs.</small></details>| `string` |  |  |  |
-| `fai` | Path to FASTA genome index file. <details><summary>Help</summary><small>If none provided, will be generated automatically from the FASTA reference</small></details>| `string` |  |  |  |
+| `fasta` | Path to FASTA genome file. <details><summary>Help</summary><small>If you don't have a BWA index available this will be generated for you automatically. Combine with `--save_reference` to save BWA index for future runs.</small></details>| `string` |  | True |  |
+| `fai` | Path to FASTA genome index file. <details><summary>Help</summary><small>If none provided, will be generated automatically from the FASTA reference</small></details>| `string` |  | True |  |
 | `cadd_prescored_indels` | Path to a directory containing prescored indels for CADD. <details><summary>Help</summary><small>This folder contains the compressed files and indexes that would otherwise be in data/prescored folder as described in https://github.com/kircherlab/CADD-scripts/#manual-installation.</small></details>| `string` |  |  |  |
 | `cadd_resources` | Path to the directory containing cadd annotations. <details><summary>Help</summary><small>This folder contains the uncompressed files that would otherwise be in data/annotation folder as described in https://github.com/kircherlab/CADD-scripts/#manual-installation.</small></details>| `string` |  |  |  |
-| `species` | Species of the reference genome. E.g. `--species homo_sapiens`. (accepted: `homo_sapiens`) | `string` | homo_sapiens |  |  |
+| `species` | Species of the reference genome. E.g. `--species homo_sapiens`. (accepted: `homo_sapiens`) | `string` | homo_sapiens | True |  |
 
 ## Annotation options
 
@@ -64,21 +64,21 @@ Annotation related files and options required for the workflow.
 
 | Parameter | Description | Type | Default | Required | Hidden |
 |-----------|-----------|-----------|-----------|-----------|-----------|
-| `vep_cache_version` | Specify the version of the VEP cache provided to the `--vep_cache` option. | `integer` | 112 |  |  |
-| `vep_cache` | Path to vep's cache directory. <details><summary>Help</summary><small>If no directory path is passed, vcf files will not be annotated by vep.</small></details>| `string` |  |  |  |
+| `vep_cache_version` | Specify the version of the VEP cache provided to the `--vep_cache` option. | `integer` | 112 | True |  |
+| `vep_cache` | Path to vep's cache directory. <details><summary>Help</summary><small>If no directory path is passed, vcf files will not be annotated by vep.</small></details>| `string` |  | True |  |
 | `vep_plugin_files` | Databases used by both named and custom plugins to annotate variants. <details><summary>Help</summary><small>Path to a CSV/TSV/JSON/YAML file with vep_files as header, and then the absolute paths to databases and their indices used by VEP's custom and named plugins resources defined within the vcfanno toml file.</small></details>| `string` |  |  |  |
 | `vcfanno_extra` | Path to a VCF file containing annotations. <details><summary>Help</summary><small>Can be used to supply case-specific annotations in addition to those provided using --vcfanno_resources</small></details>| `string` |  |  |  |
-| `vcfanno_resources` | Path to a file containing the absolute paths to resources defined within the vcfanno toml file. One line per resource. <details><summary>Help</summary><small>If no file is passed, default configurations will be used according to genome build within the context of the pipeline.</small></details>| `string` |  |  |  |
-| `vcfanno_toml` | Path to the vcfanno toml file. <details><summary>Help</summary><small>If no toml is passed, default configurations will be used according to genome build within the context of the pipeline.</small></details>| `string` |  |  |  |
-| `vcfanno_lua` | Path to the vcfanno lua file. <details><summary>Help</summary><small>Custom operations file (lua). For use when the built-in ops don't supply the needed reduction.</small></details>| `string` |  |  |  |
-| `svdb_query_dbs` | Databases used for structural variant annotation in vcf format. <details><summary>Help</summary><small>Path to CSV, TSV, JSON or YAML file containing information about the databases used for structural variant annotation.</small></details>| `string` |  |  |  |
+| `vcfanno_resources` | Path to a file containing the absolute paths to resources defined within the vcfanno toml file. One line per resource. <details><summary>Help</summary><small>If no file is passed, default configurations will be used according to genome build within the context of the pipeline.</small></details>| `string` |  | True |  |
+| `vcfanno_toml` | Path to the vcfanno toml file. <details><summary>Help</summary><small>If no toml is passed, default configurations will be used according to genome build within the context of the pipeline.</small></details>| `string` |  | True |  |
+| `vcfanno_lua` | Path to the vcfanno lua file. <details><summary>Help</summary><small>Custom operations file (lua). For use when the built-in ops don't supply the needed reduction.</small></details>| `string` |  | True |  |
+| `svdb_query_dbs` | Databases used for structural variant annotation in vcf format. <details><summary>Help</summary><small>Path to CSV, TSV, JSON or YAML file containing information about the databases used for structural variant annotation.</small></details>| `string` |  | True |  |
 | `extra_args_cadd_annotate` | Extra arguments for `ANNOTATE_CADD:BCFTOOLS_ANNOTATE_INDELS`. | `string` |  |  |  |
 | `extra_args_snv_clinical_filter` | Extra arguments for `PROCESS_SNVS:BCFTOOLS_VIEW_CLINICAL`. | `string` |  |  |  |
 | `extra_args_snv_research_filter` | Extra arguments for `PROCESS_SNVS:BCFTOOLS_VIEW_RESEARCH`. | `string` |  |  |  |
 | `extra_args_snv_vep` | Extra arguments for `PROCESS_SNVS:ENSEMBLVEP_VEP`. | `string` |  |  |  |
 | `extra_args_sv_vep` | Extra arguments for `PROCESS_SVS:ENSEMBLVEP_VEP`. | `string` |  |  |  |
-| `genmod_score_config_snv` | Path to genmod score configuration file for SNVs (rank model). | `string` |  |  |  |
-| `genmod_score_config_sv` | Path to genmod score configuration file for SVs (rank model). | `string` |  |  |  |
+| `genmod_score_config_snv` | Path to genmod score configuration file for SNVs (rank model). | `string` |  | True |  |
+| `genmod_score_config_sv` | Path to genmod score configuration file for SVs (rank model). | `string` |  | True |  |
 
 ## Institutional config options
 
