@@ -71,6 +71,10 @@ COLLAPSIBLE_SVTYPES = {
 #
 #     BP_CIPOS=-3,4,-3,4
 #
+# Flag fields such as LINE are represented as 0/1 for each breakpoint:
+#
+#     BP_LINE=0,1
+#
 BREAKPOINT_INFO_FIELDS = (
     "ASMID",
     "ASMLEN",
@@ -80,6 +84,10 @@ BREAKPOINT_INFO_FIELDS = (
     "BEAPOS",
     "BEOR",
     "CIPOS",
+    "DF",
+    "IHOMPOS",
+    "LINE",
+    "MLR",
     "REF",
     "REFPAIR",
     "SEGALEN",
@@ -87,7 +95,9 @@ BREAKPOINT_INFO_FIELDS = (
     "SEGMAPQ",
     "SEGRL",
     "SEGSCO",
+    "SF",
     "UFP",
+    "VF",
 )
 
 
@@ -144,7 +154,6 @@ BREAKPOINT_SAMPLE_FIELD_TYPES = {
 # Exceptions
 ###############################################################################
 
-
 class PairError(click.ClickException):
     """Raised when two records cannot safely be collapsed."""
 
@@ -152,7 +161,6 @@ class PairError(click.ClickException):
 ###############################################################################
 # Basic record helpers
 ###############################################################################
-
 
 def record_label(record: pysam.VariantRecord) -> str:
     """Return a concise human-readable identifier for one VCF record."""
@@ -189,7 +197,6 @@ def get_mateid(record: pysam.VariantRecord) -> str | None:
 ###############################################################################
 # Value helpers
 ###############################################################################
-
 
 def normalise_value(value):
     """
@@ -243,7 +250,6 @@ def flatten_breakpoint_values(left_value, right_value):
 
         (103, 166)
 
-
     Tuple + tuple:
 
         (-3, 4)
@@ -277,7 +283,6 @@ def flatten_breakpoint_values(left_value, right_value):
 ###############################################################################
 # Pair validation
 ###############################################################################
-
 
 def validate_pair(
     first: pysam.VariantRecord,
@@ -373,7 +378,6 @@ def validate_paired_fields(
 # Header construction
 ###############################################################################
 
-
 def add_output_headers(
     header: pysam.VariantHeader,
 ) -> pysam.VariantHeader:
@@ -411,13 +415,26 @@ def add_output_headers(
 
         original = output_header.info[field]
 
+        # VCF Flag fields do not contain a value. Store presence/absence
+        # at the POS and END breakpoints as 1/0.
+        if original.type == "Flag":
+
+            number = 2
+            field_type = "Integer"
+
+            description = (
+                f"Presence (1) or absence (0) of INFO/{field} at the POS "
+                f"and END breakpoints, in that order"
+            )
+
         # Scalar original fields become exactly two values:
         #
         #     POS,END
         #
-        if original.number == 1:
+        elif original.number == 1:
 
             number = 2
+            field_type = original.type
 
             description = (
                 f"Original INFO/{field} value at the POS and END "
@@ -429,6 +446,7 @@ def add_output_headers(
         else:
 
             number = "."
+            field_type = original.type
 
             description = (
                 f"Original INFO/{field} values from the POS breakpoint "
@@ -438,7 +456,7 @@ def add_output_headers(
         output_header.info.add(
             bp_field,
             number=number,
-            type=original.type,
+            type=field_type,
             description=description,
         )
 
@@ -502,7 +520,6 @@ def add_output_headers(
 # INFO transfer
 ###############################################################################
 
-
 def transfer_breakpoint_info(
     collapsed: pysam.VariantRecord,
     left: pysam.VariantRecord,
@@ -514,6 +531,8 @@ def transfer_breakpoint_info(
     Values always follow genomic interval order:
 
         POS,END
+
+    VCF Flag fields are represented as 0/1 for each breakpoint.
     """
 
     for field in BREAKPOINT_INFO_FIELDS:
@@ -521,6 +540,17 @@ def transfer_breakpoint_info(
         bp_field = f"BP_{field}"
 
         if bp_field not in collapsed.header.info:
+            continue
+
+        original = collapsed.header.info[field]
+
+        # For VCF Flag fields, retain whether the flag was present at each
+        # breakpoint as 0/1.
+        if original.type == "Flag":
+            collapsed.info[bp_field] = (
+                int(field in left.info),
+                int(field in right.info),
+            )
             continue
 
         left_value = left.info.get(field)
@@ -538,7 +568,6 @@ def transfer_breakpoint_info(
 ###############################################################################
 # Sample FORMAT -> INFO transfer
 ###############################################################################
-
 
 def transfer_sample_info(
     collapsed: pysam.VariantRecord,
@@ -671,7 +700,6 @@ def transfer_sample_info(
 # Pair collapsing
 ###############################################################################
 
-
 def collapse_pair(
     first: pysam.VariantRecord,
     second: pysam.VariantRecord,
@@ -742,7 +770,6 @@ def collapse_pair(
 # Grouping
 ###############################################################################
 
-
 def group_records(
     records: list[pysam.VariantRecord],
 ) -> tuple[
@@ -766,7 +793,7 @@ def group_records(
             passthrough.append(record)
             continue
 
-        # All SVs except SGL variants have an SVID, but SGL are converted to BNDs and handled above.
+        # All collapsible interval SVs are expected to have an SVID.
         svid = get_svid(record)
 
         groups[svid].append(record)
@@ -777,7 +804,6 @@ def group_records(
 ###############################################################################
 # Main record processing
 ###############################################################################
-
 
 def process_records(
     records: list[pysam.VariantRecord],
@@ -802,7 +828,7 @@ def process_records(
             )
 
             raise PairError(
-                f"SVID={svid} occurs {len(group)} times; expected one or "
+                f"SVID={svid} occurs {len(group)} times; expected exactly "
                 f"two records. Records: {labels}"
             )
 
@@ -849,7 +875,6 @@ def process_records(
 ###############################################################################
 # VCF I/O
 ###############################################################################
-
 
 def output_mode(path: Path | None) -> str:
     """Return pysam output mode."""
@@ -928,7 +953,6 @@ def write_vcf(
 # Report
 ###############################################################################
 
-
 def write_report(
     path: Path,
     input_count: int,
@@ -939,11 +963,6 @@ def write_report(
 
     collapsed_count = sum(
         line.startswith("collapsed\t")
-        for line in report_lines
-    )
-
-    retained_singletons = sum(
-        line.startswith("retained\t")
         for line in report_lines
     )
 
@@ -976,11 +995,6 @@ def write_report(
             )
 
             handle.write(
-                f"summary\tunpaired_interval_records\t"
-                f"{retained_singletons}\n"
-            )
-
-            handle.write(
                 "\naction\tSVID\trecords\tdescription\n"
             )
 
@@ -997,7 +1011,6 @@ def write_report(
 ###############################################################################
 # CLI
 ###############################################################################
-
 
 @click.command(
     context_settings={
