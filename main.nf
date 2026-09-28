@@ -142,7 +142,6 @@ workflow CLINICALGENOMICS_ONCOREFINER {
 
     // Input for VEP
     ch_vep_extra_files   = channelFromTabularFile(val_vep_plugin_files, 'assets/vep_plugin_files_schema.json')
-    ch_vep_extra_files.view()
 
     // Input for Vcfanno
     ch_vcfanno_extra     = val_vcfanno_extra     ? channel.fromPath(val_vcfanno_extra).collect()
