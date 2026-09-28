@@ -141,20 +141,21 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     def ch_cadd_prescored_indels = channelFromMetaAndPath(metadata_case_file, val_cadd_prescored_indels)
 
     // Input for VEP
-    ch_vep_extra_files   = channelFromTabularFile(val_vep_plugin_files, 'assets/vep_plugin_files_schema.json', channel.value([])).collect()
+    ch_vep_extra_files   = channelFromTabularFile(val_vep_plugin_files, 'assets/vep_plugin_files_schema.json')
+    ch_vep_extra_files.view()
 
     // Input for Vcfanno
     ch_vcfanno_extra     = val_vcfanno_extra     ? channel.fromPath(val_vcfanno_extra).collect()
                                                  : []
     ch_vcfanno_lua       = val_vcfanno_lua       ? channel.fromPath(val_vcfanno_lua).collect()
                                                  : channel.value([])
-    ch_vcfanno_resources = channelFromTabularFile(val_vcfanno_resources, 'assets/vcfanno_resources_schema.json', channel.value([])).collect()
+    ch_vcfanno_resources = channelFromTabularFile(val_vcfanno_resources, 'assets/vcfanno_resources_schema.json')
 
     ch_vcfanno_toml      = val_vcfanno_toml      ? channel.fromPath(val_vcfanno_toml).collect()
                                                  : channel.value([])
 
     // Input for SVDB
-    ch_sv_dbs            = channelFromTabularFile(val_svdb_query_dbs, 'assets/svdb_query_vcf_schema.json', channel.empty())
+    ch_sv_dbs            = channelFromTabularFile(val_svdb_query_dbs, 'assets/svdb_query_vcf_schema.json', false, false)
 
     // Input for CNV report
     ch_cnv_gene_tsv      = channelFromMetaAndPath(metadata_case_file, val_cnv_gene_tsv)

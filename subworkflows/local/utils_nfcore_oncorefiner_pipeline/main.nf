@@ -316,21 +316,27 @@ def channelFromMetaAndPath(meta, filePath) {
 }
 
 /**
-*Creates a channel from a tabular file and validates its contents against a JSON schema.
-*If any of the non-mandatory tabular files are not provided in the config, or set to null, the fallback channel will be returned silently.
-*If the mandatory files are missing or given wrongly, it will be handled through nextflow_schema.json during the initialisation of the pipeline.
-*@param tabular_file The path to the tabular file.
-*@param json_schema_path The path to the JSON schema.
-*@param fallback_channel The channel to return if the tabular file is not provided.
-*@return A channel with the data from the tabular file validated against the JSON schema.
+*Creates a channel from a tabular file, validating its contents against a JSON schema.
+*If the tabular file is not provided in the config, or set to null, the fallback channel will be returned silently (case for the non-mandatory tabular files)
+*If the mandatory files are missing or given wrongly, that is handled inherently by samplesheetToList and by parameter validation during the initialisation of the pipeline.
+
+*@param tabularFilePath The path to the tabular file.
+*@param schemaFilePath The path to the JSON schema. Required whenever tabularFilePath is provided, otherwise an error is raised.
+*@param collectChannel Whether to collect the channel into a single value channel (default: true)
+*@param valueFallback The channel to return if the tabular file is not provided (default: true = channel.value([])).
+*@return A channel with the validated rows of the tabular file (collected or not), or the fallback channel.
 */
 
-def channelFromTabularFile(tabular_filePath, json_schema_path, fallback_channel) {
-    if (tabular_filePath && json_schema_path) {
-        return channel.fromList(samplesheetToList(tabular_filePath, json_schema_path))
+def channelFromTabularFile(tabularFilePath, schemaFilePath, collectChannel = true, valueFallback = true) {
+    if (!tabularFilePath) {
+        return valueFallback ? channel.value([]) : channel.empty()
     }
-    if (tabular_filePath && !json_schema_path) {
-        error "JSON schema path must be provided to validate the given tabular file. Please provide a JSON schema for the tabular file: ${tabular_filePath}"
+
+    if (!schemaFilePath) {
+        error "JSON schema path must be provided to validate the given tabular file. Please provide a JSON schema for the tabular file: ${tabularFilePath}"
     }
-    return fallback_channel
+
+    def ch_out = channel.fromList(samplesheetToList(tabularFilePath, schemaFilePath))
+
+    return collectChannel ? ch_out.collect() : ch_out
 }
