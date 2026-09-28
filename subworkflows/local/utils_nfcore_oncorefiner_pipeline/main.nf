@@ -316,19 +316,17 @@ def channelFromMetaAndPath(meta, filePath) {
 }
 
 /**
-*Creates a channel from a tabular file and a JSON schema.
+*Creates a channel from a tabular file and validates its contents against a JSON schema.
+*If any of the non-mandatory tabular files are not provided in the config, or set to null, the fallback channel will be returned silently.
+*If the mandatory files are missing or given wrongly, it will be handled through nextflow_schema.json during the initialisation of the pipeline.
 *@param tabular_file The path to the tabular file.
 *@param json_schema_path The path to the JSON schema.
-*@param collect_bool A boolean indicating whether to collect the channel or not, depending on the use case.
-*@param fallback_channel The channel to return if the tabular file is not provided or is invalid.
+*@param fallback_channel The channel to return if the tabular file is not provided.
 *@return A channel with the data from the tabular file validated against the JSON schema.
 */
 
-def channelFromTabularFile(tabular_filePath, json_schema_path, collect_bool, fallback_channel) {
-    if (tabular_filePath && json_schema_path && collect_bool == true) {
-        return channel.fromList(samplesheetToList(tabular_filePath, json_schema_path)).collect()
-    }
-    if (tabular_filePath && json_schema_path && collect_bool == false) {
+def channelFromTabularFile(tabular_filePath, json_schema_path, fallback_channel) {
+    if (tabular_filePath && json_schema_path) {
         return channel.fromList(samplesheetToList(tabular_filePath, json_schema_path))
     }
     if (tabular_filePath && !json_schema_path) {
