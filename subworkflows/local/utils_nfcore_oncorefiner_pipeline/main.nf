@@ -316,14 +316,14 @@ def channelFromMetaAndPath(meta, filePath) {
 }
 
 /**
-*Creates a channel from a tabular file, validating its contents against a JSON schema.
-*If the tabular file is not provided in the config, or set to null, the fallback channel will be returned silently (case for the non-mandatory tabular files)
+*Creates a channel with a list generated from a tabular file according to the JSON schema file provided. The channel can be value channel or not, according to `collectChannel`.
+*If the tabular file is not provided, either an empty or a value `channel.value([])` fallback channel is returned, according to `valueFallback`.
 *If the mandatory files are missing or given wrongly, that is handled inherently by samplesheetToList and by parameter validation during the initialisation of the pipeline.
 
-*@param tabularFilePath The path to the tabular file.
+*@param tabularFilePath The path to the tabular file (can be null)
 *@param schemaFilePath The path to the JSON schema. Required whenever tabularFilePath is provided, otherwise an error is raised.
-*@param collectChannel Whether to collect the channel into a single value channel (default: true)
-*@param valueFallback The channel to return if the tabular file is not provided (default: true = channel.value([])).
+*@param collectChannel Bool for whether to collect the channel into a single value channel (default: true)
+*@param valueFallback Bool for whether to return a value fallback channel instead of an empty channel (default: true)
 *@return A channel with the validated rows of the tabular file (collected or not), or the fallback channel.
 */
 
