@@ -73,7 +73,7 @@
                         "sample_type": "tumor",
                         "sex": "female"
                     },
-                    "test_cobalt_cov_tumor.bed.gz:md5,5a34fb13829738c0742132bd11ff1219"
+                    "test_cobalt_cov_tumor.bed.gz:md5,0e03cd4aa6e53375e0ea8529afd7acc6"
                 ]
             ],
             [
@@ -113,10 +113,10 @@
                 ]
             }
         ],
-        "timestamp": "2026-08-03T13:19:07.999301",
+        "timestamp": "2026-09-15T16:47:11.049294",
         "meta": {
             "nf-test": "0.9.5",
-            "nextflow": "26.04.0"
+            "nextflow": "26.04.6"
         }
     },
     "Prepare cobalt files for GENS, normal (tumor-normal data) - stub": {
@@ -193,7 +193,7 @@
                         "sample_type": "normal",
                         "sex": "female"
                     },
-                    "test_cobalt_cov_normal.bed.gz:md5,d80e5d2edb1559d3e035c0739a8d172f"
+                    "test_cobalt_cov_normal.bed.gz:md5,1bdfa3fb3fc326829f8bbf742006f794"
                 ]
             ],
             [
@@ -233,10 +233,10 @@
                 ]
             }
         ],
-        "timestamp": "2026-08-03T13:18:55.055979",
+        "timestamp": "2026-09-15T15:58:08.065644",
         "meta": {
             "nf-test": "0.9.5",
-            "nextflow": "26.04.0"
+            "nextflow": "26.04.6"
         }
     }
 }
