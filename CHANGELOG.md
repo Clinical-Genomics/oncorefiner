@@ -114,6 +114,8 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#177](https://github.com/Clinical-Genomics/oncorefiner/pull/177) Update output name for subworkflows `ANNOTATE_CADD`, `PROCESS_SNVS`, `PROCESS_SVS`, `GENERATE_CYTOSURE_FILES`, `VCF_ANNOTATE_SCORE_GENMOD:BCFTOOLS_VIEW` and `VCF_ANNOTATE_LINX_FUSIONS`, updated output path for `MULTIQC`. Updated `docs/output.md` and `README.md` to reflect new output structure.
 - [#192](https://github.com/Clinical-Genomics/oncorefiner/pull/192) Updated `pipelines_testdata_base_path` to new commit with updated COBALT files.
 - [#192](https://github.com/Clinical-Genomics/oncorefiner/pull/192) Updated the python script `prepare_cobalt_for_gens.py` to comply with new header columns of COBALT files.
+- [#194](https://github.com/Clinical-Genomics/oncorefiner/pull/194) Updated `nextflow_schema.json to make all parameters required to run the pipeline mandatory.
+- [#194](https://github.com/Clinical-Genomics/oncorefiner/pull/194) Updated input channel descriptions to correctly mark the relevant channels as `[mandatory]` instead of `[optional]`
 
 ### `Fixed`
 
@@ -175,3 +177,4 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#152](https://github.com/Clinical-Genomics/oncorefiner/pull/152) Removed publishDir directive for `PREPARE_REFERENCES`.
 - [#172](https://github.com/Clinical-Genomics/oncorefiner/pull/172) Removed publishDir from `annotate_cadd.config` and `modules.config`
 - [#179](https://github.com/Clinical-Genomics/oncorefiner/pull/179) Removed logo images `assets/nf-core-oncorefiner_logo_light.png`, `docs/images/nf-core-oncorefiner_logo_dark.png` and `docs/images/nf-core-oncorefiner_logo_light.png`
+- [#194](https://github.com/Clinical-Genomics/oncorefiner/pull/194) Temoved nf-tests from `optional_inputs_stub.nf.test` for parameters that are no longer optional.
