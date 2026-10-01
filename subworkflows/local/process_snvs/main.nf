@@ -36,7 +36,7 @@ workflow PROCESS_SNVS {
     ch_cadd_resources          // channel: [optional]   [val(meta), path(dir)]
     ch_genmod_score_config_snv // channel: [mandatory]  [val(meta), path(ini)]
     ch_snv_vcf                 // channel: [mandatory]  [val(meta), path(vcf)]
-    ch_snv_vcf_tbi             // channel: [optional]   [val(meta), path(vcf.tbi)]
+    ch_snv_vcf_tbi             // channel: [mandatory]   [val(meta), path(vcf.tbi)]
     ch_vcfanno_extra           // channel: [optional]   [path(extra_file1), path(extra_file2), ...]
     ch_vcfanno_lua             // channel: [mandatory]  [path(lua_file)]
     ch_vcfanno_resources       // channel: [mandatory]  [path(resource_file1), path(resource_file2), ...]
