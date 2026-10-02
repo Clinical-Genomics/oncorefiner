@@ -177,4 +177,4 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#152](https://github.com/Clinical-Genomics/oncorefiner/pull/152) Removed publishDir directive for `PREPARE_REFERENCES`.
 - [#172](https://github.com/Clinical-Genomics/oncorefiner/pull/172) Removed publishDir from `annotate_cadd.config` and `modules.config`
 - [#179](https://github.com/Clinical-Genomics/oncorefiner/pull/179) Removed logo images `assets/nf-core-oncorefiner_logo_light.png`, `docs/images/nf-core-oncorefiner_logo_dark.png` and `docs/images/nf-core-oncorefiner_logo_light.png`
-- [#194](https://github.com/Clinical-Genomics/oncorefiner/pull/194) Temoved nf-tests from `optional_inputs_stub.nf.test` for parameters that are no longer optional.
+- [#194](https://github.com/Clinical-Genomics/oncorefiner/pull/194) Removed nf-tests from `optional_inputs_stub.nf.test` for parameters that are no longer optional.
