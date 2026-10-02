@@ -117,6 +117,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#191](https://github.com/Clinical-Genomics/oncorefiner/pull/191) Refactor channel initialisation for `ch_vep_extra_files`, `ch_vcfanno_resources` and `ch_sv_dbs` using `channelFromTabularFile` utils function.
 - [#192](https://github.com/Clinical-Genomics/oncorefiner/pull/192) Updated `pipelines_testdata_base_path` to new commit with updated COBALT files.
 - [#192](https://github.com/Clinical-Genomics/oncorefiner/pull/192) Updated the python script `prepare_cobalt_for_gens.py` to comply with new header columns of COBALT files.
+- [#194](https://github.com/Clinical-Genomics/oncorefiner/pull/194) Made all parameters required to run the pipeline mandatory. That includes `snv_vcf`, `sv_vcf`, `bam_tumor`, `bai_tumor`, `amber_baf_tsv_gz`, `cobalt_ratio_pcf_tumor`, `cnv_gene_tsv`, `cnv_segment_tsv`, `linx_fusion_tsv`, `linx_breakends_tsv`, `linx_sv_tsv`, `genome`, `fasta`, `fai`, `species`, `vep_cache_version`, `vep_cache`, `vcfanno_resources`, `vcfanno_toml`, `vcfanno_lua`, `svdb_query_dbs`, `genmod_score_config_snv`, `genmod_score_config_sv`.
 
 ### `Fixed`
 
@@ -178,3 +179,4 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#152](https://github.com/Clinical-Genomics/oncorefiner/pull/152) Removed publishDir directive for `PREPARE_REFERENCES`.
 - [#172](https://github.com/Clinical-Genomics/oncorefiner/pull/172) Removed publishDir from `annotate_cadd.config` and `modules.config`
 - [#179](https://github.com/Clinical-Genomics/oncorefiner/pull/179) Removed logo images `assets/nf-core-oncorefiner_logo_light.png`, `docs/images/nf-core-oncorefiner_logo_dark.png` and `docs/images/nf-core-oncorefiner_logo_light.png`
+- [#194](https://github.com/Clinical-Genomics/oncorefiner/pull/194) Removed nf-tests from `optional_inputs_stub.nf.test` for parameters that are no longer optional.

@@ -21,7 +21,7 @@ This will launch the pipeline with:
 
 Parameters can be specified in a params file or given as a flag in the command above, i.e. `--outdir ./results/`.
 
-The following parameters are mandatory for any run:
+The following parameters are required for any run:
 
 ```yaml title="params.yaml"
 outdir: './results/'

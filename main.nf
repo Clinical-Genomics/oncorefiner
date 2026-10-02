@@ -36,42 +36,42 @@ include { samplesheetToList       } from 'plugin/nf-schema'
 workflow CLINICALGENOMICS_ONCOREFINER {
 
     take:
-    val_amber_baf_tsv_gz            // string:  [optional]  path to amber baf tsv.gz file
+    val_amber_baf_tsv_gz            // string:  [mandatory]  path to amber baf tsv.gz file
     val_bam_normal                  // string:  [optional]  path to BAM file for the normal sample
     val_bai_normal                  // string:  [optional]  path to BAI file for the normal sample
-    val_bam_tumor                   // string:  [optional]  path to BAM file for the tumor sample
-    val_bai_tumor                   // string:  [optional]  path to BAI file for the tumor sample
+    val_bam_tumor                   // string:  [mandatory]  path to BAM file for the tumor sample
+    val_bai_tumor                   // string:  [mandatory]  path to BAI file for the tumor sample
     val_cadd_prescored_indels       // string:  [optional]  path to CADD prescored indels file
     val_cadd_resources              // string:  [optional]  path to CADD resources directory
     val_case_id                     // string:  [mandatory] case ID (used in channel metadata)
-    val_cnv_gene_tsv                // string:  [optional]  path to CNV gene TSV file
-    val_cnv_segment_tsv             // string:  [optional]  path to CNV segment TSV file
+    val_cnv_gene_tsv                // string:  [mandatory]  path to CNV gene TSV file
+    val_cnv_segment_tsv             // string:  [mandatory]  path to CNV segment TSV file
     val_cobalt_ratio_pcf_normal     // string:  [optional]  path to cobalt pcf file for normal sample
-    val_cobalt_ratio_pcf_tumor      // string:  [optional]  path to cobalt pcf file for tumor sample
-    val_genmod_score_config_snv     // string:  [optional]  path to Genmod score config file for SNVs
-    val_genmod_score_config_sv      // string:  [optional]  path to Genmod score config file for SVs
-    val_genome                      // string:  [optional]  genome assembly (e.g. "GRCh38")
-    val_genome_fasta                // string:  [optional]  path to genome fasta file
-    val_genome_fai                  // string:  [optional]  path to genome fasta index file
-    val_linx_breakends_tsv          // string:  [optional]  path to LINX breakends tsv file
-    val_linx_fusion_tsv             // string:  [optional]  path to LINX fusion tsv file
-    val_linx_sv_tsv                 // string:  [optional]  path to LINX sv tsv file
+    val_cobalt_ratio_pcf_tumor      // string:  [mandatory]  path to cobalt pcf file for tumor sample
+    val_genmod_score_config_snv     // string:  [mandatory]  path to Genmod score config file for SNVs
+    val_genmod_score_config_sv      // string:  [mandatory]  path to Genmod score config file for SVs
+    val_genome                      // string:  [mandatory]  genome assembly (e.g. "GRCh38")
+    val_genome_fasta                // string:  [mandatory]  path to genome fasta file
+    val_genome_fai                  // string:  [mandatory]  path to genome fasta index file
+    val_linx_breakends_tsv          // string:  [mandatory]  path to LINX breakends tsv file
+    val_linx_fusion_tsv             // string:  [mandatory]  path to LINX fusion tsv file
+    val_linx_sv_tsv                 // string:  [mandatory]  path to LINX sv tsv file
     val_multiqc_config              // string:  [optional]  path to multiqc config file
     val_multiqc_logo                // string:  [optional]  path to image file to be used as logo in multiqc report
     val_multiqc_methods_description // string:  [optional]  path to text file containing methods description to be included in multiqc report
     val_outdir                      // string:  [mandatory] path to output directory (default: ./results)
     val_sample_id_normal            // string:  [optional]  sample ID for the normal sample (used in channel metadata)
-    val_sample_id_tumor             // string:  [optional]  sample ID for the tumor sample (used in channel metadata)
-    val_sex                         // string:  [optional]  sex of the patient (used in channel metadata)
-    val_snv_vcf                     // string:  [optional]  path to input SNV vcf file
-    val_species                     // string:  [optional]  species (e.g. "homo_sapiens")
-    val_sv_vcf                      // string:  [optional]  path to input SV vcf file
-    val_svdb_query_dbs              // string:  [optional]  path to file containing paths to SVDB query databases and additional information (one per line)
+    val_sample_id_tumor             // string:  [mandatory]  sample ID for the tumor sample (used in channel metadata)
+    val_sex                         // string:  [mandatory]  sex of the patient (used in channel metadata)
+    val_snv_vcf                     // string:  [mandatory]  path to input SNV vcf file
+    val_species                     // string:  [mandatory]  species (e.g. "homo_sapiens")
+    val_sv_vcf                      // string:  [mandatory]  path to input SV vcf file
+    val_svdb_query_dbs              // string:  [mandatory]  path to file containing paths to SVDB query databases and additional information (one per line)
     val_vcfanno_extra               // string:  [optional]  path to file containing paths to extra files for vcfanno (one per line)
-    val_vcfanno_lua                 // string:  [optional]  path to vcfanno lua file
-    val_vcfanno_resources           // string:  [optional]  path to file containing paths to vcfanno resources (one per line)
-    val_vcfanno_toml                // string:  [optional]  path to vcfanno toml file
-    val_vep_cache                   // string:  [optional]  path to vep cache tar gzip file
+    val_vcfanno_lua                 // string:  [mandatory]  path to vcfanno lua file
+    val_vcfanno_resources           // string:  [mandatory]  path to file containing paths to vcfanno resources (one per line)
+    val_vcfanno_toml                // string:  [mandatory]  path to vcfanno toml file
+    val_vep_cache                   // string:  [mandatory]  path to vep cache tar gzip file
     val_vep_cache_version           // string:  [optional]  version of vep cache to use (e.g. "107")
     val_vep_plugin_files            // string:  [optional]  path to file containing paths to vep plugin files (one per line)
 

@@ -311,7 +311,7 @@ Please use the following naming schemes, to make it easy to understand what is g
 
 - Sort items in the `take`, `emit` and `publish` blocks, alphabetically (see example below).
 
-- Both `take:` and `emit:` block entries require an inline type comment. Use `name // type: [mandatory|optional] description` for `take:` and `name = value // channel: [type description]` for `emit:`. Always include the comment — never leave an entry uncommented.
+- Both `take:` and `emit:` block entries require an inline type comment. Use `name // type: [required|optional] description` for `take:` and `name = value // channel: [type description]` for `emit:`. Always include the comment — never leave an entry uncommented.
 
   ```groovy
   take:
