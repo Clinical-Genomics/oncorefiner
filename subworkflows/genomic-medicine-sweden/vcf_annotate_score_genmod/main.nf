@@ -6,10 +6,10 @@ include { GENMOD_SCORE    } from '../../../modules/nf-core/genmod/score/main'
 
 workflow VCF_ANNOTATE_SCORE_GENMOD {
     take:
-    ch_vcf                       // channel: [mandatory] [ val(meta), path(vcf) ]
-    ch_ped                       // channel: [optional]  [ val(meta), path(ped) ]
-    ch_reduced_penetrance        // channel: [optional]  [ val(meta), path(penetrance) ]
-    ch_score_config              // channel: [mandatory] [ val(meta), path(ini) ]
+    ch_vcf                       // channel: [required]  [val(meta), path(vcf)]
+    ch_ped                       // channel: [optional]  [val(meta), path(ped)]
+    ch_reduced_penetrance        // channel: [optional]  [val(meta), path(penetrance)]
+    ch_score_config              // channel: [required]  [val(meta), path(ini)]
     val_run_score_only           // Boolean: If true, only run the scoring step
 
     main:

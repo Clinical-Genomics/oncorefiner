@@ -8,7 +8,7 @@ include { HTSLIB_BGZIPTABIX         } from '../../../modules/nf-core/htslib/bgzi
 
 workflow STANDARDISE_ESVEE_VCF {
     take:
-    ch_sv_vcf // channel: [mandatory] [val(meta), path(vcf)]
+    ch_sv_vcf // channel: [required] [val(meta), path(vcf)]
 
     main:
     // Reformat ESVEE structural variant records into standardised VCF records (do not remove duplicate variant records)
