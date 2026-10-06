@@ -7,7 +7,7 @@ process COMBINE_LINX_TSV{
         'community.wave.seqera.io/library/click_python_pip_pandas:1ffa4e2ace0e5bf3' }"
 
     input:
-    tuple val(meta), path(fusion_tsv_file), path(breakends_tsv_file), path(sv_tsv_file)
+    tuple val(meta), path(fusion_tsv_file), path(breakends_tsv_file)
 
     output:
     tuple val(meta), path("*.tsv"), emit: tsv
@@ -23,7 +23,6 @@ process COMBINE_LINX_TSV{
     combine_linx_tsv.py \\
     -f ${fusion_tsv_file} \\
     -b ${breakends_tsv_file} \\
-    -sv ${sv_tsv_file} \\
     -o ${prefix}.tsv
     """
 

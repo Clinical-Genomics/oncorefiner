@@ -19,12 +19,6 @@ input:
         The input channel containing the LINX fusion TSV files
         Structure: [ val(meta), path(tsv) ]
       pattern: "*.tsv"
-  - ch_linx_sv_tsv:
-      type: file
-      description: |
-        The input channel containing the LINX SV TSV files
-        Structure: [ val(meta), path(tsv) ]
-      pattern: "*.tsv"
   - ch_sv_header:
       type: file
       description: |

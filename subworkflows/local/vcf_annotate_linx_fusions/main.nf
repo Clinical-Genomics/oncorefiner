@@ -26,7 +26,6 @@ workflow VCF_ANNOTATE_LINX_FUSIONS {
     take:
     ch_linx_breakends_tsv // channel: [required]  [val(meta), path(tsv)]
     ch_linx_fusion_tsv    // channel: [required]  [val(meta), path(tsv)]
-    ch_linx_sv_tsv        // channel: [required]  [val(meta), path(tsv)]
     ch_sv_header          // channel: [required]  [val(meta), path(txt)]
     ch_sv_vcf             // channel: [required]  [val(meta), path(vcf)]
     ch_sv_vcf_tbi         // channel: [required]  [val(meta), path(vcf.tbi)]
@@ -35,7 +34,6 @@ workflow VCF_ANNOTATE_LINX_FUSIONS {
 
     def ch_combine_linx_tsv_in = ch_linx_fusion_tsv
         .join(ch_linx_breakends_tsv, failOnMismatch: true)
-        .join(ch_linx_sv_tsv, failOnMismatch: true)
 
     COMBINE_LINX_TSV(ch_combine_linx_tsv_in)
 
