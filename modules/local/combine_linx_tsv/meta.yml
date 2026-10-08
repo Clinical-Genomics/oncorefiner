@@ -22,10 +22,6 @@ input:
         type: file
         description: LINX breakends TSV file
         pattern: "*.tsv"
-    - sv_tsv_file:
-        type: file
-        description: LINX SV TSV file
-        pattern: "*.tsv"
 output:
   - tsv:
       - meta:
