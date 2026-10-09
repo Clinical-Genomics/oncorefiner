@@ -1,20 +1,24 @@
 #!/usr/bin/env python3
 
+import ast
+import csv
 import click
 import pysam
-import csv
-import ast
 
 """
 This script aims to annotate the info field of a vcf based on the ID field, using:
 1. a VCF file following the VCF specifications, where the ID field will be used to annotate entries
-2. a TSV file where the ids to annotate is always the first column and the remaining are new INFO fields: ex.: ID, TAG1, TAG2, TAG3
+2. a TSV file with columns fivePrimeVcfId and threePrimeVcfId, plus remaining INFO fields (e.g. FUSION_NAME, REPORTED)
 3. a TXT file with the header lines of the tags added, following the VCF specifications (i.e. ##INFO=<ID=ID,Number=number,Type=type,Description="description")
 
 NOTE: the script adapts the annotation style to the Types in the header.
 This means that the ‘Flag’ type indicates that the INFO field does not contain a Value entry, and hence the Number should be
 0 and the flag will be added as is to the INFO field based on 0 (false) or 1 (true).
 """
+
+__version__ = "2.0"
+
+VCFID_COLUMNS = ("fivePrimeVcfId", "threePrimeVcfId")
 
 def get_new_header_and_dict(
     vcf_in: pysam.VariantFile, header_file_path: click.Path
@@ -40,14 +44,37 @@ def string_to_object(string: str) -> str | int | float:
     """Convert a string to the appropriate variable type (int, float, bool, etc.). If the string cannot be converted, return the original string."""
     try:
         return ast.literal_eval(string)
-    except:
+    except (ValueError, SyntaxError):
         return string
 
-def format_annotation_dict(raw_annotation_dict: dict) -> dict:
-    vcf_id_key: str = next(iter(raw_annotation_dict))
-    vcf_id: str = raw_annotation_dict.pop(vcf_id_key)
-    info_fields_dict: dict = {key: string_to_object(value) for key, value in raw_annotation_dict.items()}
-    return {vcf_id: info_fields_dict}
+def format_annotation_dicts(raw_annotation_dict: dict) -> list[dict]:
+    """Convert one TSV row to one or more annotation dictionaries keyed by VCF ID.
+
+    Supports schema:
+    - fusion schema: fivePrimeVcfId, threePrimeVcfId, FUSION_NAME, REPORTED
+    """
+
+    row = dict(raw_annotation_dict)
+
+    detected_ids: list[str] = []
+
+    if all(col in row for col in VCFID_COLUMNS):
+        for col in VCFID_COLUMNS:
+            value = row.pop(col)
+            if value not in (None, ""):
+                detected_ids.append(str(value).strip())
+    else:
+        raise ValueError(
+            "TSV must contain both 'fivePrimeVcfId' and 'threePrimeVcfId' columns."
+        )
+
+    # Preserve order while removing duplicates and empty IDs.
+    unique_ids = list(dict.fromkeys([vcf_id for vcf_id in detected_ids if vcf_id]))
+    info_fields_dict: dict = {
+        key: string_to_object(value) for key, value in row.items()
+    }
+
+    return [{vcf_id: info_fields_dict.copy()} for vcf_id in unique_ids]
 
 """def merge_dict(dicts, header_id_type: dict[str, str]):
     grouped = {}
@@ -104,7 +131,9 @@ def get_dict_from_tsv(tsv_file_path: click.Path, header_id_type: dict[str, str])
     compatible with annotation with pysam"""
     with open(tsv_file_path, newline="") as f:
         raw_annotation_dict_list: list[dict] = [row for row in csv.DictReader(f, delimiter="\t")]
-        annotation_dict_list: list[dict] = [format_annotation_dict(raw_annotation_dict) for raw_annotation_dict in raw_annotation_dict_list]
+        annotation_dict_list: list[dict] = []
+        for raw_annotation_dict in raw_annotation_dict_list:
+            annotation_dict_list.extend(format_annotation_dicts(raw_annotation_dict))
         converted_dict: dict = merge_dict_by_field(annotation_dict_list, header_id_type)
 
         return converted_dict
@@ -154,6 +183,7 @@ def annotate_vcf(
     help="Output name or path for the annotated VCF file",
     required=True,
 )
+@click.version_option(__version__, prog_name="annotate_vcf_by_id")
 
 # run
 def main(
@@ -181,9 +211,7 @@ def main(
     vcf_out.close()
 
     # write index file for annotated vcf
-    output_index: pysam.TabixFile = pysam.tabix_index(
-        output_file, preset="vcf", force=True
-    )
+    pysam.tabix_index(output_file, preset="vcf", force=True)
 
 
 # main
