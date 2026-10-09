@@ -1,4 +1,4 @@
-process ANNOTATE_VCF_BY_ID{
+process VCF_ANNOTATE_LINX_FUSIONS{
     tag "$meta.id"
 
     conda "${moduleDir}/environment.yml"
@@ -11,7 +11,7 @@ process ANNOTATE_VCF_BY_ID{
     output:
     tuple val(meta), path("${prefix}.vcf.gz"), emit: vcf
     tuple val(meta), path("${prefix}.vcf.gz.tbi"), emit: tbi
-    tuple val("${task.process}"), val('annotate_vcf_by_id'), val('1.0'), topic: versions, emit: versions_annotate_vcf
+    tuple val("${task.process}"), val('vcf_annotate_linx_fusions'), eval("vcf_annotate_linx_fusions.py --version | sed '1!d; s/^.*vcf_annotate_linx_fusions //'"), topic: versions, emit: versions_annotate_vcf
     // WARN: Version information not provided by tool on CLI. Please update version string above when bumping container versions.
 
     when:
@@ -20,7 +20,7 @@ process ANNOTATE_VCF_BY_ID{
     script:
     prefix = task.ext.prefix ?: "${meta.id}"
     """
-    annotate_vcf_by_id.py \\
+    vcf_annotate_linx_fusions.py \\
     -v ${vcf_file} \\
     -h ${header_file} \\
     -t ${tsv_file} \\

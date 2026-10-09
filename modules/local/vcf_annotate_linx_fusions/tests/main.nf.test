@@ -1,8 +1,8 @@
 nextflow_process {
 
-    name "Test Process ANNOTATE_VCF_BY_ID"
+    name "Test Process VCF_ANNOTATE_LINX_FUSIONS"
     script "../main.nf"
-    process "ANNOTATE_VCF_BY_ID"
+    process "VCF_ANNOTATE_LINX_FUSIONS"
     tag "modules"
     tag "modules_local"
     tag "annotate_vcf_by_id"
@@ -10,20 +10,6 @@ nextflow_process {
     topics "versions"
 
     test("Annotate VCF by ID, tumor-normal") {
-
-        setup {
-            run("COMBINE_LINX_TSV") {
-                script "modules/local/combine_linx_tsv/main.nf"
-                process {
-                    """
-                    input[0] = [
-                    [id: 'test_linx', case_id: 'subject_a'],
-                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.linx.fusion.tsv', checkIfExists: true),
-                    ]
-                    """
-                }
-            }
-        }
 
         when {
 
@@ -33,7 +19,10 @@ nextflow_process {
                     [id: 'test_linx', case_id: 'subject_a'],
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.sv.vcf.gz', checkIfExists: true)
                     ])
-                    .join(COMBINE_LINX_TSV.out.tsv, failOnMismatch: true)
+                    .join(channel.of([
+                        [id: 'test_linx', case_id: 'subject_a'],
+                        file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.linx.fusion.tsv', checkIfExists: true)
+                    ]), failOnMismatch: true)
                     .combine( channel.fromPath('$projectDir/assets/sv_annotation_header.txt') )
 
                 """
@@ -56,20 +45,6 @@ nextflow_process {
 
         options "-stub"
 
-        setup {
-            run("COMBINE_LINX_TSV") {
-                script "modules/local/combine_linx_tsv/main.nf"
-                process {
-                    """
-                    input[0] = [
-                    [id: 'test_linx', case_id: 'subject_a'],
-                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.linx.fusion.tsv', checkIfExists: true),
-                    ]
-                    """
-                }
-            }
-        }
-
         when {
 
             process {
@@ -78,7 +53,10 @@ nextflow_process {
                     [id: 'test_linx', case_id: 'subject_a'],
                     file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.sv.vcf.gz', checkIfExists: true)
                     ])
-                    .join(COMBINE_LINX_TSV.out.tsv, failOnMismatch: true)
+                    .join(channel.of([
+                        [id: 'test_linx', case_id: 'subject_a'],
+                        file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.linx.fusion.tsv', checkIfExists: true)
+                    ]), failOnMismatch: true)
                     .combine( channel.fromPath('$projectDir/assets/sv_annotation_header.txt') )
 
                 """

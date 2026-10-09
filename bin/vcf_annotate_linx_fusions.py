@@ -180,7 +180,7 @@ def annotate_vcf(
     help="Output name or path for the annotated VCF file",
     required=True,
 )
-@click.version_option(__version__, prog_name="annotate_vcf_by_id")
+@click.version_option(__version__, prog_name="vcf_annotate_linx_fusions")
 
 # run
 def main(

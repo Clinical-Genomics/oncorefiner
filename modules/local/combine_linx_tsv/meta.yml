@@ -18,10 +18,6 @@ input:
         type: file
         description: LINX fusion TSV file
         pattern: "*.tsv"
-    - breakends_tsv_file:
-        type: file
-        description: LINX breakends TSV file
-        pattern: "*.tsv"
 output:
   - tsv:
       - meta:

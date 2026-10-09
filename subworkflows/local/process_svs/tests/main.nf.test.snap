@@ -7,21 +7,21 @@
                         "id": "test_tumor_normal_case",
                         "case_id": "test_tumor_normal_case"
                     },
-                    "test_tumor_normal_case_SV_clinical_filtered_bcftools.vcf.gz:variantsMD5,d6e654216381aac2f9b9332b71998fc8"
+                    "test_tumor_normal_case_SV_clinical_filtered_bcftools.vcf.gz:variantsMD5,54ec9ba3ea9ea14dacca8339b8f5368b"
                 ],
                 [
                     {
                         "id": "test_tumor_normal_case",
                         "case_id": "test_tumor_normal_case"
                     },
-                    "test_tumor_normal_case_SV_score_genmod.vcf.gz:variantsMD5,d6e654216381aac2f9b9332b71998fc8"
+                    "test_tumor_normal_case_SV_score_genmod.vcf.gz:variantsMD5,54ec9ba3ea9ea14dacca8339b8f5368b"
                 ],
                 [
                     {
                         "id": "test_tumor_normal_case",
                         "case_id": "test_tumor_normal_case"
                     },
-                    "test_tumor_normal_case_SV_annotated_vep.vcf.gz:variantsMD5,e03c908f0bc0b9d69ffceebd4a527429"
+                    "test_tumor_normal_case_SV_annotated_vep.vcf.gz:variantsMD5,17e5dd35705f336177d5c25a247b18e6"
                 ]
             ],
             [
@@ -152,12 +152,12 @@
                     [
                         "PROCESS_SVS:VCF_ANNOTATE_LINX_FUSIONS:ANNOTATE_VCF_BY_ID",
                         "annotate_vcf_by_id",
-                        "1.0"
+                        "annotate_vcf_by_id, version 2.0"
                     ],
                     [
                         "PROCESS_SVS:VCF_ANNOTATE_LINX_FUSIONS:COMBINE_LINX_TSV",
                         "combine_linx_tsv",
-                        "1.0"
+                        "combine_linx_tsv, version 2.0"
                     ],
                     [
                         "PROCESS_SVS:VCF_ANNOTATE_SCORE_GENMOD:BCFTOOLS_VIEW",
@@ -177,7 +177,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-09-14T09:56:15.824415",
+        "timestamp": "2026-10-09T15:56:28.252044",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
@@ -348,12 +348,12 @@
                     [
                         "PROCESS_SVS:VCF_ANNOTATE_LINX_FUSIONS:ANNOTATE_VCF_BY_ID",
                         "annotate_vcf_by_id",
-                        "1.0"
+                        "annotate_vcf_by_id, version 2.0"
                     ],
                     [
                         "PROCESS_SVS:VCF_ANNOTATE_LINX_FUSIONS:COMBINE_LINX_TSV",
                         "combine_linx_tsv",
-                        "1.0"
+                        "combine_linx_tsv, version 2.0"
                     ],
                     [
                         "PROCESS_SVS:VCF_ANNOTATE_SCORE_GENMOD:BCFTOOLS_VIEW",
@@ -373,7 +373,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-09-01T10:59:10.437579",
+        "timestamp": "2026-10-09T15:57:08.545973",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"

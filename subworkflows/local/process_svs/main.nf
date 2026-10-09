@@ -26,7 +26,7 @@ include { VCF_ANNOTATE_SCORE_GENMOD } from '../../../subworkflows/genomic-medici
 
 include { GENERATE_CYTOSURE_FILES   } from '../../../subworkflows/local/generate_cytosure_files/main'
 include { STANDARDISE_ESVEE_VCF     } from '../../../subworkflows/local/standardise_esvee_vcf/main'
-include { VCF_ANNOTATE_LINX_FUSIONS } from '../../../subworkflows/local/vcf_annotate_linx_fusions/main'
+include { VCF_ANNOTATE_LINX_FUSIONS } from '../../../modules/local/vcf_annotate_linx_fusions/main'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -61,12 +61,11 @@ workflow PROCESS_SVS {
     )
 
     // Annotate VCF with LINX TSVs
-    VCF_ANNOTATE_LINX_FUSIONS(
-        ch_linx_fusion_tsv,
-        ch_sv_header,
-        STANDARDISE_ESVEE_VCF.out.vcf,
-        STANDARDISE_ESVEE_VCF.out.tbi
-    )
+    def ch_vcf_annotate_linx_fusions_in = STANDARDISE_ESVEE_VCF.out.vcf
+        .join(ch_linx_fusion_tsv, failOnMismatch: true)
+        .join(ch_sv_header, failOnMismatch: true)
+
+    VCF_ANNOTATE_LINX_FUSIONS(ch_vcf_annotate_linx_fusions_in)
 
     // SVDB QUERY
     ch_sv_dbs
