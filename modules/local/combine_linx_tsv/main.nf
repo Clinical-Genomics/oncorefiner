@@ -7,11 +7,11 @@ process COMBINE_LINX_TSV{
         'community.wave.seqera.io/library/click_python_pip_pandas:1ffa4e2ace0e5bf3' }"
 
     input:
-    tuple val(meta), path(fusion_tsv_file), path(breakends_tsv_file)
+    tuple val(meta), path(fusion_tsv_file)
 
     output:
     tuple val(meta), path("*.tsv"), emit: tsv
-    tuple val("${task.process}"), val('combine_linx_tsv'), val('1.0'), topic: versions, emit: versions_combine_linx_tsv
+    tuple val("${task.process}"), val('combine_linx_tsv'), eval("combine_linx_tsv.py --version | sed '1!d; s/^.*combine_linx_tsv //'"), topic: versions, emit: versions_combine_linx_tsv
     // WARN: Version information not provided by tool on CLI. Please update version string above when bumping container versions.
 
     when:
@@ -22,7 +22,6 @@ process COMBINE_LINX_TSV{
     """
     combine_linx_tsv.py \\
     -f ${fusion_tsv_file} \\
-    -b ${breakends_tsv_file} \\
     -o ${prefix}.tsv
     """
 

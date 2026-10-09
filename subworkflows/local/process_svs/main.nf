@@ -40,7 +40,6 @@ workflow PROCESS_SVS {
     ch_bam_bai_normal         // channel: [optional]  [val(meta), path(bam), path(bai)]
     ch_bam_bai_tumor          // channel: [required]  [val(meta), path(bam), path(bai)]
     ch_genmod_score_config_sv // channel: [optional]  [val(meta), path(ini)]
-    ch_linx_breakends_tsv     // channel: [required]  [val(meta), path(tsv)]
     ch_linx_fusion_tsv        // channel: [required]  [val(meta), path(tsv)]
     ch_sv_header              // channel: [required]  [val(meta), path(txt)]
     ch_sv_vcf                 // channel: [required]  [val(meta), path(vcf)]
@@ -63,7 +62,6 @@ workflow PROCESS_SVS {
 
     // Annotate VCF with LINX TSVs
     VCF_ANNOTATE_LINX_FUSIONS(
-        ch_linx_breakends_tsv,
         ch_linx_fusion_tsv,
         ch_sv_header,
         STANDARDISE_ESVEE_VCF.out.vcf,
