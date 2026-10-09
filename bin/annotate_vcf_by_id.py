@@ -3,6 +3,7 @@
 import ast
 import csv
 import click
+import pandas as pd
 import pysam
 
 """
@@ -76,26 +77,6 @@ def format_annotation_dicts(raw_annotation_dict: dict) -> list[dict]:
 
     return [{vcf_id: info_fields_dict.copy()} for vcf_id in unique_ids]
 
-"""def merge_dict(dicts, header_id_type: dict[str, str]):
-    grouped = {}
-    for dict in dicts:
-        for key in dict:
-            if key not in grouped:
-                grouped[key] = {field: [value] for field, value in dict[key].items()}
-            else:
-                grouped[key] = {field: grouped[key].get(field, []) + [value] for field, value in dict[key].items() }
-
-    for key, fields in grouped.items():
-        for field, values in fields.items():
-            if len(values) == 1:
-                continue
-            else:
-                if header_id_type.get(field) == "Flag":
-                    grouped[key][field] = max(values)
-                else:
-                    grouped[key][field] = tuple(values)
-
-    return grouped"""
 
 def merge_dict_by_field(dicts: list[dict], field_type: dict[str, str]):
     """Merges a list of dictionaries into a single dictionary, grouping values by key, based on field type. If a field is of type "Flag", the maximum
@@ -124,19 +105,35 @@ def merge_dict_by_field(dicts: list[dict], field_type: dict[str, str]):
                         merged_dict[vcf_id][field] = [merged_dict[vcf_id][field], value]
     return merged_dict
 
+def refactor_tsv_file(tsv_file_path: click.Path) -> dict:
+    """Returns a dictionary with the relevant columns for annotation of VCF file"""
+
+    fusions: pd.DataFrame = pd.read_csv(tsv_file_path, sep="\t")
+
+    # rename columns to desired header names in subsequenct VCF annotation step
+    fusions.rename(columns={"name": "FUSION_NAME", "reported": "REPORTED"}, inplace=True)
+
+    # change reported column to 0/1 to adhere to pysam specifications
+    fusions["REPORTED"] = fusions["REPORTED"].replace({"false": 0, "true": 1})
+
+    result: pd.DataFrame = fusions[
+            ["fivePrimeVcfId",  "threePrimeVcfId", "FUSION_NAME", "REPORTED"]
+    ]
+
+    return result.to_dict(orient="records")
 
 def get_dict_from_tsv(tsv_file_path: click.Path, header_id_type: dict[str, str]) -> dict:
     """Parses a tsv file into a dictionary with format: {id: [{field: value, ...},
     {field: value, ...}, ...]},
     compatible with annotation with pysam"""
-    with open(tsv_file_path, newline="") as f:
-        raw_annotation_dict_list: list[dict] = [row for row in csv.DictReader(f, delimiter="\t")]
-        annotation_dict_list: list[dict] = []
-        for raw_annotation_dict in raw_annotation_dict_list:
-            annotation_dict_list.extend(format_annotation_dicts(raw_annotation_dict))
-        converted_dict: dict = merge_dict_by_field(annotation_dict_list, header_id_type)
 
-        return converted_dict
+    raw_annotation_dict_list: list[dict] = refactor_tsv_file(tsv_file_path)
+
+    annotation_dict_list: list[dict] = []
+    for raw_annotation_dict in raw_annotation_dict_list:
+        annotation_dict_list.extend(format_annotation_dicts(raw_annotation_dict))
+    converted_dict: dict = merge_dict_by_field(annotation_dict_list, header_id_type)
+    return converted_dict
 
 def annotate_vcf(
     vcf_in: pysam.VariantFile,
