@@ -17,14 +17,10 @@ nextflow_process {
                 """
                 input[0] = channel.of([
                     [id: 'test_linx', case_id: 'subject_a'],
-                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.sv.vcf.gz', checkIfExists: true)
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.sv.vcf.gz', checkIfExists: true),
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.linx.fusion.tsv', checkIfExists: true),
+                    file('$projectDir/assets/sv_annotation_header.txt', checkIfExists: true)
                     ])
-                    .join(channel.of([
-                        [id: 'test_linx', case_id: 'subject_a'],
-                        file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.linx.fusion.tsv', checkIfExists: true)
-                    ]), failOnMismatch: true)
-                    .combine( channel.fromPath('$projectDir/assets/sv_annotation_header.txt') )
-
                 """
             }
         }
@@ -51,14 +47,10 @@ nextflow_process {
                 """
                 input[0] = channel.of([
                     [id: 'test_linx', case_id: 'subject_a'],
-                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.sv.vcf.gz', checkIfExists: true)
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.purple.sv.vcf.gz', checkIfExists: true),
+                    file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.linx.fusion.tsv', checkIfExists: true),
+                    file('$projectDir/assets/sv_annotation_header.txt', checkIfExists: true)
                     ])
-                    .join(channel.of([
-                        [id: 'test_linx', case_id: 'subject_a'],
-                        file(params.pipelines_testdata_base_path + 'testdata/GRCh38/tumor_normal/subject_a.tumor.linx.fusion.tsv', checkIfExists: true)
-                    ]), failOnMismatch: true)
-                    .combine( channel.fromPath('$projectDir/assets/sv_annotation_header.txt') )
-
                 """
             }
         }
