@@ -3,8 +3,8 @@ process VCF_ANNOTATE_LINX_FUSIONS{
 
     conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/ac/ac7bb4d67fee1c5348a574bb9a4fd5b774627a6c8a2671fab65e5f3577b342a7/data' :
-        'community.wave.seqera.io/library/pysam_click_python:90b6c5beb8454821' }"
+        'https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/62/62acd8525fffdf87492840e9b6f332cf17ef525057a414601b67ebd82604f9a0/data' :
+        'community.wave.seqera.io/library/pysam_click_pandas_python:dd208bd749e55b89' }"
     input:
     tuple val(meta), path(vcf_file), path(tsv_file), path(header_file)
 
