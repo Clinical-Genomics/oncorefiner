@@ -53,7 +53,6 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     val_genome                      // string:  [optional]  genome assembly (e.g. "GRCh38")
     val_genome_fasta                // string:  [optional]  path to genome fasta file
     val_genome_fai                  // string:  [optional]  path to genome fasta index file
-    val_linx_breakends_tsv          // string:  [optional]  path to LINX breakends tsv file
     val_linx_fusion_tsv             // string:  [optional]  path to LINX fusion tsv file
     val_multiqc_config              // string:  [optional]  path to multiqc config file
     val_multiqc_logo                // string:  [optional]  path to image file to be used as logo in multiqc report
@@ -127,7 +126,6 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     def ch_genome_fasta_fai = ch_genome_fasta.join(ch_genome_fai, failOnMismatch: true, failOnDuplicate: true)
 
     // Input for VCF annotation with LINX
-    ch_linx_breakends_tsv = channelFromMetaAndPath(metadata_case_file, val_linx_breakends_tsv)
     ch_linx_fusion_tsv    = channelFromMetaAndPath(metadata_case_file, val_linx_fusion_tsv)
     ch_sv_header          = channelFromMetaAndPath(metadata_case_file, "$projectDir/assets/sv_annotation_header.txt")
 
@@ -196,7 +194,6 @@ workflow CLINICALGENOMICS_ONCOREFINER {
         ch_genmod_score_config_sv,
         ch_genome_fasta,
         ch_genome_fai,
-        ch_linx_breakends_tsv,
         ch_linx_fusion_tsv,
         ch_snv_vcf,
         ch_snv_vcf_tbi,
@@ -312,7 +309,6 @@ workflow {
         params.genome,
         params.fasta,
         params.fai,
-        params.linx_breakends_tsv,
         params.linx_fusion_tsv,
         params.multiqc_config,
         params.multiqc_logo,
