@@ -1,13 +1,13 @@
-name: "annotate_vcf_by_id"
-description: Annotates VCF files by ID.
+name: "vcf_annotate_linx_fusions"
+description: Annotates VCF files by ID with LINX fusion information.
 keywords:
   - python
   - annotate
   - genomics
 tools:
-  - "annotate_vcf_by_id":
-      description: "Annotates VCF files by ID."
-      identifier: annotate_vcf_by_id
+  - "vcf_annotate_linx_fusions":
+      description: "Annotates VCF files by ID with LINX fusion information."
+      identifier: vcf_annotate_linx_fusions
 input:
   - - meta:
         type: map
@@ -20,11 +20,11 @@ input:
         pattern: "*.vcf"
     - tsv_file:
         type: file
-        description: TSV file to use for annotation with the format ID\tTAG1\tTAG2\t...\tTAGN, header required.
+        description: TSV file to use for annotation with the format TAG1\tTAG2\t...\tTAGN, header required. Column names "fivePrimeVcfId",  "threePrimeVcfId", "name" and "reported" must be included.
         pattern: "*.tsv"
     - header_file:
         type: file
-        description: VCF header file
+        description: VCF header file describing the new fields to add, e.g. "##INFO=<ID=REPORTED,Number=0,Type=Flag,Description="Variant is a reported fusion">"
         pattern: "*.txt"
 output:
   - vcf:
