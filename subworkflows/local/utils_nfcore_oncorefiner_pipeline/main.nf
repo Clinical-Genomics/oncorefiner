@@ -11,6 +11,7 @@
 include { UTILS_NFSCHEMA_PLUGIN     } from '../../nf-core/utils_nfschema_plugin'
 include { paramsSummaryMap          } from 'plugin/nf-schema'
 include { paramsHelp                } from 'plugin/nf-schema'
+include { samplesheetToList         } from 'plugin/nf-schema'
 include { completionEmail           } from '../../nf-core/utils_nfcore_pipeline'
 include { completionSummary         } from '../../nf-core/utils_nfcore_pipeline'
 include { UTILS_NFCORE_PIPELINE     } from '../../nf-core/utils_nfcore_pipeline'
@@ -312,4 +313,30 @@ def channelFromMetaAndPath(meta, filePath) {
         error "Metadata must be provided when a file path is given. Please provide metadata for the file: ${filePath}"
     }
     return channel.empty()
+}
+
+/**
+*Creates a channel with a list generated from a tabular file according to the JSON schema file provided. The channel can be value channel or not, according to `collectChannel`.
+*If the tabular file is not provided, either an empty or a value `channel.value([])` fallback channel is returned, according to `valueFallback`.
+*If the mandatory files are missing or given wrongly, that is handled inherently by samplesheetToList and by parameter validation during the initialisation of the pipeline.
+
+*@param tabularFilePath The path to the tabular file (can be null)
+*@param schemaFilePath The path to the JSON schema. Required whenever tabularFilePath is provided, otherwise an error is raised.
+*@param collectChannel Bool for whether to collect the channel into a single value channel (default: true)
+*@param valueFallback Bool for whether to return a value fallback channel instead of an empty channel (default: true)
+*@return A channel with the validated rows of the tabular file (collected or not), or the fallback channel.
+*/
+
+def channelFromTabularFile(tabularFilePath, schemaFilePath, collectChannel = true, valueFallback = true) {
+    if (!tabularFilePath) {
+        return valueFallback ? channel.value([]) : channel.empty()
+    }
+
+    if (!schemaFilePath) {
+        error "JSON schema path must be provided to validate the given tabular file. Please provide a JSON schema for the tabular file: ${tabularFilePath}"
+    }
+
+    def ch_out = channel.fromList(samplesheetToList(tabularFilePath, schemaFilePath))
+
+    return collectChannel ? ch_out.collect() : ch_out
 }

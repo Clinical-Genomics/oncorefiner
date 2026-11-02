@@ -60,6 +60,8 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#163](https://github.com/Clinical-Genomics/oncorefiner/pull/163) Added nf-core module htslib bgziptabix.
 - [#163](https://github.com/Clinical-Genomics/oncorefiner/pull/163) Added subworkflow `STANDARDISE_ESVEE_VCF` along with tests.
 - [#182](https://github.com/Clinical-Genomics/oncorefiner/pull/182) Added metro map images, markdown file and instructions to generate it
+- [#191](https://github.com/Clinical-Genomics/oncorefiner/pull/191) Added `channelFromTabularFile` utils function for channel generation for tabular input files utilising nf-chema validation.
+- [#191](https://github.com/Clinical-Genomics/oncorefiner/pull/191) Added `vcfanno_resources_schema.json` and input validation of `params.vcfanno_resources`.
 
 ### `Changed`
 
@@ -112,6 +114,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#163](https://github.com/Clinical-Genomics/oncorefiner/pull/163) Changed input to Vcf2cytosure to standardised ESVEE variants Purple VCF.
 - [#193](https://github.com/Clinical-Genomics/oncorefiner/pull/193) Updated the `pipelines_testdata_base_path` to reflect the change in the reference file names as a requirement for nf-schema validation.
 - [#177](https://github.com/Clinical-Genomics/oncorefiner/pull/177) Update output name for subworkflows `ANNOTATE_CADD`, `PROCESS_SNVS`, `PROCESS_SVS`, `GENERATE_CYTOSURE_FILES`, `VCF_ANNOTATE_SCORE_GENMOD:BCFTOOLS_VIEW` and `VCF_ANNOTATE_LINX_FUSIONS`, updated output path for `MULTIQC`. Updated `docs/output.md` and `README.md` to reflect new output structure.
+- [#191](https://github.com/Clinical-Genomics/oncorefiner/pull/191) Refactor channel initialisation for `ch_vep_extra_files`, `ch_vcfanno_resources` and `ch_sv_dbs` using `channelFromTabularFile` utils function.
 - [#192](https://github.com/Clinical-Genomics/oncorefiner/pull/192) Updated `pipelines_testdata_base_path` to new commit with updated COBALT files.
 - [#192](https://github.com/Clinical-Genomics/oncorefiner/pull/192) Updated the python script `prepare_cobalt_for_gens.py` to comply with new header columns of COBALT files.
 - [#194](https://github.com/Clinical-Genomics/oncorefiner/pull/194) Made all parameters required to run the pipeline mandatory. That includes `snv_vcf`, `sv_vcf`, `bam_tumor`, `bai_tumor`, `amber_baf_tsv_gz`, `cobalt_ratio_pcf_tumor`, `cnv_gene_tsv`, `cnv_segment_tsv`, `linx_fusion_tsv`, `linx_breakends_tsv`, `linx_sv_tsv`, `genome`, `fasta`, `fai`, `species`, `vep_cache_version`, `vep_cache`, `vcfanno_resources`, `vcfanno_toml`, `vcfanno_lua`, `svdb_query_dbs`, `genmod_score_config_snv`, `genmod_score_config_sv`.
