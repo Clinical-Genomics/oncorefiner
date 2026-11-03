@@ -29,7 +29,7 @@ workflow PROCESS_CNVS {
     ch_cnv_segment_tsv         // channel: [required]  [val(meta), path(tsv)]
     ch_cobalt_ratio_pcf_normal // channel: [optional]  [val(meta), path(pcf)]
     ch_cobalt_ratio_pcf_tumor  // channel: [required]  [val(meta), path(pcf)]
-    val_analysis_type          // string:  [required]  [analysis type, e.g. "tumor_only" or "tumor_normal"]
+    val_analysis_type          // string:  [required]  analysis type, e.g. "tumor_only" or "tumor_normal"
 
     main:
 
