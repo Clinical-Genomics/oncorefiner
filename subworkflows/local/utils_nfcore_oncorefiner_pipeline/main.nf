@@ -75,6 +75,11 @@ workflow PIPELINE_INITIALISATION {
     )
 
     //
+    // Custom validation for pipeline parameters
+    //
+    checkGenomeVersionMatchesGenome()
+
+    //
     // Check config provided to the pipeline
     //
     UTILS_NFCORE_PIPELINE (
@@ -339,4 +344,14 @@ def channelFromTabularFile(tabularFilePath, schemaFilePath, collectChannel = tru
     def ch_out = channel.fromList(samplesheetToList(tabularFilePath, schemaFilePath))
 
     return collectChannel ? ch_out.collect() : ch_out
+}
+
+def checkGenomeVersionMatchesGenome() {
+    def expectedGenomeVersion = params.genome.replace("GRCh", "") as Integer
+
+    if (params.genome_version_number != expectedGenomeVersion) {
+        error "Conflicting parameters: --genome ${params.genome} requires " +
+              "--genome_version_number ${expectedGenomeVersion}, " +
+              "but received ${params.genome_version_number}."
+    }
 }
