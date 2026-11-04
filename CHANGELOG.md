@@ -62,6 +62,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#182](https://github.com/Clinical-Genomics/oncorefiner/pull/182) Added metro map images, markdown file and instructions to generate it
 - [#191](https://github.com/Clinical-Genomics/oncorefiner/pull/191) Added `channelFromTabularFile` utils function for channel generation for tabular input files utilising nf-chema validation.
 - [#191](https://github.com/Clinical-Genomics/oncorefiner/pull/191) Added `vcfanno_resources_schema.json` and input validation of `params.vcfanno_resources`.
+- [#197](https://github.com/Clinical-Genomics/oncorefiner/pull/197) Added `checkGenomeVersionMatchesGenome` to validate `genome_version_number` parameter matches `genome`.
 
 ### `Changed`
 

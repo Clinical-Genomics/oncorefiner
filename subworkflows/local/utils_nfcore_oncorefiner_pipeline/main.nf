@@ -346,6 +346,10 @@ def channelFromTabularFile(tabularFilePath, schemaFilePath, collectChannel = tru
     return collectChannel ? ch_out.collect() : ch_out
 }
 
+/**
+ * Checks that the genome_version_number parameter matches the genome parameter.
+ * Throws an error if there is a conflict.
+ */
 def checkGenomeVersionMatchesGenome() {
     def expectedGenomeVersion = params.genome.replace("GRCh", "") as Integer
 
