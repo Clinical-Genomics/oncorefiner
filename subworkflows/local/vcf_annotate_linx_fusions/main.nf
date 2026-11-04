@@ -24,7 +24,7 @@ include { ANNOTATE_VCF_BY_ID } from '../../../modules/local/annotate_vcf_by_id/m
 workflow VCF_ANNOTATE_LINX_FUSIONS {
 
     take:
-    ch_linx_breakends_tsv // channel: [required]  [val(meta), path(tsv)]
+    ch_linx_breakends_tsv // channel: [requied]  [val(meta), path(tsv)]
     ch_linx_fusion_tsv    // channel: [required]  [val(meta), path(tsv)]
     ch_linx_sv_tsv        // channel: [required]  [val(meta), path(tsv)]
     ch_sv_header          // channel: [required]  [val(meta), path(txt)]
