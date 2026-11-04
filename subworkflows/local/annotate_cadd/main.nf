@@ -15,12 +15,12 @@ include { TABIX_TABIX as TABIX_INPUT                    } from '../../../modules
 workflow ANNOTATE_CADD {
 
     take:
-    ch_vcf                   // channel: [mandatory] [val(meta), path(vcf)]
-    val_genome               // string:  [mandatory] GRCh37 or GRCh38
-    ch_fai                   // channel: [mandatory] [val(meta), path(fai)]
-    ch_header                // channel: [mandatory] [path(txt)]
-    ch_cadd_resources        // channel: [mandatory] [val(meta), path(dir)]
-    ch_cadd_prescored_indels // channel: [mandatory] [val(meta), path(dir)]
+    ch_vcf                   // channel: [required] [val(meta), path(vcf)]
+    val_genome               // string:  [required] GRCh37 or GRCh38
+    ch_fai                   // channel: [required] [val(meta), path(fai)]
+    ch_header                // channel: [required] [path(txt)]
+    ch_cadd_resources        // channel: [required] [val(meta), path(dir)]
+    ch_cadd_prescored_indels // channel: [required] [val(meta), path(dir)]
 
     main:
 
