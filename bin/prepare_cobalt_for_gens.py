@@ -70,7 +70,9 @@ def write_segment_zoom_file(
             chrom = row[Column.CHROMOSOME]
             start = int(row[Column.START])
             end = int(row[Column.END])
-            value = float(row[Column.MEAN_RATIO])
+            ratio = float(row[Column.MEAN_RATIO])
+            log2_ratio = round(math.log2(max(ratio, 0.001)), 5)
+
 
             for pos in segment_to_points(start, end, spacing):
                 rows.append(
@@ -78,7 +80,7 @@ def write_segment_zoom_file(
                         chrom_to_output_name(chrom, level),
                         pos,
                         pos + 1,
-                        value,
+                        log2_ratio,
                     ]
                 )
 
