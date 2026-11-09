@@ -129,7 +129,7 @@ def main(input_file: str, output_file: str) -> None:
         raise click.ClickException(
             f"Missing required columns: {', '.join(sorted(missing))}"
         )
-    
+
     df = pd.concat(
         [
             group.sort_values([Column.START, Column.END])
