@@ -7,6 +7,8 @@ import pandas as pd
 
 __version__ = "1.0"
 
+MIN_RATIO = 0.0001 # Lower bound to avoid log2(0)
+
 DEFAULT_SPACING = {
     "o": 50_000,
     "a": 20_000,
@@ -71,7 +73,7 @@ def write_segment_zoom_file(
             start = int(row[Column.START])
             end = int(row[Column.END])
             ratio = float(row[Column.MEAN_RATIO])
-            log2_ratio = round(math.log2(max(ratio, 0.0001)), 5)
+            log2_ratio = round(math.log2(max(ratio, MIN_RATIO)), 5)
 
 
             for pos in segment_to_points(start, end, spacing):
