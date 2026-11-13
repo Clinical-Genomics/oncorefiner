@@ -87,7 +87,7 @@
                         "sample_type": "normal",
                         "sex": "female"
                     },
-                    "test_tumor_normal_case_subject_a_normal_CNV_COV_COBALT_FOR_GENS.bed.gz:md5,1bdfa3fb3fc326829f8bbf742006f794"
+                    "test_tumor_normal_case_subject_a_normal_CNV_COV_COBALT_FOR_GENS.bed.gz:md5,5991d70859f91e9afc596d3294ca8093"
                 ],
                 [
                     {
@@ -97,7 +97,7 @@
                         "sample_type": "tumor",
                         "sex": "female"
                     },
-                    "test_tumor_normal_case_subject_a_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz:md5,0e03cd4aa6e53375e0ea8529afd7acc6"
+                    "test_tumor_normal_case_subject_a_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz:md5,92e9e05b69c60d3b1d067fc5eaff61af"
                 ]
             ],
             [
@@ -205,7 +205,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-09-16T16:58:10.302232",
+        "timestamp": "2026-11-09T13:16:29.118673",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
@@ -325,7 +325,7 @@
                         "sample_type": "tumor",
                         "sex": "female"
                     },
-                    "test_tumor_only_case_subject_a_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz:md5,09fd631e3920260c9f51a32b0f730c2b"
+                    "test_tumor_only_case_subject_a_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz:md5,1bef484f1c612ace03f16a2877f19c09"
                 ]
             ],
             [
@@ -397,7 +397,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-09-16T16:58:32.559837",
+        "timestamp": "2026-11-09T13:19:34.59508",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"

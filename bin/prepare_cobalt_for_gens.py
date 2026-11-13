@@ -7,6 +7,12 @@ import pandas as pd
 
 __version__ = "1.0"
 
+# Cobalt reports ratios with up to four decimal places, with 0.0001 being the smallest observed non-zero value.
+# Capping the log2 ratio at around -13.3. 
+# To avoid log2(0) from crashing, a min ratio is set.
+# This caps the log2 ratio at -20.
+MIN_RATIO = 0.00000095
+
 DEFAULT_SPACING = {
     "o": 50_000,
     "a": 20_000,
@@ -70,7 +76,9 @@ def write_segment_zoom_file(
             chrom = row[Column.CHROMOSOME]
             start = int(row[Column.START])
             end = int(row[Column.END])
-            value = float(row[Column.MEAN_RATIO])
+            ratio = float(row[Column.MEAN_RATIO])
+            log2_ratio = round(math.log2(max(ratio, MIN_RATIO)), 5)
+
 
 
             for pos in segment_to_points(start, end, spacing):
@@ -79,7 +87,7 @@ def write_segment_zoom_file(
                         chrom_to_output_name(chrom, level),
                         pos,
                         pos + 1,
-                        value,
+                        log2_ratio,
                     ]
                 )
 
