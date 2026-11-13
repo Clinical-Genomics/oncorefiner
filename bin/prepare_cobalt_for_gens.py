@@ -80,6 +80,7 @@ def write_segment_zoom_file(
             log2_ratio = round(math.log2(max(ratio, MIN_RATIO)), 5)
 
 
+
             for pos in segment_to_points(start, end, spacing):
                 rows.append(
                     [
