@@ -20,46 +20,46 @@ include { PROCESS_CNVS           } from '../subworkflows/local/process_cnvs/main
 workflow ONCOREFINER {
 
     take:
-    ch_amber_baf_tsv_gz             // channel: [optional]  [val(meta), path(tsv)]
+    ch_amber_baf_tsv_gz             // channel: [required]  [val(meta), path(tsv)]
     ch_bam_bai_normal               // channel: [optional]  [val(meta), path(bam), path(bai)]
-    ch_bam_bai_tumor                // channel: [mandatory] [val(meta), path(bam), path(bai)]
-    ch_cadd_header                  // channel: [mandatory] [path(txt)]
+    ch_bam_bai_tumor                // channel: [required]  [val(meta), path(bam), path(bai)]
+    ch_cadd_header                  // channel: [required]  [path(txt)]
     ch_cadd_prescored_indels        // channel: [optional]  [val(meta), path(dir)]
     ch_cadd_resources               // channel: [optional]  [val(meta), path(dir)]
-    ch_cnv_gene_tsv                 // channel: [optional]  [val(meta), path(tsv)]
-    ch_cnv_segment_tsv              // channel: [optional]  [val(meta), path(tsv)]
+    ch_cnv_gene_tsv                 // channel: [required]  [val(meta), path(tsv)]
+    ch_cnv_segment_tsv              // channel: [required]  [val(meta), path(tsv)]
     ch_cobalt_ratio_pcf_normal      // channel: [optional]  [val(meta), path(pcf)]
-    ch_cobalt_ratio_pcf_tumor       // channel: [optional]  [val(meta), path(pcf)]
-    ch_genmod_score_config_snv      // channel: [optional]  [val(meta), path(ini)]
-    ch_genmod_score_config_sv       // channel: [optional]  [val(meta), path(ini)]
-    ch_genome_fasta                 // channel: [optional]  [val(meta), path(fasta)]
-    ch_genome_fai                   // channel: [optional]  [val(meta), path(fai)]
-    ch_linx_breakends_tsv           // channel: [optional]  [val(meta), path(tsv)]
-    ch_linx_fusion_tsv              // channel: [optional]  [val(meta), path(tsv)]
-    ch_linx_sv_tsv                  // channel: [optional]  [val(meta), path(tsv)]
-    ch_snv_vcf                      // channel: [optional]  [val(meta), path(vcf)]
-    ch_snv_vcf_tbi                  // channel: [optional]  [val(meta), path(vcf.tbi)]
-    ch_sv_dbs                       // channel: [optional]  [path(csv)]
-    ch_sv_header                    // channel: [optional]  [path(txt)]
-    ch_sv_vcf                       // channel: [optional]  [val(meta), path(vcf)]
-    ch_sv_vcf_tbi                   // channel: [optional]  [val(meta), path(vcf.tbi)]
+    ch_cobalt_ratio_pcf_tumor       // channel: [required]  [val(meta), path(pcf)]
+    ch_genmod_score_config_snv      // channel: [required]  [val(meta), path(ini)]
+    ch_genmod_score_config_sv       // channel: [required]  [val(meta), path(ini)]
+    ch_genome_fasta                 // channel: [required]  [val(meta), path(fasta)]
+    ch_genome_fai                   // channel: [required]  [val(meta), path(fai)]
+    ch_linx_breakends_tsv           // channel: [required]  [val(meta), path(tsv)]
+    ch_linx_fusion_tsv              // channel: [required]  [val(meta), path(tsv)]
+    ch_linx_sv_tsv                  // channel: [required]  [val(meta), path(tsv)]
+    ch_snv_vcf                      // channel: [required]  [val(meta), path(vcf)]
+    ch_snv_vcf_tbi                  // channel: [required]  [val(meta), path(vcf.tbi)]
+    ch_sv_dbs                       // channel: [required]  [path(csv)]
+    ch_sv_header                    // channel: [required]  [path(txt)]
+    ch_sv_vcf                       // channel: [required]  [val(meta), path(vcf)]
+    ch_sv_vcf_tbi                   // channel: [required]  [val(meta), path(vcf.tbi)]
     ch_vcfanno_extra                // channel: [optional]  [path(extra_file1), path(extra_file2), ...]
-    ch_vcfanno_lua                  // channel: [optional]  [path(lua_file)]
-    ch_vcfanno_resources            // channel: [optional]  [path(resource_file1), path(resource_file2), ...]
-    ch_vcfanno_toml                 // channel: [optional]  [path(toml_file)]
-    ch_vep_cache                    // channel: [optional]  [vep_cache_files]
+    ch_vcfanno_lua                  // channel: [required]  [path(lua_file)]
+    ch_vcfanno_resources            // channel: [required]  [path(resource_file1), path(resource_file2), ...]
+    ch_vcfanno_toml                 // channel: [required]  [path(toml_file)]
+    ch_vep_cache                    // channel: [required]  [vep_cache_files]
     ch_vep_extra_files              // channel: [optional]  [path(plugin_file1), path(plugin_file2), ...]
-    val_analysis_type               // string:  [optional]  analysis type, e.g. "tumor_only" or "tumor_normal"
-    val_cadd_resources              // string:  [optional]  path to CADD resources directory
-    val_genome                      // string:  [optional]  genome assembly (e.g. "GRCh38")
-    val_multiqc_config              // string:  [optional]  path to multiqc config file
-    val_multiqc_logo                // string:  [optional]  path to image file to be used as logo in multiqc report
-    val_multiqc_methods_description // string:  [optional]  path to text file containing methods description to be included in multiqc report
-    val_outdir                      // string:  [mandatory] path to output directory (default: ./results)
-    val_run_genmod_score_snv        // boolean: [mandatory] whether to skip PROCESS_SNVS:VCF_ANNOTATE_SCORE_GENMOD process for SNVs
-    val_run_genmod_score_sv         // boolean: [mandatory] whether to skip PROCESS_SVS:VCF_ANNOTATE_SCORE_GENMOD process for SVs
-    val_species                     // string:  [optional]  species (e.g. "homo_sapiens")
-    val_vep_cache_version           // string:  [optional]  version of vep cache to use (e.g. "107")
+    val_analysis_type               // string:  [optional]  [analysis type, e.g. "tumor_only" or "tumor_normal"]
+    val_cadd_resources              // string:  [optional]  [path to CADD resources directory]
+    val_genome                      // string:  [required]  [genome assembly (e.g. "GRCh38")]
+    val_multiqc_config              // string:  [optional]  [path to multiqc config file]
+    val_multiqc_logo                // string:  [optional]  [path to image file to be used as logo in multiqc report]
+    val_multiqc_methods_description // string:  [optional]  [path to text file containing methods description to be included in multiqc report]
+    val_outdir                      // string:  [required]  [path to output directory (default: ./results)]
+    val_run_genmod_score_snv        // boolean: [required]  [whether to skip PROCESS_SNVS:VCF_ANNOTATE_SCORE_GENMOD process for SNVs]
+    val_run_genmod_score_sv         // boolean: [required]  [whether to skip PROCESS_SVS:VCF_ANNOTATE_SCORE_GENMOD process for SVs]
+    val_species                     // string:  [required]  [species (e.g. "homo_sapiens")]
+    val_vep_cache_version           // string:  [optional]  [version of vep cache to use (e.g. "107")]
 
     main:
 
