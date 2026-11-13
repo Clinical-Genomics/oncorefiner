@@ -5,3 +5,4 @@ dependencies:
   - conda-forge::python=3.14.3
   - conda-forge::pysam=0.24.0
   - conda-forge::click=8.2.1
+  - conda-forge::pandas=3.0.3
