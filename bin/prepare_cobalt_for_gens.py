@@ -72,6 +72,7 @@ def write_segment_zoom_file(
             end = int(row[Column.END])
             value = float(row[Column.MEAN_RATIO])
 
+
             for pos in segment_to_points(start, end, spacing):
                 rows.append(
                     [
@@ -83,6 +84,7 @@ def write_segment_zoom_file(
                 )
 
     out_df = pd.DataFrame(rows)
+
     out_df.to_csv(output_path, sep="\t", header=False, index=False)
 
 
@@ -101,14 +103,21 @@ def write_segment_zoom_file(
 
 @click.version_option(__version__, prog_name="prepare_cobalt_for_gens")
 
+
 def main(input_file: str, output_file: str) -> None:
     """Convert segment mean file into GENS zoom-level data."""
 
     df = pd.read_csv(
-        input_file,
-        sep=r"\s+",
-        engine="python",
-        compression="infer",
+    input_file,
+    sep=r"\s+",
+    engine="python",
+    compression="infer",
+    dtype={
+        Column.CHROMOSOME: str,
+        Column.START: int,
+        Column.END: int,
+        Column.MEAN_RATIO: float,
+    },
     )
 
     required_columns = {column.value for column in Column}
@@ -120,7 +129,13 @@ def main(input_file: str, output_file: str) -> None:
             f"Missing required columns: {', '.join(sorted(missing))}"
         )
 
-    df = df.sort_values([Column.CHROMOSOME, Column.START, Column.END])
+    df = pd.concat(
+        [
+            group.sort_values([Column.START, Column.END])
+            for _, group in df.groupby(Column.CHROMOSOME, sort=True)
+        ],
+        ignore_index=True,
+    )
 
     write_segment_zoom_file(
         df=df,
