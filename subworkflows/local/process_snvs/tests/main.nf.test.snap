@@ -9,7 +9,7 @@
                     },
                     "test_tumor_normal_case_SNV_clinical_filtered_bcftools.vcf.gz",
                     ":variantsMD5,",
-                    "b3f08a4bb466307cfdb8b06231798637"
+                    "db0c9b6499a295f2f8cfd22aa32fac18"
                 ],
                 [
                     {
@@ -18,7 +18,7 @@
                     },
                     "test_tumor_normal_case_SNV_score_genmod.vcf.gz",
                     ":variantsMD5,",
-                    "b3f08a4bb466307cfdb8b06231798637"
+                    "db0c9b6499a295f2f8cfd22aa32fac18"
                 ],
                 [
                     {
@@ -36,7 +36,7 @@
                     },
                     "test_tumor_normal_case_SNV_annotated_vep.vcf.gz",
                     ":variantsMD5,",
-                    "c7dae0b238f6b5f4bf91c0682824f474"
+                    "4cdfadaf39f5ed1c1d854226e6099c0d"
                 ]
             ],
             [
@@ -70,13 +70,7 @@
                 ]
             ],
             [
-                [
-                    {
-                        "id": "test_tumor_normal_case",
-                        "case_id": "test_tumor_normal_case"
-                    },
-                    "test_tumor_normal_case_SNV_annotated_vep.vcf.gz_summary.html"
-                ]
+                
             ],
             {
                 "versions": [
@@ -128,7 +122,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-09-01T13:29:13.005888",
+        "timestamp": "2026-11-16T09:13:37.978612",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"

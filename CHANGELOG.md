@@ -62,6 +62,8 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#182](https://github.com/Clinical-Genomics/oncorefiner/pull/182) Added metro map images, markdown file and instructions to generate it
 - [#191](https://github.com/Clinical-Genomics/oncorefiner/pull/191) Added `channelFromTabularFile` utils function for channel generation for tabular input files utilising nf-chema validation.
 - [#191](https://github.com/Clinical-Genomics/oncorefiner/pull/191) Added `vcfanno_resources_schema.json` and input validation of `params.vcfanno_resources`.
+- [#197](https://github.com/Clinical-Genomics/oncorefiner/pull/197) Added `checkGenomeVersionMatchesGenome` utils function to validate that `genome_version_number` parameter matches `genome`.
+- [#201](https://github.com/Clinical-Genomics/oncorefiner/pull/201) Added a centralised parameter validation by introducing a `customParamsValidation` wrapper function that calls all individual parameter validation functions.
 
 ### `Changed`
 
@@ -118,6 +120,8 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#192](https://github.com/Clinical-Genomics/oncorefiner/pull/192) Updated `pipelines_testdata_base_path` to new commit with updated COBALT files.
 - [#192](https://github.com/Clinical-Genomics/oncorefiner/pull/192) Updated the python script `prepare_cobalt_for_gens.py` to comply with new header columns of COBALT files.
 - [#194](https://github.com/Clinical-Genomics/oncorefiner/pull/194) Made pipeline input parameters mandatory for all processes, except CADD, which remains optional. Missing any of the mandaotry input parameters will cause the pipeline to fail instead of silently skipping processes.
+- [#200](https://github.com/Clinical-Genomics/oncorefiner/pull/200) Updated the genomic position sorting method in python script `prepare_cobalt_for_gens.py`.
+- [#199](https://github.com/Clinical-Genomics/oncorefiner/pull/199) Updated VEP and bcftools filtering settings to reflect new strategy.
 
 ### `Fixed`
 

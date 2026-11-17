@@ -99,7 +99,6 @@
                 "snv/test_tumor_only_case_SNV_annotated_vcfanno.vcf.gz.tbi",
                 "snv/test_tumor_only_case_SNV_annotated_vep.vcf.gz",
                 "snv/test_tumor_only_case_SNV_annotated_vep.vcf.gz.tbi",
-                "snv/test_tumor_only_case_SNV_annotated_vep.vcf.gz_summary.html",
                 "snv/test_tumor_only_case_SNV_clinical_filtered_bcftools.vcf.gz",
                 "snv/test_tumor_only_case_SNV_clinical_filtered_bcftools.vcf.gz.tbi",
                 "snv/test_tumor_only_case_SNV_score_genmod.vcf.gz",
@@ -107,7 +106,6 @@
                 "sv",
                 "sv/test_tumor_only_case_SV_annotated_vep.vcf.gz",
                 "sv/test_tumor_only_case_SV_annotated_vep.vcf.gz.tbi",
-                "sv/test_tumor_only_case_SV_annotated_vep.vcf.gz_summary.html",
                 "sv/test_tumor_only_case_SV_clinical_filtered_bcftools.vcf.gz",
                 "sv/test_tumor_only_case_SV_clinical_filtered_bcftools.vcf.gz.tbi",
                 "sv/test_tumor_only_case_SV_score_genmod.vcf.gz",
@@ -158,31 +156,31 @@
                 ],
                 [
                     "test_tumor_only_case_SNV_annotated_vep.vcf.gz",
-                    "96afd20d30255284c06a3fd505a1d466"
+                    "27194adc2bdd7b36168516d5c8e6e293"
                 ],
                 [
                     "test_tumor_only_case_SNV_clinical_filtered_bcftools.vcf.gz",
-                    "86368653579fc08f5fe7b47a6212053f"
+                    "5e36ace4ff212d6f3302aad91c4cdf0a"
                 ],
                 [
                     "test_tumor_only_case_SNV_score_genmod.vcf.gz",
-                    "86368653579fc08f5fe7b47a6212053f"
+                    "5e36ace4ff212d6f3302aad91c4cdf0a"
                 ],
                 [
                     "test_tumor_only_case_SV_annotated_vep.vcf.gz",
-                    "8e31adcf1b796628fddac097b4e24cff"
+                    "496565cf9dac07b7ebd0a57cfdce1377"
                 ],
                 [
                     "test_tumor_only_case_SV_clinical_filtered_bcftools.vcf.gz",
-                    "1d79acb9bec40c047006a5a36c161c37"
+                    "b22ae63bde8d66118b63bc540af69181"
                 ],
                 [
                     "test_tumor_only_case_SV_score_genmod.vcf.gz",
-                    "1d79acb9bec40c047006a5a36c161c37"
+                    "b22ae63bde8d66118b63bc540af69181"
                 ]
             ]
         ],
-        "timestamp": "2026-09-16T15:44:53.857103",
+        "timestamp": "2026-11-16T09:08:12.266028",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
