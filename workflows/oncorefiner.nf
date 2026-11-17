@@ -49,17 +49,17 @@ workflow ONCOREFINER {
     ch_vcfanno_toml                 // channel: [required]  [path(toml_file)]
     ch_vep_cache                    // channel: [required]  [vep_cache_files]
     ch_vep_extra_files              // channel: [optional]  [path(plugin_file1), path(plugin_file2), ...]
-    val_analysis_type               // string:  [optional]  [analysis type, e.g. "tumor_only" or "tumor_normal"]
-    val_cadd_resources              // string:  [optional]  [path to CADD resources directory]
-    val_genome                      // string:  [required]  [genome assembly (e.g. "GRCh38")]
-    val_multiqc_config              // string:  [optional]  [path to multiqc config file]
-    val_multiqc_logo                // string:  [optional]  [path to image file to be used as logo in multiqc report]
-    val_multiqc_methods_description // string:  [optional]  [path to text file containing methods description to be included in multiqc report]
-    val_outdir                      // string:  [required]  [path to output directory (default: ./results)]
-    val_run_genmod_score_snv        // boolean: [required]  [whether to skip PROCESS_SNVS:VCF_ANNOTATE_SCORE_GENMOD process for SNVs]
-    val_run_genmod_score_sv         // boolean: [required]  [whether to skip PROCESS_SVS:VCF_ANNOTATE_SCORE_GENMOD process for SVs]
-    val_species                     // string:  [required]  [species (e.g. "homo_sapiens")]
-    val_vep_cache_version           // string:  [optional]  [version of vep cache to use (e.g. "107")]
+    val_analysis_type               // string:  [optional]  analysis type, e.g. "tumor_only" or "tumor_normal"
+    val_cadd_resources              // string:  [optional]  path to CADD resources directory
+    val_genome                      // string:  [required]  genome assembly (e.g. "GRCh38")
+    val_multiqc_config              // string:  [optional]  path to multiqc config file
+    val_multiqc_logo                // string:  [optional]  path to image file to be used as logo in multiqc report
+    val_multiqc_methods_description // string:  [optional]  path to text file containing methods description to be included in multiqc report
+    val_outdir                      // string:  [required]  path to output directory (default: ./results)
+    val_run_genmod_score_snv        // boolean: [required]  whether to skip PROCESS_SNVS:VCF_ANNOTATE_SCORE_GENMOD process for SNVs
+    val_run_genmod_score_sv         // boolean: [required]  whether to skip PROCESS_SVS:VCF_ANNOTATE_SCORE_GENMOD process for SVs
+    val_species                     // string:  [required]  species (e.g. "homo_sapiens")
+    val_vep_cache_version           // string:  [optional]  version of vep cache to use (e.g. "107")
 
     main:
 

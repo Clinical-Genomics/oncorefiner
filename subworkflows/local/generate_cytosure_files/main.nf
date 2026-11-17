@@ -11,8 +11,8 @@ workflow GENERATE_CYTOSURE_FILES {
 
     take:
     ch_bam_bai // channel: [optional] [val(meta), path(bam), path(bai)]
-    ch_tbi     // channel: [required] [val(meta), path(tbi)]
-    ch_vcf     // channel: [required] [val(meta), path(vcf)]
+    ch_tbi     // channel: [mandatory] [val(meta), path(tbi)]
+    ch_vcf     // channel: [mandatory] [val(meta), path(vcf)]
 
     main:
     // Filter out SGL variants, if present
