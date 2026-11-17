@@ -77,7 +77,7 @@ workflow PIPELINE_INITIALISATION {
     //
     // Custom validation for pipeline parameters
     //
-    checkGenomeVersionMatchesGenome()
+    customParamsValidation()
 
     //
     // Check config provided to the pipeline
@@ -344,6 +344,10 @@ def channelFromTabularFile(tabularFilePath, schemaFilePath, collectChannel = tru
     def ch_out = channel.fromList(samplesheetToList(tabularFilePath, schemaFilePath))
 
     return collectChannel ? ch_out.collect() : ch_out
+}
+
+def customParamsValidation() {
+    checkGenomeVersionMatchesGenome()
 }
 
 /**
