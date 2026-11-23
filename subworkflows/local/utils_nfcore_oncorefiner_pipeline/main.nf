@@ -349,9 +349,9 @@ def channelFromTabularFile(tabularFilePath, schemaFilePath, collectChannel = tru
 def customParamsValidation() {
     checkGenomeVersionMatchesGenome()
     def normalFiles = [
+        sample_id_normal: params.sample_id_normal,
         bam_normal: params.bam_normal,
         bai_normal: params.bai_normal,
-        sample_id_normal: params.sample_id_normal,
         cobalt_ratio_pcf_normal: params.cobalt_ratio_pcf_normal
     ]
     checkAllNormalFiles(normalFiles)
@@ -373,7 +373,8 @@ def checkGenomeVersionMatchesGenome() {
 
 
 /**
- * Checks that if any normal file is provided, all of them are.
+ * Checks that if any normal file is provided, all of them should be provided.
+ * If not, an error is thrown indicating which files are missing.
  * @param normalFiles Map of parameter name to value, e.g. [bam_normal: params.bam_normal]
  */
 def checkAllNormalFiles(Map normalFiles) {
