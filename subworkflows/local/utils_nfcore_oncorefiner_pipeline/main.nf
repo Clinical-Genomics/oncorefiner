@@ -375,6 +375,7 @@ def checkGenomeVersionMatchesGenome() {
 /**
  * Checks that if any normal file is provided, all of them should be provided.
  * If not, an error is thrown indicating which files are missing.
+ * If none of the normal files are provided, no error is thrown.
  * @param normalFiles Map of parameter name to value, e.g. [bam_normal: params.bam_normal]
  */
 def checkAllNormalFiles(Map normalFiles) {
