@@ -119,7 +119,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#191](https://github.com/Clinical-Genomics/oncorefiner/pull/191) Refactor channel initialisation for `ch_vep_extra_files`, `ch_vcfanno_resources` and `ch_sv_dbs` using `channelFromTabularFile` utils function.
 - [#192](https://github.com/Clinical-Genomics/oncorefiner/pull/192) Updated `pipelines_testdata_base_path` to new commit with updated COBALT files.
 - [#192](https://github.com/Clinical-Genomics/oncorefiner/pull/192) Updated the python script `prepare_cobalt_for_gens.py` to comply with new header columns of COBALT files.
-- [#194](https://github.com/Clinical-Genomics/oncorefiner/pull/194) Made pipeline input parameters mandatory for all processes, except CADD, which remains optional. Missing any of the mandaotry input parameters will cause the pipeline to fail instead of silently skipping processes.
+- [#194](https://github.com/Clinical-Genomics/oncorefiner/pull/194) Made pipeline input parameters mandatory for all processes, except CADD, which remains optional. Missing any of the mandatory input parameters will cause the pipeline to fail instead of silently skipping processes.
 - [#200](https://github.com/Clinical-Genomics/oncorefiner/pull/200) Updated the genomic position sorting method in python script `prepare_cobalt_for_gens.py`.
 - [#199](https://github.com/Clinical-Genomics/oncorefiner/pull/199) Updated VEP and bcftools filtering settings to reflect new strategy.
 
