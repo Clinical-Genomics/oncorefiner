@@ -127,5 +127,27 @@ nextflow_pipeline {
             )
         }
     }
+    test("Incomplete input of normal files with '-profile test' - stub") {
+
+        options "-stub"
+
+        when {
+            params {
+                outdir = "$outputDir"
+                sample_id_normal = "normal_sample_name"
+                bam_normal = null
+                bai_normal = null
+                cobalt_ratio_pcf_normal = null
+            }
+        }
+
+        then {
+            assertAll(
+                { assert workflow.failed}, // Assert the pipeline failed due to incomplete normal files
+                { assert workflow.errorMessage.contains("When providing normal files, all of them must be provided") } // Assert the expected error message is thrown
+            )
+        }
+
+    }
 
 }
