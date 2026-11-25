@@ -64,6 +64,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#191](https://github.com/Clinical-Genomics/oncorefiner/pull/191) Added `vcfanno_resources_schema.json` and input validation of `params.vcfanno_resources`.
 - [#197](https://github.com/Clinical-Genomics/oncorefiner/pull/197) Added `checkGenomeVersionMatchesGenome` utils function to validate that `genome_version_number` parameter matches `genome`.
 - [#201](https://github.com/Clinical-Genomics/oncorefiner/pull/201) Added a centralised parameter validation by introducing a `customParamsValidation` wrapper function that calls all individual parameter validation functions.
+- [#202](https://github.com/Clinical-Genomics/oncorefiner/pull/202) Added `checkAllNormalFiles` utils function to validate the normal input parameters, by applying the all or none logic. Partial input raises an error and the pipeline fails during initialisation.
 
 ### `Changed`
 
