@@ -122,7 +122,6 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#200](https://github.com/Clinical-Genomics/oncorefiner/pull/200) Updated the genomic position sorting method in python script `prepare_cobalt_for_gens.py`.
 - [#199](https://github.com/Clinical-Genomics/oncorefiner/pull/199) Updated VEP and bcftools filtering settings to reflect new strategy.
 
-
 ### `Fixed`
 
 - [#9](https://github.com/Clinical-Genomics/oncorefiner/pull/9) Removed snv_vcf_tbi and sv_vcf_tbi parameter. VCF indexes are now automatically detected.

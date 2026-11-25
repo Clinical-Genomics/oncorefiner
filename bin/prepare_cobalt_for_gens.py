@@ -8,7 +8,7 @@ import pandas as pd
 __version__ = "1.0"
 
 # Cobalt reports ratios with up to four decimal places, with 0.0001 being the smallest observed non-zero value.
-# Capping the log2 ratio at around -13.3. 
+# Capping the log2 ratio at around -13.3.
 MIN_RATIO = 0.0001
 
 DEFAULT_SPACING = {
