@@ -118,7 +118,6 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#191](https://github.com/Clinical-Genomics/oncorefiner/pull/191) Refactor channel initialisation for `ch_vep_extra_files`, `ch_vcfanno_resources` and `ch_sv_dbs` using `channelFromTabularFile` utils function.
 - [#192](https://github.com/Clinical-Genomics/oncorefiner/pull/192) Updated `pipelines_testdata_base_path` to new commit with updated COBALT files.
 - [#192](https://github.com/Clinical-Genomics/oncorefiner/pull/192) Updated the python script `prepare_cobalt_for_gens.py` to comply with new header columns of COBALT files.
-- [#200](https://github.com/Clinical-Genomics/oncorefiner/pull/200) Updated the genomic position sorting method in python script `prepare_cobalt_for_gens.py`.
 
 ### `Fixed`
 
@@ -166,7 +165,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#171](https://github.com/Clinical-Genomics/oncorefiner/pull/171) Remove metadata from static CADD header file
 - [#178](https://github.com/Clinical-Genomics/oncorefiner/pull/178) Updated the emit files for `research_filtered_vcf` in `PROCESS_SVS` to be the channel `ch_research_filtered_vcf` which will either be the GENMOD scored VCF or the VEP annotated VCF.
 - [#184](https://github.com/Clinical-Genomics/oncorefiner/pull/184) Updated the singularity container in `RMARKDOWNNOTEBOOK` as well as the patch diff file.
-- [#197](https://github.com/Clinical-Genomics/oncorefiner/pull/198) Added log2 conversion of MeanRatio inside cobalt gens script
+- [#197](https://github.com/Clinical-Genomics/oncorefiner/pull/198) Added log2 conversion of MeanRatio inside cobalt gens script.
 
 ### `Dependencies`
 
