@@ -9,9 +9,7 @@ __version__ = "1.0"
 
 # Cobalt reports ratios with up to four decimal places, with 0.0001 being the smallest observed non-zero value.
 # Capping the log2 ratio at around -13.3. 
-# To avoid log2(0) from crashing, a min ratio is set.
-# This caps the log2 ratio at -20.
-MIN_RATIO = 0.00000095
+MIN_RATIO = 0.0001
 
 DEFAULT_SPACING = {
     "o": 50_000,
