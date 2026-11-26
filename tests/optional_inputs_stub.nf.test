@@ -127,6 +127,7 @@ nextflow_pipeline {
             )
         }
     }
+
     test("Incomplete input of normal files with '-profile test' - stub") {
 
         options "-stub"
@@ -134,17 +135,16 @@ nextflow_pipeline {
         when {
             params {
                 outdir = "$outputDir"
-                sample_id_normal = "normal_sample_name"
-                bam_normal = null
-                bai_normal = null
+                bai_normal = null // Two normal files are not given.
                 cobalt_ratio_pcf_normal = null
             }
         }
 
         then {
+            def expectedMessages = ["When providing normal files, all of them must be provided", "--bai_normal", "--cobalt_ratio_pcf_normal"]
             assertAll(
-                { assert workflow.failed}, // Assert the pipeline failed due to incomplete normal files
-                { assert workflow.errorMessage.contains("When providing normal files, all of them must be provided") } // Assert the expected error message is thrown
+                { assert workflow.failed },
+                { assert workflow.stdout.any { line -> expectedMessages.every { message -> line.contains(message) } } } // A part of the error message reported in stdout
             )
         }
 
