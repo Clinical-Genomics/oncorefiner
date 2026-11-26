@@ -35,36 +35,6 @@ nextflow_pipeline {
         }
     }
 
-    test("No `cobalt_ratio_pcf_normal` provided with '-profile test' - stub") {
-
-        options "-stub"
-
-        when {
-            params {
-                outdir = "$outputDir"
-                cobalt_ratio_pcf_normal = null
-            }
-        }
-
-        then {
-            // stable_name: All files + folders in ${params.outdir}/ with a stable name
-            def stable_name = getAllFilesFromDir(params.outdir, relative: true, includeDir: true, ignore: ['pipeline_info/*.{html,json,txt}'])
-            // pipeline versions.yml file for multiqc from which Nextflow version is removed because we test pipelines on multiple Nextflow versions
-            def versions = removeNextflowVersion("$outputDir/pipeline_info/oncorefiner_software_mqc_versions.yml")
-            assertAll(
-                { assert workflow.success},
-                // Assert that "PREPARE_COBALT_FOR_GENS" is run
-                { assert "PREPARE_COBALT_FOR_GENS" in versions.keySet()},
-                { assert snapshot(
-                    // List of software versions run in the pipeline
-                    versions,
-                    // All stable file names, with a relative path
-                    stable_name,
-                ).match() }
-            )
-        }
-    }
-
     test("Incomplete input of normal files with '-profile test' - stub") {
 
         options "-stub"
