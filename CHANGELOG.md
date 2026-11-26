@@ -120,6 +120,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#191](https://github.com/Clinical-Genomics/oncorefiner/pull/191) Refactor channel initialisation for `ch_vep_extra_files`, `ch_vcfanno_resources` and `ch_sv_dbs` using `channelFromTabularFile` utils function.
 - [#192](https://github.com/Clinical-Genomics/oncorefiner/pull/192) Updated `pipelines_testdata_base_path` to new commit with updated COBALT files.
 - [#192](https://github.com/Clinical-Genomics/oncorefiner/pull/192) Updated the python script `prepare_cobalt_for_gens.py` to comply with new header columns of COBALT files.
+- [#194](https://github.com/Clinical-Genomics/oncorefiner/pull/194) Made pipeline input parameters mandatory for all processes, except CADD, which remains optional. Missing any of the mandatory input parameters will cause the pipeline to fail instead of silently skipping processes.
 - [#200](https://github.com/Clinical-Genomics/oncorefiner/pull/200) Updated the genomic position sorting method in python script `prepare_cobalt_for_gens.py`.
 - [#199](https://github.com/Clinical-Genomics/oncorefiner/pull/199) Updated VEP and bcftools filtering settings to reflect new strategy.
 
@@ -169,6 +170,8 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#171](https://github.com/Clinical-Genomics/oncorefiner/pull/171) Remove metadata from static CADD header file
 - [#178](https://github.com/Clinical-Genomics/oncorefiner/pull/178) Updated the emit files for `research_filtered_vcf` in `PROCESS_SVS` to be the channel `ch_research_filtered_vcf` which will either be the GENMOD scored VCF or the VEP annotated VCF.
 - [#184](https://github.com/Clinical-Genomics/oncorefiner/pull/184) Updated the singularity container in `RMARKDOWNNOTEBOOK` as well as the patch diff file.
+- [#197](https://github.com/Clinical-Genomics/oncorefiner/pull/198) Converted COBALT `MeanRatio` to log2 for Gens; zero ratio segments are removed.
+- [#203](https://github.com/Clinical-Genomics/oncorefiner/pull/203) Added all test configs to nf-test triggers to ensure that if the test config files are changed, a test run is triggered.
 
 ### `Dependencies`
 
@@ -183,3 +186,4 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#152](https://github.com/Clinical-Genomics/oncorefiner/pull/152) Removed publishDir directive for `PREPARE_REFERENCES`.
 - [#172](https://github.com/Clinical-Genomics/oncorefiner/pull/172) Removed publishDir from `annotate_cadd.config` and `modules.config`
 - [#179](https://github.com/Clinical-Genomics/oncorefiner/pull/179) Removed logo images `assets/nf-core-oncorefiner_logo_light.png`, `docs/images/nf-core-oncorefiner_logo_dark.png` and `docs/images/nf-core-oncorefiner_logo_light.png`
+- [#194](https://github.com/Clinical-Genomics/oncorefiner/pull/194) Removed nf-tests from `optional_inputs_stub.nf.test` for parameters that are no longer optional.

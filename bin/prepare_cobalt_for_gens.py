@@ -7,6 +7,10 @@ import pandas as pd
 
 __version__ = "1.0"
 
+# Cobalt reports ratios with up to four decimal places, with 0.0001 being the smallest observed non-zero value.
+# Capping the log2 ratio at around -13.3.
+# The segments may also contain MeanRatios of 0, which are filtered out prior to processing.
+
 DEFAULT_SPACING = {
     "o": 50_000,
     "a": 20_000,
@@ -70,7 +74,10 @@ def write_segment_zoom_file(
             chrom = row[Column.CHROMOSOME]
             start = int(row[Column.START])
             end = int(row[Column.END])
-            value = float(row[Column.MEAN_RATIO])
+            ratio = float(row[Column.MEAN_RATIO])
+
+            log2_ratio = round(math.log2(ratio), 5)
+
 
 
             for pos in segment_to_points(start, end, spacing):
@@ -79,7 +86,7 @@ def write_segment_zoom_file(
                         chrom_to_output_name(chrom, level),
                         pos,
                         pos + 1,
-                        value,
+                        log2_ratio,
                     ]
                 )
 
@@ -128,6 +135,13 @@ def main(input_file: str, output_file: str) -> None:
         raise click.ClickException(
             f"Missing required columns: {', '.join(sorted(missing))}"
         )
+
+    # Remove segments with a mean ratio of zero
+    n_segments_before = len(df)
+    df = df[df[Column.MEAN_RATIO] != 0]
+    n_removed = n_segments_before - len(df)
+
+    click.echo(f"Removed {n_removed} segments with MeanRatio == 0")
 
     df = pd.concat(
         [
