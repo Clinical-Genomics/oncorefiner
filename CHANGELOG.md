@@ -170,6 +170,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#178](https://github.com/Clinical-Genomics/oncorefiner/pull/178) Updated the emit files for `research_filtered_vcf` in `PROCESS_SVS` to be the channel `ch_research_filtered_vcf` which will either be the GENMOD scored VCF or the VEP annotated VCF.
 - [#184](https://github.com/Clinical-Genomics/oncorefiner/pull/184) Updated the singularity container in `RMARKDOWNNOTEBOOK` as well as the patch diff file.
 - [#197](https://github.com/Clinical-Genomics/oncorefiner/pull/198) Converted COBALT `MeanRatio` to log2 for Gens; zero ratio segments are removed.
+- [#203](https://github.com/Clinical-Genomics/oncorefiner/pull/203) Added all test configs to nf-test triggers to ensure that if the test config files are changed, a test run is triggered.
 
 ### `Dependencies`
 
