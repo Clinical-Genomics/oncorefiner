@@ -169,7 +169,7 @@ Initial release of Clinical-Genomics/oncorefiner, created with the [nf-core](htt
 - [#171](https://github.com/Clinical-Genomics/oncorefiner/pull/171) Remove metadata from static CADD header file
 - [#178](https://github.com/Clinical-Genomics/oncorefiner/pull/178) Updated the emit files for `research_filtered_vcf` in `PROCESS_SVS` to be the channel `ch_research_filtered_vcf` which will either be the GENMOD scored VCF or the VEP annotated VCF.
 - [#184](https://github.com/Clinical-Genomics/oncorefiner/pull/184) Updated the singularity container in `RMARKDOWNNOTEBOOK` as well as the patch diff file.
-- [#197](https://github.com/Clinical-Genomics/oncorefiner/pull/198) Converted COBALT `MeanRatio` to log2 for Gens; zero ratios are floored at 0.0001 (log2 ≈ −13.3)
+- [#197](https://github.com/Clinical-Genomics/oncorefiner/pull/198) Converted COBALT `MeanRatio` to log2 for Gens; zero ratio segments are removed.
 
 ### `Dependencies`
 
