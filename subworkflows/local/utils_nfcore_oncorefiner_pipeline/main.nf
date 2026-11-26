@@ -371,7 +371,6 @@ def checkGenomeVersionMatchesGenome() {
     }
 }
 
-
 /**
  * Checks that if any normal file is provided, all of them should be provided.
  * If not, an error is thrown indicating which files are missing.
