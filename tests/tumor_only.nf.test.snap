@@ -115,8 +115,8 @@
             [
                 "test_tumor_only_case_CNV_BAF_AMBER_FOR_GENS.tumor.bed.gz:md5,ccb0b5ad7111f53c6d660e608af438ce",
                 "test_tumor_only_case_CNV_BAF_AMBER_FOR_GENS.tumor.bed.gz.tbi:md5,6928f740f2cd8914f6d9b10607b184ea",
-                "test_tumor_only_case_test_tumor_sample_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz:md5,1bef484f1c612ace03f16a2877f19c09",
-                "test_tumor_only_case_test_tumor_sample_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz.tbi:md5,cd8b78c91e49ef684ce32c3fe8f5312c",
+                "test_tumor_only_case_test_tumor_sample_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz:md5,b4524abeaeced0286a3f074cb8e1b5ae",
+                "test_tumor_only_case_test_tumor_sample_tumor_CNV_COV_COBALT_FOR_GENS.bed.gz.tbi:md5,4a075cecb3d56034ecce0138b0aa42df",
                 "test_tumor_only_case_test_tumor_sample_tumor_SV_vcf2cytosure.cgh:md5,e808e85bea4ce6838a53f53fcdcb22cf"
             ],
             [
@@ -180,7 +180,7 @@
                 ]
             ]
         ],
-        "timestamp": "2026-11-16T09:08:12.266028",
+        "timestamp": "2026-11-26T11:25:47.947569",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.6"
