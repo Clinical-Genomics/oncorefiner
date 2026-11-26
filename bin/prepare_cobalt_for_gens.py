@@ -9,7 +9,7 @@ __version__ = "1.0"
 
 # Cobalt reports ratios with up to four decimal places, with 0.0001 being the smallest observed non-zero value.
 # Capping the log2 ratio at around -13.3.
-MIN_RATIO = 0.0001
+# The segments may also contain MeanRatios of 0, which are filtered out prior to processing.
 
 DEFAULT_SPACING = {
     "o": 50_000,
@@ -75,7 +75,8 @@ def write_segment_zoom_file(
             start = int(row[Column.START])
             end = int(row[Column.END])
             ratio = float(row[Column.MEAN_RATIO])
-            log2_ratio = round(math.log2(max(ratio, MIN_RATIO)), 5)
+
+            log2_ratio = round(math.log2(ratio), 5)
 
 
 
@@ -134,6 +135,13 @@ def main(input_file: str, output_file: str) -> None:
         raise click.ClickException(
             f"Missing required columns: {', '.join(sorted(missing))}"
         )
+
+    # Remove segments with a mean ratio of zero
+    n_segments_before = len(df)
+    df = df[df[Column.MEAN_RATIO] != 0]
+    n_removed = n_segments_before - len(df)
+
+    click.echo(f"Removed {n_removed} segments with MeanRatio == 0")
 
     df = pd.concat(
         [
