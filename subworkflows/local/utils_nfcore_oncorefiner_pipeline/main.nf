@@ -378,7 +378,7 @@ def checkGenomeVersionMatchesGenome() {
  * @param normalFiles Map of parameter name to value, e.g. [bam_normal: params.bam_normal]
  */
 def checkAllNormalFiles(Map normalFiles) {
-    def missing = normalFiles.findAll { name, file -> !file }.keySet()
+    def missing = normalFiles.findAll { _name, file -> !file }.keySet()
 
     if (missing && missing.size() < normalFiles.size()) {
         error "When providing normal files, all of them must be provided. " +
