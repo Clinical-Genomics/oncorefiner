@@ -30,7 +30,9 @@ Define where the pipeline should find input data and save output data.
 | Parameter | Description | Type | Default | Required | Hidden |
 |-----------|-----------|-----------|-----------|-----------|-----------|
 | `snv_vcf` | Path to a VCF file containing somatic SNV/INDEL variants to be processed by the pipeline. The VCF may include one or multiple samples. Typically, this is a single tumor sample for tumor-only analyses, or both tumor and matched normal samples for tumor-normal analyses. | `string` |  | True |  |
+| `snv_vcf_tbi` | Path to a TBI index file for the SNV VCF | `string` |  | True |  |
 | `sv_vcf` | Path to a VCF file containing somatic structural variants (SVs) to be processed by the pipeline. The VCF may include one or multiple samples. Typically, this is a single tumor sample for tumor-only analyses, or both tumor and matched normal samples for tumor-normal analyses. | `string` |  | True |  |
+| `sv_vcf_tbi` | Path to a TBI index file for the SV VCF | `string` |  | True |  |
 | `bam_tumor` | Path to alignment BAM file for the tumor sample. | `string` |  | True |  |
 | `bai_tumor` | Path to BAM index file for the tumor sample. | `string` |  | True |  |
 | `bam_normal` | Path to alignment BAM file for the normal sample. | `string` |  |  |  |
