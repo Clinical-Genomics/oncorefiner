@@ -348,6 +348,7 @@ def channelFromTabularFile(tabularFilePath, schemaFilePath, collectChannel = tru
 
 def customParamsValidation() {
     checkGenomeVersionMatchesGenome()
+    checkAllNormalFiles()
 }
 
 /**
@@ -361,5 +362,26 @@ def checkGenomeVersionMatchesGenome() {
         error "Conflicting parameters: --genome ${params.genome} requires " +
               "--genome_version_number ${expectedGenomeVersion}, " +
               "but received ${params.genome_version_number}."
+    }
+}
+
+/**
+ * Checks that if any normal file is provided, all of them should be provided.
+ * If not, an error is thrown indicating which files are missing.
+ * If none of the normal files are provided, no error is thrown.
+ * @param normalFiles Map of parameter name to value, e.g. [bam_normal: params.bam_normal]
+ */
+def checkAllNormalFiles() {
+    def normalFiles = [
+        sample_id_normal: params.sample_id_normal,
+        bam_normal: params.bam_normal,
+        bai_normal: params.bai_normal,
+        cobalt_ratio_pcf_normal: params.cobalt_ratio_pcf_normal
+    ]
+    def missing = normalFiles.findAll { _name, file -> !file }.keySet()
+
+    if (missing && missing.size() < normalFiles.size()) {
+        error "When providing normal files, all of them must be provided. " +
+              "Missing: ${missing.collect { "--${it}" }.join(', ')}."
     }
 }
