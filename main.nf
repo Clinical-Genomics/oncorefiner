@@ -64,8 +64,10 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     val_sample_id_tumor             // string:  [mandatory]  sample ID for the tumor sample (used in channel metadata)
     val_sex                         // string:  [mandatory]  sex of the patient (used in channel metadata)
     val_snv_vcf                     // string:  [mandatory]  path to input SNV vcf file
+    val_snv_vcf_tbi                 // string:  [mandatory]  path to input SNV vcf index file
     val_species                     // string:  [mandatory]  species (e.g. "homo_sapiens")
     val_sv_vcf                      // string:  [mandatory]  path to input SV vcf file
+    val_sv_vcf_tbi                  // string:  [mandatory]  path to input SV vcf index file
     val_svdb_query_dbs              // string:  [mandatory]  path to file containing paths to SVDB query databases and additional information (one per line)
     val_vcfanno_extra               // string:  [optional]  path to file containing paths to extra files for vcfanno (one per line)
     val_vcfanno_lua                 // string:  [mandatory]  path to vcfanno lua file
@@ -109,9 +111,9 @@ workflow CLINICALGENOMICS_ONCOREFINER {
     )
 
     ch_snv_vcf         = channelFromMetaAndPath(metadata_case_file, val_snv_vcf)
-    ch_snv_vcf_tbi     = channelFromMetaAndPath(metadata_case_file, val_snv_vcf + '.tbi')
+    ch_snv_vcf_tbi     = channelFromMetaAndPath(metadata_case_file, val_snv_vcf_tbi)
     ch_sv_vcf          = channelFromMetaAndPath(metadata_case_file, val_sv_vcf)
-    ch_sv_vcf_tbi      = channelFromMetaAndPath(metadata_case_file, val_sv_vcf + '.tbi')
+    ch_sv_vcf_tbi      = channelFromMetaAndPath(metadata_case_file, val_sv_vcf_tbi)
 
     // Alignment files
     def ch_bam_normal     = channelFromMetaAndPath(metadata_normal_sample_file, val_bam_normal)
@@ -326,8 +328,10 @@ workflow {
         params.sample_id_tumor,
         params.sex,
         params.snv_vcf,
+        params.snv_vcf_tbi,
         params.species,
         params.sv_vcf,
+        params.sv_vcf_tbi,
         params.svdb_query_dbs,
         params.vcfanno_extra,
         params.vcfanno_lua,
