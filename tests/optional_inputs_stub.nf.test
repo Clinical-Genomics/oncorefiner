@@ -48,7 +48,7 @@ nextflow_pipeline {
         }
 
         then {
-            def expectedMessage = ["When providing normal files, all of them must be provided. Missing: --bai_normal, --cobalt_ratio_pcf_normal."]
+            def expectedMessage = "When providing normal files, all of them must be provided. Missing: --bai_normal, --cobalt_ratio_pcf_normal."
             assertAll(
                 { assert workflow.failed },
                 { assert workflow.stdout.any { line -> line.contains(expectedMessage) } } // Corresponding error message reported in stdout
